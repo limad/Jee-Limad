@@ -31,7 +31,7 @@ jeeFrontEnd.system.init()
 
 //Manage events outside parents delegations:
 document.getElementById('bt_validateSpecifiCommand')?.addEventListener('click', function(event) {
-  var command = document.getElementById('in_specificCommand').value
+  const command = document.getElementById('in_specificCommand').value
   document.getElementById('pre_commandResult').empty()
   jeedom.ssh({
     command: command,
@@ -40,7 +40,7 @@ document.getElementById('bt_validateSpecifiCommand')?.addEventListener('click', 
       document.getElementById('pre_commandResult').append(log)
       let insertCmd = '<li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="' + command + '">' + command + '</a></li>'
       document.getElementById('ul_userListCmdHistory').insertAdjacentHTML('afterbegin', insertCmd)
-      var kids = document.getElementById('ul_userListCmdHistory').children
+      const kids = document.getElementById('ul_userListCmdHistory').children
       while (kids.length >= 10) {
         kids[kids.length - 1].remove()
       }
@@ -50,7 +50,7 @@ document.getElementById('bt_validateSpecifiCommand')?.addEventListener('click', 
 
 document.getElementById('in_specificCommand')?.addEventListener('keyup', function(event) {
   if (event.which == 13) {
-    var command = document.getElementById('in_specificCommand').value
+    const command = document.getElementById('in_specificCommand').value
     document.getElementById('pre_commandResult').empty()
     jeedom.ssh({
       command: command,
@@ -62,7 +62,7 @@ document.getElementById('in_specificCommand')?.addEventListener('keyup', functio
           let insertCmd = '<li class="cursor list-group-item list-group-item-success"><a class="bt_systemCommand" data-command="' + command.replace(/"/g, '\\"') + '">' + command + '</a></li>'
           document.getElementById('ul_userListCmdHistory').insertAdjacentHTML('afterbegin', insertCmd)
         }
-        var kids = document.getElementById('ul_userListCmdHistory').children
+        const kids = document.getElementById('ul_userListCmdHistory').children
         while (kids.length >= 10) {
           kids[kids.length - 1].remove()
         }
@@ -74,9 +74,9 @@ document.getElementById('in_specificCommand')?.addEventListener('keyup', functio
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#ul_userListCmdHistory .bt_systemCommand')) {
-    var command = _target.getAttribute('data-command')
+    const command = _target.getAttribute('data-command')
     document.getElementById('pre_commandResult').empty()
     jeedom.ssh({
       command: command,
@@ -90,7 +90,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#ul_systemListCmd .bt_systemCommand')) {
-    var command = _target.getAttribute('data-command')
+    const command = _target.getAttribute('data-command')
     document.getElementById('pre_commandResult').empty()
     if (_target.parentNode.hasClass('list-group-item-danger')) {
       jeeDialog.confirm('{{Êtes-vous sûr de vouloir éxécuter cette commande :}} <strong>' + command + '</strong> ? {{Celle-ci est classé en dangereuse}}', function(result) {

@@ -38,7 +38,18 @@ try {
 	if ($request == '') {
 		$request = file_get_contents("php://input");
 	}
-	log::add('apipro', 'info', secureXSS($request) . ' - IP :' . $IP);
+	$logRequest = json_decode($request, true);
+		if (is_array($logRequest)) {
+			array_walk_recursive($logRequest, function (&$value, $key) {
+				if ($key == 'proapi') {
+					$value = '***';
+				}
+			});
+			$requestLog = json_encode($logRequest);
+		} else {
+			$requestLog = $request;
+		}
+		log::add('apipro', 'info', secureXSS($requestLog) . ' - IP :' . $IP);
 
 	$jsonrpc = new jsonrpc($request);
 
@@ -469,6 +480,9 @@ try {
 
 			foreach ($params['id'] as $id) {
 				$eqLogic = eqLogic::byId($id);
+				if (!is_object($eqLogic)) {
+					continue;
+				}
 				$info_cmds = array();
 				foreach ($eqLogic->getCmd() as $cmd) {
 					$info_cmd = utils::o2a($cmd);
@@ -728,7 +742,7 @@ try {
 		}
 
 		if ($jsonrpc->getMethod() == 'update::update') {
-			jeedom::update('');
+			jeedom::update();
 			$jsonrpc->makeSuccess('ok');
 		}
 

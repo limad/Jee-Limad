@@ -169,6 +169,6 @@ function updateSummary(_className) {
   })
   parent.querySelectorAll('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]')?.last()?.addClass('last')
   if (pResume.querySelector('.objectSummaryParent[data-summary="temperature"]') != null && pResume.querySelector('.objectSummaryParent[data-summary^="temp"]') != null ) {
-    parent.find('.topPreview').appendChild(pResume.querySelector('.objectSummaryParent[data-summary^="temp"]'))
+    parent.querySelector('.topPreview')?.appendChild(pResume.querySelector('.objectSummaryParent[data-summary^="temp"]'))
   }
 }

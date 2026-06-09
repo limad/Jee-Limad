@@ -15,9 +15,15 @@
 * You should have received a copy of the GNU General Public License
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
-header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Methods: POST, GET");
-header("Access-Control-Allow-Headers: Content-Type");
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+$host = explode(':', $_SERVER['HTTP_HOST'] ?? '')[0];
+$originHost = parse_url($origin, PHP_URL_HOST);
+if ($origin !== '' && $host !== '' && $originHost !== false && hash_equals($host, $originHost)) {
+	header('Access-Control-Allow-Origin: ' . $origin);
+	header('Vary: Origin');
+	header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+	header('Access-Control-Allow-Headers: Content-Type, origin, x-requested-with, content-type');
+}
 require_once __DIR__ . "/../php/core.inc.php";
 if (user::isBan()) {
 	header("Status: 404 Not Found");
@@ -37,7 +43,7 @@ $_RESTRICTED = false;
 
 if (init('type') != '') {
 	try {
-		
+
 		if (init('type') == 'ask') {
 			if (trim(init('token')) == '' || strlen(init('token')) < 64) {
 				throw new Exception(__('Commande inconnue ou Token invalide', __FILE__));
@@ -272,7 +278,18 @@ try {
 	if ($request == '') {
 		$request = file_get_contents("php://input");
 	}
-	log::add('api', 'info', secureXSS($request) . ' - IP :' . $IP);
+	$logRequest = json_decode($request, true);
+		if (is_array($logRequest)) {
+			array_walk_recursive($logRequest, function (&$value, $key) {
+				if (in_array($key, array('apikey', 'api', 'password', 'twoFactorCode'))) {
+					$value = '***';
+				}
+			});
+			$requestLog = json_encode($logRequest);
+		} else {
+			$requestLog = $request;
+		}
+		log::add('api', 'info', secureXSS($requestLog) . ' - IP :' . $IP);
 
 	$jsonrpc = new jsonrpc($request);
 
@@ -1276,7 +1293,7 @@ try {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
 		unautorizedInDemo();
-		jeedom::update('');
+		jeedom::update();
 		$jsonrpc->makeSuccess('ok');
 	}
 

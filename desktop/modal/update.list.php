@@ -18,7 +18,11 @@
 if (!isConnect('admin')) {
   throw new Exception('{{401 - Accès non autorisé}}');
 }
-$repo = update::repoById(init('repo', 'market'));
+$repoId = init('repo', 'market');
+if (!class_exists('repo_' . $repoId)) {
+  throw new Exception(__('Dépôt inconnu :', __FILE__) . ' ' . $repoId);
+}
+$repo = update::repoById($repoId);
 if ($repo['enable'] == 0) {
   throw new Exception(__('Le dépôt est inactif :', __FILE__) . ' ' . init('repo'));
 }

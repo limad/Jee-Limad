@@ -137,8 +137,8 @@ if [ ${JEEDOM_INSTALL} -eq 0 ] && [ ! -z "${RESTOREBACKUP}" ] && [ "${RESTOREBAC
 fi
 
 echo 'All init complete'
-chmod 777 /dev/tty*
-chmod 777 -R /tmp
+chmod 666 /dev/tty*
+chmod 1777 /tmp
 chmod 755 -R ${WEBSERVER_HOME}
 chown -R www-data:www-data ${WEBSERVER_HOME}
 

@@ -63,14 +63,14 @@ function jeedom_displayObjectGroup($object = -1) {
 	$div .= '<div class="panel panel-default ' . $objectSortable . '" ' . $aStyle . '>';
 	$div .= '<div class="panel-heading" data-id="' . $objectId . '">';
 	//custom colors panel-title:
+	$h3Style = 'width:calc(100% - 50px);display: inline-block;';
+	$linkStyle = '';
 	if ($objecUseCustomColor == 1 && is_object($object)) {
-		$aStyle = 'style="color:' . $object->getDisplay('tagTextColor') . '!important"';
-		$div .= '<h3 class="panel-title" style="background-color:' . $object->getDisplay('tagColor') . '; width:calc(100% - 50px);display: inline-block;">';
-		$div .= '<a ' . $aStyle . 'class="accordion-toggle" data-toggle="collapse" aria-expanded="false" href="#config_' . $_index . '" style="color:' . $object->getDisplay('tagTextColor') . '!important">' . $objectIcon . ' ' . $objectName;
-	} else {
-		$div .= '<h3 class="panel-title" style="width:calc(100% - 50px);display: inline-block;">';
-		$div .= '<a class="accordion-toggle" data-toggle="collapse" aria-expanded="false" href="#config_' . $_index . '">' . $objectIcon . ' ' . $objectName;
+		$h3Style = 'background-color:' . $object->getDisplay('tagColor') . '; ' . $h3Style;
+		$linkStyle = 'style="color:' . $object->getDisplay('tagTextColor') . '!important"';
 	}
+	$div .= '<h3 class="panel-title" style="' . $h3Style . '">';
+	$div .= '<a ' . $linkStyle . ' class="accordion-toggle" data-toggle="collapse" aria-expanded="false" href="#config_' . $_index . '">' . $objectIcon . ' ' . $objectName;
 	$div .= '</a></h3>';
 	//second panel-title trick for functions on the right:
 	$div .= '<h3 class="panel-title" style="background-color:var(--defaultBkg-color); width:100px;display: inline;">';
@@ -138,11 +138,11 @@ function jeedom_displayObjectGroup($object = -1) {
 	<div class="hasfloatingbar col-xs-12">
 		<div class="eqActions floatingbar" style="display:none;">
 			<div class="input-group">
-				<a class="btn btn-danger btn-sm roundedLeft" id="bt_removeEqlogic" style="display:none;"><i class="far fa-trash-alt"></i> {{Supprimer}}
-				</a><a class="btn btn-success btn-sm bt_setIsVisible" data-value="1" style="display:none;"><i class="fas fa-eye"></i> {{Visible}}
-				</a><a class="btn btn-warning btn-sm bt_setIsVisible" data-value="0" style="display:none;"><i class="fas fa-eye-slash"></i> {{Invisible}}
-				</a><a class="btn btn-success btn-sm bt_setIsEnable" data-value="1" style="display:none;"><i class="fas fa-check"></i> {{Actif}}
-				</a><a class="btn btn-warning btn-sm bt_setIsEnable roundedRight" data-value="0" style="display:none;"><i class="fas fa-times"></i> {{Inactif}}</a>
+				<button type="button" class="btn btn-danger btn-sm roundedLeft" id="bt_removeEqlogic" style="display:none;"><i class="far fa-trash-alt"></i> {{Supprimer}}
+				</button><button type="button" class="btn btn-success btn-sm bt_setIsVisible" data-value="1" style="display:none;"><i class="fas fa-eye"></i> {{Visible}}
+				</button><button type="button" class="btn btn-warning btn-sm bt_setIsVisible" data-value="0" style="display:none;"><i class="fas fa-eye-slash"></i> {{Invisible}}
+				</button><button type="button" class="btn btn-success btn-sm bt_setIsEnable" data-value="1" style="display:none;"><i class="fas fa-check"></i> {{Actif}}
+				</button><button type="button" class="btn btn-warning btn-sm bt_setIsEnable roundedRight" data-value="0" style="display:none;"><i class="fas fa-times"></i> {{Inactif}}</button>
 			</div>
 		</div>
 		<ul class="nav nav-tabs" role="tablist" id="ul_tabDisplay">
@@ -160,16 +160,16 @@ function jeedom_displayObjectGroup($object = -1) {
 						<span class="label label-primary">{{Nombre de commandes :}} <?php echo $nbCmd ?></span>
 						<span title="{{Afficher les éléments inactifs}}"><input type="checkbox" id="cb_actifDisplay" checked />{{Inactifs}}</span>
 					</div>
-					<a href="#" class="btn btn-sm btn-success pull-right bt_exportcsv" download="Jeedom_IDs.csv"><i class="fas fa-file-export"></i> {{Export CSV}}</a>
+					<button type="button" class="btn btn-sm btn-success pull-right bt_exportcsv" data-download-filename="Jeedom_IDs.csv"><i class="fas fa-file-export"></i> {{Export CSV}}</button>
 				</div>
 				<br /><br />
 				<div>
 					<div class="input-group" style="margin-bottom:5px;display: inline-table;">
-						<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | id | :not(nom}}" id="in_search" />
+						<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | id | :not(nom)}}" id="in_search" />
 						<div class="input-group-btn">
-							<a id="bt_resetdisplaySearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
-							</a><a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
-							</a><a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>
+							<button type="button" id="bt_resetdisplaySearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
+							</button><button type="button" class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
+							</button><button type="button" class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></button>
 						</div>
 					</div>
 				</div>
@@ -189,7 +189,7 @@ function jeedom_displayObjectGroup($object = -1) {
 			</div>
 
 			<div role="tabpanel" class="tab-pane" id="historytab">
-				<a class="btn btn-danger btn-sm pull-right" id="bt_emptyRemoveHistory"><i class="fas fa-times"></i> {{Vider}}</a>
+				<button type="button" class="btn btn-danger btn-sm pull-right" id="bt_emptyRemoveHistory"><i class="fas fa-times"></i> {{Vider}}</button>
 				<br>
 				<table class="table table-condensed" id="table_removeHistory">
 					<thead>

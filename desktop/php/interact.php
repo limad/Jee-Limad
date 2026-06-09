@@ -91,16 +91,16 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 			echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>{{Vous n'avez encore aucune interaction. Cliquez sur ajouter pour commencer.}}</span></div>";
 		} else {
 			$div = '<div class="input-group" style="margin-bottom:5px;">';
-			$div .= '<input class="form-control" placeholder="{{Rechercher | nom | :not(nom}}" id="in_searchInteract" />';
+			$div .= '<input class="form-control" placeholder="{{Rechercher | nom | :not(nom)}}" id="in_searchInteract" />';
 			$div .= '<div class="input-group-btn">';
-			$div .= '<a id="bt_resetInteractSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>';
+			$div .= '<button type="button" id="bt_resetInteractSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </button>';
 			$div .= '</div>';
 			$div .= '<div class="input-group-btn">';
-			$div .= '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
+			$div .= '<button type="button" class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></button>';
 			$div .= '</div>';
 			$div .= '<div class="input-group-btn">';
-			$div .= '<a class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
-			$div .= '<a class="btn roundedRight" id="bt_displayAsTable" data-card=".interactDisplayCard" data-container=".interactListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>';
+			$div .= '<button type="button" class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></button>';
+			$div .= '<button type="button" class="btn roundedRight" id="bt_displayAsTable" data-card=".interactDisplayCard" data-container=".interactListContainer" data-state="0"><i class="fas fa-grip-lines"></i></button>';
 			$div .= '</div>';
 			$div .= '</div>';
 
@@ -131,10 +131,10 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 		<div class="floatingbar">
 			<div class="input-group">
 				<span class="input-group-btn">
-					<a class="btn displayInteracQuery btn-sm roundedLeft"><i class="fas fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span>
-					</a><a class="btn btn-sm" id="bt_duplicate"><i class="fas fa-copy"></i> {{Dupliquer}}
-					</a><a class="btn btn-success btn-sm" id="bt_saveInteract"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-					</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+					<button type="button" class="btn displayInteracQuery btn-sm roundedLeft"><i class="fas fa-eye"></i> {{Phrase(s)}} <span class="label label-success interactAttr" data-l1key="nbInteractQuery"></span>
+					</button><button type="button" class="btn btn-sm" id="bt_duplicate"><i class="fas fa-copy"></i> {{Dupliquer}}
+					</button><button type="button" class="btn btn-success btn-sm" id="bt_saveInteract"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+					</button><button type="button" class="btn btn-danger btn-sm roundedRight" id="bt_removeInteract"><i class="fas fa-minus-circle"></i> {{Supprimer}}</button>
 				</span>
 			</div>
 		</div>
@@ -171,7 +171,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 						<div class="form-group">
 							<label class="col-sm-2 col-xs-2 control-label">{{Icône}}</label>
 							<div class="col-sm-2 col-xs-2">
-								<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+								<button type="button" class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</button>
 							</div>
 							<div class="col-sm-1 col-xs-1">
 								<div class="interactAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
@@ -202,7 +202,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 								<textarea class="form-control interactAttr ta_autosize" type="text" data-l1key="reply" placeholder=""></textarea>
 							</div>
 							<div class="col-sm-1">
-								<a class="btn btn-default btn-sm cursor listEquipementInfoReply" title="{{Rechercher une commande}}"><i class="fas fa-list-alt "></i></a>
+								<button type="button" class="btn btn-default btn-sm cursor listEquipementInfoReply" title="{{Rechercher une commande}}"><i class="fas fa-list-alt "></i></button>
 							</div>
 						</div>
 						<div class="form-group">
@@ -385,7 +385,7 @@ function jeedom_displayInteractGroup($_group = '', $_index = -1) {
 			</div>
 
 			<div role="tabpanel" class="tab-pane" id="actiontab">
-				<a class="btn btn-success btn-sm pull-right" id="bt_addAction" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+				<button type="button" class="btn btn-success btn-sm pull-right" id="bt_addAction" style="margin-top:5px;"><i class="fas fa-plus-circle"></i> {{Ajouter}}</button>
 				<br /><br />
 				<form class="form-horizontal">
 					<fieldset>

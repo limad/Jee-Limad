@@ -52,7 +52,7 @@ try {
 				throw new Exception(__('Double authentification requise', __FILE__), -32012);
 			}
 			if (!login(init('username'), init('password'), init('twoFactorCode'))) {
-				log::add('connection', 'info',network::getClientIp().' - '. __('Mot de passe ou nom d\'utilisateur incorrect', __FILE__));
+					log::add('connection', 'info',network::getClientIp().' - FAILED_LOGIN - '. __('Mot de passe ou nom d\'utilisateur incorrect', __FILE__));
 				throw new Exception(__('Mot de passe ou nom d\'utilisateur incorrect', __FILE__));
 			}
 		}

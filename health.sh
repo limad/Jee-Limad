@@ -53,6 +53,7 @@ sudo chown -R www-data:www-data ${DIR}/*
 sudo chmod -R 775 ${DIR}/*
 sudo chown -R www-data:www-data /tmp/jeedom/cache
 sudo chmod -R 775 /tmp/jeedom/cache
-sudo chown -R www-data:www-data /var/www
-sudo chmod -R 775 /var/www
+sudo chown -R www-data:www-data ${DIR}
+sudo find ${DIR} -type d -exec chmod 775 {} \;
+sudo find ${DIR} -type f -exec chmod 664 {} \;
 	echo "OK"

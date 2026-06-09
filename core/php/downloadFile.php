@@ -46,7 +46,8 @@ try {
 	if (!$isAdmin) {
 		$authorized = false;
 		foreach (getWhiteListFolders($onlyPluginId) as $publicFolder) {
-			if (strpos($pathfile, $publicFolder) !== false) {
+			$publicFolder = realpath($publicFolder);
+			if ($publicFolder !== false && ($pathfile === $publicFolder || strpos($pathfile, $publicFolder . DIRECTORY_SEPARATOR) === 0)) {
 				$authorized = true;
 				break;
 			}
@@ -86,7 +87,8 @@ try {
 		if (!$isAdmin) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$pattern = array_pop(explode('/', $pathfile));
+		$pathParts = explode('/', $pathfile);
+		$pattern = array_pop($pathParts);
 		system('cd ' . dirname($pathfile) . ';tar cfz ' . jeedom::getTmpFolder('downloads') . '/archive.tar.gz ' . $pattern . '> /dev/null 2>&1');
 		$pathfile = jeedom::getTmpFolder('downloads') . '/archive.tar.gz';
 	}

@@ -1940,11 +1940,15 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 .navbar-form {
   padding: 10px 15px;
   margin: 8px -15px;
-}
+}/* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .breadcrumb>li,.pagination {
   display: inline-block;
 }
+*/
+/* === END UNUSED === */
 
 .btn .badge,.btn .label {
   top: -1px;
@@ -1977,7 +1981,9 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 .navbar-text {
   margin-top: 15px;
   margin-bottom: 15px;
-}
+}/* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .breadcrumb {
   padding: 8px 15px;
@@ -1985,25 +1991,45 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
   list-style: none;
   background-color: #f5f5f5;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .breadcrumb>li+li:before {
   padding: 0 5px;
   color: #ccc;
   content: "/\00a0";
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .breadcrumb>.active {
   color: #777;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pagination {
   padding-left: 0;
   margin: 20px 0;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pager li,.pagination>li {
   display: inline;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pagination>li>a,.pagination>li>span {
   position: relative;
@@ -2015,16 +2041,28 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
   text-decoration: none;
   background-color: #fff;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pagination>li:first-child>a,.pagination>li:first-child>span {
   margin-left: 0;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pagination>li>a:focus,.pagination>li>a:hover,.pagination>li>span:focus,.pagination>li>span:hover {
   z-index: 2;
   color: #23527c;
   background-color: #eee;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pagination>.active>a,.pagination>.active>a:focus,.pagination>.active>a:hover,.pagination>.active>span,.pagination>.active>span:focus,.pagination>.active>span:hover {
   z-index: 3;
@@ -2032,31 +2070,47 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
   cursor: default;
   background-color: #337ab7;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pagination>.disabled>a,.pagination>.disabled>a:focus,.pagination>.disabled>a:hover,.pagination>.disabled>span,.pagination>.disabled>span:focus,.pagination>.disabled>span:hover {
   color: #777;
   cursor: not-allowed;
   background-color: #fff;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pagination-lg>li>a,.pagination-lg>li>span {
   padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pagination-sm>li>a,.pagination-sm>li>span {
   padding: 5px 10px;
   font-size: 12px;
   line-height: 1.5;
 }
+*/
+/* === END UNUSED === */
 
 .badge,.label {
   font-weight: 700;
   line-height: 1;
   white-space: nowrap;
   text-align: center;
-}
+}/* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pager {
   padding-left: 0;
@@ -2064,31 +2118,53 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
   text-align: center;
   list-style: none;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pager li>a,.pager li>span {
   display: inline-block;
   padding: 5px 14px;
   background-color: #fff;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pager li>a:focus,.pager li>a:hover {
   text-decoration: none;
   background-color: #eee;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pager .next>a,.pager .next>span {
   float: right;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pager .previous>a,.pager .previous>span {
   float: left;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .pager .disabled>a,.pager .disabled>a:focus,.pager .disabled>a:hover,.pager .disabled>span {
   color: #777;
   cursor: not-allowed;
   background-color: #fff;
 }
+*/
+/* === END UNUSED === */
 
 a.badge:focus,a.badge:hover,a.label:focus,a.label:hover {
   color: #fff;
@@ -2108,11 +2184,15 @@ a.badge:focus,a.badge:hover,a.label:focus,a.label:hover {
 .list-group-item.active>.badge,.nav-pills>.active>a>.badge {
   color: #337ab7;
   background-color: #fff;
-}
+}/* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .jumbotron,.jumbotron .h1,.jumbotron h1 {
   color: inherit;
 }
+*/
+/* === END UNUSED === */
 
 .list-group-item>.badge {
   float: right;
@@ -2124,7 +2204,9 @@ a.badge:focus,a.badge:hover,a.label:focus,a.label:hover {
 
 .nav-pills>li>a>.badge {
   margin-left: 3px;
-}
+}/* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .jumbotron {
   padding-top: 30px;
@@ -2132,12 +2214,18 @@ a.badge:focus,a.badge:hover,a.label:focus,a.label:hover {
   margin-bottom: 30px;
   background-color: #eee;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .jumbotron p {
   margin-bottom: 15px;
   font-size: 21px;
   font-weight: 200;
 }
+*/
+/* === END UNUSED === */
 
 .alert,.thumbnail {
   margin-bottom: 20px;
@@ -2145,16 +2233,24 @@ a.badge:focus,a.badge:hover,a.label:focus,a.label:hover {
 
 .alert .alert-link,.close {
   font-weight: 700;
-}
+}/* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .container .jumbotron,.container-fluid .jumbotron {
   padding-right: 15px;
   padding-left: 15px;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .jumbotron .container {
   max-width: 100%;
 }
+*/
+/* === END UNUSED === */
 
 .thumbnail {
   padding: 4px;
@@ -2915,12 +3011,16 @@ button.close {
   background-color: #fff;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-}
+}/* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-caption,.carousel-control {
   color: #fff;
   text-align: center;
 }
+*/
+/* === END UNUSED === */
 
 .popover.top {
   margin-top: -10px;
@@ -2954,11 +3054,15 @@ button.close {
   display: block;
   width: 0;
   height: 0;
-}
+}/* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel,.carousel-inner {
   position: relative;
 }
+*/
+/* === END UNUSED === */
 
 .popover>.arrow:after {
   content: "";
@@ -3011,12 +3115,18 @@ button.close {
 
 .popover.left>.arrow:after {
   right: 1px;
-}
+}/* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-inner {
   width: 100%;
   overflow: hidden;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-inner>.item {
   position: relative;
@@ -3025,44 +3135,84 @@ button.close {
   -o-transition: .6s ease-in-out left;
   transition: .6s ease-in-out left;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-inner>.item>a>img,.carousel-inner>.item>img {
   line-height: 1;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-inner>.active,.carousel-inner>.next,.carousel-inner>.prev {
   display: block;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-inner>.active {
   left: 0;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-inner>.next,.carousel-inner>.prev {
   position: absolute;
   top: 0;
   width: 100%;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-inner>.next {
   left: 100%;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-inner>.prev {
   left: -100%;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-inner>.next.left,.carousel-inner>.prev.right {
   left: 0;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-inner>.active.left {
   left: -100%;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-inner>.active.right {
   left: 100%;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-control {
   position: absolute;
@@ -3075,6 +3225,10 @@ button.close {
   filter: alpha(opacity=50);
   opacity: .5;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-control.left {
   background-image: -webkit-linear-gradient(left,rgba(0,0,0,.5) 0,rgba(0,0,0,.0001) 100%);
@@ -3084,6 +3238,10 @@ button.close {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
   background-repeat: repeat-x;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-control.right {
   right: 0;
@@ -3095,6 +3253,10 @@ button.close {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
   background-repeat: repeat-x;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-control:focus,.carousel-control:hover {
   color: #fff;
@@ -3103,6 +3265,10 @@ button.close {
   outline: 0;
   opacity: .9;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right,.carousel-control .icon-next,.carousel-control .icon-prev {
   position: absolute;
@@ -3111,16 +3277,28 @@ button.close {
   display: inline-block;
   margin-top: -10px;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-control .glyphicon-chevron-left,.carousel-control .icon-prev {
   left: 50%;
   margin-left: -10px;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-control .glyphicon-chevron-right,.carousel-control .icon-next {
   right: 50%;
   margin-right: -10px;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-control .icon-next,.carousel-control .icon-prev {
   width: 20px;
@@ -3128,14 +3306,26 @@ button.close {
   font-family: serif;
   line-height: 1;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-control .icon-prev:before {
   content: '\2039';
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-control .icon-next:before {
   content: '\203a';
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-indicators {
   position: absolute;
@@ -3148,6 +3338,10 @@ button.close {
   text-align: center;
   list-style: none;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-indicators li {
   display: inline-block;
@@ -3159,6 +3353,10 @@ button.close {
   background-color: #000\9;
   background-color: rgba(0,0,0,0);
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-indicators .active {
   width: 12px;
@@ -3166,6 +3364,10 @@ button.close {
   margin: 0;
   background-color: #fff;
 }
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 .carousel-caption {
   position: absolute;
@@ -3176,6 +3378,8 @@ button.close {
   padding-top: 20px;
   padding-bottom: 20px;
 }
+*/
+/* === END UNUSED === */
 
 .btn-group-vertical>.btn-group:after,.btn-group-vertical>.btn-group:before,.btn-toolbar:after,.btn-toolbar:before,.clearfix:after,.clearfix:before,.container-fluid:after,.container-fluid:before,.container:after,.container:before,.dl-horizontal dd:after,.dl-horizontal dd:before,.form-horizontal .form-group:after,.form-horizontal .form-group:before,.modal-footer:after,.modal-footer:before,.modal-header:after,.modal-header:before,.nav:after,.nav:before,.navbar-collapse:after,.navbar-collapse:before,.navbar-header:after,.navbar-header:before,.navbar:after,.navbar:before,.pager:after,.pager:before,.panel-body:after,.panel-body:before,.row:after,.row:before {
   display: table;
@@ -3671,7 +3875,9 @@ button.close {
 
 	.col-sm-offset-0 {
 		margin-left: 0;
-	}
+	}/* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 	.carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right,.carousel-control .icon-next,.carousel-control .icon-prev {
 		width: 30px;
@@ -3679,38 +3885,68 @@ button.close {
 		margin-top: -10px;
 		font-size: 30px;
 	}
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 	.carousel-control .glyphicon-chevron-left,.carousel-control .icon-prev {
 		margin-left: -10px;
 	}
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 	.carousel-control .glyphicon-chevron-right,.carousel-control .icon-next {
 		margin-right: -10px;
 	}
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 	.carousel-caption {
 		right: 20%;
 		left: 20%;
 		padding-bottom: 30px;
 	}
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 	.carousel-indicators {
 		bottom: 20px;
 	}
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 	.jumbotron {
 		padding-top: 48px;
 		padding-bottom: 48px;
 	}
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 	.container .jumbotron,.container-fluid .jumbotron {
 		padding-right: 60px;
 		padding-left: 60px;
 	}
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 	.jumbotron .h1,.jumbotron h1 {
 		font-size: 63px;
 	}
+*/
+/* === END UNUSED === */
 }
 
 @media (min-width:992px) {
@@ -4400,7 +4636,9 @@ button.close {
 	}
 }
 
-@media all and (transform-3d),(-webkit-transform-3d) {
+@media all and (transform-3d),(-webkit-transform-3d) {/* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 	.carousel-inner>.item {
 		-webkit-transition: -webkit-transform .6s ease-in-out;
 		-o-transition: -o-transform .6s ease-in-out;
@@ -4410,22 +4648,36 @@ button.close {
 		-webkit-perspective: 1000px;
 		perspective: 1000px;
 	}
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 	.carousel-inner>.item.active.right,.carousel-inner>.item.next {
 		left: 0;
 		-webkit-transform: translate3d(100%,0,0);
 		transform: translate3d(100%,0,0);
 	}
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 	.carousel-inner>.item.active.left,.carousel-inner>.item.prev {
 		left: 0;
 		-webkit-transform: translate3d(-100%,0,0);
 		transform: translate3d(-100%,0,0);
 	}
+*/
+/* === END UNUSED === *//* === UNUSED BOOTSTRAP COMPONENT - disabled 2026-06 === */
+/*
+
 
 	.carousel-inner>.item.active,.carousel-inner>.item.next.left,.carousel-inner>.item.prev.right {
 		left: 0;
 		-webkit-transform: translate3d(0,0,0);
 		transform: translate3d(0,0,0);
 	}
+*/
+/* === END UNUSED === */
 }

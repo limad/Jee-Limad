@@ -22,20 +22,20 @@ natcasesort($list_logfile);
 					<span class="label-sm"> {{Log brut}}</span>
 					<input type="checkbox" id="brutlogcheck" />
 					<input class="input-sm roundedLeft" id="in_searchGlobalLog" style="width : 200px;max-width: 20%;margin-left:5px;" placeholder="{{Rechercher}}" />
-					<a id="bt_resetGlobalLogSearch" class="btn btn-sm"><i class="fas fa-times"></i></a>
-					<a class="btn btn-warning btn-sm" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i><span class="hidden-768"> {{Pause}}</span>
-					</a><a class="btn btn-success btn-sm" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i><span class="hidden-768"> {{Télécharger}}</span>
-					</a><a class="btn btn-warning btn-sm" id="bt_clearLog"><i class="fas fa-times"></i><span class="hidden-768"> {{Vider}}</span>
-					</a><a class="btn btn-warning btn-sm" id="bt_clearAllLog"><i class="fas fa-times-circle"></i><span class="hidden-768"> {{Vider tout}}</span>
-					</a><a class="btn btn-danger btn-sm" id="bt_removeLog"><i class="far fa-trash-alt"></i><span class="hidden-768"> {{Supprimer}}</span>
-					</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeAllLog"><i class="fas fa-trash"></i><span class="hidden-768"> {{Supprimer tout}}</span></a>
+					<button type="button" id="bt_resetGlobalLogSearch" class="btn btn-sm"><i class="fas fa-times"></i></button>
+					<button type="button" class="btn btn-warning btn-sm" data-state="1" id="bt_globalLogStopStart"><i class="fas fa-pause"></i><span class="hidden-768"> {{Pause}}</span>
+					</button><button type="button" class="btn btn-success btn-sm" id="bt_downloadLog"><i class="fas fa-cloud-download-alt"></i><span class="hidden-768"> {{Télécharger}}</span>
+					</button><button type="button" class="btn btn-warning btn-sm" id="bt_clearLog"><i class="fas fa-times"></i><span class="hidden-768"> {{Vider}}</span>
+					</button><button type="button" class="btn btn-warning btn-sm" id="bt_clearAllLog"><i class="fas fa-times-circle"></i><span class="hidden-768"> {{Vider tout}}</span>
+					</button><button type="button" class="btn btn-danger btn-sm" id="bt_removeLog"><i class="far fa-trash-alt"></i><span class="hidden-768"> {{Supprimer}}</span>
+					</button><button type="button" class="btn btn-danger btn-sm roundedRight" id="bt_removeAllLog"><i class="fas fa-trash"></i><span class="hidden-768"> {{Supprimer tout}}</span></button>
 				</span>
 			</div>
 		</div>
 		<div class="input-group pull-left col-lg-2 col-md-3 col-sm-12 col-xs-12" style="top: 7px;">
 			<span class="input-group-btn pull-left">
-				<input id="in_searchLogFilter" class="form-control input-sm roundedLeft" placeholder="Rechercher | nom | :not(nom" style="width:250px;">
-				<a id="bt_resetLogFilterSearch" class="btn btn-sm roundedRight"><i class="fas fa-times"></i></a>
+				<input id="in_searchLogFilter" class="form-control input-sm roundedLeft" placeholder="Rechercher | nom | :not(nom)" style="width:250px;">
+				<button type="button" id="bt_resetLogFilterSearch" class="btn btn-sm roundedRight"><i class="fas fa-times"></i></button>
 			</span>
 		</div>
 	</div>

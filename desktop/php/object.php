@@ -40,10 +40,10 @@ $synthToActions = array(
 
 		<legend><i class="fas fa-image"></i> {{Mes objets}} <sub class="itemsNumber"></sub></legend>
 		<div class="input-group" style="margin-bottom:5px;">
-			<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_searchObject" />
+			<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom)}}" id="in_searchObject" />
 			<div class="input-group-btn">
-				<a id="bt_resetObjectSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
-				</a><a class="btn roundedRight" id="bt_displayAsTable" data-card=".objectDisplayCard" data-container=".objectListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>
+				<button type="button" id="bt_resetObjectSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
+				</button><button type="button" class="btn roundedRight" id="bt_displayAsTable" data-card=".objectDisplayCard" data-container=".objectListContainer" data-state="0"><i class="fas fa-grip-lines"></i></button>
 			</div>
 		</div>
 		<div id="objectPanel" class="panel">
@@ -75,16 +75,16 @@ $synthToActions = array(
 		<div class="floatingbar">
 			<div class="input-group">
 				<span class="input-group-btn">
-					<a class="btn btn-sm roundedLeft" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}
-					</a><a class="btn btn-success btn-sm" id="bt_saveObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-					</a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+					<button type="button" class="btn btn-sm roundedLeft" id="bt_graphObject"><i class="fas fa-object-group"></i> {{Liens}}
+					</button><button type="button" class="btn btn-success btn-sm" id="bt_saveObject"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+					</button><button type="button" class="btn btn-danger btn-sm roundedRight" id="bt_removeObject"><i class="fas fa-minus-circle"></i> {{Supprimer}}</button>
 				</span>
 			</div>
 		</div>
 
 		<ul class="nav nav-tabs" role="tablist">
 			<li role="presentation"><a class="cursor" aria-controls="home" role="tab" id="bt_returnToThumbnailDisplay"><i class="fas fa-arrow-circle-left"></i></a></li>
-			<li role="presentation" class="active"><a data-target="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}} (ID : <span class="objectAttr" data-l1key="id"></span>)</a></a></li>
+			<li role="presentation" class="active"><a data-target="#objecttab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-tachometer-alt"></i> {{Objet}} (ID : <span class="objectAttr" data-l1key="id"></span>)</a></li>
 			<li role="presentation"><a data-target="#summarytab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-list-alt"></i> {{Résumé}}</a></li>
 			<li role="presentation"><a data-target="#eqlogicsTab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-th-list"></i></i> {{Résumé par équipements}}</a></li>
 		</ul>
@@ -258,7 +258,7 @@ $synthToActions = array(
 									<div class="objectAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
 								</div>
 								<div class="col-sm-2">
-									<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+									<button type="button" class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</button>
 								</div>
 							</div>
 							<div class="form-group">
@@ -294,19 +294,19 @@ $synthToActions = array(
 									<span class="btn btn-default btn-file">
 										<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImage" type="file" name="file" accept="image/*">
 									</span>
-									<a class="btn btn-default" id="bt_libraryBackgroundImage"><i class="fas fa-photo-video"></i> {{Bibliothèque d'image}}</a>
+									<button type="button" class="btn btn-default" id="bt_libraryBackgroundImage"><i class="fas fa-photo-video"></i> {{Bibliothèque d'image}}</button>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-7 col-sm-offset-3 objectImg">
-									<a class="btn btn-sm btn-danger" id="bt_removeBackgroundImage" style="position:absolute;bottom:0;"><i class="fas fa-trash"></i> {{Enlever l'image}}</a>
+									<button type="button" class="btn btn-sm btn-danger" id="bt_removeBackgroundImage" style="position:absolute;bottom:0;"><i class="fas fa-trash"></i> {{Enlever l'image}}</button>
 									<img class="img-responsive" src="" width="240px" style="min-height : 50px" />
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label">{{Réordonner les équipements par utilisation}}</label>
 								<div class="col-sm-7">
-									<a class="btn btn-sm btn-warning" id="bt_orderEqLogicByUsage"><i class="fas fa-sort-numeric-down"></i> {{Réordonner}}</a>
+									<button type="button" class="btn btn-sm btn-warning" id="bt_orderEqLogicByUsage"><i class="fas fa-sort-numeric-down"></i> {{Réordonner}}</button>
 								</div>
 							</div>
 							<div class="form-group">
@@ -356,7 +356,7 @@ $synthToActions = array(
 										$echo .= '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::global::' . $key . '" />';
 										$echo .= '</td>';
 									}
-									$echo .= '<td><a class="btn btn-xs bt_checkAll" title="{{Tous}}"><i class="fas fa-square"></i></a> <a class="btn btn-xs bt_checkNone" title="{{Aucun}}"><i class="far fa-square"></i></a></td>';
+									$echo .= '<td><button type="button" class="btn btn-xs bt_checkAll" title="{{Tous}}"><i class="fas fa-square"></i></button> <button type="button" class="btn btn-xs bt_checkNone" title="{{Aucun}}"><i class="far fa-square"></i></button></td>';
 									$echo .= '</tr>';
 
 									$echo .= '<tr>';
@@ -368,7 +368,7 @@ $synthToActions = array(
 										$echo .= '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::desktop::' . $key . '" />';
 										$echo .= '</td>';
 									}
-									$echo .= '<td><a class="btn btn-xs bt_checkAll" title="{{Tous}}"><i class="fas fa-square"></i></a> <a class="btn btn-xs bt_checkNone" title="{{Aucun}}"><i class="far fa-square"></i></a></td>';
+									$echo .= '<td><button type="button" class="btn btn-xs bt_checkAll" title="{{Tous}}"><i class="fas fa-square"></i></button> <button type="button" class="btn btn-xs bt_checkNone" title="{{Aucun}}"><i class="far fa-square"></i></button></td>';
 									$echo .= '</tr>';
 
 									$echo .= '<tr>';
@@ -380,7 +380,7 @@ $synthToActions = array(
 										$echo .= '<input type="checkbox" class="objectAttr" data-l1key="configuration" data-l2key="summary::hide::mobile::' . $key . '" />';
 										$echo .= '</td>';
 									}
-									$echo .= '<td><a class="btn btn-xs bt_checkAll" title="{{Tous}}"><i class="fas fa-square"></i></a> <a class="btn btn-xs bt_checkNone" title="{{Aucun}}"><i class="far fa-square"></i></a></td>';
+									$echo .= '<td><button type="button" class="btn btn-xs bt_checkAll" title="{{Tous}}"><i class="fas fa-square"></i></button> <button type="button" class="btn btn-xs bt_checkNone" title="{{Aucun}}"><i class="far fa-square"></i></button></td>';
 									$echo .= '</tr>';
 
 									echo $echo;
@@ -411,7 +411,7 @@ $synthToActions = array(
 								$echo = '';
 								foreach ($config_objSummary as $key => $value) {
 									$echo .=  '<div role="tabpanel" class="tab-pane type' . $key . $active . '" data-type="' . $key . '" id="summarytab' . $key . '">';
-									$echo .=  '<a class="btn btn-sm btn-success pull-right addSummary" data-type="' . $key . '"><i class="fas fa-plus-circle"></i> {{Ajouter une commande}}</a>';
+									$echo .=  '<button type="button" class="btn btn-sm btn-success pull-right addSummary" data-type="' . $key . '"><i class="fas fa-plus-circle"></i> {{Ajouter une commande}}</button>';
 									$echo .=  '<br/><br/>';
 									$echo .=  '<div class="div_summary" data-type="' . $key . '"></div>';
 									$echo .=  '</div>';
@@ -432,9 +432,9 @@ $synthToActions = array(
 				<div class="input-group" style="margin-bottom:5px;">
 					<input class="form-control roundedLeft" placeholder="{{Rechercher un équipement de cet objet}}" id="in_searchCmds" />
 					<div class="input-group-btn">
-						<a id="bt_resetCmdSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
-						</a><a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
-						</a><a class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></a>
+						<button type="button" id="bt_resetCmdSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
+						</button><button type="button" class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
+						</button><button type="button" class="btn roundedRight" id="bt_closeAll"><i class="fas fa-folder"></i></button>
 					</div>
 				</div>
 				<div id="eqLogicsCmds"></div>

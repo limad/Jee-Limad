@@ -90,6 +90,14 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		return;
 	}
 	if ($type == 'css') {
+		if ($_plugin == '' && in_array($_folder, array('desktop/css', 'mobile/css'))) {
+			$minFn = str_replace('.css', '.min.css', $_fn);
+			$minPath = __DIR__ . '/../../' . $_folder . '/' . $minFn;
+			if (file_exists($minPath)) {
+				$_fn = $minFn;
+				$path = $minPath;
+			}
+		}
 		echo '<link href="' . $_folder . '/' . $_fn . '?md5=' . md5_file($path) . '" rel="stylesheet" />';
 		return;
 	}
@@ -206,7 +214,8 @@ function redirect($_url, $_forceType = null) {
 		echo "window.location.href='$_url';";
 		echo '</script>';
 	} else {
-		exit(header("Location: $_url"));
+		header("Location: $_url");
+        exit;
 	}
 	return;
 }
@@ -226,22 +235,7 @@ function convertDuration($time) {
 }
 
 function getClientIp() {
-	$sources = array(
-		'HTTP_CF_CONNECTING_IP',
-		'HTTP_X_REAL_IP',
-		'HTTP_X_FORWARDED_FOR',
-		'HTTP_CLIENT_IP',
-		'REMOTE_ADDR',
-	);
-	foreach ($sources as $source) {
-		if (isset($_SERVER[$source])) {
-			if (strpos($_SERVER[$source], ',') !== false) {
-				return explode(',', $_SERVER[$source])[0];
-			}
-			return str_replace(' ', '', $_SERVER[$source]);
-		}
-	}
-	return '';
+	return network::getClientIp();
 }
 
 function mySqlIsHere() {
@@ -1159,15 +1153,14 @@ function evaluate($_string) {
 		for ($i = 0; $i < $c; $i++) {
 			$string = str_replace($matches[0][$i], '--preparsed' . $i . '--', $string);
 		}
-	} else {
-		$c = 0;
-	}
-	$expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
-	if ($c > 0) {
+
+        $expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
 		for ($i = 0; $i < $c; $i++) {
 			$expr = str_replace('--preparsed' . $i . '--', $matches[0][$i], $expr);
 		}
-	}
+	} else {
+        $expr = preg_replace("/([^=<>!])=([^=])/", "$1==$2", $string); // Replace all '=' by '==' and avoid '==' '===' '>=' '<=' '!=' '!=='
+    }
 	try {
 		return $GLOBALS['ExpressionLanguage']->evaluate($expr);
 	} catch (Exception $e) {

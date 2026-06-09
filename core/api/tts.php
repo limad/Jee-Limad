@@ -31,7 +31,9 @@ if (!jeedom::apiAccess(init('apikey'), 'apitts')) {
 	die();
 }
 
-log::add('tts', 'debug', 'Call tts api : ' . print_r($_GET, true));
+$logGet = $_GET;
+unset($logGet['apikey']);
+log::add('tts', 'debug', 'Call tts api : ' . print_r($logGet, true));
 $engine = config::byKey('tts::engine', 'core', 'pico');
 if (strpos($engine, 'plugin::') !== false) {
 	$engine = str_replace('plugin::', '', $engine);
@@ -90,18 +92,21 @@ try {
 		if (!com_shell::commandExists('avconv')) {
 			$avconv = 'ffmpeg';
 		}
-		$cmd = 'espeak -v' . $voice . ' "' . $text . '" --stdout | ' . $avconv . ' -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1';
+		$cmd = 'espeak -v' . escapeshellarg($voice) . ' ' . escapeshellarg($text) . ' --stdout | ' . $avconv . ' -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . escapeshellarg($filename) . ' > /dev/null 2>&1';
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
 	} else if ($engine == 'pico') {
-		$volume = '-af "volume=' . init('volume', '6') . 'dB"';
+		$volumeValue = init('volume', '6');
+		$volumeValue = is_numeric($volumeValue) ? $volumeValue : '6';
+		$volume = '-af ' . escapeshellarg('volume=' . $volumeValue . 'dB');
 		$lang = str_replace('_', '-', init('lang', config::byKey('language')));
 		$avconv = 'avconv';
 		if (!com_shell::commandExists('avconv')) {
 			$avconv = 'ffmpeg';
 		}
-		$cmd = 'pico2wave -l=' . $lang . ' -w=' . $md5 . '.wav "' . $text . '" > /dev/null 2>&1;';
-		$cmd .= $avconv . ' -i ' . $md5 . '.wav -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . $filename . ' > /dev/null 2>&1;rm ' . $md5 . '.wav';
+		$wavFile = $tts_dir . '/' . $md5 . '.wav';
+		$cmd = 'pico2wave -l=' . escapeshellarg($lang) . ' -w=' . escapeshellarg($wavFile) . ' ' . escapeshellarg($text) . ' > /dev/null 2>&1;';
+		$cmd .= $avconv . ' -i ' . escapeshellarg($wavFile) . ' -ar 44100 ' . $volume . ' -ac 2 -ab 192k -f mp3 ' . escapeshellarg($filename) . ' > /dev/null 2>&1;rm ' . escapeshellarg($wavFile);
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
 	} else {

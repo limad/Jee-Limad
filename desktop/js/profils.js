@@ -26,12 +26,14 @@ if (!jeeFrontEnd.profils) {
       */
       this.tableDevices = document.getElementById('securitytab')?.querySelector('#tableDevices')
       if (this.tableDevices != null) { //Not modal!
-        this.deviceDataTable = new DataTable(this.tableDevices, {
-          columns: [
-            { select: 2, sort: "desc" }
-          ],
-          paging: false,
-          searchable: true,
+        jeedom.loadCSS('core/dom/Vanilla-DataTables/Vanilla-DataTables.css').then(function() {
+          jeeFrontEnd.profils.deviceDataTable = new DataTable(jeeFrontEnd.profils.tableDevices, {
+            columns: [
+              { select: 2, sort: "desc" }
+            ],
+            paging: false,
+            searchable: true,
+          })
         })
       }
     },
@@ -98,7 +100,7 @@ jeedom.user.get({
 //Manage events outside parents delegations:
 if (jeephp2js.profils_user_id == -1) {
   document.getElementById('bt_genUserKeyAPI')?.addEventListener('click', function(event) {
-    var profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
+    const profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
     profil.hash = ''
     jeedom.user.saveProfils({
       profils: profil,
@@ -148,7 +150,7 @@ if (jeephp2js.profils_user_id == -1) {
 
 document.getElementById('bt_saveProfils')?.addEventListener('click', function(event) {
   jeedomUtils.hideAlert()
-  var profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
+  const profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
   if (jeephp2js.profils_user_id == -1) {
     if (profil.password != document.getElementById('in_passwordCheck').value) {
       jeedomUtils.showAlert({
@@ -217,7 +219,7 @@ document.getElementById('bt_saveProfils')?.addEventListener('click', function(ev
 })
 
 document.getElementById('bt_configureTwoFactorAuthentification')?.addEventListener('click', function(event) {
-  var profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
+  const profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
   jeeDialog.dialog({
     id: 'jee_modal',
     title: "{{Authentification 2 étapes}}",
@@ -228,7 +230,7 @@ document.getElementById('bt_configureTwoFactorAuthentification')?.addEventListen
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (jeephp2js.profils_user_id == -1) {
     if (_target = event.target.closest('.bt_removeRegisterDevice')) {
       jeeFrontEnd.profils.removeRegisterDevice(_target.closest('tr').getAttribute('data-key'))
@@ -243,7 +245,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 })
 
 document.getElementById('interfacetab').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.bt_selectWarnMeCmd')) {
     jeedom.cmd.getSelectModal({
       cmd: {

@@ -197,6 +197,24 @@ jeedomUtils.transitionJeedomBackground = function(_path) {
   jeedomUtils._elBackground.find('#bottom').css('background-image', 'url("../../../../' + _path + '")')
 }
 
+jeedomUtils.setThemeStylesheets = function(_themeCss, _cssTag) {
+  const cssTag = _cssTag || document.getElementById('jeedom_theme_currentcss')
+  const colorsTag = document.getElementById('jeedom_theme_colorscss')
+  const colorsCss = _themeCss.replace(/\/mobile\/[^/]+\.css$/, '/mobile/colors.css')
+  if (colorsTag) {
+    colorsTag.setAttribute('href', colorsCss)
+  }
+  cssTag.setAttribute('href', _themeCss)
+  try {
+    document.cookie = 'jeedom_mobile_theme_css=' + encodeURIComponent(_themeCss) + '; path=/; max-age=2592000; SameSite=Lax'
+    document.cookie = 'jeedom_mobile_theme_colors_css=' + encodeURIComponent(colorsCss) + '; path=/; max-age=2592000; SameSite=Lax'
+    if (typeof window.localStorage !== 'undefined') {
+      window.localStorage.setItem('jeedom_mobile_theme_css', _themeCss)
+      window.localStorage.setItem('jeedom_mobile_theme_colors_css', colorsCss)
+    }
+  } catch (e) {}
+}
+
 jeedomUtils.changeTheme = function(_theme) {
   if (_theme == 'toggle' || !document.body.getAttribute('data-theme').toLowerCase().endsWith(_theme)) {
     jeedomUtils.switchTheme(jeedom.theme)
@@ -214,10 +232,10 @@ jeedomUtils.switchTheme = function(themeConfig) {
     theme = 'core/themes/' + themeConfig.mobile_theme_color + '/mobile/' + themeConfig.mobile_theme_color + '.css'
     themeShadows = 'core/themes/' + themeConfig.mobile_theme_color + '/mobile/shadows.css'
     themeCook = 'default'
-    cssTag.setAttribute('href', theme)
+    jeedomUtils.setThemeStylesheets(theme, cssTag)
     cssTag.setAttribute('data-nochange', 0)
   } else {
-    cssTag.setAttribute('href', theme)
+    jeedomUtils.setThemeStylesheets(theme, cssTag)
     cssTag.setAttribute('data-nochange', 1)
     document.body.setAttribute('data-theme', themeConfig.mobile_theme_color_night)
   }
@@ -232,11 +250,7 @@ jeedomUtils.switchTheme = function(themeConfig) {
 jeedomUtils.triggerThemechange = function() {
   //set jeedom logo:
   let currentTheme = document.body.getAttribute('data-theme')
-  if (currentTheme.endsWith('Dark')) {
-    $('#homeLogoImg').attr('src', jeedom.theme.logo_mobile_dark)
-  } else {
-    $('#homeLogoImg').attr('src', jeedom.theme.logo_mobile_light)
-  }
+  $('#homeLogoImg').attr('src', jeedom.theme.logo_mobile_dark)
   //trigger event for widgets:
   if ($('body').attr('data-page') && ['equipment', 'view'].includes($('body').attr('data-page'))) {
     if (currentTheme.endsWith('Light')) {
@@ -281,7 +295,7 @@ jeedomUtils.changeThemeAuto = function(_ambiantLight) {
           }
           if (cssTag.attributes.href.value != themeCss) {
             $('body').attr('data-theme', theme)
-            cssTag.setAttribute('href', themeCss)
+            jeedomUtils.setThemeStylesheets(themeCss, cssTag)
             jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
             jeedomUtils.triggerThemechange()
           }
@@ -313,7 +327,7 @@ jeedomUtils.checkThemechange = function() {
   }
   if (cssTag.attributes.href.value != themeCss) {
     document.body.setAttribute('data-theme', theme)
-    cssTag.setAttribute('href', themeCss)
+    jeedomUtils.setThemeStylesheets(themeCss, cssTag)
     jeedomUtils.setBackgroundImage(jeedomUtils.backgroundIMG)
     jeedomUtils.triggerThemechange()
   }
@@ -472,7 +486,7 @@ jeedomUtils.initApplication = function(_reinit) {
           document.body.setAttribute('data-theme', jeedom.theme.mobile_theme_color_night)
           document.getElementById('jeedom_theme_currentcss').setAttribute('data-nochange', '1')
         }
-        document.getElementById('jeedom_theme_currentcss').href = themeCSS
+        jeedomUtils.setThemeStylesheets(themeCSS, document.getElementById('jeedom_theme_currentcss'))
 
         jeedomUtils.changeThemeAuto()
         jeedomUtils.checkThemechange()
@@ -503,7 +517,10 @@ jeedomUtils.initApplication = function(_reinit) {
 
         //load some css, then ...
         $.get("core/php/icon.inc.php", function(data) {
-          document.head.insertAdjacentHTML('beforeend', data)
+          const loadedCss = Array.from(document.querySelectorAll('link[href]')).map(link => link.getAttribute('href'))
+          if (!loadedCss.some(href => href.includes('3rdparty/font-awesome5/css/all.min.css')) || !loadedCss.some(href => href.includes('core/css/icon/icons.css'))) {
+            document.head.insertAdjacentHTML('beforeend', data)
+          }
           $.include(include, function() {
             jeedom.object.summaryUpdate([{ object_id: 'global' }])
             //store default mobile page user preference:
@@ -752,11 +769,14 @@ jeedomUtils.loadPage = function(_page, _title, _option, _plugin, _dialog) {
       Waves.init()
       if (APP_MODE) {
         document.querySelectorAll('div[data-role=header]')?.remove()
-        var node = (document.getElementById(pagecontainer)) ? node.style.paddingTop = 0 : null
+        var node = document.getElementById('pagecontainer')
+        if (node) node.style.paddingTop = 0
       } else {
-        var node = (document.getElementById(pagecontainer)) ? node.style.paddingTop = '72px' : null
+        var node = document.getElementById('pagecontainer')
+        if (node) node.style.paddingTop = '72px'
         setTimeout(function() {
-          var node = (document.getElementById(pagecontainer)) ? node.style.paddingTop = '72px' : null
+          var node = document.getElementById('pagecontainer')
+        if (node) node.style.paddingTop = '72px'
         }, 100)
       }
       document.getElementById('page').fade(400, 1)

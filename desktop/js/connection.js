@@ -23,7 +23,7 @@ if (!jeeFrontEnd.connection) {
       if (this.deepUrl.includes('logout')) this.deepUrl = ''
       window.jeeP = this
 
-      document.getElementById('jeedom_theme_currentcss').href = 'core/themes/core2019_Light/desktop/core2019_Light.css'
+      document.getElementById('jeedom_theme_currentcss').href = 'core/themes/core2019_Light/desktop/core2019_Light.css?v=' + jeeFrontEnd.jeedomVersion
       document.title = JEEDOM_PRODUCT_NAME + ' - Login'
     },
     askMarket: function() {
@@ -88,7 +88,7 @@ if (!jeeFrontEnd.connection) {
             })
           },
           success: function(data) {
-            var user = data
+            const user = data
             user.password = document.getElementById('in_change_password').value
             user.hash = ''
             jeedom.user.saveProfils({
@@ -130,15 +130,16 @@ if (!jeeFrontEnd.connection) {
     },
     animateCss: function(element, animationName, callback) {
       // console.log('animateCss:', element, animationName, callback)
-      var animationEnd = (function(el) {
-        var animations = {
+      if (element == null) return null
+      const animationEnd = (function(el) {
+        const animations = {
           animation: 'animationend',
           OAnimation: 'oAnimationEnd',
           MozAnimation: 'mozAnimationEnd',
           WebkitAnimation: 'webkitAnimationEnd',
         }
 
-        for (var t in animations) {
+        for (const t in animations) {
           if (el.style[t] !== undefined) {
             return animations[t]
           }
@@ -161,7 +162,7 @@ jeeFrontEnd.connection.init()
 
 //events delegation:
 document.getElementById('wrap')?.addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('#bt_login_validate')) {
     jeeP.loginValidate(event)
     return
@@ -173,9 +174,9 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('#bt_login_validate_market')) {
-    var username = document.getElementById('in_login_username_market').value
-    var password = document.getElementById('in_login_password_market').value
-    var adress = 'https://market.jeedom.com'
+    const username = document.getElementById('in_login_username_market').value
+    const password = document.getElementById('in_login_password_market').value
+    const adress = 'https://market.jeedom.com'
     jeedom.config.save({
       configuration: {
         'market::username': username
@@ -231,16 +232,16 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
 
   if (_target = event.target.closest('a.bt_showPassConnection')) {
     event.stopPropagation();
-    var _el = event.target.matches('a.bt_showPassConnection') ? event.target : event.target.parentNode;
-    var input = _el.closest('.input-group').querySelector('input');
-    
+    const _el = event.target.matches('a.bt_showPassConnection') ? event.target : event.target.parentNode;
+    const input = _el.closest('.input-group').querySelector('input');
+
     if (input.getAttribute('type') === 'password') {
         input.setAttribute('type', 'text');
     } else {
         input.setAttribute('type', 'password');
     }
 
-    var icon = _el.querySelector('.fas');
+    const icon = _el.querySelector('.fas');
     if (icon.classList.contains('fa-eye-slash')) {
         icon.classList.remove('fa-eye-slash');
         icon.classList.add('fa-eye');
@@ -254,9 +255,9 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
 
 document.getElementById('wrap').addEventListener('keypress', function(event) {
   if (event.which != 13) return
-  var _target = null
-  if (_target = event.target.closest('input')) {
-    jeeFrontEnd.connection.loginValidate(event)
+  let _target = null
+  if (_target = event.target.closest('#in_change_passwordToo')) {
+    jeeFrontEnd.connection.changeValidate(event)
     return
   }
 
@@ -265,23 +266,25 @@ document.getElementById('wrap').addEventListener('keypress', function(event) {
     return
   }
 
-  if (_target = event.target.closest('#in_change_passwordToo')) {
-    jeeFrontEnd.connection.changeValidate(event)
+  if (_target = event.target.closest('input')) {
+    jeeFrontEnd.connection.loginValidate(event)
     return
   }
 })
 
 
 window.setTimeout(function() {
-  document.querySelector('.veen').removeClass('zoomIn')
-  document.querySelector('.btn_help').removeClass('bounceInUp')
+  document.querySelector('.veen')?.removeClass('zoomIn')
+  document.querySelector('.btn_help')?.removeClass('bounceInUp')
 }, 5000)
 
 window.setTimeout(function() {
   window.setInterval(function() {
-    jeeFrontEnd.connection.animateCss(document.querySelector('.btn_help'), 'shake')
+    const helpButton = document.querySelector('.btn_help')
+    if (helpButton == null) return
+    jeeFrontEnd.connection.animateCss(helpButton, 'shake')
     window.setTimeout(function() {
-      document.querySelector('.btn_help').removeClass('shake')
+      helpButton.removeClass('shake')
     }, 3000)
   }, 5000)
 }, 10000)

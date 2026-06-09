@@ -98,10 +98,10 @@ function scanDB($_table) {
     <div class="floatingbar">
       <div class="input-group">
         <span class="input-group-btn">
-          <a href="index.php?v=d&p=backup" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-save"></i> {{Sauvegarde Système}}
-          </a><a class="btn btn-info btn-sm" id="bt_exportFilter"><i class="fas fa-file-export"></i> {{Exporter}}
-          </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> {{Importer}}<input id="bt_importFilter" type="file" name="file" style="display:inline-block;"></span>
-          </a><a class="btn btn-danger btn-sm roundedRight" id="bt_execMassEdit"><i class="fas fa-fill-drip"></i> {{Exécuter}}</a>
+          <button type="button" class="btn btn-success btn-sm roundedLeft" onclick="jeedomUtils.loadPage('index.php?v=d&p=backup')"><i class="fas fa-save"></i> {{Sauvegarde Système}}
+          </button><button type="button" class="btn btn-info btn-sm" id="bt_exportFilter"><i class="fas fa-file-export"></i> {{Exporter}}
+          </button><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> {{Importer}}<input id="bt_importFilter" type="file" name="file" style="display:inline-block;"></span>
+          <button type="button" class="btn btn-danger btn-sm roundedRight" id="bt_execMassEdit"><i class="fas fa-fill-drip"></i> {{Exécuter}}</button>
         </span>
       </div>
     </div>
@@ -131,10 +131,10 @@ function scanDB($_table) {
               </select>
             </div>
             <div class="col-lg-1 col-xs-2">
-              <a id="bt_addFilter" class="btn btn-xs btn-success" title="{{Ajouter un filtre}}"><i class="fas fa-plus"></i> {{Ajouter}}</a>
+              <button type="button" id="bt_addFilter" class="btn btn-xs btn-success" title="{{Ajouter un filtre}}"><i class="fas fa-plus"></i> {{Ajouter}}</button>
             </div>
             <div class="col-lg-1 col-xs-2">
-              <a id="bt_testFilter" class="btn btn-xs btn-info disabled" title="{{Test}}"><i class="fas fa-vial"></i> {{Test}}</a>
+              <button type="button" id="bt_testFilter" class="btn btn-xs btn-info disabled" title="{{Test}}"><i class="fas fa-vial"></i> {{Test}}</button>
             </div>
           </div>
         </div>

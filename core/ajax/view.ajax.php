@@ -204,8 +204,12 @@ try {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
 		unautorizedInDemo();
+		$views = json_decode(init('views'), true);
+		if (!is_array($views)) {
+			throw new Exception(__('Liste des vues invalide', __FILE__));
+		}
 		$order = 1;
-		foreach (json_decode(init('views'), true) as $id) {
+		foreach ($views as $id) {
 			$view = view::byId($id);
 			if (is_object($view)) {
 				$view->setOrder($order);

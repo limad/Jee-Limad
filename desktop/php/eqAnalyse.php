@@ -27,7 +27,7 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 	<div class="hasfloatingbar col-xs-12">
 		<div class="floatingbar">
 			<div>
-				<a id="bt_massConfigureEqLogic" class="btn btn-sm"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+				<button type="button" id="bt_massConfigureEqLogic" class="btn btn-sm"><i class="fas fa-cogs"></i> {{Configuration}}</button>
 			</div>
 		</div>
 
@@ -43,9 +43,9 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="battery">
 				<div class="input-group" style="margin-bottom:5px;">
-					<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_search" />
+					<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom)}}" id="in_search" />
 					<div class="input-group-btn">
-						<a id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </a>
+						<button type="button" id="bt_resetSearch" class="btn roundedRight" style="width:30px"><i class="fas fa-times"></i> </button>
 					</div>
 				</div>
 				<div class="batteryListContainer">
@@ -103,7 +103,7 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 									$div .= trim($actions);
 									$div .= '</td>';
 									$div .= '<td>';
-									$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+									$div .= '<button type="button" class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></button>';
 									$div .= '</td>';
 									$div .= '</tr>';
 								}
@@ -120,7 +120,7 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 									$div .= trim($actions);
 									$div .= '</td>';
 									$div .= '<td>';
-									$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+									$div .= '<button type="button" class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></button>';
 									$div .= '</td>';
 									$div .= '</tr>';
 								}
@@ -133,7 +133,7 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 									$div .= trim($actions);
 									$div .= '</td>';
 									$div .= '<td>';
-									$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+									$div .= '<button type="button" class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></button>';
 									$div .= '</td>';
 									$div .= '</tr>';
 								}
@@ -149,7 +149,7 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 									}
 									$div .= '</td>';
 									$div .= '<td>';
-									$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+									$div .= '<button type="button" class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></button>';
 									$div .= '</td>';
 									$div .= '</tr>';
 								}
@@ -158,7 +158,7 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 								    $div .= '{{Code de confirmation de l\'action}}';
 								    $div .= '</td>';
 								    $div .= '<td>';
-								    $div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+								    $div .= '<button type="button" class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></button>';
 								    $div .= '</td>';
 								    $div .= '</tr>';
 								}
@@ -212,7 +212,7 @@ sendVarToJs('jeephp2js.removeHistory', $remove_history);
 									}
 									$div .= '</td>';
 									$div .= '<td>';
-									$div .= '<a class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></a>';
+									$div .= '<button type="button" class="btn btn-default btn-xs cmdAction pull-right" data-action="configure" data-cmd_id="' . $cmd->getId() . '"><i class="fas fa-cogs"></i></button>';
 									$div .= '</td>';
 									$div .= '</tr>';
 								}

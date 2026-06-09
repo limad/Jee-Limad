@@ -40,7 +40,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 	<div class="hasfloatingbar col-xs-12">
 		<div class="floatingbar">
 			<div>
-				<a class="btn btn-sm btn-success" id="bt_saveProfils"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+				<button type="button" class="btn btn-sm btn-success" id="bt_saveProfils"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</button>
 			</div>
 		</div>
 
@@ -223,7 +223,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 								<div class="input-group">
 									<input type="text" class="userAttr form-control roundedLeft" data-l1key="options" data-l2key="notification::cmd" />
 									<span class="input-group-btn">
-										<a class="btn btn-default cursor bt_selectWarnMeCmd roundedRight" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></a>
+										<button type="button" class="btn btn-default cursor bt_selectWarnMeCmd roundedRight" title="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>
 									</span>
 								</div>
 							</div>
@@ -281,7 +281,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 								<div class="form-group">
 									<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Authentification en 2 étapes}}</label>
 									<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-										<a class="btn btn-default btn-sm" id="bt_configureTwoFactorAuthentification"><i class="fas fa-cogs"></i> {{Configurer}}</a>
+										<button type="button" class="btn btn-default btn-sm" id="bt_configureTwoFactorAuthentification"><i class="fas fa-cogs"></i> {{Configurer}}</button>
 									</div>
 									<?php
 									if ($user->getOptions('twoFactorAuthentification', 0) == 1) {
@@ -314,7 +314,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 									<span class="userAttr" data-l1key="hash"></span>
 								</div>
 								<div class="col-lg-2 col-md-3 col-sm-3">
-									<a class="btn btn-default btn-sm" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer le Hash}}</a>
+									<button type="button" class="btn btn-default btn-sm" id="bt_genUserKeyAPI"><i class="fas fa-refresh"></i> {{Regénérer le Hash}}</button>
 								</div>
 							</div>
 						</fieldset>
@@ -345,7 +345,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 											$tr .= '<td>' . $id . '</td>';
 											$tr .= '<td>' . $session['ip'] . '</td>';
 											$tr .= '<td>' . $session['datetime'] . '</td>';
-											$tr .= '<td><a class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</a></td>';
+											$tr .= '<td><button type="button" class="btn btn-xs btn-warning bt_deleteSession"><i class="fas fa-sign-out-alt"></i> {{Déconnecter}}</button></td>';
 											$tr .= '</tr>';
 											echo $tr;
 										}
@@ -358,7 +358,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 
 					<form class="form-horizontal">
 						<fieldset>
-							<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <a class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</a></legend>
+							<legend><i class="fas fa-laptop-house"></i> {{Périphérique(s) enregistré(s)}} <button type="button" class="btn btn-xs btn-danger pull-right" id="bt_removeAllRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer tout}}</button></legend>
 							<table id="tableDevices" class="table table-condensed">
 								<thead>
 									<tr>
@@ -383,7 +383,7 @@ $objectOptions = jeeObject::getUISelectList(false);
 										$tr .= $value['datetime'];
 										$tr .= '</td>';
 										$tr .= '<td>';
-										$tr .= '<a class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</a>';
+										$tr .= '<button type="button" class="btn btn-danger btn-xs bt_removeRegisterDevice"><i class="fas fa-trash"></i> {{Supprimer}}</button>';
 										$tr .= '</td>';
 										$tr .= '</tr>';
 										echo $tr;

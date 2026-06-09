@@ -1,0 +1,81 @@
+{
+  "extends": [
+    "stylelint-config-standard"
+  ],
+  "rules": {
+    "declaration-no-important": [
+      true,
+      {
+        "message": "Eviter !important - augmenter la specificite du selecteur a la place"
+      }
+    ],
+    "no-duplicate-selectors": true,
+    "no-empty-source": true,
+    "color-no-invalid-hex": true,
+    "font-family-no-duplicate-names": true,
+    "font-family-no-missing-generic-family-keyword": true,
+    "block-no-empty": true,
+    "comment-no-empty": true,
+    "selector-type-no-unknown": [
+      true,
+      {
+        "ignore": [
+          "custom-elements"
+        ]
+      }
+    ],
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": [
+          "font-smoothing",
+          "osx-font-smoothing"
+        ]
+      }
+    ],
+    "unit-no-unknown": true,
+    "value-no-vendor-prefix": [
+      true,
+      {
+        "disableFix": false
+      }
+    ],
+    "property-no-vendor-prefix": [
+      true,
+      {
+        "disableFix": false
+      }
+    ],
+    "shorthand-property-no-redundant-values": true,
+    "alpha-value-notation": "number",
+    "color-function-notation": "legacy",
+    "selector-class-pattern": null,
+    "custom-property-pattern": null,
+    "keyframes-name-pattern": null,
+    "import-notation": null,
+    "media-feature-range-notation": null,
+    "declaration-block-no-redundant-longhand-properties": null,
+    "comment-empty-line-before": null,
+    "rule-empty-line-before": null,
+    "at-rule-empty-line-before": null,
+    "no-descending-specificity": null,
+    "selector-id-pattern": null,
+    "selector-attribute-quotes": null,
+    "font-family-name-quotes": null,
+    "color-function-alias-notation": null,
+    "selector-not-notation": null,
+    "number-max-precision": null,
+    "comment-whitespace-inside": null,
+    "declaration-block-single-line-max-declarations": null,
+    "declaration-empty-line-before": null,
+    "color-hex-length": null,
+    "hue-degree-notation": null,
+    "selector-type-case": null
+  },
+  "ignoreFiles": [
+    "3rdparty/**",
+    "**/*.min.css",
+    "**/purged/**",
+    "**/purged-strict/**"
+  ]
+}

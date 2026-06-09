@@ -130,8 +130,12 @@ try {
 
 	if (init('action') == 'toHtml') {
 		if (init('ids') != '') {
+			$ids = json_decode(init('ids'), true);
+			if (!is_array($ids)) {
+				throw new Exception(__('Liste des équipements invalide', __FILE__));
+			}
 			$return = array();
-			foreach (json_decode(init('ids'), true) as $id => $value) {
+			foreach ($ids as $id => $value) {
 				$eqLogic = eqLogic::byId($id);
 				if (!is_object($eqLogic)) {
 					continue;

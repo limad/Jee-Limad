@@ -39,8 +39,12 @@ try {
 
 	if (init('action') == 'toHtml') {
 		if (init('ids') != '') {
+			$ids = json_decode(init('ids'), true);
+			if (!is_array($ids)) {
+				throw new Exception(__('Liste des commandes invalide', __FILE__));
+			}
 			$return = array();
-			foreach (json_decode(init('ids'), true) as $id => $value) {
+			foreach ($ids as $id => $value) {
 				$cmd = cmd::byId($id);
 				if (!is_object($cmd)) {
 					continue;
@@ -224,7 +228,8 @@ try {
 		if (!is_object($cmd)) {
 			throw new Exception(__('Commande inconnue :', __FILE__) . ' ' . init('id'), 9999);
 		}
-		ajax::success($cmd->historyInflux());
+		cmd::historyInflux($cmd->getId());
+		ajax::success();
 	}
 
 	if (init('action') == 'dropDatabaseInflux') {
@@ -238,7 +243,8 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		ajax::success(cmd::historyInfluxAll());
+		cmd::historyInflux('all');
+		ajax::success();
 	}
 
 	if (init('action') == 'getHumanCmdName') {
@@ -385,8 +391,8 @@ try {
 		}
 
 		if ($dateStart == '' && init('dateRange') != 'all') {
-			$now = date('Y-m-d');
-			$dateStart = $now->modify('- ' . init('dateRange'));
+			$now = new DateTime();
+			$dateStart = $now->modify('- ' . init('dateRange'))->format('Y-m-d');
 		}
 
 		$return['maxValue'] = '';

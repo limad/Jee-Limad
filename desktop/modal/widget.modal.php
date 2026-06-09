@@ -25,8 +25,13 @@ $type = init('type');
 <div class="form-group">
 <?php
 if ($type == 'image'){
-  $imageData = base64_encode(file_get_contents($data));
-  $src = 'data: '.mime_content_type($data).';base64,'.$imageData;
+  $real = realpath($data);
+  $base = realpath(__DIR__ . '/../../data/');
+  if ($real === false || $base === false || strpos($real, $base . DIRECTORY_SEPARATOR) !== 0 || !@getimagesize($real)) {
+    throw new Exception('{{Image invalide}}');
+  }
+  $imageData = base64_encode(file_get_contents($real));
+  $src = 'data: '.mime_content_type($real).';base64,'.$imageData;
   echo '<img src="' . $src . '" alt="" style="height: 100%; width: 100%; object-fit: contain">';
 }
 ?>

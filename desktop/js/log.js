@@ -43,14 +43,16 @@ document.getElementById('in_searchLogFilter')?.addEventListener('keyup', functio
     return
   }
 
-  const terms = raw.split(',').map(t => t.trim()).filter(t => t.length > 0)
+  const terms = raw.split(',').map(function(t) { return t.trim() }).filter(function(t) { return t.length > 0 })
 
   jeeP.logListButtons.unseen()
   jeeP.logListButtons.forEach(_bt => {
     const text = jeedomUtils.normTextLower(_bt.textContent)
-    const match = terms.some(term => {
+    const match = terms.some(function(term) {
       const not = term.startsWith(':not(')
-      const search = jeedomUtils.normTextLower(not ? term.slice(5, -1) : term)
+      let search = not ? term.slice(5) : term
+      if (not && search.endsWith(')')) search = search.slice(0, -1)
+      search = jeedomUtils.normTextLower(search)
       return not ? !text.includes(search) : text.includes(search)
     })
     if (match) _bt.seen()

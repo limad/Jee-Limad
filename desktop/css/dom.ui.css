@@ -108,6 +108,7 @@ div.jeeToastContainer > div.jeeToast.toast-danger {
   background: var(--el-defaultColor);
   opacity: 0.6;
   backdrop-filter: blur(5px) !important;
+
   --backdrop-filter: blur(3px) brightness(80%) !important;
 }
  div.jeeDialog {
@@ -120,7 +121,7 @@ div.jeeToastContainer > div.jeeToast.toast-danger {
   transform: translate(0,0);
   z-index: 1500;
   background-color: rgb(var(--panel-bg-color));
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 6px 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 0 6px 2px;
 }
 div.jeeDialog.jeeDialogAlert,
 div.jeeDialog.jeeDialogConfirm,
@@ -156,7 +157,7 @@ div.jeeDialog > div.jeeDialogTitle button {
   filter: invert(1);
 }
 div.jeeDialog:not(.jeeDialogMain) > div.jeeDialogTitle > button.btClose {
-  background: url('../../core/img/win_icons.png') no-repeat scroll -55px 0px;
+  background: url('../../core/img/win_icons.png') no-repeat scroll -55px 0;
   background-size: 72px 18px;
 }
 div.jeeDialogContent {
@@ -242,7 +243,7 @@ div.jeeDialog[id^='mod_insert'] {
   z-index: 1030 !important;
 }
 
-div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > span.title:before {
+div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > span.title::before {
   content: '\f105\00a0\00a0';
   font-family: "Font Awesome 5 Free";
   font-weight: 700;
@@ -281,13 +282,13 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button {
   filter: invert(1);
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btClose {
-  background-position: -55px 0px;
+  background-position: -55px 0;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.btToggleMaximize {
-  background-position: -36px 0px;
+  background-position: -36px 0;
 }
 div.jeeDialog.jeeDialogMain[data-maximize="1"] > div.jeeDialogTitle > div.titleButtons button.btToggleMaximize {
-  background-position: -18px 0px;
+  background-position: -18px 0;
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons button.minimize {
   background-position: 0 0;
@@ -458,9 +459,8 @@ div.jeeCtxMenu div.ctxSubMenuContainer {
   position: fixed;
   min-height: 20px;
   min-width: 100px;
-  color: var(--txt-color);
   background-color: var(--bg-modal-color);
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 6px 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0 0 6px 2px;
   color: var(--linkHoverLight-color);
   z-index: 12000 !important;
   border-radius: var(--border-radius);
@@ -499,9 +499,6 @@ div.jeeCtxMenu div.ctxSubMenu::after {
   border-color: transparent transparent transparent var(--linkHoverLight-color);
   border-style: solid;
   border-width: .25em 0 .25em .25em;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  -o-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 div.jeeCtxMenu div.ctxSubMenu > div.ctxItem:hover {

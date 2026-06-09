@@ -16,9 +16,13 @@
 * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
 */
 require_once dirname(__FILE__) . '/core.inc.php';
-$file = dirname(__FILE__) . '/../../' . init('file');
+$rootPath = realpath(dirname(__FILE__) . '/../../');
+$file = realpath($rootPath . '/' . init('file'));
+if ($file === false || strpos($file, $rootPath . DIRECTORY_SEPARATOR) !== 0) {
+	die();
+}
 $pathinfo = pathinfo($file);
-if ($pathinfo['extension'] != 'js' && $pathinfo['extension'] != 'css') {
+if (!isset($pathinfo['extension']) || ($pathinfo['extension'] != 'js' && $pathinfo['extension'] != 'css')) {
 	die();
 }
 if (file_exists($file)) {

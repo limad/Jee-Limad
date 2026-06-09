@@ -1,0 +1,50 @@
+// Test PurgeCSS Jeedom - NON destructif. Sortie = fichiers candidats.
+// Safelist large : plugins (non scannables ici) + classes generees en JS.
+module.exports = {
+  content: [
+    '/var/www/html/desktop/php/**/*.php',
+    '/var/www/html/desktop/js/**/*.js',
+    '/var/www/html/desktop/modal/**/*.php',
+    '/var/www/html/core/php/**/*.php',
+    '/var/www/html/core/js/**/*.js',
+    '/var/www/html/core/template/**/*.html',
+    '/var/www/html/core/class/**/*.php',
+  ],
+  defaultExtractor: content => content.match(/[A-Za-z0-9_-]+/g) || [],
+  safelist: {
+    standard: [
+      'in', 'active', 'open', 'show', 'fade', 'collapse', 'collapsing', 'disabled',
+      'hidden', 'selected', 'error', 'success', 'warning', 'danger', 'info', 'focus', 'hover',
+      'affix', 'clearfix', 'center-block', 'blockquote-reverse', 'dl-horizontal',
+      'lead', 'initialism', 'list-inline', 'list-unstyled', 'page-header', 'pager',
+      'pre-scrollable', 'sr-only-focusable', 'navbar-btn', 'navbar-form',
+      'navbar-inverse', 'navbar-left', 'navbar-text', 'navbar-static-top',
+      'navbar-fixed-bottom', 'img-circle', 'img-rounded',
+      'action_colorpicker_off', 'bt_hideElement', 'btn_closeAlert', 'col-full-height',
+      'dt-top', 'headband', 'mediumText', 'scrollable-menu', 'yellow',
+      'ui-button-icon', 'ui-helper-clearfix', 'ui-icon', 'ui-icon-closethick',
+      'ui-resizable-n', 'ui-resizable-ne', 'ui-resizable-nw', 'ui-resizable-se',
+      'ui-resizable-sw', 'ui-resizable-w',
+      /^visible-/, /^hidden-/, /^media/, /^embed-responsive/, /^sr-only/,
+    ],
+    deep: [
+      /^col-(xs|sm|md|lg)-/, /^col-(xs|sm|md|lg)-offset-/, /^(row|container)/,
+      /^btn(-|$)/, /^label(-|$)/, /^alert(-|$)/, /^panel(-|$)/, /^modal/, /^nav(-|$)/,
+      /^tab(-|s$)/, /^badge/, /^list-group/, /^dropdown/, /^input-group/, /^form-/,
+      /^well/, /^breadcrumb/, /^progress/, /^table(-|$)/, /^tooltip/, /^popover/,
+      /^carousel/, /^glyphicon/, /^bg-/, /^text-/, /^pull-/, /^has-/,
+      /^fa(s|r|b|l)?(-|$)/,
+      /eqLogic/, /^cmd/, /scenario/, /[Dd]isplay/, /widget/i, /jee/i, /configKey/,
+      /Attr$/, /^object/, /^plugin/, /thumbnail/i, /^template/,
+    ],
+    greedy: [
+      /^--/, /data-/,
+      /plugin/i, /highcharts-/i, /CodeMirror-/i, /^\.ui-/, /flatpickr-/i,
+      /dataTable/i, /packery/i, /^\.visible-/, /^\.hidden-/, /^\.navbar-/,
+      /^\.media/, /^\.embed-responsive/, /^\.sr-only/, /^\.slide/,
+      /^\.affix$/, /^\.clearfix$/, /^\.center-block$/, /^\.pull-/,
+      /leftPanel/, /statusCmd/, /jqAlert/, /logContainer/, /fontweight/, /^\.yellow$/,
+      /slider/, /installCheck/, /allowResize/, /cursorText/,
+    ],
+  },
+};

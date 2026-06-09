@@ -1,49 +1,48 @@
-nbproject/
-.idea
-.project
-Thumbs.db
-.DS_Store
-.buildpath
-.vscode
-ui
-
-test.php
+# === SECRETS & CONFIG INSTANCE ===
 core/config/common.config.php
-.remote-sync.json
-sftp.json
-core2019-light
-core2019-dark
-cache.tar.gz
-DB_backup.sql
-backup/*.tar.gz
-.tmb
-test/
-vendor/
-mobile/custom/
-desktop/custom/
+data/jeedom_encryption.key
 
+# === DONNÉES UTILISATEUR (instance-spécifique) ===
+data/
+backup/
+log/
+
+# === DB DUMPS ===
+*.sql
+DB_backup.sql
+
+# === RUNTIME / TEMPORAIRE ===
+tmp/
+cache.tar.gz
+*.tar.gz
+*.tar
+
+# === PLUGINS (instance-spécifique) ===
 plugins/
 
-data/*
-!data/.htaccess
-!data/php/.htaccess
-!data/3d/.htaccess
-!data/backgrounds/.htaccess
-!data/view/.htaccess
-!data/img/.htaccess
-!data/object/.htaccess
-!data/plan/.htaccess
-!data/custom/.htaccess
-!data/customTemplates/.htaccess
-data/3d/.htaccess
+# === BUILD DEPS (npm install les recrée) ===
+node_modules/
 
-log/*
-!log/.htaccess
+# === OUTILS AUDIT/REFACTORING (internes) ===
+prompts/
+audits/
+.codex-jeedom-patches/
+desktop/css/purged/
+desktop/css/purged-strict/
+desktop/php/cssOverview.php
 
-tmp/*
-!tmp/.htaccess
+# === FICHIERS SERVEUR (ne font pas partie du projet web) ===
+.ssh/
+.bashrc
+.profile
+.bash_history
+.bash_logout
+.tmb/
+.wget-hsts
 
-!.htaccess
+# === OS ===
+.DS_Store
+Thumbs.db
+*.swp
+*~
 .env
-.phpstan.cache
-phpstan.phar

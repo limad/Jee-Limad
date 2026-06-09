@@ -16,13 +16,13 @@
 
 var jeeCron = function(_UIgenerator, _options) {
   'use strict'
-  var jCrInstance = {
+  const jCrInstance = {
     _description: 'js cron generator. /core/dom/jeeCron.js'
   }
 
-  var _c_ = {} //Internal passthrough
+  const _c_ = {} //Internal passthrough
 
-  var defaultOptions = {
+  const defaultOptions = {
     initial : "* * * * *",
     minuteOpts : {
       minWidth  : 100, // only applies if columns and itemWidth not set
@@ -69,8 +69,8 @@ var jeeCron = function(_UIgenerator, _options) {
     customValues : undefined,
     onChange: undefined, // callback function each time value changes
   }
-  var options = _options ? _options : {}
-  var o = domUtils.extend({}, defaultOptions, options)
+  const options = _options ? _options : {}
+  const o = domUtils.extend({}, defaultOptions, options)
   domUtils.extend(o, {
       minuteOpts     : domUtils.extend({}, defaultOptions.minuteOpts, options.minuteOpts),
       domOpts        : domUtils.extend({}, defaultOptions.domOpts, options.domOpts),
@@ -95,46 +95,46 @@ var jeeCron = function(_UIgenerator, _options) {
 
     // options for minutes in an hour
     _c_.str_opt_mih = ""
-    for (var i = 0; i < 60; i++) {
-      var j = (i < 10)? "0":""
+    for (let i = 0; i < 60; i++) {
+      const j = (i < 10)? "0":""
       _c_.str_opt_mih += "<option value='"+i+"'>" + j +  i + "</option>\n"
     }
 
     // options for hours in a day
     _c_.str_opt_hid = ""
-    for (var i = 0; i < 24; i++) {
-      var j = (i < 10)? "0":""
+    for (let i = 0; i < 24; i++) {
+      const j = (i < 10)? "0":""
       _c_.str_opt_hid += "<option value='"+i+"'>" + j + i + "</option>\n"
     }
 
     // options for days of month
     _c_.str_opt_dom = ""
-    for (var i = 1; i < 32; i++) {
-      if (i == 1 || i == 21 || i == 31) { var suffix = "st" }
-      else if (i == 2 || i == 22) { var suffix = "nd" }
-      else if (i == 3 || i == 23) { var suffix = "rd" }
-      else { var suffix = "th"; }
+    for (let i = 1; i < 32; i++) {
+      let suffix = "th"
+      if (i == 1 || i == 21 || i == 31) { suffix = "st" }
+      else if (i == 2 || i == 22) { suffix = "nd" }
+      else if (i == 3 || i == 23) { suffix = "rd" }
       _c_.str_opt_dom += "<option value='"+i+"'>" + i + suffix + "</option>\n";
     }
 
     // options for months
     _c_.str_opt_month = ""
-    var months = ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}']
-    for (var i = 0; i < months.length; i++) {
+    const months = ['{{Janvier}}', '{{Février}}', '{{Mars}}', '{{Avril}}', '{{Mai}}', '{{Juin}}', '{{Juillet}}', '{{Août}}', '{{Septembre}}', '{{Octobre}}', '{{Novembre}}', '{{Décembre}}']
+    for (let i = 0; i < months.length; i++) {
       _c_.str_opt_month += "<option value='"+(i+1)+"'>" + months[i] + "</option>\n"
     }
 
     // options for day of week
     _c_.str_opt_dow = ""
-    var days = ['{{Dimanche}}', '{{Lundi}}', '{{Mardi}}', '{{Mercredi}}', '{{Jeudi}}', '{{Vendredi}}', '{{Samedi}}']
-    for (var i = 0; i < days.length; i++) {
+    const days = ['{{Dimanche}}', '{{Lundi}}', '{{Mardi}}', '{{Mercredi}}', '{{Jeudi}}', '{{Vendredi}}', '{{Samedi}}']
+    for (let i = 0; i < days.length; i++) {
       _c_.str_opt_dow += "<option value='"+i+"'>" + days[i] + "</option>\n"
     }
 
     // options for period
     _c_.str_opt_period = ""
-    var periods = {'minute':'{{minute}}', 'hour':'{{heure}}', 'day':'{{jour}}', 'week':'{{semaine}}', 'month':'{{mois}}', 'year':'{{année}}'}
-    for (var i in periods) {
+    const periods = {'minute':'{{minute}}', 'hour':'{{heure}}', 'day':'{{jour}}', 'week':'{{semaine}}', 'month':'{{mois}}', 'year':'{{année}}'}
+    for (const i in periods) {
       _c_.str_opt_period += "<option value='" + i + "'>" + periods[i] + "</option>\n"
     }
 
@@ -159,10 +159,10 @@ var jeeCron = function(_UIgenerator, _options) {
   }
 
   function build() {
-    var custom_periods = ""
-    var cv = o.customValues
+    let custom_periods = ""
+    const cv = o.customValues
     if (cv) { // prepend custom values if specified
-      for (var key in cv) {
+      for (const key in cv) {
         custom_periods += "<option value='" + cv[key] + "'>" + key + "</option>\n"
       }
     }
@@ -174,7 +174,7 @@ var jeeCron = function(_UIgenerator, _options) {
     jCrInstance.block["period"] = _UIgenerator.querySelector('span.cron-period')
     jCrInstance.block["period"]._jeeCron = {root: _UIgenerator}
 
-    var select = jCrInstance.block["period"].querySelector("select")
+    let select = jCrInstance.block["period"].querySelector("select")
     select._jeeCron = {root: _UIgenerator, options: o}
 
     select.addEventListener("change", function(event) {
@@ -237,11 +237,11 @@ var jeeCron = function(_UIgenerator, _options) {
   }
 
   function getCurrentValue(_jCr) {
-    var block = _jCr.block
+    const block = _jCr.block
 
-    var min, hour, day, month, dow
+    let min, hour, day, month, dow
     min = hour = day = month = dow = "*"
-    var selectedPeriod = block["period"].querySelector("select").value
+    const selectedPeriod = block["period"].querySelector("select").value
 
     switch (selectedPeriod) {
         case "minute":
@@ -285,11 +285,11 @@ var jeeCron = function(_UIgenerator, _options) {
 
   //First select period changed, show/hide related options
   jCrInstance.periodChanged = function(event) {
-    var period = this.block['period'].querySelector('select').value
+    const period = this.block['period'].querySelector('select').value
     this.root.querySelectorAll("span.cron-block").unseen()
     if (_c_.toDisplay.hasOwnProperty(period)) {// not custom value
-      var b = _c_.toDisplay[period]
-      for (var i = 0; i < b.length; i++) {
+      const b = _c_.toDisplay[period]
+      for (let i = 0; i < b.length; i++) {
         this.block[b[i]].seen()
       }
     }

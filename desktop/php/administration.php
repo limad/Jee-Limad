@@ -19,10 +19,10 @@ $productName = config::byKey('product_name');
 		<div class="input-group" style="margin-bottom:5px;">
 			<input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchConfig">
 			<div class="input-group-btn">
-				<a id="bt_resetConfigSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>
+				<button type="button" id="bt_resetConfigSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </button>
 			</div>
 			<div class="input-group-btn">
-				<a id="bt_saveGeneraleConfig" class="btn btn-success roundedRight" type="button"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+				<button type="button" id="bt_saveGeneraleConfig" class="btn btn-success roundedRight" type="button"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</button>
 			</div>
 		</div>
 		<div>
@@ -111,7 +111,7 @@ $productName = config::byKey('product_name');
 							</label>
 							<div class="col-md-6 col-xs-8">
 								<span class="label label-info"><?php echo jeedom::getHardwareName() ?></span>
-								<a class="btn btn-sm btn-default pull-right" id="bt_resetHardwareType" tooltip="{{Rafraîchir}}"><i class="fas fa-sync"></i></a>
+								<button type="button" class="btn btn-sm btn-default pull-right" id="bt_resetHardwareType" tooltip="{{Rafraîchir}}"><i class="fas fa-sync"></i></button>
 							</div>
 						</div>
 						<div class="form-group">
@@ -120,7 +120,7 @@ $productName = config::byKey('product_name');
 							</label>
 							<div class="col-md-6 col-xs-8">
 								<span class="label label-info" style="width:calc(100% - 40px);"><?php echo jeedom::getHardwareKey() ?></span>
-								<a class=" btn btn-sm btn-default pull-right" id="bt_resetHwKey" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
+								<button type="button" class=" btn btn-sm btn-default pull-right" id="bt_resetHwKey" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></button>
 							</div>
 						</div>
 						<hr class="hrPrimary">
@@ -230,7 +230,7 @@ $productName = config::byKey('product_name');
 										<option value="Pacific/Kiritimati">(GMT+14:00) Kiritimati</option>
 									</select>
 									<span class="input-group-btn">
-										<a class="btn btn-primary form-control roundedRight" id="bt_forceSyncHour" tooltip="{{Forcer la synchronisation de l'heure}}"><i class="fas fa-clock"></i></a>
+										<button type="button" class="btn btn-primary form-control roundedRight" id="bt_forceSyncHour" tooltip="{{Forcer la synchronisation de l'heure}}"><i class="fas fa-clock"></i></button>
 									</span>
 								</div>
 							</div>
@@ -257,7 +257,7 @@ $productName = config::byKey('product_name');
 							</label>
 							<div class="col-md-6 col-xs-8">
 								<span class="label label-info"><?php echo cache::byKey('hour')->getDatetime() ?></span>
-								<a class="btn btn-sm btn-default pull-right" id="bt_resetHour" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></a>
+								<button type="button" class="btn btn-sm btn-default pull-right" id="bt_resetHour" tooltip="{{Remise à zéro}}"><i class=" fas fa-undo-alt"></i></button>
 							</div>
 						</div>
 
@@ -414,7 +414,7 @@ $productName = config::byKey('product_name');
 									<span class="input-group-addon">{{à}}</span>
 									<input type="text" class="configKey form-control in_timepicker" data-l1key="theme_end_day_hour">
 									<span class="input-group-btn">
-										<a id="bt_resetThemeCookie" class="btn btn-sm btn-primary form-control roundedRight" tooltip="{{Supprimer le cookie de thème}}"><i class="fas fa-eraser"></i></a>
+										<button type="button" id="bt_resetThemeCookie" class="btn btn-sm btn-primary form-control roundedRight" tooltip="{{Supprimer le cookie de thème}}"><i class="fas fa-eraser"></i></button>
 									</span>
 								</div>
 								<label class="checkbox-inline"><input type="checkbox" class="configKey" data-l1key="mobile_theme_useAmbientLight">{{Selon la luminosité}}
@@ -511,7 +511,7 @@ $productName = config::byKey('product_name');
 								<label class="checkbox-inline"><input type="checkbox" class="configKey form-control" data-l1key="enableCustomCss">{{Activer}}
 									<sup><i class="fas fa-question-circle" tooltip="{{Cocher la case pour activer la personnalisation avancée}}"></i></sup>
 								</label>
-								<a class="btn btn-sm btn-warning pull-right" href="index.php?v=d&p=editor&type=custom"><i class="fas fa-pencil-alt"></i> {{Personnalisation avancée}}</a>
+								<button type="button" class="btn btn-sm btn-warning pull-right" onclick="jeedomUtils.loadPage('index.php?v=d&p=editor&type=custom')"><i class="fas fa-pencil-alt"></i> {{Personnalisation avancée}}</button>
 							</div>
 						</div>
 						<br>
@@ -598,7 +598,7 @@ $productName = config::byKey('product_name');
 									<span class="btn btn-sm btn-success btn-file roundedLeft">
 										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="dashboard">
 									</span>
-									<a class="btn btn-sm btn-warning bt_removeBackgroundImage roundedRight" data-page="dashboard"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
+									<button type="button" class="btn btn-sm btn-warning bt_removeBackgroundImage roundedRight" data-page="dashboard"><i class="fas fa-trash-alt"></i> {{Supprimer}}</button>
 								</div>
 							</div>
 						</div>
@@ -611,7 +611,7 @@ $productName = config::byKey('product_name');
 									<span class="btn btn-sm btn-success btn-file roundedLeft">
 										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="analysis">
 									</span>
-									<a class="btn btn-sm btn-warning bt_removeBackgroundImage roundedRight" data-page="analysis"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
+									<button type="button" class="btn btn-sm btn-warning bt_removeBackgroundImage roundedRight" data-page="analysis"><i class="fas fa-trash-alt"></i> {{Supprimer}}</button>
 								</div>
 							</div>
 						</div>
@@ -624,7 +624,7 @@ $productName = config::byKey('product_name');
 									<span class="btn btn-sm btn-success btn-file roundedLeft">
 										<i class="fas fa-file-upload"></i> {{Envoyer}}<input class="bt_uploadImage" type="file" name="file" accept="image/*" data-page="tools">
 									</span>
-									<a class="btn btn-sm btn-warning bt_removeBackgroundImage roundedRight" data-page="tools"><i class="fas fa-trash-alt"></i> {{Supprimer}}</a>
+									<button type="button" class="btn btn-sm btn-warning bt_removeBackgroundImage roundedRight" data-page="tools"><i class="fas fa-trash-alt"></i> {{Supprimer}}</button>
 								</div>
 							</div>
 						</div>
@@ -768,8 +768,8 @@ $productName = config::byKey('product_name');
 								$div .= '<span class="label label-warning">{{Arrêté}}</span> ';
 							}
 							$div .= '<span>';
-							$div .= '<a class="btn btn-sm btn-success" id="bt_restartDns"><i class=\'fas fa-play\'></i> {{(Re)démarrer}}</a> ';
-							$div .= '<a class="btn btn-sm btn-danger" id="bt_haltDns"><i class=\'fas fa-stop\'></i> {{Arrêter}}</a>';
+							$div .= '<button type="button" class="btn btn-sm btn-success" id="bt_restartDns"><i class=\'fas fa-play\'></i> {{(Re)démarrer}}</button> ';
+							$div .= '<button type="button" class="btn btn-sm btn-danger" id="bt_haltDns"><i class=\'fas fa-stop\'></i> {{Arrêter}}</button>';
 							$div .= '</span>';
 							$div .= '</div>';
 							$div .= '</div>';
@@ -826,7 +826,7 @@ $productName = config::byKey('product_name');
 								<div class="input-group">
 									<input class="inputPassword configKey form-control roundedLeft" type="text" data-l1key="proxyPassword">
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_showPass roundedRight" data-plugin="core"><i class="fas fa-eye"></i></a>
+										<button type="button" class="btn btn-default form-control bt_showPass roundedRight" data-plugin="core"><i class="fas fa-eye"></i></button>
 									</span>
 								</div>
 							</div>
@@ -854,13 +854,13 @@ $productName = config::byKey('product_name');
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Supprimer tous les évènements de la Timeline qui sont dans le futur}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
-								<a type="text" class="btn btn-sm btn-warning" id="bt_removeTimelineFuturEvent"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+								<button type="button" type="text" class="btn btn-sm btn-warning" id="bt_removeTimelineFuturEvent"><i class="fas fa-trash"></i> {{Supprimer}}</button>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Supprimer tous les évènements de la Timeline}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
-								<a type="text" class="btn btn-sm btn-danger" id="bt_removeTimelineEvent"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+								<button type="button" type="text" class="btn btn-sm btn-danger" id="bt_removeTimelineEvent"><i class="fas fa-trash"></i> {{Supprimer}}</button>
 							</div>
 						</div>
 						<legend>{{Messages}}</legend>
@@ -873,7 +873,7 @@ $productName = config::byKey('product_name');
 						<div class="form-group" data-channel="">
 							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Action sur message}}</label>
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-								<a class="btn btn-sm btn-success bt_addActionOnMessage" data-channel=""><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+								<button type="button" class="btn btn-sm btn-success bt_addActionOnMessage" data-channel=""><i class="fas fa-plus-circle"></i> {{Ajouter}}</button>
 							</div>
 						</div>
 						<div class="form-group">
@@ -887,7 +887,7 @@ $productName = config::byKey('product_name');
 							echo '<div class="form-group" data-channel="' . $k . '">';
 							echo '<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">' . $v['icon'] . ' {{Action sur message, channel}} ' . $v['name'] . '</label>';
 							echo '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">';
-							echo '<a class="btn btn-sm btn-success bt_addActionOnMessage" data-channel="' . $k . '"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>';
+							echo '<button type="button" class="btn btn-sm btn-success bt_addActionOnMessage" data-channel="' . $k . '"><i class="fas fa-plus-circle"></i> {{Ajouter}}</button>';
 							echo '</div>';
 							echo '</div>';
 							echo '<div class="form-group">';
@@ -927,7 +927,7 @@ $productName = config::byKey('product_name');
 									$div .= '<div class="input-group">';
 									$div .= '<input type="text"  class="configKey form-control roundedLeft" data-l1key="alert::' . $level . 'Cmd">';
 									$div .= '<span class="input-group-btn">';
-									$div .= '<a class="btn btn-default cursor bt_selectAlertCmd roundedRight" tooltip="{{Rechercher une commande}}" data-type="' . $level . '"><i class="fas fa-list-alt"></i></a>';
+									$div .= '<button type="button" class="btn btn-default cursor bt_selectAlertCmd roundedRight" tooltip="{{Rechercher une commande}}" data-type="' . $level . '"><i class="fas fa-list-alt"></i></button>';
 									$div .= '</span>';
 									$div .= '</div>';
 									$div .= '</div>';
@@ -1015,7 +1015,7 @@ $productName = config::byKey('product_name');
 				<br>
 				<form class="form-horizontal">
 					<fieldset>
-						<a id="bt_addObjectSummary" class="btn btn-sm btn-success pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter un type de résumé}}</a>
+						<button type="button" id="bt_addObjectSummary" class="btn btn-sm btn-success pull-right"><i class="fas fa-plus-circle"></i> {{Ajouter un type de résumé}}</button>
 						<table class="table table-condensed" id="table_objectSummary">
 							<thead>
 								<tr>
@@ -1184,7 +1184,7 @@ $productName = config::byKey('product_name');
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-4 col-xs-8 control-label">{{Supprimer tous les historiques qui sont dans le futur}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
-								<a type="text" class="btn btn-sm btn-warning" id="bt_removeHistoryInFutur"><i class="fas fa-trash"></i> {{Supprimer}}</a>
+								<button type="button" type="text" class="btn btn-sm btn-warning" id="bt_removeHistoryInFutur"><i class="fas fa-trash"></i> {{Supprimer}}</button>
 							</div>
 						</div>
 					</fieldset>
@@ -1262,8 +1262,8 @@ $productName = config::byKey('product_name');
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-6 col-xs-6 control-label">{{Actions}}</label>
 							<div class="col-xs-6">
-								<a class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</a>
-								<a class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</a>
+								<button type="button" class="btn btn-default btn-sm" id="bt_influxDelete"><i class="fas fa-trash"></i> {{Supprimer}}</button>
+								<button type="button" class="btn btn-default btn-sm" id="bt_influxHistory"><i class="fas fas fa-history"></i> {{Envoyer Historique}}</button>
 							</div>
 						</div>
 					</fieldset>
@@ -1479,7 +1479,7 @@ $productName = config::byKey('product_name');
 								<div class="input-group">
 									<input type="text" class="configKey form-control roundedLeft" data-l1key="interact::warnme::defaultreturncmd">
 									<span class="input-group-btn">
-										<a class="btn btn-default cursor bt_selectWarnMeCmd roundedRight" tooltip="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></a>
+										<button type="button" class="btn btn-default cursor bt_selectWarnMeCmd roundedRight" tooltip="{{Rechercher une commande}}"><i class="fas fa-list-alt"></i></button>
 									</span>
 								</div>
 							</div>
@@ -1544,12 +1544,73 @@ $productName = config::byKey('product_name');
 			</div>
 
 			<div role="tabpanel" class="tab-pane" id="securitytab">
-				<br>
-				<form class="form-horizontal">
-					<fieldset>
-						<legend>{{Connexion}}</legend>
-						<div class="form-group">
-							<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée de vie des sessions}}
+					<br>
+					<form class="form-horizontal">
+						<fieldset>
+							<legend><i class="fas fa-user-shield"></i> {{Comptes & double authentification}}</legend>
+							<?php
+							$users2fa = user::all();
+							$adminsSans2fa = 0;
+							foreach ($users2fa as $u2fa) {
+								$has2fa = ($u2fa->getOptions('twoFactorAuthentification', 0) == 1 && $u2fa->getOptions('twoFactorAuthentificationSecret') != '');
+								if ($u2fa->getProfils() == 'admin' && $u2fa->getEnable() == 1 && !$has2fa) {
+									$adminsSans2fa++;
+								}
+							}
+							if ($adminsSans2fa > 0) { ?>
+								<div class="alert alert-warning">
+									<i class="fas fa-exclamation-triangle"></i>
+									<?php echo $adminsSans2fa; ?> {{compte(s) administrateur sans double authentification. Sur une box accessible depuis Internet, activez-la : c'est la protection la plus importante.}}
+								</div>
+							<?php } ?>
+							<div class="form-group">
+								<div class="col-xs-12">
+									<table class="table table-condensed">
+										<thead>
+											<tr>
+												<th>{{Utilisateur}}</th>
+												<th>{{Profil}}</th>
+												<th class="text-center">{{2FA}}</th>
+												<th class="text-right">{{Action}}</th>
+											</tr>
+										</thead>
+										<tbody>
+											<?php foreach ($users2fa as $u2fa) {
+												if ($u2fa->getEnable() != 1) {
+													continue;
+												}
+												$has2fa = ($u2fa->getOptions('twoFactorAuthentification', 0) == 1 && $u2fa->getOptions('twoFactorAuthentificationSecret') != '');
+												$isMe = ($u2fa->getId() == $_SESSION['user']->getId());
+											?>
+												<tr>
+													<td><?php echo htmlspecialchars($u2fa->getLogin(), ENT_QUOTES, 'UTF-8'); ?></td>
+													<td><?php echo htmlspecialchars($u2fa->getProfils(), ENT_QUOTES, 'UTF-8'); ?></td>
+													<td class="text-center">
+														<?php if ($has2fa) { ?>
+															<span class="label label-success">{{Active}}</span>
+														<?php } else { ?>
+															<span class="label label-warning">{{Inactive}}</span>
+														<?php } ?>
+													</td>
+													<td class="text-right">
+														<?php if ($isMe && !$has2fa) { ?>
+															<button type="button" class="btn btn-warning btn-xs" id="bt_securityTabConfigure2fa">
+																<i class="fas fa-lock"></i> {{Activer la mienne}}
+															</button>
+														<?php } elseif (!$isMe && !$has2fa) { ?>
+															<span class="text-muted"><small>{{À activer par l'utilisateur}}</small></span>
+														<?php } ?>
+													</td>
+												</tr>
+											<?php } ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<legend>{{Connexion}}</legend>
+							<div class="form-group">
+								<label class="col-md-3 col-sm-4 col-xs-12 control-label">{{Durée de vie des sessions}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Durée de vie de votre connexion, en heure<br>(si vous n'avez pas coché la case enregistrer cet ordinateur)}}"></i></sup>
 								<sub>h</sub>
 							</label>
@@ -1662,7 +1723,7 @@ $productName = config::byKey('product_name');
 										<div class="input-group">
 											<input type="text" class="inputPassword configKey form-control" data-l1key="ldap:password">
 											<span class="input-group-btn">
-												<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+												<button type="button" class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></button>
 											</span>
 										</div>
 									</div>
@@ -1702,7 +1763,7 @@ $productName = config::byKey('product_name');
 								<div class="form-group">
 									<div class="col-lg-2 col-md-3 col-sm-4 col-xs-6"></div>
 									<div class="col-md-3 col-sm-4 col-xs-12">
-										<a class="btn btn-default" id="bt_testLdapConnection"><i class="fas fa-cube"></i> Tester</a>
+										<button type="button" class="btn btn-default" id="bt_testLdapConnection"><i class="fas fa-cube"></i> Tester</button>
 									</div>
 								</div>
 							</div>
@@ -1747,7 +1808,7 @@ $productName = config::byKey('product_name');
 				</form>
 				<form class="form-horizontal">
 					<fieldset>
-						<legend>{{IPs bannies}} <a class="btn btn-danger btn-xs pull-right" id="bt_removeBanIp"><i class="fas fa-trash"></i> {{Supprimer}}</a></legend>
+						<legend>{{IPs bannies}} <button type="button" class="btn btn-danger btn-xs pull-right" id="bt_removeBanIp"><i class="fas fa-trash"></i> {{Supprimer}}</button></legend>
 						<table class="table table-condensed">
 							<thead>
 								<tr>
@@ -1868,7 +1929,7 @@ $productName = config::byKey('product_name');
 												?>
 											</select>
 											<span class="input-group-btn">
-												<a class="btn btn-default form-control" id="bt_refreshListBranch"><i class="fas fa-sync"></i></a>
+												<button type="button" class="btn btn-default form-control" id="bt_refreshListBranch"><i class="fas fa-sync"></i></button>
 											</span>
 										</div>
 									</div>
@@ -1946,7 +2007,7 @@ $productName = config::byKey('product_name');
 												case 'password':
 													$div .= '<div class="input-group">';
 													$div .= '<input type="text" class="inputPassword configKey form-control" data-l1key="' . $key . '::' . $pKey . '" value="' . $default . '">';
-													$div .= '<span class="input-group-btn"><a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a></span>';
+													$div .= '<span class="input-group-btn"><button type="button" class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></button></span>';
 													$div .= '</div>';
 													break;
 												case 'password_noshow':
@@ -1969,7 +2030,7 @@ $productName = config::byKey('product_name');
 											$div .= '<div class="form-group">';
 											$div .= '<label class="col-lg-3 col-md-4 col-xs-6 control-label">{{Tester/Synchroniser}}</label>';
 											$div .= '<div class="col-lg-3 col-md-4 col-xs-5">';
-											$div .= '<a class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</a>';
+											$div .= '<button type="button" class="btn btn-default testRepoConnection" data-repo="' . $key . '"><i class="fas fa-check"></i> {{Tester}}</button>';
 											$div .= '</div>';
 											$div .= '</div>';
 										}
@@ -2032,7 +2093,7 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Force la suppression des objets qui ne sont plus utiles.}}<br>{{Exécuté automatiquement toutes les nuits.}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<a class="btn btn-warning" id="bt_cleanCache" style="width:80px"><i class="fas fa-magic"></i> {{Nettoyer}}</a>
+								<button type="button" class="btn btn-warning" id="bt_cleanCache" style="width:80px"><i class="fas fa-magic"></i> {{Nettoyer}}</button>
 							</div>
 						</div>
 						<hr>
@@ -2041,7 +2102,7 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Vide complètement le cache.<br>Attention cela peut faire perdre des données.}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
-								<a class="btn btn-danger" id="bt_flushCache" style="width:80px"><i class="fas fa-trash"></i> {{Vider}}</a>
+								<button type="button" class="btn btn-danger" id="bt_flushCache" style="width:80px"><i class="fas fa-trash"></i> {{Vider}}</button>
 							</div>
 						</div>
 					</fieldset>
@@ -2060,13 +2121,13 @@ $productName = config::byKey('product_name');
 								<div class="input-group">
 									<input class="inputPassword span_apikey roundedLeft form-control" readonly value="<?php echo $configs['api']; ?>">
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_regenerate_api" data-plugin="core"><i class="fas fa-sync"></i></a>
+										<button type="button" class="btn btn-default form-control bt_regenerate_api" data-plugin="core"><i class="fas fa-sync"></i></button>
 									</span>
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></a>
+										<button type="button" class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></button>
 									</span>
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></a>
+										<button type="button" class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></button>
 									</span>
 								</div>
 							</div>
@@ -2085,13 +2146,13 @@ $productName = config::byKey('product_name');
 								<div class="input-group">
 									<input class="inputPassword span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apitts']; ?>">
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apitts"><i class="fas fa-sync"></i></a>
+										<button type="button" class="btn btn-default form-control bt_regenerate_api" data-plugin="apitts"><i class="fas fa-sync"></i></button>
 									</span>
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></a>
+										<button type="button" class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></button>
 									</span>
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></a>
+										<button type="button" class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></button>
 									</span>
 								</div>
 							</div>
@@ -2113,13 +2174,13 @@ $productName = config::byKey('product_name');
 								<div class="input-group">
 									<input class="inputPassword span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apipro']; ?>">
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apipro"><i class="fas fa-sync"></i></a>
+										<button type="button" class="btn btn-default form-control bt_regenerate_api" data-plugin="apipro"><i class="fas fa-sync"></i></button>
 									</span>
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></a>
+										<button type="button" class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></button>
 									</span>
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></a>
+										<button type="button" class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></button>
 									</span>
 								</div>
 							</div>
@@ -2139,13 +2200,13 @@ $productName = config::byKey('product_name');
 								<div class="input-group">
 									<input class="inputPassword span_apikey roundedLeft form-control" readonly value="<?php echo $configs['apimarket']; ?>">
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_regenerate_api" data-plugin="apimarket"><i class="fas fa-sync"></i></a>
+										<button type="button" class="btn btn-default form-control bt_regenerate_api" data-plugin="apimarket"><i class="fas fa-sync"></i></button>
 									</span>
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></a>
+										<button type="button" class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></button>
 									</span>
 									<span class="input-group-btn">
-										<a class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></a>
+										<button type="button" class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></button>
 									</span>
 								</div>
 							</div>
@@ -2182,13 +2243,13 @@ $productName = config::byKey('product_name');
 								$div .= '<div class="input-group">';
 								$div .= '<input class="inputPassword span_apikey roundedLeft form-control" readonly value="' . jeedom::getApiKey($plugin->getId(), 'disable') . '">';
 								$div .= '<span class="input-group-btn">';
-								$div .= '<a class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fas fa-sync"></i></a>';
+								$div .= '<button type="button" class="btn btn-default form-control bt_regenerate_api" data-plugin="' . $plugin->getId() . '"><i class="fas fa-sync"></i></button>';
 								$div .= '</span>';
 								$div .= '<span class="input-group-btn">';
-								$div .= '<a class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></a>';
+								$div .= '<button type="button" class="btn btn-default form-control bt_showPass"><i class="fas fa-eye"></i></button>';
 								$div .= '</span>';
 								$div .= '<span class="input-group-btn">';
-								$div .= '<a class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></a>';
+								$div .= '<button type="button" class="btn btn-default form-control bt_copyPass roundedRight"><i class="far fa-copy"></i></button>';
 								$div .= '</span>';
 								$div .= '</div>';
 								$div .= '</div>';
@@ -2228,8 +2289,8 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'exécuter le test de consistence}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
-								<a class="btn btn-info" id="bt_consistency" style="width:50%;"><i class="fas fa-recycle"></i> {{Vérifier}}</a>
-								<a id="bt_logConsistency" class="btn btn-success" target="_blank" title="{{Ouvrir le log Consistency.}}"><i class="far fa-file"></i> {{Log}}</a>
+								<button type="button" class="btn btn-info" id="bt_consistency" style="width:50%;"><i class="fas fa-recycle"></i> {{Vérifier}}</button>
+								<button type="button" id="bt_logConsistency" class="btn btn-success" target="_blank" title="{{Ouvrir le log Consistency.}}"><i class="far fa-file"></i> {{Log}}</button>
 							</div>
 						</div>
 						<div class="form-group">
@@ -2237,7 +2298,7 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Permet de réappliquer les bons droits sur les fichiers.}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
-								<a class="btn btn-info" id="bt_cleanFileSystemRight" style="width:50%;"><i class="fas fa-terminal"></i> {{Vérifier}}</a>
+								<button type="button" class="btn btn-info" id="bt_cleanFileSystemRight" style="width:50%;"><i class="fas fa-terminal"></i> {{Vérifier}}</button>
 							</div>
 						</div>
 						<div class="form-group">
@@ -2245,7 +2306,7 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Vérifie que les packages nécessaires sont bien installés.}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
-								<a class="btn btn-info" id="bt_checkPackage" style="width:50%;"><i class="fas fa-box-open"></i> {{Vérifier}}</a>
+								<button type="button" class="btn btn-info" id="bt_checkPackage" style="width:50%;"><i class="fas fa-box-open"></i> {{Vérifier}}</button>
 							</div>
 						</div>
 						<div class="form-group">
@@ -2253,14 +2314,14 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Vérifie que la base de données est conforme à ce qui est attendu.}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
-								<a class="btn btn-info" id="bt_checkDatabase" style="width:50%;"><i class="fas fa-database"></i> {{Vérifier}}</a>
+								<button type="button" class="btn btn-info" id="bt_checkDatabase" style="width:50%;"><i class="fas fa-database"></i> {{Vérifier}}</button>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-8 control-label"><i class="fas fa-database"></i> {{Nettoyage de la base de données}}<sup><i class="fas fa-question-circle" tooltip="{{Nettoie la base de données (objets, commandes, historiques et autres informations non valides).}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
-								<a class="btn btn-warning" id="bt_cleanDatabase" style="width:50%;"><i class="fas fa-database"></i> {{Nettoyer}}</a>
+								<button type="button" class="btn btn-warning" id="bt_cleanDatabase" style="width:50%;"><i class="fas fa-database"></i> {{Nettoyer}}</button>
 							</div>
 						</div>
 
@@ -2274,7 +2335,7 @@ $productName = config::byKey('product_name');
 								<div class="form-group">
 									<label class="col-md-4 col-xs-6 control-label"><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
 									<div class="col-md-5 col-xs-6">
-										<a class="btn btn-danger" href="index.php?v=d&p=editor" style="width:50%;"><i class="fas fa-indent"></i> {{Ouvrir}}</a>
+										<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage('index.php?v=d&p=editor')" style="width:50%;"><i class="fas fa-indent"></i> {{Ouvrir}}</button>
 										<span class="small italic"> (Shift click)</span>
 									</div>
 								</div>
@@ -2284,7 +2345,7 @@ $productName = config::byKey('product_name');
 										<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration système.}}"></i></sup>
 									</label>
 									<div class="col-md-5 col-xs-6">
-										<a class="btn btn-danger" href="index.php?v=d&p=system" style="width:50%;"><i class="fas fa-terminal"></i> {{Ouvrir}}</a>
+										<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage('index.php?v=d&p=system')" style="width:50%;"><i class="fas fa-terminal"></i> {{Ouvrir}}</button>
 										<span class="small italic"> (Ctrl click)</span>
 									</div>
 								</div>
@@ -2294,7 +2355,7 @@ $productName = config::byKey('product_name');
 										<sup><i class="fas fa-question-circle" tooltip="{{Edition multiple de paramètres d'équipements, commandes...}}"></i></sup>
 									</label>
 									<div class="col-md-5 col-xs-6">
-										<a class="btn btn-danger" href="index.php?v=d&p=massedit" style="width:50%;"><i class="fas fa-fill-drip"></i> {{Ouvrir}}</a>
+										<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage('index.php?v=d&p=massedit')" style="width:50%;"><i class="fas fa-fill-drip"></i> {{Ouvrir}}</button>
 										<span class="small italic"> (Ctrl Alt click)</span>
 									</div>
 								</div>
@@ -2304,7 +2365,7 @@ $productName = config::byKey('product_name');
 										<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration de la base de données.}}"></i></sup>
 									</label>
 									<div class="col-md-5 col-xs-6">
-										<a class="btn btn-danger" href="index.php?v=d&p=database" style="width:50%;"><i class="fas fa-database"></i> {{Ouvrir}}</a>
+										<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage('index.php?v=d&p=database')" style="width:50%;"><i class="fas fa-database"></i> {{Ouvrir}}</button>
 										<span class="small italic"> (Alt click)</span>
 									</div>
 								</div>
@@ -2321,7 +2382,7 @@ $productName = config::byKey('product_name');
 										<div class="input-group">
 											<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG['db']['password']; ?>">
 											<span class="input-group-btn">
-												<a class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></a>
+												<button type="button" class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></button>
 											</span>
 										</div>
 										</span>
@@ -2335,6 +2396,17 @@ $productName = config::byKey('product_name');
 			</div>
 		</div>
 	</div>
-</div>
+	</div>
 
-<?php include_file("desktop", "administration", "js"); ?>
+	<script>
+	document.getElementById('bt_securityTabConfigure2fa')?.addEventListener('click', function() {
+		jeeDialog.dialog({
+			id: 'md_twoFactorAuth',
+			title: '{{Double authentification}}',
+			contentUrl: 'index.php?v=d&modal=twoFactor.authentification',
+			onClose: function() { jeeDialog.get('#md_twoFactorAuth').destroy() }
+		})
+	})
+	</script>
+
+	<?php include_file("desktop", "administration", "js"); ?>

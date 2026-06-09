@@ -85,16 +85,16 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
       echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun widget. Cliquez sur ajouter pour commencer.</span></div>";
     } else {
       $div = '<div class="input-group" style="margin-bottom:5px;">';
-      $div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_searchWidgets"/>';
+      $div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom)}}" id="in_searchWidgets"/>';
       $div .= '<div class="input-group-btn">';
-      $div .= '<a id="bt_resetWidgetsSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </a>';
+      $div .= '<button type="button" id="bt_resetWidgetsSearch" class="btn" style="width:30px"><i class="fas fa-times"></i> </button>';
       $div .= '</div>';
       $div .= '<div class="input-group-btn">';
-      $div .= '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
+      $div .= '<button type="button" class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></button>';
       $div .= '</div>';
       $div .= '<div class="input-group-btn">';
-      $div .= '<a class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
-      $div .= '<a class="btn roundedRight" id="bt_displayAsTable" data-card=".widgetsDisplayCard" data-container=".widgetsListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>';
+      $div .= '<button type="button" class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></button>';
+      $div .= '<button type="button" class="btn roundedRight" id="bt_displayAsTable" data-card=".widgetsDisplayCard" data-container=".widgetsListContainer" data-state="0"><i class="fas fa-grip-lines"></i></button>';
       $div .= '</div>';
       $div .= '</div>';
       $div .= '<div class="panel-group" id="accordionWidgets">';
@@ -111,11 +111,11 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
     <div class="floatingbar">
       <div class="input-group">
         <span class="input-group-btn">
-          <a class="btn btn-default btn-sm roundedLeft" id="bt_applyToCmd"><i class="fas fa-arrow-alt-circle-down"></i> <span class="hidden-768">{{Appliquer à}}</span>
-          </a><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> <span class="hidden-768">{{Importer}}</span><input id="bt_importWidgets" type="file" name="file">
-          </span><a class="btn btn-info btn-sm" id="bt_exportWidgets"><i class="fas fa-file-export"></i> <span class="hidden-768">{{Exporter}}</span>
-          </a><a class="btn btn-success btn-sm" id="bt_saveWidgets"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-          </a><a class="btn btn-danger btn-sm roundedRight" id="bt_removeWidgets"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
+          <button type="button" class="btn btn-default btn-sm roundedLeft" id="bt_applyToCmd"><i class="fas fa-arrow-alt-circle-down"></i> <span class="hidden-768">{{Appliquer à}}</span>
+          </button><span class="btn btn-info btn-sm btn-file"><i class="fas fa-file-import"></i> <span class="hidden-768">{{Importer}}</span><input id="bt_importWidgets" type="file" name="file">
+          </span><button type="button" class="btn btn-info btn-sm" id="bt_exportWidgets"><i class="fas fa-file-export"></i> <span class="hidden-768">{{Exporter}}</span>
+          </button><button type="button" class="btn btn-success btn-sm" id="bt_saveWidgets"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+          </button><button type="button" class="btn btn-danger btn-sm roundedRight" id="bt_removeWidgets"><i class="fas fa-minus-circle"></i> {{Supprimer}}</button>
         </span>
       </div>
     </div>
@@ -187,7 +187,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
                 <div class="form-group">
                   <label class="col-lg-4 col-xs-4 control-label">{{Icône}}</label>
                   <div class="col-lg-2 col-xs-3">
-                    <a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+                    <button type="button" class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</button>
                   </div>
                   <div class="col-lg-2 col-xs-3">
                     <div class="widgetsAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
@@ -209,7 +209,7 @@ function jeedom_displayWidgetGroup($_type, $_widgets) {
               <div id="div_templateReplace" class="type_replace"></div>
 
               <legend class="type_test"><i class="fas fa-stethoscope"></i> {{Test}}
-                <a class="btn btn-xs pull-right" id="bt_widgetsAddTest"><i class="fas fa-plus-circle"></i> {{Ajouter}}</a>
+                <button type="button" class="btn btn-xs pull-right" id="bt_widgetsAddTest"><i class="fas fa-plus-circle"></i> {{Ajouter}}</button>
               </legend>
 
               <div class="type_test">

@@ -20,8 +20,8 @@ sendVarToJS([
 <div class="floatingbar">
   <div class="input-group">
       <span class="input-group-btn">
-          <a href="index.php?v=d&p=backup" class="btn btn-success btn-sm roundedLeft"><i class="fas fa-save"></i> {{Sauvegarde Système}}
-          </a><a class="btn btn-danger btn-sm roundedRight" id="bt_replace"><i class="fas fa-random"></i> {{Remplacer}}</a>
+          <button type="button" class="btn btn-success btn-sm roundedLeft" onclick="jeedomUtils.loadPage('index.php?v=d&p=backup')"><i class="fas fa-save"></i> {{Sauvegarde Système}}
+          </button><button type="button" class="btn btn-danger btn-sm roundedRight" id="bt_replace"><i class="fas fa-random"></i> {{Remplacer}}</button>
       </span>
   </div>
 </div>
@@ -83,11 +83,11 @@ sendVarToJS([
               </div>
 
               <div class="col-lg-1 col-md-2 col-xs-3">
-                <a class="btn btn-success" id="bt_applyFilters"><i class="fas fa-filter"></i> {{Filtrer}}</a>
+                <button type="button" class="btn btn-success" id="bt_applyFilters"><i class="fas fa-filter"></i> {{Filtrer}}</button>
               </div>
 
               <div class="col-lg-1 col-md-2 col-xs-3">
-                <a class="btn btn-info" id="bt_clearReplace"><i class="fas fa-times"></i> {{Reset}}</a>
+                <button type="button" class="btn btn-info" id="bt_clearReplace"><i class="fas fa-times"></i> {{Reset}}</button>
               </div>
 
             </div>
@@ -196,7 +196,7 @@ sendVarToJS([
               <div class="input-group" style="margin-bottom:5px;display: inline-table;">
                 <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchByName"/>
                 <div class="input-group-btn">
-                  <a id="bt_resetSearchName" class="btn roundedRight" style="width:30px;"><i class="fas fa-times"></i></a>
+                  <button type="button" id="bt_resetSearchName" class="btn roundedRight" style="width:30px;"><i class="fas fa-times"></i></button>
                 </div>
               </div>
               <div style="text-align: center;">{{Source}} <i class="far fa-arrow-alt-circle-right"></i> {{Cible}}</div>

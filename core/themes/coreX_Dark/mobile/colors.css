@@ -1,0 +1,20 @@
+/* Theme coreX_Dark @Jeedom - Modern Dark - Mobile colors */
+:root {
+  --lineheight: 1.42em; --border-radius: 0.5rem; --opacity: 1;
+  --dashBkg-url: url(""); --logo-primary-color: rgb(129,140,248); --logo-secondary-color: rgb(148,163,184);
+  --bg-color: 10,13,22; --bg-modal-color: rgb(18,22,38); --contrast-color: 210,220,240;
+  --txt-color: rgb(203,213,225); --link-color: rgb(148,163,184); --linkHover-color: rgb(199,210,254);
+  --linkHoverLight-color: rgb(224,231,255); --placeholder-color: rgb(71,85,105);
+  --sc-form-color: rgba(199,210,254,0.9); --sc-formTxt-color: rgb(30,27,75); --sc-lightTxt-color: rgb(224,231,255);
+  --el-defaultColor: rgb(8,10,18); --defaultBkg-color: 15,20,38; --form-bg-color: rgb(21,27,35);
+  --btnEq-default-color: rgb(30,38,66); --btn-default-color: rgb(42,52,88); --panel-bg-color: 14,18,32;
+  --eqTitle-color: rgb(224,231,255); --objectBkgd-color: rgb(49,46,129); --objectTxt-color: rgb(199,210,254);
+  --eq-bg-color: 15,20,38;
+  --cat-security-color: 153,27,27; --cat-heating-color: 30,64,175; --cat-automatism-color: 55,65,81;
+  --cat-light-color: 146,64,14; --cat-opening-color: 31,41,55; --cat-multimedia-color: 30,58,138;
+  --cat-energy-color: 20,83,45; --cat-other-color: 23,78,78; --cat-scenario-color: 49,46,129;
+  --url-iconsDark: url(/desktop/img/ui-icons-black.png); --url-iconsLight: url(/desktop/img/ui-icons-white.png);
+  --lb-info-color: rgb(56,189,248); --lb-yellow-color: rgb(234,179,8); --al-info-color: rgb(14,116,144);
+  --al-primary-color: rgb(79,70,229); --al-success-color: rgb(22,101,52); --al-warning-color: rgb(161,98,7);
+  --al-danger-color: rgb(185,28,28); --bt-success-color: rgb(129,140,248); --shd-color: rgba(0,0,0,0.7);
+}

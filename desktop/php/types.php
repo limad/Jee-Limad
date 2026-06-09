@@ -73,8 +73,8 @@ function jeedom_displayGenFamily($_family, $_familyId = '') {
 		}
 
 		if (!empty($cmds = $eqLogic->getCmd())) {
-			$div .= '<a class="btn-xs warning pull-right bt_resetCmdsTypes"><i class="fas fa-times"></i> {{Reset types}}</a>';
-			$div .= '<a class="btn-xs success pull-right hidden bt_queryCmdsTypes"><i class="fas fa-puzzle-piece"></i> {{Types auto}}</a>';
+			$div .= '<button type="button" class="btn-xs warning pull-right bt_resetCmdsTypes"><i class="fas fa-times"></i> {{Reset types}}</button>';
+			$div .= '<button type="button" class="btn-xs success pull-right hidden bt_queryCmdsTypes"><i class="fas fa-puzzle-piece"></i> {{Types auto}}</button>';
 
 			//cmds ul:
 			$div .= '<ul class="eqLogicCmds" style="display:none;" >';
@@ -123,13 +123,13 @@ function jeedom_displayGenFamily($_family, $_familyId = '') {
 <div class="input-group" style="margin-bottom:5px;display: inline-table;">
 	<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | id}}" id="in_searchTypes" />
 	<div class="input-group-btn">
-		<a id="bt_resetypeSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
-		</a><a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
-		</a><a class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></a>
+		<button type="button" id="bt_resetypeSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
+		</button><button type="button" class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i>
+		</button><button type="button" class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></button>
 	</div>
 	<div class="input-group-btn">
-		<a class="btn btn-info" id="bt_listGenericTypes"><i class="fas fa-list-alt"></i> {{Liste}}</a>
-		<a class="btn btn-success roundedRight" id="bt_saveGenericTypes"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+		<button type="button" class="btn btn-info" id="bt_listGenericTypes"><i class="fas fa-list-alt"></i> {{Liste}}</button>
+		<button type="button" class="btn btn-success roundedRight" id="bt_saveGenericTypes"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</button>
 	</div>
 </div>
 

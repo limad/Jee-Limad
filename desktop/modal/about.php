@@ -25,7 +25,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
   <form class="form-horizontal col-lg-12">
     <br/>
     <div class="center">
-      <img id="logoJeedom" src="core/img/logo-jeedom-grand-nom-couleur.svg" style="position: relative; top:-5px;" height="40">
+      <img id="logoJeedom" src="core/img/logo-jeedom_Dark.png" style="position: relative; top:-5px;" height="40">
       <br>
       <a class="badge cursor" href="https://www.jeedom.com" target="_blank">Site</a> |
       <a class="badge cursor" href="https://blog.jeedom.com/" target="_blank">Blog</a> |

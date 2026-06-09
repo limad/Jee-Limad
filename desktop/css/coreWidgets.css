@@ -37,7 +37,7 @@ div.eqLogic-widget div.cmds {
   align-items: flex-start;
   width: 100%;
   overflow: auto;
-  height: calc(100%-24px);
+  height: calc(100% - 24px);
 }
 
 div.eqLogic-widget div.cmd-widget {
@@ -118,7 +118,7 @@ div.cmd-widget .value {
   font-size: 11px !important;
 }
 
-.timeCmd.label:first-letter {
+.timeCmd.label::first-letter {
   text-transform: uppercase;
 }
 
@@ -299,14 +299,14 @@ div.cmd-widget .slider .noUi-handle {
   background: var(--link-color);
 }
 
-div.cmd-widget .slider .noUi-handle:before,
+div.cmd-widget .slider .noUi-handle::before,
 div.cmd-widget .slider .noUi-handle::after {
   display: none;
 }
 
 div.cmd-widget .slider .noUi-tooltip {
   display: none;
-  font-family: 'Roboto';
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 12px;
   border: none;
   background: var(--btnEq-default-color);
@@ -615,8 +615,8 @@ div.cmd-widget.widget-compass .widget-compass-needle-placer {
 
 div.cmd-widget.widget-compass .widget-compass-needle {
   position: fixed;
-  width: 0px;
-  height: 0px;
+  width: 0;
+  height: 0;
   border: 8px solid transparent;
   border-top: 22px solid var(--al-warning-color);
   left: 35px;
@@ -635,7 +635,7 @@ div.cmd-widget.widget-compass .widget-compass-needle {
 
 div.cmd-widget.widget-rain .widget-rain-water {
   position: absolute;
-  bottom: 0px;
+  bottom: 0;
   width: 100%;
   transition: water 3s ease-out;
   z-index: 0;
@@ -643,7 +643,7 @@ div.cmd-widget.widget-rain .widget-rain-water {
 }
 
 div.cmd-widget.widget-rain .widget-rain-container {
-  background: url(../../core/template/mobile/cmd.info.numeric.rain/marker.svg) no-repeat;
+  background: url("../../core/template/mobile/cmd.info.numeric.rain/marker.svg") no-repeat;
   background-size: cover;
   position: relative;
   height: 60px;

@@ -59,7 +59,7 @@ function jeedom_displayScenarioGroup($_group = '', $_index = -1) {
 
 		$thisDiv .= '<span class="hiddenAsCard displayTableRight">';
 		$thisDiv .= '<span>' . $scenario->getLastLaunch() . '</span>';
-		$thisDiv .= '<a class="btn btn-default btn-xs bt_ViewLog"><i class="far fa-file"></i></a>';
+		$thisDiv .= '<button type="button" class="btn btn-default btn-xs bt_ViewLog"><i class="far fa-file"></i></button>';
 		$thisDiv .= '</span>';
 
 		$thisDiv .= '</div>';
@@ -126,12 +126,12 @@ sendVarToJS([
 			echo "<br/><br/><br/><div class='center'><span style='color:#767676;font-size:1.2em;font-weight: bold;'>Vous n'avez encore aucun scénario. Cliquez sur ajouter pour commencer</span></div>";
 		} else {
 			$div = '<div class="input-group" style="margin-bottom:5px;">';
-			$div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom}}" id="in_searchScenario"/>';
+			$div .= '<input class="form-control roundedLeft" placeholder="{{Rechercher | nom | :not(nom)}}" id="in_searchScenario"/>';
 			$div .= '<div class="input-group-btn">';
-			$div .= '<a id="bt_resetScenarioSearch" class="btn" style="width:30px"><i class="fas fa-times"></i></a>';
-			$div .= '<a class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></a>';
-			$div .= '<a class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></a>';
-			$div .= '<a class="btn roundedRight" id="bt_displayAsTable" data-card=".scenarioDisplayCard" data-container=".scenarioListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>';
+			$div .= '<button type="button" id="bt_resetScenarioSearch" class="btn" style="width:30px"><i class="fas fa-times"></i></button>';
+			$div .= '<button type="button" class="btn" id="bt_openAll"><i class="fas fa-folder-open"></i></button>';
+			$div .= '<button type="button" class="btn" id="bt_closeAll"><i class="fas fa-folder"></i></button>';
+			$div .= '<button type="button" class="btn roundedRight" id="bt_displayAsTable" data-card=".scenarioDisplayCard" data-container=".scenarioListContainer" data-state="0"><i class="fas fa-grip-lines"></i></button>';
 			$div .= '</div>';
 			$div .= '</div>';
 
@@ -164,24 +164,24 @@ sendVarToJS([
 				<span class="input-group-btn">
 					<span id="span_ongoing" class="label label-sm"></span>
 
-					<a id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)" style="margin:0"><i class="fas fa-undo"></i>
-					</a><a id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)" style="margin:0"><i class="fas fa-redo"></i></a>
+					<button type="button" id="bt_undo" class="disabled btn btn-sm roundedLeft" title="{{Etat précédent}} (Ctrl+Shift+Z)" style="margin:0"><i class="fas fa-undo"></i>
+					</button><button type="button" id="bt_redo" class="disabled btn btn-sm" title="{{Etat suivant}} (Ctrl+Shift+Y)" style="margin:0"><i class="fas fa-redo"></i></button>
 
-					<a id="bt_addScenarioElement" class="btn btn-sm"><i class="fas fa-plus-circle"></i> <span class="hidden-768">{{Ajouter bloc}}</span>
-					</a><a id="bt_logScenario" class="btn btn-sm" title="{{Log}} (Ctrl+L)"><i class="far fa-file-alt"></i>
-					</a><a id="bt_copyScenario" class="btn btn-sm" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
-					</a><a id="bt_graphScenario" class="btn btn-sm" title="{{Liens}}"><i class="fas fa-object-group"></i>
-					</a><a id="bt_editJsonScenario" class="btn btn-sm" title="{{Edition texte}}"> <i class="far fa-edit"></i>
-					</a><a id="bt_exportScenario" class="btn btn-sm" title="{{Exporter}}"><i class="fas fa-share"></i>
-					</a><a id="bt_templateScenario" class="btn btn-sm" title="{{Template}}"><i class="fas fa-cubes"></i></a>
+					<button type="button" id="bt_addScenarioElement" class="btn btn-sm"><i class="fas fa-plus-circle"></i> <span class="hidden-768">{{Ajouter bloc}}</span>
+					</button><button type="button" id="bt_logScenario" class="btn btn-sm" title="{{Log}} (Ctrl+L)"><i class="far fa-file-alt"></i>
+					</button><button type="button" id="bt_copyScenario" class="btn btn-sm" title="{{Dupliquer}}"><i class="fas fa-copy"></i>
+					</button><button type="button" id="bt_graphScenario" class="btn btn-sm" title="{{Liens}}"><i class="fas fa-object-group"></i>
+					</button><button type="button" id="bt_editJsonScenario" class="btn btn-sm" title="{{Edition texte}}"> <i class="far fa-edit"></i>
+					</button><button type="button" id="bt_exportScenario" class="btn btn-sm" title="{{Exporter}}"><i class="fas fa-share"></i>
+					</button><button type="button" id="bt_templateScenario" class="btn btn-sm" title="{{Template}}"><i class="fas fa-cubes"></i></button>
 
 					<input class="input-sm" placeholder="{{Rechercher}}" id="in_searchInsideScenario" style="min-width: 120px;display:none;" />
-					<a id="bt_resetInsideScenarioSearch" class="disabled btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></a>
+					<button type="button" id="bt_resetInsideScenarioSearch" class="disabled btn btn-sm" data-state="0" style="width:30px" title="{{Rechercher}}"><i class="fas fa-search"></i></button>
 
-					<a class="btn btn-warning btn-sm" id="bt_runScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-768">{{Exécuter}}</span>
-					</a><a class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
-					</a><a class="btn btn-success btn-sm" id="bt_saveScenario"><i class="fas fa-check-circle"></i> <span class="hidden-768">{{Sauvegarder}}</span>
-					</a><a class="btn btn-danger btn-sm roundedRight" id="bt_delScenario"><i class="fas fa-minus-circle"></i> <span class="hidden-768">{{Supprimer}}</span></a>
+					<button type="button" class="btn btn-warning btn-sm" id="bt_runScenario" title='{{Veuillez sauvegarder avant de tester. Ceci peut ne pas aboutir.<br>Ctrl+click pour sauvegarder, executer et ouvrir le log}}'><i class="fas fa-gamepad"></i> <span class="hidden-768">{{Exécuter}}</span>
+					</button><button type="button" class="btn btn-danger btn-sm" id="bt_stopScenario"><i class="fas fa-stop"></i> {{Arrêter}}
+					</button><button type="button" class="btn btn-success btn-sm" id="bt_saveScenario"><i class="fas fa-check-circle"></i> <span class="hidden-768">{{Sauvegarder}}</span>
+					</button><button type="button" class="btn btn-danger btn-sm roundedRight" id="bt_delScenario"><i class="fas fa-minus-circle"></i> <span class="hidden-768">{{Supprimer}}</span></button>
 				</span>
 			</div>
 		</div>
@@ -289,7 +289,7 @@ sendVarToJS([
 								<div class="form-group">
 									<label class="col-xs-5 control-label">{{Icône}}</label>
 									<div class="col-xs-3">
-										<a class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</a>
+										<button type="button" class="btn btn-default btn-sm" id="bt_chooseIcon"><i class="fas fa-flag"></i> {{Choisir}}</button>
 									</div>
 									<div class="col-xs-3">
 										<div class="scenarioAttr" data-l1key="display" data-l2key="icon" style="font-size : 1.5em;"></div>
@@ -312,8 +312,8 @@ sendVarToJS([
 												<option value="all">{{Les deux}}</option>
 											</select>
 											<span class="input-group-btn">
-												<a class="btn btn-default" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}
-												</a><a class="btn btn-default roundedRight" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</a>
+												<button type="button" class="btn btn-default" id="bt_addTrigger"><i class="fas fa-plus-square"></i> {{Déclencheur}}
+												</button><button type="button" class="btn btn-default roundedRight" id="bt_addSchedule"><i class="fas fa-plus-square"></i> {{Programmation}}</button>
 											</span>
 										</div>
 									</div>
@@ -379,6 +379,7 @@ sendVarToJS([
 							<option value="if">{{Si/Alors/Sinon}}</option>
 							<option value="action">{{Action}}</option>
 							<option value="for">{{Boucle}}</option>
+							<option value="while">{{Tant que}}</option>
 							<option value="in">{{Dans}}</option>
 							<option value="at">{{A}}</option>
 							<option value="code">{{Code}}</option>
@@ -396,6 +397,10 @@ sendVarToJS([
 
 						<div class="alert alert-info addElementTypeDescription for" style="display:none;">
 							{{Une boucle permet de réaliser une action de façon répétée un certain nombre de fois. Par exemple : Permet de répéter une action de 1 à X, c’est-à-dire X fois.}}
+						</div>
+
+						<div class="alert alert-info addElementTypeDescription while" style="display:none;">
+							{{Permet de réaliser une action de façon répétée tant qu'une condition est vraie. Par exemple : Tant que le volume n'est pas à 20, augmenter de 1.}}
 						</div>
 
 						<div class="alert alert-info addElementTypeDescription in" style="display:none;">
@@ -427,6 +432,9 @@ sendVarToJS([
 </div>
 
 <?php
+include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
+include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
+include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
 include_file('desktop', 'scenario', 'js');
 include_file('3rdparty', 'codemirror/mode/php/php', 'js');
 include_file('3rdparty', 'codemirror/addon/selection/active-line', 'js');

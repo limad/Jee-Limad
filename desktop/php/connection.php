@@ -1,12 +1,19 @@
+<?php
+$productConnectionImage = config::byKey('product_connection_image');
+if ($productConnectionImage != '' && strpos($productConnectionImage, '://') === false) {
+	$productConnectionImagePath = __DIR__ . '/../../' . parse_url($productConnectionImage, PHP_URL_PATH);
+	if (file_exists($productConnectionImagePath)) $productConnectionImage .= (strpos($productConnectionImage, '?') === false ? '?v=' : '&v=') . filemtime($productConnectionImagePath);
+}
+?>
 <div id="wrap">
 	<div class="bodyLogin">
 		<div class="veen animated zoomIn">
 			<div class="login-btn splits">
-				<h3 id="titre_login_btn"></h3>
-				<p id="phrase_login_btn"></p>
+				<h3 id="titre_login_btn"><?php echo config::byKey('product_name') ?: 'Jeedom'; ?></h3>
+				<p id="phrase_login_btn"><?php echo config::byKey('name') ?: ''; ?></p>
 			</div>
 			<div class="rgstr-btn splits">
-				<img class="img-responsive" src="<?php echo config::byKey('product_connection_image') ?>" style="display:block; margin: 10% 5% 10% auto; width:45%;">
+				<img class="img-responsive" src="<?php echo $productConnectionImage ?>" alt="<?php echo config::byKey('product_name') ?: 'Jeedom'; ?>">
 			</div>
 			<div class="wrapper">
 				<div id="login" tabindex="503" class="form-group">
@@ -27,7 +34,7 @@
 							<div class="input-group">
 								<input type="password" id="in_login_password">
 								<span class="input-group-btn">
-									<a class="btn btn-default form-control bt_showPassConnection roundedRight"><i class="fas fa-eye"></i></a>
+									<button type="button" class="btn btn-default form-control bt_showPassConnection roundedRight"><i class="fas fa-eye"></i></button>
 								</span>
 							</div>
 						</div>

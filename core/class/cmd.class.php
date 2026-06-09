@@ -1017,8 +1017,7 @@ class cmd {
 						$calc = str_replace('#value#', $_value, $calc);
 					}
 					$_value = jeedom::evaluateExpression($calc);
-				} catch (Exception $ex) {
-				} catch (Error $ex) {
+				} catch (\Throwable $ex) {
 				}
 			}
 			switch ($this->getSubType()) {
@@ -2213,9 +2212,7 @@ class cmd {
 		$http->setLogError(false);
 		try {
 			$http->exec();
-		} catch (Exception $e) {
-			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
-		} catch (Error $e) {
+		} catch (\Throwable $e) {
 			log::add('cmd', 'error', __('Erreur push sur :', __FILE__) . ' ' . $url . ' commande : ' . $this->getHumanName() . ' => ' . log::exception($e));
 		}
 	}
@@ -2227,7 +2224,8 @@ class cmd {
 			$name = $this->getName();
 			$eqLogic = $this->getEqLogic();
 			$eqLogicName = $eqLogic->getName();
-			$object = $eqLogic->getObject()->getName();
+			$jeeObject = $eqLogic->getObject();
+			$object = is_object($jeeObject) ? $jeeObject->getName() : __('Aucun', __FILE__);
 			$plugin = $eqLogic->getEqType_name();
 			if ($this->getConfiguration('influx::namecmd', '') != '') {
 				$name = $this->getConfiguration('influx::namecmd');
@@ -2358,10 +2356,6 @@ class cmd {
 		return;
 	}
 
-	public function historyInfluxAll() {
-		cmd::historyInflux('all');
-	}
-
 	public static function sendHistoryInflux($_params) {
 		$cmds = array();
 		if ($_params['cmd_id'] == 'all') {
@@ -2408,20 +2402,23 @@ class cmd {
 		}
 	}
 
-	public function historyInflux($_type = '') {
+	/**
+	 * @param string|int $_type 'all' for all cmd, cmd id for specific cmd
+	 * @return void
+	 */
+	public static function historyInflux($_type = 'all') {
 		$cron = new cron();
 		$cron->setClass('cmd');
 		$cron->setFunction('sendHistoryInflux');
 		if ($_type == 'all') {
 			$cron->setOption(array('cmd_id' => 'all'));
 		} else {
-			$cron->setOption(array('cmd_id' => intval($this->getId())));
+			$cron->setOption(array('cmd_id' => intval($_type)));
 		}
 		$cron->setLastRun(date('Y-m-d H:i:s'));
 		$cron->setOnce(1);
 		$cron->setSchedule(cron::convertDateToCron(strtotime("now") + 60));
 		$cron->save();
-		return;
 	}
 
 	public function generateAskResponseLink($_response, $_plugin = 'core', $_network = 'external') {
@@ -2475,14 +2472,14 @@ class cmd {
 	}
 
 	public function getStatistique($_startTime, $_endTime) {
-		if ($this->getType() != 'info' || $this->getType() == 'string') {
+		if ($this->getType() != 'info' || $this->getSubType() == 'string') {
 			return array();
 		}
 		return history::getStatistique($this->getId(), $_startTime, $_endTime);
 	}
 
 	public function getTemporalAvg($_startTime, $_endTime) {
-		if ($this->getType() != 'info' || $this->getType() == 'string') {
+		if ($this->getType() != 'info' || $this->getSubType() == 'string') {
 			return array();
 		}
 		return history::getTemporalAvg($this->getId(), $_startTime, $_endTime);

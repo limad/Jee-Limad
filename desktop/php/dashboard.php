@@ -50,6 +50,9 @@ if ($DisplayByObject) {
 		$allObject = jeeObject::all(true);
 		sendVarToJs('jeephp2js.rootObjectId', 'undefined');
 	} else {
+		if (!is_object($object)) {
+			throw new Exception(__('Objet inconnu. Vérifiez l\'ID', __FILE__) . ' ' . init('object_id'));
+		}
 		$allObject = [$object];
 		sendVarToJs('jeephp2js.rootObjectId', $object->getId());
 	}
@@ -77,16 +80,16 @@ $columns = config::byKey('dahsboard::column::size');
 		<div class="input-group-btn">
 			<?php
 			if (init('btover', 0) == 0) { ?>
-				<a id="bt_overview" class="btn" data-state="0"><i class="icon jeedomapp-fleche-bas-line"></i></a>
+				<button type="button" id="bt_overview" class="btn" data-state="0"><i class="icon jeedomapp-fleche-bas-line"></i></button>
 			<?php } else { ?>
-				<a id="bt_backOverview" href="index.php?v=d&p=overview" class="btn roundedLeft" title="{{Retour à la Synthèse}}"><i class="fas fa-arrow-circle-left"></i>
-				</a><a id="bt_overview" class="btn clickable" data-state="0"><i class="icon jeedomapp-fleche-bas-line"></i></a>
+				<button type="button" id="bt_backOverview" class="btn roundedLeft" title="{{Retour à la Synthèse}}" onclick="jeedomUtils.loadPage('index.php?v=d&p=overview')"><i class="fas fa-arrow-circle-left"></i>
+				</button><button type="button" id="bt_overview" class="btn clickable" data-state="0"><i class="icon jeedomapp-fleche-bas-line"></i></button>
 			<?php } ?>
 		</div>
-		<input class="form-control" id="in_searchDashboard" placeholder="{{Rechercher | nom | :not(nom}}" autocomplete="off">
+		<input class="form-control" id="in_searchDashboard" placeholder="{{Rechercher | nom | :not(nom)}}" autocomplete="off">
 		<div class="input-group-btn">
-			<a id="bt_resetDashboardSearch" class="btn" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i>
-			</a><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{Filtre par catégorie}}">
+			<button type="button" id="bt_resetDashboardSearch" class="btn" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i>
+			</button><button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="{{Filtre par catégorie}}">
 				<i class="fas fa-filter"></i>&nbsp;&nbsp;&nbsp;<span class="caret"></span>
 			</button>
 			<ul id="categoryfilter" class="dropdown-menu" role="menu" style="top:28px;left:-110px;">
@@ -107,7 +110,7 @@ $columns = config::byKey('dahsboard::column::size');
 		<?php
 		if (init('category', 'all') == 'all') { ?>
 			<div class="input-group-btn">
-				<a id="bt_editDashboardWidgetOrder" data-mode="0" class="btn enabled roundedRight" title="{{Édition du Dashboard}}"><i class="fas fa-pencil-alt"></i></a>
+				<button type="button" id="bt_editDashboardWidgetOrder" data-mode="0" class="btn enabled roundedRight" title="{{Édition du Dashboard}}"><i class="fas fa-pencil-alt"></i></button>
 			</div>
 		<?php } ?>
 	</div>

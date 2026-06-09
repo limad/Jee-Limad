@@ -31,7 +31,7 @@ class report {
 	}
 
 	public static function generate($_url, $_type, $_name, $_format = 'png', $_parameter = array()) {
-		if (!is_string($_format)) {
+		if (!is_string($_format) || !in_array($_format, array('png', 'pdf'))) {
 			$_format = 'png';
 		}
 		$out = __DIR__ . '/../../data/report/';
@@ -56,13 +56,13 @@ class report {
 				$_url .= '#' . $_parameter['tab'];
 			}
 			if ($_format == 'pdf') {
-				$cmd = 'chromium --headless --no-sandbox --disable-gpu --no-pdf-header-footer --print-to-pdf-no-header --print-to-pdf=' . $out . ' --window-size=' . $min_width . ',' . $min_height . ' "' . $_url . '"';
+				$cmd = 'chromium --headless --no-sandbox --disable-gpu --no-pdf-header-footer --print-to-pdf-no-header --print-to-pdf=' . escapeshellarg($out) . ' --window-size=' . intval($min_width) . ',' . intval($min_height) . ' ' . escapeshellarg($_url);
 			} else {
-				$cmd = 'chromium --headless --no-sandbox --disable-gpu --screenshot=' . $out . ' --window-size=' . $min_width . ',' . $min_height . ' "' . $_url . '"';
+				$cmd = 'chromium --headless --no-sandbox --disable-gpu --screenshot=' . escapeshellarg($out) . ' --window-size=' . intval($min_width) . ',' . intval($min_height) . ' ' . escapeshellarg($_url);
 			}
 		} else {
-			$cmd = 'xvfb-run --server-args="-screen 0, 1920x1280x24" cutycapt --min-width=' . $min_width . ' --min-height=' . $min_height . ' --url="' . $_url . '" --out="' . $out . '"';
-			$cmd .= ' --delay=' . $delay;
+			$cmd = 'xvfb-run --server-args=' . escapeshellarg('-screen 0, 1920x1280x24') . ' cutycapt --min-width=' . intval($min_width) . ' --min-height=' . intval($min_height) . ' --url=' . escapeshellarg($_url) . ' --out=' . escapeshellarg($out);
+			$cmd .= ' --delay=' . intval($delay);
 			$cmd .= ' --print-backgrounds=on';
 		}
 		log::add('report', 'debug', $cmd);

@@ -82,7 +82,7 @@ if(file_exists(__DIR__.'/../../data/systemCustomCmd.json')){
     <div class="input-group">
       <input id="in_specificCommand" class="form-control roundedLeft" />
       <div class="input-group-btn">
-        <a id="bt_validateSpecifiCommand" class="btn btn-warning roundedRight"><i class="fas fa-check"></i> {{OK}}</a>
+        <button type="button" id="bt_validateSpecifiCommand" class="btn btn-warning roundedRight"><i class="fas fa-check"></i> {{OK}}</button>
       </div>
     </div>
     <pre id="pre_commandResult"></pre>

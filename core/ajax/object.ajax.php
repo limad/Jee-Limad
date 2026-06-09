@@ -143,6 +143,9 @@ try {
 			$eqLogics = eqLogic::byObjectId($_id, true, true);
 		} else {
 			$object = jeeObject::byId($_id);
+			if (!is_object($object)) {
+				return $html;
+			}
 			$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
 		}
 		if (count($eqLogics) > 0) {
@@ -215,8 +218,12 @@ try {
 		if (!isConnect('admin')) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		$objects = json_decode(init('objects'), true);
+		if (!is_array($objects)) {
+			throw new Exception(__('Liste des objets invalide', __FILE__));
+		}
 		$position = 1;
-		foreach (json_decode(init('objects'), true) as $id) {
+		foreach ($objects as $id) {
 			$object = jeeObject::byId($id);
 			if (is_object($object)) {
 				$object->setPosition($position);
@@ -236,8 +243,12 @@ try {
 
 	if (init('action') == 'getSummaryHtml') {
 		if (init('ids') != '') {
+			$ids = json_decode(init('ids'), true);
+			if (!is_array($ids)) {
+				throw new Exception(__('Liste des objets invalide', __FILE__));
+			}
 			$return = array();
-			foreach (json_decode(init('ids'), true) as $id => $value) {
+			foreach ($ids as $id => $value) {
 				if ($id == 'global') {
 					$return['global'] = array(
 						'html' => jeeObject::getGlobalHtmlSummary($value['version']),

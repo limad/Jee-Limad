@@ -119,7 +119,7 @@
             }
             ?>
           </select>
-          <input class="form-control" data-href='<?php echo buildUrl('name', ''); ?>' placeholder="{{Rechercher}}" id="in_search" value="<?php echo $name ?>"/>
+          <input class="form-control" data-href='<?php echo buildUrl('name', ''); ?>' placeholder="{{Rechercher}}" id="in_search" value="<?php echo htmlspecialchars($name ?? '', ENT_QUOTES, 'UTF-8') ?>"/>
           <a class="btn btn-success roundedRight" id="bt_search" data-href='<?php echo buildUrl('name', ''); ?>'><i class="fas fa-search"></i></a>
         </span>
       </div>

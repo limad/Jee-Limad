@@ -142,7 +142,7 @@ jeedom.private.getParamsAJAX = function(_params) {
  */
 jeedom.private.checkParamValue = function(_params) {
   try {
-    checkParamsRequired(_params, ['value', 'regexp']);
+    jeedom.private.checkParamsRequired(_params, ['value', 'regexp']);
   } catch (e) {
     throw {
       type: 'API',
@@ -158,7 +158,7 @@ jeedom.private.checkParamValue = function(_params) {
   if (typeof value == 'object') {
     //Recursivity for array or object
     for (const i in value) {
-      checkParamValue({
+      jeedom.private.checkParamValue({
         name: name,
         value: value[i],
         regexp: regexp

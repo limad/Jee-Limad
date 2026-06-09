@@ -116,7 +116,7 @@ Theme ElFinder File Editor 2021 @Jeedom
     padding-top: 0 !important;
   }
   #elfinder .elfinder-dialog .ui-dialog-buttonset .ui-button-text {
-    font-family: "Roboto";
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     text-transform: capitalize;
   }
 
@@ -251,7 +251,7 @@ Theme ElFinder File Editor 2021 @Jeedom
     background-color: rgb(85,85,85) !important;
   }
   #elfinder .elfinder-dialog .elfinder-dialog-title {
-    font-family: "Roboto";
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-size: 14px;
     font-weight: normal !important;
     padding: 5px;

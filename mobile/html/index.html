@@ -9,14 +9,13 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="manifest" href="manifest.json.php">
+  <link rel="stylesheet" href="3rdparty/font-awesome5/css/all.min.css">
+  <link rel="stylesheet" href="core/css/icon/icons.css">
   <link rel="stylesheet" href="3rdparty/jquery.mobile/jquery.mobile.min.css" />
   <link rel="stylesheet" href="3rdparty/waves/waves.min.css"/>
   <link rel="stylesheet" href="3rdparty/jquery.mobile/css/flexboxgrid.min.css">
   <link rel="stylesheet" href="3rdparty/jquery.mobile/css/nativedroid2.css" />
-  <link rel="stylesheet" href="3rdparty/jquery.mobile/css/fonts.css">
-  <link rel="stylesheet" href="3rdparty/roboto/roboto.css">
-  <link rel="stylesheet" href="3rdparty/camingocode/camingocode.css">
-  <link rel="stylesheet" href="3rdparty/nouislider/nouislider.css">
+  <link rel="stylesheet" href="3rdparty/nouislider/nouislider.min.css">
   <script src="core/php/getJS.php?file=3rdparty/jquery/jquery.min.js"></script>
   <script src="core/php/getJS.php?file=3rdparty/jquery.mobile/jquery.mobile.min.js"></script>
   <script src="core/php/getJS.php?file=3rdparty/nouislider/nouislider.js"></script>
@@ -52,10 +51,31 @@
   <script src="core/php/getJS.php?file=3rdparty/waves/waves.min.js" ></script>
   <script src="core/php/getJS.php?file=3rdparty/wow/wow.min.js" ></script>
   <script src="core/php/getJS.php?file=3rdparty/jquery.mobile/nativedroid2.js" ></script>
-  <script src="core/php/getJS.php?file=mobile/js/application.js"></script>
-  <link rel="stylesheet" href="mobile/css/coreWidgets.css">
-  <link rel="stylesheet" href="mobile/css/mobile.main.css">
-  <link rel="stylesheet" href="core/themes/core2019_Light/mobile/core2019_Light.css" id="jeedom_theme_currentcss" />
+  <script src="core/php/getJS.php?file=mobile/js/application.js&md5=4a011a38b756a0fbe4521e535cfcee9a"></script>
+  <link rel="stylesheet" href="mobile/css/coreWidgets.min.css?md5=d617e2ff209ba21484ee3b1bef71101e">
+  <link rel="stylesheet" href="mobile/css/mobile.main.min.css?md5=5f02428553303af1cdf65f35fb5e6c09">
+  <script>
+    (function() {
+      var defaultThemeCss = 'core/themes/core2019_Light/mobile/core2019_Light.css'
+      var defaultColorsCss = 'core/themes/core2019_Light/mobile/colors.css'
+      function getThemeCookie(name) {
+        var match = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'))
+        return match ? decodeURIComponent(match[1]) : null
+      }
+      var storage = null
+      try { storage = window.localStorage } catch (e) {}
+      var themeCss = getThemeCookie('jeedom_mobile_theme_css') || (storage ? storage.getItem('jeedom_mobile_theme_css') : null) || defaultThemeCss
+      var colorsCss = getThemeCookie('jeedom_mobile_theme_colors_css') || (storage ? storage.getItem('jeedom_mobile_theme_colors_css') : null) || defaultColorsCss
+      if (!/^core\/themes\/[A-Za-z0-9_-]+\/mobile\/[A-Za-z0-9_-]+\.css$/.test(themeCss)) themeCss = defaultThemeCss
+      if (!/^core\/themes\/[A-Za-z0-9_-]+\/mobile\/colors\.css$/.test(colorsCss)) colorsCss = defaultColorsCss
+      var isDarkTheme = /_Dark\/mobile\//.test(themeCss)
+      var initialBg = isDarkTheme ? '35,35,37' : '235,235,238'
+      var initialText = isDarkTheme ? '172,172,172' : '115,115,115'
+      document.write('<style id="jeedom_theme_colors_inline">:root{--bg-color:' + initialBg + ';--txt-color:rgb(' + initialText + ')}html,body,#pagecontainer{background-color:rgb(' + initialBg + ');color:rgb(' + initialText + ')}</style>')
+      document.write('<link rel="stylesheet" href="' + colorsCss + '" id="jeedom_theme_colorscss" />')
+      document.write('<link rel="stylesheet" href="' + themeCss + '" id="jeedom_theme_currentcss" />')
+    })()
+  </script>
 </head>
 <body data-uimode="mobile" data-page="home">
   <div id="backgroundforJeedom">
@@ -68,7 +88,7 @@
     <div id="div_popup" data-role="popup" class="ui-corner-all"></div>
     
     <div data-role="header" data-position="fixed" data-tap-toggle="false">
-      <a id="homeLogoLink" class="link" data-page="home" data-title="{{Accueil}}"><img id="homeLogoImg" height="30px"></i></a>
+      <a id="homeLogoLink" class="link" data-page="home" data-title="{{Accueil}}"><img id="homeLogoImg" height="30px"></a>
       <h1>
         <span id="pageTitle"></span>
       </h1>

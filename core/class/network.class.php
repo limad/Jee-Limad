@@ -44,16 +44,33 @@ class network {
 	}
 
 	public static function getClientIp() {
-		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			return $_SERVER['HTTP_X_FORWARDED_FOR'];
-		} elseif (isset($_SERVER['HTTP_X_REAL_IP'])) {
-			return $_SERVER['HTTP_X_REAL_IP'];
-		} elseif (isset($_SERVER['HTTP_CLIENT_IP'])) {
-			return $_SERVER['HTTP_CLIENT_IP'];
-		} elseif (isset($_SERVER['REMOTE_ADDR'])) {
-			return $_SERVER['REMOTE_ADDR'];
+		$remote = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+		// X-Forwarded-For / X-Real-IP are client-spoofable. Trust them only
+		// when the TCP peer is an explicitly configured trusted proxy.
+		$trusted = trim((string) config::byKey('security::trustedProxies'));
+		if ($trusted !== '' && $remote !== '') {
+			$isTrusted = false;
+			foreach (explode(';', $trusted) as $proxy) {
+				$proxy = trim($proxy);
+				if ($proxy !== '' && netMatch($proxy, $remote)) {
+					$isTrusted = true;
+					break;
+				}
+			}
+			if ($isTrusted) {
+				if (isset($_SERVER['HTTP_X_REAL_IP']) && filter_var(trim($_SERVER['HTTP_X_REAL_IP']), FILTER_VALIDATE_IP)) {
+					return trim($_SERVER['HTTP_X_REAL_IP']);
+				}
+				if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+					$parts = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+					$candidate = trim(end($parts));
+					if (filter_var($candidate, FILTER_VALIDATE_IP)) {
+						return $candidate;
+					}
+				}
+			}
 		}
-		return '';
+		return $remote;
 	}
 
 	public static function getNetworkAccess($_mode = 'auto', $_protocol = '', $_default = '', $_test = false) {
@@ -328,7 +345,7 @@ class network {
 			$update->doUpdate();
 			$plugin = plugin::byId('openvpn');
 		}
-		if (!is_object($plugin)) {
+		if (!is_object($plugin) || !class_exists('openvpn')) {
 			throw new Exception(__('Le plugin OpenVPN doit être installé', __FILE__));
 		}
 		if (!$plugin->isActive()) {

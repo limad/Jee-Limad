@@ -54,15 +54,15 @@ sendVarToJS('jeephp2js.hardware', $hardware);
 	</div>
 	<div class="alert alert-warning" id="recovery-warning">
 		<i class="fas fa-exclamation-triangle"></i> {{Une sauvegarde récente doit être téléchargée avant de restaurer le système}} :
-		<a href="/index.php?v=d&p=backup" target="_blank" class="btn btn-default btn-xs" role="button"><i class="fas fa-save"></i> {{Sauvegardes}}</a>
+		<button type="button" class="btn btn-default btn-xs" onclick="window.open('/index.php?v=d&amp;p=backup', '_blank', 'noopener')"><i class="fas fa-save"></i> {{Sauvegardes}}</button>
 	</div>
 	<div id="recovery-buttons" style="min-height:35px">
-		<a class="btn btn-success" id="bt_auto"><i class="fas fa-hdd"></i> {{Restauration automatique}}</a>
-		<a class="btn btn-primary" id="bt_usb"><i class="fab fa-usb"></i> {{Restauration USB}}</a>
-		<a class="btn btn-danger" id="bt_cancel" style="display:none"><i class="fas fa-times"></i> {{Annuler}}</a>
-		<a class="btn btn-success" id="bt_reboot" style="display:none"><i class="fas fa-redo"></i> {{Redémarrer}}</a>
-		<a class="btn btn-warning" id="bt_halt" style="display:none"><i class="fas fa-stop"></i> {{Arrêter}}</a>
-		<a class="btn btn-sm btn-info" id="bt_refresh" style="display:none"><i class="fas fa-sync"></i> {{Rafraîchir la page}}</a>
+		<button type="button" class="btn btn-success" id="bt_auto"><i class="fas fa-hdd"></i> {{Restauration automatique}}</button>
+		<button type="button" class="btn btn-primary" id="bt_usb"><i class="fab fa-usb"></i> {{Restauration USB}}</button>
+		<button type="button" class="btn btn-danger" id="bt_cancel" style="display:none"><i class="fas fa-times"></i> {{Annuler}}</button>
+		<button type="button" class="btn btn-success" id="bt_reboot" style="display:none"><i class="fas fa-redo"></i> {{Redémarrer}}</button>
+		<button type="button" class="btn btn-warning" id="bt_halt" style="display:none"><i class="fas fa-stop"></i> {{Arrêter}}</button>
+		<button type="button" class="btn btn-sm btn-info" id="bt_refresh" style="display:none"><i class="fas fa-sync"></i> {{Rafraîchir la page}}</button>
 	</div>
 </div>
 

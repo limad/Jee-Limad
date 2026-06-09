@@ -58,35 +58,36 @@ Element.prototype.isHidden = function() {
   return (this.offsetParent === null)
 }
 Element.prototype.seen = function() {
+  this.removeClass('hidden')
   this.style.display = ''
   return this
 }
 NodeList.prototype.seen = function() {
-  for (var idx = 0; idx < this.length; idx++) {
+  for (let idx = 0; idx < this.length; idx++) {
     this[idx].seen()
   }
   return this
 }
 Element.prototype.unseen = function() {
-  this.style.display = 'none'
+  this.addClass('hidden')
   return this
 }
 NodeList.prototype.unseen = function() {
-  for (var idx = 0; idx < this.length; idx++) {
+  for (let idx = 0; idx < this.length; idx++) {
     this[idx].unseen()
   }
   return this
 }
 Element.prototype.toggle = function() {
-  if (this.offsetParent === null){
-    this.style.display = ''
+  if (this.isHidden()) {
+    this.seen()
   } else {
-    this.style.display = 'none'
+    this.unseen()
   }
   return this
 }
 NodeList.prototype.toggle = function() {
-  for (var idx = 0; idx < this.length; idx++) {
+  for (let idx = 0; idx < this.length; idx++) {
     this[idx].toggle()
   }
   return this
@@ -98,7 +99,7 @@ Element.prototype.empty = function() {
   return this
 }
 NodeList.prototype.empty = function() {
-  for (var idx = 0; idx < this.length; idx++) {
+  for (let idx = 0; idx < this.length; idx++) {
     this[idx].empty()
   }
   return this
@@ -201,7 +202,7 @@ Element.prototype.fade = function(_delayms, _opacity, _callback) {
   }
 
   self.seen()
-  var fading = window.setInterval(func, interval)
+  const fading = window.setInterval(func, interval)
   return this
 }
 
@@ -218,8 +219,8 @@ Element.prototype.insertAtCursor = function(_valueString) {
 
 Element.prototype.closestAll = function(_selector) {
   //var parents = this.parentNode.querySelectorAll(':scope > :nth-child(' + Array.from(this.parentNode.children).indexOf(this) + 1 +')') //Empty nodeList
-  var parents = []
-  var parent = this.closest(_selector)
+  const parents = []
+  let parent = this.closest(_selector)
   while (parent != null) {
     parents.push(parent)
     parent = parent.parentNode.closest(_selector)
@@ -229,7 +230,7 @@ Element.prototype.closestAll = function(_selector) {
 
 HTMLSelectElement.prototype.sortOptions = function(_text) {
   if (!isset(_text)) _text = true
-  var optionsAr = Array.from(this.options)
+  const optionsAr = Array.from(this.options)
   optionsAr.sort(function(a, b) {
     if (_text) {
       return a.textContent > b.textContent ? 1 : -1
@@ -297,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
       //Close all dropdowns
       document.querySelectorAll('div.dropdown.open').removeClass('open')
       document.querySelectorAll('button.dropdown-toggle').forEach(_bt => _bt.parentNode.removeClass('open'))
-      var _target = null
+      let _target = null
 
       //Accordions
       if (_target = event.target.closest('a.accordion-toggle')) {
@@ -306,16 +307,17 @@ document.addEventListener('DOMContentLoaded', function() {
         let ref = _target.getAttribute('href')
         if (!ref) return
         let panelGroup = _target.closest('div.panel-group')
+        let panel = null
         if (!panelGroup) {
-          var panel = document.querySelector(ref)
+          panel = document.querySelector(ref)
         } else {
-          var panel = panelGroup.querySelector(ref)
+          panel = panelGroup.querySelector(ref)
         }
         if (!panel) return
-        var isOpen = panel.hasClass('in')
+        const isOpen = panel.hasClass('in')
 
         //Close all if has parent declared:
-        var parentRef = _target.getAttribute('data-parent')
+        const parentRef = _target.getAttribute('data-parent')
         if (parentRef && parentRef != '') {
           _target.closest(parentRef)?.querySelectorAll('div.panel-collapse').removeClass('in')
         }
@@ -389,7 +391,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ._jeeComplete.request : the current _options.request to set current input value
   */
 HTMLInputElement.prototype.jeeComplete = function(_options) {
-  var defaultOptions = {
+  const defaultOptions = {
     ignoreKeyCodes: [8, 13, 16, 17, 18, 27, 46],
     zIndex: 5000,
     minLength: 1,
@@ -406,8 +408,8 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       if (typeof _options.source === 'function') {
         _options.data.content = _options.source(request, _options._response)
       } else {
-        var matches = []
-        var term = jeedomUtils.normTextLower(request.term)
+        const matches = []
+        const term = jeedomUtils.normTextLower(request.term)
         _options.sourceAr.forEach(_pair => {
           if (jeedomUtils.normTextLower(_pair.value).includes(term)) {
             matches.push(_pair)
@@ -419,7 +421,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
     _response: function(matches) {
       if (matches === false) return
 
-      var matchesAr = []
+      const matchesAr = []
       if (Array.isArray(matches) && matches.length > 0) {
         if (!is_object(matches[0])) {
           matches.forEach(_src => {
@@ -456,7 +458,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
   //Let know this input has autocomple:
   this._jeeComplete = _options
 
-  var createEvents = false
+  let createEvents = false
 
   //Support same container for multiple inputs:
   if (_options.id != false) {
@@ -490,14 +492,14 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       return
     }
     _options.data.container.empty()
-    var newValue
+    let newValue
     _options.data.content.forEach(_pair => {
       newValue = document.createElement('li')
       newValue.innerHTML = '<div data-value=' + _pair.value + '>' + _pair.text + '</div>'
       newValue.addClass('jeeCompleteItem')
       _options.data.container.appendChild(newValue)
     })
-    var inputPos = _options.data.item.getBoundingClientRect()
+    const inputPos = _options.data.item.getBoundingClientRect()
     _options.data.container.style.zIndex = _options.zIndex
     _options.data.container.style.top = inputPos.top + _options.data.item.offsetHeight + 'px'
     _options.data.container.style.left = inputPos.left + 'px'
@@ -513,15 +515,15 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
   */
   if (createEvents) {
     _options.data.container.registerEvent('mousedown', function jeeComplete(event) {
-      var selectedLi = event.target.closest('li.jeeCompleteItem') || event.target
+      const selectedLi = event.target.closest('li.jeeCompleteItem') || event.target
       if (selectedLi == null) return
-      var selected = selectedLi.firstChild
-      var ulContainer = document.getElementById(_options.id)
+      const selected = selectedLi.firstChild
+      const ulContainer = document.getElementById(_options.id)
       //set selected value and send to registered select option:
       _options.data.value = selected.getAttribute('data-value')
       _options.data.text = selected.textContent
       _options.data.item = ulContainer._jeeComplete.reference
-      var next = _options.select(event, _options.data)
+      const next = _options.select(event, _options.data)
       if (next === false) {
         return
       }
@@ -530,7 +532,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       if (_options.forceSingle) {
         ulContainer._jeeComplete.reference.value = _options.data.text
       } else {
-        var inputValue = ulContainer._jeeComplete.reference.value
+        let inputValue = ulContainer._jeeComplete.reference.value
         inputValue = inputValue.substring(0, _options.request.start - 1) + inputValue.substring(_options.request.end - 1)
         inputValue = inputValue.slice(0, _options.request.start - 1) + _options.data.text + inputValue.slice(_options.request.start - 1)
         ulContainer._jeeComplete.reference.value = inputValue
@@ -582,7 +584,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       if (_options.data.container.querySelector('li.jeeCompleteItem.active') == null) {
         _options.data.container.querySelector('li.jeeCompleteItem')?.addClass('active')
       } else {
-        var active = _options.data.container.querySelector('li.jeeCompleteItem.active')
+        const active = _options.data.container.querySelector('li.jeeCompleteItem.active')
         if (active.nextElementSibling != null) {
           active.removeClass('active').nextElementSibling.addClass('active')
         }
@@ -594,7 +596,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       if (_options.data.container.querySelector('li.jeeCompleteItem.active') == null) {
         _options.data.container.querySelectorAll('li.jeeCompleteItem').last()?.addClass('active')
       } else {
-        var active = _options.data.container.querySelector('li.jeeCompleteItem.active')
+        const active = _options.data.container.querySelector('li.jeeCompleteItem.active')
         if (active.previousElementSibling != null) {
           active.removeClass('active').previousElementSibling.addClass('active')
         }
@@ -664,7 +666,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
 
 domUtils.syncJeeCompletes = function() {
   document.querySelectorAll('ul.jeeComplete').forEach(_jee => {
-    var existing = []
+    const existing = []
     _jee._jeeComplete.references.forEach(_ref => {
       if (_ref.isConnected === true) {
         existing.push(_ref)
@@ -693,7 +695,7 @@ var jeeDialog = (function() {
   /*________________TOAST
   */
   exports.toast = function(_options) {
-    var defaultOptions = {
+    const defaultOptions = {
       id: 'jeeToastContainer',
       positionClass: jeedom.theme['interface::toast::position'] || 'toast-bottom-right',
       title: '',
@@ -704,7 +706,7 @@ var jeeDialog = (function() {
       emptyBefore: false,
       attachTo: false,
       onclick: function(event) {
-        var toast = event.target.closest('.jeeToast.toast')
+        const toast = event.target.closest('.jeeToast.toast')
         toast._jeeDialog.close(toast)
       }
     }
@@ -713,7 +715,7 @@ var jeeDialog = (function() {
     _options.timeOut = parseInt(_options.timeOut)
     _options.extendedTimeOut = parseInt(_options.extendedTimeOut)
 
-    var toastContainer = document.getElementById('jeeToastContainer')
+    let toastContainer = document.getElementById('jeeToastContainer')
     if (toastContainer == null) {
       toastContainer = document.createElement('div')
       toastContainer.setAttribute('id', _options.id)
@@ -726,22 +728,23 @@ var jeeDialog = (function() {
     }
 
     //Main toast div:
-    var toast = document.createElement('div')
+    const toast = document.createElement('div')
     toast.addClass('jeeToast', 'toast', 'toast-' + _options.level)
     //Child title div:
-    var toastTitle = document.createElement('div')
+    const toastTitle = document.createElement('div')
     toastTitle.addClass('jeeToast', 'toastTitle')
     toastTitle.innerHTML = _options.title
     toast.appendChild(toastTitle)
     //Child message div:
-    var toastMessage = document.createElement('div')
+    const toastMessage = document.createElement('div')
     toastMessage.innerHTML = _options.message
     toastMessage.addClass('jeeToast', 'toastMessage')
     toast.appendChild(toastMessage)
     //Child progress bar:
+    let toastProgress = null
     if (_options.timeOut > 0) {
       _options.progressIntervalId = null
-      var toastProgress = document.createElement('div')
+      toastProgress = document.createElement('div')
       toastProgress.addClass('jeeToast', 'toastProgress')
       toast.appendChild(toastProgress)
     }
@@ -785,7 +788,7 @@ var jeeDialog = (function() {
       //Progress bar:
       toast._jeeDialog.progressBar = toastProgress
       toast._jeeDialog.updateProgress = function(timeout) {
-        var percentage = ((toast._jeeDialog.progressBarHideETA - (new Date().getTime())) / parseFloat(timeout)) * 100
+        const percentage = ((toast._jeeDialog.progressBarHideETA - (new Date().getTime())) / parseFloat(timeout)) * 100
         toast._jeeDialog.progressBar.style.width = percentage + '%'
       }
       toast._jeeDialog.progressBarHideETA = new Date().getTime() + parseFloat(_options.timeOut)
@@ -842,7 +845,7 @@ var jeeDialog = (function() {
   }
 
   function setDialog(_container) {
-    var _params = _container._jeeDialog.options
+    let _params = _container._jeeDialog.options
     let defaultParams = {
       setTitle: true,
       setContent: true,
@@ -854,11 +857,11 @@ var jeeDialog = (function() {
 
     setBackDrop(_params)
 
-    var template = document.createElement('template')
+    const template = document.createElement('template')
     //Title part and close button:
     if (_params.setTitle) {
       if (_params.isMainDialog) {
-        var dialogTitle = document.createElement('div')
+        const dialogTitle = document.createElement('div')
         dialogTitle.addClass('jeeDialogTitle')
         let html = '<span class="title">' + _params.title + '</span>'
         html += '<div class="titleButtons">'
@@ -892,7 +895,7 @@ var jeeDialog = (function() {
         */
       }
       else {
-        var dialogTitle = document.createElement('div')
+        const dialogTitle = document.createElement('div')
         dialogTitle.addClass('jeeDialogTitle')
         dialogTitle.innerHTML = '<span class="title">' + _params.title + '</span><button class="btClose" type="button"></button>'
         template.appendChild(dialogTitle)
@@ -906,7 +909,7 @@ var jeeDialog = (function() {
 
     //Content part:
     if (_params.setContent) {
-      var dialogContent = document.createElement('div')
+      const dialogContent = document.createElement('div')
       dialogContent.addClass('jeeDialogContent')
       if (_params.message != undefined && _params.message != '') {
         dialogContent.innerHTML = '<div>' + _params.message + '</div>'
@@ -916,23 +919,23 @@ var jeeDialog = (function() {
 
     //Footer part and buttons:
     if (_params.setFooter) {
-      var dialogFooter = document.createElement('div')
+      const dialogFooter = document.createElement('div')
       dialogFooter.addClass('jeeDialogFooter')
       template.appendChild(dialogFooter)
 
       let buttons = {}
-      for ( let button of Object.entries(_params.buttons)) {
-        buttons[button[0]] = domUtils.extend(_params.defaultButtons[button[0]],button[1])
+      for (let button of Object.entries(_params.buttons)) {
+        buttons[button[0]] = domUtils.extend(_params.defaultButtons[button[0]], button[1])
       }
 
       for (let defaultButton of Object.entries(_params.defaultButtons)) {
-        if (! isset(buttons[defaultButton[0]])) {
+        if (!isset(buttons[defaultButton[0]])) {
           buttons[defaultButton[0]] = defaultButton[1]
         }
       }
 
-      for (var button of Object.entries(buttons)) {
-        var buttonEL = exports.addButton(button, dialogFooter)
+      for (const button of Object.entries(buttons)) {
+        const buttonEL = exports.addButton(button, dialogFooter)
         if (buttonEL.getAttribute('data-type') === 'confirm') {
           _container.addEventListener('keyup', function(event) {
             if (event.key !== 'Enter') return
@@ -1009,7 +1012,7 @@ var jeeDialog = (function() {
 
   function setBackDrop(_params, _show) {
     if (_params.backdrop) {
-      var backDrop = document.getElementById('jeeDialogBackdrop')
+      let backDrop = document.getElementById('jeeDialogBackdrop')
       if (backDrop === null) {
         backDrop = document.createElement('div')
         backDrop.setAttribute('id', 'jeeDialogBackdrop')
@@ -1030,9 +1033,9 @@ var jeeDialog = (function() {
   }
 
   function cleanBackdrop() {
-    var jeeDialogs = document.querySelectorAll('div.jeeDialog')
-    var jeeDialogsWithBackdrop = 0
-    var keep = false
+    const jeeDialogs = document.querySelectorAll('div.jeeDialog')
+    let jeeDialogsWithBackdrop = 0
+    let keep = false
     jeeDialogs.forEach(_dialog => {
       if (isset(_dialog._jeeDialog)) {
         if (_dialog._jeeDialog.options.backdrop === true && _dialog.isVisible()) {
@@ -1089,7 +1092,7 @@ var jeeDialog = (function() {
       }
     }
     if (_options.callback && typeof _options.callback === 'function') _callback = _options.callback
-    var defaultOptions = this.setDialogDefaults({
+    const defaultOptions = this.setDialogDefaults({
       id: 'jeeDialogAlert',
       width: false,
       height: 'auto',
@@ -1104,7 +1107,7 @@ var jeeDialog = (function() {
           className: 'success',
           callback: {
             click: function(event) {
-              var dialog = event.target.closest('div.jeeDialog')
+              const dialog = event.target.closest('div.jeeDialog')
               dialog._jeeDialog.close(dialog)
               if (typeof _callback === 'function') {
                 _callback(true)
@@ -1123,7 +1126,7 @@ var jeeDialog = (function() {
     }, _options)
 
     //Build alert container:
-    var dialogContainer = document.createElement('div')
+    let dialogContainer = document.createElement('div')
     dialogContainer.setAttribute('id', _options.id)
     dialogContainer.addClass('jeeDialog', 'jeeDialogAlert')
     dialogContainer.style.display = 'none'
@@ -1141,11 +1144,12 @@ var jeeDialog = (function() {
     }
 
     //Build dialog:
-    var dialog = setDialog(dialogContainer)
+    const dialog = setDialog(dialogContainer)
 
     //Inject dialog:
+    let backDrop = null
     if (_options.backdrop) {
-      var backDrop = document.getElementById('jeeDialogBackdrop')
+      backDrop = document.getElementById('jeeDialogBackdrop')
       dialogContainer = document.body.insertBefore(dialogContainer, backDrop)
     } else {
       _options.container.appendChild(dialogContainer)
@@ -1172,7 +1176,7 @@ var jeeDialog = (function() {
       }
     }
     if (_options.callback && typeof _options.callback === 'function') _callback = _options.callback
-    var defaultOptions = this.setDialogDefaults({
+    const defaultOptions = this.setDialogDefaults({
       id: 'jeeDialogConfirm',
       width: false,
       height: 'auto',
@@ -1187,7 +1191,7 @@ var jeeDialog = (function() {
           className: 'warning',
           callback: {
             click: function(event) {
-              var dialog = event.target.closest('div.jeeDialog')
+              const dialog = event.target.closest('div.jeeDialog')
               dialog._jeeDialog.close(dialog)
               if (typeof _callback === 'function') {
                 _callback(null)
@@ -1200,7 +1204,7 @@ var jeeDialog = (function() {
           className: 'success',
           callback: {
             click: function(event) {
-              var dialog = event.target.closest('div.jeeDialog')
+              const dialog = event.target.closest('div.jeeDialog')
               dialog._jeeDialog.close(dialog)
               if (typeof _callback === 'function') {
                 _callback(true)
@@ -1218,7 +1222,7 @@ var jeeDialog = (function() {
     }, _options)
 
     //Build alert container:
-    var dialogContainer = document.createElement('div')
+    let dialogContainer = document.createElement('div')
     dialogContainer.setAttribute('id', _options.id)
     dialogContainer.addClass('jeeDialog', 'jeeDialogConfirm')
     dialogContainer.style.display = 'none'
@@ -1236,11 +1240,12 @@ var jeeDialog = (function() {
     }
 
     //Build dialog:
-    var dialog = setDialog(dialogContainer)
+    const dialog = setDialog(dialogContainer)
 
     //Inject dialog:
+    let backDrop = null
     if (_options.backdrop) {
-      var backDrop = document.getElementById('jeeDialogBackdrop')
+      backDrop = document.getElementById('jeeDialogBackdrop')
       dialogContainer = document.body.insertBefore(dialogContainer, backDrop)
     } else {
       _options.container.appendChild(dialogContainer)
@@ -1267,7 +1272,7 @@ var jeeDialog = (function() {
       }
     }
     if (_options.callback && typeof _options.callback === 'function') _callback = _options.callback
-    var defaultOptions = this.setDialogDefaults({
+    const defaultOptions = this.setDialogDefaults({
       id: 'jeeDialogPrompt',
       width: false,
       height: 'auto',
@@ -1287,7 +1292,7 @@ var jeeDialog = (function() {
           className: 'warning',
           callback: {
             click: function(event) {
-              var dialog = event.target.closest('div.jeeDialog')
+              const dialog = event.target.closest('div.jeeDialog')
               if (typeof _callback === 'function') {
                 _callback(null)
               }
@@ -1300,10 +1305,10 @@ var jeeDialog = (function() {
           className: 'success',
           callback: {
             click: function(event) {
-              var dialog = event.target.closest('div.jeeDialog')
+              const dialog = event.target.closest('div.jeeDialog')
               if (typeof _callback === 'function') {
-                var data = event.target.closest('div.jeeDialog').querySelector('div.jeeDialogContent').getJeeValues('.promptAttr')[0]
-                var key = event.target.closest('button').getAttribute('data-type')
+                let data = event.target.closest('div.jeeDialog').querySelector('div.jeeDialogContent').getJeeValues('.promptAttr')[0]
+                const key = event.target.closest('button').getAttribute('data-type')
                 if (Object.keys(data).length == 1) data = data.result
                 if (data == '') data = null
                 _callback.apply(this, [data, key])
@@ -1323,7 +1328,7 @@ var jeeDialog = (function() {
     }, _options)
 
     //Build alert container:
-    var dialogContainer = document.createElement('div')
+    let dialogContainer = document.createElement('div')
     dialogContainer.setAttribute('id', _options.id)
     dialogContainer.addClass('jeeDialog', 'jeeDialogPrompt')
     dialogContainer.style.display = 'none'
@@ -1341,13 +1346,14 @@ var jeeDialog = (function() {
     }
 
     //Build dialog:
-    var dialog = setDialog(dialogContainer)
+    const dialog = setDialog(dialogContainer)
 
     let dialogContent = dialogContainer.querySelector('div.jeeDialogContent')
     if (_options.inputType) { //Can provide input and such as message!
+      let content
       switch (_options.inputType) {
         case 'input':
-          var content = document.createElement('input')
+          content = document.createElement('input')
           content.setAttribute('type', 'text')
           content.setAttribute('data-l1key', 'result')
           content.addClass('promptAttr')
@@ -1357,7 +1363,7 @@ var jeeDialog = (function() {
           break
         case 'date':
         case 'time':
-          var content = document.createElement('input')
+          content = document.createElement('input')
           content.setAttribute('data-l1key', 'result')
           content.setAttribute('type', 'text')
           content.addClass('promptAttr')
@@ -1378,12 +1384,12 @@ var jeeDialog = (function() {
           dialogContent.appendChild(content)
           break
         case 'select':
-          var content = document.createElement('select')
+          content = document.createElement('select')
           content.setAttribute('data-l1key', 'result')
           content.addClass('promptAttr')
           if (_options.inputOptions) {
             _options.inputOptions.forEach(_option => {
-              var opt = document.createElement("option")
+              const opt = document.createElement("option")
               opt.setAttribute('value', _option.value)
               opt.textContent = _option.text
               content.add(opt, null)
@@ -1392,7 +1398,7 @@ var jeeDialog = (function() {
           dialogContent.appendChild(content)
           break
         case 'textarea':
-          var content = document.createElement('textarea')
+          content = document.createElement('textarea')
           content.setAttribute('data-l1key', 'result')
           content.addClass('promptAttr')
           if (_options.value) content.value = _options.value
@@ -1403,8 +1409,9 @@ var jeeDialog = (function() {
 
 
     //Inject dialog:
+    let backDrop = null
     if (_options.backdrop) {
-      var backDrop = document.getElementById('jeeDialogBackdrop')
+      backDrop = document.getElementById('jeeDialogBackdrop')
       dialogContainer = document.body.insertBefore(dialogContainer, backDrop)
     } else {
       _options.container.appendChild(dialogContainer)
@@ -1419,7 +1426,7 @@ var jeeDialog = (function() {
       dialogContainer.style.display = ''
       _options.onShown(dialogContainer)
       setTimeout(function() {
-        var set = dialogContainer.querySelector('.promptAttr')
+        const set = dialogContainer.querySelector('.promptAttr')
         if (set != null) {
           set.focus()
         } else {
@@ -1433,7 +1440,7 @@ var jeeDialog = (function() {
 
   exports.modal = function(_element, _options) {
     if (!isset(_options)) _options = {}
-    var defaultOptions = this.setDialogDefaults({
+    const defaultOptions = this.setDialogDefaults({
       width: false,
       height: 'auto',
       top: '20vh',
@@ -1478,7 +1485,7 @@ var jeeDialog = (function() {
 
   /*________________DIALOGS
   */
-  var specialDialogOptions = {
+  const specialDialogOptions = {
     md_cmdHistory: {
       width: '800px',
       height: '500px',
@@ -1509,7 +1516,7 @@ var jeeDialog = (function() {
     if (!isset(_options)) _options = {}
     if (!isset(_options.id)) _options.id = 'jee_modal'
 
-    var dialogContainer = document.getElementById(_options.id)
+    let dialogContainer = document.getElementById(_options.id)
     if (dialogContainer == null) {
       dialogContainer = document.createElement('div')
       dialogContainer.setAttribute('id', _options.id)
@@ -1525,7 +1532,7 @@ var jeeDialog = (function() {
 
     //First initialize dialog:
     if (dialogContainer._jeeDialog == undefined) {
-      var defaultOptions = this.setDialogDefaults({
+      const defaultOptions = this.setDialogDefaults({
         id: 'jee_modal',
         show: true,
         retainPosition: false,
@@ -1581,6 +1588,7 @@ var jeeDialog = (function() {
         show: function() {
           setBackDrop(_options, true)
           this.dialog._jeeDialog.options.onShown()
+          this.dialog.seen()
           if (!_options.retainPosition || this.dialog.style.width == '') {
             if (!_options.fullScreen) {
               this.dialog.setAttribute('data-maximize', '0')
@@ -1591,7 +1599,6 @@ var jeeDialog = (function() {
           }
           document.querySelectorAll('div.jeeDialog.jeeDialogMain').removeClass('active')
           this.dialog.addClass('active')
-          this.dialog.seen()
           setTimeout(function() {
             dialogContainer.querySelector('button[data-type="confirm"]')?.focus()
           })
@@ -1607,7 +1614,7 @@ var jeeDialog = (function() {
           this.dialog.unseen()
           this.dialog._jeeDialog.options.onClose()
           this.dialog.removeClass('active')
-          let _dialog = document.querySelectorAll('div.jeeDialog.jeeDialogMain:not([style*="display: none;"])')
+          let _dialog = document.querySelectorAll('div.jeeDialog.jeeDialogMain:not(.hidden)')
           _dialog[_dialog.length - 1]?.addClass('active')
           cleanBackdrop()
         },
@@ -1618,7 +1625,7 @@ var jeeDialog = (function() {
       }
 
       //Build dialog:
-      var dialog = setDialog(dialogContainer)
+      const dialog = setDialog(dialogContainer)
       dialogContainer.addClass('jeeDialog', 'jeeDialogMain')
       if (_options.setFooter === true) {
         dialogContainer.addClass('hasfooter')
@@ -1630,13 +1637,13 @@ var jeeDialog = (function() {
       })
 
       //____Set Moveable
-      var nextLeft, nextTop, initialLeft, initialTop
-      var bodyRect = null
-      var divTitle = dialogContainer.querySelector('div.jeeDialogTitle')
+      let nextLeft, nextTop, initialLeft, initialTop
+      let bodyRect = null
+      const divTitle = dialogContainer.querySelector('div.jeeDialogTitle')
       if (divTitle) {
         divTitle.addEventListener('mousedown', dragStart, false)
         divTitle.addEventListener('touchstart', dragStart, false)
-        var onMove, moveDone
+        let onMove, moveDone
         function dragStart(event) {
           if (event.target.matches('button')) return
           event.preventDefault()
@@ -1697,10 +1704,10 @@ var jeeDialog = (function() {
         }
 
         //____Set Resizeable
-        var resizer, initialLeft, initialTop, initialWidth, initialHeight
-        var resizers = ['top', 'top-right', 'right', 'bottom-right', 'bottom', 'bottom-left', 'left', 'top-left']
+        let resizer, initialWidth, initialHeight
+        const resizers = ['top', 'top-right', 'right', 'bottom-right', 'bottom', 'bottom-left', 'left', 'top-left']
         resizers.forEach(handle => {
-          var div = document.createElement('div')
+          const div = document.createElement('div')
           div.addClass('resizer', handle)
           div.setAttribute('data-resize', handle)
           dialogContainer.appendChild(div)
@@ -1708,7 +1715,7 @@ var jeeDialog = (function() {
           div.addEventListener('touchstart', resizeStart, false)
         })
         //Set onResize event:
-        var onResize, resizeDone
+        let onResize, resizeDone
         function resizeStart(event) {
           if (event.target.matches('button')) return
           event.preventDefault()
@@ -1763,7 +1770,7 @@ var jeeDialog = (function() {
       }
     } else {
       _options = domUtils.extend(dialogContainer._jeeDialog.options, _options)
-      var spanTitle = dialogContainer.querySelector('div.jeeDialogTitle > span.title')
+      const spanTitle = dialogContainer.querySelector('div.jeeDialogTitle > span.title')
       if (spanTitle) spanTitle.innerHTML = _options.title
     }
 
@@ -1791,7 +1798,7 @@ var jeeDialog = (function() {
 Core lib for context menus
 */
 var jeeCtxMenu = function(_options) {
-  var ctxInstance = { //Always initialize with new jeeCtxMenu({}) or this won't be unique per menu!
+  const ctxInstance = { //Always initialize with new jeeCtxMenu({}) or this won't be unique per menu!
     realTrigger: null
   }
 
@@ -1809,10 +1816,10 @@ var jeeCtxMenu = function(_options) {
       _ctxMenu.style.opacity = 1
     } else {
       //Keep mouse hover menu to avoid setting click event to close:
-      var bRect = document.body.getBoundingClientRect()
-      var cRect = _ctxMenu.getBoundingClientRect()
-      var newLeft = _event.clientX - 5
-      var newTop = _event.clientY - 5
+      const bRect = document.body.getBoundingClientRect()
+      const cRect = _ctxMenu.getBoundingClientRect()
+      let newLeft = _event.clientX - 5
+      let newTop = _event.clientY - 5
 
       //Outside right:
       if (newLeft > (bRect.width - cRect.width)) {
@@ -1845,7 +1852,7 @@ var jeeCtxMenu = function(_options) {
   }
 
   function _buildItem(_itemContainer, _key, _item, _callback) {
-    var itemDiv, itemContDiv
+    let itemDiv, itemContDiv
     //Set new menu item:
     itemDiv = document.createElement('div')
     itemDiv.addClass('ctxItem')
@@ -1919,7 +1926,7 @@ var jeeCtxMenu = function(_options) {
         })
       })
       itemDiv.addEventListener('mouseleave', function(event) {
-        var subContainer = event.target.querySelector('div.ctxSubMenuContainer')
+        const subContainer = event.target.querySelector('div.ctxSubMenuContainer')
         subContainer.style.display = 'none'
       })
     } else if (isSep) {
@@ -1928,14 +1935,14 @@ var jeeCtxMenu = function(_options) {
     } else {
       if (isset(_item.type) && (_item.type == 'checkbox' || _item.type == 'radio')) {
         itemDiv.addClass('ctxInput')
-        var label = document.createElement('label')
-        var span = document.createElement('span')
+        const label = document.createElement('label')
+        const span = document.createElement('span')
         if (_item.isHtmlName) {
           span.innerHTML = _item.name
         } else {
           span.textContent = _item.name
         }
-        var input = document.createElement('input')
+        const input = document.createElement('input')
         input.type = _item.type
         if (isset(_item.radio)) input.name = _item.radio
         if (isset(_item.selected)) input.checked = _item.selected
@@ -1975,7 +1982,7 @@ var jeeCtxMenu = function(_options) {
     }
   }
 
-  var defaultOptions = {
+  const defaultOptions = {
     selector: false,
     appendTo: 'body',
     items: false,
@@ -1996,7 +2003,7 @@ var jeeCtxMenu = function(_options) {
   _options = domUtils.extend(defaultOptions, _options)
   if (!_options.selector) return null
 
-  var ctxMenuContainer = document.createElement('div')
+  const ctxMenuContainer = document.createElement('div')
   ctxMenuContainer.addClass('jeeCtxMenu')
   if (_options.className != '') ctxMenuContainer.addClass(_options.className)
   ctxMenuContainer.style.display = 'none'
@@ -2020,8 +2027,8 @@ var jeeCtxMenu = function(_options) {
     this.isDisable = true
   }
   ctxInstance.setInputValues = function(opt, data) { //Set data inputs values according to opt element data-x attributes
-    var datasetDomStringMAp = opt.dataset
-    for (var _key in data) {
+    const datasetDomStringMAp = opt.dataset
+    for (const _key in data) {
       if (isset(ctxInstance.options.inputs[_key])) {
         ctxInstance.options.inputs[_key].node.jeeValue(datasetDomStringMAp[_key])
       }
@@ -2034,7 +2041,7 @@ var jeeCtxMenu = function(_options) {
   }
   ctxInstance.show = function(_event) {
     if (typeof ctxInstance.options.build === 'function') { //Dynamic build
-      var _args = ctxInstance.options.build(ctxInstance.realTrigger)
+      let _args = ctxInstance.options.build(ctxInstance.realTrigger)
       if (_args === false) return false
       if (!isset(_args)) _args = {}
       if (!isset(_args.items)) _args.items = false
@@ -2043,10 +2050,10 @@ var jeeCtxMenu = function(_options) {
     }
 
     //Update disabled items:
-    var _item, _key
+    let _item, _key
     for (_key in ctxInstance.options.commands) {
       _item = ctxInstance.options.commands[_key]
-      var itemDisabled = (typeof _item.disabled === 'function') ? _item.disabled.apply(ctxInstance.realTrigger, [_item.id, ctxInstance]) : _item.disabled
+      const itemDisabled = (typeof _item.disabled === 'function') ? _item.disabled.apply(ctxInstance.realTrigger, [_item.id, ctxInstance]) : _item.disabled
       if (itemDisabled === true) {
         _item.menuItem.addClass('disabled')
       } else {
@@ -2106,10 +2113,10 @@ var jeeCtxMenu = function(_options) {
         ctxInstance.hide(event)
       }, 100)
     })
-  }else{
+  } else {
     document.addEventListener('click', event => {
       if (ctxMenuContainer.contains(event.target)) {
-        return;
+        return
       }
       setTimeout(function() {
         if (!ctxMenuContainer.closest('div.jeeCtxMenu').isVisible()) return //May be closed by click, avoir twice hide
@@ -2132,7 +2139,7 @@ var jeeCtxMenu = function(_options) {
 Core lib for input upload file
 */
 var jeeFileUploader = function(_options) {
-  var defaultOptions = {
+  const defaultOptions = {
     fileInput: false,
     replaceFileInput: false,
     singleFileUploads: true,
@@ -2164,14 +2171,14 @@ var jeeFileUploader = function(_options) {
 
   if (_options.accept) _options.fileInput.setAttribute('accept', _options.accept)
 
-  var displayLimit = null
+  let displayLimit = null
   if (_options.limitUploadFileSize != undefined) {
     displayLimit = domUtils.octetsToHumanSize(_options.limitUploadFileSize)
   }
 
   //Event:
   _options.fileInput.registerEvent('change', function jeeFileUpload(event) {
-    var data = new FormData()
+    const data = new FormData()
     if (_options.singleFileUploads) {
       if (event.target.files.length > 1) {
         jeeDialog.alert('{{Vous ne pouvez uploader qu\'un seul fichier.}}')
@@ -2259,13 +2266,13 @@ var jeeFileUploader = function(_options) {
 Core lib for resizeable elements
 */
 var jeeResize = function(_selector, _options) {
-  var elements = document.querySelectorAll(_selector)
+  const elements = document.querySelectorAll(_selector)
   if (elements.length == 0) {
     console.warn('jeeResize: no elements found. selector:', _selector)
     return null
   }
 
-  var defaultOptions = {
+  const defaultOptions = {
     cancel: false,
     state: true,
     containment: false,
@@ -2277,7 +2284,7 @@ var jeeResize = function(_selector, _options) {
   }
   _options = domUtils.extend(defaultOptions, _options)
 
-  var currentRszr = {}
+  let currentRszr = {}
 
   elements.forEach(elResize => {
     elResize._jeeResize = {}
@@ -2290,7 +2297,7 @@ var jeeResize = function(_selector, _options) {
     }
 
     _options.handles.forEach(handle => {
-      var div = document.createElement('div')
+      const div = document.createElement('div')
       div.addClass('jeeresizer', handle)
       div.setAttribute('data-resize', handle)
       elResize.appendChild(div)
@@ -2299,7 +2306,7 @@ var jeeResize = function(_selector, _options) {
     })
   })
 
-  var initialLeft, initialTop, initialWidth, initialHeight
+  let initialLeft, initialTop, initialWidth, initialHeight
   function resizeStart(event) {
     event.preventDefault()
     event.stopPropagation()
@@ -2310,7 +2317,7 @@ var jeeResize = function(_selector, _options) {
     currentRszr.resizer = this.getAttribute('data-resize')
     if (currentRszr.options.cancel !== false && event.target.parentNode.hasClass(currentRszr.options.cancel)) return false
 
-    var next
+    let next
     if (currentRszr.options.start) {
       next = currentRszr.options.start.apply(currentRszr.rszElement, [event, currentRszr.element])
     }
@@ -2334,9 +2341,9 @@ var jeeResize = function(_selector, _options) {
   }
   function resizing(event) {
     try {
-      var clientX = event.clientX || event.targetTouches[0].pageX
-      var clientY = event.clientY || event.targetTouches[0].pageY
-      var element = currentRszr.rszElement.parentNode
+      const clientX = event.clientX || event.targetTouches[0].pageX
+      const clientY = event.clientY || event.targetTouches[0].pageY
+      const element = currentRszr.rszElement.parentNode
     } catch (error) {
       return
     }

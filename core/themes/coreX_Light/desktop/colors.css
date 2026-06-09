@@ -1,0 +1,69 @@
+/*
+Theme coreX_Light @Jeedom - Modern Light
+Neutral light background with Bootstrap 5.3 semantic accents
+*/
+:root {
+  --lineheight: 1.42em;
+  --border-radius: 0.5rem;
+  --opacity: 1;
+
+  --url-logo: url('/core/img/logo-jeedom_Dark.png');
+  --dashBkg-url: url("");
+  --logo-primary-color: rgb(13, 110, 253);
+  --logo-secondary-color: rgb(108, 117, 125);
+
+  --bg-color: 245, 245, 245;
+  --bg-modal-color: rgb(255, 255, 255);
+  --contrast-color: 23, 23, 23;
+
+  --txt-color: rgb(64, 64, 64);
+  --link-color: rgb(82, 82, 82);
+  --linkHover-color: rgb(13, 110, 253);
+  --linkHoverLight-color: rgb(255, 255, 255);
+  --placeholder-color: rgb(163, 163, 163);
+
+  --sc-form-color: rgba(250, 250, 250, 0.95);
+  --sc-formTxt-color: rgb(38, 38, 38);
+  --sc-lightTxt-color: rgb(255, 255, 255);
+
+  --el-defaultColor: rgb(212, 212, 212);
+  --defaultBkg-color: 255, 255, 255;
+  --form-bg-color: rgb(229, 229, 229);
+  --btnEq-default-color: rgb(229, 229, 229);
+  --btn-default-color: rgb(115, 115, 115);
+  --panel-bg-color: 250, 250, 250;
+
+  --eqTitle-color: rgb(255, 255, 255);
+  --objectBkgd-color: rgb(13, 110, 253);
+  --objectTxt-color: rgb(255, 255, 255);
+
+  --eq-bg-color: 255, 255, 255;
+
+  --cat-security-color: 220, 53, 69;
+  --cat-heating-color: 253, 126, 20;
+  --cat-automatism-color: 108, 117, 125;
+  --cat-light-color: 255, 193, 7;
+  --cat-opening-color: 108, 117, 125;
+  --cat-multimedia-color: 13, 202, 240;
+  --cat-energy-color: 25, 135, 84;
+  --cat-other-color: 108, 117, 125;
+  --cat-scenario-color: 13, 110, 253;
+
+  --url-iconsDark: url(/desktop/img/ui-icons-white.png);
+  --url-iconsLight: url(/desktop/img/ui-icons-black.png);
+
+  --lb-info-color: rgb(13, 202, 240);
+  --lb-yellow-color: rgb(255, 193, 7);
+  --al-info-color: rgb(13, 202, 240);
+  --al-primary-color: rgb(13, 110, 253);
+  --al-success-color: rgb(25, 135, 84);
+  --al-warning-color: rgb(255, 193, 7);
+  --al-danger-color: rgb(220, 53, 69);
+  --bt-success-color: rgb(25, 135, 84);
+
+  --scBlocIF: rgb(13, 110, 253); --scBlocElse: rgb(108, 117, 125); --scBlocACTION: rgb(13, 110, 253);
+  --scBlocIN: rgb(25, 135, 84); --scBlocAT: rgb(13, 202, 240); --scBlocFOR: rgb(255, 193, 7);
+  --scBlocCODE: rgb(220, 53, 69); --scBlocCOM: rgb(108, 117, 125); --scBlocSep: rgb(212, 212, 212);
+
+  --shd-color: rgba(23, 23, 23, 0.12);
+}

@@ -468,12 +468,10 @@ try {
 	if (!file_exists('/etc/systemd/system/mariadb.service.d/jeedom.conf')) {
 		echo "Add parameter for mariadb service...";
 		$cmd = '';
-		if (!file_exists('/etc/systemd/system/mariadb.service.d')) {
-			$cmd .= 'sudo mkdir /etc/systemd/system/mariadb.service.d;';
-		}
-		$cmd .= 'sudo chmod 777 -R /etc/systemd/system/mariadb.service.d;';
-		$cmd .= 'sudo echo "[Service]" > /etc/systemd/system/mariadb.service.d/jeedom.conf;';
-		$cmd .= 'sudo echo "Restart=always" >> /etc/systemd/system/mariadb.service.d/jeedom.conf;';
+		$cmd .= 'sudo install -d -m 0755 -o root -g root /etc/systemd/system/mariadb.service.d;';
+		$cmd .= 'echo "[Service]" | sudo tee /etc/systemd/system/mariadb.service.d/jeedom.conf > /dev/null;';
+		$cmd .= 'echo "Restart=always" | sudo tee -a /etc/systemd/system/mariadb.service.d/jeedom.conf > /dev/null;';
+		$cmd .= 'sudo chmod 0644 /etc/systemd/system/mariadb.service.d/jeedom.conf;';
 		$cmd .= 'sudo systemctl daemon-reload;';
 		exec($cmd);
 		echo "OK\n";

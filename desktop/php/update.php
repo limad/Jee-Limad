@@ -33,7 +33,7 @@ if ($distrib == 'debian') {
 }
 sendVarToJS('jeephp2js.showUpdate', $showUpdate);
 $logUpdate = log::getLastLine('update');
-if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', 'sudo')) == 0) {
+if (strpos($logUpdate, 'END UPDATE') !== false || count(system::ps('install/update.php', 'sudo')) == 0) {
 	sendVarToJS('jeephp2js.isUpdating', '0');
 } else {
 	sendVarToJS('jeephp2js.isUpdating', '1');
@@ -46,10 +46,10 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 		<span class="label label-info" id="span_lastUpdateCheck"></span>
 		<div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
-				<a class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
-				</a><a class="btn btn-success btn-sm" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
-				</a><?php if ($showUpdate == true) { ?><a href="#" class="btn btn-sm btn-warning roundedRight updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}
-					</a><?php } ?>
+				<button type="button" class="btn btn-info btn-sm roundedLeft" id="bt_checkAllUpdate"><i class="fas fa-sync"></i> {{Vérifier les mises à jour}}
+				</button><button type="button" class="btn btn-success btn-sm" id="bt_saveUpdate"><i class="fas fa-check-circle"></i> {{Sauvegarder}}
+				</button><?php if ($showUpdate == true) { ?><button type="button" class="btn btn-sm btn-warning roundedRight updateJeedom"><i class="fas fa-check"></i> {{Mettre à jour}}
+					</button><?php } ?>
 			</span>
 		</div>
 		<br /><br />
@@ -100,10 +100,10 @@ if (strpos($logUpdate, 'END UPDATE') || count(system::ps('install/update.php', '
 
 				<div class="input-group pull-right" style="display:inline-flex">
 					<span class="input-group-btn">
-						<a class="bt_refreshOsPackageUpdate btn btn-success roundedLeft" data-forceRefresh="1"><i class="fas fa-sync"></i> {{Mettre à jour la liste}}</a>
-						<a class="bt_OsPackageUpdate btn btn-warning disabled" data-type="apt"><i class="fas fa-sync"></i> {{Mettre à jour les packages OS}}</a>
-						<a class="bt_OsPackageUpdate btn btn-warning disabled" data-type="pip2"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python2}}</a>
-						<a class="bt_OsPackageUpdate btn btn-warning roundedRight disabled" data-type="pip3"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python3}}</a>
+						<button type="button" class="bt_refreshOsPackageUpdate btn btn-success roundedLeft" data-forceRefresh="1"><i class="fas fa-sync"></i> {{Mettre à jour la liste}}</button>
+						<button type="button" class="bt_OsPackageUpdate btn btn-warning disabled" data-type="apt"><i class="fas fa-sync"></i> {{Mettre à jour les packages OS}}</button>
+						<button type="button" class="bt_OsPackageUpdate btn btn-warning disabled" data-type="pip2"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python2}}</button>
+						<button type="button" class="bt_OsPackageUpdate btn btn-warning roundedRight disabled" data-type="pip3"><i class="fas fa-sync"></i> {{Mettre à jour les packages Python3}}</button>
 					</span>
 				</div>
 

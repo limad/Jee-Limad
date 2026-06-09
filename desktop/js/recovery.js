@@ -32,7 +32,7 @@ if (!jeeFrontEnd.recovery) {
       this.step = document.getElementById('recovery-step')
       this.details = document.getElementById('recovery-details')
       this.progress = document.getElementById('recovery-progress')
-      this.buttons = document.getElementById('recovery-buttons').querySelectorAll('a.btn')
+      this.buttons = document.getElementById('recovery-buttons').querySelectorAll('.btn')
       this.hardware = jeephp2js.hardware
       window.jeeP = this
     },
@@ -207,7 +207,7 @@ jeeFrontEnd.recovery.init()
 // /*Events delegations
 // */
 document.getElementById('recovery-buttons').addEventListener('click', function(_event) {
-  var _target = null
+  let _target = null
   if (_target = _event.target.closest('#bt_auto')) {
     jeeP.title.innerText = jeeP.title.innerText + ' (AUTO)'
     jeeP.start('auto')

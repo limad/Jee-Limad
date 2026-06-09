@@ -161,7 +161,7 @@ class interactQuery {
 		foreach ($queries as $query) {
 			$input = interactDef::sanitizeQuery($query->getQuery());
 			$tags = interactDef::getTagFromQuery($query->getQuery(), $_query);
-			log::add('interact', 'debug', 'Je compare : ' . $_query . ' avec ' . $input.' et tags : '.json_encode($tags));
+			log::add('interact', 'debug', 'Je compare : ' . $_query . ' avec ' . $input . ' et tags : ' . json_encode($tags));
 			if (count($tags) > 0) {
 				foreach ($tags as $value) {
 					if ($value == "") {
@@ -261,11 +261,11 @@ class interactQuery {
 				$objects = $_data['eqLogic']->getCmd();
 			} elseif ($_data !== null && is_object($_data['object'])) {
 				$objects = array();
-				foreach(($_data['object']->getEqLogic()) as $eqLogic) {
+				foreach (($_data['object']->getEqLogic()) as $eqLogic) {
 					if ($eqLogic->getIsEnable() == 0) {
 						continue;
 					}
-					foreach(($eqLogic->getCmd()) as $cmd) {
+					foreach (($eqLogic->getCmd()) as $cmd) {
 						$objects[] = $cmd;
 					}
 				}
@@ -273,7 +273,11 @@ class interactQuery {
 				$objects = cmd::all();
 			}
 		} elseif ($_type == 'summary') {
-			foreach (config::byKey('object:summary') as $key => $value) {
+			$summaries = config::byKey('object:summary', 'core', array());
+			if (!is_array($summaries)) {
+				$summaries = array();
+			}
+			foreach ($summaries as $key => $value) {
 				if (count($synonyms) > 0 && in_array(strtolower($value['name']), $synonyms)) {
 					$return[$_type] = $value;
 					break;
@@ -795,12 +799,12 @@ class interactQuery {
 			$time = str_replace(array('h'), array(':'), $replace['#time#']);
 			if (strlen($time) == 1) {
 				$time .= ':00';
-			}else if (strlen($time) == 2) {
+			} else if (strlen($time) == 2) {
 				$time .= ':00';
 			} else if (strlen($time) == 3) {
 				$time .= '00';
 			}
-			$time = str_replace('::',':',$time);
+			$time = str_replace('::', ':', $time);
 			$executeDate = strtotime($time);
 			if ($executeDate < strtotime('now')) {
 				$executeDate += 3600 * 24;
@@ -877,9 +881,7 @@ class interactQuery {
 					if (trim($return) !== '' && trim($return) !== null) {
 						$replace['#valeur#'] .= ' ' . $return;
 					}
-				} catch (Exception $e) {
-					log::add('interact', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . '. ' . __('Détails :', __FILE__) . ' ' . log::exception($e));
-				} catch (Error $e) {
+				} catch (\Throwable $e) {
 					log::add('interact', 'error', __('Erreur lors de l\'exécution de', __FILE__) . ' ' . $action['cmd'] . '. ' . __('Détails :', __FILE__) . ' ' . log::exception($e));
 				}
 			}
@@ -920,7 +922,7 @@ class interactQuery {
 	}
 
 	public function setInteractDef_id($_interactDef_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->interactDef_id,$_interactDef_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->interactDef_id, $_interactDef_id);
 		$this->interactDef_id = $_interactDef_id;
 		return $this;
 	}
@@ -930,7 +932,7 @@ class interactQuery {
 	}
 
 	public function setId($_id) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->id,$_id);
+		$this->_changed = utils::attrChanged($this->_changed, $this->id, $_id);
 		$this->id = $_id;
 		return $this;
 	}
@@ -940,7 +942,7 @@ class interactQuery {
 	}
 
 	public function setQuery($_query) {
-		$this->_changed = utils::attrChanged($this->_changed,$this->query,$_query);
+		$this->_changed = utils::attrChanged($this->_changed, $this->query, $_query);
 		$this->query = $_query;
 		return $this;
 	}
@@ -951,7 +953,7 @@ class interactQuery {
 
 	public function setActions($_key, $_value) {
 		$actions = utils::setJsonAttr($this->actions, $_key, $_value);
-		$this->_changed = utils::attrChanged($this->_changed,$this->actions,$actions);
+		$this->_changed = utils::attrChanged($this->_changed, $this->actions, $actions);
 		$this->actions = $actions;
 		return $this;
 	}
@@ -964,5 +966,4 @@ class interactQuery {
 		$this->_changed = $_changed;
 		return $this;
 	}
-
 }

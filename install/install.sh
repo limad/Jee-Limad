@@ -67,8 +67,7 @@ step_2_mainpackage() {
   apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate dos2unix ntpdate htop iotop vim iftop smbclient
   apt-get -y install usermod
   apt-get -y install visudo
-  apt-get -y install git python python-pip
-  apt-get -y install python3 python3-pip
+  apt-get -y install git
   apt-get -y install libexpat1 ssl-cert
   apt-get -y install apt-transport-https
   apt-get -y install xvfb cutycapt xauth
@@ -288,6 +287,7 @@ step_8_jeedom_customization() {
   a2dismod status
   a2enmod headers
   a2enmod remoteip
+  a2enmod rewrite
 
   sed -i -e "s%\${APACHE_LOG_DIR}/error.log%${WEBSERVER_HOME}/log/http.error%g" /etc/apache2/apache2.conf
 
@@ -380,6 +380,8 @@ step_11_jeedom_post() {
       echo 'tmpfs        /tmp/jeedom            tmpfs  defaults,size=256M                                       0 0' >>  /etc/fstab
     fi
   fi
+  chmod +x ${WEBSERVER_HOME}/resources/install_python.sh
+  ${WEBSERVER_HOME}/resources/install_python.sh
   chmod +x ${WEBSERVER_HOME}/resources/install_nodejs.sh
   ${WEBSERVER_HOME}/resources/install_nodejs.sh
   echo "${GREEN}Step 11 - Jeedom post-install done${NORMAL}"

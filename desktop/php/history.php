@@ -13,9 +13,9 @@ $date = array(
 		<div class="input-group input-group-sm">
 			<input id="in_startDate" class="form-control input-sm in_datepicker roundedLeft" style="width: 90px;" value="<?php echo $date['start'] ?>" />
 			<input id="in_endDate" class="form-control input-sm in_datepicker" style="width: 90px;" value="<?php echo $date['end'] ?>" />
-			<a class="btn btn-success btn-sm roundedRight" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}">
+			<button type="button" class="btn btn-success btn-sm roundedRight" id='bt_validChangeDate' title="{{Attention : une trop grande plage de dates peut mettre très longtemps à être calculée ou même ne pas s'afficher.}}">
 				<i class="fas fa-check"></i>
-			</a>
+			</button>
 		</div>
 	</div>
 
@@ -53,10 +53,10 @@ $date = array(
 
 			<span>{{Variation}} <input type="checkbox" id="cb_derive" /></span>
 			<span>{{Escalier}} <input type="checkbox" id="cb_step" /></span>
-			<a id="bt_compare" class="btn btn-sm btn-success disabled roundedLeft"><i class="fas fa-greater-than-equal"></i> {{Comparer}}
-			</a><a id="bt_clearGraph" class="btn btn-sm btn-warning roundedRight" title="{{Vide l'affichage des courbes sur la zone.}}">
+			<button type="button" id="bt_compare" class="btn btn-sm btn-success disabled roundedLeft"><i class="fas fa-greater-than-equal"></i> {{Comparer}}
+			</button><button type="button" id="bt_clearGraph" class="btn btn-sm btn-warning roundedRight" title="{{Vide l'affichage des courbes sur la zone.}}">
 				<i class="fas fa-times"></i> {{Affichage}}
-			</a>
+			</button>
 		</div>
 	</div>
 </div>
@@ -66,14 +66,14 @@ $date = array(
 		<ul class="nav nav-list bs-sidenav">
 			<li>
 				<i class="fas fa-square-root-alt"></i> {{Historique calculé}}
-				<a id="bt_configureCalculHistory" class="btn btn-default btn-sm pull-right" style="top: -5px; padding: 5px 10px; margin-right: 0;" title="{{Configuration des formules de calcul}}"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+				<button type="button" id="bt_configureCalculHistory" class="btn btn-default btn-sm pull-right" style="top: -5px; padding: 5px 10px; margin-right: 0;" title="{{Configuration des formules de calcul}}"><i class="fas fa-cogs"></i> {{Configuration}}</button>
 			</li>
 			<li>
 				<div class="input-group input-group-sm" style="margin-top: 10px;">
 					<textarea id="in_calculHistory" class="form-control roundedLeft" placeholder="{{Historique calculé}}" style="height: 17px; font-size: 12px!important;"></textarea>
 					<span class="input-group-btn">
-						<a id="bt_findCmdCalculHistory" class="btn btn-default" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i>
-						</a><a id="bt_displayCalculHistory" class="btn btn-success roundedRight" title="{{Afficher le graphique calculé}}"><i class="fas fa-check"></i></a>
+						<button type="button" id="bt_findCmdCalculHistory" class="btn btn-default" title="{{Sélectionner la commande}}"><i class="fas fa-list-alt"></i>
+						</button><button type="button" id="bt_displayCalculHistory" class="btn btn-success roundedRight" title="{{Afficher le graphique calculé}}"><i class="fas fa-check"></i></button>
 					</span>
 				</div>
 			</li>
@@ -83,12 +83,12 @@ $date = array(
 		<ul id="ul_history" class="nav nav-list bs-sidenav">
 			<li>
 				<i class="icon techno-courbes3"></i> {{Commandes}}
-				<a id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top: -5px; padding: 5px 10px; margin-right: 0;" title="{{Configuration de l'historique des commandes}}"><i class="fas fa-cogs"></i> {{Configuration}}</a>
+				<button type="button" id="bt_openCmdHistoryConfigure" class="btn btn-default btn-sm pull-right" style="top: -5px; padding: 5px 10px; margin-right: 0;" title="{{Configuration de l'historique des commandes}}"><i class="fas fa-cogs"></i> {{Configuration}}</button>
 			</li>
 			<li class="filter input-group input-group-sm" style="margin-top: 10px; /*width: 98%;*/">
 				<input id="in_searchHistory" class="filter form-control input-sm roundedLeft" style="width: calc(100% - 28px);" placeholder="{{Rechercher}}" autocomplete="off" />
 				<span class="input-group-btn ">
-					<a id="bt_resetSearch" class="btn btn-default roundedRight" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i></a>
+					<button type="button" id="bt_resetSearch" class="btn btn-default roundedRight" title="{{Vider le champ de recherche}}"><i class="fas fa-times"></i></button>
 				</span>
 			</li>
 			<?php

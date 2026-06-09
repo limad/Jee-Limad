@@ -52,8 +52,8 @@ $plugins_list = plugin::listPlugin(false, true);
     <div class="input-group" style="margin-bottom:5px;">
       <input class="form-control roundedLeft" placeholder="{{Rechercher}}" id="in_searchPlugin"/>
       <div class="input-group-btn">
-        <a id="bt_resetPluginSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
-        </a><a class="btn roundedRight" id="bt_displayAsTable" data-card=".pluginDisplayCard" data-container=".pluginListContainer" data-state="0"><i class="fas fa-grip-lines"></i></a>
+        <button type="button" id="bt_resetPluginSearch" class="btn" style="width:30px"><i class="fas fa-times"></i>
+        </button><button type="button" class="btn roundedRight" id="bt_displayAsTable" data-card=".pluginDisplayCard" data-container=".pluginListContainer" data-state="0"><i class="fas fa-grip-lines"></i></button>
       </div>
     </div>
     <div class="panel">
@@ -90,7 +90,7 @@ $plugins_list = plugin::listPlugin(false, true);
             $div .= '<span>'.$plugin->getSource() .' </span>';
             $div .= '<span>'.$plugin->getAuthor().' </span>';
             $div .= '<span>'.$plugin->getCategory().'</span>';
-            $div .= ' <a class="btn btn-default btn-xs bt_openPluginPage"><i class="fas fa-share"></i></a>';
+            $div .= ' <button type="button" class="btn btn-default btn-xs bt_openPluginPage"><i class="fas fa-share"></i></button>';
             $div .= '</span>';
 
             $div .= '</div>';
@@ -118,7 +118,7 @@ $plugins_list = plugin::listPlugin(false, true);
       <div class="col-md-6 col-sm-12">
         <div class="panel panel-default" id="div_state">
           <div class="panel-heading">
-            <h3 class="panel-title"><i class="fas fa-circle-notch"></i> {{Etat}} <a class="btn btn-info btn-xs pull-right bt_openPluginPage"><i class="fas fa-share"></i> {{Ouvrir}}</a></h3>
+            <h3 class="panel-title"><i class="fas fa-circle-notch"></i> {{Etat}} <button type="button" class="btn btn-info btn-xs pull-right bt_openPluginPage"><i class="fas fa-share"></i> {{Ouvrir}}</button></h3>
           </div>
           <div class="panel-body">
             <div id="div_plugin_toggleState"></div>
@@ -169,7 +169,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="panel panel-primary" id="div_configLog">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="far fa-file"></i> {{Logs et surveillance}}
-              <a class="btn btn-success btn-xs pull-right" id="bt_savePluginLogConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+              <button type="button" class="btn btn-success btn-xs pull-right" id="bt_savePluginLogConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</button>
             </h3>
           </div>
           <div class="panel-body">
@@ -213,7 +213,7 @@ $plugins_list = plugin::listPlugin(false, true);
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title"><i class="fas fa-cogs"></i> {{Configuration}}
-          <a class="btn btn-success btn-xs pull-right" id="bt_savePluginConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+          <button type="button" class="btn btn-success btn-xs pull-right" id="bt_savePluginConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</button>
         </h3>
       </div>
       <div class="panel-body">
@@ -227,7 +227,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="panel panel-primary" id="div_functionalityPanel">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fas fa-satellite"></i> {{Fonctionnalités}}
-              <a class="btn btn-success btn-xs pull-right" id="bt_savePluginFunctionalityConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+              <button type="button" class="btn btn-success btn-xs pull-right" id="bt_savePluginFunctionalityConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</button>
             </h3>
           </div>
           <div class="panel-body">
@@ -243,7 +243,7 @@ $plugins_list = plugin::listPlugin(false, true);
         <div class="panel panel-primary" id="div_configPanel">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fas fa-chalkboard"></i> {{Panel}}
-              <a class="btn btn-success btn-xs pull-right" id="bt_savePluginPanelConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</a>
+              <button type="button" class="btn btn-success btn-xs pull-right" id="bt_savePluginPanelConfig"><i class="fas fa-check-circle icon-white"></i> {{Sauvegarder}}</button>
             </h3>
           </div>
           <div class="panel-body">

@@ -23,7 +23,7 @@ if (!jeeFrontEnd.backup) {
     },
     postInit: function() {
       this.updateListBackup()
-      for (var i in jeephp2js.repoList) {
+      for (const i in jeephp2js.repoList) {
         this.updateRepoListBackup(jeephp2js.repoList[i])
       }
 
@@ -92,9 +92,9 @@ if (!jeeFrontEnd.backup) {
             }, 1000)
             return
           }
-          var log = ''
+          let log = ''
           if (Array.isArray(data.result)) {
-            for (var i in data.result.reverse()) {
+            for (const i in data.result.reverse()) {
               log += data.result[i] + "\n"
               if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' SUCCESS]') != -1) {
                 jeedomUtils.showAlert({
@@ -104,7 +104,7 @@ if (!jeeFrontEnd.backup) {
                 if (_log == 'restore') {
                   jeedom.user.refresh()
                 }
-                document.querySelector('.bt_restoreRepoBackup .fa-sync').unseen()
+                document.querySelector('.bt_restoreRepoBackup .fa-sync')?.unseen()
                 _autoUpdate = 0
               }
               if (data.result[i].indexOf('[END ' + _log.toUpperCase() + ' ERROR]') != -1) {
@@ -129,7 +129,7 @@ if (!jeeFrontEnd.backup) {
             document.querySelector('#bt_' + _log + 'Jeedom .fa-sync')?.unseen()
             document.querySelectorAll('.bt_' + _log + 'Jeedom .fa-sync').unseen()
             jeeFrontEnd.backup.updateListBackup()
-            for (var i in jeephp2js.repoList) {
+            for (const i in jeephp2js.repoList) {
               jeeFrontEnd.backup.updateRepoListBackup(jeephp2js.repoList[i])
             }
           }
@@ -145,8 +145,8 @@ if (!jeeFrontEnd.backup) {
           })
         },
         success: function(data) {
-          var options = ''
-          for (var i in data) {
+          let options = ''
+          for (const i in data) {
             options += '<option value="' + i + '">' + data[i] + '</option>'
           }
           document.getElementById('sel_restoreBackup').innerHTML = options
@@ -164,15 +164,17 @@ if (!jeeFrontEnd.backup) {
           })
         },
         success: function(data) {
-          var options = ''
+          let options = ''
           if (data.length > 0) {
-            for (var i in data) {
+            for (const i in data) {
               options += '<option value="' + data[i] + '">' + data[i] + '</option>'
             }
           } else {
-            document.querySelector('.bt_restoreRepoBackup[data-repo="' + _repo + '"]').addClass('disabled')
+            const _btEl = document.querySelector('.bt_restoreRepoBackup[data-repo="' + _repo + '"]')
+            if (_btEl) _btEl.addClass('disabled')
           }
-          document.querySelector('.sel_restoreCloudBackup[data-repo="' + _repo + '"]').innerHTML = options
+          const _selEl = document.querySelector('.sel_restoreCloudBackup[data-repo="' + _repo + '"]')
+          if (_selEl) _selEl.innerHTML = options
         }
       })
     },
@@ -229,8 +231,8 @@ document.getElementById('bt_saveBackup')?.addEventListener('click', function(eve
 })
 
 document.getElementById('bt_restoreJeedom')?.addEventListener('click', function(event) {
-  var _target = event.target
-  var msg = '{{Êtes-vous sûr de vouloir restaurer}} ' + JEEDOM_PRODUCT_NAME + ' {{avec la sauvegarde}} :<br><b>' + document.getElementById('sel_restoreBackup').value + ' </b> ?'
+  const _target = event.target
+  let msg = '{{Êtes-vous sûr de vouloir restaurer}} ' + JEEDOM_PRODUCT_NAME + ' {{avec la sauvegarde}} :<br><b>' + document.getElementById('sel_restoreBackup').value + ' </b> ?'
   msg += '<br> <span class="warning">{{IMPORTANT la restauration d\'un backup est une opération risquée et n\'est à utiliser qu\'en dernier recours}}'
   msg += '<br>{{Une fois lancée cette opération ne peut être annulée.}}</span>'
   jeeDialog.confirm({
@@ -288,7 +290,7 @@ document.getElementById('bt_downloadBackup')?.addEventListener('click', function
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.bt_backupJeedom')) {
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir faire une sauvegarde de}} ' + JEEDOM_PRODUCT_NAME + ' {{? Une fois lancée cette opération ne peut être annulée}}', function(result) {
       if (result) {

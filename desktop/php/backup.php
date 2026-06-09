@@ -8,7 +8,7 @@ $repoList = [];
 <div id="backup">
 	<br />
 	<div class="pull-right" style="display:inline-flex;">
-		<a id="bt_saveBackup" class="btn btn-success pull-right"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+		<button type="button" id="bt_saveBackup" class="btn btn-success pull-right"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</button>
 	</div>
 	<br /><br />
 	<div class="row">
@@ -43,7 +43,7 @@ $repoList = [];
 									<div class="form-group">
 										<div class="col-sm-6 col-xs-6"></div>
 										<div class="col-sm-6 col-xs-6">
-											<a class="btn btn-success bt_backupJeedom" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="fas fa-save"></i> {{Lancer une sauvegarde}}</a>
+											<button type="button" class="btn btn-success bt_backupJeedom" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="fas fa-save"></i> {{Lancer une sauvegarde}}</button>
 										</div>
 									</div>
 
@@ -55,16 +55,16 @@ $repoList = [];
 									</div>
 									<div class="form-group">
 										<div class="col-sm-6 col-xs-12">
-											<a class="btn btn-danger" id="bt_removeBackup" style="width:100%;"><i class="far fa-trash-alt"></i> {{Supprimer la sauvegarde}}</a>
+											<button type="button" class="btn btn-danger" id="bt_removeBackup" style="width:100%;"><i class="far fa-trash-alt"></i> {{Supprimer la sauvegarde}}</button>
 										</div>
 										<div class="col-sm-6 col-xs-12">
-											<a class="btn btn-warning" id="bt_restoreJeedom" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Restaurer la sauvegarde}}</a>
+											<button type="button" class="btn btn-warning" id="bt_restoreJeedom" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Restaurer la sauvegarde}}</button>
 										</div>
 									</div>
 									<div class="form-group">
 										<div class="col-sm-6 col-xs-12">
 											<?php if (substr(config::byKey('backup::path'), 0, 1) != '/') { ?>
-												<a class="btn btn-success" id="bt_downloadBackup" style="width:100%;"><i class="fas fa-cloud-download-alt"></i> {{Télécharger la sauvegarde}}</a>
+												<button type="button" class="btn btn-success" id="bt_downloadBackup" style="width:100%;"><i class="fas fa-cloud-download-alt"></i> {{Télécharger la sauvegarde}}</button>
 											<?php } ?>
 										</div>
 										<div class="col-sm-6 col-xs-12">
@@ -124,7 +124,7 @@ $repoList = [];
 						$div .= '<div class="form-group">';
 						$div .= '<label class="col-sm-6 col-xs-12"></label>';
 						$div .= '<div class="col-sm-6 col-xs-12">';
-						$div .= '<a class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Rapatrier la sauvegarde en local}}</a>';
+						$div .= '<button type="button" class="btn btn-warning bt_restoreRepoBackup" data-repo="' . $rkey . '" style="width:100%;"><i class="fas fa-sync fa-spin" style="display:none;"></i> <i class="far fa-file"></i> {{Rapatrier la sauvegarde en local}}</button>';
 						$div .= '</div>';
 						$div .= '</div>';
 						$div .= '</fieldset>';

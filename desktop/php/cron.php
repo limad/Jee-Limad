@@ -12,14 +12,14 @@ if (!isConnect('admin')) {
         <span class="input-group-btn">
           <?php
           if (config::byKey('enableCron') == 0) {
-            echo '<a class="btn btn-success btn-sm roundedLeft" id="bt_changeCronState" data-state="0"><i class="fas fa-check"></i> {{Activer le système cron}}';
+            echo '<button type="button" class="btn btn-success btn-sm roundedLeft" id="bt_changeCronState" data-state="0"><i class="fas fa-check"></i> {{Activer le système cron}}</button>';
           } else {
-            echo '<a class="btn btn-danger btn-sm roundedLeft" id="bt_changeCronState" data-state="1"><i class="fas fa-times"></i> {{Désactiver le système cron}}';
+            echo '<button type="button" class="btn btn-danger btn-sm roundedLeft" id="bt_changeCronState" data-state="1"><i class="fas fa-times"></i> {{Désactiver le système cron}}</button>';
           }
           ?>
-          <a class="btn btn-sm" id="bt_refreshCron"><i class="fas fa-sync"></i> {{Rafraîchir}}
-          </a><a class="btn btn-sm" id="bt_addCron"><i class="fas fa-plus-circle"></i> {{Ajouter}}
-          </a><a class="btn btn-success roundedRight btn-sm" id="bt_save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
+          <button type="button" class="btn btn-sm" id="bt_refreshCron"><i class="fas fa-sync"></i> {{Rafraîchir}}
+          </button><button type="button" class="btn btn-sm" id="bt_addCron"><i class="fas fa-plus-circle"></i> {{Ajouter}}
+          </button><button type="button" class="btn btn-success roundedRight btn-sm" id="bt_save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</button>
         </span>
       </div>
     </div>
@@ -72,7 +72,7 @@ if (!isConnect('admin')) {
       </div>
 
       <div role="tabpanel" class="tab-pane" id="deamon">
-        <a id="bt_refreshDeamon" class="btn btn-sm btn-default pull-right" style="margin-top: 5px;"><i class="fas fa-sync"></i> {{Rafraîchir}}</a>
+        <button type="button" id="bt_refreshDeamon" class="btn btn-sm btn-default pull-right" style="margin-top: 5px;"><i class="fas fa-sync"></i> {{Rafraîchir}}</button>
         <table id="table_deamon" class="ui-table-reflow table table-condensed">
           <thead>
             <tr>

@@ -3,7 +3,6 @@ Theme Core 2019 @Jeedom
 Mobile Dark
 */
 
-@import url("colors.css");
 
 ::-webkit-scrollbar-thumb {
   background: var(--btn-default-color) !important;

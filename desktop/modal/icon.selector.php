@@ -19,6 +19,9 @@ if (!isConnect()) {
   throw new Exception('401 - {{Accès non autorisé}}');
 }
 
+// MDI font loaded on demand (icon selector only)
+echo '<link rel="stylesheet" href="core/css/icon/mdi.css?md5=' . md5_file(__DIR__ . '/../../core/css/icon/mdi.css') . '">';
+
 /*
   Object, widget, etc icon select -> display only icon tree
   Widget replace select -> display icon tree and user image /data/img tree

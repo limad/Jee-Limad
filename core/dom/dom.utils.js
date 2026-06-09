@@ -51,7 +51,7 @@ window.addEventListener('beforeunload', function(event) {
 
 domUtils.DOMReady = function() {
   domUtils.hideLoading()
-  for (var i = 0; i < domUtils.registeredFuncs.length; i++) {
+  for (let i = 0; i < domUtils.registeredFuncs.length; i++) {
     let f = domUtils.registeredFuncs.shift()
     try {
       f.apply(this)
@@ -248,7 +248,7 @@ Element.prototype.jeeValue = function(_value) {
       } else if (this.matches('span, div, p, pre')) {
         this.innerHTML = init(_value)
       } else if (this.matches('button') && this.hasClass('dropdown-toggle')) {
-        var button = this
+        const button = this
         this.closest('div.dropdown').querySelectorAll('ul.dropdown-menu li a').forEach((element) => {
           if (this.getAttribute('data-value') == _value) {
             button.innerHTML(this.innerHTML + '<span class="caret"></span>')
@@ -332,7 +332,7 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
     }
     return
   }
-  var script = document.createElement('script')
+  const script = document.createElement('script')
   script.type = _scripts[_idx].type || "text/javascript"
   Array.prototype.forEach.call(_scripts[_idx].attributes, function(attr) {
     script.setAttribute(attr.nodeName, attr.nodeValue)
@@ -368,9 +368,9 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
 
 //Use new html document to load scripts synch/ordered
 domUtils.DOMparseHTML = function(_htmlString) {
-  var frag = document.createRange().createContextualFragment(_htmlString)
-  var node = null
-  var nodeChilds = []
+  const frag = document.createRange().createContextualFragment(_htmlString)
+  let node = null
+  const nodeChilds = []
   frag.childNodes.forEach(_child => {
     if (!node && _child.tagName != undefined && _child.tagName !== 'SCRIPT') {
       node = _child
@@ -477,7 +477,7 @@ Element.prototype.load = function(_path, _callback) {
 */
 domUtils.handleAjaxError = function(_request, _status, _error, _params) {
   domUtils.hideLoading()
-  var msg = _request + ' : ' + _status + ' /error: ' + _error
+  let msg = _request + ' : ' + _status + ' /error: ' + _error
   if (isset(_params)) {
     msg += ' /async:' + _params.async + ' /type:' + _params.type + ' /dataType:' + _params.dataType
     if (isset(_params.data) && isset(_params.data.action)) {
@@ -545,8 +545,8 @@ domUtils.ajax = function(_params) {
   let isGet = _params.type.toLowerCase() == 'get' ? true : false
   let isJson = _params.dataType.toLowerCase() == 'json' ? true : false
 
-  var sendData = _params.data
-  var postHeaders = new Headers()
+  let sendData = _params.data
+  let postHeaders = new Headers()
   if (isset(_params.data) && isJson && _params.processData === true) {
     sendData = domUtils.getUrlString(_params.data)
     sendData = new URLSearchParams(sendData)
@@ -687,12 +687,12 @@ EventTarget.prototype.registerEvent = function(_type, _listener, _options) {
 }
 
 EventTarget.prototype.unRegisterEvent = function(_type, _id) {
-  var that = this
-  var listeners = domUtils.registeredEvents.filter(function(listener) {
+  const that = this
+  const listeners = domUtils.registeredEvents.filter(function(listener) {
     return ((isset(_type) ? listener.type == _type : true) && (isset(_id) ? listener.id == _id : true) && listener.element == that)
   })
-  for (var listener of listeners) {
-    var result = that.removeEventListener(listener.type, listener.callback, listener.options)
+  for (const listener of listeners) {
+    const result = that.removeEventListener(listener.type, listener.callback, listener.options)
     domUtils.registeredEvents = domUtils.registeredEvents.filter(ev => !listeners.includes(ev))
   }
   return that
@@ -726,8 +726,8 @@ NodeList.prototype.triggerEvent = function(_eventName, _params) {
 
 domUtils.octetsToHumanSize = function(_size) {
   _size = Math.abs(parseInt(_size, 10))
-  var def = [[1, 'octets'], [1024, 'Ko'], [1024 * 1024, 'Mo'], [1024 * 1024 * 1024, 'Go'], [1024 * 1024 * 1024 * 1024, 'To']]
-  for (var i = 0; i < def.length; i++) {
+  const def = [[1, 'octets'], [1024, 'Ko'], [1024 * 1024, 'Mo'], [1024 * 1024 * 1024, 'Go'], [1024 * 1024 * 1024 * 1024, 'To']]
+  for (let i = 0; i < def.length; i++) {
     if (_size < def[i][0]) return (_size / def[i - 1][0]).toFixed(2) + ' ' + def[i - 1][1]
   }
 
@@ -875,8 +875,8 @@ function json_encode(a) {
 }
 
 function isInWindow(_el) {
-  var { top, bottom } = _el.getBoundingClientRect()
-  var vHeight = (window.innerHeight || document.documentElement.clientHeight)
+  const { top, bottom } = _el.getBoundingClientRect()
+  const vHeight = (window.innerHeight || document.documentElement.clientHeight)
   return (
     (top > 0 || bottom > 0) &&
     top < vHeight
@@ -885,7 +885,7 @@ function isInWindow(_el) {
 
 function getBool(val) {
   if (val === undefined) return false
-  var num = +val
+  const num = +val
   return !isNaN(num) ? !!num : !!String(val).toLowerCase().replace(!!0, '')
 }
 

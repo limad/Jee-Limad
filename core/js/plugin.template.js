@@ -291,7 +291,7 @@ if (!jeeFrontEnd.pluginTemplate) {
         }
       })
     },
-    saveEqLogic: function() {
+    saveEqLogic: function(event) {
       jeeFrontEnd.modifyWithoutSave = false
       modifyWithoutSave = false
       const eqLogics = []
@@ -314,7 +314,7 @@ if (!jeeFrontEnd.pluginTemplate) {
         }
       })
       let thisEqType = null
-      if (event.target) {
+      if (event && event.target) {
         thisEqType = event.target.getAttribute('data-eqLogic_type')
       }
       jeedom.eqLogic.save({
@@ -615,7 +615,7 @@ document.registerEvent('keydown', function(event) {
     event.preventDefault()
     const bt = document.querySelector('.eqLogicAction[data-action="save"]')
     if (bt != null && bt.isVisible()) {
-      jeeFrontEnd.pluginTemplate.saveEqLogic()
+      jeeFrontEnd.pluginTemplate.saveEqLogic(event)
     }
   }
 })
@@ -675,7 +675,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.eqLogicAction[data-action="save"]')) {
-    jeeFrontEnd.pluginTemplate.saveEqLogic()
+    jeeFrontEnd.pluginTemplate.saveEqLogic(event)
     return
   }
 

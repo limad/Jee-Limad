@@ -248,3 +248,395 @@ select:-webkit-autofill {
 		left: 0%;
 	}
 }
+
+/* Modern login inspired by Jeedom X */
+body {
+	background-image: linear-gradient(135deg, rgba(17, 24, 39, 0.82), rgba(147, 204, 1, 0.72));
+	min-height: 100vh;
+}
+
+.bodyLogin {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 28px 18px;
+}
+
+.veen {
+	width: min(620px, calc(100vw - 36px));
+	min-height: unset;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	background: rgba(255, 255, 255, 0.96);
+	border: 1px solid rgba(255, 255, 255, 0.72);
+	box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
+	border-radius: 8px;
+	overflow: hidden;
+	backdrop-filter: blur(12px);
+}
+
+.veen > div {
+	display: block;
+	width: 100%;
+	color: #1f2933;
+	text-align: left;
+}
+
+.veen .splits {
+	background: transparent;
+}
+
+.veen .login-btn {
+	padding: 24px 28px 8px;
+}
+
+.veen .login-btn h3 {
+	margin: 0;
+	font-size: 26px;
+	line-height: 1.2;
+	font-weight: 500;
+	color: #1f2933;
+}
+
+.veen .login-btn p {
+	margin: 6px 0 0;
+	font-size: 14px;
+	color: #5b6673;
+}
+
+.veen .rgstr-btn {
+	padding: 0 28px 20px;
+}
+
+.veen .rgstr-btn .img-responsive {
+	display: block;
+	width: 108px;
+	max-width: 38vw;
+	height: auto;
+	margin: 0;
+}
+
+.veen > .wrapper {
+	position: relative;
+	width: 100%;
+	height: auto;
+	min-height: 0 !important;
+	top: 0;
+	left: 0;
+	box-shadow: none;
+	background: transparent;
+	overflow: visible;
+}
+
+.veen .wrapper > .form-group {
+	padding: 0 28px 24px;
+	background: transparent;
+}
+
+.veen .wrapper #login,
+.veen .wrapper #market {
+	padding-top: 0;
+}
+
+.veen .wrapper #register {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	transform: translateX(105%);
+}
+
+.veen .wrapper.move #register {
+	position: relative;
+	transform: translateX(0);
+}
+
+.veen .wrapper.move #login {
+	position: absolute;
+	transform: translateX(-105%);
+}
+
+.veen > .wrapper.move {
+	left: 0;
+}
+
+.veen .wrapper h3 {
+	margin: 0 0 16px;
+	font-size: 24px;
+	font-weight: 500;
+	color: #1f2933;
+}
+
+.veen .wrapper > .form-group > div {
+	margin-bottom: 12px;
+}
+
+.veen .wrapper label {
+	display: block;
+	margin: 0 0 6px;
+	padding: 0;
+	font-size: 13px;
+	font-weight: 500;
+	color: #56616d;
+	background: transparent;
+}
+
+.veen .wrapper input:not([type='checkbox']) {
+	height: 40px;
+	padding: 8px 12px;
+	border: 1px solid #d7dde3;
+	border-radius: 6px;
+	background: #f3f5f7 !important;
+	color: #111827 !important;
+	-webkit-text-fill-color: #111827;
+	font-size: 15px;
+}
+
+.veen .wrapper input:not([type='checkbox']):focus {
+	border-color: #93cc01;
+	box-shadow: 0 0 0 3px rgba(147, 204, 1, 0.16);
+}
+
+.veen .wrapper .input-group input {
+	border-radius: 6px 0 0 6px;
+}
+
+.veen .wrapper .input-group .btn {
+	height: 40px;
+	border-color: #d7dde3;
+	background: #f3f5f7;
+	color: #56616d;
+}
+
+.veen .wrapper .checkbox {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	height: auto;
+	margin-top: 2px;
+}
+
+#cb_storeConnection {
+	position: static !important;
+	margin: 0 !important;
+}
+
+.veen .wrapper .checkbox label {
+	margin: 0;
+	line-height: 18px;
+	white-space: normal;
+}
+
+.veen .wrapper .submit {
+	padding-top: 0 !important;
+	text-align: left;
+}
+
+.veen button,
+.veen button.dark {
+	min-width: 157px;
+	height: 40px;
+	padding: 8px 22px;
+	border: 0;
+	border-radius: 6px;
+	background: #93cc01;
+	color: #fff;
+	box-shadow: 0 10px 26px rgba(147, 204, 1, 0.28);
+}
+
+.veen button:hover,
+.veen button.dark:hover {
+	background: #82b700;
+}
+
+.resetPassword {
+	margin-top: 6px;
+	text-align: left;
+}
+
+.resetPassword a {
+	color: #4d7f00;
+}
+
+.btn_help {
+	right: 28px;
+	bottom: 28px;
+	width: 46px;
+	height: 46px;
+	line-height: 42px;
+	border-radius: 23px !important;
+	color: #4d7f00;
+}
+
+@media (max-width: 767px) {
+	body {
+		overflow: auto;
+	}
+
+	.bodyLogin {
+		align-items: flex-start;
+		padding: 16px;
+	}
+
+	.veen {
+		width: min(560px, 100%);
+		padding: 0;
+		margin: 0 auto;
+	}
+
+	.veen > div,
+	.splits {
+		display: block;
+		float: none;
+		width: 100%;
+	}
+
+	.veen .login-btn,
+	.veen .rgstr-btn,
+	.veen .wrapper > .form-group {
+		padding-left: 24px;
+		padding-right: 24px;
+	}
+
+	.veen .rgstr-btn .img-responsive {
+		width: 96px;
+	}
+}
+
+
+@media (max-width: 767px) {
+	.veen .splits p {
+		display: block;
+	}
+}
+
+/* Login form sizing fixes */
+.veen .wrapper #login,
+.veen .wrapper #market,
+.veen .wrapper #register {
+	max-width: 100%;
+}
+
+.veen .wrapper .mail,
+.veen .wrapper .passwd,
+.veen .wrapper .checkbox,
+.veen .wrapper .submit,
+.veen .wrapper .resetPassword {
+	max-width: 420px;
+}
+
+.veen .wrapper input:not([type='checkbox']) {
+	width: 100%;
+	min-height: 40px;
+	line-height: 22px;
+	box-sizing: border-box;
+}
+
+.veen .wrapper .input-group {
+	display: flex;
+	width: 100%;
+}
+
+.veen .wrapper .input-group input:not([type=checkbox]) {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.veen .wrapper .input-group-btn {
+	display: flex;
+	width: 42px;
+	flex: 0 0 42px;
+}
+
+.veen .wrapper .input-group .btn {
+	width: 42px;
+	min-width: 42px !important;
+	padding: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#cb_storeConnection {
+	appearance: auto;
+	-webkit-appearance: checkbox;
+	width: 16px !important;
+	height: 16px !important;
+	min-width: 16px;
+	flex: 0 0 16px;
+	opacity: 1;
+	accent-color: #93cc01;
+	background: #fff !important;
+}
+
+.veen .wrapper .checkbox label {
+	padding-left: 0;
+	color: #56616d;
+}
+
+@media (max-width: 767px) {
+	.veen .wrapper #login,
+	.veen .wrapper #market,
+	.veen .wrapper #register,
+	.veen .wrapper .mail,
+	.veen .wrapper .passwd,
+	.veen .wrapper .checkbox,
+	.veen .wrapper .submit,
+	.veen .wrapper .resetPassword {
+		max-width: 390px;
+	}
+}
+
+/* Compact login contrast fixes */
+.veen .wrapper input:not([type='checkbox'])::placeholder {
+	color: #64748b;
+	opacity: 1;
+}
+
+.veen .wrapper input:not([type='checkbox']):disabled,
+.veen .wrapper input:not([type='checkbox'])[readonly] {
+	color: #111827 !important;
+	-webkit-text-fill-color: #111827;
+	opacity: 1;
+}
+
+.veen .wrapper .input-group .btn i {
+	color: #6b7280;
+}
+
+/* RESP-01 : renforcement tactile mobile */
+@media (max-width: 767px) {
+	.veen .wrapper input:not([type='checkbox']) {
+		min-height: 44px;
+		font-size: 16px;
+	}
+	.veen .wrapper .input-group .btn {
+		min-height: 44px;
+		min-width: 44px;
+	}
+	.veen button,
+	.veen button.dark {
+		min-height: 44px;
+		font-size: 16px;
+	}
+	#cb_storeConnection {
+		width: 20px !important;
+		height: 20px !important;
+		min-width: 20px;
+		flex: 0 0 20px;
+	}
+	.resetPassword a {
+		display: inline-block;
+		min-height: 32px;
+		line-height: 32px;
+	}
+}
+
+/* RESP-01 : evite que l'animation zoomIn laisse la carte login reduite */
+.bodyLogin .veen.animated.zoomIn {
+	animation: none !important;
+	transform: none !important;
+	opacity: 1 !important;
+}

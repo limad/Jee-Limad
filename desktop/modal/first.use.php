@@ -40,10 +40,16 @@ if (config::byKey('jeedom::firstUse') == 1) {
 	$showButton = true;
 }
 
+$show2faNudge = false;
+if (isConnect('admin') && $_SESSION['user']->getOptions('twoFactorAuthentification', 0) == 0) {
+	$show2faNudge = true;
+}
+
 sendVarToJS([
   'jeephp2js.md_firstuse_pluginJeeEasy' => $pluginJeeEasy,
   'jeephp2js.md_firstuse_showDoc' => $showDoc,
-  'jeephp2js.md_firstuse_showButton' => $showButton
+  'jeephp2js.md_firstuse_showButton' => $showButton,
+  'jeephp2js.md_firstuse_show2faNudge' => $show2faNudge
 ]);
 
 
@@ -101,11 +107,25 @@ sendVarToJS([
 		<a class="badge cursor" href="https://blog.jeedom.com/" target="_blank">Blog</a> |
 		<a class="badge cursor" href="https://community.jeedom.com/" target="_blank">Community</a> |
 		<a class="badge cursor" href="https://market.jeedom.com/" target="_blank">Market</a>
-	</center>
+		</center>
 
-	<div id="divButton" style="display: none;">
-		<br><br>
-		<div class="row">
+		<div id="div2faNudge" style="display: none;">
+			<br><br>
+			<div class="alert alert-warning" style="display:flex;align-items:center;gap:12px;">
+				<i class="fas fa-shield-alt" style="font-size:28px;"></i>
+				<div style="flex:1;text-align:left;">
+					<strong>{{Sécurisez votre compte}}</strong><br>
+					{{Votre compte administrateur n'a pas la double authentification activée. Sur une installation accessible depuis Internet, c'est la protection la plus importante.}}
+				</div>
+				<button type="button" class="btn btn-warning" id="bt_firstUseEnable2fa">
+					<i class="fas fa-lock"></i> {{Activer la 2FA}}
+				</button>
+			</div>
+		</div>
+
+		<div id="divButton" style="display: none;">
+			<br><br>
+			<div class="row">
 			<a class="btn btn-default btn-xs pull-right" id="bt_doNotDisplayFirstUse"><i class="fas fa-eye-slash"></i> {{Ne plus afficher}}</a>
 		</div>
 	</div>
@@ -117,13 +137,17 @@ sendVarToJS([
   		document.querySelector('#md_firstuse #divDoc').seen()
   	}
 
-  	if (jeephp2js.md_firstuse_showButton == "1") {
-  		document.querySelector('#md_firstuse #divButton').seen()
-  	}
+	  	if (jeephp2js.md_firstuse_showButton == "1") {
+	  		document.querySelector('#md_firstuse #divButton').seen()
+	  	}
 
-  	if (jeephp2js.md_firstuse_pluginJeeEasy != "") {
-		jeeDialog.dialog({
-			id: 'md_firstConfig',
+	  	if (jeephp2js.md_firstuse_show2faNudge == "1") {
+	  		document.querySelector('#md_firstuse #div2faNudge').seen()
+	  	}
+
+	  	if (jeephp2js.md_firstuse_pluginJeeEasy != "") {
+			jeeDialog.dialog({
+				id: 'md_firstConfig',
 			title: "{{Configuration de votre}} <?php echo config::byKey('product_name'); ?>",
 			fullScreen: true,
 			onClose: function() {
@@ -133,12 +157,21 @@ sendVarToJS([
 			callback: function() {
 		    	jeeDialog.get('#md_firstConfig', 'title').querySelector('button.btClose').remove()
 		    }
-		})
-	}
+			})
+		}
 
-	document.getElementById('bt_doNotDisplayFirstUse')?.addEventListener('click', function() {
-		jeedom.config.save({
-			configuration: {
+		document.getElementById('bt_firstUseEnable2fa')?.addEventListener('click', function() {
+			jeeDialog.dialog({
+				id: 'md_twoFactorAuth',
+				title: "{{Double authentification}}",
+				contentUrl: 'index.php?v=d&modal=twoFactor.authentification',
+				onClose: function() { jeeDialog.get('#md_twoFactorAuth').destroy() }
+			})
+		})
+
+		document.getElementById('bt_doNotDisplayFirstUse')?.addEventListener('click', function() {
+			jeedom.config.save({
+				configuration: {
 				'jeedom::firstUse': 0
 			},
 			error: function(error) {

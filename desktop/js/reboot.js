@@ -1,7 +1,10 @@
-var rebooti = '0'
-var testjeedom = '0'
-var redirect = 25
-var ip = window.location.protocol + '//' + window.location.hostname
+;(function() {
+  "use strict"
+
+let rebooti = '0'
+let testjeedom = '0'
+let redirect = 25
+let ip = window.location.protocol + '//' + window.location.hostname
 if (window.location.port != '') {
     ip = ip + ':' + window.location.port
   }
@@ -57,7 +60,7 @@ function ping(ip, callback) {
     this.inUse = true
     this.callback = callback
     this.ip = ip
-    var _that = this
+    const _that = this
     this.img = new Image()
     this.img.onload = function () {
         _that.inUse = false
@@ -80,3 +83,4 @@ function ping(ip, callback) {
     }, 1500)
   }
 }
+})()

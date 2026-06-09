@@ -412,18 +412,26 @@ jeedomUtils.setJeedomTheme = function() {
     }
   }
 
+  jeedomUtils.themeStylesheet = function(_theme, _file) {
+    let version = jeeFrontEnd.jeedomVersion
+    if (typeof jeedom.theme.cssVersion != 'undefined' && typeof jeedom.theme.cssVersion[_theme] != 'undefined' && typeof jeedom.theme.cssVersion[_theme][_file] != 'undefined') {
+      version += '.' + jeedom.theme.cssVersion[_theme][_file]
+    }
+    return 'core/themes/' + _theme + '/desktop/' + _file + '.css?v=' + version
+  }
+
   jeedomUtils.switchTheme = function() {
-    var theme = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/' + jeedom.theme.jeedom_theme_alternate + '.css'
-    var themeShadows = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/shadows.css'
+    var theme = jeedomUtils.themeStylesheet(jeedom.theme.jeedom_theme_alternate, jeedom.theme.jeedom_theme_alternate)
+    var themeShadows = jeedomUtils.themeStylesheet(jeedom.theme.jeedom_theme_alternate, 'shadows')
     var themeCook = 'alternate'
     var themeButton = '<i class="fas fa-adjust"></i> {{Thème principal}}'
     var cssTag = document.getElementById('jeedom_theme_currentcss')
     cssTag.setAttribute('data-nochange', 1)
 
-    if (cssTag.attributes.href.value.split('?md5')[0] == theme) {
+    if (cssTag.attributes.href.value == theme) {
       document.body.setAttribute('data-theme', jeedom.theme.jeedom_theme_main)
-      theme = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/' + jeedom.theme.jeedom_theme_main + '.css'
-      themeShadows = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/shadows.css'
+      theme = jeedomUtils.themeStylesheet(jeedom.theme.jeedom_theme_main, jeedom.theme.jeedom_theme_main)
+      themeShadows = jeedomUtils.themeStylesheet(jeedom.theme.jeedom_theme_main, 'shadows')
       themeCook = 'default'
       themeButton = '<i class="fas fa-adjust"></i> {{Thème alternatif}}'
     } else {
@@ -476,7 +484,7 @@ jeedomUtils.checkThemechange = function() {
 
   //Should have themeCss, check currentTheme:
   var theme = jeedom.theme.jeedom_theme_alternate
-  var themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_alternate + '/desktop/' + jeedom.theme.jeedom_theme_alternate + '.css'
+  var themeCss = jeedomUtils.themeStylesheet(jeedom.theme.jeedom_theme_alternate, jeedom.theme.jeedom_theme_alternate)
   var currentTime = parseInt((new Date()).getHours() * 100 + (new Date()).getMinutes())
 
   //if (parseInt(jeedom.theme.theme_start_day_hour.replace(':', '')) < currentTime && parseInt(jeedom.theme.theme_end_day_hour.replace(':', '')) > currentTime) {
@@ -487,31 +495,32 @@ jeedomUtils.checkThemechange = function() {
     || jeedom.theme.theme_changeAccordingTime == 0
   ) {
     theme = jeedom.theme.jeedom_theme_main
-    themeCss = 'core/themes/' + jeedom.theme.jeedom_theme_main + '/desktop/' + jeedom.theme.jeedom_theme_main + '.css'
+    themeCss = jeedomUtils.themeStylesheet(jeedom.theme.jeedom_theme_main, jeedom.theme.jeedom_theme_main)
   }
 
   var currentTheme = document.getElementById('jeedom_theme_currentcss').getAttribute('href')
-  if (currentTheme.indexOf('?md5') != -1) {
-    currentTheme = currentTheme.substring(0, currentTheme.indexOf('?md5'))
-  }
   if (currentTheme != themeCss) {
     document.body.setAttribute('data-theme', theme)
     document.getElementById('jeedom_theme_currentcss').setAttribute('href', themeCss)
-    document.getElementById('shadows_theme_css')?.setAttribute('href', 'core/themes/' + theme + '/desktop/shadows.css')
+    document.getElementById('shadows_theme_css')?.setAttribute('href', jeedomUtils.themeStylesheet(theme, 'shadows'))
     jeedomUtils.setBackgroundImage('')
     jeedomUtils.triggerThemechange()
   }
+}
+
+jeedomUtils.logoSource = function(_key) {
+  let src = jeedom.theme[_key]
+  if (typeof jeedom.theme.logoVersion != 'undefined' && typeof jeedom.theme.logoVersion[_key] != 'undefined') {
+    src += (src.indexOf('?') == -1 ? '?v=' : '&v=') + jeedom.theme.logoVersion[_key]
+  }
+  return src
 }
 
 jeedomUtils.triggerThemechange = function() {
   //set jeedom logo:
   if (document.body.hasAttribute('data-theme')) {
     var currentTheme = document.body.getAttribute('data-theme')
-    if (currentTheme.endsWith('Dark')) {
-      document.getElementById('homeLogoImg')?.setAttribute('src', jeedom.theme.logo_dark)
-    } else {
-      document.getElementById('homeLogoImg')?.setAttribute('src', jeedom.theme.logo_light)
-    }
+    document.getElementById('homeLogoImg')?.setAttribute('src', jeedomUtils.logoSource('logo_dark'))
   }
 
   //trigger event for widgets:
@@ -525,11 +534,18 @@ jeedomUtils.triggerThemechange = function() {
 
   //Switch flatpickr theme:
   var flatpickrDarkCss = document.querySelector('head > link[rel="stylesheet"][href*="3rdparty/flatpickr/flatpickr.dark.css"]')
-  if (currentTheme.endsWith('Dark')) {
-    flatpickrDarkCss.disabled = false
-  } else {
-    flatpickrDarkCss.disabled = true
+  if (flatpickrDarkCss) {
+    flatpickrDarkCss.disabled = !currentTheme.endsWith('Dark')
   }
+}
+
+jeedomUtils.loadFlatpickrCSS = function() {
+  const loaders = [jeedom.loadCSS('3rdparty/flatpickr/flatpickr.min.css')]
+  const theme = document.body.getAttribute('data-theme') || jeedom.theme.currentTheme || ''
+  if (theme.endsWith('Dark')) {
+    loaders.push(jeedom.loadCSS('3rdparty/flatpickr/flatpickr.dark.css'))
+  }
+  return Promise.all(loaders)
 }
 
 jeedomUtils.setBackgroundImage = function(_path) {
@@ -1137,14 +1153,16 @@ jeedomUtils.initDataTables = function(_selector, _paging, _searching,_init) {
   if (!isset(_selector)) _selector = 'body'
   if (!_paging) _paging = false
   if (!_searching) _searching = false
-  document.querySelector(_selector).querySelectorAll('table.dataTable').forEach(_table => {
-    if (_table._dataTable) {
-      _table._dataTable.destroy()
-    } 
-    new DataTable(_table, {
-      columns: _init || [{ select: 0, sort: "asc" }],
-      paging: _paging,
-      searchable: _searching,
+  jeedom.loadCSS('core/dom/Vanilla-DataTables/Vanilla-DataTables.css').then(function() {
+    document.querySelector(_selector).querySelectorAll('table.dataTable').forEach(_table => {
+      if (_table._dataTable) {
+        _table._dataTable.destroy()
+      }
+      new DataTable(_table, {
+        columns: _init || [{ select: 0, sort: "asc" }],
+        paging: _paging,
+        searchable: _searching,
+      })
     })
   })
 }
@@ -1166,7 +1184,7 @@ jeedomUtils.resizableTable = function(table) {
    div.addEventListener('mousedown', function (e) {
     curCol = e.target.parentElement;
     nxtCol = curCol.nextElementSibling;
-    pageX = e.pageX; 
+     pageX = e.pageX;
     var padding = paddingDiff(curCol);
     curColWidth = curCol.offsetWidth - padding;
     if (nxtCol)
@@ -1186,7 +1204,7 @@ jeedomUtils.resizableTable = function(table) {
      curCol.style.width = (curColWidth + diffX)+'px';
     }
    });
-   document.addEventListener('mouseup', function (e) { 
+    document.addEventListener('mouseup', function (e) {
     curCol = undefined;
     nxtCol = undefined;
     pageX = undefined;
@@ -1243,12 +1261,14 @@ jeedomUtils.datePickerInit = function(_format, _selector) {
   if (lang == 'fr') flatpickr.localize(flatpickr.l10ns.fr)
   if (lang == 'es') flatpickr.localize(flatpickr.l10ns.es)
 
-  document.querySelectorAll(_selector).forEach(_input => {
-    flatpickr(_input, {
-      enableTime: _enableTime,
-      dateFormat: _format,
-      time_24hr: true,
-      allowInput: true,
+  jeedomUtils.loadFlatpickrCSS().then(function() {
+    document.querySelectorAll(_selector).forEach(_input => {
+      flatpickr(_input, {
+        enableTime: _enableTime,
+        dateFormat: _format,
+        time_24hr: true,
+        allowInput: true,
+      })
     })
   })
 }
@@ -1260,13 +1280,15 @@ jeedomUtils.dateTimePickerInit = function(_step) {
   if (lang == 'es') flatpickr.localize(flatpickr.l10ns.es)
 
   // .isdatepicker deprecated 4.4
-  document.querySelectorAll('input.in_timepicker, input.isdatepicker').forEach(_input => {
-    flatpickr(_input, {
-      enableTime: true,
-      noCalendar: true,
-      dateFormat: "H:i",
-      time_24hr: true,
-      minuteIncrement: _step
+  jeedomUtils.loadFlatpickrCSS().then(function() {
+    document.querySelectorAll('input.in_timepicker, input.isdatepicker').forEach(_input => {
+      flatpickr(_input, {
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i",
+        time_24hr: true,
+        minuteIncrement: _step
+      })
     })
   })
 }
@@ -1290,8 +1312,9 @@ jeedomUtils.initSpinners = function() {
     })
   }
 
-  document.querySelectorAll('input[type="number"].ispin').forEach(_spin => {
-    var options = {
+  jeedom.loadCSS('3rdparty/isPin/ispin.css').then(function() {
+    document.querySelectorAll('input[type="number"].ispin').forEach(_spin => {
+      var options = {
       wrapperClass: 'ispin-wrapper',
       buttonsClass: 'ispin-button',
       step: _spin.getAttribute('step') != undefined ? parseFloat(_spin.getAttribute('step')) : 1,
@@ -1306,9 +1329,10 @@ jeedomUtils.initSpinners = function() {
     if (_spin.hasClass('roundedLeft')) {
       _spin.closest('.ispin-wrapper').addClass('roundedLeft')
     }
-    if (_spin.hasClass('roundedRight')) {
-      _spin.closest('.ispin-wrapper').addClass('roundedRight')
-    }
+      if (_spin.hasClass('roundedRight')) {
+        _spin.closest('.ispin-wrapper').addClass('roundedRight')
+      }
+    })
   })
 }
 

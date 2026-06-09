@@ -27,7 +27,7 @@ if (!jeeFrontEnd.display) {
       this.tableRemoveHistory = document.getElementById('table_removeHistory')
 
       this.setSortables()
-      var checkContextMenuCallback = function(_el) {
+      const checkContextMenuCallback = function(_el) {
         _el.triggerEvent('change')
       }
       jeedomUtils.setCheckContextMenu(checkContextMenuCallback)
@@ -42,7 +42,7 @@ if (!jeeFrontEnd.display) {
         direction: 'vertical',
         chosenClass: 'dragSelected',
         onEnd: function(event) {
-          var objects = []
+          const objects = []
           document.querySelectorAll('.objectSortable .panel-heading').forEach(_panel => {
             objects.push(_panel.getAttribute('data-id'))
           })
@@ -61,7 +61,7 @@ if (!jeeFrontEnd.display) {
       //Eqlogic object parent:
       let eqLogicContainers = document.querySelectorAll('#accordionObject ul.eqLogicSortable')
       eqLogicContainers.forEach(_Sortcontainer => {
-        var sorty = new Sortable(_Sortcontainer, {
+        const sorty = new Sortable(_Sortcontainer, {
           delay: 50,
           draggable: 'li.eqLogic',
           direction: 'vertical',
@@ -86,14 +86,14 @@ if (!jeeFrontEnd.display) {
           },
           onEnd: function(event) {
             //set new parent and order:
-            var eqLogics = []
-            var object = event.item.closest('.panel')
-            var objectId = object.querySelector('.panel-heading').getAttribute('data-id')
+            const eqLogics = []
+            const object = event.item.closest('.panel')
+            let objectId = object.querySelector('.panel-heading').getAttribute('data-id')
             if (objectId == -1) {
               objectId = null
             }
-            var order = 1
-            var eqLogic
+            let order = 1
+            let eqLogic
             object.querySelectorAll('.eqLogic').forEach(_eq => {
               eqLogic = {}
               eqLogic.object_id = objectId
@@ -118,16 +118,16 @@ if (!jeeFrontEnd.display) {
       //Cmds order:
       let cmdContainers = document.querySelectorAll('#accordionObject ul.cmdSortable')
       cmdContainers.forEach(_Sortcontainer => {
-        var sorty = new Sortable(_Sortcontainer, {
+        const sorty = new Sortable(_Sortcontainer, {
           delay: 50,
           draggable: '.cmd',
           direction: 'vertical',
           chosenClass: 'dragSelected',
           onEnd: function(event) {
-            var cmds = []
-            var eqLogic = event.item.closest('.eqLogic')
-            var order = 1
-            var cmd
+            const cmds = []
+            let eqLogic = event.item.closest('.eqLogic')
+            let order = 1
+            let cmd
             eqLogic.querySelectorAll('.cmd').forEach(_cmd => {
               cmd = {}
               cmd.id = _cmd.getAttribute('data-id')
@@ -152,19 +152,21 @@ if (!jeeFrontEnd.display) {
     setRemoveHistoryTable: function() {
       if (jeeFrontEnd.display.dataTableRmvHist) jeeFrontEnd.display.dataTableRmvHist.destroy()
 
-      jeeFrontEnd.display.dataTableRmvHist = new DataTable(jeeFrontEnd.display.tableRemoveHistory, {
-        columns: [
-          { select: 0, sort: "asc" }
-        ],
-        searchable: true,
-        paging: true,
-        perPage: 30,
-        perPageSelect: [10, 20, 30, 50, 100],
+      jeedom.loadCSS('core/dom/Vanilla-DataTables/Vanilla-DataTables.css').then(function() {
+        jeeFrontEnd.display.dataTableRmvHist = new DataTable(jeeFrontEnd.display.tableRemoveHistory, {
+          columns: [
+            { select: 0, sort: "asc" }
+          ],
+          searchable: true,
+          paging: true,
+          perPage: 30,
+          perPageSelect: [10, 20, 30, 50, 100],
+        })
       })
     },
     setEqActions: function() {
-      var found = false
-      for (var _cb of document.querySelectorAll('.cb_selEqLogic')) {
+      let found = false
+      for (const _cb of document.querySelectorAll('.cb_selEqLogic')) {
         if (_cb.checked) {
           found = true
           break
@@ -194,8 +196,8 @@ jeeFrontEnd.display.init()
 //searching
 document.getElementById('in_search').addEventListener('keyup', function(event) {
   try {
-    var search = event.target.value
-    var searchID = search
+    let search = event.target.value
+    let searchID = search
     if (isNaN(search)) searchID = false
     document.querySelectorAll('.panel-collapse.in').removeClass('in')
     document.querySelectorAll('.panel-collapse').forEach(_panel => { _panel.addClass('in').setAttribute('data-show', 0) })
@@ -215,8 +217,8 @@ document.getElementById('in_search').addEventListener('keyup', function(event) {
       if (search == '*') return
     }
     search = jeedomUtils.normTextLower(search)
-    var eqLogic, eqParent, eqId, cmd, cmdId
-    var eqName, type, category, cmdName
+    let eqLogic, eqParent, eqId, cmd, cmdId
+    let eqName, type, category, cmdName
     document.querySelectorAll('.eqLogic').forEach(_eq => {
       eqParent = _eq.closest('.panel.panel-default')
       if (searchID) {
@@ -285,7 +287,7 @@ document.getElementById('bt_closeAll').addEventListener('click', function(event)
 /*Events delegations
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.cb_selEqLogic')) {
     return
   }
@@ -310,7 +312,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   if (_target = event.target.closest('#bt_removeEqlogic')) {
     jeeDialog.confirm('{{Êtes-vous sûr de vouloir supprimer le(s) équipement(s) sélectionné(s) ?}}', function(result) {
       if (result) {
-        var eqLogics = []
+        const eqLogics = []
         document.querySelectorAll('li.eqLogic.dragSelected').forEach(_sel => {
           eqLogics.push(_sel.getAttribute('data-id'))
         })
@@ -333,13 +335,13 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
   if (_target = event.target.closest('.bt_setIsVisible')) {
     if (jeeP.actionMode == 'eqLogic') {
-      var eqLogics = []
+      const eqLogics = []
       document.querySelectorAll('li.eqLogic.dragSelected').forEach(_sel => {
         eqLogics.push(_sel.getAttribute('data-id'))
       })
       jeedom.eqLogic.setIsVisibles({
         eqLogics: eqLogics,
-        isVisible: event.target.getAttribute('data-value'),
+        isVisible: _target.getAttribute('data-value'),
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
@@ -353,7 +355,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
     }
 
     if (jeeP.actionMode == 'cmd') {
-      var cmds = []
+      const cmds = []
       document.querySelectorAll('.cb_selCmd').forEach(_cb => {
         if (_cb.checked) {
           cmds.push(_cb.closest('.cmd').getAttribute('data-id'))
@@ -361,7 +363,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       })
       jeedom.cmd.setIsVisibles({
         cmds: cmds,
-        isVisible: event.target.getAttribute('data-value'),
+        isVisible: _target.getAttribute('data-value'),
         error: function(error) {
           jeedomUtils.showAlert({
             message: error.message,
@@ -377,13 +379,13 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.bt_setIsEnable')) {
-    var eqLogics = []
+    const eqLogics = []
     document.querySelectorAll('li.eqLogic.dragSelected').forEach(_sel => {
       eqLogics.push(_sel.getAttribute('data-id'))
     })
     jeedom.eqLogic.setIsEnables({
       eqLogics: eqLogics,
-      isEnable: event.target.getAttribute('data-value'),
+      isEnable: _target.getAttribute('data-value'),
       error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,
@@ -449,8 +451,8 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.bt_exportcsv')) {
-    var fullFile = ''
-    var eqParent
+    let fullFile = ''
+    let eqParent
     document.querySelectorAll('.eqLogic').forEach(_eqlogic => {
       eqParent = _eqlogic.closest('.panel.panel-default')
       eqParent = eqParent.querySelector('a.accordion-toggle').textContent
@@ -459,13 +461,16 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
         fullFile += "\t\t" + _cmd.getAttribute('data-id') + ',' + _cmd.getAttribute('data-name') + "\n"
       })
     })
-    _target.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(fullFile)
+    const exportLink = document.createElement('a')
+    exportLink.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(fullFile)
+    exportLink.download = _target.getAttribute('data-download-filename') || 'Jeedom_IDs.csv'
+    exportLink.click()
     return
   }
 
   if (_target = event.target.closest('.eqLogicSortable > li.eqLogic')) {
     if (event.target.closest('ul.cmdSortable')) return
-    var el = _target.querySelector('ul.cmdSortable')
+    const el = _target.querySelector('ul.cmdSortable')
     if (el.isVisible()) {
       el.unseen()
     } else {
@@ -476,7 +481,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 })
 
 document.getElementById('div_pageContainer').addEventListener('change', function(event) {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.cb_selEqLogic')) {
     jeeP.setEqActions()
     return
@@ -492,8 +497,8 @@ document.getElementById('div_pageContainer').addEventListener('change', function
   }
 
   if (_target = event.target.closest('.cb_selCmd')) {
-    var found = false
-    for (var _cb of document.querySelectorAll('.cb_selCmd')) {
+    let found = false
+    for (const _cb of document.querySelectorAll('.cb_selCmd')) {
       if (_cb.checked) {
         found = true
         break

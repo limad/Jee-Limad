@@ -39,8 +39,8 @@ sendVarToJS('jeephp2js.tableList', $tableList);
       <label style="width: 100%;"><i class="fas fa-database"></i> {{Constructeur SQL}}
         <div class="input-group pull-right" style="display:inline-flex; right: -8px;">
           <span class="input-group-btn">
-            <a id="bt_writeDynamicCommand" class="btn btn-info btn-sm roundedLeft"><i class="fas fa-vial"></i> {{Tester}}
-            </a><a id="bt_execDynamicCommand" class="btn btn-warning btn-sm roundedRight"><i class="fas fa-radiation"></i> {{Exécuter}}</a>
+            <button type="button" id="bt_writeDynamicCommand" class="btn btn-info btn-sm roundedLeft"><i class="fas fa-vial"></i> {{Tester}}
+            </button><button type="button" id="bt_execDynamicCommand" class="btn btn-warning btn-sm roundedRight"><i class="fas fa-radiation"></i> {{Exécuter}}</button>
           </span>
         </div>
       </label>
@@ -117,7 +117,7 @@ sendVarToJS('jeephp2js.tableList', $tableList);
       <div class="input-group content">
         <input id="in_specificCommand" class="form-control input-sm" type="text" />
         <div class="input-group-btn">
-          <a id="bt_validateSpecificCommand" class="btn btn-warning btn-sm"><i class="fas fa-radiation"></i> {{Exécuter}} </a>
+          <button type="button" id="bt_validateSpecificCommand" class="btn btn-warning btn-sm"><i class="fas fa-radiation"></i> {{Exécuter}} </button>
         </div>
       </div>
     </div>

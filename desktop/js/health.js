@@ -29,7 +29,7 @@ jeeFrontEnd.health.init()
 /*Events delegations
 */
 document.getElementById('accordionHealth').addEventListener('click', event => {
-  var _target = null
+  let _target = null
   if (_target = event.target.closest('.bt_configurationPlugin')) {
     jeeDialog.dialog({
       id: 'jee_modal',
@@ -59,11 +59,6 @@ document.getElementById('accordionHealth').addEventListener('click', event => {
 
   if (_target = event.target.closest('.panel-title')) {
     _target.querySelector(':scope > a').click()
-    if (typeof(bootbox) === 'undefined') requestAnimationFrame(() => { document.getElementById('health_jeedom').addClass('in') })
-    return
-  }
-
-  if (_target = event.target.closest('.panel-title')) {
     if (typeof(bootbox) === 'undefined') requestAnimationFrame(() => { document.getElementById('health_jeedom').addClass('in') })
     return
   }

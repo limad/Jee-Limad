@@ -170,7 +170,7 @@ jeedom.scenario.getTemplate = function(_params) {
 }
 
 jeedom.scenario.convertToTemplate = function(_params) {
-  const paramsRequired = ['id']
+  const paramsRequired = ['scenario_id']
   const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
@@ -261,22 +261,24 @@ jeedom.scenario.refreshValue = function(_params) {
     return
   }
   const version = sc.getAttribute('data-version')
-  const paramsRequired = ['id']
+  const paramsRequired = ['scenario_id']
   const paramsSpecifics = {
     global: false,
     success: function(result) {
-      let tile
+      let refreshedSc = sc
       try {
-        tile = domUtils.parseHTML(result)
+        const tile = domUtils.parseHTML(result)
         sc.empty().appendChild(tile)
-        sc.querySelector('.scenario-widget').replaceWith(...sc.querySelector('scenario-widget').childNodes)
+        const widget = sc.querySelector('.scenario-widget')
+        if (widget) {
+          sc.replaceWith(widget)
+          refreshedSc = widget
+        }
       } catch (error) {
         console.error(error)
       }
-      tile = domUtils.parseHTML(result)
-      sc.empty().appendChild(result.childNodes)
       if (jeedomUtils.userDevice.type == undefined) {
-        sc.triggerEvent('create')
+        refreshedSc.triggerEvent('create')
         jeedomUtils.setTileSize('.scenario')
       }
     }
@@ -321,7 +323,7 @@ jeedom.scenario.copy = function(_params) {
 }
 
 jeedom.scenario.byId = function(_params) {
-  const paramsRequired = ['id']
+  const paramsRequired = ['scenario_id']
   const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
@@ -340,7 +342,7 @@ jeedom.scenario.byId = function(_params) {
 }
 
 jeedom.scenario.get = function(_params) {
-  const paramsRequired = ['id']
+  const paramsRequired = ['scenario_id']
   const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
@@ -380,7 +382,7 @@ jeedom.scenario.save = function(_params) {
 }
 
 jeedom.scenario.remove = function(_params) {
-  const paramsRequired = ['id']
+  const paramsRequired = ['scenario_id']
   const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
@@ -419,7 +421,7 @@ jeedom.scenario.clearAllLogs = function(_params) {
 }
 
 jeedom.scenario.emptyLog = function(_params) {
-  const paramsRequired = ['id']
+  const paramsRequired = ['scenario_id']
   const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)

@@ -110,10 +110,24 @@ foreach ((plan3dHeader::all()) as $plan3d_menu) {
 global $homeLogoSrc;
 function setTheme() {
 	global $jeedom_theme, $homeLogoSrc;
-	$homeLogoSrc = config::byKey('logo_light');
+	$homeLogoSrc = config::byKey('logo_dark');
 	$dataNoChange = false;
-	$themeCss = '<link id="jeedom_theme_currentcss" href="core/themes/core2019_Light/desktop/core2019_Light.css?md5=' . md5(__DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css') . '" rel="stylesheet">';
-	$themeJs = 'core2019_Light/desktop/core2019_Light';
+	$jeedom_theme['logoVersion'] = [];
+	foreach (['logo_dark', 'logo_light'] as $logoKey) {
+		$logoPath = $jeedom_theme[$logoKey] ?? config::byKey($logoKey);
+		$logoAbsPath = __DIR__ . '/../../' . $logoPath;
+		if ($logoPath != '' && file_exists($logoAbsPath)) $jeedom_theme['logoVersion'][$logoKey] = filemtime($logoAbsPath);
+	}
+	$defaultThemeAbsPath = __DIR__ . '/../../core/themes/core2019_Light/desktop/core2019_Light.css';
+	$defaultThemeVersion = jeedom::version() . (file_exists($defaultThemeAbsPath) ? '.' . filemtime($defaultThemeAbsPath) : '');
+	$themeCss = '<link id="jeedom_theme_currentcss" href="core/themes/core2019_Light/desktop/core2019_Light.css?v=' . $defaultThemeVersion . '" rel="stylesheet">';
+	$jeedom_theme['cssVersion'] = [];
+	foreach (['jeedom_theme_main', 'jeedom_theme_alternate'] as $themeKey) {
+		$themeName = $jeedom_theme[$themeKey] ?? '';
+		$themePath = __DIR__ . '/../../core/themes/' . $themeName . '/desktop/';
+		if ($themeName != '' && file_exists($themePath . $themeName . '.css')) $jeedom_theme['cssVersion'][$themeName][$themeName] = filemtime($themePath . $themeName . '.css');
+		if ($themeName != '' && file_exists($themePath . 'shadows.css')) $jeedom_theme['cssVersion'][$themeName]['shadows'] = filemtime($themePath . 'shadows.css');
+	}
 
 	$themeDefinition = $jeedom_theme['current_desktop_theme'];
 	if (isset($_COOKIE['currentTheme'])) {
@@ -126,20 +140,27 @@ function setTheme() {
 		}
 	}
 	if (init('rescue', 0) == 0) {
-		if (is_dir(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop') && file_exists(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css')) {
-			$themeCss = '<link id="jeedom_theme_currentcss" href="core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css?md5=' . md5(__DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css') . '" rel="stylesheet">';
+		$themeAbsPath = __DIR__ . "/../../core/themes/{$themeDefinition}/desktop/{$themeDefinition}.css";
+		if (file_exists($themeAbsPath)) {
+			$themeVersion = jeedom::version() . '.' . filemtime($themeAbsPath);
+			$themeCss = '<link id="jeedom_theme_currentcss" href="core/themes/' . $themeDefinition . '/desktop/' . $themeDefinition . '.css?v=' . $themeVersion . '" rel="stylesheet">';
 			if ($dataNoChange) $themeCss = str_replace('rel="stylesheet"', 'rel="stylesheet" data-nochange="1"', $themeCss);
 		}
 	}
 	$jeedom_theme['currentTheme'] = $themeDefinition;
-	if (substr($themeDefinition, -5) == '_Dark') {
-		$homeLogoSrc = config::byKey('logo_dark');
+	$homeLogoKey = 'logo_dark';
+	if (isset($jeedom_theme['logoVersion'][$homeLogoKey])) $homeLogoSrc .= (strpos($homeLogoSrc, '?') === false ? '?v=' : '&v=') . $jeedom_theme['logoVersion'][$homeLogoKey];
+	$colorsAbsPath = __DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/colors.css';
+	if (file_exists($colorsAbsPath)) {
+		echo '<style id="jeedom_theme_colors">';
+		echo file_get_contents($colorsAbsPath);
+		echo '</style>';
 	}
 	echo $themeCss;
 	if (!isset($jeedom_theme['interface::advance::enable']) || !isset($jeedom_theme['widget::shadow']) || $jeedom_theme['interface::advance::enable'] == 0 || $jeedom_theme['widget::shadow'] == 0) {
-		$shdPath = __DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/shadows.css';
-		if (file_exists($shdPath)) {
-			echo '<link id="shadows_theme_css" href="core/themes/' . $themeDefinition . '/desktop/shadows.css" rel="stylesheet">';
+		$shadowsAbsPath = __DIR__ . "/../../core/themes/{$themeDefinition}/desktop/shadows.css";
+		if (file_exists($shadowsAbsPath)) {
+			echo '<link id="shadows_theme_css" href="core/themes/' . $themeDefinition . '/desktop/shadows.css?v=' . jeedom::version() . '.' . filemtime($shadowsAbsPath) . '" rel="stylesheet">';
 		}
 	}
 }
@@ -166,8 +187,8 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 	include_file('coreDOM', 'dom.utils', 'js');
 	include_file('coreDOM', 'dom.ui', 'js');
 	include_file('core', 'icon.inc', 'php');
-	include_file('3rdparty', 'roboto/roboto', 'css');
-	include_file('3rdparty', 'camingocode/camingocode', 'css');
+	echo '<link rel="preload" href="3rdparty/font-awesome5/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>';
+	echo '<link rel="preload" href="3rdparty/font-awesome5/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>';
 	include_file('3rdparty', 'text-security/text-security-disc', 'css');
 
 	if ($loadJquery) include_file('3rdparty', 'jquery/jquery.min', 'js');
@@ -226,46 +247,35 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 	include_file('3rdparty', 'packery/packery.pkgd', 'js');
 	include_file('3rdparty', 'packery/draggabilly.pkgd', 'js');
 
-	include_file('3rdparty', 'codemirror/lib/codemirror', 'js');
-	include_file('3rdparty', 'codemirror/lib/codemirror', 'css');
-	include_file('3rdparty', 'codemirror/addon/edit/matchbrackets', 'js');
-	include_file('3rdparty', 'codemirror/mode/htmlmixed/htmlmixed', 'js');
-	include_file('3rdparty', 'codemirror/mode/clike/clike', 'js');
-	include_file('3rdparty', 'codemirror/mode/php/php', 'js');
-	include_file('3rdparty', 'codemirror/mode/xml/xml', 'js');
-	include_file('3rdparty', 'codemirror/mode/javascript/javascript', 'js');
-	include_file('3rdparty', 'codemirror/mode/css/css', 'js');
-	include_file('3rdparty', 'codemirror/mode/python/python', 'js');
 
 	include_file('3rdparty', 'highstock/highstock', 'js');
 	include_file('3rdparty', 'highstock/highcharts-more', 'js');
 	//include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
 	include_file('3rdparty', 'highstock/modules/exporting', 'js');
+	include_file('3rdparty', 'highstock/modules/accessibility', 'js');
 	//include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
 	//include_file('3rdparty', 'highstock/modules/export-data', 'js');
 
 	include_file('3rdparty', 'nouislider/nouislider', 'js');
-	include_file('3rdparty', 'nouislider/nouislider', 'css');
+	// noUiSlider stays global: dashboard widgets and shared UI helpers can instantiate sliders during initial render.
+	include_file('3rdparty', 'nouislider/nouislider.min', 'css');
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
 	include_file('3rdparty', 'moment/moment-with-locales.min', 'js');
 
 	//New $less libs
 	include_file('coreDOM', 'jeeCron/jeeCron', 'js');
-	include_file('coreDOM', 'Vanilla-DataTables/Vanilla-DataTables', 'css');
 	include_file('coreDOM', 'Vanilla-DataTables/Vanilla-DataTables', 'js');
-	include_file('3rdparty', 'isPin/ispin', 'css');
 	include_file('3rdparty', 'isPin/ispin', 'js');
 	include_file('3rdparty', 'sortable/sortable', 'js');
 	include_file('3rdparty', 'popper/popper.min', 'js');
 	include_file('3rdparty', 'tippy/tippy.min', 'js');
-	include_file('3rdparty', 'flatpickr/flatpickr.min', 'css');
-	include_file('3rdparty', 'flatpickr/flatpickr.dark', 'css');
 	include_file('3rdparty', 'flatpickr/flatpickr.min', 'js');
 	include_file('3rdparty', 'flatpickr/l10n/fr', 'js');
 	include_file('3rdparty', 'flatpickr/l10n/es', 'js');
 
 	//set theme before loading utils:
 	include_file('desktop', 'coreWidgets', 'css');
+	include_file('desktop', 'dom.ui', 'css');
 	include_file('desktop', 'desktop.main', 'css');
 	setTheme();
 	sendVarToJS([
@@ -290,7 +300,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 	<script src="3rdparty/snap.svg/snap.svg-min.js"></script>
 </head>
 
-<body data-uimode="desktop">
+<body data-uimode="desktop" data-theme="<?php echo htmlspecialchars($jeedom_theme['currentTheme'] ?? 'core2019_Light') ?>">
 	<div id="backgroundforJeedom">
 		<div id="top"></div>
 		<div id="bottom"></div>
@@ -618,7 +628,7 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand" href="<?php echo $homeLink; ?>">
-							<img src="core/img/logo-jeedom-grand-nom-couleur.svg" height="30" style="position: relative; top:-5px;" />
+							<img src="core/img/logo-jeedom_Dark.png" height="30" style="position: relative; top:-5px;" />
 						</a>
 						<button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="sr-only">{{Toggle navigation}}</span>

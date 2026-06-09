@@ -65,6 +65,15 @@ function initEquipment(_object_id) {
       li += '</ul>'
       jeedomUtils.loadPanel(li)
       jeedom.object.summaryUpdate(summaries)
+      if (isset(_object_id)) {
+        if (summary != '') {
+          displayObjectsBySummary(objectsAll, summary)
+        } else {
+          displayEqsByObject(objects_info, _object_id, summary)
+        }
+      } else {
+        $('#bottompanel').panel('open')
+      }
     }
   })
 
@@ -75,13 +84,6 @@ function initEquipment(_object_id) {
         jeedomUtils.setBackgroundImage(_path)
       }
     })
-    if (summary != '') {
-      displayObjectsBySummary(objectsAll, summary)
-    } else {
-      displayEqsByObject(objects_info, _object_id, summary)
-    }
-  } else {
-    $('#bottompanel').panel('open')
   }
 
   $('body').on('orientationChanged', function(event, _orientation) {

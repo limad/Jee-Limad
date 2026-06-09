@@ -55,15 +55,16 @@ jeedom.cmd.execute = function(_params) {
     return
   }
   const notify = _params.notify ?? true
-  const eqLogic = notify
-    ? document.querySelector('.cmd[data-cmd_id="' + _params.id + '"]')?.closest('div.eqLogic-widget')
-    : null
+  let eqLogic = null
+  if (notify) {
+    eqLogic = document.querySelector('.cmd[data-cmd_id="' + _params.id + '"]')?.closest('div.eqLogic-widget') ?? null
   if (eqLogic) jeedom.cmd.notifyEq(eqLogic, false)
+}
   if (_params.value != 'undefined' && (is_array(_params.value) || is_object(_params.value))) {
     _params.value = JSON.stringify(_params.value)
   }
-  const paramsRequired =['id']
-  const paramsSpecifics ={
+  const paramsRequired = ['id']
+  const paramsSpecifics = {
     global: false,
     pre_success: function(data) {
       if (data.state != 'ok') {
@@ -205,8 +206,8 @@ jeedom.cmd.execute = function(_params) {
 }
 
 jeedom.cmd.test = function(_params) {
-  const paramsRequired =['id']
-  const paramsSpecifics ={
+  const paramsRequired = ['id']
+  const paramsSpecifics = {
     global: false,
     success: function(result) {
       switch (result.type) {
@@ -482,8 +483,8 @@ jeedom.cmd.resetUpdateFunction = function() {
 }
 
 jeedom.cmd.getWidgetHelp = function(_params) {
-  const paramsRequired =['id', 'version']
-  const paramsSpecifics ={}
+  const paramsRequired = ['id', 'version']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -503,8 +504,8 @@ jeedom.cmd.getWidgetHelp = function(_params) {
 }
 
 jeedom.cmd.toHtml = function(_params) {
-  const paramsRequired =['id', 'version']
-  const paramsSpecifics ={}
+  const paramsRequired = ['id', 'version']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -523,8 +524,8 @@ jeedom.cmd.toHtml = function(_params) {
 }
 
 jeedom.cmd.replaceCmd = function(_params) {
-  const paramsRequired =['source_id', 'target_id']
-  const paramsSpecifics ={}
+  const paramsRequired = ['source_id', 'target_id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -543,8 +544,8 @@ jeedom.cmd.replaceCmd = function(_params) {
 }
 
 jeedom.cmd.save = function(_params) {
-  const paramsRequired =['cmd']
-  const paramsSpecifics ={
+  const paramsRequired = ['cmd']
+  const paramsSpecifics = {
     pre_success: function(data) {
       if (isset(jeedom.cmd.cache.byId[data.result.id])) {
         delete jeedom.cmd.cache.byId[data.result.id]
@@ -572,8 +573,8 @@ jeedom.cmd.save = function(_params) {
 }
 
 jeedom.cmd.setIsVisibles = function(_params) {
-  const paramsRequired =['cmds', 'isVisible']
-  const paramsSpecifics ={}
+  const paramsRequired = ['cmds', 'isVisible']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -592,8 +593,8 @@ jeedom.cmd.setIsVisibles = function(_params) {
 }
 
 jeedom.cmd.multiSave = function(_params) {
-  const paramsRequired =['cmds']
-  const paramsSpecifics ={
+  const paramsRequired = ['cmds']
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.cmd.cache.byId = []
       return data
@@ -616,8 +617,8 @@ jeedom.cmd.multiSave = function(_params) {
 }
 
 jeedom.cmd.byId = function(_params) {
-  const paramsRequired =['id']
-  const paramsSpecifics ={
+  const paramsRequired = ['id']
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.cmd.cache.byId[data.result.id] = data.result
       return data
@@ -644,8 +645,8 @@ jeedom.cmd.byId = function(_params) {
 }
 
 jeedom.cmd.getHumanCmdName = function(_params) {
-  const paramsRequired =['id']
-  const paramsSpecifics ={
+  const paramsRequired = ['id']
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.cmd.cache.byId[data.result.id] = data.result
       return data
@@ -672,8 +673,8 @@ jeedom.cmd.getHumanCmdName = function(_params) {
 }
 
 jeedom.cmd.byHumanName = function(_params) {
-  const paramsRequired =['humanName']
-  const paramsSpecifics ={
+  const paramsRequired = ['humanName']
+  const paramsSpecifics = {
     pre_success: function(data) {
       jeedom.cmd.cache.byHumanName[data.result.humanName] = data.result
       return data
@@ -700,8 +701,8 @@ jeedom.cmd.byHumanName = function(_params) {
 }
 
 jeedom.cmd.usedBy = function(_params) {
-  const paramsRequired =['id']
-  const paramsSpecifics ={}
+  const paramsRequired = ['id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -719,8 +720,8 @@ jeedom.cmd.usedBy = function(_params) {
 }
 
 jeedom.cmd.dropInflux = function(_params) {
-  const paramsRequired =['cmd_id']
-  const paramsSpecifics ={}
+  const paramsRequired = ['cmd_id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -738,8 +739,8 @@ jeedom.cmd.dropInflux = function(_params) {
 }
 
 jeedom.cmd.historyInflux = function(_params) {
-  const paramsRequired =['cmd_id']
-  const paramsSpecifics ={}
+  const paramsRequired = ['cmd_id']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -757,8 +758,8 @@ jeedom.cmd.historyInflux = function(_params) {
 }
 
 jeedom.cmd.dropDatabaseInflux = function(_params) {
-  const paramsRequired =[]
-  const paramsSpecifics ={}
+  const paramsRequired = []
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -775,8 +776,8 @@ jeedom.cmd.dropDatabaseInflux = function(_params) {
 }
 
 jeedom.cmd.historyInfluxAll = function(_params) {
-  const paramsRequired =[]
-  const paramsSpecifics ={}
+  const paramsRequired = []
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -1080,8 +1081,8 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
 }
 
 jeedom.cmd.displayActionsOption = function(_params) {
-  const paramsRequired =['params']
-  const paramsSpecifics ={}
+  const paramsRequired = ['params']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -1141,8 +1142,8 @@ jeedom.cmd.normalizeName = function(_tagname) {
 }
 
 jeedom.cmd.setOrder = function(_params) {
-  const paramsRequired =['cmds']
-  const paramsSpecifics ={}
+  const paramsRequired = ['cmds']
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {
@@ -1160,8 +1161,8 @@ jeedom.cmd.setOrder = function(_params) {
 }
 
 jeedom.cmd.getDeadCmd = function(_params) {
-  const paramsRequired =[]
-  const paramsSpecifics ={}
+  const paramsRequired = []
+  const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
   } catch (e) {

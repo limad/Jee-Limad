@@ -1,0 +1,3 @@
+/* Theme coreX_Light @Jeedom - Modern Light - Mobile shadows */
+.shadowed, .eqLogic-widget, .scenario-widget { box-shadow: 0 1px 4px rgba(15,23,42,0.1); transition: box-shadow 0.3s ease; }
+.shadowed:hover, .eqLogic-widget:hover, .scenario-widget:hover { box-shadow: 0 6px 16px rgba(15,23,42,0.12), 0 0 0 1px rgba(99,102,241,0.2); }

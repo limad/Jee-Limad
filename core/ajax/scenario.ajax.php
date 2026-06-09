@@ -89,11 +89,12 @@ try {
 	if (init('action') == 'testExpression') {
 		$return = array();
 		$scenario = null;
-		$expr = jeedom::fromHumanReadable(init('expression'));
+		$expression = trim(init('expression'));
+		$expr = jeedom::fromHumanReadable($expression);
 		$return['evaluate'] = scenarioExpression::setTags($expr, $scenario, true);
 		$return['result'] = evaluate($return['evaluate']);
 		$return['correct'] = 'ok';
-		if (trim($return['result']) == trim($return['evaluate'])) {
+		if (!is_numeric($expression) && trim($return['result']) == $expression) {
 			$return['correct'] = 'nok';
 		}
 		ajax::success($return);
@@ -115,7 +116,7 @@ try {
 		if (trim(init('template')) == '' || trim(init('template')) == '.json') {
 			throw new Exception(__('Le nom du template ne peut être vide', __FILE__) . ' ');
 		}
-		$name = init('template');
+		$name = basename(init('template'));
 		file_put_contents($path . '/' . $name, json_encode($scenario->export('array'), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 		if (!file_exists($path . '/' . $name)) {
 			throw new Exception(__('Impossible de créer le template, vérifiez les droits :', __FILE__) . ' ' . $path . '/' . $name);
@@ -126,19 +127,21 @@ try {
 	if (init('action') == 'removeTemplate') {
 		unautorizedInDemo();
 		$path = __DIR__ . '/../../data/scenario';
-		if (file_exists($path . '/' . init('template'))) {
-			unlink($path . '/' . init('template'));
+		$_template = basename(init('template'));
+		if (file_exists($path . '/' . $_template)) {
+			unlink($path . '/' . $_template);
 		}
 		ajax::success();
 	}
 
 	if (init('action') == 'loadTemplateDiff') {
 		$path = __DIR__ . '/../../data/scenario';
-		if (!file_exists($path . '/' . init('template'))) {
-			throw new Exception(__('Fichier non trouvé :', __FILE__) . ' ' . $path . '/' . init('template'));
+		$_template = basename(init('template'));
+		if (!file_exists($path . '/' . $_template)) {
+			throw new Exception(__('Fichier non trouvé :', __FILE__) . ' ' . $path . '/' . $_template);
 		}
 		$return = array();
-		$fileContent = file_get_contents($path . '/' . init('template'));
+		$fileContent = file_get_contents($path . '/' . $_template);
 		$fileLines = preg_split("/((\r?\n)|(\r\n?))/", $fileContent);
 		foreach ($fileLines as $line) {
 			preg_match_all("/#\[(.*?)\]\[(.*?)\]\[(.*?)\]#/", $line, $matches, PREG_SET_ORDER);
@@ -183,16 +186,21 @@ try {
 	if (init('action') == 'applyTemplate') {
 		unautorizedInDemo();
 		$path = __DIR__ . '/../../data/scenario';
-		if (!file_exists($path . '/' . init('template'))) {
-			throw new Exception(__('Fichier non trouvé :', __FILE__) . ' ' . $path . '/' . init('template'));
+		$_template = basename(init('template'));
+		if (!file_exists($path . '/' . $_template)) {
+			throw new Exception(__('Fichier non trouvé :', __FILE__) . ' ' . $path . '/' . $_template);
 		}
-		foreach (json_decode(init('convert'), true) as $value) {
+		$converts_ajax = json_decode(init('convert'), true);
+		if (!is_array($converts_ajax)) {
+			throw new Exception(__('Conversion invalide', __FILE__));
+		}
+		foreach ($converts_ajax as $value) {
 			if (trim($value['end']) == '') {
 				throw new Exception(__('La conversion suivante ne peut être vide :', __FILE__) . ' ' . $value['begin']);
 			}
 			$converts[$value['begin']] = $value['end'];
 		}
-		$content = str_replace(array_keys($converts), $converts, file_get_contents($path . '/' . init('template')));
+		$content = str_replace(array_keys($converts), $converts, file_get_contents($path . '/' . $_template));
 		$scenario_ajax = json_decode($content, true);
 		$scenario_ajax['order'] = 9999;
 		if (isset($scenario_ajax['name'])) {
