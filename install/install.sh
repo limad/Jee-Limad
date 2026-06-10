@@ -368,12 +368,23 @@ step_11_jeedom_post() {
     fi
   fi
   usermod -a -G dialout,tty www-data
-  if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -eq 0 ];then
-    echo "www-data ALL=(ALL) NOPASSWD: ALL" | (EDITOR="tee -a" visudo)
-    if [ $? -ne 0 ]; then
-      echo "${RED}Cannot allow Sudo for Jeedom - Cancelling${NORMAL}"
+  # Sudo www-data : allowlist au lieu de "NOPASSWD: ALL" (cf install/sudoers.jeedom).
+  # Nettoie l'ancienne ligne globale si présente (upgrade d'une install historique).
+  if [ $(grep "www-data ALL=(ALL) NOPASSWD: ALL" /etc/sudoers | wc -l) -ne 0 ]; then
+    sed -i '/^www-data ALL=(ALL) NOPASSWD: ALL$/d' /etc/sudoers
+  fi
+  if [ -f ${WEBSERVER_HOME}/install/sudoers.jeedom ]; then
+    install -m 0440 -o root -g root ${WEBSERVER_HOME}/install/sudoers.jeedom /etc/sudoers.d/jeedom.tmp
+    if visudo -cf /etc/sudoers.d/jeedom.tmp >/dev/null 2>&1; then
+      mv /etc/sudoers.d/jeedom.tmp /etc/sudoers.d/jeedom
+    else
+      rm -f /etc/sudoers.d/jeedom.tmp
+      echo "${RED}Sudoers allowlist invalide - Cancelling${NORMAL}"
       exit 1
     fi
+  else
+    echo "${RED}install/sudoers.jeedom manquant - Cancelling${NORMAL}"
+    exit 1
   fi
   if [ $(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }') -gt 600000 ]; then
     if [ $(cat /etc/fstab | grep /tmp/jeedom | grep tmpfs | wc -l) -eq 0 ];then

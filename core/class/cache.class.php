@@ -365,7 +365,18 @@ class FileCache {
 	}
 
 	public static function save($_cache) {
-		file_put_contents(jeedom::getTmpFolder('cache') . '/' . base64_encode($_cache->getKey()), serialize($_cache));
+		// WHY: écriture atomique (temp + rename) pour éviter qu'un lecteur concurrent
+		// (cron + requête web sur la même clé) lise un fichier tronqué/entrelacé que
+		// unserialize() rejetterait ensuite.
+		$dir = jeedom::getTmpFolder('cache');
+		$file = $dir . '/' . base64_encode($_cache->getKey());
+		$tmp = $file . '.' . getmypid() . '.tmp';
+		if (file_put_contents($tmp, serialize($_cache), LOCK_EX) === false) {
+			return;
+		}
+		if (!@rename($tmp, $file)) {
+			@unlink($tmp);
+		}
 	}
 
 	public static function persist() {

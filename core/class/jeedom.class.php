@@ -1682,6 +1682,16 @@ class jeedom {
 		$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . __DIR__ . '/../../*;';
 		$cmd .= system::getCmdSudo() . 'find ' . __DIR__ . '/../../log -type f -exec chmod 665 {} +;';
 		$cmd .= system::getCmdSudo() . 'chmod 775 -R ' . __DIR__ . '/../../.* ;';
+		// WHY: le chmod 775 -R ci-dessus rend les secrets lisibles par "other".
+		// On les re-durcit ici (auto-réparé à chaque passage). www-data reste owner.
+		$_config = __DIR__ . '/../../core/config/common.config.php';
+		if (file_exists($_config)) {
+			$cmd .= system::getCmdSudo() . 'chmod 640 ' . $_config . ';';
+		}
+		$_key = __DIR__ . '/../../data/jeedom_encryption.key';
+		if (file_exists($_key)) {
+			$cmd .= system::getCmdSudo() . 'chmod 600 ' . $_key . ';';
+		}
 		exec($cmd);
 	}
 

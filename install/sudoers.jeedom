@@ -1,0 +1,89 @@
+# Jeedom core — allowlist sudo pour www-data
+# Déployé par install.sh dans /etc/sudoers.d/jeedom (remplace "NOPASSWD: ALL").
+#
+# POSTURE DE SÉCURITÉ — À LIRE :
+#   Cette allowlist réduit l'usage sudo de www-data au strict nécessaire au
+#   fonctionnement du core ET à l'installation des dépendances des plugins
+#   (apt, pip, npm, python3 doivent rester pour ne pas casser les plugins).
+#
+#   ⚠️  Ce N'EST PAS une frontière de privilège étanche. Plusieurs entrées
+#   nécessaires aux plugins (python3, pip, npm, apt) permettent en pratique
+#   une escalade vers root. Considérez www-data comme root-équivalent.
+#
+#   La vraie barrière de sécurité est donc le RÉSEAU et la CONFIANCE PLUGINS :
+#     - ne pas exposer la box en WAN sans reverse-proxy + firewall (cf.
+#       docs/SECURITY-HARDENING.md) ;
+#     - n'installer que des plugins de confiance (market officiel).
+#
+#   Intérêt vs "NOPASSWD: ALL" : supprime les abus les plus triviaux, documente
+#   l'intention, et facilite un durcissement ultérieur par déploiement.
+
+# --- Health checks / lectures ciblées ---
+www-data ALL=(ALL) NOPASSWD: /usr/bin/dmesg
+www-data ALL=(ALL) NOPASSWD: /usr/bin/cat /proc/sys/vm/swappiness
+www-data ALL=(ALL) NOPASSWD: /usr/bin/df
+www-data ALL=(ALL) NOPASSWD: /usr/sbin/blkid
+www-data ALL=(ALL) NOPASSWD: /usr/bin/ls
+www-data ALL=(ALL) NOPASSWD: /usr/bin/stat
+
+# --- Services / système ---
+www-data ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart apache2
+www-data ALL=(ALL) NOPASSWD: /usr/sbin/service ntp start
+www-data ALL=(ALL) NOPASSWD: /usr/sbin/service ntp stop
+www-data ALL=(ALL) NOPASSWD: /usr/sbin/service networking restart
+www-data ALL=(ALL) NOPASSWD: /usr/sbin/ntpdate *
+www-data ALL=(ALL) NOPASSWD: /usr/sbin/shutdown -fh now
+www-data ALL=(ALL) NOPASSWD: /usr/sbin/shutdown -fr now
+
+# --- Système fichiers Jeedom / maintenance ---
+www-data ALL=(ALL) NOPASSWD: /usr/bin/chmod
+www-data ALL=(ALL) NOPASSWD: /usr/bin/chown
+www-data ALL=(ALL) NOPASSWD: /usr/bin/mkdir
+www-data ALL=(ALL) NOPASSWD: /usr/bin/cp
+www-data ALL=(ALL) NOPASSWD: /usr/bin/mv
+www-data ALL=(ALL) NOPASSWD: /usr/bin/tee /etc/jeedom_board
+www-data ALL=(ALL) NOPASSWD: /usr/bin/truncate
+www-data ALL=(ALL) NOPASSWD: /usr/bin/find
+www-data ALL=(ALL) NOPASSWD: /usr/bin/tar
+www-data ALL=(ALL) NOPASSWD: /usr/bin/rm /tmp/jeedom*
+www-data ALL=(ALL) NOPASSWD: /usr/bin/rm -rf /tmp/jeedom*
+www-data ALL=(ALL) NOPASSWD: /usr/bin/rm /var/lib/apt/lists/lock
+www-data ALL=(ALL) NOPASSWD: /usr/bin/rm /var/cache/apt/archives/lock
+www-data ALL=(ALL) NOPASSWD: /usr/bin/rm /var/lib/dpkg/lock*
+www-data ALL=(ALL) NOPASSWD: /usr/bin/rm -rf /var/www/html/plugins/*/doc
+www-data ALL=(ALL) NOPASSWD: /usr/bin/rm -rf /var/www/html/plugins/*/docs
+
+# --- USB / montage ---
+www-data ALL=(ALL) NOPASSWD: /usr/bin/mount
+www-data ALL=(ALL) NOPASSWD: /usr/bin/umount
+
+# --- Paquets / dépendances core et plugins (NÉCESSAIRES — escaladables) ---
+www-data ALL=(ALL) NOPASSWD: /usr/bin/dpkg --configure -a --force-confdef
+www-data ALL=(ALL) NOPASSWD: /usr/bin/apt-get
+www-data ALL=(ALL) NOPASSWD: /usr/bin/apt
+www-data ALL=(ALL) NOPASSWD: /usr/bin/pip
+www-data ALL=(ALL) NOPASSWD: /usr/bin/pip3
+www-data ALL=(ALL) NOPASSWD: /usr/bin/python3
+www-data ALL=(ALL) NOPASSWD: /usr/bin/npm
+www-data ALL=(ALL) NOPASSWD: /usr/local/bin/composer
+
+# --- Process / réseau ---
+www-data ALL=(ALL) NOPASSWD: /usr/bin/kill
+www-data ALL=(ALL) NOPASSWD: /bin/kill
+www-data ALL=(ALL) NOPASSWD: /usr/bin/killall
+www-data ALL=(ALL) NOPASSWD: /usr/bin/fuser
+www-data ALL=(ALL) NOPASSWD: /usr/sbin/ip
+www-data ALL=(ALL) NOPASSWD: /usr/bin/ping
+
+# --- Scripts Jeedom contrôlés (plugins / resources — escaladables) ---
+www-data ALL=(ALL) NOPASSWD: /bin/bash /tmp/jeedom*
+www-data ALL=(ALL) NOPASSWD: /bin/bash /tmp/jeedom/*
+www-data ALL=(ALL) NOPASSWD: /usr/bin/bash /tmp/jeedom*
+www-data ALL=(ALL) NOPASSWD: /usr/bin/bash /tmp/jeedom/*
+www-data ALL=(ALL) NOPASSWD: /bin/bash /var/www/html/resources/*
+www-data ALL=(ALL) NOPASSWD: /usr/bin/bash /var/www/html/resources/*
+www-data ALL=(ALL) NOPASSWD: /bin/bash /var/www/html/plugins/*
+www-data ALL=(ALL) NOPASSWD: /usr/bin/bash /var/www/html/plugins/*
+www-data ALL=(ALL) NOPASSWD: /var/www/html/resources/*
+www-data ALL=(ALL) NOPASSWD: /var/www/html/plugins/*
+www-data ALL=(ALL) NOPASSWD: /usr/bin/at
