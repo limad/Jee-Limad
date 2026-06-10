@@ -26,6 +26,9 @@ Neutral light background with Bootstrap 5.3 semantic accents
   --sc-formTxt-color: rgb(38, 38, 38);
   --sc-lightTxt-color: rgb(255, 255, 255);
 
+  /* Tokens panel-heading (couleur texte sur surface colorée — consommé par desktop.main) */
+  --panel-danger-fg: #fff;
+
   --el-defaultColor: rgb(212, 212, 212);
   --defaultBkg-color: 255, 255, 255;
   --form-bg-color: rgb(229, 229, 229);

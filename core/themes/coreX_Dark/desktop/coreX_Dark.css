@@ -40,7 +40,7 @@ input:focus, select:focus, textarea:focus {
 .panel-success > .panel-heading { background: var(--al-success-color) !important; color: #fff !important; }
 .panel-info > .panel-heading { background: var(--al-info-color) !important; color: #000 !important; }
 .panel-warning > .panel-heading { background: var(--al-warning-color) !important; color: #212529 !important; }
-.panel-danger > .panel-heading { background: var(--al-danger-color) !important; color: #fff !important; }
+/* .panel-danger : migré vers desktop.main + token --panel-danger-fg (pilote tokens 2026-06-10) */
 .panel-default .panel-title { color: var(--linkHover-color) !important; }
 ul[role="tablist"] li:not(.active) a { background-color: var(--el-defaultColor) !important; }
 
