@@ -4911,10 +4911,6 @@ div.eqLogic-widget.editingMode .panelLink {
 
 /* ________________________________________MEDIA QUERIES */
   @media screen and (max-width: 1280px) {
-    :root {
-      --lineheight: 1.4em;
-    }
-
     #summaryGlobalMain {
       max-width: 340px;
     }
