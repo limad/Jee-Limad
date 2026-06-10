@@ -11,9 +11,6 @@ html {
 a {
  text-decoration: none;
 }
-a:active,a:hover {
-  outline: 0;
-}
 
 .label,sub,sup {
   vertical-align: baseline;
@@ -152,7 +149,6 @@ button::-moz-focus-inner,input::-moz-focus-inner {
 
 input[type=checkbox],input[type=radio] {
   box-sizing: border-box;
-  padding: 0;
 }
 
 input[type=number]::-webkit-inner-spin-button,input[type=number]::-webkit-outer-spin-button {
@@ -185,11 +181,9 @@ button,input,select,textarea {
 
 a:focus,a:hover {
   color: #23527c;
-  text-decoration: underline;
 }
 
 a:focus {
-  outline: -webkit-focus-ring-color auto 5px;
   outline-offset: -2px;
 }
 
@@ -566,10 +560,8 @@ kbd kbd {
 pre {
   padding: 9.5px;
   margin: 0 0 10px;
-  font-size: 13px;
   word-break: break-all;
   word-wrap: break-word;
-  background-color: #f5f5f5;
 }
 
 .container,.container-fluid {
@@ -848,10 +840,6 @@ caption {
   padding: 5px;
 }
 
-.table-bordered,.table-bordered>tbody>tr>td,.table-bordered>tbody>tr>th,.table-bordered>tfoot>tr>td,.table-bordered>tfoot>tr>th,.table-bordered>thead>tr>td,.table-bordered>thead>tr>th {
-  border: 1px solid #ddd;
-}
-
 .table-bordered>thead>tr>td,.table-bordered>thead>tr>th {
   border-bottom-width: 2px;
 }
@@ -924,13 +912,10 @@ fieldset,legend {
 
 fieldset {
   min-width: 0;
-  margin: 0;
 }
 
 legend {
   width: 100%;
-  margin-bottom: 20px;
-  font-size: 21px;
   line-height: inherit;
 }
 
@@ -984,9 +969,7 @@ output {
 
 .form-control {
   width: 100%;
-  height: 34px;
   padding: 6px 12px;
-  background-color: #fff;
 }
 
 .form-control:focus {
@@ -1028,10 +1011,6 @@ textarea.form-control {
   height: auto;
 }
 
-.form-group {
-  margin-bottom: 15px;
-}
-
 .checkbox,.radio {
   position: relative;
   display: block;
@@ -1045,12 +1024,6 @@ textarea.form-control {
   margin-bottom: 0;
   font-weight: 400;
   cursor: pointer;
-}
-
-.checkbox input[type=checkbox],.checkbox-inline input[type=checkbox],.radio input[type=radio],.radio-inline input[type=radio] {
-  position: absolute;
-  margin-top: 4px;
-  margin-left: -20px;
 }
 
 .checkbox+.checkbox,.radio+.radio {
@@ -1266,13 +1239,11 @@ select[multiple].input-lg,textarea.input-lg {
 
 .btn {
   display: inline-block;
-  padding: 6px 12px;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
-  cursor: pointer;
   user-select: none;
 }
 
@@ -1396,7 +1367,6 @@ tbody.collapse.in {
   font-size: 14px;
   text-align: left;
   list-style: none;
-  background-color: #fff;
   background-clip: padding-box;
 }
 
@@ -1412,23 +1382,13 @@ tbody.collapse.in {
   white-space: nowrap;
 }
 
-.dropdown-menu .divider {
-  height: 1px;
-  margin: 9px 0;
-  overflow: hidden;
-  background-color: #e5e5e5;
-}
-
 .dropdown-menu>li>a {
   clear: both;
   font-weight: 400;
-  color: #333;
 }
 
 .dropdown-menu>li>a:focus,.dropdown-menu>li>a:hover {
-  color: #262626;
   text-decoration: none;
-  background-color: #f5f5f5;
 }
 
 .dropdown-menu>.active>a,.dropdown-menu>.active>a:focus,.dropdown-menu>.active>a:hover {
@@ -1668,11 +1628,9 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 }
 
 .input-group-addon {
-  padding: 6px 12px;
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
-  color: #555;
   text-align: center;
   background-color: #eee;
 }
@@ -1728,11 +1686,6 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
   padding: 10px 15px;
 }
 
-.nav>li>a:focus,.nav>li>a:hover {
-  text-decoration: none;
-  background-color: #eee;
-}
-
 .nav>li.disabled>a {
   color: #777;
 }
@@ -1765,14 +1718,11 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 }
 
 .nav-tabs>li>a {
-  margin-right: 2px;
   line-height: 1.42857143;
 }
 
 .nav-tabs>li.active>a,.nav-tabs>li.active>a:focus,.nav-tabs>li.active>a:hover {
-  color: #555;
   cursor: default;
-  background-color: #fff;
 }
 
 .nav-tabs.nav-justified {
@@ -1915,7 +1865,6 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 .navbar-toggle .icon-bar {
   display: block;
   width: 22px;
-  height: 2px;
 }
 
 .navbar-toggle .icon-bar+.icon-bar {
@@ -2319,7 +2268,6 @@ a.badge:focus,a.badge:hover,a.label:focus,a.label:hover {
 .progress {
   height: 20px;
   margin-bottom: 20px;
-  background-color: #f5f5f5;
 }
 
 .progress-bar {
@@ -2330,7 +2278,6 @@ a.badge:focus,a.badge:hover,a.label:focus,a.label:hover {
   line-height: 20px;
   color: #fff;
   text-align: center;
-  background-color: #337ab7;
   -webkit-transition: width .6s ease;
   -o-transition: width .6s ease;
   transition: width .6s ease;
@@ -2346,10 +2293,6 @@ a.badge:focus,a.badge:hover,a.label:focus,a.label:hover {
   -webkit-animation: progress-bar-stripes 2s linear infinite;
   -o-animation: progress-bar-stripes 2s linear infinite;
   animation: progress-bar-stripes 2s linear infinite;
-}
-
-.progress-bar-success {
-  background-color: #5cb85c;
 }
 
 .progress-striped .progress-bar-success {
@@ -2369,16 +2312,8 @@ a.badge:focus,a.badge:hover,a.label:focus,a.label:hover {
   background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
 }
 
-.progress-bar-warning {
-  background-color: #f0ad4e;
-}
-
 .progress-striped .progress-bar-warning {
   background-image: linear-gradient(45deg,rgba(255,255,255,.15) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent);
-}
-
-.progress-bar-danger {
-  background-color: #d9534f;
 }
 
 .progress-striped .progress-bar-danger {
@@ -2440,15 +2375,12 @@ a.badge:focus,a.badge:hover,a.label:focus,a.label:hover {
 
 .list-group {
   padding-left: 0;
-  margin-bottom: 20px;
 }
 
 .list-group-item {
   position: relative;
   display: block;
-  padding: 10px 15px;
   margin-bottom: -1px;
-  background-color: #fff;
 }
 
 .list-group-item:last-child {
@@ -2504,7 +2436,6 @@ button.list-group-item {
 
 .list-group-item-success {
   color: #3c763d;
-  background-color: #dff0d8;
 }
 
 a.list-group-item-success,button.list-group-item-success {
@@ -2610,15 +2541,10 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:focus,a.list-gro
 
 .panel {
   margin-bottom: 20px;
-  background-color: #fff;
 }
 
 .panel-title,.panel>.list-group,.panel>.panel-collapse>.list-group,.panel>.panel-collapse>.table,.panel>.table,.panel>.table-responsive>.table {
   margin-bottom: 0;
-}
-
-.panel-body {
-  padding: 15px;
 }
 
 .panel-heading {
@@ -2632,7 +2558,6 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:focus,a.list-gro
 
 .panel-footer {
   padding: 10px 15px;
-  background-color: #f5f5f5;
 }
 
 .panel>.panel-collapse>.table caption,.panel>.table caption,.panel>.table-responsive>.table caption {
@@ -2667,7 +2592,6 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:focus,a.list-gro
 }
 
 .panel-primary>.panel-heading {
-  color: #fff;
   background-color: #337ab7;
 }
 
@@ -2676,19 +2600,9 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:focus,a.list-gro
   background-color: #fff;
 }
 
-.panel-success>.panel-heading {
-  color: #3c763d;
-  background-color: #dff0d8;
-}
-
 .panel-success>.panel-heading .badge {
   color: #dff0d8;
   background-color: #3c763d;
-}
-
-.panel-info>.panel-heading {
-  color: #31708f;
-  background-color: #d9edf7;
 }
 
 .panel-info>.panel-heading .badge {
@@ -2696,19 +2610,9 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:focus,a.list-gro
   background-color: #31708f;
 }
 
-.panel-warning>.panel-heading {
-  color: #8a6d3b;
-  background-color: #fcf8e3;
-}
-
 .panel-warning>.panel-heading .badge {
   color: #fcf8e3;
   background-color: #8a6d3b;
-}
-
-.panel-danger>.panel-heading {
-  color: #a94442;
-  background-color: #f2dede;
 }
 
 .panel-danger>.panel-heading .badge {
@@ -2742,17 +2646,6 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:focus,a.list-gro
 
 .well {
   min-height: 20px;
-  padding: 19px;
-  margin-bottom: 20px;
-  background-color: #f5f5f5;
-}
-
-.well-lg {
-  padding: 24px;
-}
-
-.well-sm {
-  padding: 9px;
 }
 
 .close {
@@ -2805,7 +2698,6 @@ button.close {
 .modal.fade .modal-dialog {
   -webkit-transition: -webkit-transform .3s ease-out;
   -o-transition: -o-transform .3s ease-out;
-  transition: transform .3s ease-out;
   -webkit-transform: translate(0,-25%);
   -ms-transform: translate(0,-25%);
   -o-transform: translate(0,-25%);
