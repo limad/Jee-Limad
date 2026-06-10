@@ -1683,7 +1683,9 @@ class jeedom {
 		$cmd .= system::getCmdSudo() . 'find ' . __DIR__ . '/../../log -type f -exec chmod 665 {} +;';
 		// WHY: le glob shell ".*" matche aussi "." et ".." -> "chmod 775 -R" toucherait
 		// le parent (/var/www) et le repo .git. On borne aux enfants directs pointés.
-		$cmd .= system::getCmdSudo() . 'find ' . __DIR__ . '/../../ -mindepth 1 -maxdepth 1 -name ".*" -exec chmod 775 -R {} +;';
+		// On exclut .git (peut contenir des secrets de remote) et .ssh (clés) : non
+		// servis par Apache, non nécessaires à Jeedom, ne doivent pas devenir 775.
+		$cmd .= system::getCmdSudo() . 'find ' . __DIR__ . '/../../ -mindepth 1 -maxdepth 1 -name ".*" ! -name ".git" ! -name ".ssh" -exec chmod 775 -R {} +;';
 		// WHY: le chmod 775 -R ci-dessus rend les secrets lisibles par "other".
 		// On les re-durcit ici (auto-réparé à chaque passage). www-data reste owner.
 		$_config = __DIR__ . '/../../core/config/common.config.php';
