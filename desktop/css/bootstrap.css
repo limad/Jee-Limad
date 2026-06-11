@@ -2591,10 +2591,6 @@ a.list-group-item-danger.active,a.list-group-item-danger.active:focus,a.list-gro
   background-color: #333;
 }
 
-.panel-primary>.panel-heading {
-  background-color: #337ab7;
-}
-
 .panel-primary>.panel-heading .badge {
   color: #337ab7;
   background-color: #fff;

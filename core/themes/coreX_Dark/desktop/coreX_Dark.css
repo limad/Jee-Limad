@@ -36,10 +36,7 @@ input:focus, select:focus, textarea:focus {
   background: rgba(38, 38, 38, 0.8) !important;
   border-bottom: 1px solid rgba(64, 64, 64, 0.5) !important;
 }
-.panel-primary > .panel-heading { background: var(--al-primary-color) !important; color: #fff !important; }
-.panel-success > .panel-heading { background: var(--al-success-color) !important; color: #fff !important; }
-.panel-info > .panel-heading { background: var(--al-info-color) !important; color: #000 !important; }
-.panel-warning > .panel-heading { background: var(--al-warning-color) !important; color: #212529 !important; }
+/* .panel-{primary,success,info,warning} : migrés vers desktop.main + tokens --panel-*-fg/bg (2026-06-11) */
 /* .panel-danger : migré vers desktop.main + token --panel-danger-fg (pilote tokens 2026-06-10) */
 .panel-default .panel-title { color: var(--linkHover-color) !important; }
 ul[role="tablist"] li:not(.active) a { background-color: var(--el-defaultColor) !important; }
@@ -107,12 +104,12 @@ div.div_viewZone { background-color: rgba(0, 0, 0, 0.5); border-radius: var(--bo
 .btn-info { background-color: var(--al-info-color) !important; border-color: transparent !important; color: #000 !important; border-radius: calc(var(--border-radius) - 2px) !important; }
 
 /* Contraste WCAG AA : texte fonce sur surfaces info (cyan #0dcaf0) et warning (jaune #ffc107) */
-.alert-info, .label-info, .panel-info .panel-heading,
+.alert-info, .label-info,
 .form-group select.info:not(.expressionAttr),
 div.jeeToastContainer > div.jeeToast.toast-info {
   color: #000 !important;
 }
-.alert-warning, .label-warning, .panel-warning .panel-heading,
+.alert-warning, .label-warning,
 div.jeeToastContainer > div.jeeToast.toast-warning {
   color: #212529 !important;
 }

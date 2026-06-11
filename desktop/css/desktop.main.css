@@ -2765,19 +2765,20 @@ div.eqLogic-widget.editingMode .panelLink {
     border-top: 1px solid var(--el-defaultColor);
   }
   .panel-success .panel-heading {
-    color: var(--linkHoverLight-color);
-    background-color: var(--al-success-color);
+    color: var(--panel-success-fg, var(--linkHoverLight-color));
+    background-color: var(--panel-success-bg, var(--al-success-color)) !important;
   }
   .panel-primary .panel-heading {
-    color: var(--linkHoverLight-color);
+    color: var(--panel-primary-fg, var(--linkHoverLight-color));
+    background-color: var(--panel-primary-bg, #337ab7) !important;
   }
   .panel-info .panel-heading {
-    color: var(--linkHoverLight-color);
-    background-color: var(--al-info-color);
+    color: var(--panel-info-fg, var(--linkHoverLight-color));
+    background-color: var(--panel-info-bg, var(--al-info-color)) !important;
   }
   .panel-warning .panel-heading {
-    color: var(--txt-color);
-    background-color: var(--al-warning-color);
+    color: var(--panel-warning-fg, var(--txt-color));
+    background-color: var(--panel-warning-bg, var(--al-warning-color)) !important;
   }
   .panel-danger .panel-heading {
     color: var(--panel-danger-fg, var(--sc-lightTxt-color));
