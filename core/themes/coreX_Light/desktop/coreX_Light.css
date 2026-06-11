@@ -5,7 +5,7 @@ Neutral light with Bootstrap 5.3 semantic accents
 
 
 ::-webkit-scrollbar-thumb { background: rgb(148,163,184) !important; border-radius: 4px; }
-::-webkit-scrollbar { width: 6px; height: 6px; }
+/* scrollbar size migré vers desktop.main + token --scrollbar-size */
 ::-webkit-scrollbar-track-piece { background: transparent !important; }
 html, body, textarea { scrollbar-color: rgb(148,163,184) transparent !important; }
 
@@ -45,7 +45,7 @@ div.div_viewZone { background-color: rgba(255,255,255,0.6); border-radius: var(-
 #div_displayObject .eqLogic:not(.col-xs-12), .eqLogic-widget {
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
   color: var(--txt-color) !important; border-radius: var(--border-radius) !important;
-  border: 1px solid rgb(212,212,212) !important; transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid rgb(212,212,212) !important; /* transition -> token --eqlogic-transition (desktop.main) */
 }
 .eqLogic-widget:hover { border-color: color-mix(in srgb, var(--logo-primary-color) 40%, transparent) !important; }
 .scenario-widget {
@@ -105,7 +105,7 @@ div.jeeToastContainer > div.jeeToast.toast-warning {
 .element .disableElement, .element .disableSubElement { opacity: 0.4 !important; }
 
 #timelineContainer li:not(:first-of-type):hover,
-#timelineContainer li:not(:first-of-type):hover .time { box-shadow: 0 3px 12px rgba(23,23,23,0.12); z-index: 10; outline: 1px solid var(--al-primary-color); }
+#timelineContainer li:not(:first-of-type):hover .time { outline: 1px solid var(--al-primary-color); /* box-shadow -> token --timeline-hover-shadow */ }
 
 .eqLogicThumbnailDisplay .eqLogicThumbnailContainer { border-radius: var(--border-radius) !important; overflow: hidden; }
 

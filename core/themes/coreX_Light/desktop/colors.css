@@ -48,6 +48,11 @@ Neutral light background with Bootstrap 5.3 semantic accents
   --dropdown-item-hover-bg: color-mix(in srgb, var(--al-primary-color) 8%, transparent);
   --dropdown-item-hover-fg: var(--al-primary-color);
 
+  /* Intentions coreX honorées via desktop.main */
+  --scrollbar-size: 6px;
+  --timeline-hover-shadow: 0 3px 12px rgba(23,23,23,0.12);
+  --eqlogic-transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
   --el-defaultColor: rgb(212, 212, 212);
   --defaultBkg-color: 255, 255, 255;
   --form-bg-color: rgb(229, 229, 229);

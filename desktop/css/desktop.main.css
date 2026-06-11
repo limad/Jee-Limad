@@ -21,8 +21,8 @@ Desktop
   }
 
   ::-webkit-scrollbar {
-    width:10px;
-    height:10px;
+    width: var(--scrollbar-size, 10px);
+    height: var(--scrollbar-size, 10px);
   }
   ::-webkit-scrollbar-track-piece {
     background-color: transparent;
@@ -935,7 +935,9 @@ div.eqLogicZone {
     color: var(--al-warning-color);
   }
 
-  .eqLogic-widget,
+  .eqLogic-widget {
+    transition: var(--eqlogic-transition, box-shadow 0.2s ease, transform var(--jeedom-transition));
+  }
   .cmd-widget,
   .scenario-widget {
     transition: box-shadow 0.2s ease, transform var(--jeedom-transition);
@@ -2610,7 +2612,7 @@ div.eqLogic-widget.editingMode .panelLink {
 
   #timelineContainer li:not(:first-of-type):hover,
   #timelineContainer li:not(:first-of-type):hover .time {
-    box-shadow: var(--jeedom-shadow-md);
+    box-shadow: var(--timeline-hover-shadow, var(--jeedom-shadow-md));
     z-index: 10;
   }
 

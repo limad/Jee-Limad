@@ -8,7 +8,7 @@ Neutral dark with Bootstrap 5.3 semantic accents
   background: var(--btn-default-color) !important;
   border-radius: 4px;
 }
-::-webkit-scrollbar { width: 6px; height: 6px; }
+/* scrollbar size migré vers desktop.main + token --scrollbar-size */
 ::-webkit-scrollbar-track-piece { background: transparent !important; }
 html, body, textarea { scrollbar-color: var(--btn-default-color) transparent !important; }
 
@@ -48,7 +48,7 @@ div.div_viewZone { background-color: rgba(0, 0, 0, 0.5); border-radius: var(--bo
   color: var(--txt-color) !important;
   border-radius: var(--border-radius) !important;
   border: 1px solid rgba(64, 64, 64, 0.5) !important;
-  transition: border-color 0.2s ease;
+  /* transition migrée vers desktop.main + token --eqlogic-transition */
 }
 .eqLogic-widget:hover { border-color: color-mix(in srgb, var(--logo-primary-color) 40%, transparent) !important; }
 .scenario-widget {
@@ -118,7 +118,8 @@ div.jeeToastContainer > div.jeeToast.toast-warning {
 
 #timelineContainer li:not(:first-of-type):hover,
 #timelineContainer li:not(:first-of-type):hover .time {
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.4); z-index: 10; outline: 1px solid var(--al-primary-color);
+  /* box-shadow migré vers desktop.main + token --timeline-hover-shadow ; z-index idem desktop.main */
+  outline: 1px solid var(--al-primary-color);
 }
 
 .eqLogicThumbnailDisplay .eqLogicThumbnailContainer { border-radius: var(--border-radius) !important; overflow: hidden; }
