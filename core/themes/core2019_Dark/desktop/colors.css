@@ -90,8 +90,11 @@ colors Dark
 
   /* Tokens desktop.main — valeurs propres core2019_Dark */
   --scrollbar-thumb-color: var(--btn-default-color);
+  --scrollbar-size: 8px;
   --element-disable-opacity: 0.45;
   --codemirror-bg: #272822;
   --input-group-addon-bg: var(--btn-default-color);
   --timeline-hover-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
+  --eqlogic-transition: border-color 0.15s ease;
+  --panel-primary-bg: var(--al-primary-color);
 }
