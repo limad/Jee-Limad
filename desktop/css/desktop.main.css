@@ -283,8 +283,12 @@ Desktop
   .navbar .container-fluid,
   .navbar-header,
   .navbar-collapse,
-  .nav.navbar-nav,
-  .dropdown-menu,
+  .nav.navbar-nav {
+    background-color: rgb(var(--defaultBkg-color));
+  }
+  .dropdown-menu {
+    background-color: var(--dropdown-bg, rgb(var(--defaultBkg-color)));
+  }
   .dropdown > a,
   .dropdown > a:hover {
     background-color: rgb(var(--defaultBkg-color));
@@ -294,12 +298,12 @@ Desktop
     scrollbar-width: thin;
   }
   .dropdown-menu > li > a {
-    color: var(--link-color)
+    color: var(--dropdown-item-fg, var(--link-color))
   }
   .dropdown-menu > li > a:focus,
   .dropdown-menu > li > a:hover {
-    color: var(--link-color);
-    background-color: var(--form-bg-color);
+    color: var(--dropdown-item-hover-fg, var(--link-color));
+    background-color: var(--dropdown-item-hover-bg, var(--form-bg-color));
   }
 
   /* hamburger */

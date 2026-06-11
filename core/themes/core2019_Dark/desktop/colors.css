@@ -31,6 +31,11 @@ colors Dark
   --navtab-active-bg: rgba(var(--panel-bg-color), var(--opacity));
   --navtab-active-fg: var(--link-color);
 
+  /* Menu dropdown — core2019 garde le rendu desktop.main (modifiable ici) */
+  --dropdown-bg: rgb(var(--defaultBkg-color));
+  --dropdown-item-hover-bg: var(--form-bg-color);
+  --dropdown-item-hover-fg: var(--link-color);
+
   --sc-form-color: rgba(225, 225, 225, 0.85);
   --sc-formTxt-color: rgb(56, 56, 56);
   --sc-lightTxt-color: rgb(230, 230, 230);

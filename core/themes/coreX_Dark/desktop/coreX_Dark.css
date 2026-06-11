@@ -132,13 +132,11 @@ div.jeeToastContainer > div.jeeToast.toast-warning {
 .modal-footer { border-top: 1px solid rgba(64, 64, 64, 0.5) !important; }
 
 .dropdown-menu {
-  background-color: rgb(23, 23, 23) !important;
+  /* background migré vers desktop.main + token --dropdown-bg */
   border: 1px solid rgba(64, 64, 64, 0.6) !important;
   border-radius: var(--border-radius) !important;
 }
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-  background-color: color-mix(in srgb, var(--al-primary-color) 20%, transparent) !important; color: var(--linkHover-color) !important;
-}
+/* item hover/focus : migré vers desktop.main + tokens --dropdown-item-hover-bg/-fg */
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
   /* bg/color migrés vers desktop.main + tokens --navtab-active-bg/-fg */

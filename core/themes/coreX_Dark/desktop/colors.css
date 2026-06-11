@@ -44,6 +44,11 @@ Neutral dark background with Bootstrap 5.3 semantic accents
   --navtab-active-bg: var(--form-bg-color);
   --navtab-active-fg: var(--linkHover-color);
 
+  /* Menu dropdown — consommés par desktop.main */
+  --dropdown-bg: rgb(23, 23, 23);
+  --dropdown-item-hover-bg: color-mix(in srgb, var(--al-primary-color) 20%, transparent);
+  --dropdown-item-hover-fg: var(--linkHover-color);
+
   --el-defaultColor: rgb(10, 10, 10);
   --defaultBkg-color: 38, 38, 38;
   --form-bg-color: rgb(21, 27, 35);
