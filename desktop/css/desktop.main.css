@@ -2718,8 +2718,8 @@ div.eqLogic-widget.editingMode .panelLink {
     top: 95px;
   }
   :not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
-    background-color: rgb(var(--defaultBkg-color));
-    border-bottom: 1px solid rgb(var(--bg-color), 1);
+    background-color: var(--panel-heading-bg, rgb(var(--defaultBkg-color)));
+    border-bottom: 1px solid var(--panel-heading-border, rgb(var(--bg-color), 1));
   }
   .panel-group .panel-heading {
     padding:0;
@@ -3076,8 +3076,8 @@ div.eqLogic-widget.editingMode .panelLink {
   select,
   input[type="text"],
   input[type="password"]{
-    border: 0;
-    background-color: var(--form-bg-color);
+    border: var(--input-border, 0);
+    background-color: var(--input-bg, var(--form-bg-color));
     padding: 6px 12px !important;
   }
   select option {

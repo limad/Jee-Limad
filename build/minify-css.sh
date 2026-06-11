@@ -40,6 +40,27 @@ minify "$ROOT/desktop/css/coreWidgets.css"
 minify "$ROOT/mobile/css/mobile.main.css"
 minify "$ROOT/mobile/css/coreWidgets.css"
 
+echo "=== Conflits CSS (desktop.main vs thèmes) ==="
+FUZZY="$ROOT/audits/css-tools/css_fuzzy.py"
+if [ -f "$FUZZY" ]; then
+  TOTAL_CONFLICTS=0
+  for THEME in coreX_Dark coreX_Light core2019_Dark core2019_Light; do
+    THEME_CSS="$ROOT/core/themes/$THEME/desktop/$THEME.css"
+    if [ -f "$THEME_CSS" ]; then
+      N=$(python3 "$FUZZY" "$ROOT/desktop/css/desktop.main.css" "$THEME_CSS" 2>&1 | grep -oP '(?<=TOTAL conflits réels: )\d+' || echo 0)
+      TOTAL_CONFLICTS=$((TOTAL_CONFLICTS + N))
+      echo "  $THEME : $N conflit(s)"
+    fi
+  done
+  if [ "$TOTAL_CONFLICTS" -gt 0 ]; then
+    echo "  ATTENTION : $TOTAL_CONFLICTS conflit(s) total — relancer 'python3 $FUZZY <base> <theme>' pour détails"
+  else
+    echo "  Conflits = 0 OK"
+  fi
+else
+  echo "  css_fuzzy.py introuvable — ignoré"
+fi
+
 echo "=== Resultat ==="
 for f in \
   "$ROOT/desktop/css/bootstrap.min.css" \

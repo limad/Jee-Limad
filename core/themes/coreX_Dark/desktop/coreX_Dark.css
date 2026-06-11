@@ -30,10 +30,7 @@ input:focus, select:focus, textarea:focus {
 
 .panel { overflow: hidden; /* border-radius idem desktop.main */ }
 .panel-default { border-color: rgba(64, 64, 64, 0.6) !important; }
-.panel-heading {
-  background: rgba(38, 38, 38, 0.8) !important;
-  border-bottom: 1px solid rgba(64, 64, 64, 0.5) !important;
-}
+/* .panel-heading bg+border : migrés vers desktop.main + tokens --panel-heading-bg / --panel-heading-border */
 /* .panel-{primary,success,info,warning} : migrés vers desktop.main + tokens --panel-*-fg/bg (2026-06-11) */
 /* .panel-danger : migré vers desktop.main + token --panel-danger-fg (pilote tokens 2026-06-10) */
 .panel-default .panel-title { color: var(--linkHover-color) !important; }

@@ -87,4 +87,11 @@ colors Dark
   --scBlocSep: rgb(35, 35, 35);
 
   --shd-color: rgba(15, 15, 15, 0.55);
+
+  /* Tokens desktop.main — valeurs propres core2019_Dark */
+  --scrollbar-thumb-color: var(--btn-default-color);
+  --element-disable-opacity: 0.45;
+  --codemirror-bg: #272822;
+  --input-group-addon-bg: var(--btn-default-color);
+  --timeline-hover-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
 }

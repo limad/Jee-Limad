@@ -3,15 +3,7 @@ Theme Core 2019 @Jeedom
 */
 
 
-::-webkit-scrollbar-thumb {
-  background: var(--btn-default-color) !important;
-}
-
-html,
-body,
-textarea {
-  scrollbar-color: var(--btn-default-color) transparent !important;
-}
+/* scrollbar : migrés vers desktop.main + token --scrollbar-thumb-color */
 
 a,
 span.cursor > i,
@@ -101,10 +93,10 @@ div.div_viewZone {
 
 
 .eqLogic-widget .btn-default,
-.input-group-addon,
 .scenario-widget .btn-default {
   background-color: var(--btn-default-color) !important;
 }
+/* .input-group-addon : migré vers desktop.main + token --input-group-addon-bg */
 
 .eqLogic-widget .btn,
 .scenario-widget .btn,
@@ -129,22 +121,17 @@ div.div_viewZone {
   background: rgba(var(--bg-color),0.7);
 }
 
-.element .disableElement,
-.element .disableSubElement {
-  opacity: 0.45 !important;
-}
+/* .disableElement/.disableSubElement : opacité via token --element-disable-opacity */
 
-/* timeline */
+/* timeline : box-shadow via token --timeline-hover-shadow ; z-index idem desktop.main */
 #timelineContainer li:not(:first-of-type):hover,
 #timelineContainer li:not(:first-of-type):hover .time {
-  box-shadow: 0 3px 10px 0 rgba(0,0,0,0.2);
-  z-index: 10;
   outline: 1px solid var(--btnEq-default-color);
 }
 
 /* __________________________________________________________________________________________________________CodeMirror */
 
-div.CodeMirror { background: #272822 !important; color: #f8f8f2; }
+div.CodeMirror { color: #f8f8f2; /* background via token --codemirror-bg */ }
 div.CodeMirror div.CodeMirror-selected { background: #49483E; }
 
 div.CodeMirror .CodeMirror-line::selection,

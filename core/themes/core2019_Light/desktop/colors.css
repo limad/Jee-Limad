@@ -87,4 +87,7 @@ colors Light
   --scBlocSep: rgb(35, 35, 35);
 
   --shd-color: rgba(0, 0, 0, 0.55);
+
+  /* Tokens desktop.main — valeurs propres core2019_Light */
+  --input-group-addon-bg: var(--btn-default-color);
 }

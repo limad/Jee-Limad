@@ -87,10 +87,10 @@ div.div_viewZone {
 
 
 .eqLogic-widget .btn-default,
-.input-group-addon,
 .scenario-widget .btn-default {
   background-color: var(--btn-default-color) !important;
 }
+/* .input-group-addon : migré vers desktop.main + token --input-group-addon-bg */
 
 .eqLogic-widget .btn,
 .scenario-widget .btn,

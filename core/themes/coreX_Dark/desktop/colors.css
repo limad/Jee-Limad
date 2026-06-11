@@ -55,6 +55,8 @@ Neutral dark background with Bootstrap 5.3 semantic accents
   --timeline-hover-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.4);
   --eqlogic-transition: border-color 0.2s ease;
   --element-disable-opacity: 0.35;
+  --panel-heading-bg: rgba(38, 38, 38, 0.8);
+  --panel-heading-border: rgba(64, 64, 64, 0.5);
   --codemirror-bg: #171717;
   --input-focus-shadow: 0 0 0 2px color-mix(in srgb, var(--al-primary-color) 20%, transparent);
   --input-group-addon-bg: var(--btn-default-color);

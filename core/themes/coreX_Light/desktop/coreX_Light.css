@@ -9,15 +9,14 @@ Neutral light with Bootstrap 5.3 semantic accents
    scrollbar-color html/body/textarea -> token --scrollbar-thumb-color */
 
 a, span.cursor > i, i.cursor { color: var(--link-color) !important; }
-a:hover { color: var(--linkHover-color) !important; }
+/* a:hover : idem desktop.main, redondant */
 
 input[type=checkbox]:not(:checked), input[type=radio]:not(:checked) {
   background: var(--form-bg-color) !important; accent-color: var(--al-primary-color);
 }
-input, select, textarea {
-  border-color: rgb(212,212,212) !important; transition: border-color 0.2s ease;
-  background: var(--bg-modal-color) !important; color: var(--txt-color) !important;
-}
+/* border via --input-border token desktop.main ; select bg via --input-bg token */
+input, textarea { background-color: var(--bg-modal-color) !important; }
+input, select, textarea { color: var(--txt-color) !important; transition: border-color 0.2s ease; }
 input:focus, select:focus, textarea:focus {
   border-color: var(--al-primary-color) !important;
   /* box-shadow migré vers desktop.main + token --input-focus-shadow ; outline idem desktop.main */
@@ -31,10 +30,10 @@ input:focus, select:focus, textarea:focus {
 }
 .navbar-default .navbar-nav > li > a { color: var(--txt-color) !important; }
 
-.panel { overflow: hidden; border: 1px solid rgb(212,212,212) !important; /* border-radius idem desktop.main */ }
+.panel { overflow: hidden; /* border-color via --el-defaultColor=rgb(212,212,212) desktop.main ; border-radius idem desktop.main */ }
 .panel-default { border-color: rgb(212,212,212) !important; }
 .panel-default .panel-title { color: var(--txt-color) !important; }
-.panel-heading { background: rgb(250,250,250) !important; border-bottom: 1px solid rgb(212,212,212) !important; }
+/* .panel-heading : migré vers desktop.main + tokens --panel-heading-bg / --panel-heading-border */
 /* .panel-{primary,success,info,warning} : migrés vers desktop.main + tokens --panel-*-fg/bg (2026-06-11) */
 /* .panel-danger : migré vers desktop.main + token --panel-danger-fg (pilote tokens 2026-06-10) */
 ul[role="tablist"] li:not(.active) a { background-color: rgb(212,212,212) !important; color: var(--txt-color) !important; }
