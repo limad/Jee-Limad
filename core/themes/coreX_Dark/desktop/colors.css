@@ -51,6 +51,7 @@ Neutral dark background with Bootstrap 5.3 semantic accents
 
   /* Intentions coreX honorées via desktop.main */
   --scrollbar-size: 6px;
+  --scrollbar-thumb-color: var(--btn-default-color);
   --timeline-hover-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.4);
   --eqlogic-transition: border-color 0.2s ease;
 
