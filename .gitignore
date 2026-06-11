@@ -29,7 +29,6 @@ audits/
 .codex-jeedom-patches/
 desktop/css/purged/
 desktop/css/purged-strict/
-desktop/php/cssOverview.php
 
 # === FICHIERS SERVEUR (ne font pas partie du projet web) ===
 .ssh/
