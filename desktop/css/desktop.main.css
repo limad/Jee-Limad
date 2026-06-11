@@ -3301,7 +3301,12 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .nav-tabs > li.active > a,
   .nav-tabs > li.active > a:focus,
-  .nav-tabs > li.active > a:hover,
+  .nav-tabs > li.active > a:hover {
+    background-color: var(--navtab-active-bg, rgba(var(--panel-bg-color), var(--opacity)));
+    color: var(--navtab-active-fg, var(--link-color));
+    border-bottom : 1px var(--logo-primary-color) solid;
+    z-index: 6;
+  }
   .nav-tabs > li > a:hover {
     background-color: rgba(var(--panel-bg-color), var(--opacity));
     color: var(--link-color);

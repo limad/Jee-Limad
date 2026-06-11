@@ -27,6 +27,10 @@ colors Dark
   --on-info-fg: var(--linkHoverLight-color);
   --on-warning-fg: var(--linkHoverLight-color);
 
+  /* Onglet actif (nav-tabs) — core2019 garde le rendu desktop.main (modifiable ici) */
+  --navtab-active-bg: rgba(var(--panel-bg-color), var(--opacity));
+  --navtab-active-fg: var(--link-color);
+
   --sc-form-color: rgba(225, 225, 225, 0.85);
   --sc-formTxt-color: rgb(56, 56, 56);
   --sc-lightTxt-color: rgb(230, 230, 230);

@@ -141,9 +141,8 @@ div.jeeToastContainer > div.jeeToast.toast-warning {
 }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
-  background-color: var(--form-bg-color) !important;
+  /* bg/color migrés vers desktop.main + tokens --navtab-active-bg/-fg */
   border-color: rgba(64, 64, 64, 0.6) rgba(64, 64, 64, 0.6) transparent !important;
-  color: var(--linkHover-color) !important;
 }
 .nav-tabs { border-bottom-color: rgba(64, 64, 64, 0.6) !important; }
 

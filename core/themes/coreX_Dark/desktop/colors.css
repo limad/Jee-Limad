@@ -40,6 +40,10 @@ Neutral dark background with Bootstrap 5.3 semantic accents
   --on-info-fg: #000;
   --on-warning-fg: #212529;
 
+  /* Onglet actif (nav-tabs) — consommés par desktop.main */
+  --navtab-active-bg: var(--form-bg-color);
+  --navtab-active-fg: var(--linkHover-color);
+
   --el-defaultColor: rgb(10, 10, 10);
   --defaultBkg-color: 38, 38, 38;
   --form-bg-color: rgb(21, 27, 35);

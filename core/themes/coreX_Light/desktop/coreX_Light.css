@@ -118,7 +118,8 @@ div.jeeToastContainer > div.jeeToast.toast-warning {
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus { background-color: color-mix(in srgb, var(--al-primary-color) 8%, transparent) !important; color: var(--al-primary-color) !important; }
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
-  background-color: var(--bg-modal-color) !important; border-color: rgb(212,212,212) rgb(212,212,212) transparent !important; color: var(--al-primary-color) !important;
+  /* bg/color migrés vers desktop.main + tokens --navtab-active-bg/-fg */
+  border-color: rgb(212,212,212) rgb(212,212,212) transparent !important;
 }
 .nav-tabs { border-bottom-color: rgb(212,212,212) !important; }
 
