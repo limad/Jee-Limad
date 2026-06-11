@@ -19,17 +19,16 @@ input[type=checkbox]:not(:checked), input[type=radio]:not(:checked) {
 }
 input:focus, select:focus, textarea:focus {
   border-color: var(--al-primary-color) !important;
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--al-primary-color) 20%, transparent) !important;
-  outline: none;
+  /* box-shadow migré vers desktop.main + token --input-focus-shadow ; outline idem desktop.main */
 }
 
 .navbar, #jeedomMenuBar {
-  background: rgba(10, 10, 10, 0.92) !important;
+  /* background migré vers desktop.main + token --navbar-bg */
   backdrop-filter: blur(12px);
   border-bottom: 1px solid color-mix(in srgb, var(--logo-primary-color) 15%, transparent) !important;
 }
 
-.panel { border-radius: var(--border-radius) !important; overflow: hidden; }
+.panel { overflow: hidden; /* border-radius idem desktop.main */ }
 .panel-default { border-color: rgba(64, 64, 64, 0.6) !important; }
 .panel-heading {
   background: rgba(38, 38, 38, 0.8) !important;
@@ -45,14 +44,13 @@ div.div_viewZone { background-color: rgba(0, 0, 0, 0.5); border-radius: var(--bo
 #div_displayObject .eqLogic:not(.col-xs-12), .eqLogic-widget {
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
   color: var(--txt-color) !important;
-  border-radius: var(--border-radius) !important;
   border: 1px solid rgba(64, 64, 64, 0.5) !important;
-  /* transition migrée vers desktop.main + token --eqlogic-transition */
+  /* transition migrée vers desktop.main + token --eqlogic-transition ; border-radius idem desktop.main */
 }
+#div_displayObject .eqLogic:not(.col-xs-12) { border-radius: var(--border-radius); }
 .eqLogic-widget:hover { border-color: color-mix(in srgb, var(--logo-primary-color) 40%, transparent) !important; }
 .scenario-widget {
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
-  border-radius: var(--border-radius) !important;
   border: 1px solid rgba(64, 64, 64, 0.5) !important;
 }
 #div_displayObject > a { background-color: var(--btnEq-default-color) !important; border-radius: var(--border-radius) !important; }
@@ -78,9 +76,7 @@ div.div_viewZone { background-color: rgba(0, 0, 0, 0.5); border-radius: var(--bo
   background-color: var(--btn-default-color) !important;
   border-radius: calc(var(--border-radius) - 2px) !important;
 }
-.input-group-addon {
-  background-color: var(--btn-default-color) !important;
-}
+/* .input-group-addon : migré vers desktop.main + token --input-group-addon-bg */
 .eqLogic-widget .btn, .scenario-widget .btn, #dashTopBar > div > a, #dashTopBar button {
   background-color: var(--btnEq-default-color) !important;
   border-radius: calc(var(--border-radius) - 2px) !important;
@@ -113,7 +109,7 @@ div.jeeToastContainer > div.jeeToast.toast-warning {
 }
 
 .timeCmd.label { background: rgba(var(--bg-color), 0.7); }
-.element .disableElement, .element .disableSubElement { opacity: 0.35 !important; }
+/* .disableElement/.disableSubElement : opacité migrée vers desktop.main + token --element-disable-opacity */
 
 #timelineContainer li:not(:first-of-type):hover,
 #timelineContainer li:not(:first-of-type):hover .time {
@@ -144,7 +140,7 @@ div.jeeToastContainer > div.jeeToast.toast-warning {
 }
 .nav-tabs { border-bottom-color: rgba(64, 64, 64, 0.6) !important; }
 
-div.CodeMirror { background: #171717 !important; color: #e6edf3; border-radius: 4px; }
+div.CodeMirror { color: #e6edf3; border-radius: 4px; /* background migré vers desktop.main + token --codemirror-bg */ }
 div.CodeMirror div.CodeMirror-selected { background: #404040; }
 div.CodeMirror .CodeMirror-gutters { background: #0a0a0a; border-right: 1px solid #404040; }
 div.CodeMirror .CodeMirror-linenumber { color: #8b949e; }

@@ -282,7 +282,9 @@ Desktop
     display: block;
   }
 
-  .navbar,
+  .navbar {
+    background-color: var(--navbar-bg, rgb(var(--defaultBkg-color)));
+  }
   .navbar .container-fluid,
   .navbar-header,
   .navbar-collapse,
@@ -2932,8 +2934,8 @@ div.eqLogic-widget.editingMode .panelLink {
 
   /* commands */
   .input-group-addon {
-    color: var(--sc-lightTxt-color);
-    background: var(--sc-formTxt-color);
+    color: var(--input-group-addon-fg, var(--sc-lightTxt-color));
+    background: var(--input-group-addon-bg, var(--sc-formTxt-color));
     border: none;
     padding: 0 12px !important;
   }
@@ -3008,8 +3010,8 @@ div.eqLogic-widget.editingMode .panelLink {
   input[type="time"] {
     padding: 0 12px !important;
   }
-  input:focus, textarea:focus {
-    box-shadow: none !important;
+  input:focus, textarea:focus, select:focus {
+    box-shadow: var(--input-focus-shadow, none) !important;
   }
   textarea {
     min-height: 28px;
@@ -3471,7 +3473,7 @@ div.eqLogic-widget.editingMode .panelLink {
     font-family: ui-monospace, 'Cascadia Code', 'Cascadia Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     font-size: 13px;
     height: auto;
-    background: var(--objectTxt-color);
+    background: var(--codemirror-bg, var(--objectTxt-color));
   }
   .CodeMirror-selected { background: #d9d9d9; }
   .CodeMirror-focused .CodeMirror-selected { background: #d9d9d9; }
@@ -3961,7 +3963,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .element .disableElement,
   .element .disableSubElement {
-    opacity: 0.6;
+    opacity: var(--element-disable-opacity, 0.6);
     transition-property: opacity;
     transition-duration: 0.6s;
   }
