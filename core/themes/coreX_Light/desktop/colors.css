@@ -34,6 +34,10 @@ Neutral light background with Bootstrap 5.3 semantic accents
   --panel-info-fg: #000;
   --panel-warning-fg: #212529;
 
+  /* Tokens texte sur surface info/warning (contraste WCAG AA) — consommés par desktop.main */
+  --on-info-fg: #000;
+  --on-warning-fg: #212529;
+
   --el-defaultColor: rgb(212, 212, 212);
   --defaultBkg-color: 255, 255, 255;
   --form-bg-color: rgb(229, 229, 229);

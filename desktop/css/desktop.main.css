@@ -4532,7 +4532,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .form-group select.info:not(.expressionAttr),
   .alert-info,
   .label-info {
-    color: var(--linkHoverLight-color);
+    color: var(--on-info-fg, var(--linkHoverLight-color));
     background-color: var(--al-info-color);
     border: none;
   }
@@ -4546,7 +4546,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .form-group select.warning:not(.expressionAttr),
   .alert-warning,
   .label-warning {
-    color: var(--linkHoverLight-color);
+    color: var(--on-warning-fg, var(--linkHoverLight-color));
     background-color: var(--al-warning-color);
     border: none;
   }

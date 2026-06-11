@@ -23,6 +23,10 @@ colors Dark
   --linkHoverLight-color: rgb(230, 230, 230);
   --placeholder-color: rgb(163, 163, 163);
 
+  /* Texte sur surface info/warning — core2019 garde sa couleur claire (modifiable ici) */
+  --on-info-fg: var(--linkHoverLight-color);
+  --on-warning-fg: var(--linkHoverLight-color);
+
   --sc-form-color: rgba(225, 225, 225, 0.85);
   --sc-formTxt-color: rgb(56, 56, 56);
   --sc-lightTxt-color: rgb(230, 230, 230);

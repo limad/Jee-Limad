@@ -92,14 +92,13 @@ div.div_viewZone { background-color: rgba(255,255,255,0.6); border-radius: var(-
 .btn-info { background-color: var(--al-info-color) !important; border-color: transparent !important; color: #000 !important; border-radius: calc(var(--border-radius) - 2px) !important; }
 
 /* Contraste WCAG AA : texte fonce sur surfaces info (cyan #0dcaf0) et warning (jaune #ffc107) */
-.alert-info, .label-info,
-.form-group select.info:not(.expressionAttr),
+/* alert/label/select info-warning : migrés vers desktop.main + tokens --on-info-fg/--on-warning-fg.
+   Toast gardé ici (non couvert par desktop.main). */
 div.jeeToastContainer > div.jeeToast.toast-info {
-  color: #000 !important;
+  color: var(--on-info-fg, #000) !important;
 }
-.alert-warning, .label-warning,
 div.jeeToastContainer > div.jeeToast.toast-warning {
-  color: #212529 !important;
+  color: var(--on-warning-fg, #212529) !important;
 }
 
 .timeCmd.label { background: rgba(var(--bg-color), 0.85); color: var(--txt-color); }
