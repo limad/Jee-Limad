@@ -259,6 +259,7 @@ if (!isConnect('admin')) {
       <select id="cssov-theme-switch" class="form-control" title="{{Basculer le theme (apercu local)}}">
         <option value="core2019_Dark">core2019_Dark</option>
         <option value="core2019_Light">core2019_Light</option>
+        <option value="coreX_Blue">coreX_Blue</option>
         <option value="coreX_Dark">coreX_Dark</option>
         <option value="coreX_Light">coreX_Light</option>
       </select>

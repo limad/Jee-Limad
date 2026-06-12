@@ -1,0 +1,117 @@
+/*
+Theme coreX_Blue @Jeedom - Modern Dark Blue
+Dark navy background with sky-blue accent
+*/
+:root {
+  /* keep it as rem even when zero!! */
+  --border-radius: 0.5rem;
+  --opacity: 1;
+
+  --dashBkg-url: url("");
+  --logo-primary-color: rgb(56, 189, 248);
+  --logo-secondary-color: rgb(100, 116, 139);
+
+  --bg-color: 8, 12, 30;
+  --bg-modal-color: rgb(12, 18, 42);
+  --contrast-color: 224, 231, 255;
+
+  --txt-color: rgb(203, 213, 225);
+  --link-color: rgb(148, 163, 184);
+  --linkHover-color: rgb(56, 189, 248);
+  --linkHoverLight-color: rgb(248, 250, 252);
+  --placeholder-color: rgb(100, 116, 139);
+
+  --sc-form-color: rgba(56, 189, 248, 0.85);
+  --sc-formTxt-color: rgb(255, 255, 255);
+  --sc-lightTxt-color: rgb(241, 245, 249);
+
+  /* Tokens panel-heading */
+  --panel-danger-fg: #fff;
+  --panel-success-fg: #fff;
+  --panel-primary-fg: #fff;
+  --panel-primary-bg: var(--al-primary-color);
+  --panel-info-fg: #000;
+  --panel-warning-fg: #212529;
+
+  /* WCAG AA */
+  --on-info-fg: #000;
+  --on-warning-fg: #212529;
+
+  /* Onglet actif */
+  --navtab-active-bg: var(--form-bg-color);
+  --navtab-active-fg: var(--linkHover-color);
+
+  /* Menu dropdown */
+  --dropdown-bg: rgb(12, 18, 42);
+  --dropdown-item-hover-bg: color-mix(in srgb, var(--al-primary-color) 20%, transparent);
+  --dropdown-item-hover-fg: var(--linkHover-color);
+
+  /* Intentions coreX */
+  --scrollbar-size: 6px;
+  --scrollbar-thumb-color: var(--btn-default-color);
+  --timeline-hover-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.5);
+  --eqlogic-transition: border-color 0.2s ease;
+  --element-disable-opacity: 0.35;
+  --panel-heading-bg: rgba(20, 30, 70, 0.8);
+  --panel-heading-border: rgba(40, 60, 130, 0.5);
+  --codemirror-bg: #080c1e;
+  --input-focus-shadow: 0 0 0 2px color-mix(in srgb, var(--al-primary-color) 25%, transparent);
+  --input-group-addon-bg: var(--btn-default-color);
+  --navbar-bg: rgba(8, 12, 30, 0.93);
+  --navtab-border: rgba(40, 60, 130, 0.6);
+  --dropdown-border: rgba(40, 60, 130, 0.6);
+  --modal-border: rgba(40, 60, 130, 0.6);
+  --modal-header-bg: rgba(20, 30, 70, 0.5);
+  --modal-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  --dropdown-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  --panel-default-border: rgba(40, 60, 130, 0.6);
+  --panel-default-title: var(--linkHover-color);
+  --tab-inactive-bg: var(--el-defaultColor);
+  --checkbox-bg: var(--btn-default-color);
+  --btn-semantic-radius: calc(var(--border-radius) - 2px);
+
+  --el-defaultColor: rgb(8, 12, 30);
+  --defaultBkg-color: 22, 32, 65;
+  --form-bg-color: rgb(10, 15, 38);
+  --btnEq-default-color: rgb(22, 32, 65);
+  --btn-default-color: rgb(40, 55, 100);
+  --panel-bg-color: 12, 18, 42;
+
+  --eqTitle-color: rgb(241, 245, 249);
+  --objectBkgd-color: rgb(56, 189, 248);
+  --objectTxt-color: rgb(8, 12, 30);
+
+  --eq-bg-color: 18, 26, 58;
+
+  --cat-security-color: 220, 53, 69;
+  --cat-heating-color: 253, 126, 20;
+  --cat-automatism-color: 100, 116, 139;
+  --cat-light-color: 255, 193, 7;
+  --cat-opening-color: 100, 116, 139;
+  --cat-multimedia-color: 56, 189, 248;
+  --cat-energy-color: 34, 197, 94;
+  --cat-other-color: 100, 116, 139;
+  --cat-scenario-color: 56, 189, 248;
+
+  --url-iconsDark: url(/desktop/img/ui-icons-black.png);
+  --url-iconsLight: url(/desktop/img/ui-icons-white.png);
+
+  --lb-info-color: rgb(56, 189, 248);
+  --lb-yellow-color: rgb(255, 193, 7);
+  --al-info-color: rgb(56, 189, 248);
+  --al-primary-color: rgb(56, 189, 248);
+  --al-success-color: rgb(34, 197, 94);
+  --al-warning-color: rgb(251, 191, 36);
+  --al-danger-color: rgb(239, 68, 68);
+  --bt-success-color: rgb(34, 197, 94);
+
+  --scBlocIF: rgb(56, 189, 248);
+  --scBlocElse: rgb(100, 116, 139);
+  --scBlocACTION: rgb(56, 189, 248);
+  --scBlocIN: rgb(34, 197, 94);
+  --scBlocAT: rgb(103, 232, 249);
+  --scBlocFOR: rgb(251, 191, 36);
+  --scBlocCODE: rgb(239, 68, 68);
+  --scBlocCOM: rgb(100, 116, 139);
+  --scBlocSep: rgb(8, 12, 30);
+}
