@@ -1,0 +1,83 @@
+/*
+Theme tailwind @Jeedom - Tailwind zinc-950 / glass
+Tokens définis dans colors.css — ce fichier ne contient que les overrides
+visuels non couverts par desktop.main.
+*/
+
+/* Police Inter */
+html, body, #div_pageContainer, .modal-content, .form-control {
+  font-family: Inter, system-ui, Arial, sans-serif;
+}
+
+/* Micro-interaction boutons */
+.btn { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+.btn:hover { transform: translateY(-1px); }
+
+/* btn-primary glass (desktop.main ne tokénise pas le primary) */
+.btn.btn-primary {
+  background-color: rgba(37, 99, 235, 0.15);
+  border-color: rgb(37, 99, 235);
+  color: rgb(147, 197, 253);
+}
+.btn.btn-primary:hover {
+  background-color: rgba(37, 99, 235, 0.30);
+  color: #fff;
+}
+
+/* Textarea */
+textarea.form-control { min-height: 120px; padding: 10px; }
+
+/* Alerts sombres (pas couverts par tokens) */
+.alert-info    { background: #082f49; color: #7dd3fc; border: none; }
+.alert-success { background: #052e16; color: #4ade80; border: none; }
+.alert-warning { background: #451a03; color: #facc15; border: none; }
+.alert-danger  { background: #450a0a; color: #f87171; border: none; }
+
+/* Badge pill */
+.badge { border-radius: 999px; padding: 3px 8px; }
+
+/* Progress */
+.progress { background: rgb(39, 39, 42); border-radius: 999px; }
+.progress-bar { background: var(--al-primary-color); }
+
+/* Modal backdrop */
+.modal-backdrop { opacity: 0.8; }
+
+/* CodeMirror */
+div.CodeMirror {
+  background: #0f172a;
+  color: #e2e8f0;
+  border: 1px solid rgb(63, 63, 70);
+  border-radius: 12px;
+}
+div.CodeMirror div.CodeMirror-selected { background: #1e293b; }
+div.CodeMirror .CodeMirror-gutters { background: #0f172a; border-right: 1px solid #27272a; }
+div.CodeMirror .CodeMirror-linenumber { color: #71717a; }
+div.CodeMirror .CodeMirror-cursor { border-left: 2px solid rgb(59, 130, 246); }
+div.CodeMirror span.cm-comment { color: #71717a; font-style: italic; }
+div.CodeMirror span.cm-keyword { color: #f87171; }
+div.CodeMirror span.cm-string  { color: #93c5fd; }
+div.CodeMirror span.cm-number  { color: #7dd3fc; }
+div.CodeMirror span.cm-def     { color: #60a5fa; }
+div.CodeMirror span.cm-property, div.CodeMirror span.cm-attribute { color: #4ade80; }
+div.CodeMirror span.cm-variable   { color: #e2e8f0; }
+div.CodeMirror span.cm-variable-2 { color: #facc15; }
+div.CodeMirror span.cm-error { background: #f87171; color: #0f172a; }
+div.CodeMirror .CodeMirror-activeline-background { background: #1e293b; }
+div.CodeMirror .CodeMirror-matchingbracket { text-decoration: underline; color: #facc15 !important; }
+div.CodeMirror .CodeMirror-scrollbar-filler { background: transparent; }
+
+/* Flatpickr */
+.flatpickr-calendar {
+  background: rgb(24, 24, 27);
+  border: 1px solid rgb(63, 63, 70);
+}
+
+/* noUiSlider */
+.noUi-target { background: rgb(39, 39, 42); border: 1px solid rgb(63, 63, 70); }
+.noUi-connect { background: var(--al-primary-color); }
+
+@media (max-width: 768px) {
+  #div_pageContainer { padding: 10px; }
+  .panel-body, .modal-body { padding: 14px; }
+}

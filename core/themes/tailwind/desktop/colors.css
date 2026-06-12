@@ -1,0 +1,126 @@
+/*
+Theme tailwind @Jeedom - Tailwind zinc-950 / glass
+*/
+:root {
+  --border-radius: 0.875rem;
+  --opacity: 1;
+
+  --dashBkg-url: url("");
+  --logo-primary-color: rgb(59, 130, 246);
+  --logo-secondary-color: rgb(161, 161, 170);
+
+  --bg-color: 9, 9, 11;
+  --bg-modal-color: rgb(24, 24, 27);
+  --contrast-color: 250, 250, 250;
+
+  --txt-color: rgb(250, 250, 250);
+  --link-color: rgb(147, 197, 253);
+  --linkHover-color: rgb(191, 219, 254);
+  --linkHoverLight-color: rgb(255, 255, 255);
+  --placeholder-color: rgb(161, 161, 170);
+
+  --sc-form-color: rgba(59, 130, 246, 0.9);
+  --sc-formTxt-color: rgb(255, 255, 255);
+  --sc-lightTxt-color: rgb(255, 255, 255);
+
+  --panel-danger-fg: #fff;
+  --panel-success-fg: #fff;
+  --panel-primary-fg: #fff;
+  --panel-primary-bg: var(--al-primary-color);
+  --panel-info-fg: #000;
+  --panel-warning-fg: #212529;
+  --on-info-fg: #000;
+  --on-warning-fg: #212529;
+
+  --navtab-active-bg: var(--form-bg-color);
+  --navtab-active-fg: var(--link-color);
+  --dropdown-bg: rgb(24, 24, 27);
+  --dropdown-item-hover-bg: rgba(37, 99, 235, 0.12);
+  --dropdown-item-hover-fg: rgb(147, 197, 253);
+
+  --scrollbar-size: 6px;
+  --scrollbar-thumb-color: rgb(63, 63, 70);
+  --timeline-hover-shadow: 0 3px 12px rgba(0, 0, 0, 0.5);
+  --eqlogic-transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  --element-disable-opacity: 0.35;
+  --panel-heading-bg: transparent;
+  --panel-heading-border: rgb(63, 63, 70);
+  --panel-default-border: rgb(63, 63, 70);
+  --panel-default-title: var(--link-color);
+  --codemirror-bg: #0f172a;
+  --input-focus-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+  --input-group-addon-bg: rgb(24, 24, 27);
+  --navbar-bg: rgba(9, 9, 11, 0.95);
+  --navtab-border: rgb(63, 63, 70);
+  --dropdown-border: rgb(63, 63, 70);
+  --modal-border: rgb(63, 63, 70);
+  --modal-header-bg: transparent;
+  --modal-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  --dropdown-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  --tab-inactive-bg: var(--el-defaultColor);
+  --checkbox-bg: rgb(39, 39, 42);
+  --btn-semantic-radius: 0.625rem;
+  --input-border: 1px solid rgb(63, 63, 70);
+  --input-bg: rgb(9, 9, 11);
+  --input-group-addon-fg: rgb(161, 161, 170);
+  --dropdown-item-fg: rgb(212, 212, 216);
+  --jeedom-shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+  --el-defaultColor: rgb(9, 9, 11);
+  --defaultBkg-color: 39, 39, 42;
+  --form-bg-color: rgb(9, 9, 11);
+  --btnEq-default-color: rgb(24, 24, 27);
+  --btn-default-color: rgb(39, 39, 42);
+  --panel-bg-color: 24, 24, 27;
+
+  --eqTitle-color: rgb(250, 250, 250);
+  --objectBkgd-color: rgb(59, 130, 246);
+  --objectTxt-color: rgb(255, 255, 255);
+  --eq-bg-color: 24, 24, 27;
+
+  --cat-security-color: 220, 53, 69;
+  --cat-heating-color: 253, 126, 20;
+  --cat-automatism-color: 113, 113, 122;
+  --cat-light-color: 255, 193, 7;
+  --cat-opening-color: 113, 113, 122;
+  --cat-multimedia-color: 6, 182, 212;
+  --cat-energy-color: 34, 197, 94;
+  --cat-other-color: 113, 113, 122;
+  --cat-scenario-color: 59, 130, 246;
+
+  --url-iconsDark: url(/desktop/img/ui-icons-black.png);
+  --url-iconsLight: url(/desktop/img/ui-icons-white.png);
+
+  --lb-info-color: rgb(6, 182, 212);
+  --lb-yellow-color: rgb(245, 158, 11);
+  --al-info-color: rgb(6, 182, 212);
+  --al-primary-color: rgb(59, 130, 246);
+  --al-success-color: rgb(34, 197, 94);
+  --al-warning-color: rgb(245, 158, 11);
+  --al-danger-color: rgb(239, 68, 68);
+  --bt-success-color: rgb(34, 197, 94);
+
+  --scBlocIF: rgb(59, 130, 246);
+  --scBlocElse: rgb(113, 113, 122);
+  --scBlocACTION: rgb(59, 130, 246);
+  --scBlocIN: rgb(34, 197, 94);
+  --scBlocAT: rgb(6, 182, 212);
+  --scBlocFOR: rgb(245, 158, 11);
+  --scBlocCODE: rgb(239, 68, 68);
+  --scBlocCOM: rgb(113, 113, 122);
+  --scBlocSep: rgb(9, 9, 11);
+
+  /* Boutons glass */
+  --btn-success-bg: rgba(22, 163, 74, 0.12);
+  --btn-success-fg: rgb(74, 222, 128);
+  --btn-success-border: rgb(22, 163, 74);
+  --btn-danger-bg: rgba(220, 38, 38, 0.12);
+  --btn-danger-fg: rgb(248, 113, 113);
+  --btn-danger-border: rgb(220, 38, 38);
+  --btn-warning-bg: rgba(217, 119, 6, 0.12);
+  --btn-warning-fg: rgb(251, 191, 36);
+  --btn-warning-border: rgb(217, 119, 6);
+  --btn-info-bg: rgba(8, 145, 178, 0.12);
+  --btn-info-fg: rgb(103, 232, 249);
+  --btn-info-border: rgb(8, 145, 178);
+}
