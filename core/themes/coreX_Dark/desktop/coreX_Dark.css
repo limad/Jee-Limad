@@ -13,10 +13,7 @@ Neutral dark with Bootstrap 5.3 semantic accents
 
 /* a, span.cursor > i, i.cursor color : migré -> desktop.main (token --link-color) */
 
-input[type=checkbox]:not(:checked), input[type=radio]:not(:checked) {
-  background: var(--btn-default-color) !important;
-  accent-color: var(--al-primary-color);
-}
+/* input[type=checkbox] background migré -> desktop.main + token --checkbox-bg ; accent-color aussi */
 /* input:focus border-color migré -> desktop.main + token --input-focus-border */
 
 .navbar, #jeedomMenuBar {
@@ -26,12 +23,12 @@ input[type=checkbox]:not(:checked), input[type=radio]:not(:checked) {
 }
 
 .panel { overflow: hidden; /* border-radius idem desktop.main */ }
-.panel-default { border-color: rgba(64, 64, 64, 0.6) !important; }
+/* .panel-default border-color migré -> desktop.main + token --panel-default-border */
+/* .panel-default .panel-title color migré -> desktop.main + token --panel-default-title */
 /* .panel-heading bg+border : migrés vers desktop.main + tokens --panel-heading-bg / --panel-heading-border */
 /* .panel-{primary,success,info,warning} : migrés vers desktop.main + tokens --panel-*-fg/bg (2026-06-11) */
 /* .panel-danger : migré vers desktop.main + token --panel-danger-fg (pilote tokens 2026-06-10) */
-.panel-default .panel-title { color: var(--linkHover-color) !important; }
-ul[role="tablist"] li:not(.active) a { background-color: var(--el-defaultColor) !important; }
+/* ul[role="tablist"] inactive a : migré -> desktop.main + tokens --tab-inactive-bg / --tab-inactive-color */
 
 div.div_viewZone { background-color: rgba(0, 0, 0, 0.5); border-radius: var(--border-radius); }
 

@@ -13,9 +13,7 @@ input[type=checkbox]:checked {
   background: var(--form-bg-color) !important;
 }
 
-.panel-default .panel-title {
-  color: var(--linkHover-color) !important;
-}
+/* .panel-default .panel-title color migré -> desktop.main + token --panel-default-title */
 
 /* ___________________________________________________________VIEW */
 

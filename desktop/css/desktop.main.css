@@ -2785,8 +2785,14 @@ div.eqLogic-widget.editingMode .panelLink {
     background-color: rgba(var(--defaultBkg-color), var(--opacity));
     border-radius: var(--border-radius);
   }
+  .panel-default {
+    border-color: var(--panel-default-border, var(--el-defaultColor));
+  }
   .panel-title {
     color: var(--linkHoverLight-color);
+  }
+  .panel-default .panel-title {
+    color: var(--panel-default-title, var(--link-color));
   }
   .list-group li {
     background-color: rgba(var(--panel-bg-color), var(--opacity));
@@ -3191,7 +3197,8 @@ div.eqLogic-widget.editingMode .panelLink {
     height: 15px;
     border-radius: 0;
     border: none;
-    background: var(--form-bg-color);
+    background: var(--checkbox-bg, var(--form-bg-color));
+    accent-color: var(--al-primary-color);
     color: var(--txt-color);
     font-weight: normal;
   }
@@ -3325,7 +3332,8 @@ div.eqLogic-widget.editingMode .panelLink {
   ul.nav.nav-tabs li,
   .nav-tabs > li > a {
     font-size: 14px;
-    background-color: var(--form-bg-color);
+    background-color: var(--tab-inactive-bg, var(--form-bg-color));
+    color: var(--tab-inactive-color, inherit);
     margin-right: 0 !important;
     border-top: none;
   }

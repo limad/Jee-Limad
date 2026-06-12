@@ -15,13 +15,8 @@ input[type=checkbox]:checked {
   background: var(--sc-formTxt-color) !important;
 }
 
-.panel-default .panel-title {
-  color: var(--linkHover-color) !important;
-}
-
-ul[role="tablist"] li:not(.active) a {
-  background-color: var(--el-defaultColor) !important;
-}
+/* .panel-default .panel-title color migré -> desktop.main + token --panel-default-title */
+/* ul[role="tablist"] inactive a migré -> desktop.main + token --tab-inactive-bg */
 
 /* ___________________________________________________________VIEW */
 

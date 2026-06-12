@@ -63,6 +63,10 @@ Neutral dark background with Bootstrap 5.3 semantic accents
   --dropdown-border: rgba(64, 64, 64, 0.6);
   --modal-border: rgba(64, 64, 64, 0.6);
   --modal-header-bg: rgba(38, 38, 38, 0.5);
+  --panel-default-border: rgba(64, 64, 64, 0.6);
+  --panel-default-title: var(--linkHover-color);
+  --tab-inactive-bg: var(--el-defaultColor);
+  --checkbox-bg: var(--btn-default-color);
 
   --el-defaultColor: rgb(10, 10, 10);
   --defaultBkg-color: 38, 38, 38;
