@@ -421,8 +421,8 @@ sendVarToJS([
 					</div>
 
 					<div class="jeeDialogFooter">
-						<button type="button" data-type="cancel" class="button warning" id="bt_cancelElementSave"><i class="fas fa-minus-circle"></i> {{Annuler}}</button>
-						<button type="button" data-type="confirm" class="button success" id="bt_addElementSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</button>
+						<button type="button" data-type="cancel" class="btn btn-warning" id="bt_cancelElementSave"><i class="fas fa-minus-circle"></i> {{Annuler}}</button>
+						<button type="button" data-type="confirm" class="btn btn-success" id="bt_addElementSave"><i class="fas fa-check-circle"></i> {{Ajouter}}</button>
 					</div>
 				</div>
 
