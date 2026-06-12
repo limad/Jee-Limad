@@ -1562,8 +1562,12 @@ document.addEventListener('click', function (event) {
   if (!sel) return;
   const themeLink = document.getElementById('jeedom_theme_currentcss');
   const colorsStyle = document.getElementById('jeedom_theme_colors');
-  // Pre-selectionne le theme courant d'apres le <link> charge
-  if (themeLink) {
+  // Pre-selectionne depuis ?theme=xxx en priorité, sinon depuis le <link> chargé
+  const urlTheme = new URLSearchParams(window.location.search).get('theme');
+  if (urlTheme && sel.querySelector('option[value="' + urlTheme + '"]')) {
+    sel.value = urlTheme;
+    sel.dispatchEvent(new Event('change'));
+  } else if (themeLink) {
     const m = (themeLink.getAttribute('href') || '').match(/themes\/([^/]+)\/desktop/);
     if (m && sel.querySelector('option[value="' + m[1] + '"]')) sel.value = m[1];
   }
