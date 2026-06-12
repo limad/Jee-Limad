@@ -3,11 +3,7 @@ Theme Core 2019 @Jeedom
 */
 
 
-a,
-span.cursor > i,
-i.cursor {
-  color: var(--link-color) !important;
-}
+/* a, span.cursor > i, i.cursor color : migré -> desktop.main (token --link-color) */
 
 input[type=checkbox]:not(checked),
 input[type=radio]:not(checked) {

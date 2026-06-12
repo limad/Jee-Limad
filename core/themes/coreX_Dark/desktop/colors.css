@@ -61,6 +61,10 @@ Neutral dark background with Bootstrap 5.3 semantic accents
   --input-focus-shadow: 0 0 0 2px color-mix(in srgb, var(--al-primary-color) 20%, transparent);
   --input-group-addon-bg: var(--btn-default-color);
   --navbar-bg: rgba(10, 10, 10, 0.92);
+  --navtab-border: rgba(64, 64, 64, 0.6);
+  --dropdown-border: rgba(64, 64, 64, 0.6);
+  --modal-border: rgba(64, 64, 64, 0.6);
+  --modal-header-bg: rgba(38, 38, 38, 0.5);
 
   --el-defaultColor: rgb(10, 10, 10);
   --defaultBkg-color: 38, 38, 38;

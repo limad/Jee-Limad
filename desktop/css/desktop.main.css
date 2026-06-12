@@ -82,6 +82,11 @@ Desktop
     text-decoration: none;
     outline: none;
   }
+  a,
+  span.cursor > i,
+  i.cursor {
+    color: var(--link-color);
+  }
   a:hover {
     color: var(--linkHover-color);
   }
@@ -293,6 +298,9 @@ Desktop
   }
   .dropdown-menu {
     background-color: var(--dropdown-bg, rgb(var(--defaultBkg-color)));
+    border: 1px solid var(--dropdown-border, rgba(0, 0, 0, 0.15));
+    border-radius: var(--border-radius);
+    box-shadow: var(--dropdown-shadow, none);
   }
   .dropdown > a,
   .dropdown > a:hover {
@@ -605,6 +613,20 @@ Desktop
 
   .modal-dialog {
     will-change: transform, opacity;
+  }
+  .modal-content {
+    background-color: var(--bg-modal-color);
+    border: 1px solid var(--modal-border, rgba(0, 0, 0, 0.2));
+    border-radius: var(--border-radius);
+    box-shadow: var(--modal-shadow, none);
+  }
+  .modal-header {
+    border-bottom: 1px solid var(--modal-border, rgba(0, 0, 0, 0.2));
+    background: var(--modal-header-bg, transparent);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+  }
+  .modal-footer {
+    border-top: 1px solid var(--modal-border, rgba(0, 0, 0, 0.2));
   }
 
   #div_leftPanel,
@@ -3011,6 +3033,7 @@ div.eqLogic-widget.editingMode .panelLink {
     padding: 0 12px !important;
   }
   input:focus, textarea:focus, select:focus {
+    border-color: var(--input-focus-border, var(--al-primary-color)) !important;
     box-shadow: var(--input-focus-shadow, none) !important;
   }
   textarea {
@@ -5246,7 +5269,7 @@ div.eqLogic-widget.editingMode .panelLink {
       display: inline-flex;
       width: 100%;
       overflow-x: auto;
-      border-bottom: 2px solid #DDD;
+      border-bottom: 2px solid var(--navtab-border, #ddd);
       -ms-overflow-style: none; /*// IE 10+*/
       overflow: -moz-scrollbars-none;/*// Firefox*/
     }

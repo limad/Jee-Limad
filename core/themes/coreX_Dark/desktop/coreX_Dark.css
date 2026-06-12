@@ -11,16 +11,13 @@ Neutral dark with Bootstrap 5.3 semantic accents
 /* scrollbar size migré -> token --scrollbar-size ; track-piece transparent déjà fourni par desktop.main ;
    scrollbar-color html/body/textarea migré -> token --scrollbar-thumb-color */
 
-a, span.cursor > i, i.cursor { color: var(--link-color) !important; }
+/* a, span.cursor > i, i.cursor color : migré -> desktop.main (token --link-color) */
 
 input[type=checkbox]:not(:checked), input[type=radio]:not(:checked) {
   background: var(--btn-default-color) !important;
   accent-color: var(--al-primary-color);
 }
-input:focus, select:focus, textarea:focus {
-  border-color: var(--al-primary-color) !important;
-  /* box-shadow migré vers desktop.main + token --input-focus-shadow ; outline idem desktop.main */
-}
+/* input:focus border-color migré -> desktop.main + token --input-focus-border */
 
 .navbar, #jeedomMenuBar {
   /* background migré vers desktop.main + token --navbar-bg */
@@ -116,26 +113,18 @@ div.jeeToastContainer > div.jeeToast.toast-warning {
 
 .eqLogicThumbnailDisplay .eqLogicThumbnailContainer { border-radius: var(--border-radius) !important; overflow: hidden; }
 
-.modal-content {
-  background-color: var(--bg-modal-color) !important;
-  border-radius: var(--border-radius) !important;
-  border: 1px solid rgba(64, 64, 64, 0.6) !important;
-}
-.modal-header { border-bottom: 1px solid rgba(64, 64, 64, 0.5) !important; background: rgba(38, 38, 38, 0.5) !important; }
-.modal-footer { border-top: 1px solid rgba(64, 64, 64, 0.5) !important; }
+/* .modal-content bg/radius/border : migrés -> desktop.main + tokens --bg-modal-color / --modal-border */
+/* .modal-header bg/border : migrés -> desktop.main + tokens --modal-header-bg / --modal-border */
+/* .modal-footer border : migré -> desktop.main + token --modal-border */
 
-.dropdown-menu {
-  /* background migré vers desktop.main + token --dropdown-bg */
-  border: 1px solid rgba(64, 64, 64, 0.6) !important;
-  border-radius: var(--border-radius) !important;
-}
+/* .dropdown-menu bg/border/radius : migrés -> desktop.main + tokens --dropdown-bg / --dropdown-border */
 /* item hover/focus : migré vers desktop.main + tokens --dropdown-item-hover-bg/-fg */
 
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
   /* bg/color migrés vers desktop.main + tokens --navtab-active-bg/-fg */
-  border-color: rgba(64, 64, 64, 0.6) rgba(64, 64, 64, 0.6) transparent !important;
+  border-color: var(--navtab-border) var(--navtab-border) transparent !important;
 }
-.nav-tabs { border-bottom-color: rgba(64, 64, 64, 0.6) !important; }
+/* .nav-tabs border-bottom : migré -> desktop.main + token --navtab-border */
 
 div.CodeMirror { color: #e6edf3; border-radius: 4px; /* background migré vers desktop.main + token --codemirror-bg */ }
 div.CodeMirror div.CodeMirror-selected { background: #404040; }

@@ -63,6 +63,12 @@ Neutral light background with Bootstrap 5.3 semantic accents
   --input-group-addon-bg: rgb(212, 212, 212);
   --input-group-addon-fg: var(--txt-color);
   --navbar-bg: rgba(255, 255, 255, 0.92);
+  --navtab-border: rgb(212, 212, 212);
+  --dropdown-border: rgb(212, 212, 212);
+  --modal-border: rgb(212, 212, 212);
+  --modal-header-bg: rgb(250, 250, 250);
+  --modal-shadow: 0 20px 50px rgba(23, 23, 23, 0.15);
+  --dropdown-shadow: 0 10px 25px rgba(23, 23, 23, 0.12);
 
   --el-defaultColor: rgb(212, 212, 212);
   --defaultBkg-color: 255, 255, 255;
