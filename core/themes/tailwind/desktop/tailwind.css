@@ -34,6 +34,17 @@ html, body, #div_pageContainer, .modal-content, .form-control {
 /* Textarea */
 textarea.form-control { min-height: 120px; padding: 10px; }
 
+/* Couleurs de catégorie sur widget-name */
+[data-category=security]>.widget-name    { background-color: rgba(var(--cat-security-color),   var(--opacity)); }
+[data-category=heating]>.widget-name     { background-color: rgba(var(--cat-heating-color),    var(--opacity)); }
+[data-category=automatism]>.widget-name  { background-color: rgba(var(--cat-automatism-color), var(--opacity)); }
+[data-category=light]>.widget-name       { background-color: rgba(var(--cat-light-color),      var(--opacity)); }
+[data-category=opening]>.widget-name     { background-color: rgba(var(--cat-opening-color),    var(--opacity)); }
+[data-category=multimedia]>.widget-name  { background-color: rgba(var(--cat-multimedia-color), var(--opacity)); }
+[data-category=energy]>.widget-name      { background-color: rgba(var(--cat-energy-color),     var(--opacity)); }
+[data-category='']>.widget-name          { background-color: rgba(var(--cat-other-color),      var(--opacity)); }
+:not(.batteryListContainer) > .eqLogic-widget:not([data-category]) > .widget-name { background-color: rgba(var(--cat-other-color), var(--opacity)); }
+
 /* Fond widgets / blocs — #18181b (non couverts par les tokens seuls) */
 .fullCorner, #div_alert, .jqAlert, .expressionACTION,
 .progressbarContainer .progress, .element,
