@@ -2720,7 +2720,6 @@ button.close {
 
 .modal-content {
   position: relative;
-  background-color: #fff;
   background-clip: padding-box;
   outline: 0;
 }
