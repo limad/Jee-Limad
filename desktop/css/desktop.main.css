@@ -20,6 +20,15 @@ Desktop
     --bkg-opacity-dark: 0.6;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
   ::-webkit-scrollbar {
     width: var(--scrollbar-size, 10px);
     height: var(--scrollbar-size, 10px);
@@ -539,7 +548,7 @@ Desktop
   span,
   .label:not(.cursor) {
     cursor: default;
-    word-break: break-word;
+    overflow-wrap: break-word;
   }
 
   #md_graphLink,
@@ -579,7 +588,6 @@ Desktop
     font-family: inherit;
     line-height: inherit;
     margin: 0;
-    -webkit-appearance: none;
     appearance: none;
   }
 
@@ -593,9 +601,6 @@ Desktop
   .ui-resizable-ne { cursor: ne-resize !important; }
 
   /* Modern interaction transitions */
-  .btn {
-    transition: background-color var(--jeedom-transition), box-shadow var(--jeedom-transition), opacity var(--jeedom-transition);
-  }
 
   #nav a,
   .navbar a {
@@ -723,7 +728,7 @@ Desktop
     background-color: var(--objectBkgd-color);
   }
   .name > .labelObjectHuman {
-    padding-left: 0x !important;
+    padding-left: 0 !important;
     display: inline-block;
   }
 
@@ -866,13 +871,11 @@ Desktop
   .div_object legend .objectDashLegend > a {
     padding-right: 35px;
     font-weight: 500;
-    transition-property: padding;
-    transition: 0.5s;
+    transition: padding 0.5s;
   }
   .div_object:hover legend .objectDashLegend > a {
     padding-right: 80px;
-    transition-property: padding;
-    transition: 0.5s;
+    transition: padding 0.5s;
   }
   .div_object legend .objectDashLegend > a > i{
     padding-right: 10px;
@@ -1193,7 +1196,7 @@ div.eqLogicZone {
    /* width: 100%;*/
     max-height: 28px;
     text-align: right;
-    word-break: break-word;
+    overflow-wrap: break-word;
     line-height: 28px;
     overflow: auto;
     font-size: 13px;
@@ -1289,8 +1292,7 @@ div.eqLogicZone {
   .objectPreview .topPreview > .name > i {
     color: var(--link-color);
     padding-right: 5px;
-    transition-property: padding;
-    transition: 0.5s
+    transition: padding 0.5s;
   }
   .objectPreview:hover .topPreview {
     box-shadow: var(--jeedom-shadow-lg);
@@ -1758,10 +1760,9 @@ div.eqLogicZone {
   }
   div.eqLogicThumbnailContainer div.eqLogicDisplayCard.cursor {
     min-width: 130px !important;
-    max-width: auto !important;
+    max-width: none !important;
     width: auto;
 
-    margin-bottom: 10px !important;
     height: 168px !important;
     padding: 0 !important;
     margin: 0 !important;
@@ -1775,7 +1776,7 @@ div.eqLogicZone {
   }
 
   div.eqLogicDisplayCard .name {
-    word-break: break-word !important;
+    overflow-wrap: break-word !important;
     font-size: 12px;
     position: relative;
     top: 3px !important;
@@ -1923,6 +1924,7 @@ div.eqLogic-widget.editingMode .panelLink {
     opacity: .8;
     padding: 0 4px;
     top: -2px !important;
+    border-radius: var(--border-radius);
   }
   body[data-coloredcats="1"] #battery .eqLogic-widget.critical .widget-name {
     background-color: var(--al-danger-color);
@@ -1980,10 +1982,10 @@ div.eqLogic-widget.editingMode .panelLink {
     color: var(--link-color);
     background-color: rgba(var(--panel-bg-color), var(--opacity));
     border: none;
-  }
-
-  .row-same-height {
-    padding: 1em;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 14px;
+    letter-spacing: normal;
+    line-height: 14px;
   }
 
   .div_rowZones {
@@ -2468,6 +2470,7 @@ div.eqLogic-widget.editingMode .panelLink {
     padding: 7px 8px;
     height: 32px;
     line-height: 18px;
+    transition: background-color var(--jeedom-transition), box-shadow var(--jeedom-transition), opacity var(--jeedom-transition);
   }
   button.btn,
   a.btn {
@@ -2505,14 +2508,12 @@ div.eqLogic-widget.editingMode .panelLink {
     min-width: 0;
     white-space: nowrap;
     overflow: hidden;
-    -webkit-mask-image: linear-gradient(to right, #000 85%, transparent 99%);
     mask-image: linear-gradient(to right, #000 85%, transparent 99%);
   }
 
   .jeeListRow:hover .jeeListRow-title,
   .jeeListRow:focus-within .jeeListRow-title,
   .jeeListRow[data-menu-open="true"] .jeeListRow-title {
-    -webkit-mask-image: linear-gradient(to right, #000 60%, transparent 78%);
     mask-image: linear-gradient(to right, #000 60%, transparent 78%);
   }
 
@@ -2782,6 +2783,7 @@ div.eqLogic-widget.editingMode .panelLink {
     color: var(--txt-color);
     border-color: var(--el-defaultColor);
     background-color: rgba(var(--defaultBkg-color), var(--opacity));
+    border-radius: var(--border-radius);
   }
   .panel-title {
     color: var(--linkHoverLight-color);
@@ -2791,6 +2793,9 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .panel-body {
     padding: 12px;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    min-height: 50px;
+    margin-right: 15px;
   }
   .panel-footer {
     color: var(--txt-color);
@@ -2833,9 +2838,11 @@ div.eqLogic-widget.editingMode .panelLink {
   ::-moz-color-swatch {
     border: none;
     border-color: transparent;
+    border-radius: var(--border-radius);
   }
   ::-webkit-color-swatch {
     border: none;
+    border-radius: var(--border-radius);
   }
   ::-webkit-color-swatch-wrapper {
     padding: 0;
@@ -2846,7 +2853,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   input.inputPassword  {
-    font-family: "text-security-disc" !important;
+    font-family: "text-security-disc", monospace !important;
     letter-spacing: 2px;
   }
 
@@ -2911,7 +2918,6 @@ div.eqLogic-widget.editingMode .panelLink {
     left: 0;
     width: 100%;
     height: 100%;
-    filter: alpha(opacity=0);
     opacity: 0;
     outline: none;
     background: white;
@@ -2948,6 +2954,7 @@ div.eqLogic-widget.editingMode .panelLink {
     display: table;
     width: 100%;
     table-layout: fixed;
+    padding: 1em;
   }
   .col-xs-height {
     display: table-cell;
@@ -3035,9 +3042,11 @@ div.eqLogic-widget.editingMode .panelLink {
   input:focus, textarea:focus, select:focus {
     border-color: var(--input-focus-border, var(--al-primary-color)) !important;
     box-shadow: var(--input-focus-shadow, none) !important;
+    outline: none;
   }
   textarea {
     min-height: 28px;
+    resize: vertical !important;
   }
   .input-group {
     margin-bottom: 1.2px;
@@ -3150,12 +3159,6 @@ div.eqLogic-widget.editingMode .panelLink {
     appearance: none;
     border-radius: 0;
   }
-  input:focus,
-  textarea:focus,
-  select:focus {
-    outline: none;
-  }
-
   input[type=checkbox] {
     position: relative;
     margin: 0 1rem 0 0;
@@ -3197,7 +3200,7 @@ div.eqLogic-widget.editingMode .panelLink {
     margin-top: 4px !important;
   }
   input[type=checkbox]:checked::after {
-    font-family: "Font Awesome 5 Free";
+    font-family: "Font Awesome 5 Free", sans-serif;
     font-weight: 700;
     content: '\f00c' !important;
     position: absolute;
@@ -3245,7 +3248,6 @@ div.eqLogic-widget.editingMode .panelLink {
   input:disabled {
     cursor: not-allowed;
     opacity: 0.7;
-    filter: alpha(opacity=70);
   }
 
   a.disabled,
@@ -3479,12 +3481,12 @@ div.eqLogic-widget.editingMode .panelLink {
 
   .well-lg {
     padding: 24px;
-    border-radius: none
+    border-radius: 0;
   }
 
   .well-sm {
     padding: 9px;
-    border-radius: none
+    border-radius: 0;
   }
 
   hr {
@@ -3641,6 +3643,7 @@ div.eqLogic-widget.editingMode .panelLink {
     margin: 0 !important;
     min-width: 5.5em;
     letter-spacing: -0.5px;
+    border-left: none;
   }
 
   .element .btn,
@@ -3739,21 +3742,15 @@ div.eqLogic-widget.editingMode .panelLink {
   .element .cursor {
     color: var(--linkHoverLight-color);
   }
-  textarea {
-    resize: vertical !important;
-  }
-
   .expressions:empty {
     height: 20px;
     padding-bottom: 20px;
   }
 
-  .element legend {
-    border-left: none;
-  }
   .element {
     position: relative;
     width: 100%;
+    min-height: 52px;
   }
 
   #div_scenarioElement .expressions > .expression.noSortable.col-xs-12 {
@@ -3789,12 +3786,12 @@ div.eqLogic-widget.editingMode .panelLink {
     top: 3px;
     color: var(--linkHoverLight-color);
     background: var(--sc-formTxt-color);
-    margin-right: 0 !important;
     margin: 0 5px;
   }
 
   .element .subElementAttr {
     z-index: 2 !important;
+    position: absolute !important;
   }
   .element .bt_sortable,
   .element .bt_hideElement,
@@ -3874,8 +3871,6 @@ div.eqLogic-widget.editingMode .panelLink {
     height: 22px !important;
     margin-left: 5px;
     margin-right: -5px;
-  }
-  .element .bt_showElse {
     font-size: 21px;
     border-right: 3px solid var(--scBlocIF);
   }
@@ -3890,9 +3885,6 @@ div.eqLogic-widget.editingMode .panelLink {
     top: 3px !important;
   }
 
-  .element .subElementAttr {
-    position: absolute !important;
-  }
   .element .subElement legend {
     margin: 0 0 0 30px !important;
   }
@@ -3908,10 +3900,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .element .subElement.subElementIF legend {
     margin: 0 0 0 59px !important;
   }
-  .element {
-    min-height: 52px;
-  }
-
   .element .subElementFields .input-group {
     display: inline-flex;
   }
@@ -4468,7 +4456,6 @@ div.eqLogic-widget.editingMode .panelLink {
     border-top: 0;
   }
   .highcharts-data-table th {
-    border-bottom-width: 2px;
     border: 1px solid #ddd;
     padding: 5px;
     vertical-align: bottom;
@@ -4679,7 +4666,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .cmd.label{
-    text-align: -webkit-center;
+    text-align: center;
   }
 
   hr.hrPrimary {
@@ -4761,13 +4748,6 @@ div.eqLogic-widget.editingMode .panelLink {
 
 
 /* ____________________ROUNDING */
-  ::-moz-color-swatch {
-    border-radius: var(--border-radius);
-  }
-  ::-webkit-color-swatch {
-    border-radius: var(--border-radius);
-  }
-
   .fullCorner,
   .eqLogic-widget,
   .scenario-widget,
@@ -4796,19 +4776,6 @@ div.eqLogic-widget.editingMode .panelLink {
     border-radius: 0 0 var(--border-radius) var(--border-radius);
   }
 
-  #battery .eqLogic-widget .widget-name span {
-    border-radius: var(--border-radius);
-  }
-
-  .panel {
-    border-radius: var(--border-radius);
-  }
-  .panel-body {
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-    min-height: 50px;
-    margin-right: 15px;
-  }
-
   #div_pageContainer ul.nav.nav-tabs li:first-of-type,
   #div_pageContainer ul.nav.nav-tabs > li:first-of-type > a {
     border-radius: var(--border-radius) 0 0 0;
@@ -4829,13 +4796,6 @@ div.eqLogic-widget.editingMode .panelLink {
   button,
   pre {
     border-radius: var(--border-radius);
-  }
-
-  pre {
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-    font-size: 14px;
-    letter-spacing: normal;
-    line-height: 14px;
   }
 
   #md_scenarioLog {
@@ -4986,7 +4946,6 @@ div.eqLogic-widget.editingMode .panelLink {
     }
     .expressionOptions {
       width: 55% !important;
-      align-content: right !important;
     }
 
     .form-control,
@@ -5048,13 +5007,13 @@ div.eqLogic-widget.editingMode .panelLink {
     }
   }
 
-  @media screen and (min-width: 1199px) {
+  @media screen and (min-width: 1200px) {
     #summaryGlobalMain {
       max-width: calc(100vw - 850px);
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 767px) {
     #div_displayLogList {
       max-height: 250px;
       margin-right: 15px
@@ -5223,7 +5182,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
 /* ________________________________________TABLE REFLOW FLEX */
-  @media ( max-width: 768px ) {
+  @media (max-width: 767px) {
     div:not(.ui-dialog) > .floatingbar {
       text-align: unset;
     }
@@ -5270,8 +5229,7 @@ div.eqLogic-widget.editingMode .panelLink {
       width: 100%;
       overflow-x: auto;
       border-bottom: 2px solid var(--navtab-border, #ddd);
-      -ms-overflow-style: none; /*// IE 10+*/
-      overflow: -moz-scrollbars-none;/*// Firefox*/
+      -ms-overflow-style: none;
     }
 
     .nav-tabs > li.active {

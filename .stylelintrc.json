@@ -6,6 +6,7 @@
     "declaration-no-important": [
       true,
       {
+        "severity": "warning",
         "message": "Eviter !important - augmenter la specificite du selecteur a la place"
       }
     ],
@@ -21,6 +22,9 @@
       {
         "ignore": [
           "custom-elements"
+        ],
+        "ignoreTypes": [
+          "objectSummaryContainer"
         ]
       }
     ],

@@ -3,12 +3,10 @@ Theme coreX_Dark @Jeedom - Modern Dark
 Neutral dark background with Bootstrap 5.3 semantic accents
 */
 :root {
-  --lineheight: 1.42em;
   /* keep it as rem even when zero!! */
   --border-radius: 0.5rem;
   --opacity: 1;
 
-  --url-logo: url('/core/img/logo-jeedom_Dark.png');
 
   --dashBkg-url: url("");
   --logo-primary-color: rgb(13, 110, 253);
@@ -111,5 +109,4 @@ Neutral dark background with Bootstrap 5.3 semantic accents
   --scBlocCOM: rgb(108, 117, 125);
   --scBlocSep: rgb(10, 10, 10);
 
-  --shd-color: rgba(0, 0, 0, 0.7);
 }

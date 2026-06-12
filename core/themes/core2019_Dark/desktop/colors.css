@@ -3,12 +3,10 @@ Theme Core 2019 @Jeedom
 colors Dark
 */
 :root {
-  --lineheight: 1.42em;
   /* keep it as rem even when zero!!*/
   --border-radius: 0rem;
   --opacity: 1;
 
-  --url-logo: url('/core/img/logo-jeedom_Dark.png');
 
   --dashBkg-url: url("");
   --logo-primary-color: rgb(150, 201, 39);
@@ -86,7 +84,6 @@ colors Dark
 
   --scBlocSep: rgb(35, 35, 35);
 
-  --shd-color: rgba(15, 15, 15, 0.55);
 
   /* Tokens desktop.main — valeurs propres core2019_Dark */
   --scrollbar-thumb-color: var(--btn-default-color);
