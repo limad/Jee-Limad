@@ -113,5 +113,11 @@ Dark navy background with sky-blue accent
   --scBlocFOR: rgb(251, 191, 36);
   --scBlocCODE: rgb(239, 68, 68);
   --scBlocCOM: rgb(100, 116, 139);
-  --scBlocSep: rgb(8, 12, 30);
+  --scBlocSep: rgb(10, 10, 10);
+
+  --input-border: 1px solid var(--navtab-border);
+  --input-bg: var(--form-bg-color);
+  --input-group-addon-fg: var(--txt-color);
+  --dropdown-item-fg: var(--link-color);
+  --jeedom-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(56, 189, 248, 0.08);
 }
