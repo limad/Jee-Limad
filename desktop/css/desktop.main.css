@@ -909,6 +909,26 @@ body[data-page="panel"] #div_pageContainer legend {
     border-left: 2.5px solid var(--logo-primary-color);
     background-color: color-mix(in srgb, var(--logo-primary-color) 4%, transparent);
   }
+  legend:not(.no-bordered).warning {
+    border-left: 2.5px solid var(--al-warning-color);
+    background-color: color-mix(in srgb, var(--al-warning-color) 4%, transparent);
+  }
+  legend:not(.no-bordered).danger {
+    border-left: 2.5px solid var(--al-danger-color);
+    background-color: color-mix(in srgb, var(--al-danger-color) 4%, transparent);
+  }
+  legend:not(.no-bordered).success {
+    border-left: 2.5px solid var(--al-success-color);
+    background-color: color-mix(in srgb, var(--al-success-color) 4%, transparent);
+  }
+  legend:not(.no-bordered).info {
+    border-left: 2.5px solid var(--al-info-color);
+    background-color: color-mix(in srgb, var(--al-info-color) 4%, transparent);
+  }
+  legend:not(.no-bordered).primary {
+    border-left: 2.5px solid var(--al-primary-color);
+    background-color: color-mix(in srgb, var(--al-primary-color) 4%, transparent);
+  }
 div.div_viewZone legend.lg_viewZone {
   font-size: 18px;
   font-weight: 500;
