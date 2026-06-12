@@ -965,7 +965,7 @@ var jeeDialog = (function() {
     button.setAttribute('type', 'button')
     button.setAttribute('data-type', _button[0])
     button.innerHTML = _button[1].label
-    button.classList = 'button ' + _button[1].className
+    button.classList = 'btn btn-' + _button[1].className
     if (isset(_button[1].callback)) {
       for (var [key, value] of Object.entries(_button[1].callback)) {
         button.addEventListener(key, function(event) {

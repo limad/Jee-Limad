@@ -221,16 +221,16 @@ div.jeeDialogFooter button {
 div.jeeDialogFooter button > i {
   color: var(--linkHoverLight-color) !important;
 }
-div.jeeDialogFooter button.info {
+div.jeeDialogFooter button.btn-info {
   background-color: var(--al-info-color)!important;
 }
-div.jeeDialogFooter button.success {
+div.jeeDialogFooter button.btn-success {
   background-color: var(--al-success-color)!important;
 }
-div.jeeDialogFooter button.warning {
+div.jeeDialogFooter button.btn-warning {
   background-color: var(--al-warning-color)!important;
 }
-div.jeeDialogFooter button.danger {
+div.jeeDialogFooter button.btn-danger {
   background-color: var(--al-danger-color)!important;
 }
 
