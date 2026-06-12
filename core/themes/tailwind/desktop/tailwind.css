@@ -13,6 +13,13 @@ html, body, #div_pageContainer, .modal-content, .form-control {
 .btn { transition: transform 0.15s ease, box-shadow 0.15s ease; }
 .btn:hover { transform: translateY(-1px); }
 
+/* Bordure générale btn-default — spécificité 0,2,0 > Bootstrap .btn 0,1,0 */
+.btn:not(.cmdName),
+.btn:not(.cmdName):active,
+.btn:not(.cmdName).active {
+  border: 1px solid var(--btn-default-border, color-mix(in srgb, var(--btn-default-color) 70%, #000));
+}
+
 /* btn-primary glass (desktop.main ne tokénise pas le primary) */
 .btn.btn-primary {
   background-color: rgba(37, 99, 235, 0.15);
