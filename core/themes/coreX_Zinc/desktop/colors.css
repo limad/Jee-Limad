@@ -79,6 +79,7 @@ Tailwind zinc-950 base, blue-500 accent, semantic Tailwind dark-mode palette
   --form-bg-color: rgb(9, 9, 11);
   --btnEq-default-color: rgb(24, 24, 27);
   --btn-default-color: rgb(39, 39, 42);
+  --btn-default-border: rgb(63, 63, 70);
   --panel-bg-color: 24, 24, 27;
 
   --eqTitle-color: rgb(248, 248, 248);
