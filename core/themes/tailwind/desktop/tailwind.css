@@ -29,8 +29,48 @@ textarea.form-control { min-height: 120px; padding: 10px; }
 
 /* Fond widgets / blocs — #18181b (non couverts par les tokens seuls) */
 .fullCorner, #div_alert, .jqAlert, .expressionACTION,
-.progressbarContainer .progress, .element {
+.progressbarContainer .progress, .element,
+body .eqLogic-widget {
   background-color: rgb(24, 24, 27);
+}
+
+/* Lignes colorées Bootstrap — tints sombres adaptés au thème dark
+   body prefix : spécificité 0,3,1 > Bootstrap 0,2,1, pas d'!important nécessaire */
+body .table > tbody > tr.success > td, body .table > tbody > tr.success > th,
+body .table > tbody > tr > td.success, body .table > tbody > tr > th.success,
+body .table > tfoot > tr.success > td, body .table > tfoot > tr.success > th,
+body .table > tfoot > tr > td.success, body .table > tfoot > tr > th.success,
+body .table > thead > tr.success > td, body .table > thead > tr.success > th,
+body .table > thead > tr > td.success, body .table > thead > tr > th.success {
+  background-color: rgba(34, 197, 94, 0.10);
+  color: rgb(74, 222, 128);
+}
+body .table > tbody > tr.warning > td, body .table > tbody > tr.warning > th,
+body .table > tbody > tr > td.warning, body .table > tbody > tr > th.warning,
+body .table > tfoot > tr.warning > td, body .table > tfoot > tr.warning > th,
+body .table > tfoot > tr > td.warning, body .table > tfoot > tr > th.warning,
+body .table > thead > tr.warning > td, body .table > thead > tr.warning > th,
+body .table > thead > tr > td.warning, body .table > thead > tr > th.warning {
+  background-color: rgba(245, 158, 11, 0.10);
+  color: rgb(251, 191, 36);
+}
+body .table > tbody > tr.danger > td, body .table > tbody > tr.danger > th,
+body .table > tbody > tr > td.danger, body .table > tbody > tr > th.danger,
+body .table > tfoot > tr.danger > td, body .table > tfoot > tr.danger > th,
+body .table > tfoot > tr > td.danger, body .table > tfoot > tr > th.danger,
+body .table > thead > tr.danger > td, body .table > thead > tr.danger > th,
+body .table > thead > tr > td.danger, body .table > thead > tr > th.danger {
+  background-color: rgba(239, 68, 68, 0.10);
+  color: rgb(248, 113, 113);
+}
+body .table > tbody > tr.info > td, body .table > tbody > tr.info > th,
+body .table > tbody > tr > td.info, body .table > tbody > tr > th.info,
+body .table > tfoot > tr.info > td, body .table > tfoot > tr.info > th,
+body .table > tfoot > tr > td.info, body .table > tfoot > tr > th.info,
+body .table > thead > tr.info > td, body .table > thead > tr.info > th,
+body .table > thead > tr > td.info, body .table > thead > tr > th.info {
+  background-color: rgba(6, 182, 212, 0.10);
+  color: rgb(103, 232, 249);
 }
 
 /* Panel overflow hidden pour que le border-radius s'applique aux enfants */
