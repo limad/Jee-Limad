@@ -263,6 +263,7 @@ if (!isConnect('admin')) {
         <option value="coreX_Dark">coreX_Dark</option>
         <option value="coreX_Zinc">coreX_Zinc</option>
         <option value="coreX_Light">coreX_Light</option>
+        <option value="tailwind">tailwind</option>
       </select>
     </div>
   </div>
