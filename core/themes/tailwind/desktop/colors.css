@@ -80,13 +80,13 @@ Theme tailwind @Jeedom - Tailwind zinc-950 / glass
 
   --cat-security-color: 220, 53, 69;
   --cat-heating-color: 253, 126, 20;
-  --cat-automatism-color: 113, 113, 122;
+  --cat-automatism-color: 108, 117, 125;
   --cat-light-color: 255, 193, 7;
-  --cat-opening-color: 113, 113, 122;
-  --cat-multimedia-color: 6, 182, 212;
-  --cat-energy-color: 34, 197, 94;
-  --cat-other-color: 113, 113, 122;
-  --cat-scenario-color: 59, 130, 246;
+  --cat-opening-color: 108, 117, 125;
+  --cat-multimedia-color: 13, 202, 240;
+  --cat-energy-color: 25, 135, 84;
+  --cat-other-color: 108, 117, 125;
+  --cat-scenario-color: 13, 110, 253;
 
   --url-iconsDark: url(/desktop/img/ui-icons-black.png);
   --url-iconsLight: url(/desktop/img/ui-icons-white.png);
