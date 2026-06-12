@@ -48,24 +48,6 @@ div.div_viewZone { background-color: rgba(0, 0, 0, 0.5); border-radius: var(--bo
   background-color: color-mix(in srgb, var(--al-primary-color) 20%, transparent) !important;
 }
 
-div.jeeToastContainer > div.jeeToast.toast-info {
-  background-color: rgb(8, 47, 73) !important;
-  border: 1px solid rgb(14, 165, 233) !important;
-  color: rgb(125, 211, 252) !important;
-}
-div.jeeToastContainer > div.jeeToast.toast-success {
-  background-color: rgb(5, 46, 22) !important;
-  color: rgb(74, 222, 128) !important;
-}
-div.jeeToastContainer > div.jeeToast.toast-warning {
-  background-color: rgb(66, 32, 6) !important;
-  color: rgb(250, 204, 21) !important;
-}
-div.jeeToastContainer > div.jeeToast.toast-error {
-  background-color: rgb(69, 10, 10) !important;
-  color: rgb(248, 113, 113) !important;
-}
-
 .timeCmd.label { background: rgba(var(--bg-color), 0.8); }
 
 #timelineContainer li:not(:first-of-type):hover,
@@ -76,12 +58,6 @@ div.jeeToastContainer > div.jeeToast.toast-error {
 .nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
   border-color: var(--navtab-border) var(--navtab-border) transparent !important;
 }
-
-/* Badge / label sémantique — pattern Tailwind dark-mode */
-.label.label-success { background-color: rgb(5, 46, 22);  color: rgb(74, 222, 128); }
-.label.label-warning { background-color: rgb(66, 32, 6);  color: rgb(250, 204, 21); }
-.label.label-danger  { background-color: rgb(69, 10, 10); color: rgb(248, 113, 113); }
-.label.label-info    { background-color: rgb(8, 47, 73);  color: rgb(125, 211, 252); border: 1px solid rgb(14, 165, 233); }
 
 div.CodeMirror { color: #d4d4d8; border-radius: 4px; border: 1px solid rgb(39,39,42); }
 div.CodeMirror div.CodeMirror-selected { background: #1e293b; }
