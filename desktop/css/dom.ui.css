@@ -128,6 +128,7 @@ div.jeeDialog.jeeDialogConfirm,
 div.jeeDialog.jeeDialogPrompt {
   width: 600px;
   z-index: 1200;
+  border: 1px solid var(--btn-default-border, color-mix(in srgb, var(--btn-default-color) 70%, #fcf9f9));
 }
 div.jeeDialogTitle {
   min-height: 20px;
