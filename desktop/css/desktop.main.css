@@ -889,9 +889,9 @@ body[data-page="panel"] #div_pageContainer legend {
 
   /* legend on equipements pages */
   :not(.div_object) > legend:not(.no-bordered) {
-    font-size: 17px;
+    font-size: 18px;
     color: var(--link-color);
-    text-align: center;
+    text-align: left;
     margin: 12px 8px !important;
     padding: 5px 0 5px 5px !important;
     line-height: 1em;
