@@ -67,6 +67,7 @@ Neutral dark background with Bootstrap 5.3 semantic accents
   --panel-default-title: var(--linkHover-color);
   --tab-inactive-bg: var(--el-defaultColor);
   --checkbox-bg: var(--btn-default-color);
+  --btn-semantic-radius: calc(var(--border-radius) - 2px);
 
   --el-defaultColor: rgb(10, 10, 10);
   --defaultBkg-color: 38, 38, 38;

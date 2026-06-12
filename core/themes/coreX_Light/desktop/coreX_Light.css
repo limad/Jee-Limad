@@ -51,7 +51,7 @@ div.div_viewZone { background-color: rgba(255,255,255,0.6); border-radius: var(-
 .eqLogic-widget > span:first-child.statusCmd i { color: var(--eqTitle-color) !important; font-size: 16px !important; }
 .eqLogic-widget > .widget-name a:hover, .scenario-widget > .widget-name a:hover { color: rgba(255,255,255,0.85) !important; }
 
-.widget-name { border-radius: var(--border-radius) var(--border-radius) 0 0 !important; }
+/* .widget-name border-radius migré -> desktop.main ROUNDING */
 .scenario.scenario-widget .widget-name { background-color: rgba(var(--cat-scenario-color), var(--opacity)) !important; }
 [data-category=security]>.widget-name { background-color: rgba(var(--cat-security-color), var(--opacity)); }
 [data-category=heating]>.widget-name { background-color: rgba(var(--cat-heating-color), var(--opacity)); }
@@ -63,25 +63,16 @@ div.div_viewZone { background-color: rgba(255,255,255,0.6); border-radius: var(-
 [data-category='']>.widget-name { background-color: rgba(var(--cat-other-color), var(--opacity)); }
 :not(.batteryListContainer) > .eqLogic-widget:not([data-category]) > .widget-name { background-color: rgba(var(--cat-other-color), var(--opacity)); }
 
-.eqLogic-widget .btn-default, .scenario-widget .btn-default {
-  background-color: rgb(212,212,212) !important; color: var(--txt-color) !important;
-  border-radius: calc(var(--border-radius) - 2px) !important; border-color: rgb(212,212,212) !important;
-}
-/* .input-group-addon : migré vers desktop.main + tokens --input-group-addon-bg/-fg
-   (border-color retiré : sans effet, desktop.main pose border:none) */
-.eqLogic-widget .btn, .scenario-widget .btn, #dashTopBar > div > a, #dashTopBar button {
-  background-color: var(--btnEq-default-color) !important; border-radius: calc(var(--border-radius) - 2px) !important;
-}
-.eqLogic.eqLogic-widget .btn, .scenario.scenario-widget .btn, #div_displayObject .btn { color: var(--link-color) !important; }
+/* .eqLogic-widget .btn-default bg+radius migré -> desktop.main + tokens --widget-btn-default-bg / --btn-semantic-radius */
+/* .input-group-addon : migré vers desktop.main + tokens --input-group-addon-bg/-fg */
+/* .eqLogic-widget .btn bg+radius migré -> desktop.main + tokens --widget-btn-bg / --btn-semantic-radius */
+/* .eqLogic.eqLogic-widget .btn color migré -> desktop.main + token --widget-btn-color */
 .eqLogic.eqLogic-widget .btn:hover, .scenario.scenario-widget .btn:hover, #div_displayObject .btn:hover {
-  color: var(--al-primary-color) !important; background-color: color-mix(in srgb, var(--al-primary-color) 10%, transparent) !important;
+  /* color migré -> desktop.main + token --widget-btn-hover-color */
+  background-color: color-mix(in srgb, var(--al-primary-color) 10%, transparent) !important;
 }
 
-.btn-primary { background-color: var(--al-primary-color) !important; border-color: transparent !important; color: #fff !important; border-radius: calc(var(--border-radius) - 2px) !important; }
-.btn-success { background-color: var(--al-success-color) !important; border-color: transparent !important; color: #fff !important; border-radius: calc(var(--border-radius) - 2px) !important; }
-.btn-danger { background-color: var(--al-danger-color) !important; border-color: transparent !important; color: #fff !important; border-radius: calc(var(--border-radius) - 2px) !important; }
-.btn-warning { background-color: var(--al-warning-color) !important; color: #212529 !important; border-radius: calc(var(--border-radius) - 2px) !important; }
-.btn-info { background-color: var(--al-info-color) !important; border-color: transparent !important; color: #000 !important; border-radius: calc(var(--border-radius) - 2px) !important; }
+/* .btn-{primary,success,danger,warning,info} migrés -> desktop.main + token --btn-semantic-radius */
 
 /* Contraste WCAG AA : texte fonce sur surfaces info (cyan #0dcaf0) et warning (jaune #ffc107) */
 /* alert/label/select info-warning : migrés vers desktop.main + tokens --on-info-fg/--on-warning-fg.
@@ -99,7 +90,7 @@ div.jeeToastContainer > div.jeeToast.toast-warning {
 #timelineContainer li:not(:first-of-type):hover,
 #timelineContainer li:not(:first-of-type):hover .time { outline: 1px solid var(--al-primary-color); /* box-shadow -> token --timeline-hover-shadow */ }
 
-.eqLogicThumbnailDisplay .eqLogicThumbnailContainer { border-radius: var(--border-radius) !important; overflow: hidden; }
+/* .eqLogicThumbnailDisplay .eqLogicThumbnailContainer border-radius migré -> desktop.main */
 
 /* .modal-content/header/footer : migrés -> desktop.main + tokens --bg-modal-color / --modal-border / --modal-header-bg / --modal-shadow */
 

@@ -69,6 +69,9 @@ Neutral light background with Bootstrap 5.3 semantic accents
   --panel-default-title: var(--txt-color);
   --tab-inactive-bg: rgb(212, 212, 212);
   --tab-inactive-color: var(--txt-color);
+  --btn-semantic-radius: calc(var(--border-radius) - 2px);
+  --widget-btn-default-bg: rgb(212, 212, 212);
+  --widget-btn-hover-color: var(--al-primary-color);
   --modal-shadow: 0 20px 50px rgba(23, 23, 23, 0.15);
   --dropdown-shadow: 0 10px 25px rgba(23, 23, 23, 0.12);
 

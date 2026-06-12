@@ -80,27 +80,7 @@ div.div_viewZone {
 }
 
 
-.eqLogic-widget .btn-default,
-.scenario-widget .btn-default {
-  background-color: var(--btn-default-color) !important;
-}
+/* .eqLogic-widget .btn-default bg -> desktop.main + token --widget-btn-default-bg */
 /* .input-group-addon : migré vers desktop.main + token --input-group-addon-bg */
-
-.eqLogic-widget .btn,
-.scenario-widget .btn,
-#dashTopBar > div > a,
-#dashTopBar button {
-  background-color: var(--btnEq-default-color) !important;
-}
-
-/* buttons on eq widgets */
-.eqLogic.eqLogic-widget .btn,
-.scenario.scenario-widget .btn,
-#div_displayObject .btn {
-  color: var(--link-color) !important;
-}
-.eqLogic.eqLogic-widget .btn:hover,
-.scenario.scenario-widget .btn:hover,
-#div_displayObject .btn:hover {
-  color: var(--txt-color) !important;
-}
+/* .eqLogic-widget .btn bg -> desktop.main + token --widget-btn-bg */
+/* buttons on eq widgets: color / hover color -> desktop.main + tokens --widget-btn-color / --widget-btn-hover-color */

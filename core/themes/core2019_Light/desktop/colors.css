@@ -94,4 +94,5 @@ colors Light
   --eqlogic-transition: border-color 0.15s ease;
   --panel-primary-bg: var(--al-primary-color);
   --panel-default-title: var(--linkHover-color);
+  --widget-btn-hover-color: var(--txt-color);
 }

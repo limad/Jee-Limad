@@ -999,13 +999,37 @@ div.eqLogicZone {
   .scenario-widget .iconCmd {
     margin-top: 7px;
   }
+  .eqLogic-widget .btn-default,
+  .scenario-widget .btn-default {
+    background-color: var(--widget-btn-default-bg, var(--btn-default-color));
+    border-radius: var(--btn-semantic-radius, var(--border-radius));
+  }
   .eqLogic-widget .btn,
+  #dashTopBar > div > a,
+  #dashTopBar button,
   .eqLogic-widget .btn-default,
   .eqLogic-widget input[type="text"],
   .scenario-widget .btn,
   .scenario-widget .btn-default {
     min-width: 32px !important;
     max-height: 30px;
+  }
+  .eqLogic-widget .btn:not(.btn-primary):not(.btn-success):not(.btn-danger):not(.btn-warning):not(.btn-info),
+  .scenario-widget .btn:not(.btn-primary):not(.btn-success):not(.btn-danger):not(.btn-warning):not(.btn-info),
+  #dashTopBar > div > a,
+  #dashTopBar button {
+    background-color: var(--widget-btn-bg, var(--btnEq-default-color));
+    border-radius: var(--btn-semantic-radius, var(--border-radius));
+  }
+  .eqLogic.eqLogic-widget .btn,
+  .scenario.scenario-widget .btn,
+  #div_displayObject .btn {
+    color: var(--widget-btn-color, var(--link-color));
+  }
+  .eqLogic.eqLogic-widget .btn:hover,
+  .scenario.scenario-widget .btn:hover,
+  #div_displayObject .btn:hover {
+    color: var(--widget-btn-hover-color, var(--linkHoverLight-color));
   }
 
   /* dashboard equipments text color */
@@ -1678,6 +1702,10 @@ div.eqLogicZone {
     display: flex !important;
     flex-wrap: wrap;
     flex-direction: row;
+  }
+  .eqLogicThumbnailDisplay .eqLogicThumbnailContainer {
+    border-radius: var(--border-radius);
+    overflow: hidden;
   }
   div[class*="ListContainer"] div[class*="DisplayCard"],
   div.eqLogicThumbnailContainer div[class*="DisplayCard"] {
@@ -2433,25 +2461,30 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .btn.btn-info {
-    color: var(--sc-lightTxt-color);
+    color: #000;
     background-color: var(--al-info-color);
+    border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .btn.btn-warning {
-    color: var(--sc-lightTxt-color);
+    color: #212529;
     background-color: var(--al-warning-color);
+    border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .btn.btn-danger {
-    color: var(--sc-lightTxt-color);
+    color: #fff;
     background-color: var(--al-danger-color);
+    border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .btn.btn-primary,
   .label-primary {
-    color: var(--sc-lightTxt-color);
+    color: #fff;
     background-color: var(--al-primary-color);
+    border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .btn.btn-success {
-    color: var(--sc-lightTxt-color);
+    color: #fff;
     background-color: var(--al-success-color);
+    border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
 
   .btn.btn-info:hover {
@@ -4774,6 +4807,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .topCorner,
+  .widget-name,
   .eqLogic-widget .widget-name,
   .scenario-widget .widget-name,
   .panel,
