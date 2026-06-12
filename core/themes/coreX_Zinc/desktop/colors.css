@@ -118,4 +118,18 @@ Tailwind zinc-950 base, blue-500 accent, semantic Tailwind dark-mode palette
   --scBlocCODE: rgb(248, 113, 113);
   --scBlocCOM: rgb(113, 113, 122);
   --scBlocSep: rgb(9, 9, 11);
+
+  /* Boutons outline — spécifique coreX_Zinc */
+  --btn-success-bg: transparent;
+  --btn-success-fg: var(--al-success-color);
+  --btn-success-border: var(--al-success-color);
+  --btn-danger-bg: transparent;
+  --btn-danger-fg: var(--al-danger-color);
+  --btn-danger-border: var(--al-danger-color);
+  --btn-warning-bg: transparent;
+  --btn-warning-fg: var(--al-warning-color);
+  --btn-warning-border: var(--al-warning-color);
+  --btn-info-bg: transparent;
+  --btn-info-fg: var(--al-info-color);
+  --btn-info-border: var(--al-info-color);
 }

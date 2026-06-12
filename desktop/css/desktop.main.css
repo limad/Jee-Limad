@@ -2463,27 +2463,27 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .btn.btn-info {
-    color: var(--btn-info-fg, var(--al-info-color));
-    background-color: transparent;
-    border: 1px solid var(--al-info-color);
+    color: var(--btn-info-fg, #fff);
+    background-color: var(--btn-info-bg, var(--al-info-color));
+    border: 1px solid var(--btn-info-border, color-mix(in srgb, var(--al-info-color) 70%, #000));
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .btn.btn-warning {
-    color: var(--btn-warning-fg, var(--al-warning-color));
-    background-color: transparent;
-    border: 1px solid var(--al-warning-color);
+    color: var(--btn-warning-fg, #212529);
+    background-color: var(--btn-warning-bg, var(--al-warning-color));
+    border: 1px solid var(--btn-warning-border, color-mix(in srgb, var(--al-warning-color) 70%, #000));
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .btn.btn-danger {
-    color: var(--al-danger-color);
-    background-color: transparent;
-    border: 1px solid var(--al-danger-color);
+    color: var(--btn-danger-fg, #fff);
+    background-color: var(--btn-danger-bg, var(--al-danger-color));
+    border: 1px solid var(--btn-danger-border, color-mix(in srgb, var(--al-danger-color) 70%, #000));
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .btn.btn-primary {
     color: #fff;
     background-color: var(--al-primary-color);
-    border: 1px solid var(--al-primary-color);
+    border: 1px solid color-mix(in srgb, var(--al-primary-color) 70%, #000);
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .label-primary {
@@ -2492,15 +2492,11 @@ div.eqLogic-widget.editingMode .panelLink {
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .btn.btn-success {
-    color: var(--al-success-color);
-    background-color: transparent;
-    border: 1px solid var(--al-success-color);
+    color: var(--btn-success-fg, #fff);
+    background-color: var(--btn-success-bg, var(--al-success-color));
+    border: 1px solid var(--btn-success-border, color-mix(in srgb, var(--al-success-color) 70%, #000));
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
-  .btn.btn-success:hover { background-color: var(--al-success-color); color: #fff; opacity: 1; }
-  .btn.btn-danger:hover  { background-color: var(--al-danger-color);  color: #fff; opacity: 1; }
-  .btn.btn-warning:hover { background-color: var(--al-warning-color); color: var(--on-warning-fg, #212529); opacity: 1; }
-  .btn.btn-info:hover    { background-color: var(--al-info-color);    color: var(--on-info-fg, #000); opacity: 1; }
 
   button:focus {
     outline:0;
