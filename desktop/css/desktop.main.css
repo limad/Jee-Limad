@@ -650,6 +650,7 @@ Desktop
   .btn:not(.cmdName).active {
     color: var(--linkHoverLight-color);
     background-color: var(--btn-default-color);
+    border: 1px solid color-mix(in srgb, var(--btn-default-color) 70%, #000);
   }
   .btn:hover {
     color: var(--linkHoverLight-color);
@@ -1002,6 +1003,7 @@ div.eqLogicZone {
   .eqLogic-widget .btn-default,
   .scenario-widget .btn-default {
     background-color: var(--widget-btn-default-bg, var(--btn-default-color));
+    border: 1px solid color-mix(in srgb, var(--widget-btn-default-bg, var(--btn-default-color)) 70%, #000);
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .eqLogic-widget .btn,
@@ -1019,6 +1021,7 @@ div.eqLogicZone {
   #dashTopBar > div > a,
   #dashTopBar button {
     background-color: var(--widget-btn-bg, var(--btnEq-default-color));
+    border: 1px solid color-mix(in srgb, var(--widget-btn-bg, var(--btnEq-default-color)) 70%, #000);
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .eqLogic.eqLogic-widget .btn,
@@ -2463,19 +2466,27 @@ div.eqLogic-widget.editingMode .panelLink {
   .btn.btn-info {
     color: #000;
     background-color: var(--al-info-color);
+    border: 1px solid color-mix(in srgb, var(--al-info-color) 70%, #000);
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .btn.btn-warning {
     color: #212529;
     background-color: var(--al-warning-color);
+    border: 1px solid color-mix(in srgb, var(--al-warning-color) 70%, #000);
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .btn.btn-danger {
     color: #fff;
     background-color: var(--al-danger-color);
+    border: 1px solid color-mix(in srgb, var(--al-danger-color) 70%, #000);
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
-  .btn.btn-primary,
+  .btn.btn-primary {
+    color: #fff;
+    background-color: var(--al-primary-color);
+    border: 1px solid color-mix(in srgb, var(--al-primary-color) 70%, #000);
+    border-radius: var(--btn-semantic-radius, var(--border-radius));
+  }
   .label-primary {
     color: #fff;
     background-color: var(--al-primary-color);
@@ -2484,6 +2495,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .btn.btn-success {
     color: #fff;
     background-color: var(--al-success-color);
+    border: 1px solid color-mix(in srgb, var(--al-success-color) 70%, #000);
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
 
