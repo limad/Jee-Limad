@@ -261,6 +261,7 @@ if (!isConnect('admin')) {
         <option value="core2019_Light">core2019_Light</option>
         <option value="coreX_Blue">coreX_Blue</option>
         <option value="coreX_Dark">coreX_Dark</option>
+        <option value="coreX_Zinc">coreX_Zinc</option>
         <option value="coreX_Light">coreX_Light</option>
       </select>
     </div>
