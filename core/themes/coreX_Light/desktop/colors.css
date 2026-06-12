@@ -72,6 +72,8 @@ Neutral light background with Bootstrap 5.3 semantic accents
   --btn-semantic-radius: calc(var(--border-radius) - 2px);
   --widget-btn-default-bg: rgb(212, 212, 212);
   --widget-btn-hover-color: var(--al-primary-color);
+  --btn-info-fg: color-mix(in srgb, var(--al-info-color) 55%, #000);
+  --btn-warning-fg: color-mix(in srgb, var(--al-warning-color) 50%, #000);
   --modal-shadow: 0 20px 50px rgba(23, 23, 23, 0.15);
   --dropdown-shadow: 0 10px 25px rgba(23, 23, 23, 0.12);
 

@@ -95,4 +95,6 @@ colors Light
   --panel-primary-bg: var(--al-primary-color);
   --panel-default-title: var(--linkHover-color);
   --widget-btn-hover-color: var(--txt-color);
+  --btn-info-fg: color-mix(in srgb, var(--al-info-color) 55%, #000);
+  --btn-warning-fg: color-mix(in srgb, var(--al-warning-color) 50%, #000);
 }

@@ -30,13 +30,13 @@ div.div_viewZone { background-color: rgba(0, 0, 0, 0.5); border-radius: var(--bo
 #div_displayObject .eqLogic:not(.col-xs-12), .eqLogic-widget {
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
   color: var(--txt-color) !important;
-  border: 1px solid rgba(40, 60, 130, 0.5) !important;
+  border: 1px solid rgba(56, 189, 248, 0.18) !important;
 }
 #div_displayObject .eqLogic:not(.col-xs-12) { border-radius: var(--border-radius); }
 .eqLogic-widget:hover { border-color: color-mix(in srgb, var(--logo-primary-color) 50%, transparent) !important; }
 .scenario-widget {
   background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
-  border: 1px solid rgba(40, 60, 130, 0.5) !important;
+  border: 1px solid rgba(56, 189, 248, 0.18) !important;
 }
 #div_displayObject > a { background-color: var(--btnEq-default-color) !important; border-radius: var(--border-radius) !important; }
 
