@@ -27,6 +27,31 @@ html, body, #div_pageContainer, .modal-content, .form-control {
 /* Textarea */
 textarea.form-control { min-height: 120px; padding: 10px; }
 
+/* Fond widgets / blocs — #18181b (non couverts par les tokens seuls) */
+.fullCorner, #div_alert, .jqAlert, .expressionACTION,
+.progressbarContainer .progress, .element {
+  background-color: rgb(24, 24, 27);
+}
+
+/* Panel overflow hidden pour que le border-radius s'applique aux enfants */
+body .panel { overflow: hidden; }
+
+/* Radius top-only — body.panel monte la spécificité au-dessus de desktop.main */
+body .panel,
+body .panel-heading,
+.eqLogic-widget .widget-name,
+.scenario-widget .widget-name,
+.topCorner {
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+/* Input/form-control — sélecteur Jeedom complet */
+.form-control:not(.btn):not(.expressionAttr):not(input),
+input:not(.numInput):not(.btn):not(.dial):not([type="radio"]):not([type="image"]):not(.expressionAttr):not(.knob):not([type="checkbox"]),
+textarea:not(.expressionAttr) {
+  background-color: rgb(21, 21, 27);
+}
+
 /* Alerts sombres (pas couverts par tokens) */
 .alert-info    { background: #082f49; color: #7dd3fc; border: none; }
 .alert-success { background: #052e16; color: #4ade80; border: none; }
