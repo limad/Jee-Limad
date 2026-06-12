@@ -45,12 +45,32 @@ textarea.form-control { min-height: 120px; padding: 10px; }
 [data-category='']>.widget-name          { background-color: rgba(var(--cat-other-color),      var(--opacity)); }
 :not(.batteryListContainer) > .eqLogic-widget:not([data-category]) > .widget-name { background-color: rgba(var(--cat-other-color), var(--opacity)); }
 
-/* Fond widgets / blocs — #18181b (non couverts par les tokens seuls) */
+/* Fond widgets / blocs — #18181b */
 .fullCorner, #div_alert, .jqAlert, .expressionACTION,
 .progressbarContainer .progress, .element,
-body .eqLogic-widget {
+body .eqLogic-widget,
+body .scenario-widget {
   background-color: rgb(24, 24, 27);
 }
+
+/* scenario-widget = même style que eqLogic-widget */
+#div_displayObject .eqLogic:not(.col-xs-12),
+.eqLogic-widget,
+.scenario-widget {
+  color: var(--txt-color) !important;
+  border: 1px solid var(--btn-default-border, rgba(64, 64, 64, 0.5)) !important;
+}
+#div_displayObject .eqLogic:not(.col-xs-12) { border-radius: var(--border-radius); }
+.eqLogic-widget:hover,
+.scenario-widget:hover { border-color: color-mix(in srgb, var(--logo-primary-color) 40%, transparent) !important; }
+
+.eqLogic-widget > .widget-name a,
+.scenario-widget > .widget-name a,
+.eqLogic-widget > span:first-child.statusCmd i { color: var(--eqTitle-color) !important; font-size: 16px !important; }
+.eqLogic-widget > .widget-name a:hover,
+.scenario-widget > .widget-name a:hover { color: var(--linkHoverLight-color) !important; }
+
+.scenario.scenario-widget .widget-name { background-color: rgba(var(--cat-scenario-color), var(--opacity)) !important; }
 
 /* Lignes colorées Bootstrap — tints sombres adaptés au thème dark
    body prefix : spécificité 0,3,1 > Bootstrap 0,2,1, pas d'!important nécessaire */
