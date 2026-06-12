@@ -133,7 +133,7 @@ textarea:not(.expressionAttr) {
 /* Alerts sombres (pas couverts par tokens) */
 .alert-info    { background: #082f49; color: #7dd3fc; border: none; }
 .alert-success { background: #052e16; color: #4ade80; border: none; }
-.alert-warning { background: #451a03; color: #facc15; border: none; }
+.alert-warning { color: var(--al-warning-color); border: none; background-color: var(--btn-warning-bg, var(--al-warning-color)); }
 .alert-danger  { background: #450a0a; color: #f87171; border: none; }
 
 /* Badge pill */
