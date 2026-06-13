@@ -127,7 +127,7 @@ body .panel-heading,
 .form-control:not(.btn):not(.expressionAttr):not(input),
 input:not(.numInput):not(.btn):not(.dial):not([type="radio"]):not([type="image"]):not(.expressionAttr):not(.knob):not([type="checkbox"]),
 textarea:not(.expressionAttr) {
-  background-color: rgb(21, 21, 27);
+  background-color: rgb(33, 33, 33);
 }
 
 /* Alerts sombres (pas couverts par tokens) */
