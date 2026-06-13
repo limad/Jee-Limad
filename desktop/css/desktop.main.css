@@ -2590,7 +2590,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .badge {
-    padding: 3px 7px;
+    padding: 0px 7px;
     height: 22px;
   }
   #bt_messageModal,
