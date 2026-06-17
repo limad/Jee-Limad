@@ -3,23 +3,25 @@ Theme Core 2019 @Jeedom
 colors Light
 */
 :root {
+  --timeCmd-bg-opacity: 0.7;
+
   /* keep it as rem even when zero!!*/
   --border-radius: 0rem;
   --opacity: 1;
 
 
   --dashBkg-url: url("");
-  --logo-primary-color: rgb(150, 201, 39);
-  --logo-secondary-color: rgb(69, 68, 73);
+  --logo-primary-color: hsl(79 67.5% 47.1%);
+  --logo-secondary-color: hsl(252 3.5% 27.6%);
   --bg-color: 232, 232, 234;
-  --bg-modal-color: rgb(237, 238, 238);
+  --bg-modal-color: hsl(180 2.9% 93.1%);
   --contrast-color: 30, 30, 30;
 
-  --txt-color: rgb(115, 115, 115);
-  --link-color: rgb(90, 90, 90);
-  --linkHover-color: rgb(140, 140, 148);
-  --linkHoverLight-color: rgb(254, 254, 254);
-  --placeholder-color: rgb(160, 160, 160);
+  --txt-color: hsl(0 0% 45.1%);
+  --link-color: hsl(0 0% 35.3%);
+  --linkHover-color: hsl(240 3.6% 56.5%);
+  --linkHoverLight-color: hsl(0 0% 99.6%);
+  --placeholder-color: hsl(0 0% 62.7%);
 
   /* Texte sur surface info/warning — core2019 garde sa couleur claire (modifiable ici) */
   --on-info-fg: var(--linkHoverLight-color);
@@ -34,20 +36,20 @@ colors Light
   --dropdown-item-hover-bg: var(--form-bg-color);
   --dropdown-item-hover-fg: var(--link-color);
 
-  --sc-form-color: rgba(248, 250, 256, 0.85);
-  --sc-formTxt-color: rgb(75, 75, 75);
-  --sc-lightTxt-color: rgb(240, 240, 240);
+  --sc-form-color: hsl(225 133.3% 98.8% / 0.85);
+  --sc-formTxt-color: hsl(0 0% 29.4%);
+  --sc-lightTxt-color: hsl(0 0% 94.1%);
 
-  --el-defaultColor: rgb(200, 200, 200);
+  --el-defaultColor: hsl(0 0% 78.4%);
   --defaultBkg-color: 250, 250, 250;
-  --form-bg-color: rgb(224, 226, 226);
-  --btnEq-default-color: rgb(220, 220, 220);
-  --btn-default-color: rgb(100, 100, 100);
+  --form-bg-color: hsl(180 3.3% 88.2%);
+  --btnEq-default-color: hsl(0 0% 86.3%);
+  --btn-default-color: hsl(0 0% 39.2%);
   --panel-bg-color: 240, 241, 242;
 
-  --eqTitle-color: rgb(240, 240, 240);
-  --objectBkgd-color: rgb(105, 105, 105);
-  --objectTxt-color: rgb(235, 235, 235);
+  --eqTitle-color: hsl(0 0% 94.1%);
+  --objectBkgd-color: hsl(0 0% 41.2%);
+  --objectTxt-color: hsl(0 0% 92.2%);
 
   --eq-bg-color: 249, 249, 250;
   --cat-security-color: 180, 40, 40;
@@ -63,26 +65,26 @@ colors Light
   --url-iconsDark: url(/desktop/img/ui-icons-white.png);
   --url-iconsLight: url(/desktop/img/ui-icons-black.png);
 
-  --lb-info-color: rgb(110, 180, 240);
-  --lb-yellow-color: rgb(240, 215, 0);
-  --al-info-color: rgb(100, 160, 230);
-  --al-primary-color: rgb(60, 120, 180);
-  --al-success-color: rgb(80, 170, 80);
-  --al-warning-color: rgb(240, 160, 40);
-  --al-danger-color: rgb(190, 0, 0);
-  --bt-success-color: rgb(150, 201, 39);
+  --lb-info-color: hsl(208 81.2% 68.6%);
+  --lb-yellow-color: hsl(54 100% 47.1%);
+  --al-info-color: hsl(212 72.2% 64.7%);
+  --al-primary-color: hsl(210 50% 47.1%);
+  --al-success-color: hsl(120 36% 49%);
+  --al-warning-color: hsl(36 87% 54.9%);
+  --al-danger-color: hsl(0 100% 37.3%);
+  --bt-success-color: hsl(79 67.5% 47.1%);
 
-  --scBlocIF: rgb(85, 110, 130);
-  --scBlocElse: rgb(70, 95, 115);
-  --scBlocACTION: rgb(155, 146, 138);
-  --scBlocIN: rgb(85, 138, 72);
-  --scBlocAT: rgb(107, 137, 147);
-  --scBlocFOR: rgb(172, 136, 42);
-  --scBlocWHILE: rgb(116, 92, 134);
-  --scBlocCODE: rgb(180, 80, 45);
-  --scBlocCOM: rgb(70, 70, 70);
+  --scBlocIF: hsl(207 20.9% 42.2%);
+  --scBlocElse: hsl(207 24.3% 36.3%);
+  --scBlocACTION: hsl(28 7.8% 57.5%);
+  --scBlocIN: hsl(108 31.4% 41.2%);
+  --scBlocAT: hsl(195 15.7% 49.8%);
+  --scBlocFOR: hsl(43 60.7% 42%);
+  --scBlocWHILE: hsl(274 18.6% 44.3%);
+  --scBlocCODE: hsl(16 60% 44.1%);
+  --scBlocCOM: hsl(0 0% 27.5%);
 
-  --scBlocSep: rgb(35, 35, 35);
+  --scBlocSep: hsl(0 0% 13.7%);
 
 
   /* Tokens desktop.main — valeurs propres core2019_Light */
@@ -90,8 +92,9 @@ colors Light
   --scrollbar-thumb-color: var(--btn-default-color);
   --scrollbar-size: 8px;
   --element-disable-opacity: 0.45;
-  --timeline-hover-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
-  --eqlogic-transition: border-color 0.15s ease;
+  --timeline-hover-shadow: 0 2px 6px 0 hsl(0 0% 0% / 0.1);
+  --eqlogic-transition: border-color 0.15s ease, box-shadow .4s cubic-bezier(.25,.8,.25,1);
+  --jeedom-transition-hover: 0.4s cubic-bezier(.25,.8,.25,1);
   --panel-primary-bg: var(--al-primary-color);
   --panel-primary-fg: var(--linkHoverLight-color);
   --panel-success-fg: var(--linkHoverLight-color);
@@ -99,26 +102,25 @@ colors Light
   --panel-info-fg: var(--linkHoverLight-color);
   --panel-warning-fg: var(--sc-formTxt-color);
   --panel-heading-bg: rgb(var(--panel-bg-color));
-  --panel-heading-border: rgb(200, 200, 200);
-  --panel-default-border: rgb(200, 200, 200);
+  --panel-heading-border: hsl(0 0% 78.4%);
+  --panel-default-border: hsl(0 0% 78.4%);
   --panel-default-title: var(--linkHover-color);
-  --btn-semantic-radius: var(--border-radius);
-  --navbar-bg: rgba(232, 232, 234, 0.95);
-  --navtab-border: rgb(200, 200, 200);
+  --navbar-bg: hsl(240 4.5% 91.4% / 0.95);
+  --navtab-border: hsl(0 0% 78.4%);
   --tab-inactive-color: var(--txt-color);
-  --dropdown-border: rgb(200, 200, 200);
+  --dropdown-border: hsl(0 0% 78.4%);
   --dropdown-item-fg: var(--txt-color);
-  --dropdown-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
-  --modal-border: rgb(200, 200, 200);
+  --dropdown-shadow: 0 10px 25px hsl(0 0% 0% / 0.12);
+  --modal-border: hsl(0 0% 78.4%);
   --modal-header-bg: rgb(var(--panel-bg-color));
-  --modal-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-  --input-border: 1px solid rgb(200, 200, 200);
+  --modal-shadow: 0 20px 50px hsl(0 0% 0% / 0.15);
+  --input-border: 1px solid hsl(0 0% 78.4%);
   --input-bg: var(--bg-modal-color);
   --input-focus-shadow: 0 0 0 2px color-mix(in srgb, var(--al-primary-color) 20%, transparent);
   --input-group-addon-fg: var(--txt-color);
   --checkbox-bg: var(--btn-default-color);
   --widget-btn-hover-color: var(--txt-color);
-  --jeedom-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.10);
-  --btn-info-fg: color-mix(in srgb, var(--al-info-color) 55%, #000);
-  --btn-warning-fg: color-mix(in srgb, var(--al-warning-color) 50%, #000);
+  --jeedom-shadow-lg: 0 8px 22px hsl(0 0% 0% / 0.25);
+  --btn-info-fg: color-mix(in srgb, var(--al-info-color) 55%, hsl(0 0% 0%));
+  --btn-warning-fg: color-mix(in srgb, var(--al-warning-color) 50%, hsl(0 0% 0%));
 }

@@ -1,522 +1,175 @@
+/* ____________________Base */
 html {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 body {
-	transition: all .5s;
-	background-image: linear-gradient(to bottom right, rgba(147,204,1,0.6), rgba(147,204,1,1));
-	padding-top: 0;
-	height: 100% !important;
-	overflow: hidden;
+  transition: background-image 0.5s;
+  background-image: linear-gradient(135deg, rgba(17, 24, 39, 0.82), rgba(147, 204, 1, 0.72));
+  padding-top: 0;
+  height: 100% !important;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
 #backgroundforJeedom {
-	width: 100%;
-	height: 100%;
-	z-index: -1;
-	position: fixed;
-	opacity: 0.2;
-	background-size: cover !important;
-	background-position: right bottom !important;
-	background-repeat: no-repeat;
-	background-image: var(--dashBkg-url) !important;
-	background-color: transparent !important;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  position: fixed;
+  opacity: 0.2;
+  background: var(--dashBkg-url) no-repeat right bottom / cover;
+  background-color: transparent !important;
 }
 
-.veen {
-	width: 70%;
-	margin: 100px auto;
-	background-color: rgb(255,255,255);
-	display: table;
-	position: relative;
-	transition: all .5s;
-}
-.veen > div {
-	display: table-cell;
-	vertical-align: middle;
-	text-align: center;
-	color: #fff;
-}
-
-.veen button{
-	display: inline-block;
-	padding: 10px 30px;
-	border: 3px solid #fff;
-	background-clip: padding-box;
-	position: relative;
-	color: #FFF;
-	transition: all .25s;
-}
-.veen button.dark{
-	border-color: #93cc01;
-	background: #93cc01;
-}
-.veen .move button.dark{
-	border-color: #e0b722;
-	background: #e0b722;
-}
-.veen .splits p{
-	font-size: 15px;
-
-}
-.veen button:active{
-	box-shadow: none;
-}
-.veen button:focus{
-	outline: none;
-}
-.veen > .wrapper {
-	position: absolute;
-	width: 45%;
-	height: 120%;
-	min-height: 600px !important;
-	top: -10%;
-	left: 2%;
-	background: #fff;
-	transition: all .5s;
-	color: #303030;
-	overflow: hidden;
-	box-shadow: 0 8px 22px 2px rgba(0,0,0,0.2);
-}
-.veen .wrapper > .form-group{
-	padding: 15px 30px 30px;
-	width: 100%;
-	transition: all .5s;
-	background: #fff;
-}
-.veen .wrapper > .form-group:focus{
-	outline: none;
-}
-.veen .wrapper .submit {
-	padding-top: 10px !important;
-}
-.veen .wrapper #login{
-	padding-top: 20%;
-	visibility: visible;
-	text-align: left;
-}
-.veen .wrapper #market{
-	padding-top: 10%;
-}
-.veen .wrapper #register{
-	transform: translateY(-80%) translateX(100%);
-	visibility: hidden;
-
-}
-.veen .wrapper.move #register{
-	transform: translateY(-120%) translateX(0%);
-	visibility: visible;
-}
-.veen .wrapper.move #login {
-	transform: translateX(-100%);
-	visibility: hidden;
-}
-.veen .wrapper .checkbox {
-	width: 100%;
-	height: 10px;
-}
-.veen .wrapper > .form-group > div {
-	position: relative;
-	margin-bottom: 15px;
-}
-.veen .wrapper label{
-	font-size: 12px;
-	white-space: nowrap;
-	background: #fff;
-	text-align: left;
-	padding: 0 15px;
-	color: #999;
-	pointer-events: none;
-}
-.veen .wrapper h3{
-	margin-bottom: 25px;
-}
-.veen .wrapper input:not([type='checkbox']){
-	height: 40px;
-	padding: 5px 15px;
-	width: 100%;
-	border: solid 1px #999;
-}
-.veen .wrapper input{
-	margin-top: -6px;
-}
-.veen .wrapper input:focus{
-	outline: none;
-	border-color: #e0b722;
-}
-.veen > .wrapper.move{
-	left: 45%;
-}
-.veen > .wrapper.move input:focus{
-	border-color: #e0b722;
-}
-
-#cb_storeConnection {
-	right: 10px !important;
-	top: 0 !important;
-}
-
-#in_login_password,
-#in_login_username,
-#cb_storeConnection {
-	background: rgb(240,240,240) !important;
-}
-
-.btn_help{
-	right: 3%;
-	bottom: 8%;
-	width: 50px;
-	height:50px;
-	color: rgba(147,204,1,1);
-	font-size:20px;
-	position: fixed;
-	background: #FFFFFF;
-	border: 1px solid #FFFFFF;
-	border-radius:25px !important;
-	text-align:center;
-	line-height:45px;
-	box-shadow: 6px 6px 4px rgba(0,0,0,.14), 0 4px 8px rgba(0,0,0,.28);
-}
-.btn_help:hover{
-	background: #FFFFFF;
-	border: 1px solid rgba(147,204,1,1);
-}
-
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill {
-	box-shadow: inset 0 0 0 50px #fff
-}
-
-
-
-@media (max-width: 1520px){
-	.veen{
-		width: 80%;
-	}
-}
-
-@media (max-width: 1000px){
-	.veen .wrapper #login{
-		padding-top: 10px;
-	}
-}
-
-@media (max-width: 767px) {
-	.veen{
-		padding: 5px;
-		margin: 0;
-		width: 100%;
-		display: block;
-	}
-	.veen > .wrapper{
-		position: relative;
-		height: auto;
-		top: 0;
-		left: 0;
-		width: 100%;
-	}
-	.veen > div{
-		display: inline-block;
-	}
-	.splits{
-		width: 50%;
-		background: #fff !important;
-		float: left;
-	}
-	.splits button{
-		width: 100%;
-		border-radius: 0;
-		background: #505050;
-		border: 0;
-		opacity: .7;
-	}
-	.splits button.active{
-		opacity: 1;
-	}
-	.splits button.active{
-		opacity: 1;
-		background: #ff4931;
-	}
-	.splits.rgstr-btn button.active{
-		background: #e0b722;
-	}
-	.splits p{
-		display: none;
-	}
-	.veen > .wrapper.move{
-		left: 0%;
-	}
-}
-
-/* Modern login inspired by Jeedom X */
-body {
-	background-image: linear-gradient(135deg, rgba(17, 24, 39, 0.82), rgba(147, 204, 1, 0.72));
-	min-height: 100vh;
-}
-
+/* ____________________Layout */
 .bodyLogin {
-	min-height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 28px 18px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 18px;
 }
 
+/* RESP-01: prevent zoomIn animation from leaving the card shrunk */
+.bodyLogin .veen.animated.zoomIn {
+  animation: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+/* ____________________Card */
 .veen {
-	width: min(620px, calc(100vw - 36px));
-	min-height: unset;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	background: rgba(255, 255, 255, 0.96);
-	border: 1px solid rgba(255, 255, 255, 0.72);
-	box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
-	border-radius: 8px;
-	overflow: hidden;
-	backdrop-filter: blur(12px);
+  width: min(620px, calc(100vw - 36px));
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
+  border-radius: 8px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  color: #1f2933;
 }
 
 .veen > div {
-	display: block;
-	width: 100%;
-	color: #1f2933;
-	text-align: left;
+  display: block;
+  width: 100%;
+  text-align: left;
 }
 
+/* ____________________Splits / header */
 .veen .splits {
-	background: transparent;
+  background: transparent;
 }
 
 .veen .login-btn {
-	padding: 24px 28px 8px;
+  padding: 24px 28px 8px;
 }
 
 .veen .login-btn h3 {
-	margin: 0;
-	font-size: 26px;
-	line-height: 1.2;
-	font-weight: 500;
-	color: #1f2933;
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 500;
+  color: #1f2933;
 }
 
 .veen .login-btn p {
-	margin: 6px 0 0;
-	font-size: 14px;
-	color: #5b6673;
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #5b6673;
 }
 
 .veen .rgstr-btn {
-	padding: 0 28px 20px;
+  padding: 0 28px 20px;
 }
 
 .veen .rgstr-btn .img-responsive {
-	display: block;
-	width: 108px;
-	max-width: 38vw;
-	height: auto;
-	margin: 0;
+  display: block;
+  width: 108px;
+  max-width: 38vw;
+  height: auto;
+  margin: 0;
 }
 
+/* ____________________Wrapper / panels */
 .veen > .wrapper {
-	position: relative;
-	width: 100%;
-	height: auto;
-	min-height: 0 !important;
-	top: 0;
-	left: 0;
-	box-shadow: none;
-	background: transparent;
-	overflow: visible;
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 0 !important;
+  top: 0;
+  left: 0;
+  box-shadow: none;
+  background: transparent;
+  overflow: visible;
 }
 
 .veen .wrapper > .form-group {
-	padding: 0 28px 24px;
-	background: transparent;
+  padding: 0 28px 24px;
+  background: transparent;
 }
 
 .veen .wrapper #login,
 .veen .wrapper #market {
-	padding-top: 0;
+  padding-top: 0;
 }
 
+/* Slide-in/out animation between login and register panels */
 .veen .wrapper #register {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	transform: translateX(105%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: translateX(105%);
 }
 
 .veen .wrapper.move #register {
-	position: relative;
-	transform: translateX(0);
+  position: relative;
+  transform: translateX(0);
 }
 
 .veen .wrapper.move #login {
-	position: absolute;
-	transform: translateX(-105%);
+  position: absolute;
+  transform: translateX(-105%);
 }
 
 .veen > .wrapper.move {
-	left: 0;
+  left: 0;
 }
 
+/* ____________________Typography */
 .veen .wrapper h3 {
-	margin: 0 0 16px;
-	font-size: 24px;
-	font-weight: 500;
-	color: #1f2933;
-}
-
-.veen .wrapper > .form-group > div {
-	margin-bottom: 12px;
+  margin: 0 0 16px;
+  font-size: 24px;
+  font-weight: 500;
+  color: #1f2933;
 }
 
 .veen .wrapper label {
-	display: block;
-	margin: 0 0 6px;
-	padding: 0;
-	font-size: 13px;
-	font-weight: 500;
-	color: #56616d;
-	background: transparent;
+  display: block;
+  margin: 0 0 6px;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: #56616d;
+  background: transparent;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
-.veen .wrapper input:not([type='checkbox']) {
-	height: 40px;
-	padding: 8px 12px;
-	border: 1px solid #d7dde3;
-	border-radius: 6px;
-	background: #f3f5f7 !important;
-	color: #111827 !important;
-	-webkit-text-fill-color: #111827;
-	font-size: 15px;
+/* ____________________Form elements */
+.veen .wrapper > .form-group > div {
+  position: relative;
+  margin-bottom: 12px;
 }
 
-.veen .wrapper input:not([type='checkbox']):focus {
-	border-color: #93cc01;
-	box-shadow: 0 0 0 3px rgba(147, 204, 1, 0.16);
-}
-
-.veen .wrapper .input-group input {
-	border-radius: 6px 0 0 6px;
-}
-
-.veen .wrapper .input-group .btn {
-	height: 40px;
-	border-color: #d7dde3;
-	background: #f3f5f7;
-	color: #56616d;
-}
-
-.veen .wrapper .checkbox {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	height: auto;
-	margin-top: 2px;
-}
-
-#cb_storeConnection {
-	position: static !important;
-	margin: 0 !important;
-}
-
-.veen .wrapper .checkbox label {
-	margin: 0;
-	line-height: 18px;
-	white-space: normal;
-}
-
-.veen .wrapper .submit {
-	padding-top: 0 !important;
-	text-align: left;
-}
-
-.veen button,
-.veen button.dark {
-	min-width: 157px;
-	height: 40px;
-	padding: 8px 22px;
-	border: 0;
-	border-radius: 6px;
-	background: #93cc01;
-	color: #fff;
-	box-shadow: 0 10px 26px rgba(147, 204, 1, 0.28);
-}
-
-.veen button:hover,
-.veen button.dark:hover {
-	background: #82b700;
-}
-
-.resetPassword {
-	margin-top: 6px;
-	text-align: left;
-}
-
-.resetPassword a {
-	color: #4d7f00;
-}
-
-.btn_help {
-	right: 28px;
-	bottom: 28px;
-	width: 46px;
-	height: 46px;
-	line-height: 42px;
-	border-radius: 23px !important;
-	color: #4d7f00;
-}
-
-@media (max-width: 767px) {
-	body {
-		overflow: auto;
-	}
-
-	.bodyLogin {
-		align-items: flex-start;
-		padding: 16px;
-	}
-
-	.veen {
-		width: min(560px, 100%);
-		padding: 0;
-		margin: 0 auto;
-	}
-
-	.veen > div,
-	.splits {
-		display: block;
-		float: none;
-		width: 100%;
-	}
-
-	.veen .login-btn,
-	.veen .rgstr-btn,
-	.veen .wrapper > .form-group {
-		padding-left: 24px;
-		padding-right: 24px;
-	}
-
-	.veen .rgstr-btn .img-responsive {
-		width: 96px;
-	}
-}
-
-
-@media (max-width: 767px) {
-	.veen .splits p {
-		display: block;
-	}
-}
-
-/* Login form sizing fixes */
 .veen .wrapper #login,
 .veen .wrapper #market,
 .veen .wrapper #register {
-	max-width: 100%;
+  max-width: 100%;
 }
 
 .veen .wrapper .mail,
@@ -524,119 +177,256 @@ body {
 .veen .wrapper .checkbox,
 .veen .wrapper .submit,
 .veen .wrapper .resetPassword {
-	max-width: 420px;
+  max-width: 420px;
 }
 
 .veen .wrapper input:not([type='checkbox']) {
-	width: 100%;
-	min-height: 40px;
-	line-height: 22px;
-	box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  min-height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #d7dde3;
+  border-radius: 6px;
+  background: #f3f5f7 !important;
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827;
+  font-size: 15px;
+  line-height: 22px;
+  box-sizing: border-box;
+  margin-top: 0;
 }
 
+.veen .wrapper input:not([type='checkbox'])::placeholder {
+  color: #64748b;
+  opacity: 1;
+}
+
+.veen .wrapper input:not([type='checkbox']):focus {
+  outline: none;
+  border-color: #93cc01;
+  box-shadow: 0 0 0 3px rgba(147, 204, 1, 0.16);
+}
+
+.veen .wrapper input:not([type='checkbox']):is(:disabled, [readonly]) {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827;
+  opacity: 1;
+}
+
+/* Input group (password reveal) */
 .veen .wrapper .input-group {
-	display: flex;
-	width: 100%;
+  display: flex;
+  width: 100%;
 }
 
-.veen .wrapper .input-group input:not([type=checkbox]) {
-	flex: 1 1 auto;
-	min-width: 0;
+.veen .wrapper .input-group input:not([type='checkbox']) {
+  flex: 1 1 auto;
+  min-width: 0;
+  border-radius: 6px 0 0 6px;
 }
 
 .veen .wrapper .input-group-btn {
-	display: flex;
-	width: 42px;
-	flex: 0 0 42px;
+  display: flex;
+  width: 42px;
+  flex: 0 0 42px;
 }
 
 .veen .wrapper .input-group .btn {
-	width: 42px;
-	min-width: 42px !important;
-	padding: 0;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-}
-
-#cb_storeConnection {
-	appearance: auto;
-	-webkit-appearance: checkbox;
-	width: 16px !important;
-	height: 16px !important;
-	min-width: 16px;
-	flex: 0 0 16px;
-	opacity: 1;
-	accent-color: #93cc01;
-	background: #fff !important;
-}
-
-.veen .wrapper .checkbox label {
-	padding-left: 0;
-	color: #56616d;
-}
-
-@media (max-width: 767px) {
-	.veen .wrapper #login,
-	.veen .wrapper #market,
-	.veen .wrapper #register,
-	.veen .wrapper .mail,
-	.veen .wrapper .passwd,
-	.veen .wrapper .checkbox,
-	.veen .wrapper .submit,
-	.veen .wrapper .resetPassword {
-		max-width: 390px;
-	}
-}
-
-/* Compact login contrast fixes */
-.veen .wrapper input:not([type='checkbox'])::placeholder {
-	color: #64748b;
-	opacity: 1;
-}
-
-.veen .wrapper input:not([type='checkbox']):disabled,
-.veen .wrapper input:not([type='checkbox'])[readonly] {
-	color: #111827 !important;
-	-webkit-text-fill-color: #111827;
-	opacity: 1;
+  width: 42px;
+  min-width: 42px !important;
+  height: 40px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-color: #d7dde3;
+  background: #f3f5f7;
+  color: #56616d;
 }
 
 .veen .wrapper .input-group .btn i {
-	color: #6b7280;
+  color: #6b7280;
 }
 
-/* RESP-01 : renforcement tactile mobile */
+/* Checkbox row */
+.veen .wrapper .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: auto;
+  margin-top: 2px;
+  width: 100%;
+}
+
+#cb_storeConnection {
+  position: static !important;
+  appearance: auto;
+  -webkit-appearance: checkbox;
+  width: 16px !important;
+  height: 16px !important;
+  min-width: 16px;
+  flex: 0 0 16px;
+  margin: 0 !important;
+  opacity: 1;
+  accent-color: #93cc01;
+  background: #fff !important;
+}
+
+.veen .wrapper .checkbox label {
+  margin: 0;
+  padding-left: 0;
+  line-height: 18px;
+  white-space: normal;
+  color: #56616d;
+}
+
+/* Autofill override */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  box-shadow: inset 0 0 0 50px #fff;
+}
+
+#in_login_password,
+#in_login_username {
+  background: rgb(240, 240, 240) !important;
+}
+
+/* ____________________Buttons */
+.veen button,
+.veen button.dark {
+  min-width: 157px;
+  height: 40px;
+  padding: 8px 22px;
+  border: 0;
+  border-radius: 6px;
+  background: #93cc01;
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(147, 204, 1, 0.28);
+  transition: background 0.25s;
+}
+
+.veen button:is(:hover, :active),
+.veen button.dark:hover {
+  background: #82b700;
+  box-shadow: none;
+}
+
+.veen button:focus {
+  outline: none;
+}
+
+.veen .wrapper .submit {
+  padding-top: 0 !important;
+  text-align: left;
+}
+
+/* ____________________Misc */
+.resetPassword {
+  margin-top: 6px;
+  text-align: left;
+}
+
+.resetPassword a {
+  color: #4d7f00;
+}
+
+.btn_help {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  width: 46px;
+  height: 46px;
+  line-height: 42px;
+  font-size: 20px;
+  text-align: center;
+  color: #4d7f00;
+  background: #fff;
+  border: 1px solid #fff;
+  border-radius: 23px !important;
+  box-shadow: 6px 6px 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28);
+}
+
+.btn_help:hover {
+  border-color: #93cc01;
+}
+
+/* ____________________Responsive */
 @media (max-width: 767px) {
-	.veen .wrapper input:not([type='checkbox']) {
-		min-height: 44px;
-		font-size: 16px;
-	}
-	.veen .wrapper .input-group .btn {
-		min-height: 44px;
-		min-width: 44px;
-	}
-	.veen button,
-	.veen button.dark {
-		min-height: 44px;
-		font-size: 16px;
-	}
-	#cb_storeConnection {
-		width: 20px !important;
-		height: 20px !important;
-		min-width: 20px;
-		flex: 0 0 20px;
-	}
-	.resetPassword a {
-		display: inline-block;
-		min-height: 32px;
-		line-height: 32px;
-	}
-}
+  body {
+    overflow: auto;
+  }
 
-/* RESP-01 : evite que l'animation zoomIn laisse la carte login reduite */
-.bodyLogin .veen.animated.zoomIn {
-	animation: none !important;
-	transform: none !important;
-	opacity: 1 !important;
+  .bodyLogin {
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .veen {
+    width: min(560px, 100%);
+    padding: 0;
+  }
+
+  .veen > div,
+  .splits {
+    display: block;
+    float: none;
+    width: 100%;
+  }
+
+  .veen .splits p {
+    display: block;
+  }
+
+  .veen .login-btn,
+  .veen .rgstr-btn,
+  .veen .wrapper > .form-group {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .veen .rgstr-btn .img-responsive {
+    width: 96px;
+  }
+
+  /* Touch target enforcement */
+  .veen .wrapper input:not([type='checkbox']) {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .veen .wrapper .input-group .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .veen button,
+  .veen button.dark {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  #cb_storeConnection {
+    width: 20px !important;
+    height: 20px !important;
+    min-width: 20px;
+    flex: 0 0 20px;
+  }
+
+  .resetPassword a {
+    display: inline-block;
+    min-height: 32px;
+    line-height: 32px;
+  }
+
+  .veen .wrapper #login,
+  .veen .wrapper #market,
+  .veen .wrapper #register,
+  .veen .wrapper .mail,
+  .veen .wrapper .passwd,
+  .veen .wrapper .checkbox,
+  .veen .wrapper .submit,
+  .veen .wrapper .resetPassword {
+    max-width: 390px;
+  }
 }

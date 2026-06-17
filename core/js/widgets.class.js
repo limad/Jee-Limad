@@ -16,149 +16,40 @@
 
 jeedom.widgets = function() {};
 
-jeedom.widgets.remove = function(_params) {
-  const paramsRequired = ['id'];
-  const paramsSpecifics = {};
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  const paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/widgets.ajax.php';
-  paramsAJAX.data = {
-    action: "remove",
-    id: _params.id
+// Factory interne : construit une fonction AJAX standard vers widgets.ajax.php
+jeedom.widgets._call = function(_action, _required, _dataKeys) {
+  return function(_params) {
+    _params = _params || {};
+    try {
+      jeedom.private.checkParamsRequired(_params, _required);
+    } catch (e) {
+      (_params.error || jeedom.private.default_params.error)(e);
+      return;
+    }
+    const params = domUtils.extend({}, jeedom.private.default_params, _params);
+    const paramsAJAX = jeedom.private.getParamsAJAX(params);
+    paramsAJAX.url = 'core/ajax/widgets.ajax.php';
+    paramsAJAX.data = { action: _action };
+    for (const key of _dataKeys) {
+      paramsAJAX.data[key] = key === 'widgets' ? JSON.stringify(_params[key]) : _params[key];
+    }
+    domUtils.ajax(paramsAJAX);
   };
-  domUtils.ajax(paramsAJAX);
-}
+};
 
-jeedom.widgets.byId = function(_params) {
-  const paramsRequired = ['id'];
-  const paramsSpecifics = {};
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  const paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/widgets.ajax.php';
-  paramsAJAX.data = {
-    action: "byId",
-    id: _params.id
-  };
-  domUtils.ajax(paramsAJAX);
-}
-
-jeedom.widgets.save = function(_params) {
-  const paramsRequired = ['widgets'];
-  const paramsSpecifics = {};
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  const paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/widgets.ajax.php';
-  paramsAJAX.data = {
-    action: 'save',
-    widgets: JSON.stringify(_params.widgets),
-  };
-  domUtils.ajax(paramsAJAX);
-}
-
-jeedom.widgets.all = function(_params) {
-  const paramsRequired = [];
-  const paramsSpecifics = {};
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  const paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/widgets.ajax.php';
-  paramsAJAX.data = {
-    action: 'all'
-  };
-  domUtils.ajax(paramsAJAX);
-}
-
-jeedom.widgets.getTemplateConfiguration = function(_params) {
-  const paramsRequired = ['template'];
-  const paramsSpecifics = {};
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  const paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/widgets.ajax.php';
-  paramsAJAX.data = {
-    action: 'getTemplateConfiguration',
-    template: _params.template
-  };
-  domUtils.ajax(paramsAJAX);
-}
-
-jeedom.widgets.getPreview = function(_params) {
-  const paramsRequired = ['id'];
-  const paramsSpecifics = {};
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  const paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/widgets.ajax.php';
-  paramsAJAX.data = {
-    action: "getPreview",
-    id: _params.id
-  };
-  domUtils.ajax(paramsAJAX);
-}
-
-jeedom.widgets.replacement = function(_params) {
-  const paramsRequired = ['version', 'replace', 'by'];
-  const paramsSpecifics = {};
-  try {
-    jeedom.private.checkParamsRequired(_params || {}, paramsRequired);
-  } catch (e) {
-    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e);
-    return;
-  }
-  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {});
-  const paramsAJAX = jeedom.private.getParamsAJAX(params);
-  paramsAJAX.url = 'core/ajax/widgets.ajax.php';
-  paramsAJAX.data = {
-    action: "replacement",
-    version: _params.version,
-    replace: _params.replace,
-    by: _params.by
-  };
-  domUtils.ajax(paramsAJAX);
-}
+jeedom.widgets.remove                 = jeedom.widgets._call('remove',                 ['id'],       ['id']);
+jeedom.widgets.byId                   = jeedom.widgets._call('byId',                   ['id'],       ['id']);
+jeedom.widgets.save                   = jeedom.widgets._call('save',                   ['widgets'],  ['widgets']);
+jeedom.widgets.all                    = jeedom.widgets._call('all',                    [],           []);
+jeedom.widgets.getTemplateConfiguration = jeedom.widgets._call('getTemplateConfiguration', ['template'], ['template']);
+jeedom.widgets.getPreview             = jeedom.widgets._call('getPreview',             ['id'],       ['id']);
+jeedom.widgets.replacement            = jeedom.widgets._call('replacement',            ['version', 'replace', 'by'], ['version', 'replace', 'by']);
 
 jeedom.widgets.getThemeImg = function(_light, _dark) {
-  if (_light != '' && _dark == '') {
-    return _light
-  }
-  if (_light == '' && _dark != '') {
-    return _dark
-  }
+  if (_light !== '' && _dark === '') return _light;
+  if (_light === '' && _dark !== '') return _dark;
   if (document.body.hasAttribute('data-theme')) {
-    if (document.body.getAttribute('data-theme').endsWith('Light')) return _light
+    if (document.body.getAttribute('data-theme').endsWith('Light')) return _light;
   }
-  return _dark
-}
+  return _dark;
+};

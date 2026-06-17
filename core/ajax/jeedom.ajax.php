@@ -368,7 +368,7 @@ try {
 
 	if (init('action') == 'restore') {
 		unautorizedInDemo();
-		jeedom::restore(init('backup'), true);
+		jeedom::restore(init('backup'), true, init('parts', 'all'), init('force', 0) == 1);
 		ajax::success();
 	}
 

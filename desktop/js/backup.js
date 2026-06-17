@@ -232,7 +232,20 @@ document.getElementById('bt_saveBackup')?.addEventListener('click', function(eve
 
 document.getElementById('bt_restoreJeedom')?.addEventListener('click', function(event) {
   const _target = event.target
+  const _db = document.getElementById('cb_restoreDb')?.checked !== false
+  const _files = document.getElementById('cb_restoreFiles')?.checked !== false
+  const _force = document.getElementById('cb_restoreForce')?.checked ? 1 : 0
+  if (!_db && !_files) {
+    jeedomUtils.showAlert({message: '{{Sélectionnez au moins la base de données ou les fichiers.}}', level: 'danger'})
+    return
+  }
+  let _parts = 'all'
+  if (_db && !_files) _parts = 'db'
+  else if (_files && !_db) _parts = 'files'
   let msg = '{{Êtes-vous sûr de vouloir restaurer}} ' + JEEDOM_PRODUCT_NAME + ' {{avec la sauvegarde}} :<br><b>' + document.getElementById('sel_restoreBackup').value + ' </b> ?'
+  if (_parts !== 'all') {
+    msg += '<br><span class="warning">{{Restauration partielle}} : <b>' + (_parts === 'db' ? '{{base de données seulement}}' : '{{fichiers seulement}}') + '</b>.</span>'
+  }
   msg += '<br> <span class="warning">{{IMPORTANT la restauration d\'un backup est une opération risquée et n\'est à utiliser qu\'en dernier recours}}'
   msg += '<br>{{Une fois lancée cette opération ne peut être annulée.}}</span>'
   jeeDialog.confirm({
@@ -245,6 +258,8 @@ document.getElementById('bt_restoreJeedom')?.addEventListener('click', function(
         _target.querySelector('.fa-sync').seen()
         jeedom.backup.restoreLocal({
           backup: document.getElementById('sel_restoreBackup').value,
+          parts: _parts,
+          force: _force,
           error: function(error) {
             jeedomUtils.showAlert({
               message: error.message,

@@ -67,7 +67,7 @@ if (!jeeFrontEnd.overview) {
       })
       parent.querySelectorAll('.objectSummaryParent[data-summary="security"], .objectSummaryParent[data-summary="motion"]')?.last()?.addClass('last')
       if (pResume.querySelector('.objectSummaryParent[data-summary="temperature"]') != null && pResume.querySelector('.objectSummaryParent[data-summary^="temp"]') != null ) {
-        parent.find('.topPreview').appendChild(pResume.querySelector('.objectSummaryParent[data-summary^="temp"]'))
+        parent.querySelector('.topPreview').appendChild(pResume.querySelector('.objectSummaryParent[data-summary^="temp"]'))
       }
       this.checkResumeEmpty()
     },
@@ -111,7 +111,7 @@ if (!jeeFrontEnd.overview) {
           for (let i = 0; i < nbEqs; i++) {
             if (self.summaryObjEqs[_object_id].includes(data[i].id)) {
               nbEqs--
-              return
+              continue
             }
             self.summaryObjEqs[_object_id].push(data[i].id)
 

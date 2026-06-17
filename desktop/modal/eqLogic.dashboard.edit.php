@@ -70,7 +70,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                     $options = '';
                     foreach (($eqLogic->getCmd('info')) as $cmd) {
                       if ($cmd->getIsHistorized()) {
-                        $options .= '<option value="' . $cmd->getId() . '">' . $cmd->getName() . '</option>';
+                        $options .= '<option value="' . $cmd->getId() . '">' . htmlspecialchars($cmd->getName(), ENT_QUOTES) . '</option>';
                       }
                     }
                     echo $options;
@@ -211,7 +211,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                   foreach (($eqLogic->getDisplay('parameters')) as $key => $value) {
                     $echo .= '<tr>';
                     $echo .= '<td>';
-                    $echo .= '<input class="form-control input-sm key" value="' . $key . '">';
+                    $echo .= '<input class="form-control input-sm key" value="' . htmlspecialchars($key, ENT_QUOTES) . '">';
                     $echo .= '</td>';
                     $echo .= '<td>';
                     $echo .= '<input class="form-control input-sm value" value="' . htmlspecialchars($value, ENT_QUOTES) . '">';
@@ -292,6 +292,10 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
 
             <div class="widget_layout table" style="display: none;">
               <label><i class="fas fa-th-large"></i> {{Mise en forme détaillée}}</label>
+              <small class="pull-right" style="margin-top:4px;">
+                <span class="label label-info"><i class="fas fa-eye"></i></span> {{Information}}&nbsp;&nbsp;
+                <span class="label label-warning"><i class="fas fa-bolt"></i></span> {{Action}}
+              </small>
               <div class="table-responsive">
                 <table class="table table-condensed table-responsive" id="tableCmdLayoutConfiguration">
                   <tbody>
@@ -317,7 +321,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                         $string_cmd = '<div class="cmdLayoutContainer text-center" style="min-height:30px;">';
                         if (isset($table[$i][$j]) && count($table[$i][$j]) > 0) {
                           foreach ($table[$i][$j] as $cmd) {
-                            $string_cmd .= '<span class="label label-default cmdLayout cursor" data-cmd_id="' . $cmd->getId() . '" style="margin:2px;">' . $cmd->getName() . '</span>';
+                            $cmdLayoutClass = ($cmd->getType() == 'info') ? 'label-info' : 'label-warning';
+                          $cmdLayoutIcon = ($cmd->getType() == 'info') ? 'fas fa-eye' : 'fas fa-bolt';
+                          $string_cmd .= '<span class="label ' . $cmdLayoutClass . ' cmdLayout cursor" data-cmd_id="' . $cmd->getId() . '" title="' . $cmd->getType() . ' | ' . $cmd->getSubType() . '" style="margin:2px;"><i class="' . $cmdLayoutIcon . '"></i> ' . htmlspecialchars($cmd->getName(), ENT_QUOTES) . '</span>';
                           }
                         }
                         $tr .= $string_cmd . '</div>';
@@ -359,9 +365,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
             $display .= '<span class="' . $thisclassAttrib . ' hidden" data-l1key="id"></span>';
 
             if ($cmd->getType() == 'info') {
-              $display .= '<a class="btn btn-default btn-info btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . $cmd->getName() . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
+              $display .= '<a class="btn btn-default btn-info btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . htmlspecialchars($cmd->getName(), ENT_QUOTES) . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
             } else {
-              $display .= '<a class="btn btn-default btn-warning btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . $cmd->getName() . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
+              $display .= '<a class="btn btn-default btn-warning btn-xs bt_cmdConfig" data-toggle="collapse" data-target="#cmdConfig' . $cmd->getId() . '">' . htmlspecialchars($cmd->getName(), ENT_QUOTES) . ' (' . $cmd->getType() . ' | ' . $cmd->getSubType() . ')</a>';
             }
 
             $display .= '<div id="cmdConfig' . $cmd->getId() . '" class="collapse" style="margin-top: 8px;">';
@@ -428,7 +434,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               foreach (($cmd->getDisplay('parameters')) as $key => $value) {
                 $display .= '<tr class="cmdoptparam text-center">';
                 $display .= '<td colspan="3">';
-                $display .= '<input class="key" value="' . $key . '" style="width:45%;">';
+                $display .= '<input class="key" value="' . htmlspecialchars($key, ENT_QUOTES) . '" style="width:45%;">';
                 $display .= ' <input class="value" value="' . htmlspecialchars($value, ENT_QUOTES) . '" style="width:45%;">';
                 $display .= '<a class="btn btn-danger btn-xs pull-right removeWidgetParameter"><i class="fas fa-trash-alt"></i></a>';
                 $display .= '</td>';
@@ -468,9 +474,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           document.querySelector('select[data-l2key="layout::dashboard"]').triggerEvent('change')
         }
 
-        document.querySelectorAll('#commands select[data-l1key="template"][data-l2key="dashboard"]').forEach(_tmplt => {
-          jeeFrontEnd.md_eqlogicDashEdit.displayWidgetHelp(_tmplt.value, _tmplt.closest('.cmdConfig').getAttribute('data-id'))
-        })
+        //widget help is lazy-loaded on command expand (see .bt_cmdConfig click handler)
 
         this.setTableLayoutSortable()
         this.setCmdsSortable()
@@ -546,7 +550,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
       getNewLayoutTd: function(row, col) {
         if (jeephp2js.md_eqLogicDashEdit_customLayout == '') return
         var newTd = '<td data-line="' + row + '" data-column="' + col + '">'
-        newTd += '<center class="cmdLayoutContainer"></center>'
+        newTd += '<div class="cmdLayoutContainer text-center" style="min-height:30px;"></div>'
         newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' + row + '::' + col + '" placeholder="{{Texte de la cellule}}">'
         newTd += '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' + row + '::' + col + '" placeholder="{{Style CSS ou attribut(s) HTML}}">'
         newTd += '</td>'
@@ -568,9 +572,9 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
           newTableLayout.setAttribute('id', 'tableCmdLayoutConfiguration')
           newTableLayout.appendChild(document.createElement('tbody'))
 
-          for (i = 1; i <= nbRow; i++) {
+          for (let i = 1; i <= nbRow; i++) {
             var newTr = document.createElement('tr')
-            for (j = 1; j <= nbColumn; j++) {
+            for (let j = 1; j <= nbColumn; j++) {
               newTd = jeeFrontEnd.md_eqlogicDashEdit.getNewLayoutTd(i, j)
               newTr.insertAdjacentHTML('beforeend', newTd)
             }
@@ -686,9 +690,8 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               success: function() {}
             })
 
-            //saving will update the eqLogic tile, set event once:
-            document.body.addEventListener('eqLogic::update', function(_event, _options) {
-              // console.log('eqLogic::update', _event, _options)
+            //saving will update the eqLogic tile, set event once (named handler so it self-removes cleanly):
+            var _onEqUpdate = function(_event) {
               let found = false;
               if (_event.detail) {
                 for (let i in _event.detail) {
@@ -700,7 +703,7 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
               if (!found) {
                 return;
               }
-              document.body.removeEventListener('eqLogic::update', arguments.callee);
+              document.body.removeEventListener('eqLogic::update', _onEqUpdate);
               if (document.body.getAttribute('data-page') == 'dashboard') {
                 setTimeout(function() {
                   jeeFrontEnd.dashboard.editWidgetMode(0, false)
@@ -713,7 +716,8 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
                   jeeFrontEnd.view.editWidgetMode(1, false)
                 }, 50)
               }
-            })
+            }
+            document.body.addEventListener('eqLogic::update', _onEqUpdate)
           }
         })
       },
@@ -728,6 +732,14 @@ $cmd_widgetMobile = cmd::availableWidget('mobile');
      */
     document.getElementById('md_eqlogicDashEdit')?.addEventListener('click', function(event) {
       var _target = null
+      if (_target = event.target.closest('.bt_cmdConfig')) {
+        var _cmdCfg = _target.closest('.cmdConfig')
+        if (_cmdCfg && !_cmdCfg._helpLoaded) {
+          _cmdCfg._helpLoaded = true
+          var _sel = _cmdCfg.querySelector('select[data-l1key="template"][data-l2key="dashboard"]')
+          if (_sel) jeeFrontEnd.md_eqlogicDashEdit.displayWidgetHelp(_sel.value, _cmdCfg.getAttribute('data-id'))
+        }
+      }
       if (_target = event.target.closest('#bt_eqLogicLayoutApply')) {
         jeeFrontEnd.md_eqlogicDashEdit.applyTableLayout()
         return

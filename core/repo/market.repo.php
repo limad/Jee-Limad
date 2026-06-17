@@ -676,6 +676,14 @@ class repo_market {
 		return $jsonrpc;
 	}
 
+	public static function getJsonRpcAnonymous() {
+		$jsonrpc = new jsonrpcClient(config::byKey('market::address') . '/core/api/api.php', '', array());
+		if (config::byKey('market::no_ssl_verify') == 1) {
+			$jsonrpc->setNoSslCheck(true);
+		}
+		return $jsonrpc;
+	}
+
 	public static function postJsonRpc(&$_result) {
 		config::save('market::lastCommunication', date('Y-m-d H:i:s'));
 		if (is_array($_result)) {
@@ -918,9 +926,22 @@ class repo_market {
 				}
 			}
 			return $return;
-		} else {
-			throw new Exception($market->getError(), $market->getErrorCode());
 		}
+		// WHY: market server rejects authenticated requests when too many instances/IPs are registered
+		// (error code 0). Fall back to anonymous browsing so the list remains visible.
+		$authError = $market->getError();
+		$authErrorCode = $market->getErrorCode();
+		$anon = self::getJsonRpcAnonymous();
+		if ($anon->sendRequest('market::byFilter', $_filter)) {
+			$return = array();
+			foreach ($anon->getResult() as $result) {
+				if (isset($result['id'])) {
+					$return[] = self::construct($result);
+				}
+			}
+			return $return;
+		}
+		throw new Exception($authError, $authErrorCode);
 	}
 
 	/*     * *********************Methode d'instance************************* */

@@ -12,33 +12,44 @@
     $name = null;
   }
 
+  $marketWarning = null;
   if ($author == null && $name === null && $categorie === null && init('certification', null) === null && init('cost', null) === null && $type == 'plugin') {
     $default = true;
-    $markets = repo_market::byFilter(array(
-      'status' => 'stable',
-      'type' => 'plugin',
-      'timeState' => 'popular',
-    ));
-    $markets2 = repo_market::byFilter(array(
-      'status' => 'stable',
-      'type' => 'plugin',
-      'timeState' => 'newest',
-    ));
-    $markets = array_merge($markets, $markets2);
+    try {
+      $markets = repo_market::byFilter(array(
+        'status' => 'stable',
+        'type' => 'plugin',
+        'timeState' => 'popular',
+      ));
+      $markets2 = repo_market::byFilter(array(
+        'status' => 'stable',
+        'type' => 'plugin',
+        'timeState' => 'newest',
+      ));
+      $markets = array_merge($markets, $markets2);
+    } catch (Exception $e) {
+      $marketWarning = $e->getMessage();
+      $markets = array();
+    }
   } else {
     $default = false;
-    $markets = repo_market::byFilter(
-      array(
-        'status' => null,
-        'type' => $type,
-        'categorie' => $categorie,
-        'name' => $name,
-        'author' => $author,
-        'cost' => init('cost', null),
-        'timeState' => init('timeState'),
-        'certification' => init('certification', null)
-      )
-    );
+    try {
+      $markets = repo_market::byFilter(
+        array(
+          'status' => null,
+          'type' => $type,
+          'categorie' => $categorie,
+          'name' => $name,
+          'author' => $author,
+          'cost' => init('cost', null),
+          'timeState' => init('timeState'),
+          'certification' => init('certification', null)
+        )
+      );
+    } catch (Exception $e) {
+      $marketWarning = $e->getMessage();
+      $markets = array();
+    }
   }
 
   function buildUrl($_key, $_value) {
@@ -139,6 +150,9 @@
   </div>
 
   <?php
+  if ($marketWarning !== null) {
+    echo '<div class="alert alert-warning" style="margin:8px 0 4px;">' . htmlspecialchars($marketWarning, ENT_QUOTES, 'UTF-8') . '</div>';
+  }
   if ($name !== null && strpos($name, '$') !== false) {
     echo '<a class="btn btn-default" id="bt_returnMarketList" style="margin-top : 50px;" data-href=' . buildUrl('name', '') . '><i class="fas fa-arrow-circle-left"></i> {{Retour}}</a>';
   }

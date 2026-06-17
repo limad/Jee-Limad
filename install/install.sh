@@ -73,6 +73,9 @@ step_2_mainpackage() {
   apt-get -y install xvfb cutycapt xauth
   apt-get -y install at
   apt-get -y install mariadb-client
+  if ! command -v mysqlcheck &>/dev/null && command -v mariadb-check &>/dev/null; then
+    ln -sf /usr/bin/mariadb-check /usr/bin/mysqlcheck
+  fi
   apt-get -y install libav-tools
   apt-get -y install espeak
   apt-get -y install mbrola

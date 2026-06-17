@@ -18,7 +18,7 @@
 
 if (!jeeFrontEnd.widgets) {
   jeeFrontEnd.widgets = {
-    isLoadging: false, //Avoid triggering multiple time input changes
+    isLoading: false,
     init: function() {
       window.jeeP = this
       this.widget_parameters_opt = {
@@ -50,40 +50,59 @@ if (!jeeFrontEnd.widgets) {
           })
         },
         success: function(data) {
-          document.getElementById('div_templateReplace').empty()
+          const replaceContainer = document.getElementById('div_templateReplace')
+          replaceContainer.empty()
           if (typeof data.replace != 'undefined' && data.replace.length > 0) {
             document.querySelectorAll('.type_replace').seen()
-            let replace = ''
-            for (const i in data.replace) {
-              replace += '<div class="form-group">'
-              if (jeeP.widget_parameters_opt[data.replace[i]]) {
-                replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">' + jeeP.widget_parameters_opt[data.replace[i]].name + '</label>'
+            const fragment = document.createDocumentFragment()
+            for (const key of data.replace) {
+              const opt = jeeP.widget_parameters_opt[key]
+              const group = document.createElement('div')
+              group.className = 'form-group'
+
+              const label = document.createElement('label')
+              label.className = 'col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label'
+              if (opt) {
+                label.innerHTML = opt.name
               } else {
-                replace += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-4 control-label">' + data.replace[i].replace("icon_", "").replace("img_", "").replace("_", " ") + '</label>'
+                label.textContent = key.replace('icon_', '').replace('img_', '').replace('_', ' ')
               }
-              replace += '<div class="col-lg-6 col-md-8 col-sm-8 col-xs-8">'
-              replace += '<div class="input-group">'
-              if (jeeP.widget_parameters_opt[data.replace[i]]) {
-                if (jeeP.widget_parameters_opt[data.replace[i]].type == 'checkbox') {
-                  replace += '<input type="checkbox" class="widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
-                } else if (jeeP.widget_parameters_opt[data.replace[i]].type == 'number') {
-                  replace += '<input type="number" class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
-                } else if (jeeP.widget_parameters_opt[data.replace[i]].type == 'input') {
-                  replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
-                }
+              group.appendChild(label)
+
+              const colDiv = document.createElement('div')
+              colDiv.className = 'col-lg-6 col-md-8 col-sm-8 col-xs-8'
+              const inputGroup = document.createElement('div')
+              inputGroup.className = 'input-group'
+
+              let input
+              if (opt && opt.type === 'checkbox') {
+                input = document.createElement('input')
+                input.type = 'checkbox'
+                input.className = 'widgetsAttr roundedLeft'
+              } else if (opt && opt.type === 'number') {
+                input = document.createElement('input')
+                input.type = 'number'
+                input.className = 'form-control widgetsAttr roundedLeft'
               } else {
-                replace += '<input class="form-control widgetsAttr roundedLeft" data-l1key="replace" data-l2key="#_' + data.replace[i] + '_#"/>'
+                input = document.createElement('input')
+                input.className = 'form-control widgetsAttr roundedLeft'
               }
-              if (data.replace[i].includes('icon_') || data.replace[i].includes('img_')) {
-                replace += '<span class="input-group-btn">'
-                replace += '<a class="btn chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>'
-                replace += '</span>'
+              input.dataset.l1key = 'replace'
+              input.dataset.l2key = '#_' + key + '_#'
+              inputGroup.appendChild(input)
+
+              if (key.includes('icon_') || key.includes('img_')) {
+                const span = document.createElement('span')
+                span.className = 'input-group-btn'
+                span.innerHTML = '<a class="btn chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>'
+                inputGroup.appendChild(span)
               }
-              replace += '</div>'
-              replace += '</div>'
-              replace += '</div>'
+
+              colDiv.appendChild(inputGroup)
+              group.appendChild(colDiv)
+              fragment.appendChild(group)
             }
-            document.getElementById('div_templateReplace').html(replace, true)
+            replaceContainer.appendChild(fragment)
           } else {
             document.querySelectorAll('.type_replace').unseen()
           }
@@ -103,7 +122,7 @@ if (!jeeFrontEnd.widgets) {
       })
     },
     printWidget: function(_id) {
-      jeeFrontEnd.widgets.isLoadging = true
+      jeeFrontEnd.widgets.isLoading = true
 
       jeedomUtils.hideAlert()
       document.getElementById('div_conf').seen()
@@ -118,7 +137,7 @@ if (!jeeFrontEnd.widgets) {
             message: error.message,
             level: 'danger'
           })
-          jeeFrontEnd.widgets.isLoadging = false
+          jeeFrontEnd.widgets.isLoading = false
         },
         success: function(data) {
           document.querySelector('a[data-target="#widgetstab"]').click()
@@ -126,9 +145,9 @@ if (!jeeFrontEnd.widgets) {
           //Ensure no resiliant data for next save:
           document.querySelectorAll('.widgetsAttr').jeeValue('')
           document.querySelectorAll('.widgetsAttr[data-l1key="type"]').jeeValue('info')
-          document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue(
-            document.querySelector('.widgetsAttr[data-l1key="subtype"]').selectedIndex = 0
-          )
+          const subtypeEl = document.querySelector('.widgetsAttr[data-l1key="subtype"]')
+          subtypeEl.selectedIndex = 0
+          subtypeEl.jeeValue(subtypeEl.value)
 
           document.querySelectorAll('.widgets').setJeeValues(data, '.widgetsAttr')
           if (isset(data.test)) {
@@ -176,10 +195,7 @@ if (!jeeFrontEnd.widgets) {
             }
           })
           jeeFrontEnd.modifyWithoutSave = false
-          setTimeout(function() {
-            jeeFrontEnd.modifyWithoutSave = false
-          }, 500)
-          jeeFrontEnd.widgets.isLoadging = false
+          jeeFrontEnd.widgets.isLoading = false
         }
       })
     },
@@ -187,39 +203,38 @@ if (!jeeFrontEnd.widgets) {
       if (!isset(_test)) {
         _test = {}
       }
-      let div = '<div class="test">'
-      div += '<div class="form-group">'
-      div += '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Test}}</label>'
-      div += '<div class="col-sm-3">'
-      div += '<div class="input-group">'
-      div += '<span class="input-group-btn">'
-      div += '<a class="btn btn-sm bt_removeTest roundedLeft"><i class="fas fa-minus-circle"></i></a>'
-      div += '</span>'
-      div += '<input class="testAttr form-control input-sm roundedRight" data-l1key="operation" placeholder="Test, utiliser #value# pour la valeur"/>'
-      div += '</div>'
-      div += '</div>'
-      div += '<div class="col-sm-3">'
-      div += '<div class="input-group">'
-      div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_light" placeholder="{{Résultat si test ok}} (light)"/>'
-      div += '<span class="input-group-btn">'
-      div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>'
-      div += '</span>'
-      div += '</div>'
-      div += '</div>'
-      div += '<div class="col-sm-3">'
-      div += '<div class="input-group">'
-      div += '<input class="testAttr form-control input-sm roundedLeft" data-l1key="state_dark" placeholder="{{Résultat si test ok}} (dark)"/>'
-      div += '<span class="input-group-btn">'
-      div += '<a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a>'
-      div += '</span>'
-      div += '</div>'
-      div += '</div>'
 
-      div += '</div>'
-      div += '</div>'
+      const makeIconCol = (l1key, placeholder) => {
+        const col = document.createElement('div')
+        col.className = 'col-sm-3'
+        col.innerHTML = '<div class="input-group">'
+          + '<input class="testAttr form-control input-sm roundedLeft" data-l1key="' + l1key + '" placeholder="' + placeholder + '"/>'
+          + '<span class="input-group-btn"><a class="btn btn-sm chooseIcon roundedRight"><i class="fas fa-flag"></i> {{Choisir}}</a></span>'
+          + '</div>'
+        return col
+      }
+
+      const testDiv = document.createElement('div')
+      testDiv.className = 'test'
+
+      const formGroup = document.createElement('div')
+      formGroup.className = 'form-group'
+      formGroup.innerHTML = '<label class="col-lg-2 col-md-3 col-sm-4 col-xs-6 control-label">{{Test}}</label>'
+
+      const opCol = document.createElement('div')
+      opCol.className = 'col-sm-3'
+      opCol.innerHTML = '<div class="input-group">'
+        + '<span class="input-group-btn"><a class="btn btn-sm bt_removeTest roundedLeft"><i class="fas fa-minus-circle"></i></a></span>'
+        + '<input class="testAttr form-control input-sm roundedRight" data-l1key="operation" placeholder="Test, utiliser #value# pour la valeur"/>'
+        + '</div>'
+
+      formGroup.appendChild(opCol)
+      formGroup.appendChild(makeIconCol('state_light', '{{Résultat si test ok}} (light)'))
+      formGroup.appendChild(makeIconCol('state_dark', '{{Résultat si test ok}} (dark)'))
+      testDiv.appendChild(formGroup)
 
       const replaceDiv = document.getElementById('div_templateTest')
-      replaceDiv.insertAdjacentHTML('beforeend', div)
+      replaceDiv.appendChild(testDiv)
       replaceDiv.querySelectorAll('.test').last().setJeeValues(_test, '.testAttr')
 
     },
@@ -353,6 +368,26 @@ if (!jeeFrontEnd.widgets) {
 
 jeeFrontEnd.widgets.init()
 
+// Parse a widget JSON file and call onParsed(objectData) if valid
+function _parseWidgetJson(file, onParsed) {
+  const reader = new FileReader()
+  reader.readAsText(file)
+  reader.onload = function(e) {
+    let objectData
+    try {
+      objectData = JSON.parse(e.target.result)
+    } catch (_e) {
+      jeedomUtils.showAlert({ message: '{{Fichier json non compatible.}}', level: 'danger' })
+      return
+    }
+    if (!isset(objectData.jeedomCoreVersion)) {
+      jeedomUtils.showAlert({ message: '{{Fichier json non compatible.}}', level: 'danger' })
+      return
+    }
+    onParsed(objectData)
+  }
+}
+
 //context menu
 try {
   jeedom.widgets.all({
@@ -365,36 +400,21 @@ try {
     success: function(_widgets) {
       if (_widgets.length == 0) return
 
-      const widgetsList = []
-      widgetsList['info'] = []
-      widgetsList['action'] = []
-      let groupWidgets, items, wg, wgName, wgId
-      for (let i = 0; i < _widgets.length; i++) {
-        wg = _widgets[i]
-        if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
-        if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
+      const widgetsList = { info: [], action: [] }
+      for (const wg of _widgets) {
+        if (wg.type === 'info') widgetsList.info.push([wg.name, wg.id])
+        if (wg.type === 'action') widgetsList.action.push([wg.name, wg.id])
       }
 
       //set context menu!
       const contextmenuitems = {}
       let uniqId = 0
-      for (const group in widgetsList) {
-        groupWidgets = widgetsList[group]
-        items = {}
-        for (const index in groupWidgets) {
-          wg = groupWidgets[index]
-          wgName = wg[0]
-          wgId = wg[1]
-          items[uniqId] = {
-            'name': wgName,
-            'id': wgId
-          }
-          uniqId++
+      for (const group of ['info', 'action']) {
+        const items = {}
+        for (const [wgName, wgId] of widgetsList[group]) {
+          items[uniqId++] = { name: wgName, id: wgId }
         }
-        contextmenuitems[group] = {
-          'name': group,
-          'items': items
-        }
+        contextmenuitems[group] = { name: group, items }
       }
 
       new jeeCtxMenu({
@@ -415,7 +435,9 @@ try {
       })
     }
   })
-} catch (err) { }
+} catch (err) {
+  console.warn('[widgets] context menu init failed:', err)
+}
 
 
 //Register events on top of page container:
@@ -571,71 +593,27 @@ document.getElementById('div_widgetsList').addEventListener('change', function(e
       return false
     }
 
-    if (uploadedFile) {
-      jeeDialog.prompt("{{Nom du widget}} ?", function(result) {
-        if (result !== null) {
-          jeedom.widgets.save({
-            widgets: {
-              name: result
-            },
-            error: function(error) {
-              jeedomUtils.showAlert({
-                message: error.message,
-                level: 'danger'
-              })
-            },
-            success: function(data) {
-              const readFile = new FileReader()
-              readFile.readAsText(uploadedFile)
-              readFile.onload = function(e) {
-                let objectData
-                try {
-                  objectData = JSON.parse(e.target.result)
-                } catch (error) {
-                  jeedomUtils.showAlert({
-                    message: "{{Fichier json non compatible.}}",
-                    level: 'danger'
-                  })
-                  return false
-                }
-                if (!isset(objectData.jeedomCoreVersion)) {
-                  jeedomUtils.showAlert({
-                    message: "{{Fichier json non compatible.}}",
-                    level: 'danger'
-                  })
-                  return false
-                }
-                objectData.id = data.id
-                objectData.name = data.name
-                if (isset(objectData.test)) {
-                  for (const i in objectData.test) {
-                    jeeP.addTest(objectData.test[i])
-                  }
-                }
-                jeedom.widgets.save({
-                  widgets: objectData,
-                  error: function(error) {
-                    jeedomUtils.showAlert({
-                      message: error.message,
-                      level: 'danger'
-                    })
-                  },
-                  success: function(data) {
-                    jeedomUtils.loadPage('index.php?v=d&p=widgets&id=' + objectData.id + '&saveSuccessFull=1')
-                  }
-                })
-              }
+    jeeDialog.prompt("{{Nom du widget}} ?", function(result) {
+      if (result === null) return
+      jeedom.widgets.save({
+        widgets: { name: result },
+        error: function(error) { jeedomUtils.showAlert({ message: error.message, level: 'danger' }) },
+        success: function(data) {
+          _parseWidgetJson(uploadedFile, function(objectData) {
+            objectData.id = data.id
+            objectData.name = data.name
+            if (isset(objectData.test)) {
+              for (const test of Object.values(objectData.test)) jeeP.addTest(test)
             }
+            jeedom.widgets.save({
+              widgets: objectData,
+              error: function(error) { jeedomUtils.showAlert({ message: error.message, level: 'danger' }) },
+              success: function() { jeedomUtils.loadPage('index.php?v=d&p=widgets&id=' + objectData.id + '&saveSuccessFull=1') }
+            })
           })
         }
       })
-    } else {
-      jeedomUtils.showAlert({
-        message: "{{Problème lors de la lecture du fichier.}}",
-        level: 'danger'
-      })
-      return false
-    }
+    })
     return
   }
 })
@@ -645,14 +623,16 @@ document.getElementById('div_widgetsList').addEventListener('change', function(e
 document.getElementById('div_conf').addEventListener('click', function(event) {
   let _target = null
   if (_target = event.target.closest('#bt_returnToThumbnailDisplay')) {
-    setTimeout(function() {
-      document.querySelector('.nav li.active').removeClass('active')
-      document.querySelector('a[data-target="#' + document.querySelector('.tab-pane.active').getAttribute('id') + '"]').closest('li').addClass('active')
-    }, 500)
     if (jeedomUtils.checkPageModified()) return
     document.getElementById('div_conf').unseen()
     document.getElementById('div_widgetsList').seen()
     jeedomUtils.addOrUpdateUrl('id', null, '{{Widgets}} - ' + JEEDOM_PRODUCT_NAME)
+    requestAnimationFrame(function() {
+      const activePane = document.querySelector('.tab-pane.active')
+      if (!activePane) return
+      document.querySelector('.nav li.active')?.removeClass('active')
+      document.querySelector('a[data-target="#' + activePane.getAttribute('id') + '"]')?.closest('li')?.addClass('active')
+    })
     return
   }
 
@@ -787,49 +767,19 @@ document.getElementById('div_conf').addEventListener('change', function(event) {
       })
       return false
     }
-    if (uploadedFile) {
-      const readFile = new FileReader()
-      readFile.readAsText(uploadedFile)
-      readFile.onload = function(e) {
-        let objectData
-        try {
-          objectData = JSON.parse(e.target.result)
-        } catch (error) {
-          jeedomUtils.showAlert({
-            message: "{{Fichier json non compatible.}}",
-            level: 'danger'
-          })
-          return false
-        }
-        if (!isset(objectData.jeedomCoreVersion)) {
-          jeedomUtils.showAlert({
-            message: "{{Fichier json non compatible.}}",
-            level: 'danger'
-          })
-          return false
-        }
-
-        objectData.id = document.querySelector('.widgetsAttr[data-l1key=id]').jeeValue()
-        objectData.name = document.querySelector('.widgetsAttr[data-l1key=name]').jeeValue()
-        if (isset(objectData.test)) {
-          for (const i in objectData.test) {
-            jeeP.addTest(objectData.test[i])
-          }
-        }
-        jeeP.loadTemplateConfiguration('cmd.' + objectData.type + '.' + objectData.subtype + '.' + objectData.template, objectData)
+    _parseWidgetJson(uploadedFile, function(objectData) {
+      objectData.id = document.querySelector('.widgetsAttr[data-l1key=id]').jeeValue()
+      objectData.name = document.querySelector('.widgetsAttr[data-l1key=name]').jeeValue()
+      if (isset(objectData.test)) {
+        for (const test of Object.values(objectData.test)) jeeP.addTest(test)
       }
-    } else {
-      jeedomUtils.showAlert({
-        message: "{{Problème lors de la lecture du fichier.}}",
-        level: 'danger'
-      })
-      return false
-    }
+      jeeP.loadTemplateConfiguration('cmd.' + objectData.type + '.' + objectData.subtype + '.' + objectData.template, objectData)
+    })
     return
   }
 
   if (_target = event.target.closest('.selectWidgetTemplate')) {
-    if (jeeP.isLoadging) return
+    if (jeeP.isLoading) return
     const type = document.querySelector('.widgetsAttr[data-l1key="type"]').jeeValue()
     const subtype = document.querySelector('.widgetsAttr[data-l1key="subtype"]').jeeValue()
     jeeP.loadTemplateConfiguration('cmd.' + type + '.' + subtype + '.' + _target.value)

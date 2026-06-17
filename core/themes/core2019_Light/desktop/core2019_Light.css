@@ -1,3 +1,4 @@
+@layer theme {
 /*
 Theme Core 2019 @Jeedom
 */
@@ -7,10 +8,10 @@ Theme Core 2019 @Jeedom
 
 input[type=checkbox]:not(checked),
 input[type=radio]:not(checked) {
-  background: var(--el-defaultColor) !important;
+  background: var(--el-defaultColor);
 }
 input[type=checkbox]:checked {
-  background: var(--form-bg-color) !important;
+  background: var(--form-bg-color);
 }
 
 /* .panel-default .panel-title color migré -> desktop.main + token --panel-default-title */
@@ -18,17 +19,17 @@ input[type=checkbox]:checked {
 /* ___________________________________________________________VIEW */
 
 div.div_viewZone {
-  background-color: rgba(255, 255, 255, 0.2)
+  background-color: hsl(0 0% 100% / 0.2)
 }
 
 /* ___________________________________________________________DASHBOARD CATEGORIES title coloring */
 #div_displayObject .eqLogic:not(.col-xs-12),
 .eqLogic-widget {
-  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
   color: var(--txt-color) !important;
 }
 .scenario-widget {
-  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
 }
 
 
@@ -47,40 +48,21 @@ div.div_viewZone {
   color: var(--linkHoverLight-color) !important;
 }
 
-.scenario.scenario-widget .widget-name {
-  background-color: rgba(var(--cat-scenario-color), var(--opacity)) !important;
-}
 
-[data-category=security]>.widget-name {
-  background-color: rgba(var(--cat-security-color), var(--opacity));
-}
-[data-category=heating]>.widget-name {
-  background-color: rgba(var(--cat-heating-color), var(--opacity));
-}
-[data-category=automatism]>.widget-name {
-  background-color: rgba(var(--cat-automatism-color), var(--opacity));
-}
-[data-category=light]>.widget-name {
-  background-color: rgba(var(--cat-light-color), var(--opacity));
-}
-[data-category=opening]>.widget-name {
-  background-color: rgba(var(--cat-opening-color), var(--opacity));
-}
-[data-category=multimedia]>.widget-name {
-  background-color: rgba(var(--cat-multimedia-color), var(--opacity));
-}
-[data-category=energy]>.widget-name {
-  background-color: rgba(var(--cat-energy-color), var(--opacity));
-}
-[data-category='']>.widget-name {
-  background-color: rgba(var(--cat-other-color), var(--opacity));
-}
-:not(.batteryListContainer) > .eqLogic-widget:not([data-category]) > .widget-name {
-  background-color: rgba(var(--cat-other-color), var(--opacity));
-}
+
+
+
+
+
+
+
+
+
+
 
 
 /* .eqLogic-widget .btn-default bg -> desktop.main + token --widget-btn-default-bg */
 /* .input-group-addon : migré vers desktop.main + token --input-group-addon-bg */
 /* .eqLogic-widget .btn bg -> desktop.main + token --widget-btn-bg */
 /* buttons on eq widgets: color / hover color -> desktop.main + tokens --widget-btn-color / --widget-btn-hover-color */
+}

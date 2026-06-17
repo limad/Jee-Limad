@@ -1,3 +1,4 @@
+@layer theme {
 /*
 Theme tailwind @Jeedom - shadows
 */
@@ -22,3 +23,4 @@ Theme tailwind @Jeedom - shadows
 .panel-group .panel { box-shadow: none; }
 .panel-collapse.collapse.in { box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
 .nav.navbar-nav ul { box-shadow: 0 16px 32px rgba(0,0,0,0.7); }
+}

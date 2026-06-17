@@ -21,38 +21,38 @@ Mobile Light
 
 .eqLogic.eqLogic-widget,
 .scenario.scenario-widget {
-	background-color: rgba(var(--eq-bg-color), var(--opacity));
+	background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity));
 }
 
 [data-category=security] .widget-name {
-	background-color: rgba(var(--cat-security-color), var(--opacity));
+	background-color: rgb(from var(--cat-security-color) r g b / var(--opacity));
 }
 [data-category=heating] .widget-name {
-	background-color: rgba(var(--cat-heating-color), var(--opacity));
+	background-color: rgb(from var(--cat-heating-color) r g b / var(--opacity));
 }
 [data-category=automatism] .widget-name {
-	background-color: rgba(var(--cat-automatism-color), var(--opacity));
+	background-color: rgb(from var(--cat-automatism-color) r g b / var(--opacity));
 }
 [data-category=light] .widget-name {
-	background-color: rgba(var(--cat-light-color), var(--opacity));
+	background-color: rgb(from var(--cat-light-color) r g b / var(--opacity));
 }
 [data-category=opening] .widget-name {
-  background-color: rgba(var(--cat-opening-color), var(--opacity));
+  background-color: rgb(from var(--cat-opening-color) r g b / var(--opacity));
 }
 [data-category=multimedia] .widget-name {
-	background-color: rgba(var(--cat-multimedia-color), var(--opacity));
+	background-color: rgb(from var(--cat-multimedia-color) r g b / var(--opacity));
 }
 [data-category=energy] .widget-name {
-	background-color: rgba(var(--cat-energy-color), var(--opacity));
+	background-color: rgb(from var(--cat-energy-color) r g b / var(--opacity));
 }
 [data-category=''] .widget-name {
-	background-color: rgba(var(--cat-other-color), var(--opacity));
+	background-color: rgb(from var(--cat-other-color) r g b / var(--opacity));
 }
 .eqLogic-widget:not([data-category]) .widget-name{
-	background-color: rgba(var(--cat-other-color), var(--opacity));
+	background-color: rgb(from var(--cat-other-color) r g b / var(--opacity));
 }
 .scenario-widget .widget-name {
-	background-color: rgba(var(--cat-scenario-color), var(--opacity)) !important;
+	background-color: rgb(from var(--cat-scenario-color) r g b / var(--opacity)) !important;
 }
 
 /* ___________________________________________________________EQs */

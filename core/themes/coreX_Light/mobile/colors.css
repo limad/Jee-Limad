@@ -2,17 +2,17 @@
 :root {
   --lineheight: 1.42em; --border-radius: 0.5rem; --opacity: 1;
   --dashBkg-url: url(""); --logo-primary-color: rgb(99,102,241); --logo-secondary-color: rgb(71,85,105);
-  --bg-color: 241,245,249; --bg-modal-color: rgb(255,255,255); --contrast-color: 15,23,42;
+  --bg-color: rgb(241, 245, 249); --bg-modal-color: rgb(255,255,255); --contrast-color: rgb(15, 23, 42);
   --txt-color: rgb(51,65,85); --link-color: rgb(71,85,105); --linkHover-color: rgb(99,102,241);
   --linkHoverLight-color: rgb(255,255,255); --placeholder-color: rgb(148,163,184);
   --sc-form-color: rgba(248,250,252,0.95); --sc-formTxt-color: rgb(30,41,59); --sc-lightTxt-color: rgb(255,255,255);
-  --el-defaultColor: rgb(203,213,225); --defaultBkg-color: 255,255,255; --form-bg-color: rgb(226,232,240);
-  --btnEq-default-color: rgb(226,232,240); --btn-default-color: rgb(100,116,139); --panel-bg-color: 248,250,252;
+  --el-defaultColor: rgb(203,213,225); --defaultBkg-color: rgb(255, 255, 255); --form-bg-color: rgb(226,232,240);
+  --btnEq-default-color: rgb(226,232,240); --btn-default-color: rgb(100,116,139); --panel-bg-color: rgb(248, 250, 252);
   --eqTitle-color: rgb(255,255,255); --objectBkgd-color: rgb(99,102,241); --objectTxt-color: rgb(255,255,255);
-  --eq-bg-color: 255,255,255;
-  --cat-security-color: 185,28,28; --cat-heating-color: 29,78,216; --cat-automatism-color: 100,116,139;
-  --cat-light-color: 180,83,9; --cat-opening-color: 75,85,99; --cat-multimedia-color: 30,64,175;
-  --cat-energy-color: 21,128,61; --cat-other-color: 15,118,110; --cat-scenario-color: 79,70,229;
+  --eq-bg-color: rgb(255, 255, 255);
+  --cat-security-color: rgb(185, 28, 28); --cat-heating-color: rgb(29, 78, 216); --cat-automatism-color: rgb(100, 116, 139);
+  --cat-light-color: rgb(180, 83, 9); --cat-opening-color: rgb(75, 85, 99); --cat-multimedia-color: rgb(30, 64, 175);
+  --cat-energy-color: rgb(21, 128, 61); --cat-other-color: rgb(15, 118, 110); --cat-scenario-color: rgb(79, 70, 229);
   --url-iconsDark: url(/desktop/img/ui-icons-white.png); --url-iconsLight: url(/desktop/img/ui-icons-black.png);
   --lb-info-color: rgb(14,165,233); --lb-yellow-color: rgb(234,179,8); --al-info-color: rgb(3,105,161);
   --al-primary-color: rgb(79,70,229); --al-success-color: rgb(22,163,74); --al-warning-color: rgb(217,119,6);

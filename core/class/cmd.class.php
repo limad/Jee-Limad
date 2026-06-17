@@ -1605,7 +1605,9 @@ class cmd {
 			$template = self::$_templateArray[$_version . '::' . $template_name];
 		}
 		if ($replace != null && is_array($replace)) {
-			$template = str_replace(array_keys($replace), $replace, $template);
+			// strtr substitutes all keys in one atomic pass: no risk of a substituted
+			// value being re-matched against a later key (unlike str_replace).
+			$template = strtr($template, $replace);
 		}
 
 		if ($_clean) {
@@ -1740,12 +1742,16 @@ class cmd {
 			}
 			if ($this->getSubType() == 'string') {
 				$replace['#value#'] = str_replace("\n", '<br/>', addslashes($replace['#value#']));
+				// Prevent </script> from breaking out of inline script blocks
+				$replace['#value#'] = str_replace('</', '<\/', $replace['#value#']);
 			}
 			if (method_exists($this, 'formatValueWidget')) {
 				$replace['#state#'] = $this->formatValueWidget($replace['#state#']);
 			}
 
 			$replace['#state#'] = str_replace(array("\'", "'", "\n"), array("'", "\'", '<br/>'), $replace['#state#']);
+			// Prevent </script> from breaking out of inline script blocks
+			$replace['#state#'] = str_replace('</', '<\/', $replace['#state#']);
 			$replace['#collectDate#'] = $this->getCollectDate();
 			$replace['#valueDate#'] = $this->getValueDate();
 			$replace['#alertLevel#'] = $this->getCache('alertLevel', 'none');

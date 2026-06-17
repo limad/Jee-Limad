@@ -14,6 +14,7 @@ user::isBan();
 $productName = config::byKey('product_name');
 ?>
 
+
 <div class="row row-overflow">
 	<div class="col-xs-12" id="config">
 		<div class="input-group" style="margin-bottom:5px;">
@@ -31,7 +32,8 @@ $productName = config::byKey('product_name');
 			</form>
 		</div>
 
-		<ul class="nav nav-tabs nav-primary" role="tablist" id="tablist">
+		<div class="sidebar-layout">
+		<ul class="nav nav-tabs nav-primary sidebar-nav" role="tablist" id="tablist">
 			<li role="presentation" class="active"><a data-target="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench" title="{{Général}}"></i><span> {{Général}}</span></a></li>
 			<li role="presentation"><a data-target="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop" title="{{Interface}}"></i><span> {{Interface}}</span></a></li>
 			<li role="presentation"><a id="bt_networkTab" data-target="#networktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-rss" title="{{Réseaux}}"></i><span> {{Réseaux}}</span></a></li>
@@ -48,10 +50,10 @@ $productName = config::byKey('product_name');
 			<li role="presentation"><a data-target="#ostab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-terminal" title="{{OS/DB}}"></i><span> {{OS/DB}}</span></a></li>
 		</ul>
 
-		<div class="tab-content">
+		<div class="tab-content sidebar-tab-content">
 			<div role="tabpanel" class="tab-pane active" id="generaltab">
 				<br>
-				<form class="form-horizontal col-lg-6">
+				<form class="form-horizontal">
 					<fieldset>
 						<legend>{{Général}}</legend>
 						<div class="form-group">
@@ -263,8 +265,16 @@ $productName = config::byKey('product_name');
 
 						<hr class="hrPrimary">
 						<div class="form-group">
-							<label class="col-xs-4 control-label">{{Core js (dev)}}
-								<sup><i class="fas fa-question-circle warning" tooltip="{{Ne charge pas jQuery/Boostrap et leurs librairies (Attention : Les plugins installés doivent supporter ce mode)}}"></i></sup>
+							<label class="col-xs-4 control-label">{{Sans Bootstrap (dev)}}
+								<sup><i class="fas fa-question-circle warning" tooltip="{{Ne charge pas Bootstrap JS, jQuery UI, bootbox et leurs librairies (Attention : Les plugins installés doivent supporter ce mode)}}"></i></sup>
+							</label>
+							<div class="col-md-6 col-xs-8">
+								<input type="checkbox" class="configKey form-control" data-l1key="core::bootstrapless">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-xs-4 control-label">{{Sans jQuery (dev)}}
+								<sup><i class="fas fa-question-circle warning" tooltip="{{Ne charge pas jQuery et ses plugins (implique aussi Sans Bootstrap). Attention : Les plugins installés doivent supporter ce mode.}}"></i></sup>
 							</label>
 							<div class="col-md-6 col-xs-8">
 								<input type="checkbox" class="configKey form-control" data-l1key="core::jqueryless">
@@ -274,7 +284,7 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
-				<form class="form-horizontal col-lg-6">
+				<form class="form-horizontal">
 					<fieldset>
 						<legend>{{Coordonnées}}</legend>
 						<div class="form-group">
@@ -343,7 +353,7 @@ $productName = config::byKey('product_name');
 
 			<div role="tabpanel" class="tab-pane" id="interfacetab">
 				<br>
-				<form class="form-horizontal col-lg-6">
+				<form class="form-horizontal">
 					<fieldset>
 						<legend>{{Thème}}</legend>
 						<div class="form-group">
@@ -517,7 +527,7 @@ $productName = config::byKey('product_name');
 						<br>
 					</fieldset>
 				</form>
-				<form class="form-horizontal col-lg-6">
+				<form class="form-horizontal">
 					<fieldset>
 						<legend>{{Tuiles}}</legend>
 						<div class="form-group">
@@ -791,7 +801,7 @@ $productName = config::byKey('product_name');
 					</fieldset>
 				</form>
 
-				<form class="form-horizontal col-lg-6 col-xs-12">
+				<form class="form-horizontal">
 					<fieldset>
 						<legend>{{Proxy Market}}</legend>
 						<div class="form-group">
@@ -2395,6 +2405,7 @@ $productName = config::byKey('product_name');
 				</form>
 			</div>
 		</div>
+		</div><!-- /.sidebar-layout -->
 	</div>
 	</div>
 

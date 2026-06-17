@@ -323,16 +323,16 @@ Theme ElFinder File Editor 2021 @Jeedom
   }
 
   .ui-dialog {
-    background-color: rgb(var(--defaultBkg-color));
+    background-color: var(--defaultBkg-color);
     box-shadow: 0 0 6px 2px rgba(0,0,0,0.15) !important;
   }
   .ui-dialog .ui-dialog-titlebar {
     border-bottom: none !important;
-    background-color: rgb(var(--contrast-color)) !important;
+    background-color: var(--contrast-color) !important;
     padding: 0 5px;
   }
   .ui-dialog .ui-dialog-title {
-    color: rgb(var(--bg-color)) !important;
+    color: var(--bg-color) !important;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     font-size: 16px;
@@ -391,7 +391,7 @@ Theme ElFinder File Editor 2021 @Jeedom
     font-size: 16px !important;
     font-weight: 700;
     content: "\f00d";
-    color: rgb(var(--bg-color)) !important;
+    color: var(--bg-color) !important;
     padding-right: 12px;
     line-height: 10px;
     vertical-align: top;

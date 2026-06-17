@@ -834,7 +834,7 @@ class jeedom {
 			log::clear('backup');
 			$cmd = __DIR__ . '/../../install/backup.php';
 			$cmd .= ' >> ' . log::getPathToLog('backup') . ' 2>&1 &';
-			system::php($cmd, true);
+			system::php($cmd, false);
 		} else {
 			require_once __DIR__ . '/../../install/backup.php';
 		}
@@ -862,15 +862,19 @@ class jeedom {
 		}
 	}
 
-	public static function restore(string $_backup = '', bool $_background = false) {
+	public static function restore(string $_backup = '', bool $_background = false, string $_parts = 'all', bool $_force = false) {
 		if ($_background) {
 			log::clear('restore');
-			$cmd = __DIR__ . '/../../install/restore.php "backup=' . $_backup . '"';
+			$cmd = __DIR__ . '/../../install/restore.php "backup=' . $_backup . '" "parts=' . $_parts . '" "force=' . ($_force ? '1' : '0') . '"';
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
 			system::php($cmd, true);
 		} else {
 			global $BACKUP_FILE;
 			$BACKUP_FILE = $_backup;
+			global $RESTORE_PARTS;
+			$RESTORE_PARTS = $_parts;
+			global $RESTORE_FORCE;
+			$RESTORE_FORCE = $_force ? '1' : '0';
 			require_once __DIR__ . '/../../install/restore.php';
 		}
 	}

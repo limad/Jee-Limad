@@ -75,7 +75,7 @@ if (!jeeFrontEnd.interact) {
               if (data.filtres.category[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="category"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
-          if (isset(data.actions) && isset(data.actions.cmd) && Array.isArray(data.actions.cmd) && data.actions.cmd.length != null) {
+          if (isset(data.actions) && isset(data.actions.cmd) && Array.isArray(data.actions.cmd)) {
             for (const i in data.actions.cmd) {
               jeeP.addAction(data.actions.cmd[i], 'action', '{{Action}}')
             }

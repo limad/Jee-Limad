@@ -26,6 +26,7 @@ function getTemplate(_folder, _version, _filename, _replace) {
     type: "POST",
     url: path,
     async: false,
+    cache: true,
     error: function(request, status, error) {
       handleAjaxError(request, status, error);
     },

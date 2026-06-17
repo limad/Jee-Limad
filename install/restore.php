@@ -41,6 +41,31 @@ try {
 	if (isset($BACKUP_FILE)) {
 		$_GET['backup'] = $BACKUP_FILE;
 	}
+
+	global $RESTORE_PARTS;
+	if (isset($RESTORE_PARTS)) {
+		$_GET['parts'] = $RESTORE_PARTS;
+	}
+	global $RESTORE_FORCE;
+	if (isset($RESTORE_FORCE)) {
+		$_GET['force'] = $RESTORE_FORCE;
+	}
+	$parts = (isset($_GET['parts']) && trim($_GET['parts']) != '') ? strtolower(trim($_GET['parts'])) : 'all';
+	$force = (isset($_GET['force']) && ($_GET['force'] == '1' || $_GET['force'] === 'true'));
+	$selected = array_values(array_filter(array_map('trim', explode(',', $parts))));
+	foreach ($selected as $p) {
+		if (!in_array($p, array('all', 'db', 'files'), true)) {
+			throw new Exception('Invalid restore part: ' . $p . '. Allowed values: all, db, files.');
+		}
+	}
+	$restore_all   = in_array('all', $selected, true) || (in_array('db', $selected, true) && in_array('files', $selected, true));
+	$restore_db    = $restore_all || in_array('db', $selected, true);
+	$restore_files = $restore_all || in_array('files', $selected, true);
+	if (!$restore_db && !$restore_files) {
+		throw new Exception('Nothing to restore (parts=' . $parts . ').');
+	}
+	$is_partial = !($restore_db && $restore_files);
+
 	if (!isset($_GET['backup']) || $_GET['backup'] == '') {
 		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
 			$backup_dir = __DIR__ . '/../' . config::byKey('backup::path');
@@ -75,7 +100,22 @@ try {
 	if (!file_exists($backup)) {
 		throw new Exception('Backup not found.' . $backup);
 	}
-	
+
+	if ($is_partial) {
+		echo "Partial restore requested: " . implode(',', $selected) . "\n";
+		$backup_version = '';
+		if (preg_match('/-([0-9]+\.[0-9]+\.[0-9]+)-[0-9]{4}-[0-9]{2}-[0-9]{2}-/', basename($backup), $vmatch)) {
+			$backup_version = $vmatch[1];
+		}
+		$current_version = jeedom::version();
+		if ($backup_version != '' && $backup_version != $current_version) {
+			if (!$force) {
+				throw new Exception('Partial restore aborted: backup version (' . $backup_version . ') differs from installed version (' . $current_version . '). Mixing versions can break the system. Re-run with force=1 to override.');
+			}
+			echo "***WARNING*** Version mismatch (backup=" . $backup_version . ", installed=" . $current_version . ") - forced by user.\n";
+		}
+	}
+
 	try {
 		echo "Checking rights...";
 		jeedom::cleanFileSystemRight();
@@ -102,126 +142,152 @@ try {
 		$e->getMessage();
 	}
 	
-	echo "Unpacking backup...";
-	$excludes = array(
-		'tmp',
-		'log',
-		'backup',
-		'script/tunnel',
-		'.git',
-		'.log',
-		'core/config/common.config.php',
-		'/vendor',
-		config::byKey('backup::path'),
-	);
-	$exclude = '';
-	foreach ($excludes as $folder) {
-		$exclude .= ' --exclude="' . $folder . '"';
-	}
 	$rc = 0;
-	system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ' . $exclude);
-	echo "OK\n";
+	if ($restore_files) {
+		echo "Unpacking backup (files)...";
+		$excludes = array(
+			'tmp',
+			'log',
+			'backup',
+			'script/tunnel',
+			'.git',
+			'.log',
+			'core/config/common.config.php',
+			'/vendor',
+			config::byKey('backup::path'),
+		);
+		$exclude = '';
+		foreach ($excludes as $folder) {
+			$exclude .= ' --exclude="' . $folder . '"';
+		}
+		system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ' . $exclude);
+		echo "OK\n";
+	} elseif ($restore_db) {
+		echo "Extracting database dump and cache only...";
+		system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ./DB_backup.sql ./cache.tar.gz');
+		echo "OK\n";
+	}
 
 	
-	if (exec('which composer | wc -l') == 0) {
-		echo "\nNeed to install composer...";
-		echo shell_exec(system::getCmdSudo().' ' . __DIR__ . '/../resources/install_composer.sh');
-		echo "OK\n";
-	}
-	echo "Update composer file...\n";
-	if (exec('which composer | wc -l') > 0) {
-		shell_exec('export COMPOSER_HOME="/tmp/composer";export COMPOSER_ALLOW_SUPERUSER=1;'.system::getCmdSudo().' composer self-update > /dev/null 2>&1');
-		shell_exec('cd ' . __DIR__ . '/../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";'.system::getCmdSudo().' composer update --no-interaction --no-plugins --no-scripts --no-ansi --no-dev --no-progress --optimize-autoloader --with-all-dependencies --no-cache > /dev/null 2>&1');
-		shell_exec(system::getCmdSudo().' rm /tmp/composer 2>/dev/null');
-		if(method_exists('jeedom','cleanFileSystemRight')){
-			jeedom::cleanFileSystemRight();
+	if ($restore_files) {
+		if (exec('which composer | wc -l') == 0) {
+			echo "\nNeed to install composer...";
+			echo shell_exec(system::getCmdSudo().' ' . __DIR__ . '/../resources/install_composer.sh');
+			echo "OK\n";
 		}
-		echo "OK\n";
+		echo "Update composer file...\n";
+		if (exec('which composer | wc -l') > 0) {
+			shell_exec('export COMPOSER_HOME="/tmp/composer";export COMPOSER_ALLOW_SUPERUSER=1;'.system::getCmdSudo().' composer self-update > /dev/null 2>&1');
+			shell_exec('cd ' . __DIR__ . '/../;export COMPOSER_ALLOW_SUPERUSER=1;export COMPOSER_HOME="/tmp/composer";'.system::getCmdSudo().' composer update --no-interaction --no-plugins --no-scripts --no-ansi --no-dev --no-progress --optimize-autoloader --with-all-dependencies --no-cache > /dev/null 2>&1');
+			shell_exec(system::getCmdSudo().' rm /tmp/composer 2>/dev/null');
+			if(method_exists('jeedom','cleanFileSystemRight')){
+				jeedom::cleanFileSystemRight();
+			}
+			echo "OK\n";
+		} else {
+			echo "ERROR : no composer available !\n";
+		}
 	} else {
-		echo "ERROR : no composer available !\n";
+		echo "Skipping composer update (parts=db)\n";
 	}
 	echo "[PROGRESS][58]\n";
 
-	if (!file_exists($jeedom_dir . "/DB_backup.sql")) {
-		throw new Exception('Cannot find database backup file : DB_backup.sql');
-	}
-	echo "Deleting database...";
-	$tables = DB::Prepare("SHOW TABLES", array(), DB::FETCH_TYPE_ALL);
-	echo "Disabling constraints...";
-	DB::Prepare("SET foreign_key_checks = 0", array(), DB::FETCH_TYPE_ROW);
-	echo "OK\n";
-	foreach ($tables as $table) {
-		$table = array_values($table)[0];
-		echo "Deleting table : " . $table . ' ...';
-		DB::Prepare('DROP TABLE IF EXISTS `' . $table . '`', array(), DB::FETCH_TYPE_ROW);
+	if ($restore_db) {
+		if (!file_exists($jeedom_dir . "/DB_backup.sql")) {
+			throw new Exception('Cannot find database backup file : DB_backup.sql');
+		}
+		echo "Deleting database...";
+		$tables = DB::Prepare("SHOW TABLES", array(), DB::FETCH_TYPE_ALL);
+		echo "Disabling constraints...";
+		DB::Prepare("SET foreign_key_checks = 0", array(), DB::FETCH_TYPE_ROW);
 		echo "OK\n";
-	}
-	
-	echo "Restoring database from backup...";
+		foreach ($tables as $table) {
+			$table = array_values($table)[0];
+			echo "Deleting table : " . $table . ' ...';
+			DB::Prepare('DROP TABLE IF EXISTS `' . $table . '`', array(), DB::FETCH_TYPE_ROW);
+			echo "OK\n";
+		}
 
-	if (isset($CONFIG['db']['unix_socket'])) {
-		$str_db_connexion = "--socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
-	} else {
-		if ($CONFIG['db']['host'] == 'localhost' && $CONFIG['db']['port'] == 3306) {
-			$str_db_connexion = "--user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
+		echo "Restoring database from backup...";
+
+		if (isset($CONFIG['db']['unix_socket'])) {
+			$str_db_connexion = "--socket=" . $CONFIG['db']['unix_socket'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
 		} else {
-			$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
+			if ($CONFIG['db']['host'] == 'localhost' && $CONFIG['db']['port'] == 3306) {
+				$str_db_connexion = "--user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
+			} else {
+				$str_db_connexion = "--host=" . $CONFIG['db']['host'] . " --port=" . $CONFIG['db']['port'] . " --user=" . $CONFIG['db']['username'] . " --password='" . $CONFIG['db']['password'] . "' " . $CONFIG['db']['dbname'];
+			}
+		}
+		shell_exec("sed -i '1{/999999.*sandbox/d}' ".$jeedom_dir . "/DB_backup.sql");
+		shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
+		echo "OK\n";
+
+		echo "Enable back constraints...";
+		try {
+			DB::Prepare("SET foreign_key_checks = 1", array(), DB::FETCH_TYPE_ROW);
+		} catch (Exception $e) {
+
+		}
+		echo "OK\n";
+	} else {
+		echo "Skipping database restore (parts=files)\n";
+	}
+
+	if ($restore_files) {
+		if (!file_exists(__DIR__ . '/../core/config/common.config.php')) {
+			echo "Restoring database configuration file...";
+			copy('/tmp/common.config.php', __DIR__ . '/../core/config/common.config.php');
+			echo "OK\n";
 		}
 	}
-	shell_exec("sed -i '1{/999999.*sandbox/d}' ".$jeedom_dir . "/DB_backup.sql");
-	shell_exec("mysql ". $str_db_connexion . "  < " . $jeedom_dir . "/DB_backup.sql");
-	echo "OK\n";
-	
-	echo "Enable back constraints...";
-	try {
-		DB::Prepare("SET foreign_key_checks = 1", array(), DB::FETCH_TYPE_ROW);
-	} catch (Exception $e) {
-		
-	}
-	echo "OK\n";
-	
-	if (!file_exists(__DIR__ . '/../core/config/common.config.php')) {
-		echo "Restoring database configuration file...";
-		copy('/tmp/common.config.php', __DIR__ . '/../core/config/common.config.php');
+
+	if ($restore_db) {
+		echo "Restoring cache...";
+		try {
+			cache::restore();
+		} catch (Exception $e) {
+
+		}
 		echo "OK\n";
 	}
-	
-	echo "Restoring cache...";
-	try {
-		cache::restore();
-	} catch (Exception $e) {
-		
-	}
-	echo "OK\n";
-	
-	foreach (plugin::listPlugin(true) as $plugin) {
-		$plugin_id = null;
-		try {
-			$plugin_id = $plugin->getId();
-			$dependancy_info = $plugin->dependancy_info(true);
-			if (method_exists($plugin_id, 'restore')) {
-				echo 'Restoring Plugin: ' . $plugin_id . '...';
-				$plugin_id::restore();
-				echo "OK\n";
-			}
-		} catch (\Exception $e) {
-			if ($plugin_id !== null) {
-				echo '[error] on plugin: ' . $plugin_id . ' => ' . $e->getMessage() . "\n";
-			} else {
-				echo '[error] on unknown plugin => ' . $e->getMessage() . "\n";
+
+	if ($restore_db && $restore_files) {
+		foreach (plugin::listPlugin(true) as $plugin) {
+			$plugin_id = null;
+			try {
+				$plugin_id = $plugin->getId();
+				$dependancy_info = $plugin->dependancy_info(true);
+				if (method_exists($plugin_id, 'restore')) {
+					echo 'Restoring Plugin: ' . $plugin_id . '...';
+					$plugin_id::restore();
+					echo "OK\n";
+				}
+			} catch (\Exception $e) {
+				if ($plugin_id !== null) {
+					echo '[error] on plugin: ' . $plugin_id . ' => ' . $e->getMessage() . "\n";
+				} else {
+					echo '[error] on unknown plugin => ' . $e->getMessage() . "\n";
+				}
 			}
 		}
+	} else {
+		echo "Skipping plugin restore hooks (requires both db and files)\n";
 	}
 	config::save('hardware_name', '');
 	$cache = cache::byKey('jeedom::isCapable::sudo');
 	$cache->remove();
-	
-	try {
-		echo "Check jeedom consistency...";
-		require_once __DIR__ . '/consistency.php';
-		echo "OK\n";
-	} catch (Exception $ex) {
-		echo "***ERROR*** " . $ex->getMessage() . "\n";
+
+	if (!$is_partial) {
+		try {
+			echo "Check jeedom consistency...";
+			require_once __DIR__ . '/consistency.php';
+			echo "OK\n";
+		} catch (Exception $ex) {
+			echo "***ERROR*** " . $ex->getMessage() . "\n";
+		}
+	} else {
+		echo "***WARNING*** Skipping consistency check on partial restore (would reconcile a deliberately partial state).\n";
 	}
 	
 	try {

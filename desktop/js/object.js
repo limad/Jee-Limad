@@ -128,11 +128,11 @@ if (!jeeFrontEnd.object) {
           }
 
           //set summary tab:
+          let summary = {}
           if (isset(data.configuration) && isset(data.configuration.summary)) {
-            let el
-            const summary = data.configuration.summary
+            summary = data.configuration.summary
             for (const i in summary) {
-              el = document.querySelector('.type' + i)
+              const el = document.querySelector('.type' + i)
               if (el != null) {
                 for (const j in summary[i]) {
                   jeeP.addSummaryInfo('.type' + i, summary[i][j])
@@ -142,8 +142,6 @@ if (!jeeFrontEnd.object) {
                 }
               }
             }
-          } else {
-            const summary = {}
           }
 
           //set eqlogics tab:

@@ -47,7 +47,7 @@ Desktop
     top: 80px;
   }
   .modal-footer {
-    border-top-color: rgb(var(--bg-color))!important
+    border-top-color: var(--bg-color)!important
   }
   .modal-footer .btn-default {
     height: 32px;
@@ -86,11 +86,11 @@ Desktop
 /* Old ui-dialog overview summary */
   div.ui-dialog[aria-describedby="md_overviewSummary"] {
     box-shadow: none !important;
-    border: 1px solid rgba(var(--contrast-color), 0.15) !important;
+    border: 1px solid rgb(from var(--contrast-color) r g b / 0.15) !important;
   }
   div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar {
     line-height: 12px;
-    background: rgba(var(--defaultBkg-color), 0.95) !important;
+    background: rgb(from var(--defaultBkg-color) r g b / 0.95) !important;
   }
   div.ui-dialog[aria-describedby="md_overviewSummary"] .ui-dialog-titlebar .ui-dialog-title {
     font-size: 14px;
@@ -108,7 +108,7 @@ Desktop
     color: var(--link-color) !important;
   }
   #md_overviewSummary {
-    background: rgba(var(--defaultBkg-color), 0.8) !important;
+    background: rgb(from var(--defaultBkg-color) r g b / 0.8) !important;
   }
 
 /* Old jQuery UI dialog */
@@ -140,16 +140,16 @@ Desktop
   }
 
   .ui-dialog {
-    background-color: rgb(var(--defaultBkg-color));
+    background-color: var(--defaultBkg-color);
     box-shadow: 0 0 6px 2px rgba(0,0,0,0.15) !important;
   }
   .ui-dialog .ui-dialog-titlebar {
     border-bottom: none !important;
-    background-color: rgb(var(--contrast-color)) !important;
+    background-color: var(--contrast-color) !important;
     padding: 0 5px;
   }
   .ui-dialog .ui-dialog-title {
-    color: rgb(var(--bg-color)) !important;
+    color: var(--bg-color) !important;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
     font-size: 16px;
@@ -209,7 +209,7 @@ Desktop
     font-size: 16px !important;
     font-weight: 700;
     content: "\f00d";
-    color: rgb(var(--bg-color)) !important;
+    color: var(--bg-color) !important;
     padding-right: 12px;
     line-height: 10px;
     vertical-align: top;
@@ -251,7 +251,7 @@ Desktop
     background: var(--bg-modal-color) !important;
   }
   .context-menu-root .context-menu-separator {
-    border-bottom: 1px solid rgb(var(--bg-color)) !important;
+    border-bottom: 1px solid var(--bg-color) !important;
   }
   .context-menu-root .context-menu-item {
     color: var(--txt-color) !important;
@@ -395,7 +395,7 @@ Desktop
     color: var(--al-info-color) !important;
   }
   input.tablesorter-filter {
-    background-color: rgb(var(--defaultBkg-color));
+    background-color: var(--defaultBkg-color);
     color: var(--link-color);
     opacity: 0.85 !important;
   }
@@ -438,8 +438,8 @@ Desktop
     box-shadow: unset !important;
   }
   .vakata-contextmenu-sep, .vakata-context-separator > a {
-    background: rgb(var(--bg-color)) !important;
-    border-color: rgb(var(--bg-color)) !important;
+    background: var(--bg-color) !important;
+    border-color: var(--bg-color) !important;
   }
 
 /* ________________________________________TABLE REFLOW FLEX */

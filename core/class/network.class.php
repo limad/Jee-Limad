@@ -345,14 +345,15 @@ class network {
 			$update->doUpdate();
 			$plugin = plugin::byId('openvpn');
 		}
-		if (!is_object($plugin) || !class_exists('openvpn')) {
+		if (!is_object($plugin)) {
 			throw new Exception(__('Le plugin OpenVPN doit être installé', __FILE__));
 		}
+		// WHY: class non chargée = plugin installé mais inactif (autoload limité aux plugins actifs).
+		// setIsEnable(1) charge la classe, installe les dépendances et vide le cache statique.
 		if (!$plugin->isActive()) {
 			$plugin->setIsEnable(1);
-			$plugin->dependancy_install();
 		}
-		if (!$plugin->isActive()) {
+		if (!class_exists('openvpn') || !$plugin->isActive()) {
 			throw new Exception(__('Le plugin OpenVPN doit être actif', __FILE__));
 		}
 		$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');

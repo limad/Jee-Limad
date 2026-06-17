@@ -170,7 +170,7 @@ jeedom.scenario.getTemplate = function(_params) {
 }
 
 jeedom.scenario.convertToTemplate = function(_params) {
-  const paramsRequired = ['scenario_id']
+  const paramsRequired = ['id']
   const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
@@ -323,7 +323,7 @@ jeedom.scenario.copy = function(_params) {
 }
 
 jeedom.scenario.byId = function(_params) {
-  const paramsRequired = ['scenario_id']
+  const paramsRequired = ['id']
   const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
@@ -342,7 +342,7 @@ jeedom.scenario.byId = function(_params) {
 }
 
 jeedom.scenario.get = function(_params) {
-  const paramsRequired = ['scenario_id']
+  const paramsRequired = ['id']
   const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
@@ -382,7 +382,7 @@ jeedom.scenario.save = function(_params) {
 }
 
 jeedom.scenario.remove = function(_params) {
-  const paramsRequired = ['scenario_id']
+  const paramsRequired = ['id']
   const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
@@ -421,7 +421,7 @@ jeedom.scenario.clearAllLogs = function(_params) {
 }
 
 jeedom.scenario.emptyLog = function(_params) {
-  const paramsRequired = ['scenario_id']
+  const paramsRequired = ['id']
   const paramsSpecifics = {}
   try {
     jeedom.private.checkParamsRequired(_params || {}, paramsRequired)

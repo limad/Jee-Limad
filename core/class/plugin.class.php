@@ -936,6 +936,26 @@ class plugin {
 		}
 	}
 
+	/* Valide dans un process séparé que la classe du plugin se charge sans erreur
+	   fatale (trait/classe parente manquant, parse error...). Indispensable car une
+	   telle erreur n'est PAS rattrapable par try/catch et bloquerait toutes les pages
+	   tant que le plugin reste actif. Lève une Exception si le fichier est invalide. */
+	public static function checkClassFile($_id) {
+		if (!preg_match('/^[a-zA-Z0-9_]+$/', $_id)) {
+			return;
+		}
+		$classFile = __DIR__ . '/../../plugins/' . $_id . '/core/class/' . $_id . '.class.php';
+		if (!file_exists($classFile)) {
+			return;
+		}
+		$output = array();
+		$code = 0;
+		exec('php ' . escapeshellarg(__DIR__ . '/../php/checkPluginClass.php') . ' ' . escapeshellarg($_id) . ' 2>&1', $output, $code);
+		if ($code !== 0) {
+			throw new Exception(sprintf(__('La classe du plugin %s contient une erreur et ne peut être chargée :', __FILE__), $_id) . ' ' . trim(implode("\n", $output)));
+		}
+	}
+
 	public function setIsEnable($_state, $_force = false, $_foreground = false) {
 		if (version_compare(jeedom::version(), $this->getRequire()) == -1 && $_state == 1) {
 			throw new Exception(__('Votre version de Jeedom n\'est pas assez récente pour activer ce plugin', __FILE__));
@@ -949,6 +969,12 @@ class plugin {
 		}
 		$alreadyActive = config::byKey('active', $this->getId(), 0);
 		if ($_state == 1) {
+			try {
+				self::checkClassFile($this->getId());
+			} catch (\Throwable $e) {
+				config::save('active', 0, $this->getId());
+				throw $e;
+			}
 			config::save('active', $_state, $this->getId());
 		}
 		$deamonAutoState = config::byKey('deamonAutoMode', $this->getId(), 1);
@@ -977,6 +1003,9 @@ class plugin {
 			try {
 				include_file('core', $this->getId(), 'class', $this->getId());
 			} catch (\Throwable $e) {
+				config::save('active', $alreadyActive, $this->getId());
+				log::add('plugin', 'error', log::exception($e));
+				throw $e;
 			}
 			foreach (eqLogic::byType($this->getId()) as $eqLogic) {
 				try {

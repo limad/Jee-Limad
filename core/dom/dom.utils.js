@@ -528,6 +528,22 @@ domUtils.getUrlString = function(params, keys = [], isArray = false) {
 
 
 
+domUtils._syncCache = (function() {
+  const _mem = {}
+  const _ssKey = 'domUtils_syncCache'
+  try {
+    const stored = sessionStorage.getItem(_ssKey)
+    if (stored) Object.assign(_mem, JSON.parse(stored))
+  } catch(e) {}
+  return {
+    get: function(k) { return _mem[k] },
+    set: function(k, v) {
+      _mem[k] = v
+      try { sessionStorage.setItem(_ssKey, JSON.stringify(_mem)) } catch(e) {}
+    }
+  }
+})()
+
 domUtils.ajax = function(_params) {
   _params.global = isset(_params.global) ? _params.global : domUtils.ajaxSettings.global
   _params.async = isset(_params.async) ? _params.async : domUtils.ajaxSettings.async
@@ -554,6 +570,30 @@ domUtils.ajax = function(_params) {
   }
 
   if (_params.async === false) { //Synchronous request:
+    if (_params.cache) {
+      const _cacheKey = _params.url + '|' + (_params.data ? new URLSearchParams(_params.data).toString() : '')
+      const _cached = domUtils._syncCache.get(_cacheKey)
+      if (_cached !== undefined) {
+        if (_params.global) domUtils.DOMloading -= 1
+        isJson ? _params.success(JSON.parse(_cached)) : _params.success(_cached)
+        _params.complete()
+        return
+      }
+      const request = new XMLHttpRequest()
+      request.open(_params.type, _params.url, false)
+      request.send(new URLSearchParams(_params.data))
+      if (request.status === 200) {
+        domUtils._syncCache.set(_cacheKey, request.responseText)
+        if (_params.global) domUtils.DOMloading -= 1
+        isJson ? _params.success(JSON.parse(request.responseText)) : _params.success(request.responseText)
+      } else {
+        if (_params.global) domUtils.DOMloading -= 1
+        domUtils.handleAjaxError(request, request.status, request.responseText)
+        if (_params.onError) _params.onError(request)
+      }
+      _params.complete()
+      return
+    }
     const request = new XMLHttpRequest()
     request.open(_params.type, _params.url, false)
     request.send(new URLSearchParams(_params.data))

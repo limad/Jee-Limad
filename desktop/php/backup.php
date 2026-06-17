@@ -62,6 +62,17 @@ $repoList = [];
 										</div>
 									</div>
 									<div class="form-group">
+										<label class="col-xs-12"><i class="fas fa-sliders-h"></i> {{Restauration partielle (avancé)}}</label>
+										<div class="col-xs-12">
+											<label class="checkbox-inline"><input type="checkbox" id="cb_restoreDb" checked> {{Base de données}}</label>
+											<label class="checkbox-inline"><input type="checkbox" id="cb_restoreFiles" checked> {{Fichiers (core + plugins)}}</label>
+											<label class="checkbox-inline"><input type="checkbox" id="cb_restoreForce"> {{Forcer si version différente}}</label>
+										</div>
+										<div class="col-xs-12">
+											<small class="text-warning">{{Par défaut tout est restauré. Une restauration partielle peut créer des incohérences si la version du backup diffère de la version installée.}}</small>
+										</div>
+									</div>
+									<div class="form-group">
 										<div class="col-sm-6 col-xs-12">
 											<?php if (substr(config::byKey('backup::path'), 0, 1) != '/') { ?>
 												<button type="button" class="btn btn-success" id="bt_downloadBackup" style="width:100%;"><i class="fas fa-cloud-download-alt"></i> {{Télécharger la sauvegarde}}</button>

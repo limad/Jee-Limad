@@ -67,51 +67,41 @@ class widgets {
 
   public static function listTemplate(){
     $return = array();
-    $files = ls(__DIR__ . '/../template/dashboard', 'cmd.*', false, array('files', 'quiet'));
-    foreach ($files as $file) {
-      $informations = explode('.', $file);
-      if(count($informations) < 4){
-        continue;
-      }
-      if(stripos($informations[3],'tmpl') === false){
-        continue;
-      }
-      if(!file_exists(__DIR__ . '/../template/mobile/'.$file)){
-        continue;
-      }
-      if (!isset($return[$informations[1]])) {
-        $return[$informations[1]] = array();
-      }
-      if (!isset($return[$informations[1]][$informations[2]])) {
-        $return[$informations[1]][$informations[2]] = array();
-      }
-      if (isset($informations[3])) {
-        $return[$informations[1]][$informations[2]][] = $informations[3];
-      }
-    }
-    $files = ls(__DIR__ . '/../../data/customTemplates/dashboard', 'cmd.*', false, array('files', 'quiet'));
-    foreach ($files as $file) {
-      $informations = explode('.', $file);
-      if(count($informations) < 4){
-        continue;
-      }
-      if(stripos($informations[3],'tmpl') === false){
-        continue;
-      }
-      if(!file_exists(__DIR__ . '/../../data/customTemplates/mobile/'.$file)){
-        continue;
-      }
-      if (!isset($return[$informations[1]])) {
-        $return[$informations[1]] = array();
-      }
-      if (!isset($return[$informations[1]][$informations[2]])) {
-        $return[$informations[1]][$informations[2]] = array();
-      }
-      if (isset($informations[3])) {
-        $return[$informations[1]][$informations[2]][] = $informations[3];
-      }
-    }
+    self::_collectTemplates(
+      __DIR__ . '/../template/dashboard',
+      __DIR__ . '/../template/mobile',
+      $return
+    );
+    self::_collectTemplates(
+      __DIR__ . '/../../data/customTemplates/dashboard',
+      __DIR__ . '/../../data/customTemplates/mobile',
+      $return
+    );
     return $return;
+  }
+
+  private static function _collectTemplates($_dashboardDir, $_mobileDir, &$_return) {
+    $files = ls($_dashboardDir, 'cmd.*', false, array('files', 'quiet'));
+    foreach ($files as $file) {
+      $informations = explode('.', $file);
+      if (count($informations) < 4) {
+        continue;
+      }
+      if (stripos($informations[3], 'tmpl') === false) {
+        continue;
+      }
+      if (!file_exists($_mobileDir . '/' . $file)) {
+        log::add('widgets', 'debug', 'Template ignoré : pas de version mobile pour ' . $file);
+        continue;
+      }
+      if (!isset($_return[$informations[1]])) {
+        $_return[$informations[1]] = array();
+      }
+      if (!isset($_return[$informations[1]][$informations[2]])) {
+        $_return[$informations[1]][$informations[2]] = array();
+      }
+      $_return[$informations[1]][$informations[2]][] = $informations[3];
+    }
   }
 
   public static function getTemplateConfiguration($_template){

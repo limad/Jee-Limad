@@ -214,7 +214,7 @@ class log extends AbstractLogger {
 	public static function clear(string $_log) {
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . '> /dev/null 2>&1;' . system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . ' cat /dev/null > ' . $path);
+			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . '> /dev/null 2>&1;' . system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . 'truncate -s 0 ' . $path);
 			return true;
 		}
 		return;
@@ -311,7 +311,7 @@ class log extends AbstractLogger {
 
 		if (self::authorizeClearLog($_log)) {
 			$path = self::getPathToLog($_log);
-			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . ' cat /dev/null > ' . $path . ';rm ' . $path . ' 2>&1 > /dev/null');
+			com_shell::execute(system::getCmdSudo() . 'chmod 664 ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $path . ' > /dev/null 2>&1;' . system::getCmdSudo() . 'truncate -s 0 ' . $path . ';rm ' . $path . ' 2>&1 > /dev/null');
 			return true;
 		}
 	}

@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-alpha',
+        'version' => 'dev-alpha',
+        'reference' => '2dfed1429cd4485cd82b9ce75ee67b7e6e5d2c47',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-alpha',
+            'version' => 'dev-alpha',
+            'reference' => '2dfed1429cd4485cd82b9ce75ee67b7e6e5d2c47',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -95,9 +95,9 @@
             ),
         ),
         'php-http/client-common' => array(
-            'pretty_version' => '2.7.2',
-            'version' => '2.7.2.0',
-            'reference' => '0cfe9858ab9d3b213041b947c881d5b19ceeca46',
+            'pretty_version' => '2.7.3',
+            'version' => '2.7.3.0',
+            'reference' => 'dcc6de29c90dd74faab55f71b79d89409c4bf0c1',
             'type' => 'library',
             'install_path' => __DIR__ . '/../php-http/client-common',
             'aliases' => array(),

@@ -2340,10 +2340,11 @@ var jeeResize = function(_selector, _options) {
     document.body.addEventListener('touchmove', resizing, false)
   }
   function resizing(event) {
+    let clientX, clientY, element
     try {
-      const clientX = event.clientX || event.targetTouches[0].pageX
-      const clientY = event.clientY || event.targetTouches[0].pageY
-      const element = currentRszr.rszElement.parentNode
+      clientX = event.clientX || event.targetTouches[0].pageX
+      clientY = event.clientY || event.targetTouches[0].pageY
+      element = currentRszr.rszElement.parentNode
     } catch (error) {
       return
     }

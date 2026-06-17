@@ -253,8 +253,8 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle {
   margin: -3px;
   padding: 5px;
   height: 30px;
-  color: rgb(var(--bg-color));
-  background-color: rgb(var(--contrast-color));
+  color: var(--bg-color);
+  background-color: var(--contrast-color);
   font-size: 16px;
   font-weight: 400;
   cursor: move;
@@ -264,7 +264,7 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > span.title {
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > button.btClose {
   font-size: 26px !important;
-  color: rgb(var(--bg-color));
+  color: var(--bg-color);
 }
 div.jeeDialog.jeeDialogMain > div.jeeDialogTitle > div.titleButtons {
   position: absolute;

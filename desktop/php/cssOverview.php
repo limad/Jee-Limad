@@ -564,7 +564,84 @@ if (!isConnect('admin')) {
       </div>
     </form>
   </div>
-
+	
+<!-- ══════════════════════════════════════════════════
+       5.1. FORMULAIRES Panel
+       ══════════════════════════════════════════════════ -->
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h3 class="panel-title"><i class="fas fa-font"></i> {{Typographie et etats}}</h3></div>
+      <div class="panel-body">
+        <form class="form-horizontal">
+      <div class="form-group">
+        <label class="col-sm-4 control-label">{{Texte}}</label>
+        <div class="col-sm-8"><input class="form-control" value="Texte lisible" placeholder="Rechercher | nom | :not(nom)"></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">{{Placeholder}}</label>
+        <div class="col-sm-8"><input class="form-control" placeholder="Placeholder seul"></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">{{Mot de passe}}</label>
+        <div class="col-sm-8"><input type="text" class="form-control cssov-password-demo" value="password" readonly></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">{{Readonly / disabled}}</label>
+        <div class="col-sm-4"><input class="form-control" readonly value="Readonly"></div>
+        <div class="col-sm-4"><input class="form-control" disabled value="Disabled"></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">{{Select}}</label>
+        <div class="col-sm-8">
+          <select class="form-control"><option>Primary</option><option>Secondary</option><option>Tertiary</option></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">{{Select multiple}}</label>
+        <div class="col-sm-8">
+          <select class="form-control" multiple size="3"><option selected>Option A</option><option>Option B</option><option>Option C</option></select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">{{Textarea}}</label>
+        <div class="col-sm-8"><textarea class="form-control" rows="3">Texte long multilignes</textarea></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">{{Couleur / nombre}}</label>
+        <div class="col-sm-4"><input type="color" class="form-control" value="#0d6efd"></div>
+        <div class="col-sm-4"><input type="number" class="form-control" value="42"></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">{{Checks}}</label>
+        <div class="col-sm-8">
+          <label class="checkbox-inline"><input type="checkbox" checked> {{Actif}}</label>
+          <label class="checkbox-inline"><input type="checkbox"> {{Inactif}}</label>
+          <label class="radio-inline"><input type="radio" name="cssOverviewRadio" checked> A</label>
+          <label class="radio-inline"><input type="radio" name="cssOverviewRadio"> B</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">{{Range}}</label>
+        <div class="col-sm-8"><input type="range" class="form-control" value="60" min="0" max="100"></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">{{Date/heure}}</label>
+        <div class="col-sm-4"><input type="date" class="form-control" value="2026-06-07"></div>
+        <div class="col-sm-4"><input type="time" class="form-control" value="20:00"></div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-4 control-label">flatpickr</label>
+        <div class="col-sm-8">
+          <input type="text" id="cssov-flatpickr" class="form-control" placeholder="{{Choisir date/heure}}" readonly>
+        </div>
+      </div>
+      
+    </form>
+      </div>
+    </div>
+  </div>
+  
+  
   <!-- ══════════════════════════════════════════════════
        6. LABELS, ALERTES, LISTES
        ══════════════════════════════════════════════════ -->

@@ -466,7 +466,7 @@ if (!jeeFrontEnd.plugin) {
           _aux = false
         }
       }
-      if (event.target.closest('.pluginDisplayCard')?.hasClass('inactive') || event.target.closest('#div_state')?.querySelector('a.togglePlugin')?.getAttribute('data-state') == '1') {
+      if (_event.target.closest('.pluginDisplayCard')?.hasClass('inactive') || _event.target.closest('#div_state')?.querySelector('a.togglePlugin')?.getAttribute('data-state') == '1') {
         jeeDialog.alert('{{Vous devez activer ce plugin pour y accéder.}}')
         return
       }

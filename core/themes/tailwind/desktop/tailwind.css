@@ -1,3 +1,4 @@
+@layer theme {
 /*
 Theme tailwind @Jeedom - Tailwind zinc-950 / glass
 Tokens définis dans colors.css — ce fichier ne contient que les overrides
@@ -20,47 +21,44 @@ html, body, #div_pageContainer, .modal-content, .form-control {
   border: 1px solid var(--btn-default-border, color-mix(in srgb, var(--btn-default-color) 70%, #000));
 }
 
-/* btn-primary glass (desktop.main ne tokénise pas le primary) */
+/* btn-primary glass */
 .btn.btn-primary {
   background-color: rgba(37, 99, 235, 0.15);
   border-color: rgb(37, 99, 235);
   color: rgb(147, 197, 253);
 }
-.btn.btn-primary:hover {
-  background-color: rgba(37, 99, 235, 0.30);
-  color: #fff;
-}
+.btn.btn-primary:hover { background-color: rgba(37, 99, 235, 0.30); color: #fff !important; }
 
 /* Textarea */
-textarea.form-control { min-height: 120px; padding: 10px; }
+textarea.form-control { min-height: 60px; padding: 6px; }
 
 /* Couleurs de catégorie sur widget-name */
-[data-category=security]>.widget-name    { background-color: rgba(var(--cat-security-color),   var(--opacity)); }
-[data-category=heating]>.widget-name     { background-color: rgba(var(--cat-heating-color),    var(--opacity)); }
-[data-category=automatism]>.widget-name  { background-color: rgba(var(--cat-automatism-color), var(--opacity)); }
-[data-category=light]>.widget-name       { background-color: rgba(var(--cat-light-color),      var(--opacity)); }
-[data-category=opening]>.widget-name     { background-color: rgba(var(--cat-opening-color),    var(--opacity)); }
-[data-category=multimedia]>.widget-name  { background-color: rgba(var(--cat-multimedia-color), var(--opacity)); }
-[data-category=energy]>.widget-name      { background-color: rgba(var(--cat-energy-color),     var(--opacity)); }
-[data-category='']>.widget-name          { background-color: rgba(var(--cat-other-color),      var(--opacity)); }
-:not(.batteryListContainer) > .eqLogic-widget:not([data-category]) > .widget-name { background-color: rgba(var(--cat-other-color), var(--opacity)); }
+[data-category=security]>.widget-name    { background-color: rgb(from var(--cat-security-color) r g b / var(--opacity)); }
+[data-category=heating]>.widget-name     { background-color: rgb(from var(--cat-heating-color) r g b / var(--opacity)); }
+[data-category=automatism]>.widget-name  { background-color: rgb(from var(--cat-automatism-color) r g b / var(--opacity)); }
+[data-category=light]>.widget-name       { background-color: rgb(from var(--cat-light-color) r g b / var(--opacity)); }
+[data-category=opening]>.widget-name     { background-color: rgb(from var(--cat-opening-color) r g b / var(--opacity)); }
+[data-category=multimedia]>.widget-name  { background-color: rgb(from var(--cat-multimedia-color) r g b / var(--opacity)); }
+[data-category=energy]>.widget-name      { background-color: rgb(from var(--cat-energy-color) r g b / var(--opacity)); }
+[data-category='']>.widget-name          { background-color: rgb(from var(--cat-other-color) r g b / var(--opacity)); }
+:not(.batteryListContainer) > .eqLogic-widget:not([data-category]) > .widget-name { background-color: rgb(from var(--cat-other-color) r g b / var(--opacity)); }
 
-/* Fond widgets / blocs — #18181b */
+/* Fond widgets / blocs */
 .fullCorner, #div_alert, .jqAlert, .expressionACTION,
 .progressbarContainer .progress, .element,
 body .eqLogic-widget,
 body .scenario-widget {
-  background-color: rgb(24, 24, 27);
+  background-color: var(--bg-modal-color);
 }
 
-/* scenario-widget = même style que eqLogic-widget */
+/* eqLogic-widget + scenario-widget */
 #div_displayObject .eqLogic:not(.col-xs-12),
 .eqLogic-widget,
 .scenario-widget {
   color: var(--txt-color) !important;
   border: 1px solid var(--btn-default-border, rgba(64, 64, 64, 0.5)) !important;
 }
-#div_displayObject .eqLogic:not(.col-xs-12) { border-radius: var(--border-radius); }
+#div_displayObject .eqLogic:not(.col-xs-12) { border-radius: var(--border-radius) !important; }
 .eqLogic-widget:hover,
 .scenario-widget:hover { border-color: color-mix(in srgb, var(--logo-primary-color) 40%, transparent) !important; }
 
@@ -70,51 +68,33 @@ body .scenario-widget {
 .eqLogic-widget > .widget-name a:hover,
 .scenario-widget > .widget-name a:hover { color: var(--linkHoverLight-color) !important; }
 
-.scenario.scenario-widget .widget-name { background-color: rgba(var(--cat-scenario-color), var(--opacity)) !important; }
+.scenario.scenario-widget .widget-name { background-color: rgb(from var(--cat-scenario-color) r g b / var(--opacity)) !important; }
 
-/* Lignes colorées Bootstrap — tints sombres adaptés au thème dark
-   body prefix : spécificité 0,3,1 > Bootstrap 0,2,1, pas d'!important nécessaire */
-body .table > tbody > tr.success > td, body .table > tbody > tr.success > th,
-body .table > tbody > tr > td.success, body .table > tbody > tr > th.success,
-body .table > tfoot > tr.success > td, body .table > tfoot > tr.success > th,
-body .table > tfoot > tr > td.success, body .table > tfoot > tr > th.success,
-body .table > thead > tr.success > td, body .table > thead > tr.success > th,
-body .table > thead > tr > td.success, body .table > thead > tr > th.success {
-  background-color: rgba(34, 197, 94, 0.10);
-  color: rgb(74, 222, 128);
+/* Lignes colorées Bootstrap — :is() réduit 40 lignes → 8
+   body prefix : spécificité 0,3,1 > Bootstrap 0,2,1 */
+body .table > :is(tbody,tfoot,thead) > tr.success > :is(td,th),
+body .table > :is(tbody,tfoot,thead) > tr > :is(td,th).success {
+  background-color: color-mix(in srgb, var(--al-success-color) 20%, transparent);
+  color: var(--al-success-color);
 }
-body .table > tbody > tr.warning > td, body .table > tbody > tr.warning > th,
-body .table > tbody > tr > td.warning, body .table > tbody > tr > th.warning,
-body .table > tfoot > tr.warning > td, body .table > tfoot > tr.warning > th,
-body .table > tfoot > tr > td.warning, body .table > tfoot > tr > th.warning,
-body .table > thead > tr.warning > td, body .table > thead > tr.warning > th,
-body .table > thead > tr > td.warning, body .table > thead > tr > th.warning {
-  background-color: rgba(245, 158, 11, 0.10);
-  color: rgb(251, 191, 36);
+body .table > :is(tbody,tfoot,thead) > tr.warning > :is(td,th),
+body .table > :is(tbody,tfoot,thead) > tr > :is(td,th).warning {
+  background-color: color-mix(in srgb, var(--al-warning-color) 15%, transparent);
+  color: var(--al-warning-color);
 }
-body .table > tbody > tr.danger > td, body .table > tbody > tr.danger > th,
-body .table > tbody > tr > td.danger, body .table > tbody > tr > th.danger,
-body .table > tfoot > tr.danger > td, body .table > tfoot > tr.danger > th,
-body .table > tfoot > tr > td.danger, body .table > tfoot > tr > th.danger,
-body .table > thead > tr.danger > td, body .table > thead > tr.danger > th,
-body .table > thead > tr > td.danger, body .table > thead > tr > th.danger {
-  background-color: rgba(239, 68, 68, 0.10);
-  color: rgb(248, 113, 113);
+body .table > :is(tbody,tfoot,thead) > tr.danger > :is(td,th),
+body .table > :is(tbody,tfoot,thead) > tr > :is(td,th).danger {
+  background-color: color-mix(in srgb, var(--al-danger-color) 15%, transparent);
+  color: var(--al-danger-color);
 }
-body .table > tbody > tr.info > td, body .table > tbody > tr.info > th,
-body .table > tbody > tr > td.info, body .table > tbody > tr > th.info,
-body .table > tfoot > tr.info > td, body .table > tfoot > tr.info > th,
-body .table > tfoot > tr > td.info, body .table > tfoot > tr > th.info,
-body .table > thead > tr.info > td, body .table > thead > tr.info > th,
-body .table > thead > tr > td.info, body .table > thead > tr > th.info {
-  background-color: rgba(6, 182, 212, 0.10);
-  color: rgb(103, 232, 249);
+body .table > :is(tbody,tfoot,thead) > tr.info > :is(td,th),
+body .table > :is(tbody,tfoot,thead) > tr > :is(td,th).info {
+  background-color: color-mix(in srgb, var(--al-info-color) 15%, transparent);
+  color: var(--al-info-color);
 }
 
-/* Panel overflow hidden pour que le border-radius s'applique aux enfants */
+/* Panel radius top-only */
 body .panel { overflow: hidden; }
-
-/* Radius top-only — body.panel monte la spécificité au-dessus de desktop.main */
 body .panel,
 body .panel-heading,
 .eqLogic-widget .widget-name,
@@ -123,24 +103,24 @@ body .panel-heading,
   border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
-/* Input/form-control — sélecteur Jeedom complet */
+/* Input/form-control */
 .form-control:not(.btn):not(.expressionAttr):not(input),
 input:not(.numInput):not(.btn):not(.dial):not([type="radio"]):not([type="image"]):not(.expressionAttr):not(.knob):not([type="checkbox"]),
 textarea:not(.expressionAttr) {
-  background-color: rgb(33, 33, 33);
+  background-color: var(--form-bg-color);
 }
 
-/* Alerts sombres (pas couverts par tokens) */
+/* Alerts sombres */
 .alert-info    { background: #082f49; color: #7dd3fc; border: none; }
 .alert-success { background: #052e16; color: #4ade80; border: none; }
 .alert-warning { color: var(--al-warning-color); border: none; background-color: var(--btn-warning-bg, var(--al-warning-color)); }
 .alert-danger  { background: #450a0a; color: #f87171; border: none; }
 
 /* Badge pill */
-.badge { border-radius: 999px; padding: 3px 8px; }
+.badge { border-radius: 999px; }
 
 /* Progress */
-.progress { background: rgb(39, 39, 42); border-radius: 999px; }
+.progress { background: var(--btn-default-color); border-radius: 999px; }
 .progress-bar { background: var(--al-primary-color); }
 
 /* Modal backdrop */
@@ -150,13 +130,13 @@ textarea:not(.expressionAttr) {
 div.CodeMirror {
   background: #0f172a;
   color: #e2e8f0;
-  border: 1px solid rgb(63, 63, 70);
+  border: 1px solid var(--btn-default-border);
   border-radius: 12px;
 }
 div.CodeMirror div.CodeMirror-selected { background: #1e293b; }
 div.CodeMirror .CodeMirror-gutters { background: #0f172a; border-right: 1px solid #27272a; }
 div.CodeMirror .CodeMirror-linenumber { color: #71717a; }
-div.CodeMirror .CodeMirror-cursor { border-left: 2px solid rgb(59, 130, 246); }
+div.CodeMirror .CodeMirror-cursor { border-left: 2px solid var(--al-primary-color); }
 div.CodeMirror span.cm-comment { color: #71717a; font-style: italic; }
 div.CodeMirror span.cm-keyword { color: #f87171; }
 div.CodeMirror span.cm-string  { color: #93c5fd; }
@@ -164,23 +144,21 @@ div.CodeMirror span.cm-number  { color: #7dd3fc; }
 div.CodeMirror span.cm-def     { color: #60a5fa; }
 div.CodeMirror span.cm-property, div.CodeMirror span.cm-attribute { color: #4ade80; }
 div.CodeMirror span.cm-variable   { color: #e2e8f0; }
-div.CodeMirror span.cm-variable-2 { color: #facc15; }
+div.CodeMirror span.cm-variable-2 { color: #facc15 !important; }
 div.CodeMirror span.cm-error { background: #f87171; color: #0f172a; }
 div.CodeMirror .CodeMirror-activeline-background { background: #1e293b; }
 div.CodeMirror .CodeMirror-matchingbracket { text-decoration: underline; color: #facc15 !important; }
 div.CodeMirror .CodeMirror-scrollbar-filler { background: transparent; }
 
 /* Flatpickr */
-.flatpickr-calendar {
-  background: rgb(24, 24, 27);
-  border: 1px solid rgb(63, 63, 70);
-}
+.flatpickr-calendar { background: var(--bg-modal-color); border: 1px solid var(--btn-default-border); }
 
 /* noUiSlider */
-.noUi-target { background: rgb(39, 39, 42); border: 1px solid rgb(63, 63, 70); }
+.noUi-target { background: var(--btn-default-color); border: 1px solid var(--btn-default-border); }
 .noUi-connect { background: var(--al-primary-color); }
 
 @media (max-width: 768px) {
   #div_pageContainer { padding: 10px; }
   .panel-body, .modal-body { padding: 14px; }
+}
 }

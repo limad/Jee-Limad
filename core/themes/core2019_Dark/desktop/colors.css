@@ -3,23 +3,25 @@ Theme Core 2019 @Jeedom
 colors Dark
 */
 :root {
+  --timeCmd-bg-opacity: 0.7;
+
   /* keep it as rem even when zero!!*/
   --border-radius: 0rem;
   --opacity: 1;
 
 
   --dashBkg-url: url("");
-  --logo-primary-color: rgb(150, 201, 39);
-  --logo-secondary-color: rgb(189, 188, 190);
+  --logo-primary-color: hsl(79 67.5% 47.1%);
+  --logo-secondary-color: hsl(270 1.5% 74.1%);
   --bg-color: 25, 25, 25;
-  --bg-modal-color: rgb(35, 35, 36);
+  --bg-modal-color: hsl(240 1.4% 13.9%);
   --contrast-color: 205, 205, 205;
 
-  --txt-color: rgb(172, 172, 172);
-  --link-color: rgb(195, 195, 195);
-  --linkHover-color: rgb(228, 228, 228);
-  --linkHoverLight-color: rgb(230, 230, 230);
-  --placeholder-color: rgb(163, 163, 163);
+  --txt-color: hsl(0 0% 67.5%);
+  --link-color: hsl(0 0% 76.5%);
+  --linkHover-color: hsl(0 0% 89.4%);
+  --linkHoverLight-color: hsl(0 0% 90.2%);
+  --placeholder-color: hsl(0 0% 63.9%);
 
   /* Texte sur surface info/warning — core2019 garde sa couleur claire (modifiable ici) */
   --on-info-fg: var(--linkHoverLight-color);
@@ -34,20 +36,20 @@ colors Dark
   --dropdown-item-hover-bg: var(--form-bg-color);
   --dropdown-item-hover-fg: var(--link-color);
 
-  --sc-form-color: rgba(225, 225, 225, 0.85);
-  --sc-formTxt-color: rgb(56, 56, 56);
-  --sc-lightTxt-color: rgb(230, 230, 230);
+  --sc-form-color: hsl(0 0% 88.2% / 0.85);
+  --sc-formTxt-color: hsl(0 0% 22%);
+  --sc-lightTxt-color: hsl(0 0% 90.2%);
 
-  --el-defaultColor: rgb(17, 19, 20);
+  --el-defaultColor: hsl(200 8.1% 7.3%);
   --defaultBkg-color: 38, 40, 40;
-  --form-bg-color: rgb(47, 47, 47);
-  --btnEq-default-color: rgb(62, 62, 62);
-  --btn-default-color: rgb(69, 70, 72);
+  --form-bg-color: hsl(0 0% 18.4%);
+  --btnEq-default-color: hsl(0 0% 24.3%);
+  --btn-default-color: hsl(220 2.1% 27.6%);
   --panel-bg-color: 33, 33, 33;
 
-  --eqTitle-color: rgb(240, 240, 240);
-  --objectBkgd-color: rgb(62, 62, 62);
-  --objectTxt-color: rgb(200, 200, 200);
+  --eqTitle-color: hsl(0 0% 94.1%);
+  --objectBkgd-color: hsl(0 0% 24.3%);
+  --objectTxt-color: hsl(0 0% 78.4%);
 
   --eq-bg-color: 38, 38, 38;
   --cat-security-color: 145, 65, 60;
@@ -63,36 +65,37 @@ colors Dark
   --url-iconsDark: url(/desktop/img/ui-icons-black.png);
   --url-iconsLight: url(/desktop/img/ui-icons-white.png);
 
-  --lb-info-color: rgb(80, 160, 180);
-  --lb-yellow-color: rgb(210, 180, 0);
-  --al-info-color: rgb(80, 120, 170);
-  --al-primary-color: rgb(50, 110, 160);
-  --al-success-color: rgb(50, 130, 60);
-  --al-warning-color: rgb(195, 125, 40);
-  --al-danger-color: rgb(185, 58, 62);
-  --bt-success-color: rgb(150, 201, 39);
+  --lb-info-color: hsl(192 40% 51%);
+  --lb-yellow-color: hsl(51 100% 41.2%);
+  --al-info-color: hsl(213 36% 49%);
+  --al-primary-color: hsl(207 52.4% 41.2%);
+  --al-success-color: hsl(128 44.4% 35.3%);
+  --al-warning-color: hsl(33 66% 46.1%);
+  --al-danger-color: hsl(358 52.3% 47.6%);
+  --bt-success-color: hsl(79 67.5% 47.1%);
 
-  --scBlocIF: rgb(65, 90, 110);
-  --scBlocElse: rgb(50, 75, 95);
-  --scBlocACTION: rgb(132, 120, 112);
-  --scBlocIN: rgb(75, 128, 62);
-  --scBlocAT: rgb(92, 122, 132);
-  --scBlocFOR: rgb(152, 116, 22);
-  --scBlocWHILE: rgb(102, 82, 120);
-  --scBlocCODE: rgb(160, 60, 25);
-  --scBlocCOM: rgb(60, 60, 60);
+  --scBlocIF: hsl(207 25.7% 34.3%);
+  --scBlocElse: hsl(207 31% 28.4%);
+  --scBlocACTION: hsl(24 8.2% 47.8%);
+  --scBlocIN: hsl(108 34.7% 37.3%);
+  --scBlocAT: hsl(195 17.9% 43.9%);
+  --scBlocFOR: hsl(43 74.7% 34.1%);
+  --scBlocWHILE: hsl(272 18.8% 39.6%);
+  --scBlocCODE: hsl(16 73% 36.3%);
+  --scBlocCOM: hsl(0 0% 23.5%);
 
-  --scBlocSep: rgb(35, 35, 35);
+  --scBlocSep: hsl(0 0% 13.7%);
 
 
   /* Tokens desktop.main — valeurs propres core2019_Dark */
   --scrollbar-thumb-color: var(--btn-default-color);
   --scrollbar-size: 8px;
   --element-disable-opacity: 0.45;
-  --codemirror-bg: #272822;
+  --codemirror-bg: hsl(70 8.1% 14.5%);
   --input-group-addon-bg: var(--btn-default-color);
-  --timeline-hover-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.2);
-  --eqlogic-transition: border-color 0.15s ease;
+  --timeline-hover-shadow: 0 3px 10px 0 hsl(0 0% 0% / 0.2);
+  --eqlogic-transition: border-color 0.15s ease, box-shadow .4s cubic-bezier(.25,.8,.25,1);
+  --jeedom-transition-hover: 0.4s cubic-bezier(.25,.8,.25,1);
   --panel-primary-bg: var(--al-primary-color);
   --panel-primary-fg: var(--linkHoverLight-color);
   --panel-success-fg: var(--linkHoverLight-color);
@@ -100,25 +103,24 @@ colors Dark
   --panel-info-fg: var(--linkHoverLight-color);
   --panel-warning-fg: var(--linkHoverLight-color);
   --panel-heading-bg: rgb(var(--panel-bg-color));
-  --panel-heading-border: rgba(80, 80, 80, 0.5);
-  --panel-default-border: rgba(80, 80, 80, 0.5);
+  --panel-heading-border: hsl(0 0% 31.4% / 0.5);
+  --panel-default-border: hsl(0 0% 31.4% / 0.5);
   --panel-default-title: var(--linkHover-color);
-  --btn-semantic-radius: var(--border-radius);
-  --navbar-bg: rgba(25, 25, 25, 0.95);
-  --navtab-border: rgba(80, 80, 80, 0.6);
+  --navbar-bg: hsl(0 0% 9.8% / 0.95);
+  --navtab-border: hsl(0 0% 31.4% / 0.6);
   --tab-inactive-bg: var(--el-defaultColor);
   --tab-inactive-color: var(--link-color);
-  --dropdown-border: rgba(80, 80, 80, 0.6);
+  --dropdown-border: hsl(0 0% 31.4% / 0.6);
   --dropdown-item-fg: var(--link-color);
-  --dropdown-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-  --modal-border: rgba(80, 80, 80, 0.6);
+  --dropdown-shadow: 0 10px 25px hsl(0 0% 0% / 0.4);
+  --modal-border: hsl(0 0% 31.4% / 0.6);
   --modal-header-bg: rgb(var(--panel-bg-color));
-  --modal-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-  --input-border: 1px solid rgba(80, 80, 80, 0.6);
+  --modal-shadow: 0 20px 50px hsl(0 0% 0% / 0.5);
+  --input-border: 1px solid hsl(0 0% 31.4% / 0.6);
   --input-bg: var(--form-bg-color);
   --input-focus-shadow: 0 0 0 2px color-mix(in srgb, var(--al-primary-color) 20%, transparent);
   --input-group-addon-fg: var(--link-color);
   --checkbox-bg: var(--btn-default-color);
   --widget-btn-hover-color: var(--linkHoverLight-color);
-  --jeedom-shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.35);
+  --jeedom-shadow-lg: 0 8px 22px 2px hsl(0 0% 0% / 0.4);
 }

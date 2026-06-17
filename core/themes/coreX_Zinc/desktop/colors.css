@@ -3,88 +3,97 @@ Theme coreX_Zinc @Jeedom - Zinc Dark
 Tailwind zinc-950 base, blue-500 accent, semantic Tailwind dark-mode palette
 */
 :root {
+  --navbar-blur: 8px;
+  --widget-btn-hover-mix: 20%;
+  --eqLogic-border-color: hsl(240 3.7% 15.9%);
+  --timeCmd-bg-opacity: 0.8;
+  --navbar-blur: 8px;
+  --widget-btn-hover-mix: 20%;
+  --eqLogic-border-color: hsl(240 3.7% 15.9%);
+  --eqLogic-hover-border: hsl(217 91.2% 59.8%);
+
   --border-radius: 0.625rem;
   --opacity: 1;
 
   --dashBkg-url: url("");
-  --logo-primary-color: rgb(59, 130, 246);
-  --logo-secondary-color: rgb(113, 113, 122);
+  --logo-primary-color: hsl(217 91.2% 59.8%);
+  --logo-secondary-color: hsl(240 3.8% 46.1%);
 
   --bg-color: 9, 9, 11;
-  --bg-modal-color: rgb(24, 24, 27);
+  --bg-modal-color: hsl(240 5.9% 10%);
   --contrast-color: 212, 212, 216;
 
-  --txt-color: rgb(212, 212, 216);
-  --link-color: rgb(161, 161, 170);
-  --linkHover-color: rgb(147, 197, 253);
-  --linkHoverLight-color: rgb(248, 248, 248);
-  --placeholder-color: rgb(113, 113, 122);
+  --txt-color: hsl(240 4.9% 83.9%);
+  --link-color: hsl(240 5% 64.9%);
+  --linkHover-color: hsl(212 96.4% 78.4%);
+  --linkHoverLight-color: hsl(0 0% 97.3%);
+  --placeholder-color: hsl(240 3.8% 46.1%);
 
-  --sc-form-color: rgba(59, 130, 246, 0.9);
-  --sc-formTxt-color: rgb(255, 255, 255);
-  --sc-lightTxt-color: rgb(241, 245, 249);
+  --sc-form-color: hsl(217 91.2% 59.8% / 0.9);
+  --sc-formTxt-color: hsl(0 0% 100%);
+  --sc-lightTxt-color: hsl(210 40% 96.1%);
 
   /* Panel headings — tinted bg + contrasting fg (Tailwind dark-mode) */
-  --panel-primary-bg: rgb(59, 130, 246);
-  --panel-primary-fg: #fff;
-  --panel-success-fg: rgb(5, 46, 22);
-  --panel-danger-fg: rgb(69, 10, 10);
-  --panel-info-fg: rgb(8, 47, 73);
-  --panel-warning-fg: rgb(66, 32, 6);
+  --panel-primary-bg: hsl(217 91.2% 59.8%);
+  --panel-primary-fg: hsl(0 0% 100%);
+  --panel-success-fg: hsl(145 80.4% 10%);
+  --panel-danger-fg: hsl(0 74.7% 15.5%);
+  --panel-info-fg: hsl(204 80.2% 15.9%);
+  --panel-warning-fg: hsl(26 83.3% 14.1%);
 
   /* WCAG AA */
-  --on-info-fg: rgb(8, 47, 73);
-  --on-warning-fg: rgb(66, 32, 6);
+  --on-info-fg: hsl(204 80.2% 15.9%);
+  --on-warning-fg: hsl(26 83.3% 14.1%);
 
   /* Onglet actif */
   --navtab-active-bg: var(--bg-modal-color);
   --navtab-active-fg: var(--linkHover-color);
 
   /* Dropdown */
-  --dropdown-bg: rgb(24, 24, 27);
+  --dropdown-bg: hsl(240 5.9% 10%);
   --dropdown-item-fg: var(--txt-color);
-  --dropdown-item-hover-bg: rgba(39, 39, 42, 0.8);
+  --dropdown-item-hover-bg: hsl(240 3.7% 15.9% / 0.8);
   --dropdown-item-hover-fg: var(--linkHover-color);
 
   /* Intentions */
   --scrollbar-size: 6px;
-  --scrollbar-thumb-color: rgb(63, 63, 70);
-  --timeline-hover-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.5);
-  --eqlogic-transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  --jeedom-shadow-lg: 0 10px 30px rgba(0,0,0,0.6), 0 0 0 3px rgba(59, 130, 246, 0.12);
+  --scrollbar-thumb-color: hsl(240 5.3% 26.1%);
+  --timeline-hover-shadow: 0 3px 12px 0 hsl(0 0% 0% / 0.5);
+  --eqlogic-transition: box-shadow 0.2s ease, transform 0.2s ease;
+  --jeedom-transition-hover: 0.2s ease;
+  --jeedom-shadow-lg: 0 10px 30px hsl(0 0% 0% / 0.6), 0 0 0 3px hsl(217 91.2% 59.8% / 0.12);
   --element-disable-opacity: 0.35;
-  --panel-heading-bg: rgb(24, 24, 27);
-  --panel-heading-border: rgb(39, 39, 42);
-  --codemirror-bg: #09090b;
-  --input-border: 1px solid rgb(39, 39, 42);
-  --input-bg: rgb(9, 9, 11);
-  --input-focus-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
-  --input-group-addon-bg: rgb(39, 39, 42);
+  --panel-heading-bg: hsl(240 5.9% 10%);
+  --panel-heading-border: hsl(240 3.7% 15.9%);
+  --codemirror-bg: hsl(240 10% 3.9%);
+  --input-border: 1px solid hsl(240 3.7% 15.9%);
+  --input-bg: hsl(240 10% 3.9%);
+  --input-focus-shadow: 0 0 0 4px hsl(217 91.2% 59.8% / 0.15);
+  --input-group-addon-bg: hsl(240 3.7% 15.9%);
   --input-group-addon-fg: var(--txt-color);
-  --navbar-bg: rgba(9, 9, 11, 0.95);
-  --navtab-border: rgb(39, 39, 42);
-  --dropdown-border: rgb(39, 39, 42);
-  --modal-border: rgb(39, 39, 42);
-  --modal-header-bg: rgb(24, 24, 27);
-  --modal-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
-  --dropdown-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-  --panel-default-border: rgb(39, 39, 42);
+  --navbar-bg: hsl(240 10% 3.9% / 0.95);
+  --navtab-border: hsl(240 3.7% 15.9%);
+  --dropdown-border: hsl(240 3.7% 15.9%);
+  --modal-border: hsl(240 3.7% 15.9%);
+  --modal-header-bg: hsl(240 5.9% 10%);
+  --modal-shadow: 0 25px 50px hsl(0 0% 0% / 0.7);
+  --dropdown-shadow: 0 10px 25px hsl(0 0% 0% / 0.6);
+  --panel-default-border: hsl(240 3.7% 15.9%);
   --panel-default-title: var(--linkHover-color);
-  --tab-inactive-bg: rgb(24, 24, 27);
-  --checkbox-bg: rgb(39, 39, 42);
-  --btn-semantic-radius: calc(var(--border-radius) - 2px);
+  --tab-inactive-bg: hsl(240 5.9% 10%);
+  --checkbox-bg: hsl(240 3.7% 15.9%);
 
-  --el-defaultColor: rgb(9, 9, 11);
+  --el-defaultColor: hsl(240 10% 3.9%);
   --defaultBkg-color: 24, 24, 27;
-  --form-bg-color: rgb(9, 9, 11);
-  --btnEq-default-color: rgb(24, 24, 27);
-  --btn-default-color: rgb(39, 39, 42);
-  --btn-default-border: rgb(63, 63, 70);
+  --form-bg-color: hsl(240 10% 3.9%);
+  --btnEq-default-color: hsl(240 5.9% 10%);
+  --btn-default-color: hsl(240 3.7% 15.9%);
+  --btn-default-border: hsl(240 5.3% 26.1%);
   --panel-bg-color: 24, 24, 27;
 
-  --eqTitle-color: rgb(248, 248, 248);
-  --objectBkgd-color: rgb(59, 130, 246);
-  --objectTxt-color: rgb(255, 255, 255);
+  --eqTitle-color: hsl(0 0% 97.3%);
+  --objectBkgd-color: hsl(217 91.2% 59.8%);
+  --objectTxt-color: hsl(0 0% 100%);
 
   --eq-bg-color: 24, 24, 27;
 
@@ -101,24 +110,25 @@ Tailwind zinc-950 base, blue-500 accent, semantic Tailwind dark-mode palette
   --url-iconsDark: url(/desktop/img/ui-icons-black.png);
   --url-iconsLight: url(/desktop/img/ui-icons-white.png);
 
-  --lb-info-color: rgb(125, 211, 252);
-  --lb-yellow-color: rgb(250, 204, 21);
-  --al-info-color: rgb(14, 165, 233);
-  --al-primary-color: rgb(59, 130, 246);
-  --al-success-color: rgb(74, 222, 128);
-  --al-warning-color: rgb(250, 204, 21);
-  --al-danger-color: rgb(248, 113, 113);
-  --bt-success-color: rgb(74, 222, 128);
+  --lb-info-color: hsl(199 95.5% 73.9%);
+  --lb-yellow-color: hsl(48 95.8% 53.1%);
+  --al-info-color: hsl(199 88.7% 48.4%);
+  --al-primary-color: hsl(217 91.2% 59.8%);
+  --al-success-color: hsl(142 69.2% 58%);
+  --al-warning-color: hsl(48 95.8% 53.1%);
+  --al-danger-color: hsl(0 90.6% 70.8%);
+  --bt-success-color: hsl(142 69.2% 58%);
 
-  --scBlocIF: rgb(59, 130, 246);
-  --scBlocElse: rgb(113, 113, 122);
-  --scBlocACTION: rgb(59, 130, 246);
-  --scBlocIN: rgb(74, 222, 128);
-  --scBlocAT: rgb(125, 211, 252);
-  --scBlocFOR: rgb(250, 204, 21);
-  --scBlocCODE: rgb(248, 113, 113);
-  --scBlocCOM: rgb(113, 113, 122);
-  --scBlocSep: rgb(9, 9, 11);
+  --scBlocIF: hsl(217 91.2% 59.8%);
+  --scBlocElse: hsl(240 3.8% 46.1%);
+  --scBlocACTION: hsl(217 91.2% 59.8%);
+  --scBlocIN: hsl(142 69.2% 58%);
+  --scBlocAT: hsl(199 95.5% 73.9%);
+  --scBlocFOR: hsl(48 95.8% 53.1%);
+  --scBlocWHILE: hsl(272 75% 68%);
+  --scBlocCODE: hsl(0 90.6% 70.8%);
+  --scBlocCOM: hsl(240 3.8% 46.1%);
+  --scBlocSep: hsl(240 10% 3.9%);
 
   /* Boutons outline — spécifique coreX_Zinc */
   --btn-success-bg: transparent;

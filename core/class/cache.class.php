@@ -361,7 +361,7 @@ class FileCache {
 	}
 
 	public static function deleteAll() {
-		return shell_exec(system::getCmdSudo() . ' rm -rf ' . jeedom::getTmpFolder('cache'));
+		return shell_exec('rm -rf ' . jeedom::getTmpFolder('cache'));
 	}
 
 	public static function save($_cache) {
@@ -382,12 +382,10 @@ class FileCache {
 	public static function persist() {
 		$cache_dir = jeedom::getTmpFolder('cache');
 		try {
-			$cmd = system::getCmdSudo() . 'rm -rf ' . __DIR__ . '/../../cache.tar.gz;cd ' . $cache_dir . ';';
-			$cmd .= system::getCmdSudo() . 'tar cfz ' . __DIR__ . '/../../cache.tar.gz . 2>&1 > /dev/null;';
-			$cmd .= system::getCmdSudo() . 'chmod 774 ' . __DIR__ . '/../../cache.tar.gz;';
-			$cmd .= system::getCmdSudo() . 'chown ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . __DIR__ . '/../../cache.tar.gz;';
-			$cmd .= system::getCmdSudo() . 'chown -R ' . system::get('www-uid') . ':' . system::get('www-gid') . ' ' . $cache_dir . ';';
-			$cmd .= system::getCmdSudo() . 'chmod 774 -R ' . $cache_dir . ' 2>&1 > /dev/null';
+			$cmd = 'rm -rf ' . __DIR__ . '/../../cache.tar.gz;cd ' . $cache_dir . ';';
+			$cmd .= 'tar cfz ' . __DIR__ . '/../../cache.tar.gz . 2>&1 > /dev/null;';
+			$cmd .= 'chmod 774 ' . __DIR__ . '/../../cache.tar.gz;';
+			$cmd .= 'chmod 774 -R ' . $cache_dir . ' 2>&1 > /dev/null';
 			com_shell::execute($cmd);
 		} catch (Exception $e) {
 		}

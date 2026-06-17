@@ -94,7 +94,8 @@ try {
 			continue;
 		}
 		echo "Checking  table " . $table . "...";
-		system("mysqlcheck " . $str_db_connexion . ' --auto-repair --silent --tables ' . $table);
+		$mysqlcheck = file_exists('/usr/bin/mysqlcheck') ? 'mysqlcheck' : 'mariadb-check';
+		system($mysqlcheck . " " . $str_db_connexion . ' --auto-repair --silent --tables ' . $table);
 		echo "OK" . "\n";
 	}
 

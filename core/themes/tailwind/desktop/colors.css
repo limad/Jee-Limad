@@ -9,9 +9,9 @@ Theme tailwind @Jeedom - Tailwind zinc-950 / glass
   --logo-primary-color: rgb(59, 130, 246);
   --logo-secondary-color: rgb(161, 161, 170);
 
-  --bg-color: 15, 15, 19;
+  --bg-color: rgb(15, 15, 19);
   --bg-modal-color: rgb(24, 24, 27);
-  --contrast-color: 250, 250, 250;
+  --contrast-color: rgb(250, 250, 250);
 
   --txt-color: rgb(250, 250, 250);
   --link-color: rgb(163, 163, 163);
@@ -59,7 +59,6 @@ Theme tailwind @Jeedom - Tailwind zinc-950 / glass
   --dropdown-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   --tab-inactive-bg: var(--el-defaultColor);
   --checkbox-bg: rgb(39, 39, 42);
-  --btn-semantic-radius: 0.625rem;
   --input-border: 1px solid rgb(63, 63, 70);
   --input-bg: rgb(21, 21, 27);
   --input-group-addon-fg: rgb(161, 161, 170);
@@ -67,27 +66,27 @@ Theme tailwind @Jeedom - Tailwind zinc-950 / glass
   --jeedom-shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.5);
 
   --el-defaultColor: rgb(15, 15, 19);
-  --defaultBkg-color: 24, 24, 27;
-  --form-bg-color: rgb(21, 21, 27);
+  --defaultBkg-color: rgb(24, 24, 27);
+  --form-bg-color: rgb(33, 33, 33);
   --btnEq-default-color: rgb(24, 24, 27);
   --btn-default-color: rgb(39, 39, 42);
   --btn-default-border: rgb(63, 63, 70);
-  --panel-bg-color: 24, 24, 27;
+  --panel-bg-color: rgb(24, 24, 27);
 
   --eqTitle-color: rgb(250, 250, 250);
   --objectBkgd-color: rgb(59, 130, 246);
   --objectTxt-color: rgb(255, 255, 255);
-  --eq-bg-color: 24, 24, 27;
+  --eq-bg-color: rgb(24, 24, 27);
 
-  --cat-security-color: 220, 53, 69;
-  --cat-heating-color: 253, 126, 20;
-  --cat-automatism-color: 108, 117, 125;
-  --cat-light-color: 255, 193, 7;
-  --cat-opening-color: 108, 117, 125;
-  --cat-multimedia-color: 13, 202, 240;
-  --cat-energy-color: 25, 135, 84;
-  --cat-other-color: 108, 117, 125;
-  --cat-scenario-color: 13, 110, 253;
+  --cat-security-color: rgb(220, 53, 69);
+  --cat-heating-color: rgb(253, 126, 20);
+  --cat-automatism-color: rgb(108, 117, 125);
+  --cat-light-color: rgb(255, 193, 7);
+  --cat-opening-color: rgb(108, 117, 125);
+  --cat-multimedia-color: rgb(13, 202, 240);
+  --cat-energy-color: rgb(25, 135, 84);
+  --cat-other-color: rgb(108, 117, 125);
+  --cat-scenario-color: rgb(13, 110, 253);
 
   --url-iconsDark: url(/desktop/img/ui-icons-black.png);
   --url-iconsLight: url(/desktop/img/ui-icons-white.png);

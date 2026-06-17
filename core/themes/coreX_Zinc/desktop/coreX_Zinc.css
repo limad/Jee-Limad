@@ -1,3 +1,4 @@
+@layer theme {
 /*
 Theme coreX_Zinc @Jeedom - Zinc Dark
 Tailwind zinc-950 base, blue-500 accent, semantic Tailwind dark-mode palette
@@ -6,26 +7,26 @@ Tailwind zinc-950 base, blue-500 accent, semantic Tailwind dark-mode palette
 ::-webkit-scrollbar-thumb { border-radius: 4px; }
 
 .navbar, #jeedomMenuBar {
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgb(39, 39, 42) !important;
+  backdrop-filter: blur(var(--navbar-blur));
+  border-bottom: 1px solid hsl(240 3.7% 15.9%);
 }
 
 .panel { overflow: hidden; }
 
-div.div_viewZone { background-color: rgba(0, 0, 0, 0.5); border-radius: var(--border-radius); }
+div.div_viewZone { background-color: hsl(0 0% 0% / 0.5); border-radius: var(--border-radius) !important; }
 
 #div_displayObject .eqLogic:not(.col-xs-12), .eqLogic-widget {
-  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
   color: var(--txt-color) !important;
-  border: 1px solid rgb(39, 39, 42) !important;
+  border: 1px solid var(--eqLogic-border-color);
 }
-#div_displayObject .eqLogic:not(.col-xs-12) { border-radius: var(--border-radius); }
+#div_displayObject .eqLogic:not(.col-xs-12) { border-radius: var(--border-radius) !important; }
 .eqLogic-widget:hover {
-  border-color: rgb(59, 130, 246) !important;
+  border-color: hsl(217 91.2% 59.8%);
 }
 .scenario-widget {
-  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
-  border: 1px solid rgb(39, 39, 42) !important;
+  background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
+  border: 1px solid var(--eqLogic-border-color);
 }
 #div_displayObject > a { background-color: var(--btnEq-default-color) !important; border-radius: var(--border-radius) !important; }
 
@@ -33,46 +34,45 @@ div.div_viewZone { background-color: rgba(0, 0, 0, 0.5); border-radius: var(--bo
 .eqLogic-widget > span:first-child.statusCmd i { color: var(--eqTitle-color) !important; font-size: 16px !important; }
 .eqLogic-widget > .widget-name a:hover, .scenario-widget > .widget-name a:hover { color: var(--linkHover-color) !important; }
 
-.scenario.scenario-widget .widget-name { background-color: rgba(var(--cat-scenario-color), var(--opacity)) !important; }
-[data-category=security]>.widget-name { background-color: rgba(var(--cat-security-color), var(--opacity)); }
-[data-category=heating]>.widget-name { background-color: rgba(var(--cat-heating-color), var(--opacity)); }
-[data-category=automatism]>.widget-name { background-color: rgba(var(--cat-automatism-color), var(--opacity)); }
-[data-category=light]>.widget-name { background-color: rgba(var(--cat-light-color), var(--opacity)); }
-[data-category=opening]>.widget-name { background-color: rgba(var(--cat-opening-color), var(--opacity)); }
-[data-category=multimedia]>.widget-name { background-color: rgba(var(--cat-multimedia-color), var(--opacity)); }
-[data-category=energy]>.widget-name { background-color: rgba(var(--cat-energy-color), var(--opacity)); }
-[data-category='']>.widget-name { background-color: rgba(var(--cat-other-color), var(--opacity)); }
-:not(.batteryListContainer) > .eqLogic-widget:not([data-category]) > .widget-name { background-color: rgba(var(--cat-other-color), var(--opacity)); }
+
+
+
+
+
+
+
+
+
+
 
 .eqLogic.eqLogic-widget .btn:hover, .scenario.scenario-widget .btn:hover, #div_displayObject .btn:hover {
-  background-color: color-mix(in srgb, var(--al-primary-color) 20%, transparent) !important;
+  background-color: color-mix(in srgb, var(--al-primary-color) var(--widget-btn-hover-mix), transparent) !important;
 }
 
-.timeCmd.label { background: rgba(var(--bg-color), 0.8); }
+
 
 #timelineContainer li:not(:first-of-type):hover,
 #timelineContainer li:not(:first-of-type):hover .time {
-  outline: 1px solid rgb(59, 130, 246);
+  outline: 1px solid hsl(217 91.2% 59.8%);
 }
 
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
-  border-color: var(--navtab-border) var(--navtab-border) transparent !important;
-}
 
-div.CodeMirror { color: #d4d4d8; border-radius: 4px; border: 1px solid rgb(39,39,42); }
-div.CodeMirror div.CodeMirror-selected { background: #1e293b; }
-div.CodeMirror .CodeMirror-gutters { background: #09090b; border-right: 1px solid #27272a; }
-div.CodeMirror .CodeMirror-linenumber { color: #71717a; }
-div.CodeMirror .CodeMirror-cursor { border-left: 2px solid rgb(59, 130, 246); }
-div.CodeMirror span.cm-comment { color: #71717a; font-style: italic; }
-div.CodeMirror span.cm-keyword { color: #f87171; }
-div.CodeMirror span.cm-string { color: #93c5fd; }
-div.CodeMirror span.cm-number { color: #7dd3fc; }
-div.CodeMirror span.cm-def { color: #60a5fa; }
-div.CodeMirror span.cm-property, div.CodeMirror span.cm-attribute { color: #4ade80; }
-div.CodeMirror span.cm-variable { color: #d4d4d8; }
-div.CodeMirror span.cm-variable-2 { color: #facc15; }
-div.CodeMirror span.cm-error { background: #f87171; color: #09090b; }
-div.CodeMirror .CodeMirror-activeline-background { background: #18181b; }
-div.CodeMirror .CodeMirror-matchingbracket { text-decoration: underline; color: #facc15 !important; }
-div.CodeMirror .CodeMirror-scrollbar-filler { background: transparent; }
+
+div.CodeMirror { color: hsl(240 4.9% 83.9%); border-radius: 4px; border: 1px solid hsl(240 3.7% 15.9%); }
+div.CodeMirror div.CodeMirror-selected { background: hsl(217 32.6% 17.5%); }
+div.CodeMirror .CodeMirror-gutters { background: hsl(240 10% 3.9%); border-right: 1px solid hsl(240 3.7% 15.9%); }
+div.CodeMirror .CodeMirror-linenumber { color: hsl(240 3.8% 46.1%); }
+div.CodeMirror .CodeMirror-cursor { border-left: 2px solid hsl(217 91.2% 59.8%); }
+div.CodeMirror span.cm-comment { color: hsl(240 3.8% 46.1%); font-style: italic; }
+div.CodeMirror span.cm-keyword { color: hsl(0 90.6% 70.8%); }
+div.CodeMirror span.cm-string { color: hsl(212 96.4% 78.4%); }
+div.CodeMirror span.cm-number { color: hsl(199 95.5% 73.9%); }
+div.CodeMirror span.cm-def { color: hsl(213 93.9% 67.8%); }
+div.CodeMirror span.cm-property, div.CodeMirror span.cm-attribute { color: hsl(142 69.2% 58%); }
+div.CodeMirror span.cm-variable { color: hsl(240 4.9% 83.9%); }
+div.CodeMirror span.cm-variable-2 { color: hsl(48 95.8% 53.1%) !important; }
+div.CodeMirror span.cm-error { background: hsl(0 90.6% 70.8%); color: hsl(240 10% 3.9%); }
+div.CodeMirror .CodeMirror-activeline-background { background: hsl(240 5.9% 10%); }
+div.CodeMirror .CodeMirror-matchingbracket { text-decoration: underline; color: hsl(48 95.8% 53.1%) !important; }
+
+}

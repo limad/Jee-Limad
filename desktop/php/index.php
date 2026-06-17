@@ -152,9 +152,10 @@ function setTheme() {
 	if (isset($jeedom_theme['logoVersion'][$homeLogoKey])) $homeLogoSrc .= (strpos($homeLogoSrc, '?') === false ? '?v=' : '&v=') . $jeedom_theme['logoVersion'][$homeLogoKey];
 	$colorsAbsPath = __DIR__ . '/../../core/themes/' . $themeDefinition . '/desktop/colors.css';
 	if (file_exists($colorsAbsPath)) {
-		echo '<style id="jeedom_theme_colors">';
+		echo '<style>@layer bootstrap, base, theme;</style>';
+		echo '<style id="jeedom_theme_colors">@layer theme{';
 		echo file_get_contents($colorsAbsPath);
-		echo '</style>';
+		echo '}</style>';
 	}
 	echo $themeCss;
 	if (!isset($jeedom_theme['interface::advance::enable']) || !isset($jeedom_theme['widget::shadow']) || $jeedom_theme['interface::advance::enable'] == 0 || $jeedom_theme['widget::shadow'] == 0) {
@@ -165,8 +166,8 @@ function setTheme() {
 	}
 }
 
-$loadJquery = true;
-if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
+$loadJquery = config::byKey('core::jqueryless', 'core', 0) != 1;
+$loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) != 1;
 ?>
 
 <!DOCTYPE html>
@@ -188,7 +189,6 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 	include_file('coreDOM', 'dom.ui', 'js');
 	include_file('core', 'icon.inc', 'php');
 	echo '<link rel="preload" href="3rdparty/font-awesome5/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>';
-	echo '<link rel="preload" href="3rdparty/font-awesome5/webfonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>';
 	include_file('3rdparty', 'text-security/text-security-disc', 'css');
 
 	if ($loadJquery) include_file('3rdparty', 'jquery/jquery.min', 'js');
@@ -211,8 +211,8 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 	include_file('core', 'core', 'js');
 	include_file('core', 'js.inc', 'php');
 
-	include_file('desktop', 'bootstrap', 'css');
-	if ($loadJquery) {
+	// include_file('desktop', 'bootstrap', 'css');
+	if ($loadBootstrap) {
 		include_file('3rdparty', 'bootstrap/bootstrap.min', 'js');
 
 		//ui-dialog replaced by jeeDialog, still sortable and resizable
@@ -222,6 +222,11 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 
 		//Deprecated 4.4, keep for plugins
 		include_file('3rdparty', 'bootbox/bootbox.min', 'js');
+
+		//Deprecated Core css
+		include_file('desktop', 'deprecated.main', 'css');
+	}
+	if ($loadJquery) {
 		include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
 		include_file('3rdparty', 'jquery.fileupload/jquery.iframe-transport', 'js');
 		include_file('3rdparty', 'jquery.fileupload/jquery.fileupload', 'js');
@@ -238,9 +243,6 @@ if (config::byKey('core::jqueryless') == 1) $loadJquery = false;
 		//Cron helper:
 		//include_file('3rdparty', 'jquery.cron/jquery.cron.min', 'js');
 		//include_file('3rdparty', 'jquery.cron/jquery.cron', 'css');
-
-		//Deprecated Core css
-		include_file('desktop', 'deprecated.main', 'css');
 	}
 
 	//jQuery less libs:

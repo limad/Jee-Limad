@@ -177,7 +177,7 @@ if (!jeeFrontEnd.scenario) {
         if (Sortable.get(_Sortcontainer)) Sortable.get(_Sortcontainer).destroy()
         new Sortable(_Sortcontainer, commonOptions)
       })
-      const root = document.getElementById('root')
+      let root = document.getElementById('root')
       if (root) {
         if (Sortable.get(root)) Sortable.get(root).destroy()
         new Sortable(root, commonOptions)
@@ -702,6 +702,7 @@ if (!jeeFrontEnd.scenario) {
           break
       }
       let retour = '<div class="subElement ' + blocClass + ' ' + noSortable + '">'
+      let expression
       retour += '<input class="subElementAttr" data-l1key="id" style="display : none;" value="' + init(_subElement.id) + '"/>'
       retour += '<input class="subElementAttr" data-l1key="scenarioElement_id" style="display : none;" value="' + init(_subElement.scenarioElement_id) + '"/>'
       retour += '<input class="subElementAttr" data-l1key="type" style="display : none;" value="' + init(_subElement.type) + '"/>'
@@ -733,13 +734,13 @@ if (!jeeFrontEnd.scenario) {
           retour += '</div>'
 
           retour += '<div class="expressions" >'
-          let forExpression = {
+          expression = {
             type: 'condition'
           }
           if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
-            forExpression = _subElement.expressions[0]
+            expression = _subElement.expressions[0]
           }
-          retour += this.addExpression(forExpression)
+          retour += this.addExpression(expression)
           retour += '  </div>'
           retour = this.addElButtons(retour)
           break
@@ -793,7 +794,7 @@ if (!jeeFrontEnd.scenario) {
           retour += '<legend >{{DE 1 A}}</legend>'
           retour += '</div>'
           retour += '<div class="expressions" >'
-          var expression = {
+          expression = {
             type: 'condition'
           }
           if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -823,7 +824,7 @@ if (!jeeFrontEnd.scenario) {
           retour += '<legend >{{TANT QUE}}</legend>'
           retour += '</div>'
           retour += '<div class="expressions" >'
-          var expression = {
+          expression = {
             type: 'condition'
           }
           if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -853,7 +854,7 @@ if (!jeeFrontEnd.scenario) {
           retour += '<legend title="{{Action DANS x minutes}}">{{DANS}}</legend>'
           retour += '</div>'
           retour += '<div class="expressions" >'
-          var expression = {
+          expression = {
             type: 'condition'
           }
           if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -883,7 +884,7 @@ if (!jeeFrontEnd.scenario) {
           retour += '<legend >{{A}}</legend><span>(Hmm)</span>'
           retour += '</div>'
           retour += '<div class="expressions" >'
-          var expression = {
+          expression = {
             type: 'condition'
           }
           if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -926,7 +927,7 @@ if (!jeeFrontEnd.scenario) {
           retour += '</div>'
           retour += '<div>'
           retour += '<legend >{{CODE}}</legend>'
-          var expression = {
+          expression = {
             type: 'code'
           }
           if (isset(_subElement.expressions) && isset(_subElement.expressions[0]) && typeof _subElement.expressions[0].expression == "string") {
@@ -954,7 +955,7 @@ if (!jeeFrontEnd.scenario) {
           retour += '</div>'
           retour += '<div>'
           retour += '<legend >{{COMMENTAIRE}}</legend>'
-          var expression = {
+          expression = {
             type: 'comment'
           }
           if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
@@ -1061,7 +1062,7 @@ if (!jeeFrontEnd.scenario) {
       div += '<input class="elementAttr" data-l1key="type" style="display : none;" value="' + init(_element.type) + '"/>'
       switch (_element.type) {
         case 'if':
-          if (isset(_element.subElements) && isset(_element.subElements)) {
+          if (isset(_element.subElements)) {
             for (const j in _element.subElements) {
               div += this.addSubElement(_element.subElements[j])
             }
@@ -1078,7 +1079,7 @@ if (!jeeFrontEnd.scenario) {
           }
           break
         case 'for':
-          if (isset(_element.subElements) && isset(_element.subElements)) {
+          if (isset(_element.subElements)) {
             for (const j in _element.subElements) {
               div += this.addSubElement(_element.subElements[j])
             }
@@ -1092,8 +1093,8 @@ if (!jeeFrontEnd.scenario) {
           }
           break
         case 'while':
-          if (isset(_element.subElements) && isset(_element.subElements)) {
-            for (var j in _element.subElements) {
+          if (isset(_element.subElements)) {
+            for (const j in _element.subElements) {
               div += this.addSubElement(_element.subElements[j])
             }
           } else {
@@ -1106,7 +1107,7 @@ if (!jeeFrontEnd.scenario) {
           }
           break
         case 'in':
-          if (isset(_element.subElements) && isset(_element.subElements)) {
+          if (isset(_element.subElements)) {
             for (const j in _element.subElements) {
               div += this.addSubElement(_element.subElements[j])
             }
@@ -1120,7 +1121,7 @@ if (!jeeFrontEnd.scenario) {
           }
           break
         case 'at':
-          if (isset(_element.subElements) && isset(_element.subElements)) {
+          if (isset(_element.subElements)) {
             for (const j in _element.subElements) {
               div += this.addSubElement(_element.subElements[j])
             }
@@ -1134,7 +1135,7 @@ if (!jeeFrontEnd.scenario) {
           }
           break
         case 'code':
-          if (isset(_element.subElements) && isset(_element.subElements)) {
+          if (isset(_element.subElements)) {
             for (const j in _element.subElements) {
               div += this.addSubElement(_element.subElements[j])
             }
@@ -1145,7 +1146,7 @@ if (!jeeFrontEnd.scenario) {
           }
           break
         case 'comment':
-          if (isset(_element.subElements) && isset(_element.subElements)) {
+          if (isset(_element.subElements)) {
             for (const j in _element.subElements) {
               div += this.addSubElement(_element.subElements[j])
             }
@@ -1156,7 +1157,7 @@ if (!jeeFrontEnd.scenario) {
           }
           break
         case 'action':
-          if (isset(_element.subElements) && isset(_element.subElements)) {
+          if (isset(_element.subElements)) {
             for (const j in _element.subElements) {
               div += this.addSubElement(_element.subElements[j])
             }
@@ -1187,8 +1188,9 @@ if (!jeeFrontEnd.scenario) {
           subElement = _el.getJeeValues('.subElementAttr', 2)[0]
           subElement.expressions = []
           expression_dom = _el.querySelector(':scope > .expressions')
-          if (expression_dom.length == 0) {
-            expression_dom = this.querySelector(':scope > legend').findAtDepth('.expressions', 2)
+          if (expression_dom == null) {
+            let legend = _el.querySelector(':scope > legend')
+            expression_dom = legend ? (legend.findAtDepth('.expressions', 2)[0] || null) : null
           }
 
           if (expression_dom != null) {
@@ -1563,9 +1565,12 @@ document.getElementById('bt_addScenario').addEventListener('click', function(eve
 
 document.getElementById('bt_changeAllScenarioState').addEventListener('click', function(event) {
   const _target = event.target.closest('#bt_changeAllScenarioState')
-  const msg = (_target.getAttribute('data-state') == '0')
-    ? '{{Êtes-vous sûr de vouloir désactiver les scénarios ?}}'
-    : '{{Êtes-vous sûr de vouloir activer les scénarios ?}}'
+  let msg
+  if (_target.getAttribute('data-state') == '0') {
+    msg = '{{Êtes-vous sûr de vouloir désactiver les scénarios ?}}'
+  } else {
+    msg = '{{Êtes-vous sûr de vouloir activer les scénarios ?}}'
+  }
 
   jeeDialog.confirm(msg, function(result) {
     if (result) {
@@ -1672,31 +1677,29 @@ document.querySelector('.scenarioAttr[data-l2key="timeline::enable"]').addEventL
 })
 
 ;(function() {
-const select = document.getElementById('in_addElementType')
-const input = document.getElementById('in_addElementTypeFilter')
-const allOptions = Array.from(select.options)
+  const select = document.getElementById('in_addElementType')
+  const input = document.getElementById('in_addElementTypeFilter')
+  const allOptions = Array.from(select.options)
 
-function filterOptions() {
-  const text = input.value.trim().toLowerCase().stripAccents()
+  function filterOptions() {
+    const text = input.value.trim().toLowerCase().stripAccents()
+    select.innerHTML = ''
+    allOptions
+      .filter(option => {
+        const optionText = option.textContent.toLowerCase().stripAccents()
+        return text === '' || optionText.includes(text)
+      })
+      .forEach(option => {
+        select.add(option.cloneNode(true))
+      })
+  }
 
-  select.innerHTML = ''
+  input.addEventListener('input', filterOptions)
 
-  allOptions
-    .filter(option => {
-      const optionText = option.textContent.toLowerCase().stripAccents()
-      return text === '' || optionText.includes(text)
-    })
-    .forEach(option => {
-      select.add(option.cloneNode(true))
-    })
-}
-
-input.addEventListener('input', filterOptions)
-
-select.addEventListener('change', function(event) {
-  document.querySelectorAll('.addElementTypeDescription').unseen()
-  document.querySelectorAll('.addElementTypeDescription.' + this.jeeValue()).seen()
-})
+  select.addEventListener('change', function(event) {
+    document.querySelectorAll('.addElementTypeDescription').unseen()
+    document.querySelectorAll('.addElementTypeDescription.' + this.jeeValue()).seen()
+  })
 })()
 
 document.getElementById('in_searchInsideScenario').addEventListener('keyup', function(event) {
@@ -1763,7 +1766,6 @@ document.getElementById('in_searchScenario').addEventListener('keyup', function(
   const not = search.startsWith(":not(")
   if (not) {
     search = search.replace(':not(', '')
-    if (search.endsWith(')')) search = search.slice(0, -1)
   }
   document.querySelectorAll('#accordionScenario .accordion-toggle').forEach(_panel => { _panel.setAttribute('data-show', 0) })
   document.querySelectorAll('.scenarioDisplayCard').unseen()
@@ -2114,7 +2116,6 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
       document.getElementById('scenarioThumbnailDisplay').unseen()
       jeeP.printScenario(_target.getAttribute('data-scenario_id'))
     }
-    return
   }
 
   if (_target = event.target.closest('.action_link')) {
@@ -2227,7 +2228,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
   if (_target = event.target.closest('#bt_addElementSave')) { //Ok button from new block modal
     jeeP.setUndoStack()
     jeeFrontEnd.modifyWithoutSave = true
-    let newEL = null
+    let newEL
     if (jeeP.addElementSave.expression) {
       newEL = domUtils.parseHTML(jeeP.addExpression({
         type: 'element',
@@ -2269,12 +2270,10 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
 
   if (_target = event.target.closest('#bt_cancelElementSave')) {
     jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
-    return
   }
 
   if (_target = event.target.closest('#bt_crossElementSave')) {
     jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.hide()
-    return
   }
 
   if (_target = event.target.closest('input:not([type="checkbox"]).expressionAttr, textarea.expressionAttr')) { //ctrl-click input popup
@@ -2376,7 +2375,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
   if (_target = event.target.closest('.bt_collapse')) {
     const open = _target.querySelector(':scope > i').hasClass('fa-eye') ? true : false
 
-    let changeThese = null
+    let changeThese
     if (event.ctrlKey || event.metaKey) {
       changeThese = _target.closest('.expressions')?.querySelectorAll('.bt_collapse') || document.querySelectorAll('.bt_collapse')
     } else {
@@ -2404,6 +2403,9 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
           } else {
             //comment
             txt = (_el.querySelector('.expression textarea').value).HTMLFormat()
+            if (typeof txt === 'object') {
+              txt = JSON.stringify(expression.expression)
+            }
             txt = '<b>' + txt.split('\n')[0] + '</b>' + txt.replace(txt.split('\n')[0], '')
             if (!txt) txt = _el.querySelector('.expression input.form-control').value
           }

@@ -1,3 +1,4 @@
+@layer theme {
 /*
 Theme coreX_Light @Jeedom - Modern Light
 Neutral light with Bootstrap 5.3 semantic accents
@@ -12,19 +13,19 @@ Neutral light with Bootstrap 5.3 semantic accents
 
 /* input[type=checkbox] background migré -> desktop.main + token --checkbox-bg ; accent-color aussi */
 /* border via --input-border token desktop.main ; select bg via --input-bg token */
-input, textarea { background-color: var(--bg-modal-color) !important; }
+input, textarea { background-color: var(--bg-modal-color); }
 input, select, textarea { color: var(--txt-color) !important; transition: border-color 0.2s ease; }
 /* input:focus border-color migré -> desktop.main + token --input-focus-border */
 
 .navbar, #jeedomMenuBar {
   /* background migré vers desktop.main + token --navbar-bg */
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(212,212,212,0.8) !important;
-  box-shadow: 0 1px 3px rgba(23,23,23,0.08) !important;
+  backdrop-filter: blur(var(--navbar-blur));
+  border-bottom: 1px solid hsl(0 0% 83.1% / 0.8);
+  box-shadow: 0 1px 3px hsl(0 0% 9% / 0.08);
 }
 .navbar-default .navbar-nav > li > a { color: var(--txt-color) !important; }
 
-.panel { overflow: hidden; /* border-color via --el-defaultColor=rgb(212,212,212) desktop.main ; border-radius idem desktop.main */ }
+.panel { overflow: hidden; /* border-color via --el-defaultColor=hsl(0 0% 83.1%) desktop.main ; border-radius idem desktop.main */ }
 /* .panel-default border-color migré -> desktop.main + token --panel-default-border */
 /* .panel-default .panel-title color migré -> desktop.main + token --panel-default-title */
 /* .panel-heading : migré vers desktop.main + tokens --panel-heading-bg / --panel-heading-border */
@@ -32,36 +33,36 @@ input, select, textarea { color: var(--txt-color) !important; transition: border
 /* .panel-danger : migré vers desktop.main + token --panel-danger-fg (pilote tokens 2026-06-10) */
 /* ul[role="tablist"] inactive a : migré -> desktop.main + tokens --tab-inactive-bg / --tab-inactive-color */
 
-div.div_viewZone { background-color: rgba(255,255,255,0.6); border-radius: var(--border-radius); }
+div.div_viewZone { background-color: hsl(0 0% 100% / 0.6); border-radius: var(--border-radius) !important; }
 
 #div_displayObject .eqLogic:not(.col-xs-12), .eqLogic-widget {
-  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+  background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
   color: var(--txt-color) !important;
-  border: 1px solid rgb(212,212,212) !important; /* transition -> token --eqlogic-transition (desktop.main) ; border-radius idem desktop.main */
+  border: 1px solid var(--eqLogic-border-color); /* transition -> token --eqlogic-transition (desktop.main) ; border-radius idem desktop.main */
 }
-#div_displayObject .eqLogic:not(.col-xs-12) { border-radius: var(--border-radius); }
+#div_displayObject .eqLogic:not(.col-xs-12) { border-radius: var(--border-radius) !important; }
 .eqLogic-widget:hover { border-color: color-mix(in srgb, var(--logo-primary-color) 40%, transparent) !important; }
 .scenario-widget {
-  background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
-  border: 1px solid rgb(212,212,212) !important;
+  background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
+  border: 1px solid var(--eqLogic-border-color);
 }
 #div_displayObject > a { background-color: var(--btnEq-default-color) !important; border-radius: var(--border-radius) !important; color: var(--txt-color) !important; }
 
 .eqLogic-widget > .widget-name a, .scenario-widget > .widget-name a,
 .eqLogic-widget > span:first-child.statusCmd i { color: var(--eqTitle-color) !important; font-size: 16px !important; }
-.eqLogic-widget > .widget-name a:hover, .scenario-widget > .widget-name a:hover { color: rgba(255,255,255,0.85) !important; }
+.eqLogic-widget > .widget-name a:hover, .scenario-widget > .widget-name a:hover { color: hsl(0 0% 100% / 0.85); }
 
 /* .widget-name border-radius migré -> desktop.main ROUNDING */
-.scenario.scenario-widget .widget-name { background-color: rgba(var(--cat-scenario-color), var(--opacity)) !important; }
-[data-category=security]>.widget-name { background-color: rgba(var(--cat-security-color), var(--opacity)); }
-[data-category=heating]>.widget-name { background-color: rgba(var(--cat-heating-color), var(--opacity)); }
-[data-category=automatism]>.widget-name { background-color: rgba(var(--cat-automatism-color), var(--opacity)); }
-[data-category=light]>.widget-name { background-color: rgba(var(--cat-light-color), var(--opacity)); }
-[data-category=opening]>.widget-name { background-color: rgba(var(--cat-opening-color), var(--opacity)); }
-[data-category=multimedia]>.widget-name { background-color: rgba(var(--cat-multimedia-color), var(--opacity)); }
-[data-category=energy]>.widget-name { background-color: rgba(var(--cat-energy-color), var(--opacity)); }
-[data-category='']>.widget-name { background-color: rgba(var(--cat-other-color), var(--opacity)); }
-:not(.batteryListContainer) > .eqLogic-widget:not([data-category]) > .widget-name { background-color: rgba(var(--cat-other-color), var(--opacity)); }
+
+
+
+
+
+
+
+
+
+
 
 /* .eqLogic-widget .btn-default bg+radius migré -> desktop.main + tokens --widget-btn-default-bg / --btn-semantic-radius */
 /* .input-group-addon : migré vers desktop.main + tokens --input-group-addon-bg/-fg */
@@ -69,22 +70,18 @@ div.div_viewZone { background-color: rgba(255,255,255,0.6); border-radius: var(-
 /* .eqLogic.eqLogic-widget .btn color migré -> desktop.main + token --widget-btn-color */
 .eqLogic.eqLogic-widget .btn:hover, .scenario.scenario-widget .btn:hover, #div_displayObject .btn:hover {
   /* color migré -> desktop.main + token --widget-btn-hover-color */
-  background-color: color-mix(in srgb, var(--al-primary-color) 10%, transparent) !important;
+  background-color: color-mix(in srgb, var(--al-primary-color) var(--widget-btn-hover-mix), transparent) !important;
 }
 
 /* .btn-{primary,success,danger,warning,info} migrés -> desktop.main + token --btn-semantic-radius */
 
-/* Contraste WCAG AA : texte fonce sur surfaces info (cyan #0dcaf0) et warning (jaune #ffc107) */
+/* Contraste WCAG AA : texte fonce sur surfaces info (cyan hsl(190 89.7% 49.6%)) et warning (jaune hsl(45 100% 51.4%)) */
 /* alert/label/select info-warning : migrés vers desktop.main + tokens --on-info-fg/--on-warning-fg.
    Toast gardé ici (non couvert par desktop.main). */
-div.jeeToastContainer > div.jeeToast.toast-info {
-  color: var(--on-info-fg, #000) !important;
-}
-div.jeeToastContainer > div.jeeToast.toast-warning {
-  color: var(--on-warning-fg, #212529) !important;
-}
 
-.timeCmd.label { background: rgba(var(--bg-color), 0.85); color: var(--txt-color); }
+
+
+
 /* .disableElement/.disableSubElement : opacité migrée vers desktop.main + token --element-disable-opacity */
 
 #timelineContainer li:not(:first-of-type):hover,
@@ -96,28 +93,26 @@ div.jeeToastContainer > div.jeeToast.toast-warning {
 
 /* .dropdown-menu : migré -> desktop.main + tokens --dropdown-bg / --dropdown-border / --dropdown-shadow */
 
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
-  /* bg/color migrés vers desktop.main + tokens --navtab-active-bg/-fg */
-  border-color: var(--navtab-border) var(--navtab-border) transparent !important;
-}
+
 /* .nav-tabs border-bottom : migré -> desktop.main + token --navtab-border */
 
-.div_displayObjectName { background-color: var(--al-primary-color) !important; color: #fff !important; border-radius: var(--border-radius) !important; }
+.div_displayObjectName { background-color: var(--al-primary-color) !important; color: hsl(0 0% 100%) !important; border-radius: var(--border-radius) !important; }
 
-div.CodeMirror { color: #24292f; border-radius: 4px; border: 1px solid rgb(208,215,222); /* background migré vers desktop.main + token --codemirror-bg */ }
-div.CodeMirror div.CodeMirror-selected { background: #dce6f0; }
-div.CodeMirror .CodeMirror-gutters { background: #f6f8fa; border-right: 1px solid #d0d7de; }
-div.CodeMirror .CodeMirror-linenumber { color: #6e7781; }
-div.CodeMirror .CodeMirror-cursor { border-left: 2px solid #0d6efd; }
-div.CodeMirror span.cm-comment { color: #57606a; font-style: italic; }
-div.CodeMirror span.cm-keyword { color: #cf222e; }
-div.CodeMirror span.cm-string { color: #0a3069; }
-div.CodeMirror span.cm-number { color: #0550ae; }
-div.CodeMirror span.cm-def { color: #0a58ca; }
-div.CodeMirror span.cm-property, div.CodeMirror span.cm-attribute { color: #116329; }
-div.CodeMirror span.cm-variable { color: #24292f; }
-div.CodeMirror span.cm-variable-2 { color: #953800; }
-div.CodeMirror span.cm-error { background: #cf222e; color: #fff; }
-div.CodeMirror .CodeMirror-activeline-background { background: #f6f8fa; }
-div.CodeMirror .CodeMirror-matchingbracket { text-decoration: underline; color: #953800 !important; }
-div.CodeMirror .CodeMirror-scrollbar-filler { background: transparent; }
+div.CodeMirror { color: hsl(213 13.3% 16.3%); border-radius: 4px; border: 1px solid hsl(210 17.5% 84.3%); /* background migré vers desktop.main + token --codemirror-bg */ }
+div.CodeMirror div.CodeMirror-selected { background: hsl(210 40% 90.2%); }
+div.CodeMirror .CodeMirror-gutters { background: hsl(210 28.6% 97.3%); border-right: 1px solid hsl(210 17.5% 84.3%); }
+div.CodeMirror .CodeMirror-linenumber { color: hsl(212 7.9% 46.9%); }
+div.CodeMirror .CodeMirror-cursor { border-left: 2px solid hsl(216 98.4% 52.2%); }
+div.CodeMirror span.cm-comment { color: hsl(212 9.8% 37.8%); font-style: italic; }
+div.CodeMirror span.cm-keyword { color: hsl(356 71.8% 47.3%); }
+div.CodeMirror span.cm-string { color: hsl(216 82.6% 22.5%); }
+div.CodeMirror span.cm-number { color: hsl(213 94.4% 35.1%); }
+div.CodeMirror span.cm-def { color: hsl(216 90.6% 41.6%); }
+div.CodeMirror span.cm-property, div.CodeMirror span.cm-attribute { color: hsl(138 70.7% 22.7%); }
+div.CodeMirror span.cm-variable { color: hsl(213 13.3% 16.3%); }
+div.CodeMirror span.cm-variable-2 { color: hsl(23 100% 29.2%) !important; }
+div.CodeMirror span.cm-error { background: hsl(356 71.8% 47.3%); color: hsl(0 0% 100%) !important; }
+div.CodeMirror .CodeMirror-activeline-background { background: hsl(210 28.6% 97.3%); }
+div.CodeMirror .CodeMirror-matchingbracket { text-decoration: underline; color: hsl(23 100% 29.2%) !important; }
+
+}
