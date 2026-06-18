@@ -20,12 +20,12 @@ input, select, textarea { color: var(--txt-color) !important; transition: border
 .navbar, #jeedomMenuBar {
   /* background migré vers desktop.main + token --navbar-bg */
   backdrop-filter: blur(var(--navbar-blur));
-  border-bottom: 1px solid hsl(0 0% 83.1% / 0.8);
-  box-shadow: 0 1px 3px hsl(0 0% 9% / 0.08);
+  border-bottom: 1px solid oklch(0.87 0.0 89.9 / 0.8);
+  box-shadow: 0 1px 3px oklch(0.204 0.0 89.9 / 0.08);
 }
 .navbar-default .navbar-nav > li > a { color: var(--txt-color) !important; }
 
-.panel { overflow: hidden; /* border-color via --el-defaultColor=hsl(0 0% 83.1%) desktop.main ; border-radius idem desktop.main */ }
+.panel { overflow: hidden; /* border-color via --el-defaultColor=oklch(0.87 0.0 89.9) desktop.main ; border-radius idem desktop.main */ }
 /* .panel-default border-color migré -> desktop.main + token --panel-default-border */
 /* .panel-default .panel-title color migré -> desktop.main + token --panel-default-title */
 /* .panel-heading : migré vers desktop.main + tokens --panel-heading-bg / --panel-heading-border */
@@ -33,7 +33,7 @@ input, select, textarea { color: var(--txt-color) !important; transition: border
 /* .panel-danger : migré vers desktop.main + token --panel-danger-fg (pilote tokens 2026-06-10) */
 /* ul[role="tablist"] inactive a : migré -> desktop.main + tokens --tab-inactive-bg / --tab-inactive-color */
 
-div.div_viewZone { background-color: hsl(0 0% 100% / 0.6); border-radius: var(--border-radius) !important; }
+div.div_viewZone { background-color: oklch(1.0 0.0 89.9 / 0.6); border-radius: var(--border-radius) !important; }
 
 #div_displayObject .eqLogic:not(.col-xs-12), .eqLogic-widget {
   background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
@@ -50,7 +50,7 @@ div.div_viewZone { background-color: hsl(0 0% 100% / 0.6); border-radius: var(--
 
 .eqLogic-widget > .widget-name a, .scenario-widget > .widget-name a,
 .eqLogic-widget > span:first-child.statusCmd i { color: var(--eqTitle-color) !important; font-size: 16px !important; }
-.eqLogic-widget > .widget-name a:hover, .scenario-widget > .widget-name a:hover { color: hsl(0 0% 100% / 0.85); }
+.eqLogic-widget > .widget-name a:hover, .scenario-widget > .widget-name a:hover { color: oklch(1.0 0.0 89.9 / 0.85); }
 
 /* .widget-name border-radius migré -> desktop.main ROUNDING */
 
@@ -75,7 +75,7 @@ div.div_viewZone { background-color: hsl(0 0% 100% / 0.6); border-radius: var(--
 
 /* .btn-{primary,success,danger,warning,info} migrés -> desktop.main + token --btn-semantic-radius */
 
-/* Contraste WCAG AA : texte fonce sur surfaces info (cyan hsl(190 89.7% 49.6%)) et warning (jaune hsl(45 100% 51.4%)) */
+/* Contraste WCAG AA : texte fonce sur surfaces info (cyan oklch(0.775 0.138 217.9)) et warning (jaune oklch(0.844 0.172 84.9)) */
 /* alert/label/select info-warning : migrés vers desktop.main + tokens --on-info-fg/--on-warning-fg.
    Toast gardé ici (non couvert par desktop.main). */
 
@@ -96,23 +96,23 @@ div.div_viewZone { background-color: hsl(0 0% 100% / 0.6); border-radius: var(--
 
 /* .nav-tabs border-bottom : migré -> desktop.main + token --navtab-border */
 
-.div_displayObjectName { background-color: var(--al-primary-color) !important; color: hsl(0 0% 100%) !important; border-radius: var(--border-radius) !important; }
+.div_displayObjectName { background-color: var(--al-primary-color) !important; color: oklch(1.0 0.0 89.9) !important; border-radius: var(--border-radius) !important; }
 
-div.CodeMirror { color: hsl(213 13.3% 16.3%); border-radius: 4px; border: 1px solid hsl(210 17.5% 84.3%); /* background migré vers desktop.main + token --codemirror-bg */ }
-div.CodeMirror div.CodeMirror-selected { background: hsl(210 40% 90.2%); }
-div.CodeMirror .CodeMirror-gutters { background: hsl(210 28.6% 97.3%); border-right: 1px solid hsl(210 17.5% 84.3%); }
-div.CodeMirror .CodeMirror-linenumber { color: hsl(212 7.9% 46.9%); }
-div.CodeMirror .CodeMirror-cursor { border-left: 2px solid hsl(216 98.4% 52.2%); }
-div.CodeMirror span.cm-comment { color: hsl(212 9.8% 37.8%); font-style: italic; }
-div.CodeMirror span.cm-keyword { color: hsl(356 71.8% 47.3%); }
-div.CodeMirror span.cm-string { color: hsl(216 82.6% 22.5%); }
-div.CodeMirror span.cm-number { color: hsl(213 94.4% 35.1%); }
-div.CodeMirror span.cm-def { color: hsl(216 90.6% 41.6%); }
-div.CodeMirror span.cm-property, div.CodeMirror span.cm-attribute { color: hsl(138 70.7% 22.7%); }
-div.CodeMirror span.cm-variable { color: hsl(213 13.3% 16.3%); }
-div.CodeMirror span.cm-variable-2 { color: hsl(23 100% 29.2%) !important; }
-div.CodeMirror span.cm-error { background: hsl(356 71.8% 47.3%); color: hsl(0 0% 100%) !important; }
-div.CodeMirror .CodeMirror-activeline-background { background: hsl(210 28.6% 97.3%); }
-div.CodeMirror .CodeMirror-matchingbracket { text-decoration: underline; color: hsl(23 100% 29.2%) !important; }
+div.CodeMirror { color: oklch(0.279 0.013 253.5); border-radius: 4px; border: 1px solid oklch(0.876 0.012 248.0); /* background migré vers desktop.main + token --codemirror-bg */ }
+div.CodeMirror div.CodeMirror-selected { background: oklch(0.92 0.017 248.0); }
+div.CodeMirror .CodeMirror-gutters { background: oklch(0.979 0.003 247.9); border-right: 1px solid oklch(0.876 0.012 248.0); }
+div.CodeMirror .CodeMirror-linenumber { color: oklch(0.565 0.019 251.7); }
+div.CodeMirror .CodeMirror-cursor { border-left: 2px solid oklch(0.577 0.229 260.2); }
+div.CodeMirror span.cm-comment { color: oklch(0.484 0.02 251.8); font-style: italic; }
+div.CodeMirror span.cm-keyword { color: oklch(0.552 0.205 24.7); }
+div.CodeMirror span.cm-string { color: oklch(0.321 0.108 259.1); }
+div.CodeMirror span.cm-number { color: oklch(0.453 0.163 257.9); }
+div.CodeMirror span.cm-def { color: oklch(0.49 0.192 260.1); }
+div.CodeMirror span.cm-property, div.CodeMirror span.cm-attribute { color: oklch(0.439 0.117 148.3); }
+div.CodeMirror span.cm-variable { color: oklch(0.279 0.013 253.5); }
+div.CodeMirror span.cm-variable-2 { color: oklch(0.467 0.136 43.9) !important; }
+div.CodeMirror span.cm-error { background: oklch(0.552 0.205 24.7); color: oklch(1.0 0.0 89.9) !important; }
+div.CodeMirror .CodeMirror-activeline-background { background: oklch(0.979 0.003 247.9); }
+div.CodeMirror .CodeMirror-matchingbracket { text-decoration: underline; color: oklch(0.467 0.136 43.9) !important; }
 
 }

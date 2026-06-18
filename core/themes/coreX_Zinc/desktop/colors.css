@@ -5,95 +5,95 @@ Tailwind zinc-950 base, blue-500 accent, semantic Tailwind dark-mode palette
 :root {
   --navbar-blur: 8px;
   --widget-btn-hover-mix: 20%;
-  --eqLogic-border-color: hsl(240 3.7% 15.9%);
+  --eqLogic-border-color: oklch(0.274 0.005 286.0);
   --timeCmd-bg-opacity: 0.8;
   --navbar-blur: 8px;
   --widget-btn-hover-mix: 20%;
-  --eqLogic-border-color: hsl(240 3.7% 15.9%);
-  --eqLogic-hover-border: hsl(217 91.2% 59.8%);
+  --eqLogic-border-color: oklch(0.274 0.005 286.0);
+  --eqLogic-hover-border: oklch(0.624 0.187 259.6);
 
   --border-radius: 0.625rem;
   --opacity: 1;
 
   --dashBkg-url: url("");
-  --logo-primary-color: hsl(217 91.2% 59.8%);
-  --logo-secondary-color: hsl(240 3.8% 46.1%);
+  --logo-primary-color: oklch(0.624 0.187 259.6);
+  --logo-secondary-color: oklch(0.552 0.014 285.9);
 
   --bg-color: 9, 9, 11;
-  --bg-modal-color: hsl(240 5.9% 10%);
+  --bg-modal-color: oklch(0.21 0.006 285.9);
   --contrast-color: 212, 212, 216;
 
-  --txt-color: hsl(240 4.9% 83.9%);
-  --link-color: hsl(240 5% 64.9%);
-  --linkHover-color: hsl(212 96.4% 78.4%);
-  --linkHoverLight-color: hsl(0 0% 97.3%);
-  --placeholder-color: hsl(240 3.8% 46.1%);
+  --txt-color: oklch(0.871 0.005 286.3);
+  --link-color: oklch(0.712 0.013 286.1);
+  --linkHover-color: oklch(0.808 0.096 252.3);
+  --linkHoverLight-color: oklch(0.979 0.0 89.9);
+  --placeholder-color: oklch(0.552 0.014 285.9);
 
-  --sc-form-color: hsl(217 91.2% 59.8% / 0.9);
-  --sc-formTxt-color: hsl(0 0% 100%);
-  --sc-lightTxt-color: hsl(210 40% 96.1%);
+  --sc-form-color: oklch(0.624 0.187 259.6 / 0.9);
+  --sc-formTxt-color: oklch(1.0 0.0 89.9);
+  --sc-lightTxt-color: oklch(0.968 0.007 247.9);
 
   /* Panel headings — tinted bg + contrasting fg (Tailwind dark-mode) */
-  --panel-primary-bg: hsl(217 91.2% 59.8%);
-  --panel-primary-fg: hsl(0 0% 100%);
-  --panel-success-fg: hsl(145 80.4% 10%);
-  --panel-danger-fg: hsl(0 74.7% 15.5%);
-  --panel-info-fg: hsl(204 80.2% 15.9%);
-  --panel-warning-fg: hsl(26 83.3% 14.1%);
+  --panel-primary-bg: oklch(0.624 0.187 259.6);
+  --panel-primary-fg: oklch(1.0 0.0 89.9);
+  --panel-success-fg: oklch(0.266 0.063 153.0);
+  --panel-danger-fg: oklch(0.258 0.089 26.0);
+  --panel-info-fg: oklch(0.294 0.063 243.2);
+  --panel-warning-fg: oklch(0.285 0.064 53.8);
 
   /* WCAG AA */
-  --on-info-fg: hsl(204 80.2% 15.9%);
-  --on-warning-fg: hsl(26 83.3% 14.1%);
+  --on-info-fg: oklch(0.294 0.063 243.2);
+  --on-warning-fg: oklch(0.285 0.064 53.8);
 
   /* Onglet actif */
   --navtab-active-bg: var(--bg-modal-color);
   --navtab-active-fg: var(--linkHover-color);
 
   /* Dropdown */
-  --dropdown-bg: hsl(240 5.9% 10%);
+  --dropdown-bg: oklch(0.21 0.006 285.9);
   --dropdown-item-fg: var(--txt-color);
-  --dropdown-item-hover-bg: hsl(240 3.7% 15.9% / 0.8);
+  --dropdown-item-hover-bg: oklch(0.274 0.005 286.0 / 0.8);
   --dropdown-item-hover-fg: var(--linkHover-color);
 
   /* Intentions */
   --scrollbar-size: 6px;
-  --scrollbar-thumb-color: hsl(240 5.3% 26.1%);
-  --timeline-hover-shadow: 0 3px 12px 0 hsl(0 0% 0% / 0.5);
+  --scrollbar-thumb-color: oklch(0.37 0.012 285.8);
+  --timeline-hover-shadow: 0 3px 12px 0 oklch(0.0 0.0 0.0 / 0.5);
   --eqlogic-transition: box-shadow 0.2s ease, transform 0.2s ease;
   --jeedom-transition-hover: 0.2s ease;
-  --jeedom-shadow-lg: 0 10px 30px hsl(0 0% 0% / 0.6), 0 0 0 3px hsl(217 91.2% 59.8% / 0.12);
+  --jeedom-shadow-lg: 0 10px 30px oklch(0.0 0.0 0.0 / 0.6), 0 0 0 3px oklch(0.624 0.187 259.6 / 0.12);
   --element-disable-opacity: 0.35;
-  --panel-heading-bg: hsl(240 5.9% 10%);
-  --panel-heading-border: hsl(240 3.7% 15.9%);
-  --codemirror-bg: hsl(240 10% 3.9%);
-  --input-border: 1px solid hsl(240 3.7% 15.9%);
-  --input-bg: hsl(240 10% 3.9%);
-  --input-focus-shadow: 0 0 0 4px hsl(217 91.2% 59.8% / 0.15);
-  --input-group-addon-bg: hsl(240 3.7% 15.9%);
+  --panel-heading-bg: oklch(0.21 0.006 285.9);
+  --panel-heading-border: oklch(0.274 0.005 286.0);
+  --codemirror-bg: oklch(0.141 0.004 285.8);
+  --input-border: 1px solid oklch(0.274 0.005 286.0);
+  --input-bg: oklch(0.141 0.004 285.8);
+  --input-focus-shadow: 0 0 0 4px oklch(0.624 0.187 259.6 / 0.15);
+  --input-group-addon-bg: oklch(0.274 0.005 286.0);
   --input-group-addon-fg: var(--txt-color);
-  --navbar-bg: hsl(240 10% 3.9% / 0.95);
-  --navtab-border: hsl(240 3.7% 15.9%);
-  --dropdown-border: hsl(240 3.7% 15.9%);
-  --modal-border: hsl(240 3.7% 15.9%);
-  --modal-header-bg: hsl(240 5.9% 10%);
-  --modal-shadow: 0 25px 50px hsl(0 0% 0% / 0.7);
-  --dropdown-shadow: 0 10px 25px hsl(0 0% 0% / 0.6);
-  --panel-default-border: hsl(240 3.7% 15.9%);
+  --navbar-bg: oklch(0.141 0.004 285.8 / 0.95);
+  --navtab-border: oklch(0.274 0.005 286.0);
+  --dropdown-border: oklch(0.274 0.005 286.0);
+  --modal-border: oklch(0.274 0.005 286.0);
+  --modal-header-bg: oklch(0.21 0.006 285.9);
+  --modal-shadow: 0 25px 50px oklch(0.0 0.0 0.0 / 0.7);
+  --dropdown-shadow: 0 10px 25px oklch(0.0 0.0 0.0 / 0.6);
+  --panel-default-border: oklch(0.274 0.005 286.0);
   --panel-default-title: var(--linkHover-color);
-  --tab-inactive-bg: hsl(240 5.9% 10%);
-  --checkbox-bg: hsl(240 3.7% 15.9%);
+  --tab-inactive-bg: oklch(0.21 0.006 285.9);
+  --checkbox-bg: oklch(0.274 0.005 286.0);
 
-  --el-defaultColor: hsl(240 10% 3.9%);
+  --el-defaultColor: oklch(0.141 0.004 285.8);
   --defaultBkg-color: 24, 24, 27;
-  --form-bg-color: hsl(240 10% 3.9%);
-  --btnEq-default-color: hsl(240 5.9% 10%);
-  --btn-default-color: hsl(240 3.7% 15.9%);
-  --btn-default-border: hsl(240 5.3% 26.1%);
+  --form-bg-color: oklch(0.141 0.004 285.8);
+  --btnEq-default-color: oklch(0.21 0.006 285.9);
+  --btn-default-color: oklch(0.274 0.005 286.0);
+  --btn-default-border: oklch(0.37 0.012 285.8);
   --panel-bg-color: 24, 24, 27;
 
-  --eqTitle-color: hsl(0 0% 97.3%);
-  --objectBkgd-color: hsl(217 91.2% 59.8%);
-  --objectTxt-color: hsl(0 0% 100%);
+  --eqTitle-color: oklch(0.979 0.0 89.9);
+  --objectBkgd-color: oklch(0.624 0.187 259.6);
+  --objectTxt-color: oklch(1.0 0.0 89.9);
 
   --eq-bg-color: 24, 24, 27;
 
@@ -110,25 +110,25 @@ Tailwind zinc-950 base, blue-500 accent, semantic Tailwind dark-mode palette
   --url-iconsDark: url(/desktop/img/ui-icons-black.png);
   --url-iconsLight: url(/desktop/img/ui-icons-white.png);
 
-  --lb-info-color: hsl(199 95.5% 73.9%);
-  --lb-yellow-color: hsl(48 95.8% 53.1%);
-  --al-info-color: hsl(199 88.7% 48.4%);
-  --al-primary-color: hsl(217 91.2% 59.8%);
-  --al-success-color: hsl(142 69.2% 58%);
-  --al-warning-color: hsl(48 95.8% 53.1%);
-  --al-danger-color: hsl(0 90.6% 70.8%);
-  --bt-success-color: hsl(142 69.2% 58%);
+  --lb-info-color: oklch(0.829 0.101 229.6);
+  --lb-yellow-color: oklch(0.861 0.173 92.0);
+  --al-info-color: oklch(0.681 0.149 238.1);
+  --al-primary-color: oklch(0.624 0.187 259.6);
+  --al-success-color: oklch(0.8 0.182 151.8);
+  --al-warning-color: oklch(0.861 0.173 92.0);
+  --al-danger-color: oklch(0.711 0.166 22.2);
+  --bt-success-color: oklch(0.8 0.182 151.8);
 
-  --scBlocIF: hsl(217 91.2% 59.8%);
-  --scBlocElse: hsl(240 3.8% 46.1%);
-  --scBlocACTION: hsl(217 91.2% 59.8%);
-  --scBlocIN: hsl(142 69.2% 58%);
-  --scBlocAT: hsl(199 95.5% 73.9%);
-  --scBlocFOR: hsl(48 95.8% 53.1%);
-  --scBlocWHILE: hsl(272 75% 68%);
-  --scBlocCODE: hsl(0 90.6% 70.8%);
-  --scBlocCOM: hsl(240 3.8% 46.1%);
-  --scBlocSep: hsl(240 10% 3.9%);
+  --scBlocIF: oklch(0.624 0.187 259.6);
+  --scBlocElse: oklch(0.552 0.014 285.9);
+  --scBlocACTION: oklch(0.624 0.187 259.6);
+  --scBlocIN: oklch(0.8 0.182 151.8);
+  --scBlocAT: oklch(0.829 0.101 229.6);
+  --scBlocFOR: oklch(0.861 0.173 92.0);
+  --scBlocWHILE: oklch(0.667 0.183 306.7);
+  --scBlocCODE: oklch(0.711 0.166 22.2);
+  --scBlocCOM: oklch(0.552 0.014 285.9);
+  --scBlocSep: oklch(0.141 0.004 285.8);
 
   /* Boutons outline — spécifique coreX_Zinc */
   --btn-success-bg: transparent;

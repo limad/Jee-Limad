@@ -5,97 +5,97 @@ Neutral light background with Bootstrap 5.3 semantic accents
 :root {
   --navbar-blur: 12px;
   --widget-btn-hover-mix: 10%;
-  --eqLogic-border-color: hsl(0 0% 83.1%);
+  --eqLogic-border-color: oklch(0.87 0.0 89.9);
   --timeCmd-bg-opacity: 0.85;
   --navbar-blur: 12px;
   --widget-btn-hover-mix: 10%;
-  --eqLogic-border-color: hsl(0 0% 83.1%);
+  --eqLogic-border-color: oklch(0.87 0.0 89.9);
   --eqLogic-hover-border: color-mix(in srgb, var(--logo-primary-color) 40%, transparent);
 
   --border-radius: 0.5rem;
   --opacity: 1;
 
   --dashBkg-url: url("");
-  --logo-primary-color: hsl(216 98.4% 52.2%);
-  --logo-secondary-color: hsl(208 7.3% 45.7%);
+  --logo-primary-color: oklch(0.577 0.229 260.2);
+  --logo-secondary-color: oklch(0.558 0.016 244.5);
 
   --bg-color: 245, 245, 245;
-  --bg-modal-color: hsl(0 0% 100%);
+  --bg-modal-color: oklch(1.0 0.0 89.9);
   --contrast-color: 23, 23, 23;
 
-  --txt-color: hsl(0 0% 25.1%);
-  --link-color: hsl(0 0% 32.2%);
-  --linkHover-color: hsl(216 98.4% 52.2%);
-  --linkHoverLight-color: hsl(0 0% 100%);
-  --placeholder-color: hsl(0 0% 63.9%);
+  --txt-color: oklch(0.372 0.0 89.9);
+  --link-color: oklch(0.439 0.0 89.9);
+  --linkHover-color: oklch(0.577 0.229 260.2);
+  --linkHoverLight-color: oklch(1.0 0.0 89.9);
+  --placeholder-color: oklch(0.715 0.0 89.9);
 
-  --sc-form-color: hsl(0 0% 98% / 0.95);
-  --sc-formTxt-color: hsl(0 0% 14.9%);
-  --sc-lightTxt-color: hsl(0 0% 100%);
+  --sc-form-color: oklch(0.985 0.0 89.9 / 0.95);
+  --sc-formTxt-color: oklch(0.269 0.0 89.9);
+  --sc-lightTxt-color: oklch(1.0 0.0 89.9);
 
   /* Tokens panel-heading (couleurs sur surface colorée — consommés par desktop.main) */
-  --panel-danger-fg: hsl(0 0% 100%);
-  --panel-success-fg: hsl(0 0% 100%);
-  --panel-primary-fg: hsl(0 0% 100%);
+  --panel-danger-fg: oklch(1.0 0.0 89.9);
+  --panel-success-fg: oklch(1.0 0.0 89.9);
+  --panel-primary-fg: oklch(1.0 0.0 89.9);
   --panel-primary-bg: var(--al-primary-color);
-  --panel-info-fg: hsl(0 0% 0%);
-  --panel-warning-fg: hsl(210 10.8% 14.5%);
+  --panel-info-fg: oklch(0.0 0.0 0.0);
+  --panel-warning-fg: oklch(0.262 0.009 248.2);
 
   /* Tokens texte sur surface info/warning (contraste WCAG AA) — consommés par desktop.main */
-  --on-info-fg: hsl(0 0% 0%);
-  --on-warning-fg: hsl(210 10.8% 14.5%);
+  --on-info-fg: oklch(0.0 0.0 0.0);
+  --on-warning-fg: oklch(0.262 0.009 248.2);
 
   /* Onglet actif (nav-tabs) — consommés par desktop.main */
   --navtab-active-bg: var(--bg-modal-color);
   --navtab-active-fg: var(--al-primary-color);
 
   /* Menu dropdown — consommés par desktop.main */
-  --dropdown-bg: hsl(0 0% 100%);
+  --dropdown-bg: oklch(1.0 0.0 89.9);
   --dropdown-item-fg: var(--txt-color);
   --dropdown-item-hover-bg: color-mix(in srgb, var(--al-primary-color) 8%, transparent);
   --dropdown-item-hover-fg: var(--al-primary-color);
 
   /* Intentions coreX honorées via desktop.main */
   --scrollbar-size: 6px;
-  --scrollbar-thumb-color: hsl(215 20.2% 65.1%);
-  --timeline-hover-shadow: 0 3px 12px hsl(0 0% 9% / 0.12);
+  --scrollbar-thumb-color: oklch(0.711 0.035 256.8);
+  --timeline-hover-shadow: 0 3px 12px oklch(0.204 0.0 89.9 / 0.12);
   --eqlogic-transition: border-color 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
   --jeedom-transition-hover: 0.3s cubic-bezier(.25,.8,.25,1);
   --element-disable-opacity: 0.4;
-  --input-border: 1px solid hsl(0 0% 83.1%);
+  --input-border: 1px solid oklch(0.87 0.0 89.9);
   --input-bg: var(--bg-modal-color);
-  --panel-heading-bg: hsl(0 0% 98%);
-  --panel-heading-border: hsl(0 0% 83.1%);
-  --codemirror-bg: hsl(0 0% 100%);
+  --panel-heading-bg: oklch(0.985 0.0 89.9);
+  --panel-heading-border: oklch(0.87 0.0 89.9);
+  --codemirror-bg: oklch(1.0 0.0 89.9);
   --input-focus-shadow: 0 0 0 2px color-mix(in srgb, var(--al-primary-color) 20%, transparent);
-  --input-group-addon-bg: hsl(0 0% 83.1%);
+  --input-group-addon-bg: oklch(0.87 0.0 89.9);
   --input-group-addon-fg: var(--txt-color);
-  --navbar-bg: hsl(0 0% 100% / 0.92);
-  --navtab-border: hsl(0 0% 83.1%);
-  --dropdown-border: hsl(0 0% 83.1%);
-  --modal-border: hsl(0 0% 83.1%);
-  --modal-header-bg: hsl(0 0% 98%);
-  --panel-default-border: hsl(0 0% 83.1%);
+  --navbar-bg: oklch(1.0 0.0 89.9 / 0.92);
+  --navtab-border: oklch(0.87 0.0 89.9);
+  --dropdown-border: oklch(0.87 0.0 89.9);
+  --modal-border: oklch(0.87 0.0 89.9);
+  --modal-header-bg: oklch(0.985 0.0 89.9);
+  --panel-default-border: oklch(0.87 0.0 89.9);
   --panel-default-title: var(--txt-color);
-  --tab-inactive-bg: hsl(0 0% 83.1%);
+  --tab-inactive-bg: oklch(0.87 0.0 89.9);
   --tab-inactive-color: var(--txt-color);
-  --widget-btn-default-bg: hsl(0 0% 83.1%);
+  --widget-btn-default-bg: oklch(0.87 0.0 89.9);
   --widget-btn-hover-color: var(--al-primary-color);
-  --btn-info-fg: color-mix(in srgb, var(--al-info-color) 55%, hsl(0 0% 0%));
-  --btn-warning-fg: color-mix(in srgb, var(--al-warning-color) 50%, hsl(0 0% 0%));
-  --modal-shadow: 0 20px 50px hsl(0 0% 9% / 0.15);
-  --dropdown-shadow: 0 10px 25px hsl(0 0% 9% / 0.12);
+  --btn-info-fg: color-mix(in srgb, var(--al-info-color) 55%, oklch(0.0 0.0 0.0));
+  --btn-warning-fg: color-mix(in srgb, var(--al-warning-color) 50%, oklch(0.0 0.0 0.0));
+  --modal-shadow: 0 20px 50px oklch(0.204 0.0 89.9 / 0.15);
+  --dropdown-shadow: 0 10px 25px oklch(0.204 0.0 89.9 / 0.12);
 
-  --el-defaultColor: hsl(0 0% 83.1%);
+  --el-defaultColor: oklch(0.87 0.0 89.9);
   --defaultBkg-color: 255, 255, 255;
-  --form-bg-color: hsl(0 0% 89.8%);
-  --btnEq-default-color: hsl(0 0% 89.8%);
-  --btn-default-color: hsl(0 0% 45.1%);
+  --form-bg-color: oklch(0.922 0.0 89.9);
+  --btnEq-default-color: oklch(0.922 0.0 89.9);
+  --btn-default-color: oklch(0.556 0.0 89.9);
   --panel-bg-color: 250, 250, 250;
 
-  --eqTitle-color: hsl(0 0% 100%);
-  --objectBkgd-color: hsl(216 98.4% 52.2%);
-  --objectTxt-color: hsl(0 0% 100%);
+  --eqTitle-color: oklch(1.0 0.0 89.9);
+  --objectBkgd-color: oklch(0.577 0.229 260.2);
+  --objectTxt-color: oklch(1.0 0.0 89.9);
 
   --eq-bg-color: 255, 255, 255;
 
@@ -112,18 +112,18 @@ Neutral light background with Bootstrap 5.3 semantic accents
   --url-iconsDark: url(/desktop/img/ui-icons-white.png);
   --url-iconsLight: url(/desktop/img/ui-icons-black.png);
 
-  --lb-info-color: hsl(190 89.7% 49.6%);
-  --lb-yellow-color: hsl(45 100% 51.4%);
-  --al-info-color: hsl(190 89.7% 49.6%);
-  --al-primary-color: hsl(216 98.4% 52.2%);
-  --al-success-color: hsl(152 68.8% 31.4%);
-  --al-warning-color: hsl(45 100% 51.4%);
-  --al-danger-color: hsl(354 70.5% 53.5%);
-  --bt-success-color: hsl(152 68.8% 31.4%);
+  --lb-info-color: oklch(0.775 0.138 217.9);
+  --lb-yellow-color: oklch(0.844 0.172 84.9);
+  --al-info-color: oklch(0.775 0.138 217.9);
+  --al-primary-color: oklch(0.577 0.229 260.2);
+  --al-success-color: oklch(0.552 0.124 156.9);
+  --al-warning-color: oklch(0.844 0.172 84.9);
+  --al-danger-color: oklch(0.592 0.202 21.0);
+  --bt-success-color: oklch(0.552 0.124 156.9);
 
-  --scBlocIF: hsl(216 98.4% 52.2%); --scBlocElse: hsl(208 7.3% 45.7%); --scBlocACTION: hsl(216 98.4% 52.2%);
-  --scBlocIN: hsl(152 68.8% 31.4%); --scBlocAT: hsl(190 89.7% 49.6%); --scBlocFOR: hsl(45 100% 51.4%); --scBlocWHILE: hsl(272 60% 50%);
-  --scBlocCODE: hsl(354 70.5% 53.5%); --scBlocCOM: hsl(208 7.3% 45.7%); --scBlocSep: hsl(0 0% 83.1%);
+  --scBlocIF: oklch(0.577 0.229 260.2); --scBlocElse: oklch(0.558 0.016 244.5); --scBlocACTION: oklch(0.577 0.229 260.2);
+  --scBlocIN: oklch(0.552 0.124 156.9); --scBlocAT: oklch(0.775 0.138 217.9); --scBlocFOR: oklch(0.844 0.172 84.9); --scBlocWHILE: oklch(0.516 0.221 303.6);
+  --scBlocCODE: oklch(0.592 0.202 21.0); --scBlocCOM: oklch(0.558 0.016 244.5); --scBlocSep: oklch(0.87 0.0 89.9);
 
-  --jeedom-shadow-lg: 0 10px 30px hsl(0 0% 9% / 0.12), 0 0 0 1px color-mix(in srgb, var(--logo-primary-color) 15%, transparent);
+  --jeedom-shadow-lg: 0 10px 30px oklch(0.204 0.0 89.9 / 0.12), 0 0 0 1px color-mix(in srgb, var(--logo-primary-color) 15%, transparent);
 }
