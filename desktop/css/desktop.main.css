@@ -5063,7 +5063,6 @@ div.eqLogic-widget.editingMode .panelLink {
       height: 50px !important;
     }
     .nav.navbar-nav {
-      float: none;
       height: 50px;
       flex-wrap: nowrap;
     }
