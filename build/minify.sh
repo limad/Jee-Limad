@@ -48,8 +48,21 @@ minify_css() {
 if [ "$JS_ONLY" = false ]; then
     echo "═══ Minification CSS ═══"
 
-    # Desktop CSS
-    minify_css "desktop/css/desktop.main.css"
+    # desktop.main.css : wrap in @layer base + @import bootstrap for the cascade
+    # (source has no layer wrapper; the min must have it for @layer bootstrap,base,theme to work)
+    _src="desktop/css/desktop.main.css"
+    _dest="desktop/css/desktop.main.min.css"
+    if [ ! -f "$_src" ]; then
+        git show "HEAD:$_src" > "$_src" && echo "  ↻ Restauré depuis git: $(basename "$_src")"
+    fi
+    echo "  CSS: $(basename "$_src") → $(basename "$_dest") [+@layer base wrapper]"
+    _tmp=$(mktemp /tmp/desktop.main.XXXXXX.css)
+    printf '@layer bootstrap,base,theme;\n@import url("/desktop/css/bootstrap.min.css") layer(bootstrap);\n@layer base{\n' > "$_tmp"
+    cat "$_src" >> "$_tmp"
+    printf '\n}' >> "$_tmp"
+    "$CLEANCSS" -O2 --source-map --source-map-inline-sources -o "$_dest" "$_tmp"
+    rm "$_tmp"
+
     minify_css "desktop/css/coreWidgets.css"
     minify_css "desktop/css/dom.ui.css"
     minify_css "desktop/css/bootstrap.css"
