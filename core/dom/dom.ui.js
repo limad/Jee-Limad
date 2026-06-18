@@ -294,7 +294,7 @@ domUtils.createWidgetSlider = function(_options) {
 */
 document.addEventListener('DOMContentLoaded', function() {
   if (document.head.querySelectorAll('script[src*="bootstrap.min.js"]').length == 0) {
-    document.body.addEventListener('click', function(event) {
+    document.addEventListener('click', function(event) {
       //Close all dropdowns
       document.querySelectorAll('div.dropdown.open').removeClass('open')
       document.querySelectorAll('button.dropdown-toggle').forEach(_bt => _bt.parentNode.removeClass('open'))

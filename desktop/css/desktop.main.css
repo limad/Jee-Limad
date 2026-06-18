@@ -52,7 +52,7 @@ Desktop
     height: 100%;
     box-sizing: border-box;
     margin: 0 !important;
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
     color: var(--txt-color);
     background-repeat : no-repeat;
     background-size: cover;
@@ -296,23 +296,23 @@ Desktop
   }
 
   .navbar {
-    background-color: var(--navbar-bg, rgb(var(--defaultBkg-color)));
+    background-color: var(--navbar-bg, var(--defaultBkg-color));
   }
   .navbar .container-fluid,
   .navbar-header,
   .navbar-collapse,
   .nav.navbar-nav {
-    background-color: rgb(var(--defaultBkg-color));
+    background-color: var(--defaultBkg-color);
   }
   .dropdown-menu {
-    background-color: var(--dropdown-bg, rgb(var(--defaultBkg-color)));
+    background-color: var(--dropdown-bg, var(--defaultBkg-color));
     border: 1px solid var(--dropdown-border, rgba(0, 0, 0, 0.15));
     border-radius: var(--border-radius);
     box-shadow: var(--dropdown-shadow, none);
   }
   .dropdown > a,
   .dropdown > a:hover {
-    background-color: rgb(var(--defaultBkg-color));
+    background-color: var(--defaultBkg-color);
   }
   .open > .dropdown-menu {
     z-index: 990 !important;
@@ -355,7 +355,7 @@ Desktop
     scrollbar-width: thin;
   }
   #jeedomMenuBar ul.navbar-nav li ul {
-    background-color: rgb(var(--defaultBkg-color));
+    background-color: var(--defaultBkg-color);
   }
   #jeedomMenuBar ul.navbar-nav li ul a {
     display: block;
@@ -509,7 +509,7 @@ Desktop
       display: block !important;
     }
     #jeedomMenuBar ul.navbar-nav > li {
-      border-bottom: 3px solid rgb(var(--bg-color));
+      border-bottom: 3px solid var(--bg-color);
     }
     #jeedomMenuBar ul.navbar-nav > li > ul {
       padding-left: 6%;
@@ -855,7 +855,7 @@ Desktop
   }
   .div_object legend .objectDashLegend {
     padding: 3px 20px;
-    background-color: rgba(var(--bg-color), var(--opacity));
+    background-color: rgb(from var(--bg-color) r g b / var(--opacity));
     width: calc(100% - 4px);
     margin-left: -2px;
     display: inline-flex;
@@ -883,7 +883,7 @@ Desktop
 
 /* Legend panel */
 body[data-page="panel"] #div_pageContainer legend {
-  background-color: rgba(var(--bg-color), var(--opacity));
+  background-color: rgb(from var(--bg-color) r g b / var(--opacity));
   margin: 5px 0 !important;
 }
 
@@ -1188,7 +1188,7 @@ div.eqLogicZone {
   }
   .list-group-item {
     padding: 0 5px;
-    background-color: rgb(var(--defaultBkg-color));
+    background-color: var(--defaultBkg-color);
   }
   .list-group-item-success {
     background-color: var(--al-success-color);
@@ -1273,7 +1273,7 @@ div.eqLogicZone {
   #dashOverviewPrevSummaries .objectSummaryContainer {
     position: absolute;
     max-width: 80%;
-    background: rgba(var(--bg-color), var(--opacity));
+    background: rgb(from var(--bg-color) r g b / var(--opacity));
     padding: 4px 8px;
     margin: 35px 10px 0 15px;
     z-index: 20;
@@ -1332,7 +1332,7 @@ div.eqLogicZone {
     background-color: var(--bg-modal-color);
     background-size: cover;
     background-repeat: no-repeat;
-    color: rgb(var(--contrast-color));
+    color: var(--contrast-color);
     margin: 5px;
     line-height: 24px;
   }
@@ -1352,7 +1352,7 @@ div.eqLogicZone {
     transition: box-shadow 0.4s cubic-bezier(.25,.8,.25,1);
   }
   .objectPreview > .topPreview {
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
     height: 28px;
   }
   .objectPreview > .topPreview > .name {
@@ -1405,7 +1405,7 @@ div.eqLogicZone {
     text-align: right;
   }
   .objectPreview .resume .objectSummaryParent {
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
     padding: 6px 8px;
     margin: 0 -4px !important;
     display: inline-block;
@@ -1413,7 +1413,7 @@ div.eqLogicZone {
 
   .objectPreview .objectSummaryParent[data-summary="security"],
   .objectPreview .objectSummaryParent[data-summary="motion"] {
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
     padding: 5px;
     width: 45px;
     height: 28px;
@@ -1459,14 +1459,14 @@ div.eqLogicZone {
 
   #md_overviewSummary {
     box-shadow: none;
-    background: rgba(var(--defaultBkg-color), 0.8);
-    border: 1px solid rgba(var(--contrast-color), 0.15);
+    background: rgb(from var(--defaultBkg-color) r g b / 0.8);
+    border: 1px solid rgb(from var(--contrast-color) r g b / 0.15);
   }
   #md_overviewSummary div.jeeDialogTitle {
     line-height: 16px;
     height: 22px;
     padding: 2px;
-    background: rgba(var(--defaultBkg-color), 0.95);
+    background: rgb(from var(--defaultBkg-color) r g b / 0.95);
   }
   #md_overviewSummary div.jeeDialogTitle > span.title {
     font-size: 14px;
@@ -1498,7 +1498,7 @@ div.eqLogicZone {
     width: calc(100% + 2px);
     overflow: hidden;
     border-radius: var(--border-radius);
-    background: rgba(var(--bg-color), var(--opacity));
+    background: rgb(from var(--bg-color) r g b / var(--opacity));
   }
   [data-page="dashboard"] #dashOverviewPrev .objectPreview {
     display: inline-block;
@@ -2031,7 +2031,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   pre {
     color: var(--link-color);
-    background-color: rgba(var(--panel-bg-color), var(--opacity));
+    background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity));
     border: none;
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     font-size: 14px;
@@ -2049,7 +2049,7 @@ div.eqLogic-widget.editingMode .panelLink {
     margin: 0 0 5px;
     font-size: 13px;
     line-height: 20px;
-    background: rgb(var(--bg-color));
+    background: var(--bg-color);
   }
 
   .view-link-widget,
@@ -2280,11 +2280,11 @@ div.eqLogic-widget.editingMode .panelLink {
     margin-bottom: 5px !important;
   }
   div[class*="DisplayCard"].displayAsTable:hover .name {
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
     color: unset;
   }
   body[data-type="plugin"] div[class*="DisplayCard"].displayAsTable:hover {
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
     color: unset;
   }
   body[data-page="object"] div[class*="DisplayCard"].displayAsTable:hover .name,
@@ -2301,7 +2301,7 @@ div.eqLogic-widget.editingMode .panelLink {
     height: 28px;
     font-size: 10px;
     padding: 0 5px;
-    background: rgba(var(--defaultBkg-color), var(--opacity));
+    background: rgb(from var(--defaultBkg-color) r g b / var(--opacity));
   }
   div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > span > i,
   div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > .icon,
@@ -2620,7 +2620,7 @@ div.eqLogic-widget.editingMode .panelLink {
     z-index: 200;
     padding: 5px 4px 5px 8px !important;
     margin: 0 7px;
-    background: rgba(var(--panel-bg-color), var(--opacity));
+    background: rgb(from var(--panel-bg-color) r g b / var(--opacity));
   }
   #timelineContainer .html .tml-cmd > span >span i {
     color: var(--linkHoverLight-color);
@@ -2654,7 +2654,7 @@ div.eqLogic-widget.editingMode .panelLink {
     margin-left: 30px ;
     padding: 6px;
     border-radius: var(--border-radius);
-    background-color: rgba(var(--eq-bg-color), var(--opacity));
+    background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity));
     min-height: 28px;
   }
   #timelineContainer ul li > span.vertLine {
@@ -2692,7 +2692,7 @@ div.eqLogic-widget.editingMode .panelLink {
     border-radius: 50%;
     border: 3px solid var(--al-info-color);
     position: absolute;
-    background: rgb(var(--eq-bg-color));
+    background: var(--eq-bg-color);
     left: 115px;
     top: 5px;
     z-index: 5;
@@ -2721,7 +2721,7 @@ div.eqLogic-widget.editingMode .panelLink {
     padding-left: 50px;
     padding-right: 5px;
     border-radius: var(--border-radius);
-    background: rgba(var(--eq-bg-color), var(--opacity));
+    background: rgb(from var(--eq-bg-color) r g b / var(--opacity));
   }
   #timelineContainer div.date {
     position: absolute;
@@ -2758,7 +2758,7 @@ div.eqLogic-widget.editingMode .panelLink {
     color: var(--placeholder-color);
   }
   #div_historyOptions {
-    background: rgba(var(--panel-bg-color), var(--opacity));
+    background: rgb(from var(--panel-bg-color) r g b / var(--opacity));
   }
   #ul_expressionHistory li a {
     color: var(--sc-lightTxt-color);
@@ -2772,7 +2772,7 @@ div.eqLogic-widget.editingMode .panelLink {
 
 /* ____________________PANELS */
   .eqLogicThumbnailDisplay .eqLogicThumbnailContainer:not(:first-of-type) {
-    background-color: rgba(var(--defaultBkg-color), var(--opacity));
+    background-color: rgb(from var(--defaultBkg-color) r g b / var(--opacity));
     border-radius: 0 0 var(--border-radius) var(--border-radius);
     z-index: 0;
     transition: box-shadow 0.4s cubic-bezier(.25,.8,.25,1);
@@ -2807,7 +2807,7 @@ div.eqLogic-widget.editingMode .panelLink {
     top: 95px;
   }
   :not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
-    background-color: var(--panel-heading-bg, rgb(var(--defaultBkg-color)));
+    background-color: var(--panel-heading-bg, var(--defaultBkg-color));
     border-bottom: 1px solid var(--panel-heading-border, rgb(var(--bg-color), 1));
   }
   .panel-group .panel-heading {
@@ -2848,7 +2848,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .panel {
     color: var(--txt-color);
     border-color: var(--el-defaultColor);
-    background-color: rgba(var(--defaultBkg-color), var(--opacity));
+    background-color: rgb(from var(--defaultBkg-color) r g b / var(--opacity));
     border-radius: var(--border-radius);
   }
   .panel-default {
@@ -2861,7 +2861,7 @@ div.eqLogic-widget.editingMode .panelLink {
     color: var(--panel-default-title, var(--link-color));
   }
   .list-group li {
-    background-color: rgba(var(--panel-bg-color), var(--opacity));
+    background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity));
   }
   .panel-body {
     padding: 12px;
@@ -2871,7 +2871,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .panel-footer {
     color: var(--txt-color);
-    background-color: rgba(var(--defaultBkg-color), var(--opacity));
+    background-color: rgb(from var(--defaultBkg-color) r g b / var(--opacity));
     border-top: 1px solid var(--el-defaultColor);
   }
   .panel-success .panel-heading {
@@ -3191,7 +3191,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   select:not([multiple]) option {
     color: var(--txt-color);
-    background-color: rgb(var(--defaultBkg-color));
+    background-color: var(--defaultBkg-color);
   }
   select option:disabled {
     color: var(--placeholder-color);
@@ -3347,7 +3347,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   #searchResult,
   .tab-content {
-    background-color: rgba(var(--panel-bg-color), var(--opacity));
+    background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity));
     padding-bottom: 12px !important;
     min-height: 120px;
     height: unset !important;
@@ -3407,18 +3407,18 @@ div.eqLogic-widget.editingMode .panelLink {
     padding: 10px 6px;
     z-index: 3;
     border: 1px solid transparent;
-    border-bottom-color: rgba(var(--panel-bg-color), var(--opacity));
+    border-bottom-color: rgb(from var(--panel-bg-color) r g b / var(--opacity));
   }
   .nav-tabs > li.active > a,
   .nav-tabs > li.active > a:focus,
   .nav-tabs > li.active > a:hover {
-    background-color: var(--navtab-active-bg, rgba(var(--panel-bg-color), var(--opacity)));
+    background-color: var(--navtab-active-bg, rgb(from var(--panel-bg-color) r g b / var(--opacity)));
     color: var(--navtab-active-fg, var(--link-color));
     border-bottom : 1px var(--logo-primary-color) solid;
     z-index: 6;
   }
   .nav-tabs > li > a:hover {
-    background-color: rgba(var(--panel-bg-color), var(--opacity));
+    background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity));
     color: var(--link-color);
     border-bottom : 1px var(--logo-primary-color) solid;
     z-index: 6;
@@ -3478,20 +3478,20 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .table-condensed tbody tr:hover td {
-    background-color: rgba(var(--contrast-color), 0.1);
+    background-color: rgb(from var(--contrast-color) r g b / 0.1);
     transition-duration: 250ms;
     transition-property: background-color;
   }
   .table-striped>tbody>tr:nth-of-type(2n+1),
   .table > thead > tr {
-    background-color: rgba(var(--panel-bg-color), var(--opacity));
+    background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity));
   }
 
   #logsForms .form-group:nth-child(odd){
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
   }
   :not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(even){
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
   }
   :not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(odd){
     background-color: var(--bg-modal-color);
@@ -3546,7 +3546,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .well {
     padding: 20px;
     margin-bottom: 20px;
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
   }
 
   .well blockquote {
@@ -4062,7 +4062,7 @@ div.eqLogic-widget.editingMode .panelLink {
 
   .disableElement input[type=checkbox][data-l2key=enable],
   .element .disableSubElement input[type=checkbox][data-l2key=enable] {
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
   }
 
   /* Collapsed */
@@ -4203,7 +4203,7 @@ div.eqLogic-widget.editingMode .panelLink {
     position: static;
   }
   .bs-sidebar {
-    background: rgba(var(--bg-color), var(--opacity));
+    background: rgb(from var(--bg-color) r g b / var(--opacity));
     border-radius: var(--border-radius);
     overflow: hidden auto;
   }
@@ -4277,7 +4277,7 @@ div.eqLogic-widget.editingMode .panelLink {
   #ul_noteList .li_noteDisplay a:active,
   #ul_noteList .li_noteDisplay a:focus,
   #ul_noteList .li_noteDisplay a:hover{
-    background-color: rgb(var(--defaultBkg-color));
+    background-color: var(--defaultBkg-color);
   }
 
 /* ____________________HIGHCHARTS */
@@ -4336,7 +4336,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .highcharts-background {
-    fill: rgba(var(--panel-bg-color), var(--opacity));
+    fill: rgb(from var(--panel-bg-color) r g b / var(--opacity));
     fill-opacity: var(--opacity);
   }
   .eqLogic-widget .highcharts-background {
@@ -4349,10 +4349,10 @@ div.eqLogic-widget.editingMode .panelLink {
     color: var(--txt-color);
   }
   .graph-widget:not(.transparent) {
-    background-color: rgb(var(--panel-bg-color));
+    background-color: var(--panel-bg-color);
   }
   div.chartContainer .highcharts-plot-band {
-    fill: rgba(var(--bg-color), 0.5);
+    fill: rgb(from var(--bg-color) r g b / 0.5);
   }
   .highcharts-button-box {
     fill: var(--el-defaultColor);
@@ -4407,9 +4407,9 @@ div.eqLogic-widget.editingMode .panelLink {
     stroke-width: 1.2;
   }
   .highcharts-selection-marker {
-    fill: rgb(var(--eq-bg-color));
+    fill: var(--eq-bg-color);
     fill-opacity: 0.5;
-    stroke: rgb(var(--contrast-color));
+    stroke: var(--contrast-color);
     stroke-width: 1px;
   }
 
@@ -4419,11 +4419,11 @@ div.eqLogic-widget.editingMode .panelLink {
     stroke-width: 0.6;
   }
   .highcharts-tooltip .highcharts-tooltip-box path {
-    fill: rgb(var(--bg-color));
+    fill: var(--bg-color);
   }
   .highcharts-tooltip .highcharts-tooltip-box text,
   .highcharts-tooltip .highcharts-tooltip-box text tspan {
-    fill: rgb(var(--contrast-color));
+    fill: var(--contrast-color);
     font-weight: 400;
   }
   .highcharts-tooltip .highcharts-shadow {
@@ -4479,7 +4479,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .div_backgroundPlan .text-widget {
-    background-color: rgba(var(--eq-bg-color), var(--opacity));
+    background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity));
     color: var(--txt-color);
   }
 
@@ -4602,7 +4602,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .nav>li>a:focus,
   .nav>li>a:hover {
     text-decoration: none;
-    background-color: rgb(var(--defaultBkg-color))
+    background-color: var(--defaultBkg-color)
   }
 
   #div_displayCmdConfigure .form-group div > span.cmdAttr,
@@ -4759,7 +4759,7 @@ div.eqLogic-widget.editingMode .panelLink {
   /* summary */
   li.alert-info.eqLogic {
     color: var(--txt-color);
-    background-color: rgb(var(--defaultBkg-color));
+    background-color: var(--defaultBkg-color);
   }
   .row .objectSummaryParent{ font-size : 14px !important; }
 
@@ -4802,21 +4802,21 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   body[data-coloredcats="0"] .tippy-box {
-    background-color: rgba(var(--eq-bg-color), 1);
+    background-color: var(--eq-bg-color);
     border: 1px solid var(--el-defaultColor);
     color: var(--link-color);
   }
   body[data-coloredcats="0"] .tippy-box[data-placement^='top'] > .tippy-arrow::before {
-    border-top-color: rgba(var(--eq-bg-color), 1);
+    border-top-color: var(--eq-bg-color);
   }
   body[data-coloredcats="0"] .tippy-box[data-placement^='bottom'] > .tippy-arrow::before {
-    border-bottom-color: rgba(var(--eq-bg-color), 1);
+    border-bottom-color: var(--eq-bg-color);
   }
   body[data-coloredcats="0"] .tippy-box[data-placement^='left'] > .tippy-arrow::before {
-    border-left-color: rgba(var(--eq-bg-color), 1);
+    border-left-color: var(--eq-bg-color);
   }
   body[data-coloredcats="0"] .tippy-box[data-placement^='right'] > .tippy-arrow::before {
-    border-right-color: rgba(var(--eq-bg-color), 1);
+    border-right-color: var(--eq-bg-color);
   }
 
 
@@ -5308,7 +5308,7 @@ div.eqLogic-widget.editingMode .panelLink {
     }
 
     .nav-tabs > li.active {
-      background-color: rgba(var(--panel-bg-color), var(--opacity));
+      background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity));
       color: var(--link-color);
       border-bottom: 1px var(--logo-primary-color) solid;
       z-index: 6;

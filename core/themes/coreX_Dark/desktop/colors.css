@@ -18,9 +18,9 @@ Neutral dark background with Bootstrap 5.3 semantic accents
   --logo-primary-color: oklch(0.577 0.229 260.2);
   --logo-secondary-color: oklch(0.558 0.016 244.5);
 
-  --bg-color: 13, 17, 23;
+  --bg-color: rgb(13 17 23);
   --bg-modal-color: oklch(0.204 0.0 89.9);
-  --contrast-color: 229, 229, 229;
+  --contrast-color: rgb(229 229 229);
 
   --txt-color: oklch(0.87 0.0 89.9);
   --link-color: oklch(0.715 0.0 89.9);
@@ -76,28 +76,28 @@ Neutral dark background with Bootstrap 5.3 semantic accents
   --checkbox-bg: var(--btn-default-color);
 
   --el-defaultColor: oklch(0.145 0.0 89.9);
-  --defaultBkg-color: 38, 38, 38;
+  --defaultBkg-color: rgb(38 38 38);
   --form-bg-color: oklch(0.22 0.018 255.3);
   --btnEq-default-color: oklch(0.269 0.0 89.9);
   --btn-default-color: oklch(0.372 0.0 89.9);
   --btn-default-border: oklch(0.468 0.0 89.9);
-  --panel-bg-color: 23, 23, 23;
+  --panel-bg-color: rgb(23 23 23);
 
   --eqTitle-color: oklch(0.97 0.0 89.9);
   --objectBkgd-color: oklch(0.577 0.229 260.2);
   --objectTxt-color: oklch(0.981 0.002 247.8);
 
-  --eq-bg-color: 38, 38, 38;
+  --eq-bg-color: rgb(38 38 38);
 
-  --cat-security-color: 220, 53, 69;
-  --cat-heating-color: 253, 126, 20;
-  --cat-automatism-color: 108, 117, 125;
-  --cat-light-color: 255, 193, 7;
-  --cat-opening-color: 108, 117, 125;
-  --cat-multimedia-color: 13, 202, 240;
-  --cat-energy-color: 25, 135, 84;
-  --cat-other-color: 108, 117, 125;
-  --cat-scenario-color: 13, 110, 253;
+  --cat-security-color: rgb(220 53 69);
+  --cat-heating-color: rgb(253 126 20);
+  --cat-automatism-color: rgb(108 117 125);
+  --cat-light-color: rgb(255 193 7);
+  --cat-opening-color: rgb(108 117 125);
+  --cat-multimedia-color: rgb(13 202 240);
+  --cat-energy-color: rgb(25 135 84);
+  --cat-other-color: rgb(108 117 125);
+  --cat-scenario-color: rgb(13 110 253);
 
   --url-iconsDark: url(/desktop/img/ui-icons-black.png);
   --url-iconsLight: url(/desktop/img/ui-icons-white.png);

@@ -13,9 +13,9 @@ colors Light
   --dashBkg-url: url("");
   --logo-primary-color: hsl(79 67.5% 47.1%);
   --logo-secondary-color: hsl(252 3.5% 27.6%);
-  --bg-color: 232, 232, 234;
+  --bg-color: rgb(232 232 234);
   --bg-modal-color: hsl(180 2.9% 93.1%);
-  --contrast-color: 30, 30, 30;
+  --contrast-color: rgb(30 30 30);
 
   --txt-color: hsl(0 0% 45.1%);
   --link-color: hsl(0 0% 35.3%);
@@ -28,7 +28,7 @@ colors Light
   --on-warning-fg: var(--linkHoverLight-color);
 
   /* Onglet actif (nav-tabs) — core2019 garde le rendu desktop.main (modifiable ici) */
-  --navtab-active-bg: rgba(var(--panel-bg-color), var(--opacity));
+  --navtab-active-bg: rgb(from var(--panel-bg-color) r g b / var(--opacity));
   --navtab-active-fg: var(--link-color);
 
   /* Menu dropdown — core2019 garde le rendu desktop.main (modifiable ici) */
@@ -41,26 +41,26 @@ colors Light
   --sc-lightTxt-color: hsl(0 0% 94.1%);
 
   --el-defaultColor: hsl(0 0% 78.4%);
-  --defaultBkg-color: 250, 250, 250;
+  --defaultBkg-color: rgb(250 250 250);
   --form-bg-color: hsl(180 3.3% 88.2%);
   --btnEq-default-color: hsl(0 0% 86.3%);
   --btn-default-color: hsl(0 0% 39.2%);
-  --panel-bg-color: 240, 241, 242;
+  --panel-bg-color: rgb(240 241 242);
 
   --eqTitle-color: hsl(0 0% 94.1%);
   --objectBkgd-color: hsl(0 0% 41.2%);
   --objectTxt-color: hsl(0 0% 92.2%);
 
-  --eq-bg-color: 249, 249, 250;
-  --cat-security-color: 180, 40, 40;
-  --cat-heating-color: 60, 115, 165;
-  --cat-automatism-color: 135, 135, 135;
-  --cat-light-color: 220, 135, 25;
-  --cat-opening-color: 90, 90, 90;
-  --cat-multimedia-color: 65, 90, 125;
-  --cat-energy-color: 58, 165, 72;
-  --cat-other-color: 58, 120, 85;
-  --cat-scenario-color: 70, 70, 78;
+  --eq-bg-color: rgb(249 249 250);
+  --cat-security-color: rgb(180 40 40);
+  --cat-heating-color: rgb(60 115 165);
+  --cat-automatism-color: rgb(135 135 135);
+  --cat-light-color: rgb(220 135 25);
+  --cat-opening-color: rgb(90 90 90);
+  --cat-multimedia-color: rgb(65 90 125);
+  --cat-energy-color: rgb(58 165 72);
+  --cat-other-color: rgb(58 120 85);
+  --cat-scenario-color: rgb(70 70 78);
 
   --url-iconsDark: url(/desktop/img/ui-icons-white.png);
   --url-iconsLight: url(/desktop/img/ui-icons-black.png);
@@ -101,7 +101,7 @@ colors Light
   --panel-danger-fg: var(--linkHoverLight-color);
   --panel-info-fg: var(--linkHoverLight-color);
   --panel-warning-fg: var(--sc-formTxt-color);
-  --panel-heading-bg: rgb(var(--panel-bg-color));
+  --panel-heading-bg: var(--panel-bg-color);
   --panel-heading-border: hsl(0 0% 78.4%);
   --panel-default-border: hsl(0 0% 78.4%);
   --panel-default-title: var(--linkHover-color);
@@ -112,7 +112,7 @@ colors Light
   --dropdown-item-fg: var(--txt-color);
   --dropdown-shadow: 0 10px 25px hsl(0 0% 0% / 0.12);
   --modal-border: hsl(0 0% 78.4%);
-  --modal-header-bg: rgb(var(--panel-bg-color));
+  --modal-header-bg: var(--panel-bg-color);
   --modal-shadow: 0 20px 50px hsl(0 0% 0% / 0.15);
   --input-border: 1px solid hsl(0 0% 78.4%);
   --input-bg: var(--bg-modal-color);

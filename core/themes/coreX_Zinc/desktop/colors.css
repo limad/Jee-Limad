@@ -19,9 +19,9 @@ Tailwind zinc-950 base, blue-500 accent, semantic Tailwind dark-mode palette
   --logo-primary-color: oklch(0.624 0.187 259.6);
   --logo-secondary-color: oklch(0.552 0.014 285.9);
 
-  --bg-color: 9, 9, 11;
+  --bg-color: rgb(9 9 11);
   --bg-modal-color: oklch(0.21 0.006 285.9);
-  --contrast-color: 212, 212, 216;
+  --contrast-color: rgb(212 212 216);
 
   --txt-color: oklch(0.871 0.005 286.3);
   --link-color: oklch(0.712 0.013 286.1);
@@ -84,28 +84,28 @@ Tailwind zinc-950 base, blue-500 accent, semantic Tailwind dark-mode palette
   --checkbox-bg: oklch(0.274 0.005 286.0);
 
   --el-defaultColor: oklch(0.141 0.004 285.8);
-  --defaultBkg-color: 24, 24, 27;
+  --defaultBkg-color: rgb(24 24 27);
   --form-bg-color: oklch(0.141 0.004 285.8);
   --btnEq-default-color: oklch(0.21 0.006 285.9);
   --btn-default-color: oklch(0.274 0.005 286.0);
   --btn-default-border: oklch(0.37 0.012 285.8);
-  --panel-bg-color: 24, 24, 27;
+  --panel-bg-color: rgb(24 24 27);
 
   --eqTitle-color: oklch(0.979 0.0 89.9);
   --objectBkgd-color: oklch(0.624 0.187 259.6);
   --objectTxt-color: oklch(1.0 0.0 89.9);
 
-  --eq-bg-color: 24, 24, 27;
+  --eq-bg-color: rgb(24 24 27);
 
-  --cat-security-color: 248, 113, 113;
-  --cat-heating-color: 251, 146, 60;
-  --cat-automatism-color: 113, 113, 122;
-  --cat-light-color: 250, 204, 21;
-  --cat-opening-color: 113, 113, 122;
-  --cat-multimedia-color: 125, 211, 252;
-  --cat-energy-color: 74, 222, 128;
-  --cat-other-color: 113, 113, 122;
-  --cat-scenario-color: 147, 197, 253;
+  --cat-security-color: rgb(248 113 113);
+  --cat-heating-color: rgb(251 146 60);
+  --cat-automatism-color: rgb(113 113 122);
+  --cat-light-color: rgb(250 204 21);
+  --cat-opening-color: rgb(113 113 122);
+  --cat-multimedia-color: rgb(125 211 252);
+  --cat-energy-color: rgb(74 222 128);
+  --cat-other-color: rgb(113 113 122);
+  --cat-scenario-color: rgb(147 197 253);
 
   --url-iconsDark: url(/desktop/img/ui-icons-black.png);
   --url-iconsLight: url(/desktop/img/ui-icons-white.png);
