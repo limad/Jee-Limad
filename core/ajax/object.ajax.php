@@ -149,6 +149,7 @@ try {
 			$eqLogics = $object->getEqLogicBySummary(init('summary'), true, false);
 		}
 		if (count($eqLogics) > 0) {
+			eqLogic::preloadCmds($eqLogics);
 			foreach ($eqLogics as $eqLogic) {
 				if ($_category != 'all' && $eqLogic->getCategory(init('category')) != 1) {
 					continue;

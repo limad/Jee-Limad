@@ -262,7 +262,16 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 	// noUiSlider stays global: dashboard widgets and shared UI helpers can instantiate sliders during initial render.
 	include_file('3rdparty', 'nouislider/nouislider.min', 'css');
 	include_file('3rdparty', 'autosize/autosize.min', 'js');
-	include_file('3rdparty', 'moment/moment-with-locales.min', 'js');
+	include_file('3rdparty', 'dayjs/dayjs.min', 'js');
+	include_file('3rdparty', 'dayjs/plugin/customParseFormat', 'js');
+	include_file('3rdparty', 'dayjs/plugin/duration', 'js');
+	include_file('3rdparty', 'dayjs/plugin/calendar', 'js');
+	include_file('3rdparty', 'dayjs/locale/fr', 'js');
+	include_file('3rdparty', 'dayjs/locale/de', 'js');
+	include_file('3rdparty', 'dayjs/locale/es', 'js');
+	include_file('3rdparty', 'dayjs/locale/pt', 'js');
+	include_file('3rdparty', 'dayjs/locale/it', 'js');
+	include_file('3rdparty', 'dayjs/dayjs-setup', 'js');
 
 	//New $less libs
 	include_file('coreDOM', 'jeeCron/jeeCron', 'js');

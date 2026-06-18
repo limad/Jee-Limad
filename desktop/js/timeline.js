@@ -53,23 +53,23 @@ if (!jeeFrontEnd.timeline) {
           const dataLength = data.length
           const decayFactor = 130
 
-          moment.locale(jeeFrontEnd.language.substring(0, 2))
+          dayjs.locale(jeeFrontEnd.language.substring(0, 2))
 
           const lastEvent = document.querySelector('#timelineContainer #events li.event:last-child')
           let isFirstOfDay, isLastOfDay, prevDate, prevDateTs, content
           let nextDate, thisDateTs
           if (lastEvent != null) {
-            isFirstOfDay = data[0].date.substring(0, 10) != lastEvent.querySelector('div.date').innerHTML.substring(4) ? true : false
+            isFirstOfDay = data[0].date.substring(0, 10) != lastEvent.querySelector('div.date').innerHTML.slice(-10) ? true : false
             isLastOfDay = false
-            prevDate = moment(lastEvent.querySelector('div.date').innerHTML, 'ddd  YYYY-MM-DD').format("YYYY-MM-DD")
-            prevDateTs = moment(prevDate + ' ' + lastEvent.querySelector('div.time').innerHTML, "YYYY-MM-DD hh:mm:ss").unix()
+            prevDate = lastEvent.querySelector('div.date').innerHTML.slice(-10)
+            prevDateTs = dayjs(prevDate + ' ' + lastEvent.querySelector('div.time').innerHTML, 'YYYY-MM-DD HH:mm:ss').unix()
             content = ''
           } else {
             isLastOfDay = false
             thisDateTs = false
-            prevDate = moment().format("YYYY-MM-DD")
-            prevDateTs = moment().unix()
-            content = '<div class="label-warning day">' + moment(data[0].date).format('ddd YYYY-MM-DD') + '</div>'
+            prevDate = dayjs().format("YYYY-MM-DD")
+            prevDateTs = dayjs().unix()
+            content = '<div class="label-warning day">' + dayjs(data[0].date).format('ddd YYYY-MM-DD') + '</div>'
           }
 
           let thisData, date, dateFull, time, lineClass, style, height, li
@@ -77,12 +77,12 @@ if (!jeeFrontEnd.timeline) {
             thisData = data[i]
             date = thisData.date.substring(0, 10)
             time = thisData.date.substring(11, 19)
-            dateFull = moment(thisData.date).format('ddd YYYY-MM-DD')
-            thisDateTs = moment(thisData.date.substring(0, 19)).unix()
+            dateFull = dayjs(thisData.date).format('ddd YYYY-MM-DD')
+            thisDateTs = dayjs(thisData.date.substring(0, 19)).unix()
             lineClass = ''
             if (prevDate != date) {
               isFirstOfDay = true
-              prevDateTs = moment(prevDate + ' 00:00:00').unix()
+              prevDateTs = dayjs(prevDate + ' 00:00:00').unix()
             } else {
               if (i < dataLength - 1) {
                 nextDate = data[parseInt(i) + 1].date.substring(0, 10)
@@ -96,7 +96,7 @@ if (!jeeFrontEnd.timeline) {
               //actual time marker:
               if (i == 0) {
                 li = '<li style="background-color:transparent!important;">'
-                li += '<div class="time typeInfo">' + moment().format('HH:mm:ss') + '</div>'
+                li += '<div class="time typeInfo">' + dayjs().format('HH:mm:ss') + '</div>'
                 li += '<div class="date">' + dateFull + '</div>'
                 li += '</li>'
                 content += li
@@ -110,7 +110,7 @@ if (!jeeFrontEnd.timeline) {
               style = 'margin-top:' + height + 'px!important;'
             }
             if (isLastOfDay && i < dataLength - 1) {
-              height = Math.abs((thisDateTs - moment(data[parseInt(i) + 1].date.substring(0, 19)).unix()) / decayFactor)
+              height = Math.abs((thisDateTs - dayjs(data[parseInt(i) + 1].date.substring(0, 19)).unix()) / decayFactor)
               style += 'margin-bottom:' + height + 'px!important;'
             }
             if (style != '') {
@@ -155,7 +155,7 @@ if (!jeeFrontEnd.timeline) {
 
             //newDay ?
             if (isLastOfDay) {
-              content += '<div class="label-warning day">' + moment(nextDate).format('ddd YYYY-MM-DD') + '</div>'
+              content += '<div class="label-warning day">' + dayjs(nextDate).format('ddd YYYY-MM-DD') + '</div>'
             }
 
             prevDate = date
@@ -173,8 +173,8 @@ if (!jeeFrontEnd.timeline) {
     sortByDateConsistentASC: function(itemA, itemB) {
       const valueA = itemA.date
       const valueB = itemB.date
-      const a = moment(valueA)
-      const b = moment(valueB)
+      const a = dayjs(valueA)
+      const b = dayjs(valueB)
       let r = 0
       if (a.isValid() && b.isValid()) {
         r = ((a.valueOf() > b.valueOf()) ? 1 : ((a.valueOf() < b.valueOf()) ? -1 : 0))

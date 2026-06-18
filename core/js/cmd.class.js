@@ -1184,34 +1184,34 @@ jeedom.cmd.formatMomentDuration = function(_duration) {
   let used = 0
   const lang = jeeFrontEnd.language
 
-  if (_duration._data.years > 0) {
-    durationString += _duration._data.years + jeedom.config.locales[lang].duration.year
+  if (_duration.years() > 0) {
+    durationString += _duration.years() + jeedom.config.locales[lang].duration.year
     used++
   }
-  if (_duration._data.months > 0) {
-    durationString += _duration._data.months + jeedom.config.locales[lang].duration.month
+  if (_duration.months() > 0) {
+    durationString += _duration.months() + jeedom.config.locales[lang].duration.month
     used++
   }
-  if (_duration._data.days > 0) {
-    durationString += _duration._data.days + jeedom.config.locales[lang].duration.day
-    used++
-  }
-
-  if (used == 3) return durationString
-  if (_duration._data.hours > 0) {
-    durationString += _duration._data.hours + jeedom.config.locales[lang].duration.hour
+  if (_duration.days() > 0) {
+    durationString += _duration.days() + jeedom.config.locales[lang].duration.day
     used++
   }
 
   if (used == 3) return durationString
-  if (_duration._data.minutes > 0) {
-    durationString += _duration._data.minutes + jeedom.config.locales[lang].duration.minute
+  if (_duration.hours() > 0) {
+    durationString += _duration.hours() + jeedom.config.locales[lang].duration.hour
     used++
   }
 
   if (used == 3) return durationString
-  if (_duration._data.seconds > 0) {
-    durationString += _duration._data.seconds + jeedom.config.locales[lang].duration.second
+  if (_duration.minutes() > 0) {
+    durationString += _duration.minutes() + jeedom.config.locales[lang].duration.minute
+    used++
+  }
+
+  if (used == 3) return durationString
+  if (_duration.seconds() > 0) {
+    durationString += _duration.seconds() + jeedom.config.locales[lang].duration.second
     used++
   }
 
@@ -1221,12 +1221,12 @@ jeedom.cmd.formatMomentDuration = function(_duration) {
 jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
   if (isElement_jQuery(_el)) _el = _el[0] //Deprecated, keep for mobile during transition
   if (_type == 'date') {
-    moment.locale(jeeFrontEnd.language.substring(0, 2))
+    dayjs.locale(jeeFrontEnd.language.substring(0, 2))
     let dateString
     if (isset(jeedom.config.locales[jeeFrontEnd.language].calendar)) {
-      dateString = moment(_date, 'YYYY-MM-DD HH:mm:ss').calendar(jeedom.config.locales[jeeFrontEnd.language].calendar)
+      dateString = dayjs(_date, 'YYYY-MM-DD HH:mm:ss').calendar(null, jeedom.config.locales[jeeFrontEnd.language].calendar)
     } else {
-      dateString = moment(_date, 'YYYY-MM-DD HH:mm:ss').calendar(jeedom.config.locales['en_US'].calendar)
+      dateString = dayjs(_date, 'YYYY-MM-DD HH:mm:ss').calendar(null, jeedom.config.locales['en_US'].calendar)
     }
     _el.innerHTML = dateString
     return true
@@ -1236,15 +1236,15 @@ jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
     clearInterval(_el.getAttribute('data-interval'))
   }
 
-  const tsDate = moment(_date).unix() * 1000
+  const tsDate = dayjs(_date).unix() * 1000
   const now = Date.now() + ((new Date).getTimezoneOffset() + jeeFrontEnd.serverTZoffsetMin) * 60000 + jeeFrontEnd.clientServerDiffDatetime
 
   let interval = 10000
   let durationString
   //_past more than one second ?
   if (now - tsDate > 1000) {
-    const duration = moment.duration(moment() - moment(_date))
-    const durationSec = duration._milliseconds / 1000
+    const duration = dayjs.duration(dayjs() - dayjs(_date))
+    const durationSec = duration.asMilliseconds() / 1000
     if (durationSec > 86399) {
       interval = 3600000
     } else if (durationSec > 3599) {
@@ -1258,7 +1258,7 @@ jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
 
   //set refresh interval:
   const myinterval = setInterval(function() {
-    const duration = moment.duration(moment() - moment(_date))
+    const duration = dayjs.duration(dayjs() - dayjs(_date))
     const durationString = jeedom.cmd.formatMomentDuration(duration)
     _el.innerHTML = durationString
   }, interval)

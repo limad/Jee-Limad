@@ -1869,9 +1869,9 @@ jeedom.history.setRangeSelectorButtons = function(_chartId) {
 Handle rangeSelector buttons for dynamic reloading:
 */
 jeedom.history.handleRangeButton = function(_button, _chartId) {
-  const mStart = moment(jeedom.history.chart[_chartId].dateStart, 'YYYY-MM-DD')
-  const mEnd = moment(jeedom.history.chart[_chartId].dateEnd, 'YYYY-MM-DD hh:mm:ss')
-  const mRequestStart = mEnd.clone().subtract(_button.count, _button.type)
+  const mStart = dayjs(jeedom.history.chart[_chartId].dateStart)
+  const mEnd = dayjs(jeedom.history.chart[_chartId].dateEnd, 'YYYY-MM-DD HH:mm:ss')
+  const mRequestStart = mEnd.subtract(_button.count, _button.type)
 
   if (mRequestStart.isBefore(mStart)) {
     const cmds = jeedom.history.chart[_chartId].cmd

@@ -206,6 +206,34 @@ class cmd {
 	}
 
 	/**
+	 * Batch-load all cmds for an array of eqLogic IDs — one query, grouped by eqLogic_id.
+	 * Used by eqLogic::preloadCmds() to eliminate N+1 on dashboard rendering.
+	 *
+	 * @param int[] $_ids
+	 * @return array<int, cmd[]>  keyed by eqLogic_id
+	 */
+	public static function preloadByEqLogicIds(array $_ids): array {
+		if (empty($_ids)) {
+			return [];
+		}
+		$ids = implode(',', array_map('intval', $_ids));
+		$sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+			FROM cmd
+			WHERE eqLogic_id IN (' . $ids . ')
+			ORDER BY `order`,`name`';
+		$cmds = DB::Prepare($sql, [], DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+		if (!is_array($cmds)) {
+			return [];
+		}
+		$result = [];
+		foreach ($cmds as $cmd) {
+			$cmd = self::cast($cmd);
+			$result[$cmd->getEqLogic_id()][] = $cmd;
+		}
+		return $result;
+	}
+
+	/**
 	 *
 	 * @param string $_logical_id
 	 * @param string $_type ['action'|'info']

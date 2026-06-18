@@ -45,6 +45,7 @@ class eqLogic {
 	protected $_changed = false;
 
 	protected $_cmds = array();
+	protected $_allCmds = null; // null = not preloaded; array set by preloadCmds()
 
 	protected static $_templateArray = array();
 
@@ -111,6 +112,26 @@ class eqLogic {
 		}
 		$sql .= ' ORDER BY ob.name,el.name';
 		return self::cast(DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__));
+	}
+
+	/**
+	 * Preload all cmds for a list of eqLogics in one SQL query (eliminates N+1).
+	 * After calling this, getCmd() uses the in-memory cache instead of hitting the DB.
+	 *
+	 * @param eqLogic[] $_eqLogics
+	 */
+	public static function preloadCmds(array $_eqLogics): void {
+		if (empty($_eqLogics)) {
+			return;
+		}
+		$ids = array_map(fn($eq) => $eq->getId(), $_eqLogics);
+		$cmdsByEqId = cmd::preloadByEqLogicIds($ids);
+		foreach ($_eqLogics as $eqLogic) {
+			$eqLogic->_allCmds = $cmdsByEqId[$eqLogic->getId()] ?? [];
+			foreach ($eqLogic->_allCmds as $cmd) {
+				$cmd->setEqLogic($eqLogic);
+			}
+		}
 	}
 
 	public static function byObjectId($_object_id, $_onlyEnable = true, $_onlyVisible = false, $_eqType_name = null, $_logicalId = null, $_orderByName = false, $_onlyHasCmds = false) {
@@ -1790,6 +1811,15 @@ class eqLogic {
 				return $this->_cmds[$_logicalId . '.' . $_multiple . '.' . $_type];
 			}
 			$cmds = cmd::byEqLogicIdAndLogicalId($this->id, $_logicalId, $_multiple, $_type, $this);
+		} elseif ($this->_allCmds !== null) {
+			$cmds = $this->_allCmds;
+			if ($_type !== null) {
+				$cmds = array_values(array_filter($cmds, fn($c) => $c->getType() == $_type));
+			}
+			if ($_visible !== null) {
+				$cmds = array_values(array_filter($cmds, fn($c) => $c->getIsVisible() == 1));
+			}
+			return $cmds;
 		} else {
 			$cmds = cmd::byEqLogicId($this->id, $_type, $_visible, $this);
 		}

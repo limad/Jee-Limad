@@ -28,7 +28,7 @@ if (!jeeFrontEnd.history) {
       this.pageContainer = document.getElementById('pageContainer')
       this.setHistoryOptions(false)
       document.getElementById('in_searchHistory').value = ''
-      moment.locale(jeeFrontEnd.language.substring(0, 2))
+      dayjs.locale(jeeFrontEnd.language.substring(0, 2))
       jeedomUtils.datePickerInit()
     },
     postInit: function() {
@@ -213,10 +213,10 @@ if (!jeeFrontEnd.history) {
             let _target = null
             const _md = document.getElementById('md_getCompareRange')
             if (_target = event.target.closest('#md_getCompareRange input.in_datepicker')) {
-              const fromStart = moment(_md.querySelector('#in_compareStart1').value + ' 00:00:00', 'YYYY-MM-DD HH:mm:ss')
-              const fromEnd = moment(_md.querySelector('#in_compareEnd1').value + ' 23:59:59', 'YYYY-MM-DD HH:mm:ss')
-              const toStart = moment(_md.querySelector('#in_compareStart2').value + ' 00:00:00', 'YYYY-MM-DD HH:mm:ss')
-              const toEnd = moment(_md.querySelector('#in_compareEnd2').value + ' 23:59:59', 'YYYY-MM-DD HH:mm:ss')
+              const fromStart = dayjs(_md.querySelector('#in_compareStart1').value)
+              const fromEnd = dayjs(_md.querySelector('#in_compareEnd1').value)
+              const toStart = dayjs(_md.querySelector('#in_compareStart2').value)
+              const toEnd = dayjs(_md.querySelector('#in_compareEnd2').value)
 
               const diffPeriod = fromEnd.diff(fromStart, 'days')
               const cdiffPeriod = toEnd.diff(toStart, 'days')
@@ -235,7 +235,7 @@ if (!jeeFrontEnd.history) {
               let num = event.target.value.split('.')[0]
               let type = event.target.value.split('.')[1]
 
-              let m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
+              let m_startDate = dayjs(startDate)
               let endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
               _md.querySelector('#in_compareStart1').value = endDate
 
@@ -244,7 +244,7 @@ if (!jeeFrontEnd.history) {
               type = _md.querySelector('#sel_comparePeriod').value.split('.')[1]
 
               startDate = endDate
-              m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
+              m_startDate = dayjs(startDate)
               endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
               _md.querySelector('#in_compareStart2').value = endDate
               _md.querySelector('input.in_datepicker').triggerEvent('change')
@@ -256,12 +256,12 @@ if (!jeeFrontEnd.history) {
               const num = event.target.value.split('.')[0]
               const type = event.target.value.split('.')[1]
 
-              let m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
+              let m_startDate = dayjs(startDate)
               let endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
               _md.querySelector('#in_compareEnd2').value = endDate
 
               startDate = _md.querySelector('#in_compareStart1').value
-              m_startDate = moment(startDate, 'YYYY-MM-DD HH:mm:ss')
+              m_startDate = dayjs(startDate)
               endDate = m_startDate.subtract(num, type).format("YYYY-MM-DD")
               _md.querySelector('#in_compareStart2').value = endDate
               _md.querySelector('input.in_datepicker').triggerEvent('change')

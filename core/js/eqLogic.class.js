@@ -635,25 +635,25 @@ jeedom.eqLogic.drawGraphInfo = function(_eqLogicUid, _cmdId) {
   } else {
     topMargin = 35
   }
-  const dateEnd = moment().format('YYYY-MM-DD HH:mm:ss')
+  const dateEnd = dayjs().format('YYYY-MM-DD HH:mm:ss')
   let dateStart
   const decay = drawEqEl.dataset.format
   switch (decay) {
     case 'hour':
       jeedom.eqLogic.backGraphIntervals[_cmdId] = 2 * 60 * 1000
-      dateStart = moment().subtract(1, 'hours').format('YYYY-MM-DD HH:mm:ss')
+      dateStart = dayjs().subtract(1, 'hours').format('YYYY-MM-DD HH:mm:ss')
       break
     case 'week':
       jeedom.eqLogic.backGraphIntervals[_cmdId] = 60 * 60 * 1000
-      dateStart = moment().subtract(7, 'days').format('YYYY-MM-DD HH:mm:ss')
+      dateStart = dayjs().subtract(7, 'days').format('YYYY-MM-DD HH:mm:ss')
       break
     case 'month':
       jeedom.eqLogic.backGraphIntervals[_cmdId] = 0
-      dateStart = moment().subtract(1, 'month').format('YYYY-MM-DD HH:mm:ss')
+      dateStart = dayjs().subtract(1, 'month').format('YYYY-MM-DD HH:mm:ss')
       break
     default:
       jeedom.eqLogic.backGraphIntervals[_cmdId] = 600 * 60 * 1000
-      dateStart = moment().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')
+      dateStart = dayjs().subtract(1, 'days').format('YYYY-MM-DD HH:mm:ss')
   }
 
   if (jeedom.eqLogic.backGraphIntervals[_cmdId] != 0) {
@@ -672,7 +672,7 @@ jeedom.eqLogic.drawGraphInfo = function(_eqLogicUid, _cmdId) {
     success: function(result) {
       if (result.data.length == 0) return false
       if (result.timelineOnly) return false
-      const now = (moment().unix() + (jeeFrontEnd.serverTZoffsetMin * 60)) * 1000
+      const now = (dayjs().unix() + (jeeFrontEnd.serverTZoffsetMin * 60)) * 1000
       const values = result.data.map(function(elt) {
         return elt[1]
       })
