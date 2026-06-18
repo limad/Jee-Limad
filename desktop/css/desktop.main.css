@@ -1035,17 +1035,13 @@ div.eqLogicZone {
     min-width: 32px !important;
     max-height: 30px;
   }
-  .eqLogic-widget .btn:not(.btn-primary):not(.btn-success):not(.btn-danger):not(.btn-warning):not(.btn-info),
-  .scenario-widget .btn:not(.btn-primary):not(.btn-success):not(.btn-danger):not(.btn-warning):not(.btn-info),
+  .eqLogic-widget :not(.input-group-btn) > .btn:not(.btn-primary):not(.btn-success):not(.btn-danger):not(.btn-warning):not(.btn-info),
+  .scenario-widget :not(.input-group-btn) > .btn:not(.btn-primary):not(.btn-success):not(.btn-danger):not(.btn-warning):not(.btn-info),
   #dashTopBar > div > a,
   #dashTopBar button {
     background-color: var(--widget-btn-bg, var(--btnEq-default-color));
     border: 1px solid var(--btn-default-border, color-mix(in srgb, var(--widget-btn-bg, var(--btnEq-default-color)) 70%, #000));
     border-radius: var(--btn-semantic-radius, var(--border-radius));
-  }
-  .eqLogic-widget .input-group-btn > .btn,
-  .scenario-widget .input-group-btn > .btn {
-    border-radius: revert-layer;
   }
   .eqLogic.eqLogic-widget .btn,
   .scenario.scenario-widget .btn,
