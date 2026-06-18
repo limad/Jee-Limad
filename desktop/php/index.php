@@ -287,6 +287,7 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 	//set theme before loading utils:
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'dom.ui', 'css');
+	include_file('desktop', 'desktop.props', 'css');
 	include_file('desktop', 'desktop.main', 'css');
 	setTheme();
 	sendVarToJS([

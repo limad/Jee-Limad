@@ -653,7 +653,7 @@ Desktop
   }
   .btn:hover {
     color: var(--linkHoverLight-color);
-    opacity: .85;
+    background-color: color-mix(in srgb, var(--btn-default-color) 85%, #000);
   }
   .btn:not(.cmdName).active {
     color: var(--al-info-color);
@@ -1052,6 +1052,7 @@ div.eqLogicZone {
   .scenario.scenario-widget .btn:hover,
   #div_displayObject .btn:hover {
     color: var(--widget-btn-hover-color, var(--linkHoverLight-color));
+    background-color: color-mix(in srgb, var(--al-primary-color) var(--widget-btn-hover-mix, 25%), transparent);
   }
 
   /* dashboard equipments text color */
@@ -2517,6 +2518,11 @@ div.eqLogic-widget.editingMode .panelLink {
     border: 1px solid var(--btn-success-border, color-mix(in srgb, var(--al-success-color) 70%, #000));
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
+  .btn.btn-primary:hover  { background-color: color-mix(in srgb, var(--al-primary-color) 85%, #000); }
+  .btn.btn-info:hover     { background-color: color-mix(in srgb, var(--btn-info-bg, var(--al-info-color)) 85%, #000); }
+  .btn.btn-success:hover  { background-color: color-mix(in srgb, var(--btn-success-bg, var(--al-success-color)) 85%, #000); }
+  .btn.btn-warning:hover  { background-color: color-mix(in srgb, var(--btn-warning-bg, var(--al-warning-color)) 85%, #000); }
+  .btn.btn-danger:hover   { background-color: color-mix(in srgb, var(--btn-danger-bg, var(--al-danger-color)) 85%, #000); }
 
   button:focus {
     outline:0;
@@ -2530,7 +2536,7 @@ div.eqLogic-widget.editingMode .panelLink {
     padding: 7px 8px;
     height: 32px;
     line-height: 18px;
-    transition: background-color var(--jeedom-transition), box-shadow var(--jeedom-transition), opacity var(--jeedom-transition);
+    transition: background-color var(--jeedom-transition), box-shadow var(--jeedom-transition);
   }
   button.btn,
   a.btn {

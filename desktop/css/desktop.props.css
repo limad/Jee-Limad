@@ -1,0 +1,26 @@
+/*
+  CSS @property registrations for Jeedom Core Desktop.
+  Must be outside @layer — loaded separately before desktop.main.min.css.
+
+  Registering these properties as typed allows the browser to interpolate
+  them correctly in transitions (e.g. a <percentage> in color-mix() can
+  animate smoothly; an unregistered custom property only snaps).
+*/
+
+@property --widget-btn-hover-mix {
+  syntax: '<percentage>';
+  inherits: true;
+  initial-value: 0%;
+}
+
+@property --opacity {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --objectBackgroundBlur {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
