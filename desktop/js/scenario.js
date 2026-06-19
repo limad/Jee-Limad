@@ -50,7 +50,7 @@ if (!jeeFrontEnd.scenario) {
       jeeP.loadId = getUrlVars('id')
       if (is_numeric(jeeP.loadId)) {
         this.printScenario(jeeP.loadId, function() {
-          if (jeephp2js.initSearch != 0) {
+          if (jeephp2js.initSearch !== 0) {
             document.getElementById('bt_scenarioTab').click()
             document.getElementById('bt_resetInsideScenarioSearch').click()
             setTimeout(function() {

@@ -47,32 +47,32 @@ if (!jeeFrontEnd.interact) {
           let option = null
           if (isset(data.filtres) && isset(data.filtres.type) && isPlainObject(data.filtres.type)) {
             for (const i in data.filtres.type) {
-              if (data.filtres.type[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="type"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
+              if (data.filtres.type[i] === '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="type"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
           if (isset(data.filtres) && isset(data.filtres.subtype) && isPlainObject(data.filtres.subtype)) {
             for (const i in data.filtres.subtype) {
-              if (data.filtres.subtype[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="subtype"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
+              if (data.filtres.subtype[i] === '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="subtype"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
           if (isset(data.filtres) && isset(data.filtres.unite) && isPlainObject(data.filtres.unite)) {
             for (const i in data.filtres.unite) {
-              if (data.filtres.unite[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="unite"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
+              if (data.filtres.unite[i] === '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="unite"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
           if (isset(data.filtres) && isset(data.filtres.object) && isPlainObject(data.filtres.object)) {
             for (const i in data.filtres.object) {
-              if (data.filtres.object[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="object"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
+              if (data.filtres.object[i] === '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="object"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
           if (isset(data.filtres) && isset(data.filtres.plugin) && isPlainObject(data.filtres.plugin)) {
             for (const i in data.filtres.plugin) {
-              if (data.filtres.plugin[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="plugin"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
+              if (data.filtres.plugin[i] === '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="plugin"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
           if (isset(data.filtres) && isset(data.filtres.category) && isPlainObject(data.filtres.category)) {
             for (const i in data.filtres.category) {
-              if (data.filtres.category[i] == '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="category"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
+              if (data.filtres.category[i] === '1') (option = document.querySelector('.interactAttr[data-l1key="filtres"][data-l2key="category"][data-l3key="' + i + '"]')) != null ? option.selected = true : null
             }
           }
           if (isset(data.actions) && isset(data.actions.cmd) && Array.isArray(data.actions.cmd)) {

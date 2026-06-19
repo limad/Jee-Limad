@@ -229,7 +229,7 @@ jeedom.init = function() {
   })
 
   document.body.addEventListener('jeedom::gotoplan', function(_event) {
-    if (getUrlVars('p') == 'plan' && 'function' == typeof (jeeFrontEnd.plan.displayPlan)) {
+    if (getUrlVars('p') === 'plan' && 'function' == typeof (jeeFrontEnd.plan.displayPlan)) {
       if (_event.detail != jeephp2js.planHeader_id) {
         jeephp2js.planHeader_id = _event.detail
         jeeFrontEnd.plan.displayPlan()
@@ -338,7 +338,7 @@ jeedom.refreshMessageNumber = function() {
     },
     success: function(_number) {
       jeedom.MESSAGE_NUMBER = _number
-      if (_number == 0 || _number == '0') {
+      if (_number == 0 || _number === '0') {
         document.getElementById('span_nbMessage').unseen()
       } else {
         document.getElementById('span_nbMessage').seen().textContent = _number
@@ -360,7 +360,7 @@ jeedom.refreshUpdateNumber = function() {
     },
     success: function(_number) {
       jeedom.UPDATE_NUMBER = _number
-      if (_number == 0 || _number == '0') {
+      if (_number == 0 || _number === '0') {
         document.getElementById('span_nbUpdate').unseen()
       } else {
         document.getElementById('span_nbUpdate').seen().textContent = _number

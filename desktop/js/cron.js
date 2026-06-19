@@ -45,7 +45,7 @@ if (!jeeFrontEnd.cron) {
     switchState: function(state) {
       if (!isset(state)) state = document.getElementById('bt_changeCronState').getAttribute('data-state')
       let button = document.getElementById('bt_changeCronState')
-      if (state == '0') {
+      if (state === '0') {
         button.removeClass('btn-danger').addClass('btn-success').setAttribute('data-state', '1')
         button.innerHTML = '<i class="fas fa-check"></i> {{Activer le système cron}}</a>'
         document.getElementById('div_pageContainer').querySelectorAll('ul[role="tablist"] > li').addClass('warning')

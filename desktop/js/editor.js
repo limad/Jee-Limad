@@ -114,7 +114,7 @@ if (!jeeFrontEnd.editor) {
           this.titleOn = '{{Personnalisation avancée active}}'
           this.textOff = '{{Désactivé}}'
           this.titleOff = '{{Personnalisation avancée inactive}}'
-          if (jeephp2js.customActive == '1') {
+          if (jeephp2js.customActive === '1') {
             this.config = 1
           } else {
             this.config = 0

@@ -34,7 +34,7 @@ if (!jeeFrontEnd.plugin) {
     },
     postInit: function() {
       //is plugin id in url to go to configuration:
-      if (typeof (jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId != -1) {
+      if (typeof (jeephp2js.selPluginId) !== "undefined" && jeephp2js.selPluginId !== -1) {
         let modal = jeeDialog.get('#div_confPlugin', 'dialog')
         let dom_container = null
         if (modal != null) {
@@ -339,7 +339,7 @@ if (!jeeFrontEnd.plugin) {
           const dom_divPluginConfiguration = self.dom_container.querySelector('#div_plugin_configuration')
           dom_divPluginConfiguration.empty()
           if (data.checkVersion != -1) {
-            if (data.configurationPath != '' && data.activate == '1') {
+            if (data.configurationPath != '' && data.activate === '1') {
               dom_divPluginConfiguration.load('index.php?v=d&plugin=' + data.id + '&configure=1', function() {
                 if (dom_divPluginConfiguration.innerHTML.trim() === '') {
                   dom_divPluginConfiguration.closest('.panel').unseen()

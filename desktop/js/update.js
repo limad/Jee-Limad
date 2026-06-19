@@ -197,7 +197,7 @@ if (!jeeFrontEnd.update) {
       if (_update.status == 'UPDATE') {
         labelClass = 'label-warning'
         if (_update.type === 'core' || _update.type === 'plugin') {
-          if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') jeeP.hasUpdate = true
+          if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate === '0') jeeP.hasUpdate = true
         }
       }
 
@@ -284,19 +284,19 @@ if (!jeeFrontEnd.update) {
       }
       if (_update.type !== 'core') {
         if (_update.status == 'UPDATE') {
-          if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') {
+          if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate === '0') {
             tr += '<button type="button" class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></button> '
           } else {
             tr += '<button type="button" class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></button> '
           }
         } else {
-          if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') {
+          if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate === '0') {
             tr += '<button type="button" class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Réinstaller}}</span></button> '
           } else {
             tr += '<button type="button" class="btn btn-warning btn-xs update disabled"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Réinstaller}}</span></button> '
           }
         }
-      } else if (_update.status == 'UPDATE' && jeephp2js.showUpdate == '1') {
+      } else if (_update.status == 'UPDATE' && jeephp2js.showUpdate === '1') {
         tr += '<button type="button" class="btn btn-warning btn-xs updateJeedom"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></button> '
       }
       if (_update.type !== 'core') {
@@ -608,7 +608,7 @@ if (!jeeFrontEnd.update) {
 
 jeeFrontEnd.update.init()
 
-if (jeephp2js.isUpdating == '1') {
+if (jeephp2js.isUpdating === '1') {
   jeedomUtils.hideAlert()
   jeeP.progress = 7
   document.getElementById('progressbarContainer').removeClass('hidden')

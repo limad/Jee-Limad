@@ -40,9 +40,9 @@ if (!jeeFrontEnd.plan) {
           highlight: true
         }
       } else if (jeedomUtils.userDevice.type == 'desktop') {
-        if (getCookie('plan_gridSize') != '') jeeFrontEnd.planEditOption.gridSize = getCookie('plan_gridSize').split(',')
-        if (getCookie('plan_grid') != '') jeeFrontEnd.planEditOption.grid = (getCookie('plan_grid') == '1')
-        if (getCookie('plan_highlight') != '') jeeFrontEnd.planEditOption.highlight = (getCookie('plan_highlight') == '1')
+        if (getCookie('plan_gridSize') !== '') jeeFrontEnd.planEditOption.gridSize = getCookie('plan_gridSize').split(',')
+        if (getCookie('plan_grid') !== '') jeeFrontEnd.planEditOption.grid = (getCookie('plan_grid') === '1')
+        if (getCookie('plan_highlight') !== '') jeeFrontEnd.planEditOption.highlight = (getCookie('plan_highlight') === '1')
       }
       jeedom.getInfoApplication({
         version: 'dashboard',
@@ -136,18 +136,18 @@ if (!jeeFrontEnd.plan) {
       })
     },
     displayPlan: function(_code) {
-      if (jeephp2js.planHeader_id == -1) return
+      if (jeephp2js.planHeader_id === -1) return
       if (typeof _code == "undefined") {
         _code = null
       }
-      if (getUrlVars('fullscreen') == 1) {
+      if (getUrlVars('fullscreen') === 1) {
         jeeP.fullScreen(true)
       }
       jeedom.plan.getHeader({
         id: jeephp2js.planHeader_id,
         code: _code,
         error: function(error) {
-          if (error.code == -32005) {
+          if (error.code === -32005) {
             const result = prompt("{{Veuillez indiquer le code ?}}", "")
             if (result == null) {
               jeedomUtils.showAlert({
@@ -275,10 +275,10 @@ if (!jeeFrontEnd.plan) {
       } else if (['view', 'plan'].includes(_plan.link_type)) {
         css_selector = '.div_displayObject .' + _plan.link_type + '-link-widget[data-id="' + _plan.id + '"]'
         document.querySelector(css_selector)?.remove()
-      } else if (_plan.link_type == 'cmd') {
+      } else if (_plan.link_type === 'cmd') {
         css_selector = '.div_displayObject > .cmd-widget[data-cmd_id="' + _plan.link_id + '"]'
         document.querySelector(css_selector)?.remove()
-      } else if (_plan.link_type == 'graph') {
+      } else if (_plan.link_type === 'graph') {
         if (jeedom.history.chart['div_designGraph' + _plan.link_id]) {
           delete jeedom.history.chart['div_designGraph' + _plan.link_id]
         }
@@ -304,7 +304,7 @@ if (!jeeFrontEnd.plan) {
       }
       style['transform-origin'] = '0 0'
 
-      if (_plan.link_type != 'cmd') {
+      if (_plan.link_type !== 'cmd') {
         if (isset(_plan.display) && isset(_plan.display.width)) {
           style['width'] = init(_plan.display.width, 50) + 'px'
           node.style.width = style['width']
@@ -325,13 +325,13 @@ if (!jeeFrontEnd.plan) {
               style['background-color'] = 'transparent'
               style['border-radius'] = '0px'
               style['box-shadow'] = 'none'
-              if (_plan.link_type == 'eqLogic') {
+              if (_plan.link_type === 'eqLogic') {
                 another_css += css_selector + ' .widget-name{background-color : transparent !important;border:none!important;}'
                 if (_plan.display['color-defaut'] == 0 && isset(_plan.css.color)) {
                   another_css += css_selector + ' .widget-name a{color : ' + _plan.css.color + ' !important;}'
                   another_css += css_selector + ' .state{color : ' + _plan.css.color + ' !important;}'
                 }
-              } else if (_plan.link_type == 'cmd') {
+              } else if (_plan.link_type === 'cmd') {
                 if (_plan.display['color-defaut'] == 0 && isset(_plan.css.color)) {
                   another_css += css_selector + ' .widget-name a{color : ' + _plan.css.color + ' !important;}'
                   another_css += css_selector + ' .state{color : ' + _plan.css.color + ' !important;}'
@@ -345,7 +345,7 @@ if (!jeeFrontEnd.plan) {
         } else if (key == 'color') {
           if (!isset(_plan.display) || !isset(_plan.display['color-defaut']) || _plan.display['color-defaut'] != 1) {
             style[key] = _plan.css[key]
-            if (_plan.link_type == 'eqLogic' || _plan.link_type == 'cmd' || _plan.link_type == 'summary') {
+            if (_plan.link_type === 'eqLogic' || _plan.link_type === 'cmd' || _plan.link_type === 'summary') {
               another_css += css_selector + ' * {\n' + key + ' : ' + _plan.css[key] + ' !important;}'
               another_css += css_selector + ' .state {\n' + key + ' : ' + _plan.css[key] + ' !important;}'
             }
@@ -353,7 +353,7 @@ if (!jeeFrontEnd.plan) {
           continue
         }
         if (key == 'opacity') continue
-        if (key == 'font-size' && _plan.link_type == 'summary') {
+        if (key == 'font-size' && _plan.link_type === 'summary') {
           another_css += css_selector + ' .objectSummaryParent{\n' + key + ' : ' + _plan.css[key] + ' !important;\n}'
           continue
         }
@@ -369,7 +369,7 @@ if (!jeeFrontEnd.plan) {
         }
       }
 
-      if (_plan.link_type == 'eqLogic') {
+      if (_plan.link_type === 'eqLogic') {
         if (isset(_plan.display.hideName) && _plan.display.hideName == 1) {
           node.addClass('hideEqLogicName')
           another_css += css_selector + ' .verticalAlign{height: 100% !important;\n}'
@@ -414,7 +414,7 @@ if (!jeeFrontEnd.plan) {
         another_css += '\n}'
       }
 
-      if (_plan.link_type == 'cmd') {
+      if (_plan.link_type === 'cmd') {
         const center = document.createElement('center')
         center.append(...node.childNodes)
         node.appendChild(center)
@@ -431,7 +431,7 @@ if (!jeeFrontEnd.plan) {
         }
       }
 
-      if (_plan.link_type == 'image') {
+      if (_plan.link_type === 'image') {
         if (isset(_plan.display.allowZoom) && _plan.display.allowZoom == 1) {
           node.querySelector('.directDisplay')?.addClass('zoom cursor')
         }
@@ -461,7 +461,7 @@ if (!jeeFrontEnd.plan) {
       }
       style_el += '}\n' + another_css + '</style>'
 
-      if (_plan.link_type == 'graph') {
+      if (_plan.link_type === 'graph') {
         jeeFrontEnd.plan.pageContainer.insertAdjacentHTML('beforeend', style_el)
         jeeFrontEnd.plan.planContainer.appendChild(node)
         if (isset(_plan.display) && isset(_plan.display.graph)) {
@@ -741,7 +741,7 @@ if (!jeeFrontEnd.plan) {
     },
     //save
     savePlan: function(_refreshDisplay, _async) {
-      if (jeephp2js.planHeader_id == -1) return
+      if (jeephp2js.planHeader_id === -1) return
       domUtils.showLoading()
       const plans = []
       let info, plan, position
@@ -1465,7 +1465,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
 document.querySelector('.div_displayObject').addEventListener('mouseenter', function(event) {
   if (event.target.matches('.zone-widget.zoneEqLogic.zoneEqLogicOnFly')) {
-    if (!jeeFrontEnd.planEditOption.state && event.target.getAttribute('data-flying') != '1') {
+    if (!jeeFrontEnd.planEditOption.state && event.target.getAttribute('data-flying') !== '1') {
       const el = event.target
       el.setAttribute('data-flying', '1')
       jeeP.clickedOpen = true
@@ -1491,7 +1491,7 @@ document.querySelector('.div_displayObject').addEventListener('mouseenter', func
 
 document.querySelector('.div_displayObject').addEventListener('mouseleave', function(event) {
   if (event.target.matches('.zone-widget.zoneEqLogic.zoneEqLogicOnFly')) {
-    if (event.target.getAttribute('data-flying') == '1') {
+    if (event.target.getAttribute('data-flying') === '1') {
       event.target.setAttribute('data-flying', '0')
       event.target.empty()
       jeeP.clickedOpen = false

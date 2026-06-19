@@ -51,7 +51,7 @@ jeedom.private = {
  * Convert ajax return into object
  */
 jeedom.private.handleAjaxErrorAPI = function(_request, _status, _error) {
-  if (_request.status && _request.status != '0') {
+  if (_request.status && _request.status !== '0') {
     if (_request.responseText) {
       return {
         type: 'AJAX',

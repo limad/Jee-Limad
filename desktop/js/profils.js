@@ -98,7 +98,7 @@ jeedom.user.get({
 
 
 //Manage events outside parents delegations:
-if (jeephp2js.profils_user_id == -1) {
+if (jeephp2js.profils_user_id === -1) {
   document.getElementById('bt_genUserKeyAPI')?.addEventListener('click', function(event) {
     const profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
     profil.hash = ''
@@ -151,7 +151,7 @@ if (jeephp2js.profils_user_id == -1) {
 document.getElementById('bt_saveProfils')?.addEventListener('click', function(event) {
   jeedomUtils.hideAlert()
   const profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
-  if (jeephp2js.profils_user_id == -1) {
+  if (jeephp2js.profils_user_id === -1) {
     if (profil.password != document.getElementById('in_passwordCheck').value) {
       jeedomUtils.showAlert({
         message: "{{Les deux mots de passe ne sont pas identiques}}",
@@ -231,7 +231,7 @@ document.getElementById('bt_configureTwoFactorAuthentification')?.addEventListen
 */
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
   let _target = null
-  if (jeephp2js.profils_user_id == -1) {
+  if (jeephp2js.profils_user_id === -1) {
     if (_target = event.target.closest('.bt_removeRegisterDevice')) {
       jeeFrontEnd.profils.removeRegisterDevice(_target.closest('tr').getAttribute('data-key'))
       return

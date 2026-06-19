@@ -635,7 +635,7 @@ jeedom.history.drawChart = function(_params) {
               },
               series: {
                 animation: {
-                  duration: (getUrlVars('report') == 1) ? 0 : jeedom.history.chartDrawTime
+                  duration: (getUrlVars('report') === 1) ? 0 : jeedom.history.chartDrawTime
                 }
               },
               pie: {
@@ -851,7 +851,7 @@ jeedom.history.drawChart = function(_params) {
               series: {
                 pointWidth: _params.pointWidth || undefined,
                 animation: {
-                  duration: (getUrlVars('report') == 1) ? 0 : jeedom.history.chartDrawTime
+                  duration: (getUrlVars('report') === 1) ? 0 : jeedom.history.chartDrawTime
                 },
                 events: {
                   legendItemClick: function(event) {
@@ -1143,7 +1143,7 @@ jeedom.history.initChart = function(_chartId, _options) {
   }
 
   if (jeedom.history.chart[thisId].type === 'pie') return false
-  if (getUrlVars('v') != 'm') jeedom.history.initLegendContextMenu(_chartId)
+  if (getUrlVars('v') !== 'm') jeedom.history.initLegendContextMenu(_chartId)
 
   if (isset(_options.default.yAxisScaling)) jeedom.history.default.yAxisScaling = Boolean(Number(_options.default.yAxisScaling))
   if (isset(_options.default.yAxisByUnit)) jeedom.history.default.yAxisByUnit = Boolean(Number(_options.default.yAxisByUnit))
@@ -1471,7 +1471,7 @@ jeedom.history.chartDone = function(_chartId) {
           jeeFrontEnd[jeedom.history.chart[_chartId].mode].highcharts_done_callback(_chartId)
         }
       }
-    }, (getUrlVars('report') == 1) ? 0 : jeedom.history.chartDrawTime)
+    }, (getUrlVars('report') === 1) ? 0 : jeedom.history.chartDrawTime)
   } catch (error) {
     console.error(error)
   }

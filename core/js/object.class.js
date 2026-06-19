@@ -423,7 +423,7 @@ jeedom.object.getImgPath = function(_params) {
         return '';
       }
       //useBackground 1 = only on synthesis
-      if (isset(data.configuration.useBackground) && data.configuration.useBackground == '1') {
+      if (isset(data.configuration.useBackground) && data.configuration.useBackground === '1') {
         jeedomUtils.setBackgroundImage('')
         return
       }

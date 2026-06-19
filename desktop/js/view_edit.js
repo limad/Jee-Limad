@@ -522,7 +522,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       inputType: false,
       callback: function(result) {
         if (result) {
-          if (result.name == '') {
+          if (result.name === '') {
             jeedomUtils.showAlert({
               message: '{{Le nom de la viewZone ne peut être vide}}',
               level: 'warning'
@@ -570,7 +570,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       inputType: false,
       callback: function(result) {
         if (result) {
-          if (result.name == '') {
+          if (result.name === '') {
             jeedomUtils.showAlert({
               message: '{{Le nom de la viewZone ne peut être vide}}',
               level: 'warning'

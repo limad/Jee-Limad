@@ -31,7 +31,7 @@ if (!jeeFrontEnd.plan3d) {
     init: function() {
       window.jeeP = this
       document.getElementById('div_pageContainer').style.height = '100%'
-      if (getUrlVars('fullscreen') == '1') {
+      if (getUrlVars('fullscreen') === '1') {
         document.getElementById('div_colPlan3d').removeClass('col-lg-10')
         document.getElementById('div_colPlan3d').addClass('col-lg-12')
         document.getElementById('div_colMenu').unseen()

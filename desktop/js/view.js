@@ -53,7 +53,7 @@ if (!jeeFrontEnd.view) {
           })
         },
         success: function(html) {
-          if (isset(html.raw) && isset(html.raw.img) && html.raw.img != '') {
+          if (isset(html.raw) && isset(html.raw.img) && html.raw.img !== '') {
             jeedomUtils.setBackgroundImage(html.raw.img)
           } else {
             jeedomUtils.setBackgroundImage('')
@@ -92,7 +92,7 @@ if (!jeeFrontEnd.view) {
             if (isset(html.raw) && isset(html.raw.configuration) && isset(html.raw.configuration.displayObjectName) && html.raw.configuration.displayObjectName == 1) {
               document.querySelectorAll('.eqLogic-widget, .scenario-widget').addClass('displayObjectName')
             }
-            if (getUrlVars('fullscreen') == 1) {
+            if (getUrlVars('fullscreen') === 1) {
               jeeP.fullScreen(true)
             }
           }, 10)
@@ -138,7 +138,7 @@ if (!jeeFrontEnd.view) {
         return
       }
       const divEquipements = document.querySelector('div.div_displayView')
-      if (_mode == 0 || _mode == '0') { //Exit edit mode:
+      if (_mode == 0 || _mode === '0') { //Exit edit mode:
         jeeFrontEnd.modifyWithoutSave = false
         jeedomUI.isEditing = false
         jeedom.cmd.disableExecute = false

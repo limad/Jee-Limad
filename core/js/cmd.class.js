@@ -1068,7 +1068,7 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
         })
         return
       }
-      if (data.result.html != '') {
+      if (data.result.html !== '') {
         html += data.result.html
       }
       if ('function' == typeof (_callback)) {

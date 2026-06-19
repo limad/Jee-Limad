@@ -121,7 +121,7 @@ if (!jeeFrontEnd.object) {
           document.querySelectorAll('.div_summary').empty()
           document.querySelectorAll('.tabnumber').empty()
 
-          if (isset(data.img) && data.img != '') {
+          if (isset(data.img) && data.img !== '') {
             document.querySelector('.objectImg').seen().querySelector('img').src = data.img
           } else {
             document.querySelector('.objectImg').unseen()
@@ -452,12 +452,12 @@ try {
 
       //configuration hideOnDashboard, hideOnOverview:
       const thisObjectFromList = jeeP.objectList.filter(x => x.id == thisObjectId)[0]
-      if (thisObjectFromList.hideOnOverview == '0') {
+      if (thisObjectFromList.hideOnOverview === '0') {
         contextmenuitems['hideSynthesis'] = {'name': '{{Rendre invisible sur la Synthèse}}', 'id': 'hideSynthesis', 'icon': 'fas fa-toggle-on'}
       } else {
         contextmenuitems['showSynthesis'] = {'name': '{{Rendre visible sur la Synthèse}}', 'id': 'showSynthesis', 'icon': 'fas fa-toggle-off'}
       }
-      if (thisObjectFromList.hideOnDashboard == '0') {
+      if (thisObjectFromList.hideOnDashboard === '0') {
         contextmenuitems['hideDashboard'] = {'name': '{{Rendre invisible sur le Dashboard}}', 'id': 'hideDashboard', 'icon': 'fas fa-toggle-on'}
       } else {
         contextmenuitems['showDashboard'] = {'name': '{{Rendre visible sur le Dashboard}}', 'id': 'showDashboard', 'icon': 'fas fa-toggle-off'}

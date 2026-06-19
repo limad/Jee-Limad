@@ -38,7 +38,7 @@ if (!jeeFrontEnd.pluginTemplate) {
       const coreSupport = butDisp.dataset.coresupport === '1' ? true : false
       if (butDisp != null) {
         butDisp.removeClass('hidden') //Not shown on previous core versions
-        if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
+        if (getCookie('jeedom_displayAsTable') === 'true' || jeedom.theme.theme_displayAsTable == 1) {
           butDisp.addClass('active').dataset.state = '1'
           if (coreSupport) {
             document.querySelectorAll('.eqLogicDisplayCard')?.addClass('displayAsTable')

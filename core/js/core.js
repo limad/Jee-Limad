@@ -48,7 +48,7 @@ function getTemplate(_folder, _version, _filename, _replace) {
 function handleAjaxError(_request, _status, _error, _attachTo) {
   if (!isset(_attachTo)) _attachTo = false
   domUtils.hideLoading()
-  if (_request.status != '0') {
+  if (_request.status !== '0') {
     if (init(_request.responseText, '') !== '') {
       jeedomUtils.showAlert({
         message: _request.responseText,

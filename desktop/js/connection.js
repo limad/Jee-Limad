@@ -46,7 +46,7 @@ if (!jeeFrontEnd.connection) {
         twoFactorCode: document.getElementById('in_twoFactorCode').value,
         storeConnection: (document.getElementById('cb_storeConnection').checked) ? 1 : 0,
         error: function(error) {
-          if (error.code == -32012) {
+          if (error.code === -32012) {
             document.getElementById('div_twoFactorCode').seen()
             return
           }

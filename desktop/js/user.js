@@ -117,7 +117,7 @@ if (!jeeFrontEnd.user) {
               userTR += '<div class="input-group pull-right" style="display:inline-flex">'
               userTR += '<span class="input-group-btn">'
 
-              if (jeeFrontEnd.ldapEnable != '1') {
+              if (jeeFrontEnd.ldapEnable !== '1') {
                 userTR += '<a class="btn btn-xs btn-danger bt_del_user roundedRight"><i class="far fa-trash-alt"></i><span class="hidden-1280"> {{Supprimer}}</span></a>'
                 userTR += '<a class="btn btn-xs btn-warning bt_change_mdp_user"><i class="fas fa-pencil-alt"></i><span class="hidden-1280"> {{Mot de passe}}</span></a>'
               }
@@ -285,7 +285,7 @@ document.getElementById('div_administration').addEventListener('click', function
 
   if (_target = event.target.closest('#bt_supportAccess')) {
     const enable = _target.getAttribute('data-enable');
-    if (enable == '1') {
+    if (enable === '1') {
         bootbox.confirm({
             message: "{{En activant l\'accès support, vous autorisez un technicien du support Jeedom à accéder à votre installation. Continuez ?}}",
             buttons: {

@@ -314,7 +314,7 @@ if (!jeeFrontEnd.types) {
           eqGeneric = null
         }
         _listEqlogic.querySelectorAll('li.eqLogic').forEach(_eqlogic => {
-          if (_eqlogic.getAttribute('data-changed') == '0') return true
+          if (_eqlogic.getAttribute('data-changed') === '0') return true
           eqLogics.push({
             id: _eqlogic.getAttribute('data-id'),
             generic_type: eqGeneric
@@ -338,7 +338,7 @@ if (!jeeFrontEnd.types) {
       //save cmds:
       const cmds = []
       document.querySelectorAll('li.cmd').forEach(_cmd => {
-        if (_cmd.getAttribute('data-changed') == '0') return true
+        if (_cmd.getAttribute('data-changed') === '0') return true
         cmds.push({
           id: _cmd.getAttribute('data-id'),
           generic_type: _cmd.getAttribute('data-generic')
