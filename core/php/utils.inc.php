@@ -90,7 +90,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 		return;
 	}
 	if ($type == 'css') {
-		if ($_plugin == '' && in_array($_folder, array('desktop/css', 'mobile/css'))) {
+		if ($_plugin == '' && in_array($_folder, array('desktop/css', 'mobile/css')) && config::byKey('css::minify', 'core', 1) == 1) {
 			$minFn = str_replace('.css', '.min.css', $_fn);
 			$minPath = __DIR__ . '/../../' . $_folder . '/' . $minFn;
 			if (file_exists($minPath)) {
