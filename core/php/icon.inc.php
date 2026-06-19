@@ -25,4 +25,4 @@ foreach (ls($root_dir, '*') as $dir) {
 }
 
 echo '<link rel="stylesheet" href="3rdparty/font-awesome5/css/all.min.css">' . "\n";
-echo '<link rel="stylesheet" href="core/css/icon/icons-no-mdi.min.css?md5=' . md5_file(__DIR__ . '/../../core/css/icon/icons-no-mdi.min.css') . '">' . "\n";
+echo '<link rel="stylesheet" href="core/css/icon/icons-no-mdi.css?md5=' . md5_file(__DIR__ . '/../../core/css/icon/icons-no-mdi.css') . '">' . "\n";

@@ -223,8 +223,6 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 		//Deprecated 4.4, keep for plugins
 		include_file('3rdparty', 'bootbox/bootbox.min', 'js');
 
-		//Deprecated Core css
-		include_file('desktop', 'deprecated.main', 'css');
 	}
 	if ($loadJquery) {
 		include_file('3rdparty', 'jquery.fileupload/jquery.ui.widget', 'js');
@@ -288,19 +286,14 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 	include_file('desktop', 'coreWidgets', 'css');
 	include_file('desktop', 'dom.ui', 'css');
 	include_file('desktop', 'desktop.props', 'css');
-	if (config::byKey('css::minify', 'core', 1) == 1) {
-		include_file('desktop', 'desktop.main', 'css');
-	} else {
-		// Min OFF : le .min fournit normalement le wrapper @layer base + l'import
-		// bootstrap. La source brute n'a ni l'un ni l'autre ; on les réinjecte ici
-		// pour préserver la cascade (bootstrap < base < theme) et le chargement de bootstrap.
-		$_bsPath = __DIR__ . '/../css/bootstrap.min.css';
-		$_dmPath = __DIR__ . '/../css/desktop.main.css';
-		echo '<style>@layer bootstrap,base,theme;'
-			. '@import url("/desktop/css/bootstrap.min.css?md5=' . md5_file($_bsPath) . '") layer(bootstrap);'
-			. '@import url("/desktop/css/desktop.main.css?md5=' . md5_file($_dmPath) . '") layer(base);'
-			. '</style>';
-	}
+	// CSS servi en source (non minifié). desktop.main n'a pas de wrapper @layer ni
+	// d'import bootstrap : on les injecte ici pour la cascade (bootstrap < base < theme).
+	$_bsPath = __DIR__ . '/../css/bootstrap.css';
+	$_dmPath = __DIR__ . '/../css/desktop.main.css';
+	echo '<style>@layer bootstrap,base,theme;'
+		. '@import url("/desktop/css/bootstrap.css?md5=' . md5_file($_bsPath) . '") layer(bootstrap);'
+		. '@import url("/desktop/css/desktop.main.css?md5=' . md5_file($_dmPath) . '") layer(base);'
+		. '</style>';
 	setTheme();
 	sendVarToJS([
 		'jeeFrontEnd.language' => $configs['language'],
