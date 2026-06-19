@@ -13,6 +13,9 @@ Desktop
     --jeedom-shadow-md: 0 2px 8px rgba(0,0,0,0.16);
     --jeedom-transition: 0.15s ease;
     --jeedom-spacing-unit: 0.5rem;
+    --el-height: 28px;   /* hauteur standard des éléments de formulaire / boutons */
+    --sp-sm: 8px;        /* petit espacement (gap, etc.) */
+    --fs-base: 14px;     /* taille de police de base */
     /* Defaults: overridden by JS (utils.js) based on user config */
     --objectBackgroundBlur: 0px;
     --bkg-opacity-light: 1;
@@ -1245,7 +1248,7 @@ div.eqLogicZone {
     top: 15px;
     right: 245px;
    /* width: 100%;*/
-    max-height: 28px;
+    max-height: var(--el-height);
     text-align: right;
     overflow-wrap: break-word;
     line-height: 28px;
@@ -1357,7 +1360,7 @@ div.eqLogicZone {
   }
   .objectPreview > .topPreview {
     background-color: var(--bg-color);
-    height: 28px;
+    height: var(--el-height);
   }
   .objectPreview > .topPreview > .name {
     font-size: 16px;
@@ -1420,7 +1423,7 @@ div.eqLogicZone {
     background-color: var(--bg-color);
     padding: 5px;
     width: 45px;
-    height: 28px;
+    height: var(--el-height);
     min-width: 0 !important;
     font-weight: 700;
     text-align: left;
@@ -1841,7 +1844,7 @@ div.eqLogicZone {
     position: relative;
     top: 3px !important;
     display: block;
-    height: 28px !important;
+    height: var(--el-height) !important;
     overflow: hidden;
     padding: 0 5px;
     max-width: 130px;
@@ -2302,7 +2305,7 @@ div.eqLogic-widget.editingMode .panelLink {
     position: absolute;
     top: 0;
     right: 0;
-    height: 28px;
+    height: var(--el-height);
     font-size: 10px;
     padding: 0 5px;
     background: rgb(from var(--defaultBkg-color) r g b / var(--opacity));
@@ -2370,7 +2373,7 @@ div.eqLogic-widget.editingMode .panelLink {
   /* plugins */
   div.pluginDisplayCard .name {
     padding-top: 4px;
-    height: 28px;
+    height: var(--el-height);
     font-weight: 500;
   }
   div.pluginListContainer div.pluginDisplayCard.cursor.displayAsTable > center > img {
@@ -2555,7 +2558,7 @@ div.eqLogic-widget.editingMode .panelLink {
     line-height: 1;
   }
   .btn-sm {
-    height: 28px;
+    height: var(--el-height);
     padding: 6px 8px;
     line-height: 16px;
   }
@@ -2569,7 +2572,7 @@ div.eqLogic-widget.editingMode .panelLink {
     align-items: center;
     gap: 8px;
     min-width: 0;
-    min-height: 28px;
+    min-height: var(--el-height);
     padding: 2px 4px;
   }
 
@@ -2595,7 +2598,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .jeeListRow-actions > .btn,
   .jeeListRow > .btn.jeeListRow-actions {
     min-width: 28px;
-    height: 28px !important;
+    height: var(--el-height) !important;
     padding: 0 7px !important;
   }
 
@@ -2659,7 +2662,7 @@ div.eqLogic-widget.editingMode .panelLink {
     padding: 6px;
     border-radius: var(--border-radius);
     background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity));
-    min-height: 28px;
+    min-height: var(--el-height);
   }
   #timelineContainer ul li > span.vertLine {
     position: absolute;
@@ -3064,11 +3067,11 @@ div.eqLogic-widget.editingMode .panelLink {
   :not(textarea).input-sm {
     font-size: 12px;
     line-height: 16px;
-    height: 28px !important;
+    height: var(--el-height) !important;
   }
   .input-group-sm > .input-group-addon,
   .input-group-sm > .input-group-btn .btn {
-    height: 28px !important;
+    height: var(--el-height) !important;
   }
   .element .input-group-addon.hasBtn {
     background-color: var(--sc-formTxt-color);
@@ -3077,14 +3080,14 @@ div.eqLogic-widget.editingMode .panelLink {
     padding: 0 !important;
   }
   .element .expressionOptions textarea {
-    min-height: 28px;
+    min-height: var(--el-height);
   }
   .element .input-group-addon.hasBtn > .btn {
     width: 32px !important;
     padding-left: 14px;
   }
   .input-group-sm .btn {
-    height: 28px !important;
+    height: var(--el-height) !important;
     padding: 5px 10px;
   }
   .input-group-sm > .input-group-addon {
@@ -3121,7 +3124,7 @@ div.eqLogic-widget.editingMode .panelLink {
     outline: none;
   }
   textarea {
-    min-height: 28px;
+    min-height: var(--el-height);
     resize: vertical !important;
   }
   .input-group {
@@ -3787,7 +3790,7 @@ div.eqLogic-widget.editingMode .panelLink {
     background-color: var(--sc-form-color);
     border: 0;
     font-size: 12px;
-    height:28px;
+    height: var(--el-height);
   }
   .element .expressionAttr:not([data-l2key=graphColor]) {
     font-weight: bold;
@@ -3795,7 +3798,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .element .expressionAttr[data-l2key="icon"] i::before {
     background: var(--sc-form-color);
     padding: 2.5px;
-    height: 28px;
+    height: var(--el-height);
     color: var(--sc-formTxt-color);
   }
   #div_editScenario .element .expressionAttr.insideSearch {
@@ -4071,8 +4074,8 @@ div.eqLogic-widget.editingMode .panelLink {
 
   /* Collapsed */
   .elementCollapse {
-    min-height: 28px;
-    max-height: 28px;
+    min-height: var(--el-height);
+    max-height: var(--el-height);
   }
   .elementCollapse .subElement:not(:first-of-type),
   .elementCollapse .expressions,
