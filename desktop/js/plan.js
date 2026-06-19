@@ -181,7 +181,7 @@ if (!jeeFrontEnd.plan) {
           } else {
             jeeFrontEnd.plan.planContainer.style.backgroundColor = 'rgb(--bg-color)'
           }
-          if (data.configuration != null && init(data.configuration.desktopSizeX) != '' && init(data.configuration.desktopSizeY) != '') {
+          if (data.configuration != null && init(data.configuration.desktopSizeX) !== '' && init(data.configuration.desktopSizeY) !== '') {
             const style = {
               height: data.configuration.desktopSizeY + 'px',
               width: data.configuration.desktopSizeX + 'px'
@@ -467,7 +467,7 @@ if (!jeeFrontEnd.plan) {
         if (isset(_plan.display) && isset(_plan.display.graph)) {
           let done = 0
           for (const i in _plan.display.graph) {
-            if (init(_plan.display.graph[i].link_id) != '') {
+            if (init(_plan.display.graph[i].link_id) !== '') {
               done += 1
               jeedom.history.drawChart({
                 cmd_id: _plan.display.graph[i].link_id,

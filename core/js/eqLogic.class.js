@@ -424,7 +424,7 @@ jeedom.eqLogic.getSelectModal = function(_options, callback) {
             const args = {}
             args.human = mod_insertEqLogic.getValue()
             args.id = mod_insertEqLogic.getId()
-            if (args.human.trim() != '') {
+            if (args.human.trim() !== '') {
                 callback(args)
             }
             document.getElementById('mod_insertEqLogicValue')._jeeDialog.destroy()
@@ -457,7 +457,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
       if ((page == 'dashboard' && _params[i].visible == '0') || _params[i].enable == '0') { //Remove it
         const parent = eqLogic.parentNode
         eqLogic.remove()
-        if (parent.querySelectorAll('.eqLogic').length == 0) {
+        if (parent.querySelectorAll('.eqLogic').length === 0) {
           if (page == 'dashboard') {
             parent.parentNode.remove()
           }
@@ -479,7 +479,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
     }
   }
 
-  if (Object.keys(eqLogics).length == 0) {
+  if (Object.keys(eqLogics).length === 0) {
     return
   }
   const paramsSpecifics = {
@@ -490,7 +490,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
       let uid = null
       for (const i in result) {
         tile = domUtils.parseHTML(result[i].html)
-        if (tile.childNodes.length == 0) {
+        if (tile.childNodes.length === 0) {
           continue
         }
         if (eqLogics[i].type === 'battery') {
@@ -591,7 +591,7 @@ jeedom.eqLogic.refreshValue = function(_params) {
         if (jeedomUtils.userDevice.type == undefined) {
           eqLogic.triggerEvent('create')
           jeedomUtils.setTileSize('.eqLogic')
-        } else if (typeof jeedomUI !== 'undefined' && typeof jeeFrontEnd?.dashboard?.editWidgetMode == 'function' && document.getElementById('bt_editDashboardWidgetOrder') != null) {
+        } else if (typeof jeedomUI !== 'undefined' && typeof jeeFrontEnd?.dashboard?.editWidgetMode === 'function' && document.getElementById('bt_editDashboardWidgetOrder') != null) {
           jeeFrontEnd.dashboard.editWidgetMode(jeedomUI?.isEditing,false)
         }
       }
@@ -628,7 +628,7 @@ jeedom.eqLogic.drawGraphInfo = function(_eqLogicUid, _cmdId) {
   const drawEqEl = document.querySelector('div.eqLogic[data-eqlogic_uid="' + _eqLogicUid + '"] .eqlogicbackgraph[data-cmdid="' + _cmdId + '"]')
   if (drawEqEl == null) return
   drawEqEl.empty()
-  if (drawEqEl.length == 0) return false
+  if (drawEqEl.length === 0) return false
   let topMargin
   if (drawEqEl.hasClass('fixedbackgraph')) {
     topMargin = 0
@@ -670,14 +670,14 @@ jeedom.eqLogic.drawGraphInfo = function(_eqLogicUid, _cmdId) {
     dateEnd: dateEnd,
     addFirstPreviousValue: true,
     success: function(result) {
-      if (result.data.length == 0) return false
+      if (result.data.length === 0) return false
       if (result.timelineOnly) return false
       const now = (dayjs().unix() + (jeeFrontEnd.serverTZoffsetMin * 60)) * 1000
       const values = result.data.map(function(elt) {
         return elt[1]
       })
-      const minValue = result.cmd.subType == 'binary' ? 0 : Math.min.apply(null, values)
-      const maxValue = result.cmd.subType == 'binary' ? 1.1 : Math.max.apply(null, values) * 1.01
+      const minValue = result.cmd.subType === 'binary' ? 0 : Math.min.apply(null, values)
+      const maxValue = result.cmd.subType === 'binary' ? 1.1 : Math.max.apply(null, values) * 1.01
       result.data.push([now, result.data.slice(-1)[0][1]])
       new Highcharts.StockChart({
         chart: {
@@ -728,7 +728,7 @@ jeedom.eqLogic.drawGraphInfo = function(_eqLogicUid, _cmdId) {
         series: [{
           data: result.data,
           color: drawEqEl.dataset.color,
-          step: drawEqEl.dataset.type == 'area' ? 1 : 0,
+          step: drawEqEl.dataset.type === 'area' ? 1 : 0,
           fillOpacity: 0.25,
           enableMouseTracking: false,
           animation: false,
@@ -740,7 +740,7 @@ jeedom.eqLogic.drawGraphInfo = function(_eqLogicUid, _cmdId) {
             approximation: 'high',
             enabled: true,
             forced: true,
-            groupPixelWidth: result.cmd.subType == 'binary' ? 0 : 0.5
+            groupPixelWidth: result.cmd.subType === 'binary' ? 0 : 0.5
           },
         }],
         exporting: {

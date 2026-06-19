@@ -87,15 +87,15 @@ jeedom.changes = function() {
       const eqLogic_update = []
       const object_summary_update = []
       for (const i in data.result) {
-        if (data.result[i].name == 'cmd::update') {
+        if (data.result[i].name === 'cmd::update') {
           cmd_update.push(data.result[i].option)
           continue
         }
-        if (data.result[i].name == 'eqLogic::update') {
+        if (data.result[i].name === 'eqLogic::update') {
           eqLogic_update.push(data.result[i].option)
           continue
         }
-        if (data.result[i].name == 'jeeObject::summary::update') {
+        if (data.result[i].name === 'jeeObject::summary::update') {
           object_summary_update.push(data.result[i].option)
           continue
         }
@@ -125,7 +125,7 @@ jeedom.changes = function() {
       jeedom.changes_timeout = setTimeout(jeedom.changes, 1)
     },
     error: function(_error) {
-      if (typeof (user_id) != "undefined" && jeedom.connect == 100) {
+      if (typeof (user_id) !== "undefined" && jeedom.connect == 100) {
         if(_error.message !== 'Unknown error'){
           jeedom.notify('{{Erreur de connexion}}', '{{Erreur lors de la connexion}} : ' + _error.message)
         }      
@@ -213,9 +213,9 @@ jeedom.init = function() {
   })
 
   document.body.addEventListener('ui::update', function(_event) {
-    if (isset(_event.detail.page) && _event.detail.page != '') {
+    if (isset(_event.detail.page) && _event.detail.page !== '') {
       if (jeedom.display.version == 'mobile') {
-        if (!PAGE_HISTORY || PAGE_HISTORY.length == 0 || !PAGE_HISTORY[PAGE_HISTORY.length - 1].page || PAGE_HISTORY[PAGE_HISTORY.length - 1].page != _event.detail.page) {
+        if (!PAGE_HISTORY || PAGE_HISTORY.length === 0 || !PAGE_HISTORY[PAGE_HISTORY.length - 1].page || PAGE_HISTORY[PAGE_HISTORY.length - 1].page != _event.detail.page) {
           return
         }
       } else if (getUrlVars('p') != _event.detail.page) {
@@ -238,8 +238,8 @@ jeedom.init = function() {
   })
 
   document.body.addEventListener('jeedom::alert', function(_event) {
-    if (!isset(_event.detail.message) || _event.detail.message.trim() == '') {
-      if (isset(_event.detail.page) && _event.detail.page != '') {
+    if (!isset(_event.detail.message) || _event.detail.message.trim() === '') {
+      if (isset(_event.detail.page) && _event.detail.page !== '') {
         if (getUrlVars('p') == _event.detail.page || (jeedom.display.version == 'mobile' && isset(CURRENT_PAGE) && CURRENT_PAGE == _event.detail.page)) {
           jeedomUtils.hideAlert()
         }
@@ -247,7 +247,7 @@ jeedom.init = function() {
         jeedomUtils.hideAlert()
       }
     } else {
-      if (isset(_event.detail.page) && _event.detail.page != '') {
+      if (isset(_event.detail.page) && _event.detail.page !== '') {
         const options = {
           message: _event.detail.message,
           level: _event.detail.level
@@ -675,7 +675,7 @@ jeedom.getCronSelectModal = function(_options, _callback) {
             const args = {}
             args.cron = {}
             args.value = mod_insertCron.getValue()
-            if (args.value != undefined && args.value.trim() != '' && 'function' === typeof (_callback)) {
+            if (args.value != undefined && args.value.trim() !== '' && 'function' === typeof (_callback)) {
               _callback(args)
             }
             document.getElementById('mod_insertCronValue')._jeeDialog.destroy()
@@ -718,7 +718,7 @@ jeedom.getSelectActionModal = function(_options, _callback) {
           click: function(event) {
             const args = {}
             args.human = mod_insertAction.getValue()
-            if (args.human.trim() != '' && 'function' === typeof (_callback)) {
+            if (args.human.trim() !== '' && 'function' === typeof (_callback)) {
               _callback(args)
             }
             document.getElementById('mod_insertActionValue')._jeeDialog.destroy()

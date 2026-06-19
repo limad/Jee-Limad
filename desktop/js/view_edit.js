@@ -100,7 +100,7 @@ if (!jeeFrontEnd.view_edit) {
       if (!isset(_viewZone.configuration)) {
         _viewZone.configuration = {};
       }
-      if (init(_viewZone.emplacement) == '') {
+      if (init(_viewZone.emplacement) === '') {
         const id = document.querySelectorAll('#div_viewZones .viewZone').length
         let div = '<div class="viewZone" id="div_viewZone' + id + '">'
         div += '<legend><span class="viewZoneAttr" data-l1key="name"></span><span class="small viewtype"></span>'
@@ -157,10 +157,10 @@ if (!jeeFrontEnd.view_edit) {
           div += '</tbody>'
           div += '</table>'
         } else if (init(_viewZone.type, 'widget') == 'table') {
-          if (init(_viewZone.configuration.nbcol) == '') {
+          if (init(_viewZone.configuration.nbcol) === '') {
             _viewZone.configuration.nbcol = 2
           }
-          if (init(_viewZone.configuration.nbline) == '') {
+          if (init(_viewZone.configuration.nbline) === '') {
             _viewZone.configuration.nbline = 2
           }
           div += '<table class="table table-condensed div_viewData">'

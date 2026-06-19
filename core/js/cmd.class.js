@@ -67,7 +67,7 @@ jeedom.cmd.execute = function(_params) {
   const paramsSpecifics = {
     global: false,
     pre_success: function(data) {
-      if (data.state != 'ok') {
+      if (data.state !== 'ok') {
         if (data.code == -32005) {
           if (jeedom.display.version == 'mobile') {
             const result = prompt("{{Veuillez indiquer le code ?}}", "")
@@ -196,10 +196,10 @@ jeedom.cmd.execute = function(_params) {
     cache: cache,
     value: _params.value || '',
   }
-  if (typeof user_login != "undefined") {
+  if (typeof user_login !== "undefined") {
     paramsAJAX.data.user_login = user_login
   }
-  if (typeof user_id != "undefined") {
+  if (typeof user_id !== "undefined") {
     paramsAJAX.data.user_id = user_id
   }
   domUtils.ajax(paramsAJAX)
@@ -402,7 +402,7 @@ jeedom.cmd.test = function(_params) {
 //deprecated
 jeedom.cmd.refreshByEqLogic = function(_params) {
   const cmds = document.querySelectorAll('.cmd[data-eqLogic_id="' + _params.eqLogic_id + '"]')
-  if (cmds.length == 0) {
+  if (cmds.length === 0) {
     return
   }
   cmds.forEach(_cmd => {
@@ -430,7 +430,7 @@ jeedom.cmd.refreshByEqLogic = function(_params) {
 jeedom.cmd.refreshValue = function(_params) {
   const cmd = null
   for (const i in _params) {
-    if(_params[i].cmd_id == ''){
+    if(_params[i].cmd_id === ''){
       continue;
     }
     //update tile graph info:
@@ -443,7 +443,7 @@ jeedom.cmd.refreshValue = function(_params) {
     if (!isset(jeedom.cmd.update) || !isset(jeedom.cmd.update[_params[i].cmd_id])) {
       continue
     }
-    if (typeof jeedom.cmd.update[_params[i].cmd_id] == 'function') {
+    if (typeof jeedom.cmd.update[_params[i].cmd_id] === 'function') {
       jeedom.cmd.update[_params[i].cmd_id](_params[i])
     }
     for (const j in jeedom.cmd.update[_params[i].cmd_id]) {
@@ -463,7 +463,7 @@ jeedom.cmd.addUpdateFunction = function(_cmd_id, _function) {
     jeedom.cmd.update[_cmd_id] = [_function]
     return
   }
-  if (typeof jeedom.cmd.update[_cmd_id] == 'function') {
+  if (typeof jeedom.cmd.update[_cmd_id] === 'function') {
     const prevFunction = jeedom.cmd.update[_cmd_id]
     if (prevFunction.toString() == _function.toString()) {
       return
@@ -794,7 +794,7 @@ jeedom.cmd.historyInfluxAll = function(_params) {
 }
 
 jeedom.cmd.changeType = function(_cmd, _subType) {
-  if(_cmd.length == 0){
+  if(_cmd.length === 0){
     return; 
   }
   if (isElement_jQuery(_cmd)) {
@@ -803,7 +803,7 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
   if ((type = _cmd.querySelector('.cmdAttr[data-l1key="type"]')) === null) {
     return
   }
-  if (type.jeeValue() == 'action') {
+  if (type.jeeValue() === 'action') {
     _cmd.querySelector('.cmdAction[data-action="test"]')?.seen()
     _cmd.querySelector('.cmdAttr[data-l1key="htmlstate"]')?.unseen()
   } else {
@@ -847,7 +847,7 @@ jeedom.cmd.changeType = function(_cmd, _subType) {
 }
 
 jeedom.cmd.changeSubType = function(_cmd) {
-  if(_cmd.length == 0){
+  if(_cmd.length === 0){
     return; 
   }
   if (isElement_jQuery(_cmd)) {
@@ -868,7 +868,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
         if (isset(subtype[i].visible)) {
           let el = _cmd.querySelector('.cmdAttr[data-l1key="' + i + '"]')
           if (!el) continue
-          if (el.getAttribute('type') == 'checkbox' && el.parentNode.tagName.toLowerCase() == 'span') {
+          if (el.getAttribute('type') === 'checkbox' && el.parentNode.tagName.toLowerCase() == 'span') {
             el = el.parentNode
           }
           if (subtype[i].visible) {
@@ -876,7 +876,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
               el.parentNode.parentNode.seen()
               el.parentNode.parentNode.removeClass('hide')
             }
-            if (el.getAttribute('type') == 'checkbox') {
+            if (el.getAttribute('type') === 'checkbox') {
               el.parentNode.seen()
               el.parentNode.removeClass('hide')
             }
@@ -887,7 +887,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
               el.parentNode.parentNode.unseen()
               el.parentNode.parentNode.addClass('hide')
             }
-            if (el.getAttribute('type') == 'checkbox') {
+            if (el.getAttribute('type') === 'checkbox') {
               el.parentNode.unseen()
               el.parentNode.addClass('hide')
             }
@@ -907,7 +907,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
           for (const j in subtype[i]) {
             let el = _cmd.querySelector('.cmdAttr[data-l1key="' + i + '"][data-l2key="' + j + '"]')
             if (!el) continue
-            if (el.getAttribute('type') == 'checkbox' && el.parentNode.tagName.toLowerCase() == 'span') {
+            if (el.getAttribute('type') === 'checkbox' && el.parentNode.tagName.toLowerCase() == 'span') {
               el = el.parentNode
             }
 
@@ -917,7 +917,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
                   el.parentNode.parentNode.parentNode.seen()
                   el.parentNode.parentNode.parentNode.removeClass('hide')
                 }
-                if (el.getAttribute('type') == 'checkbox') {
+                if (el.getAttribute('type') === 'checkbox') {
                   el.parentNode.seen()
                   el.parentNode.removeClass('hide')
                 }
@@ -928,7 +928,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
                   el.parentNode.parentNode.parentNode.unseen()
                   el.parentNode.parentNode.parentNode.addClass('hide')
                 }
-                if (el.getAttribute('type') == 'checkbox') {
+                if (el.getAttribute('type') === 'checkbox') {
                   el.parentNode.unseen()
                   el.parentNode.addClass('hide')
                 }
@@ -949,7 +949,7 @@ jeedom.cmd.changeSubType = function(_cmd) {
         }
       }
 
-      if (type.jeeValue() == 'action') {
+      if (type.jeeValue() === 'action') {
         _cmd.querySelector('.cmdAttr[data-l1key="value"]')?.seen()
         _cmd.querySelector('.cmdAttr[data-l1key="configuration"][data-l2key="updateCmdId"]')?.seen()
         _cmd.querySelector('.cmdAttr[data-l1key="configuration"][data-l2key="updateCmdToValue"]')?.seen()
@@ -1014,7 +1014,7 @@ jeedom.cmd.getSelectModal = function(_options, _callback) {
             args.cmd.id = mod_insertCmd.getCmdId()
             args.cmd.type = mod_insertCmd.getType()
             args.cmd.subType = mod_insertCmd.getSubType()
-            if (args.human.trim() != '' && 'function' === typeof (_callback)) {
+            if (args.human.trim() !== '' && 'function' === typeof (_callback)) {
               _callback(args)
             }
             document.getElementById('mod_insertCmdValue')._jeeDialog.destroy()
@@ -1061,7 +1061,7 @@ jeedom.cmd.displayActionOption = function(_expression, _options, _callback) {
       handleAjaxError(request, status, error)
     },
     success: function(data) {
-      if (data.state != 'ok') {
+      if (data.state !== 'ok') {
         jeedomUtils.showAlert({
           message: data.result,
           level: 'danger'
@@ -1220,7 +1220,7 @@ jeedom.cmd.formatMomentDuration = function(_duration) {
 
 jeedom.cmd.displayDuration = function(_date, _el, _type = 'duration') {
   if (isElement_jQuery(_el)) _el = _el[0] //Deprecated, keep for mobile during transition
-  if (_type == 'date') {
+  if (_type === 'date') {
     dayjs.locale(jeeFrontEnd.language.substring(0, 2))
     let dateString
     if (isset(jeedom.config.locales[jeeFrontEnd.language].calendar)) {

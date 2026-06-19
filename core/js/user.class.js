@@ -117,7 +117,7 @@ jeedom.user.isConnect = function(_params) {
     const paramsRequired = [];
     const paramsSpecifics = {
       pre_success: function(data) {
-        if (data.state != 'ok') {
+        if (data.state !== 'ok') {
           return {
             state: 'ok',
             result: false

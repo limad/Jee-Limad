@@ -189,7 +189,7 @@ if (!jeeFrontEnd.update) {
       })
     },
     addUpdate: function(_update) {
-      if (init(_update.status) == '') {
+      if (init(_update.status) === '') {
         _update.status = 'OK'
       }
       _update.status = _update.status.toUpperCase()
@@ -205,7 +205,7 @@ if (!jeeFrontEnd.update) {
       tr += '<td style="width:40px"><span class="updateAttr label ' + labelClass + '" data-l1key="status"></span></td>'
       tr += '<td>'
       tr += '<span class="hidden-1280"><span class="updateAttr" data-l1key="source"></span> / <span class="updateAttr" data-l1key="type"></span> : </span>'
-      if (_update.name == 'jeedom') {
+      if (_update.name === 'jeedom') {
         tr += '<span class="updateAttr label label-info text-capitalize" data-l1key="name"></span>'
         if (_update.branch) {
           let updClass
@@ -747,7 +747,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('.bt_refreshOsPackageUpdate')) {
-    if (jeeP.osUpdateChecked == 0 || _target.getAttribute('data-forceRefresh') == "1") {
+    if (jeeP.osUpdateChecked == 0 || _target.getAttribute('data-forceRefresh') === "1") {
       jeeP.printOsUpdate(_target.getAttribute('data-forceRefresh'))
     }
     return

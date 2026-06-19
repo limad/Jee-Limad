@@ -3,7 +3,7 @@
  * @namespace jeedom.private
  */
 const _init = function(_param, _default) {
-  return (typeof _param == 'number') ? _param : (typeof _param != 'boolean' || _param) && (_param !== false && _param || _default || '');
+  return (typeof _param === 'number') ? _param : (typeof _param !== 'boolean' || _param) && (_param !== false && _param || _default || '');
 }
 
 
@@ -98,7 +98,7 @@ jeedom.private.getParamsAJAX = function(_params) {
     },
     success: function(data) {
       data = _params.pre_success(data);
-      if (data.state != 'ok') {
+      if (data.state !== 'ok') {
         _params.error({
           type: 'PHP',
           message: data.result || 'Error - ' + jeedom.private.no_result || '',
@@ -155,7 +155,7 @@ jeedom.private.checkParamValue = function(_params) {
   const regexp = _params.regexp;
   const name = _params.name || 'One parameter';
 
-  if (typeof value == 'object') {
+  if (typeof value === 'object') {
     //Recursivity for array or object
     for (const i in value) {
       jeedom.private.checkParamValue({
@@ -274,7 +274,7 @@ jeedom.private.checkAndGetParams = function(_params, _paramsSpecifics, _paramsRe
   const params = domUtils.extend({}, jeedom.private.default_params, _paramsSpecifics, _params || {});
 
   for (const attr in params) {
-    params[attr] = (typeof params[attr] == 'object') ? JSON.stringify(params[attr]) : params[attr];
+    params[attr] = (typeof params[attr] === 'object') ? JSON.stringify(params[attr]) : params[attr];
   }
 
   const paramsAJAX = jeedom.private.getParamsAJAX(params);

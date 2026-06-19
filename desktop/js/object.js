@@ -40,7 +40,7 @@ if (!jeeFrontEnd.object) {
         url: 'core/ajax/object.ajax.php?action=uploadImage&id=' + _id,
         dataType: 'json',
         done: function(e, data) {
-          if (data.result.state != 'ok') {
+          if (data.result.state !== 'ok') {
             jeedomUtils.showAlert({
               message: data.result.result,
               level: 'danger'
@@ -97,7 +97,7 @@ if (!jeeFrontEnd.object) {
             document.querySelector('select[data-l2key="synthToAction"]').value = 'synthToDashboard'
           }
 
-          if (!isset(data.configuration.useCustomColor) || data.configuration.useCustomColor == "0") {
+          if (!isset(data.configuration.useCustomColor) || data.configuration.useCustomColor === "0") {
             const bodyStyles = window.getComputedStyle(document.body)
             let objectBkgdColor = bodyStyles.getPropertyValue('--objectBkgd-color')
             let objectTxtColor = bodyStyles.getPropertyValue('--objectTxt-color')

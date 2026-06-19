@@ -106,7 +106,7 @@ jeedom.dataStore.getSelectModal = function(_options, callback) {
                 const args = {}
                 args.human = mod_insertDataStore.getValue()
                 args.id = mod_insertDataStore.getId()
-                if (args.human.trim() != '') {
+                if (args.human.trim() !== '') {
                     callback(args)
                 }
                 document.getElementById('mod_insertDataStoreValue')._jeeDialog.destroy()

@@ -462,7 +462,7 @@ jeedom.scenario.getSelectModal = function(_options, callback) {
             const args = {}
             args.human = mod_insertScenario.getValue()
             args.id = mod_insertScenario.getId()
-            if (args.human.trim() != '') {
+            if (args.human.trim() !== '') {
               callback(args)
             }
             document.getElementById('mod_insertScenarioValue')._jeeDialog.destroy()
@@ -648,7 +648,7 @@ jeedom.scenario.setAutoComplete = function(_params) {
       }
 
       if (attrType.value == 'action') {
-        if (document.body.getAttribute('data-page') == 'scenario') {
+        if (document.body.getAttribute('data-page') === 'scenario') {
           jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction.concat(jeedom.scenario.autoCompleteActionScOnly)
         } else {
           jeedom.scenario.autoCompleteActionContext = jeedom.scenario.autoCompleteAction

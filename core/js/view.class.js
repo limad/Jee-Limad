@@ -114,14 +114,14 @@ jeedom.view.handleViewAjax = function(_params) {
     if (jeedom.display.version != 'mobile') {
       div_class += ' col-xs-12 col-sm-' + init(viewZone.configuration.zoneCol, 12);
     }
-    if (viewZone.type == 'table') {
+    if (viewZone.type === 'table') {
       div_class += ' div_viewZoneTable';
     }
     result.html += '<div class="' + div_class + '">';
     result.html += '<legend class="lg_viewZone" data-zone_id="' + viewZone.id + '">' + viewZone.name + '</legend>';
     div_id = 'div_viewZone' + viewZone.id + Date.now();
     /*         * *****************viewZone widget***************** */
-    if (viewZone.type == 'widget') {
+    if (viewZone.type === 'widget') {
       result.html += '<div id="' + div_id + '" class="eqLogicZone posEqWidthRef" data-viewZone-id="' + viewZone.id + '">';
       for (const j in viewZone.viewData) {
         viewData = viewZone.viewData[j];
@@ -129,7 +129,7 @@ jeedom.view.handleViewAjax = function(_params) {
         result[viewData.type].push(viewData.id);
       }
       result.html += '</div>';
-    } else if (viewZone.type == 'graph') {
+    } else if (viewZone.type === 'graph') {
       result.html += '<div id="' + div_id + '" class="chartContainer"></div>';
       result.html += '<div class="chartToDraw">';
       for (const j in viewZone.viewData) {
@@ -139,7 +139,7 @@ jeedom.view.handleViewAjax = function(_params) {
         result.html += '<div class="viewZoneData hidden" data-cmdId="'+viewData.link_id+'" data-option="'+option+'" data-el="'+div_id+'" data-height="'+viewZone.configuration.height+'" data-dateRange="'+viewZone.configuration.dateRange+'"></div>';
       }
       result.html += '</div>';
-    } else if (viewZone.type == 'table') {
+    } else if (viewZone.type === 'table') {
       result.html += viewZone.html;
     }
     result.html += '</div>';

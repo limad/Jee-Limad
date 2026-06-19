@@ -409,7 +409,7 @@ jeedom3d.light.update = function(_options) {
       }
       else if (lights[i].info.additionalData.subType === 'string') {
         color = _options.display_value
-        if (color == '#000000') {
+        if (color === '#000000') {
           intensity = 0
         }
       }
@@ -865,7 +865,7 @@ jeedom3d.conditionalColor.update = function(_options) {
         global: false,
         async: false,
         success: function(data) {
-          if (data.additionalData.color == '') {
+          if (data.additionalData.color === '') {
             return
           }
           if (!jeedom3d.conditionalColor.data[conditionalColor[i].object.uuid]) {

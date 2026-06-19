@@ -49,7 +49,7 @@ function handleAjaxError(_request, _status, _error, _attachTo) {
   if (!isset(_attachTo)) _attachTo = false
   domUtils.hideLoading()
   if (_request.status != '0') {
-    if (init(_request.responseText, '') != '') {
+    if (init(_request.responseText, '') !== '') {
       jeedomUtils.showAlert({
         message: _request.responseText,
         level: 'danger',
@@ -143,15 +143,15 @@ function getDeviceType() {
     result.subType = 'ios'
   }
 
-  if (result.subType == 'android') {
+  if (result.subType === 'android') {
     result.width = screen.width
     if (window.innerWidth > 899) {
       result.type = 'tablet'
     }
   }
 
-  if (result.type == 'phone') {
-    const margin = (result.subType == 'ios' ? 6 : 7)
+  if (result.type === 'phone') {
+    const margin = (result.subType === 'ios' ? 6 : 7)
     const ori = window.orientation
     if (ori == 90 || ori == -90) { //landscape
       result.bSize = (result.width / 4) - margin

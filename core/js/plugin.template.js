@@ -35,7 +35,7 @@ if (!jeeFrontEnd.pluginTemplate) {
     setTableDisplay: function() {
       const butDisp = document.getElementById('bt_pluginDisplayAsTable')
       if (!butDisp) return
-      const coreSupport = butDisp.dataset.coresupport == '1' ? true : false
+      const coreSupport = butDisp.dataset.coresupport === '1' ? true : false
       if (butDisp != null) {
         butDisp.removeClass('hidden') //Not shown on previous core versions
         if (getCookie('jeedom_displayAsTable') == 'true' || jeedom.theme.theme_displayAsTable == 1) {
@@ -49,7 +49,7 @@ if (!jeeFrontEnd.pluginTemplate) {
         //core event:
         if (coreSupport) {
           butDisp.unRegisterEvent('click').registerEvent('click', function(event) {
-            if (butDisp.dataset.state != '1') {
+            if (butDisp.dataset.state !== '1') {
               butDisp.addClass('active').dataset.state = '1'
               setCookie('jeedom_displayAsTable', 'true', 2)
               document.querySelectorAll('.eqLogicDisplayCard')?.addClass('displayAsTable')
@@ -109,7 +109,7 @@ if (!jeeFrontEnd.pluginTemplate) {
           }
           document.querySelectorAll('.cmd').remove()
           for (const i in data.cmd) {
-            if (data.cmd[i].type == 'info') {
+            if (data.cmd[i].type === 'info') {
               data.cmd[i].state = String(data.cmd[i].state).replace(/<[^>]*>?/gm, '')
               data.cmd[i]['htmlstate'] = '<span class="cmdTableState"'
               data.cmd[i]['htmlstate'] += 'data-cmd_id="' + data.cmd[i].id + '"'
@@ -160,7 +160,7 @@ if (!jeeFrontEnd.pluginTemplate) {
             modifyWithoutSave = false
           }, 1000)
 
-          if (window.location.hash == '') document.querySelector('.nav-tabs a:not(.eqLogicAction)')?.click()
+          if (window.location.hash === '') document.querySelector('.nav-tabs a:not(.eqLogicAction)')?.click()
         }
       })
     },
@@ -301,7 +301,7 @@ if (!jeeFrontEnd.pluginTemplate) {
 
           //No subType will break:
           _eqLogic.querySelectorAll('tr.cmd select[data-l1key="subType"]').forEach(_select => {
-            if (_select.value == '') {
+            if (_select.value === '') {
               _select.selectedIndex = 0
             }
           })
@@ -346,7 +346,7 @@ if (!jeeFrontEnd.pluginTemplate) {
           }
           url += 'id=' + id + '&saveSuccessFull=1'
 
-          if (window.location.hash != '') {
+          if (window.location.hash !== '') {
             url += window.location.hash
           }
 
@@ -360,7 +360,7 @@ if (!jeeFrontEnd.pluginTemplate) {
     copyEqLogic: function() {
       const name = document.querySelector('.eqLogicAttr[data-l1key="name"]').jeeValue()
       const id = document.querySelector('.eqLogicAttr[data-l1key="id"]').jeeValue()
-      if (id != undefined && id != '') {
+      if (id != undefined && id !== '') {
         jeeDialog.prompt({
           value: name + ' {{copie}}',
           title: '{{Nom de la copie de l\'équipement ?}}',
@@ -466,7 +466,7 @@ jeeFrontEnd.pluginTemplate.init()
 //searching
 document.getElementById('in_searchEqlogic')?.addEventListener('keyup', function(event) {
   let search = event.target.value
-  if (search == '') {
+  if (search === '') {
     document.querySelectorAll('.eqLogicDisplayCard').seen()
     return
   }
@@ -497,7 +497,7 @@ domUtils(function() {
         })
       },
       success: function(_eqs) {
-        if (_eqs.length == 0) {
+        if (_eqs.length === 0) {
           return
         }
         let eqsGroups = []
@@ -561,7 +561,7 @@ domUtils(function() {
                   }
                 }
                 jeedomUtils.hideAlert()
-                if (event.ctrlKey || event.which == 2) {
+                if (event.ctrlKey || event.which === 2) {
                   const type = document.body.getAttribute('data-page')
                   let url = 'index.php?v=d&m=' + type + '&p=' + type + '&id=' + options.commands[key].id
                   if (tabObj) url += tab
@@ -611,7 +611,7 @@ domUtils(function() {
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+  if ((event.ctrlKey || event.metaKey) && event.which === 83) { //s
     event.preventDefault()
     const bt = document.querySelector('.eqLogicAction[data-action="save"]')
     if (bt != null && bt.isVisible()) {
@@ -781,7 +781,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {
   let _target = null
   if (_target = event.target.closest('.eqLogicDisplayCard')) {
-    if (event.which == 2) {
+    if (event.which === 2) {
       event.preventDefault()
       const id = _target.getAttribute('data-eqlogic_id')
       document.querySelector('.eqLogicDisplayCard[data-eqlogic_id="' + id + '"]')?.triggerEvent('click', { detail: { ctrlKey: true } })

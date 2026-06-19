@@ -140,14 +140,14 @@ if (!jeeFrontEnd.cron) {
       tr += '</td>'
 
       tr += '<td>'
-      if (init(_cron.id) != '') {
+      if (init(_cron.id) !== '') {
         tr += '<a class="btn btn-xs display" title="{{Détails de cette tâche}}"><i class="fas fa-file"></i></a> '
       }
       if (init(_cron.deamon) == 0) {
         if (init(_cron.state) == 'run') {
           tr += ' <a class="btn btn-danger btn-xs stop" title="{{Arrêter cette tâche}}"><i class="fas fa-stop"></i></a>'
         }
-        if (init(_cron.state) != '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
+        if (init(_cron.state) !== '' && init(_cron.state) != 'starting' && init(_cron.state) != 'run' && init(_cron.state) != 'stoping') {
           tr += ' <a class="btn btn-xs btn-success start" title="{{Démarrer cette tâche}}"><i class="fas fa-play"></i></a>'
         }
       }
@@ -196,7 +196,7 @@ if (!jeeFrontEnd.cron) {
       let tr = '<tr>'
       tr += '<td class="option"><span class="listenerAttr" data-l1key="id"></span></td>'
       tr += '<td>'
-      if (init(_listener.id) != '') {
+      if (init(_listener.id) !== '') {
         tr += '<a class="btn btn-xs display"><i class="fas fa-file"></i></a> '
       }
       tr += '</td>'
@@ -237,7 +237,7 @@ if (!jeeFrontEnd.cron) {
                 html += deamonInfo.plugin.name
                 html += '</td>'
                 html += '<td>'
-                if (deamonInfo.state == 'ok') {
+                if (deamonInfo.state === 'ok') {
                   html += '<span class="label label-success">OK</span>'
                 } else {
                   html += '<span class="label label-danger">' + deamonInfo.state.toUpperCase() + '</span>'
@@ -342,7 +342,7 @@ if (!jeeFrontEnd.cron) {
       tr += '</td>'
 
       tr += '<td>'
-      if (init(_queue.id) != '') {
+      if (init(_queue.id) !== '') {
         tr += '<a class="btn btn-xs displayQueue" title="{{Détails de cette tâche}}"><i class="fas fa-file"></i></a> '
       }
       tr += '</td>'

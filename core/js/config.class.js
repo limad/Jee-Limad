@@ -219,7 +219,7 @@ jeedom.config.getGenericTypeModal = function(_options, callback) {
                 const args = {}
                 args.human = mod_insertGenericType.getValue()
                 args.id = mod_insertGenericType.getId()
-                if (args.human.trim() != '') {
+                if (args.human.trim() !== '') {
                     callback(args)
                 }
                 document.getElementById('mod_insertGenericType')._jeeDialog.destroy()

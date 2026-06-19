@@ -313,7 +313,7 @@ jeedom.object.summaryUpdate = function(_params) {
   for (const i in _params) {
     //object can be global summary element, or nodelist of object summary and dashOverviewPrev summary
     objectSummaryList = Array.from(document.querySelectorAll('.objectSummary' + _params[i].object_id))
-    if (objectSummaryList.length == 0) continue
+    if (objectSummaryList.length === 0) continue
     version = objectSummaryList[0].getAttribute('data-version')
     if (version == undefined) continue
 
@@ -346,7 +346,7 @@ jeedom.object.summaryUpdate = function(_params) {
 
               //update number:
               keySpan = summarySpan.querySelector('.objectSummary' + key)
-              if (_params[i]['keys'][key]['value'] == 0 && summarySpan.getAttribute('data-hidenulnumber') == '1') {
+              if (_params[i]['keys'][key]['value'] == 0 && summarySpan.getAttribute('data-hidenulnumber') === '1') {
                 keySpan.empty()
               } else {
                 keySpan.empty().seen().insertAdjacentHTML('beforeend', _params[i]['keys'][key]['value'])
@@ -368,7 +368,7 @@ jeedom.object.summaryUpdate = function(_params) {
       version: version
     }
   }
-  if (Object.keys(summaryUpdate).length == 0) {
+  if (Object.keys(summaryUpdate).length === 0) {
     return
   }
 

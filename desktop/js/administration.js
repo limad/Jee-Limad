@@ -662,7 +662,7 @@ document.querySelectorAll('input.bt_uploadImage').forEach(_button => {
     dataType: 'json',
     limitUploadFileSize: 204800, //200Ko
     done: function(event, data) {
-      if (data.result.state != 'ok') {
+      if (data.result.state !== 'ok') {
         jeedomUtils.showAlert({
           message: data.result.result,
           level: 'danger'
