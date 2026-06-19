@@ -5374,7 +5374,8 @@ div.eqLogic-widget.editingMode .panelLink {
     display: flex;
     align-items: flex-start;
   }
-  .nav-tabs.sidebar-nav {
+  .nav-tabs.sidebar-nav ,
+  .nav-tabs.sidebar-nav-vertical {
     display: flex;
     flex-direction: column;
     width: 260px;
@@ -5390,11 +5391,13 @@ div.eqLogic-widget.editingMode .panelLink {
     margin-bottom: 0 !important;
     background-color: var(--navbar-bg);
   }
-  .nav-tabs.sidebar-nav > li {
+  .nav-tabs.sidebar-nav > li ,
+  .nav-tabs.sidebar-nav-vertical > li {
     float: none !important;
     width: 97%;
   }
-  .nav-tabs.sidebar-nav > li > a {
+  .nav-tabs.sidebar-nav > li > a ,
+  .nav-tabs.sidebar-nav-vertical > li > a {
     border: none !important;
     border-left: 3px solid transparent !important;
     border-bottom: none !important;
@@ -5409,18 +5412,23 @@ div.eqLogic-widget.editingMode .panelLink {
     text-overflow: ellipsis;
     z-index: auto !important;
   }
-  .nav-tabs.sidebar-nav > li > a > span {
+  .nav-tabs.sidebar-nav > li > a > span ,
+  .nav-tabs.sidebar-nav-vertical > li > a > span {
     display: inline !important;
   }
-  .nav-tabs.sidebar-nav > li > a:hover {
+  .nav-tabs.sidebar-nav > li > a:hover ,
+  .nav-tabs.sidebar-nav-vertical > li > a:hover {
     border-left-color: rgb(from var(--panel-bg-color) r g b / 0.6) !important;
     background-color: rgb(from var(--panel-bg-color) r g b / 0.4) !important;
     border-bottom: none !important;
     z-index: auto !important;
   }
   .nav-tabs.sidebar-nav > li.active > a,
+  .nav-tabs.sidebar-nav-vertical > li.active > a,
   .nav-tabs.sidebar-nav > li.active > a:hover,
-  .nav-tabs.sidebar-nav > li.active > a:focus {
+  .nav-tabs.sidebar-nav-vertical > li.active > a:hover,
+  .nav-tabs.sidebar-nav > li.active > a:focus ,
+  .nav-tabs.sidebar-nav-vertical > li.active > a:focus {
     border-bottom: none !important;
     background-color: color-mix(in srgb, var(--btnEq-default-color) 10%, var(--btn-default-color)) !important;
     color: var(--navtab-active-fg, var(--link-color)) !important;
@@ -5486,7 +5494,8 @@ div.eqLogic-widget.editingMode .panelLink {
     .sidebar-layout {
       flex-direction: column;
     }
-    .nav-tabs.sidebar-nav {
+    .nav-tabs.sidebar-nav ,
+  .nav-tabs.sidebar-nav-vertical {
       width: 100% !important;
       height: auto !important;
       flex-direction: row !important;
@@ -5496,7 +5505,8 @@ div.eqLogic-widget.editingMode .panelLink {
       position: static !important;
       overflow: visible !important;
     }
-    .nav-tabs.sidebar-nav > li {
+    .nav-tabs.sidebar-nav > li ,
+  .nav-tabs.sidebar-nav-vertical > li {
       width: auto !important;
     }
     .sidebar-tab-content {
