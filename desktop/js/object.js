@@ -1000,7 +1000,7 @@ document.getElementById('div_conf').addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('.bt_removeSummary')) {
-    var cmd = _target.closest('.summary').querySelector('input[data-l1key="cmd"]').value
+    const cmd = _target.closest('.summary').querySelector('input[data-l1key="cmd"]').value
     const type = _target.closest('.div_summary').dataset.type
     _target.closest('.summary').remove()
     jeeP.updateSummaryTabNbr(type)

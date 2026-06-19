@@ -34,7 +34,7 @@ if (!jeeFrontEnd.modaldisplay) {
       delete this.params['loadmodal']
       delete this.params['title']
 
-      for (var [key, value] of Object.entries(this.params)) {
+      for (const [key, value] of Object.entries(this.params)) {
         this.url += '&' + key + '=' + value
       }
     },
@@ -51,7 +51,7 @@ document.getElementById('modalDisplay').load(jeeP.url, function(data) {
   document.getElementById('bt_getHelpPage')?.setAttribute('data-plugin', getUrlVars('m'))
   jeedomUtils.initPage()
   document.body.triggerEvent('jeedom_page_load')
-  var tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
+  let tab = document.querySelector('.nav-tabs a[href="' + window.location.hash + '"]')
   if (tab == null) {
     tab = document.querySelector('.nav-tabs a[data-target="' + window.location.hash + '"]')
   }

@@ -57,7 +57,7 @@ if (!jeeFrontEnd.dashboardit) {
       this.object_tree = new TreeView(this.object_root, document.getElementById('div_treeObject'), { show_root: false })
       this.object_tree.setContainer(document.getElementById('div_treeObject'))
 
-      var newNode
+      let newNode
       buildTree()
       function buildTree(_childs, _parentNode) {
         if (!isset(_childs)) _childs = jeephp2js.object_Struct
@@ -72,8 +72,8 @@ if (!jeeFrontEnd.dashboardit) {
           newNode.setOptions('object_id', _obj.id)
           newNode.on('click', (event, node) => {
             if (!event.target.matches('i')) node.toggleExpanded() //Default behavior allways toggle
-            var objectId = node.getOptions().options.object_id
-            var name = node.getOptions().options.name
+            const objectId = node.getOptions().options.object_id
+            const name = node.getOptions().options.name
             jeeP.objectTreeClick(objectId, name)
           })
           _parentNode.addChild(newNode)

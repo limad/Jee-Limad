@@ -1,1 +1,2 @@
-var rebooti = '1';
+"use strict"
+let rebooti = '1'
