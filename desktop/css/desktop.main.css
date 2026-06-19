@@ -16,6 +16,8 @@ Desktop
     --el-height: 28px;   /* hauteur standard des éléments de formulaire / boutons */
     --sp-sm: 8px;        /* petit espacement (gap, etc.) */
     --fs-base: 14px;     /* taille de police de base */
+    --border-muted: rgba(128, 128, 128, 0.5);    /* bordure neutre (indépendante du thème) */
+    --surface-muted: rgba(128, 128, 128, 0.14);  /* fond neutre subtil */
     /* Defaults: overridden by JS (utils.js) based on user config */
     --objectBackgroundBlur: 0px;
     --bkg-opacity-light: 1;
@@ -801,7 +803,7 @@ Desktop
   }
 
   [data-page=display] #div_pageContainer #displaytab ul > li input {
-    border: 1px solid rgba(100, 100, 100, 0.5);
+    border: 1px solid var(--border-muted);
     font-size: 12px;
   }
   [data-page=types] #div_pageContainer #genericsContainer ul > li > ul > li {
@@ -2999,7 +3001,7 @@ div.eqLogic-widget.editingMode .panelLink {
     height: 100%;
     opacity: 0;
     outline: none;
-    background: white;
+    background: var(--bg-color, #fff);
     cursor: pointer;
     display: block;
   }
@@ -4908,7 +4910,7 @@ div.eqLogic-widget.editingMode .panelLink {
   #pre_scenariolog mark,
   #pre_eventlog mark {
     color: #000;
-    background-color: #ff0;
+    background-color: var(--lb-yellow-color, #ff0);
     display: inline-flex;
     padding: 0;
   }
@@ -5328,7 +5330,7 @@ div.eqLogic-widget.editingMode .panelLink {
 
     .nav-tabs>li>a {
       border: none;
-      color: #666;
+      color: var(--link-color, #666);
       white-space: nowrap;
     }
     .tab-pane {
@@ -5460,7 +5462,7 @@ div.eqLogic-widget.editingMode .panelLink {
     border: none;
     border-bottom: 1px solid var(--panel-default-border, #ddd);
     border-radius: var(--border-radius, 4px) var(--border-radius, 4px) 0 0;
-    background-color: rgba(128, 128, 128, 0.14);
+    background-color: var(--surface-muted);
     color: var(--panel-default-title, var(--link-color, inherit));
   }
   .sidebar-tab-content .form-group {
