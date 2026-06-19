@@ -84,7 +84,7 @@ if (!jeeFrontEnd.interact) {
 
           const hash = window.location.hash
           jeedomUtils.addOrUpdateUrl('id', data.id)
-          if (hash == '') {
+          if (hash === '') {
             document.querySelector('.nav-tabs a[href="#generaltab"]')?.click()
           } else {
             window.location.hash = hash
@@ -154,7 +154,7 @@ if (!jeeFrontEnd.interact) {
             })
           },
           success: function(interacts) {
-            if (interacts.length == 0) {
+            if (interacts.length === 0) {
               return
             }
             let interactGroups = []
@@ -212,9 +212,9 @@ if (!jeeFrontEnd.interact) {
                 className: 'interact-context-menu',
                 callback: function(key, options, event) {
                   if (!jeedomUtils.checkPageModified()) {
-                    if (event.ctrlKey || event.metaKey || event.which == 2) {
+                    if (event.ctrlKey || event.metaKey || event.which === 2) {
                       let url = 'index.php?v=d&p=interact&id=' + options.commands[key].id
-                      if (window.location.hash != '') {
+                      if (window.location.hash !== '') {
                         url += window.location.hash
                       }
                       window.open(url).focus()
@@ -246,7 +246,7 @@ if (!jeeFrontEnd.interact) {
               handleAjaxError(request, status, error)
             },
             success: function(data) {
-              if (data.state != 'ok') {
+              if (data.state !== 'ok') {
                 jeedomUtils.showAlert({
                   message: data.result,
                   level: 'danger'
@@ -312,7 +312,7 @@ Sortable.create(document.getElementById('div_action'), {
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+  if ((event.ctrlKey || event.metaKey) && event.which === 83) { //s
     event.preventDefault()
     if (document.getElementById('bt_saveInteract').isVisible()) {
       document.getElementById('bt_saveInteract').click()
@@ -323,7 +323,7 @@ document.registerEvent('keydown', function(event) {
 //searching
 document.getElementById('in_searchInteract')?.addEventListener('keyup', function(event) {
   let search = event.target.value
-  if (search == '') {
+  if (search === '') {
     document.querySelectorAll('#accordionInteract .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
     document.querySelectorAll('.interactDisplayCard').seen()
     return
@@ -453,7 +453,7 @@ document.getElementById('interactThumbnailDisplay').addEventListener('click', fu
 document.getElementById('interactThumbnailDisplay').addEventListener('mouseup', function(event) {
   let _target = null
   if (_target = event.target.closest('.interactDisplayCard')) {
-    if (event.which == 2) {
+    if (event.which === 2) {
       event.preventDefault()
       let id = _target.getAttribute('data-interact_id')
       document.querySelector('.interactDisplayCard[data-interact_id="' + id + '"]').triggerEvent('click', { detail: { ctrlKey: true } })

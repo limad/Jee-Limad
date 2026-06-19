@@ -204,17 +204,17 @@ document.getElementById('in_search').addEventListener('keyup', function(event) {
     document.querySelectorAll('.cmd').seen().removeClass('alert-success').addClass('alert-info')
     document.querySelectorAll('.eqLogic').seen()
     document.querySelectorAll('.cmdSortable').unseen()
-    if (search == '') {
+    if (search === '') {
       document.querySelectorAll('.panel-collapse.in').removeClass('in')
       return
     }
     if (!search.startsWith('*') && searchID == false) {
-      if ((search == '' || jeephp2js._nbCmd_ <= 1500 && search.length < 3) || (jeephp2js._nbCmd_ > 1500 && search.length < 4)) {
+      if ((search === '' || jeephp2js._nbCmd_ <= 1500 && search.length < 3) || (jeephp2js._nbCmd_ > 1500 && search.length < 4)) {
         document.querySelectorAll('.panel-collapse.in').removeClass('in')
         return
       }
     } else {
-      if (search == '*') return
+      if (search === '*') return
     }
     search = jeedomUtils.normTextLower(search)
     let eqLogic, eqParent, eqId, cmd, cmdId

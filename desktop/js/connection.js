@@ -79,7 +79,7 @@ if (!jeeFrontEnd.connection) {
       })
     },
     changeValidate: function(_event) {
-      if (document.getElementById('in_change_password').value != '' && document.getElementById('in_change_password').value == document.getElementById('in_change_passwordToo').value) {
+      if (document.getElementById('in_change_password').value !== '' && document.getElementById('in_change_password').value == document.getElementById('in_change_passwordToo').value) {
         jeedom.user.get({
           error: function(error) {
             jeedomUtils.showAlert({

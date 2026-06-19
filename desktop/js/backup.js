@@ -64,7 +64,7 @@ if (!jeeFrontEnd.backup) {
 
     },
     getJeedomLog: function(_autoUpdate, _log) {
-      if (document.body.getAttribute('data-page') != 'backup') {
+      if (document.body.getAttribute('data-page') !== 'backup') {
         setTimeout(function() {
           jeeFrontEnd.backup.getJeedomLog(_autoUpdate, _log)
         }, 1000)
@@ -86,7 +86,7 @@ if (!jeeFrontEnd.backup) {
           }, 1000)
         },
         success: function(data) {
-          if (data.state != 'ok') {
+          if (data.state !== 'ok') {
             setTimeout(function() {
               jeeFrontEnd.backup.getJeedomLog(_autoUpdate, _log)
             }, 1000)
@@ -219,7 +219,7 @@ jeeFrontEnd.backup.postInit()
 
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+  if ((event.ctrlKey || event.metaKey) && event.which === 83) { //s
     event.preventDefault()
     jeeFrontEnd.backup.saveBackup()
   }

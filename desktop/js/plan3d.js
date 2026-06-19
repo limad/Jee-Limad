@@ -404,16 +404,16 @@ jeedom3d.light.update = function(_options) {
     let color = '#ffffff'
     if (_options.display_value) {
       intensity = max
-      if (lights[i].info.additionalData.subType == 'numeric') {
+      if (lights[i].info.additionalData.subType === 'numeric') {
         intensity = (max / 100) * _options.display_value
       }
-      else if (lights[i].info.additionalData.subType == 'string') {
+      else if (lights[i].info.additionalData.subType === 'string') {
         color = _options.display_value
         if (color == '#000000') {
           intensity = 0
         }
       }
-      else if (lights[i].info.additionalData.subType == 'binary' && _options.display_value == 0) {
+      else if (lights[i].info.additionalData.subType === 'binary' && _options.display_value == 0) {
         intensity = 0
       }
     }
@@ -918,7 +918,7 @@ jeedom3d.conditionalShow.update = function(_options) {
     if (_options.object && _options.object != conditionalShow[i].object) {
       continue
     }
-    if (typeof _options.show != 'undefined') {
+    if (typeof _options.show !== 'undefined') {
       _options.object.visible = _options.show
     } else {
       jeedom.plan3d.byId({
@@ -926,7 +926,7 @@ jeedom3d.conditionalShow.update = function(_options) {
         global: false,
         async: false,
         success: function(data) {
-          if (typeof data.additionalData.show == 'undefined') {
+          if (typeof data.additionalData.show === 'undefined') {
             return
           }
           conditionalShow[i].object.visible = data.additionalData.show

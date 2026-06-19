@@ -42,7 +42,7 @@ if (!jeeFrontEnd.overview) {
     createSummaryObserver: function() {
       this._SummaryObserver_ = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
-          if (mutation.type == 'childList' && mutation.target.hasClass('objectSummaryContainer')) {
+          if (mutation.type === 'childList' && mutation.target.hasClass('objectSummaryContainer')) {
             try {
               jeeP.updateSummary(mutation.addedNodes[0].className)
             } catch {}
@@ -75,7 +75,7 @@ if (!jeeFrontEnd.overview) {
       let button
       document.querySelectorAll('.objectPreview').forEach(function(element) {
         const visibles = [...element.querySelectorAll('.objectSummaryParent')].filter(el => el.isVisible())
-        if (visibles.length == 0) {
+        if (visibles.length === 0) {
           button = '<span class="bt_config"><i class="fas fa-cogs"></i></span>'
           element.querySelector('.bt_config')?.remove()
           element.querySelector('.topPreview')?.insertAdjacentHTML('beforeend', button)
@@ -301,7 +301,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {
   let _target = null
   if (_target = event.target.closest('.objectPreview .name')) {
-    if (event.which == 2) {
+    if (event.which === 2) {
       event.preventDefault()
       const id = event.target.closest('.objectPreview').getAttribute('data-object_id')
       document.querySelector('.objectPreview[data-object_id="' + id + '"] .name').triggerEvent('click', {detail: {ctrlKey: true}})
@@ -310,7 +310,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
   }
 
   if (_target = event.target.closest('.objectSummaryParent')) {
-    if (event.which == 2) {
+    if (event.which === 2) {
       const id = _target.getAttribute('data-object_id')
       const url = 'index.php?v=d&p=dashboard&summary=' + _target.getAttribute('data-summary') + '&object_id=' + id + '&childs=0'
       window.open(url).focus()
@@ -319,7 +319,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
   }
 
   if (_target = event.target.closest('.objectPreview')) {
-    if (event.which == 2) {
+    if (event.which === 2) {
       if (event.target.hasClass('topPreview') || event.target.hasClass('name')) return
       event.preventDefault()
       const id = event.target.getAttribute('data-object_id') || event.target.closest('.objectPreview').getAttribute('data-object_id')

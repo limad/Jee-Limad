@@ -416,7 +416,7 @@ document.getElementById('bt_refreshDeamon')?.addEventListener('click', function(
 //Specials
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+  if ((event.ctrlKey || event.metaKey) && event.which === 83) { //s
     event.preventDefault()
     jeeFrontEnd.cron.saveCron()
   }
@@ -558,7 +558,7 @@ document.getElementById('table_deamon')?.tBodies[0].addEventListener('click', fu
   if (_target = event.target.closest('.bt_deamonAction')) {
     const plugin = _target.getAttribute('data-plugin')
     const action = _target.getAttribute('data-action')
-    if (action == 'start') {
+    if (action === 'start') {
       jeedom.plugin.deamonStart({
         id: plugin,
         forceRestart: 1,
@@ -572,7 +572,7 @@ document.getElementById('table_deamon')?.tBodies[0].addEventListener('click', fu
           jeeP.getDeamonState()
         }
       })
-    } else if (action == 'stop') {
+    } else if (action === 'stop') {
       jeedom.plugin.deamonStop({
         id: plugin,
         error: function(error) {
@@ -585,7 +585,7 @@ document.getElementById('table_deamon')?.tBodies[0].addEventListener('click', fu
           jeeP.getDeamonState()
         }
       })
-    } else if (action == 'enableAuto') {
+    } else if (action === 'enableAuto') {
       jeedom.plugin.deamonChangeAutoMode({
         id: plugin,
         mode: 1,
@@ -599,7 +599,7 @@ document.getElementById('table_deamon')?.tBodies[0].addEventListener('click', fu
           jeeP.getDeamonState()
         }
       })
-    } else if (action == 'disableAuto') {
+    } else if (action === 'disableAuto') {
       jeedom.plugin.deamonChangeAutoMode({
         id: plugin,
         mode: 0,

@@ -49,7 +49,7 @@ document.getElementById('bt_validateSpecifiCommand')?.addEventListener('click', 
 })
 
 document.getElementById('in_specificCommand')?.addEventListener('keyup', function(event) {
-  if (event.which == 13) {
+  if (event.which === 13) {
     const command = document.getElementById('in_specificCommand').value
     document.getElementById('pre_commandResult').empty()
     jeedom.ssh({

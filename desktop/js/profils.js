@@ -74,7 +74,7 @@ if (!jeeFrontEnd.profils) {
 jeeFrontEnd.profils.init()
 
 document.registerEvent('keydown', function(event) {
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+  if ((event.ctrlKey || event.metaKey) && event.which === 83) { //s
     event.preventDefault()
     document.getElementById("bt_saveProfils").click()
   }

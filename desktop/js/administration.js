@@ -60,7 +60,7 @@ if (!jeeFrontEnd.administration) {
           handleAjaxError(request, status, error)
         },
         success: function(data) {
-          if (data.state != 'ok') {
+          if (data.state !== 'ok') {
             jeedomUtils.showAlert({
               message: data.result,
               level: 'danger'
@@ -71,7 +71,7 @@ if (!jeeFrontEnd.administration) {
           if (Sortable.get(tbody)) Sortable.get(tbody).destroy()
           tbody.empty()
           for (const i in data.result) {
-            if (isset(data.result[i].key) && data.result[i].key == '') continue
+            if (isset(data.result[i].key) && data.result[i].key === '') continue
             if (!isset(data.result[i].name)) continue
             if (!isset(data.result[i].key)) {
               data.result[i].key = i.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\s/g, '')
@@ -129,7 +129,7 @@ if (!jeeFrontEnd.administration) {
       tr += '<td class="center"><input class="objectSummaryAttr form-control input-sm" data-l1key="ignoreIfCmdOlderThan" /></td>'
       tr += ''
       tr += '<td>'
-      if (isset(_summary) && isset(_summary.key) && _summary.key != '') {
+      if (isset(_summary) && isset(_summary.key) && _summary.key !== '') {
         tr += '<a class="btn btn-success btn-sm objectSummaryAction" data-l1key="createVirtual"><i class="fas fa-puzzle-piece"></i><span class="hidden-1280"> {{Créer virtuel}}</span></a>'
       }
       tr += '</td>'
@@ -144,7 +144,7 @@ if (!jeeFrontEnd.administration) {
       if (isset(_summary)) {
         newTr.setJeeValues(_summary, '.objectSummaryAttr')
       }
-      if (isset(_summary) && isset(_summary.key) && _summary.key != '') {
+      if (isset(_summary) && isset(_summary.key) && _summary.key !== '') {
         newTr.querySelector('.objectSummaryAttr[data-l1key="key"]').disabled = true
       }
       document.getElementById('table_objectSummary').tBodies[0].appendChild(newTr)
@@ -154,7 +154,7 @@ if (!jeeFrontEnd.administration) {
       const summary = {}
       const temp = document.getElementById('table_objectSummary').tBodies[0].childNodes.getJeeValues('.objectSummaryAttr')
       for (const i in temp) {
-        if (temp[i].key == '') {
+        if (temp[i].key === '') {
           temp[i].key = temp[i].name
         }
         temp[i].key = temp[i].key.toLowerCase().stripAccents().replace(/\_/g, '').replace(/\-/g, '').replace(/\&/g, '').replace(/\%/g, '').replace(/\s/g, '').replace(/\./g, '')
@@ -179,7 +179,7 @@ if (!jeeFrontEnd.administration) {
           })
         },
         success: function(data) {
-          if (data.state != 'ok') {
+          if (data.state !== 'ok') {
             jeedomUtils.showAlert({
               message: data.result,
               level: 'danger'
@@ -202,7 +202,7 @@ if (!jeeFrontEnd.administration) {
             })
           },
           success: function(data) {
-            if (data == '' || typeof data != 'object') return
+            if (data == '' || typeof data !== 'object') return
             jeeP.actionOptions = []
             for (const i in data) {
               jeeP.addActionOnMessage(data[i], channel)
@@ -321,7 +321,7 @@ if (!jeeFrontEnd.administration) {
           handleAjaxError(request, status, error)
         },
         success: function(data) {
-          if (data.state != 'ok') {
+          if (data.state !== 'ok') {
             jeedomUtils.showAlert({
               message: data.result,
               level: 'danger'
@@ -370,7 +370,7 @@ if (!jeeFrontEnd.administration) {
           handleAjaxError(request, status, error)
         },
         success: function(data) {
-          if (data.state != 'ok') {
+          if (data.state !== 'ok') {
             jeedomUtils.showAlert({
               message: data.result,
               level: 'danger'
@@ -448,7 +448,7 @@ if (!jeeFrontEnd.administration) {
               if (reloadPage) {
                 jeeFrontEnd.modifyWithoutSave = false
                 let url = 'index.php?v=d&p=administration&saveSuccessFull=1'
-                if (window.location.hash != '') {
+                if (window.location.hash !== '') {
                   url += window.location.hash
                 }
                 window.history.pushState({}, document.title, url)
@@ -492,7 +492,7 @@ document.getElementById('in_searchConfig').addEventListener('keyup', function(ev
   })
 
   resultDiv.empty()
-  if (search == '') {
+  if (search === '') {
     document.querySelectorAll('#config .nav-tabs, #config .tab-content').seen()
     jeedomUtils.dateTimePickerInit()
     jeedomUtils.initTooltips()
@@ -593,7 +593,7 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
         handleAjaxError(request, status, error)
       },
       success: function(data) {
-        if (data.state != 'ok') {
+        if (data.state !== 'ok') {
           jeedomUtils.showAlert({
             message: data.result,
             level: 'danger'
@@ -619,7 +619,7 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
         handleAjaxError(request, status, error)
       },
       success: function(data) {
-        if (data.state != 'ok') {
+        if (data.state !== 'ok') {
           jeedomUtils.showAlert({
             message: data.result,
             level: 'danger'
@@ -727,7 +727,7 @@ document.getElementById('tablist').addEventListener('click', function(event) {
   let _target = null
   if (_target = event.target.closest('#bt_networkTab')) {
     const tableBody = document.getElementById('networkInterfacesTable').tBodies[0]
-    if (tableBody.children.length == 0) {
+    if (tableBody.children.length === 0) {
       jeedom.network.getInterfacesInfo({
         error: function(error) {
           jeedomUtils.showAlert({
@@ -996,7 +996,7 @@ document.getElementById('logtab').addEventListener('click', function(event) {
 document.getElementById('logtab').addEventListener('change', function(event) {
   let _target = null
   if (_target = event.target.closest('.configKey[data-l1key="log::engine"]')) {
-    if (_target.value == '') return
+    if (_target.value === '') return
     let element = document.querySelector('.logEngine.' + _target.value)
     if (element != null) element.seen()
     return
@@ -1078,7 +1078,7 @@ document.getElementById('summarytab').addEventListener('click', function(event) 
         handleAjaxError(request, status, error)
       },
       success: function(data) {
-        if (data.state != 'ok') {
+        if (data.state !== 'ok') {
           jeedomUtils.showAlert({
             message: data.result,
             level: 'danger'
@@ -1246,7 +1246,7 @@ document.getElementById('securitytab').addEventListener('click', function(event)
             handleAjaxError(request, status, error)
           },
           success: function(data) {
-            if (data.state != 'ok') {
+            if (data.state !== 'ok') {
               jeedomUtils.showAlert({
                 message: '{{Connexion échouée :}} ' + data.result,
                 level: 'danger'
@@ -1397,7 +1397,7 @@ document.getElementById('cachetab').addEventListener('change', function(event) {
   let _target = null
   if (_target = event.target.closest('.configKey[data-l1key="cache::engine"]')) {
     document.querySelectorAll('.cacheEngine').unseen()
-    if (_target.value == '') return
+    if (_target.value === '') return
     let element = document.querySelector('.cacheEngine.' + _target.value)
     if (element != null) element.seen()
     return
@@ -1426,7 +1426,7 @@ document.getElementById('apitab').addEventListener('click', function(event) {
             handleAjaxError(request, status, error)
           },
           success: function(data) {
-            if (data.state != 'ok') {
+            if (data.state !== 'ok') {
               jeedomUtils.showAlert({
                 message: data.result,
                 level: 'danger'
@@ -1563,7 +1563,7 @@ document.getElementById('div_pageContainer').addEventListener('mousedown', funct
 
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+  if ((event.ctrlKey || event.metaKey) && event.which === 83) { //s
     event.preventDefault()
     jeeP.saveConfig()
     return

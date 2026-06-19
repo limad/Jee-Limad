@@ -206,7 +206,7 @@ jeeFrontEnd.user.init()
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+  if ((event.ctrlKey || event.metaKey) && event.which === 83) { //s
     event.preventDefault()
     jeeP.saveUsers()
   }
@@ -454,7 +454,7 @@ document.getElementById('div_administration').addEventListener('click', function
         text: _tr.querySelector('.userAttr[data-l1key="login"]').value
       })
     })
-    if (select_list.length == 0) {
+    if (select_list.length === 0) {
       jeedomUtils.showAlert({
         message: '{{Vous n\'avez aucun autre utilisateur à profil limité}}',
         level: 'warning'

@@ -40,7 +40,7 @@ if (!jeeFrontEnd.history) {
 
       //Load ids from url:
       this.loadIds = getUrlVars('cmd_id')
-      if (typeof this.loadIds == 'string') {
+      if (typeof this.loadIds === 'string') {
         this.loadIds = this.loadIds.split('-')
         if (is_numeric(this.loadIds[0])) {
           this.loadIds.forEach(function(cmd_id) {
@@ -178,7 +178,7 @@ if (!jeeFrontEnd.history) {
           handleAjaxError(request, status, error)
         },
         success: function(data) {
-          if (data.state != 'ok') {
+          if (data.state !== 'ok') {
             jeedomUtils.showAlert({
               message: data.result,
               level: 'danger'
@@ -346,7 +346,7 @@ if (!jeeFrontEnd.history) {
     setHistoryOptions: function(_mode) {
       if (!isset(_mode)) _mode = true
       document.getElementById('div_historyOptions').querySelectorAll('input, select, a').forEach(_ctrl => {
-        if (_ctrl.getAttribute('id') != 'in_startDate' && _ctrl.getAttribute('id') != 'in_endDate' && _ctrl.getAttribute('id') != 'bt_validChangeDate' && _ctrl.getAttribute('id') != 'bt_compare' && _ctrl.getAttribute('id') != 'bt_clearGraph') {
+        if (_ctrl.getAttribute('id') !== 'in_startDate' && _ctrl.getAttribute('id') !== 'in_endDate' && _ctrl.getAttribute('id') !== 'bt_validChangeDate' && _ctrl.getAttribute('id') !== 'bt_compare' && _ctrl.getAttribute('id') !== 'bt_clearGraph') {
           if (_mode) {
             _ctrl.removeClass('disabled')
           } else {
@@ -368,7 +368,7 @@ if (!jeeFrontEnd.history) {
         success: function(data) {
           if (!elCalculList) return
           elCalculList.empty()
-          if (data.length == 0) return
+          if (data.length === 0) return
 
           let html = '<span class="label cursor displayObject" data-object_id="jeedom-config-calculs" style="background-color:var(--btn-default-color);color:var(--linkHoverLight-color);">{{Mes Calculs}} <i class="fas fa-arrow-circle-right"></i></span>'
           html += '<br/>'
@@ -655,7 +655,7 @@ document.getElementById('sidebar').addEventListener('click', function(event) {
 document.getElementById('sidebar').addEventListener('keyup', function(event) {
   let _target = null
   if (_target = event.target.closest('ul li input.filter')) {
-    if (event.target.value == '') {
+    if (event.target.value === '') {
       document.querySelectorAll('#ul_history .cmdList').unseen()
       document.querySelectorAll('.displayObject i.fas').removeClass('fa-arrow-circle-down').addClass('fa-arrow-circle-right')
     } else {

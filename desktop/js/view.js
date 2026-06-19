@@ -131,7 +131,7 @@ if (!jeeFrontEnd.view) {
     },
     editWidgetMode: function(_mode, _save) {
       if (!isset(_mode)) {
-        if (document.getElementById('bt_editViewWidgetOrder').getAttribute('data-mode') == '1') {
+        if (document.getElementById('bt_editViewWidgetOrder').getAttribute('data-mode') === '1') {
           this.editWidgetMode(0, false)
           this.editWidgetMode(1, false)
         }
@@ -165,7 +165,7 @@ if (!jeeFrontEnd.view) {
         document.querySelectorAll('.eqLogic-widget, .scenario-widget').addClass('editingMode')
 
         //set draggables:
-        if (jeeFrontEnd.view.draggables.length == 0) {
+        if (jeeFrontEnd.view.draggables.length === 0) {
           //No draggies set yet:
           document.querySelectorAll('div.eqLogicZone').forEach(_divObject => {
             const pckry = Packery.data(_divObject)
@@ -256,7 +256,7 @@ window.registerEvent("resize", function view(event) {
 document.getElementById('div_pageContainer').addEventListener('click', function(event) {
   let _target = null
   if (_target = event.target.closest('#bt_editViewWidgetOrder')) {
-    if (_target.getAttribute('data-mode') == '1') {
+    if (_target.getAttribute('data-mode') === '1') {
       document.getElementById('md_dashEdit')?.remove()
       jeedomUtils.hideAlert()
       _target.setAttribute('data-mode', 0)
@@ -270,7 +270,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#bt_displayView')) {
-    if (_target.getAttribute('data-display') == '1') {
+    if (_target.getAttribute('data-display') === '1') {
       _target.closest('.row').querySelector('.div_displayViewList').unseen()
       _target.closest('.row').querySelector('.div_displayViewContainer').removeClass('col-lg-8 col-lg-10 col-lg-12 col-lg-8 col-lg-10 col-lg-12 col-md-8 col-md-10 col-md-12 col-sm-8 col-sm-10 col-sm-12').addClass('col-lg-12 col-md-12 col-sm-12')
       document.querySelectorAll('div.eqLogicZone').forEach(_divObject => {

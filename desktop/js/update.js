@@ -66,7 +66,7 @@ if (!jeeFrontEnd.update) {
           }, 1000)
         },
         success: function(data) {
-          if (data.state != 'ok') {
+          if (data.state !== 'ok') {
             setTimeout(function() {
               jeeP.getJeedomLog(_autoUpdate, _log)
             }, 1000)
@@ -133,7 +133,7 @@ if (!jeeFrontEnd.update) {
           const tr_updates = []
           for (const i in data) {
             if (!isset(data[i].status)) continue
-            if (data[i].type == 'core' || data[i].type == 'plugin') {
+            if (data[i].type === 'core' || data[i].type === 'plugin') {
               tr_updates.push(jeeP.addUpdate(data[i]))
             }
           }
@@ -196,7 +196,7 @@ if (!jeeFrontEnd.update) {
       let labelClass = 'label-success'
       if (_update.status == 'UPDATE') {
         labelClass = 'label-warning'
-        if (_update.type == 'core' || _update.type == 'plugin') {
+        if (_update.type === 'core' || _update.type === 'plugin') {
           if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') jeeP.hasUpdate = true
         }
       }
@@ -257,13 +257,13 @@ if (!jeeFrontEnd.update) {
       tr += '<td style="width:160px;" data-order="' + Date.parse(_update.remoteVersion) + '"><span class="label label-primary" data-l1key="remoteVersion">' + _update.remoteVersion + '</span></td>'
       tr += '<td style="width:160px;" data-order="' + Date.parse(_update.updateDate) + '"><span class="label label-primary" data-l1key="updateDate">' + _update.updateDate + '</span></td>'
       tr += '<td>'
-      if (_update.type != 'core') {
+      if (_update.type !== 'core') {
         tr += '<i class="fas fa-pencil-ruler" title="{{Ne pas mettre à jour}}"></i> <input id="' + _update.name + '" type="checkbox" class="updateAttr checkContext warning" data-l1key="configuration" data-l2key="doNotUpdate" title="{{Sauvegarder pour conserver les modifications}}">'
         tr += '<label class="cursor fontweightnormal hidden-1280" for="' + _update.name + '"></label>'
       }
       tr += '</td>'
       tr += '<td>'
-      if (_update.type != 'core') {
+      if (_update.type !== 'core') {
         if (_update.configuration && _update.configuration.version == 'beta') {
           if (isset(_update.plugin) && isset(_update.plugin.changelog_beta) && _update.plugin.changelog_beta != '') {
             tr += '<a class="btn btn-xs cursor" target="_blank" href="' + _update.plugin.changelog_beta + '"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
@@ -282,7 +282,7 @@ if (!jeeFrontEnd.update) {
       } else {
         tr += '<a class="btn btn-xs" target="_blank" href="'+_update.changelog_url+'"><i class="fas fa-book"></i><span class="hidden-1280"> {{Changelog}}</span></a> '
       }
-      if (_update.type != 'core') {
+      if (_update.type !== 'core') {
         if (_update.status == 'UPDATE') {
           if (!_update.configuration.hasOwnProperty('doNotUpdate') || _update.configuration.doNotUpdate == '0') {
             tr += '<button type="button" class="btn btn-warning btn-xs update"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></button> '
@@ -299,7 +299,7 @@ if (!jeeFrontEnd.update) {
       } else if (_update.status == 'UPDATE' && jeephp2js.showUpdate == '1') {
         tr += '<button type="button" class="btn btn-warning btn-xs updateJeedom"><i class="fas fa-sync"></i><span class="hidden-1280"> {{Mettre à jour}}</span></button> '
       }
-      if (_update.type != 'core') {
+      if (_update.type !== 'core') {
         tr += '<button type="button" class="btn btn-danger btn-xs remove"><i class="far fa-trash-alt"></i><span class="hidden-1280"> {{Supprimer}}</span></button> '
       }
       tr += '<button type="button" class="btn btn-info btn-xs checkUpdate"><i class="fas fa-check"></i><span class="hidden-1280"> {{Vérifier}}</span></button>'
@@ -366,7 +366,7 @@ if (!jeeFrontEnd.update) {
     createUpdateObserver: function() {
       this._UpdateObserver_ = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
-          if (mutation.type == 'childList' && mutation.removedNodes.length >= 1) {
+          if (mutation.type === 'childList' && mutation.removedNodes.length >= 1) {
             jeeFrontEnd.update.cleanUpdateLog()
           }
         })

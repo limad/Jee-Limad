@@ -50,7 +50,7 @@ if (!jeeFrontEnd.view_edit) {
       let viewZoneInfo, line, col
       document.querySelectorAll('.viewZone').forEach(function(_viewZone) {
         viewZoneInfo = _viewZone.getJeeValues('.viewZoneAttr')[0]
-        if (viewZoneInfo.type == 'table') {
+        if (viewZoneInfo.type === 'table') {
           viewZoneInfo.viewData = [{
             'configuration': {}
           }]
@@ -416,7 +416,7 @@ Sortable.create(document.getElementById('div_viewZones'), {
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+  if ((event.ctrlKey || event.metaKey) && event.which === 83) { //s
     event.preventDefault()
     jeeP.saveView()
   }
@@ -599,7 +599,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
 
   if (_target = event.target.closest('#div_viewZones .bt_addViewTable')) {
     let table = _target.closest('.viewZone').querySelector('table.div_viewData')
-    if (_target.getAttribute('data-type') == 'line') {
+    if (_target.getAttribute('data-type') === 'line') {
       let line = '<tr class="viewData">'
       line += '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="line"><i class="far fa-trash-alt"></a></td>'
       let length = 1;
@@ -619,7 +619,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
       line += '</tr>'
       table.tBodies[0].insertAdjacentHTML('beforeend', line)
     } 
-    if (_target.getAttribute('data-type') == 'col') {
+    if (_target.getAttribute('data-type') === 'col') {
       table.tHead.childNodes[0].insertAdjacentHTML('beforeend', '<td><a class="btn btn-danger bt_removeAddViewTable" data-type="col"><i class="far fa-trash-alt"></a></td>')
       table.tBodies[0].childNodes.forEach(_tr => {
         let col = '<td>'
@@ -638,9 +638,9 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#div_viewZones .bt_removeAddViewTable')) {
-    if (_target.getAttribute('data-type') == 'line') {
+    if (_target.getAttribute('data-type') === 'line') {
       _target.closest('tr').remove()
-    } else if (_target.getAttribute('data-type') == 'col') {
+    } else if (_target.getAttribute('data-type') === 'col') {
       let table = _target.closest('table')
       let tdIdx = _target.closest('td').cellIndex
       table.tHead.childNodes[0].deleteCell(tdIdx)

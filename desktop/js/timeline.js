@@ -47,7 +47,7 @@ if (!jeeFrontEnd.timeline) {
           })
         },
         success: function(data) {
-          if (data.length == 0) return
+          if (data.length === 0) return
           data.sort(jeeP.sortByDateConsistentASC)
           data = data.reverse()
           const dataLength = data.length
@@ -133,7 +133,7 @@ if (!jeeFrontEnd.timeline) {
               }
               li += '&#160&#160' + thisData.plugins
             }
-            if (thisData.type == 'scenario') {
+            if (thisData.type === 'scenario') {
               li += thisData.type + '&#160&#160<i class="success jeedom-clap_cinema"></i>'
               lineClass = 'typeScenario'
             }
@@ -193,7 +193,7 @@ jeeFrontEnd.timeline.init()
 //searching
 document.getElementById('in_searchTimeline')?.addEventListener('keyup', function(event) {
   let search = event.target.value
-  if (search == '') {
+  if (search === '') {
     document.querySelectorAll('#events > li.event').seen()
     return
   }

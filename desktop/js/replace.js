@@ -68,7 +68,7 @@ if (!jeeFrontEnd.replace) {
         eqDiv += '<ul style="display:none;">'
         jeephp2js.listCommands.forEach(function(cmd) {
           if (cmd.eqLogic_id == eqlogic.id) {
-            if (cmd.type == 'info') {
+            if (cmd.type === 'info') {
               eqDiv += '<li class="alert alert-info cmd" data-id="' + cmd.id + '" data-type="' + cmd.type + '">'
             } else {
               eqDiv += '<li class="alert alert-warning cmd" data-id="' + cmd.id + '" data-type="' + cmd.type + '">'
@@ -142,7 +142,7 @@ if (!jeeFrontEnd.replace) {
       const eqReplacers = document.querySelectorAll('#eqSource select.selectEqReplace')
       jeeP.replacerEqList = new Array()
       eqReplacers.forEach(_select => {
-        if (_select.value != '') jeeP.replacerEqList.push(_select.value)
+        if (_select.value !== '') jeeP.replacerEqList.push(_select.value)
       })
 
       //Check each eqlogic to synch state and select:
@@ -173,7 +173,7 @@ if (!jeeFrontEnd.replace) {
       const targetEqName = _selectEl.querySelector('option[value="' + targetEqId + '"]').getAttribute('data-name')
 
       //open cmds ul:
-      if (_selectEl.value != '' && !thisEq.querySelector('ul').isVisible()) {
+      if (_selectEl.value !== '' && !thisEq.querySelector('ul').isVisible()) {
         thisEq.querySelector('ul').seen()
       }
 
@@ -187,7 +187,7 @@ if (!jeeFrontEnd.replace) {
       }
 
       //Is ever replacing by this eqLogic:
-      if (_selectEl.value != '' && is_array(jeeP.replacerEqList) && jeeP.replacerEqList.includes(targetEqId)) {
+      if (_selectEl.value !== '' && is_array(jeeP.replacerEqList) && jeeP.replacerEqList.includes(targetEqId)) {
         jeedomUtils.showAlert({level: 'warning', message: "{{Cet équipement remplace déjà un autre équipement.}}"})
         _selectEl.jeeValue('')
         jeeP.resetCmdSelects(sourceEqId)
@@ -207,8 +207,8 @@ if (!jeeFrontEnd.replace) {
       jeeP.synchEqlogicsReplacers()
 
       //Get over each command to set its select option with target commands list:
-      const replacerCmdsInfo = jeephp2js.listCommands.filter(o => o.eqLogic_id == targetEqId && o.type == 'info')
-      const replacerCmdsAction = jeephp2js.listCommands.filter(o => o.eqLogic_id == targetEqId && o.type == 'action')
+      const replacerCmdsInfo = jeephp2js.listCommands.filter(o => o.eqLogic_id == targetEqId && o.type === 'info')
+      const replacerCmdsAction = jeephp2js.listCommands.filter(o => o.eqLogic_id == targetEqId && o.type === 'action')
       const cmdsObject = jeephp2js.listCommands.filter(o => o.eqLogic_id == sourceEqId)
       const cmds = thisEq.querySelectorAll('.cmd')
       let cmdSelect
@@ -359,7 +359,7 @@ document.getElementById('in_searchByName')?.addEventListener('keyup', function(e
     let searchID = search
     if (isNaN(search)) searchID = false
 
-    if (search == '') {
+    if (search === '') {
       jeeP.sourcesEqContainer.querySelectorAll('ul.eqLogic').seen()
       return
     }
@@ -464,7 +464,7 @@ document.getElementById('accordionFilter').addEventListener('mouseup', function(
   if (_target = event.target.closest('input.objectFilterKey')) {
     event.preventDefault()
     event.stopPropagation()
-    if (event.which == 2) {
+    if (event.which === 2) {
       document.querySelectorAll('#objectFilter input.objectFilterKey').forEach(_filter => { _filter.checked = false })
       _target.checked = true
     } else {
@@ -476,7 +476,7 @@ document.getElementById('accordionFilter').addEventListener('mouseup', function(
   if (_target = event.target.closest('input.pluginFilterKey')) {
     event.preventDefault()
     event.stopPropagation()
-    if (event.which == 2) {
+    if (event.which === 2) {
       document.querySelectorAll('#pluginFilter input.pluginFilterKey').forEach(_filter => { _filter.checked = false })
       _target.checked = true
     } else {
@@ -492,7 +492,7 @@ document.getElementById('accordionFilter').addEventListener('mousedown', functio
     event.preventDefault()
     let checkbox = _target.querySelector('input.objectFilterKey')
     if (checkbox == null) return
-    if (event.which == 2 || event.ctrlKey) {
+    if (event.which === 2 || event.ctrlKey) {
       if (document.querySelectorAll('input.objectFilterKey:checked').length == 1 && checkbox.checked) {
         document.querySelectorAll('#objectFilter li input.objectFilterKey').forEach(_key => { _key.checked = true })
       } else {
@@ -509,7 +509,7 @@ document.getElementById('accordionFilter').addEventListener('mousedown', functio
     event.preventDefault()
     let checkbox = _target.querySelector('input.pluginFilterKey')
     if (checkbox == null) return
-    if (event.which == 2 || event.ctrlKey) {
+    if (event.which === 2 || event.ctrlKey) {
       if (document.querySelectorAll('input.pluginFilterKey:checked').length == 1 && checkbox.checked) {
         document.querySelectorAll('#pluginFilter li input.pluginFilterKey').forEach(_key => { _key.checked = true })
       } else {
@@ -540,7 +540,7 @@ document.getElementById('eqSource').addEventListener('click', function(event) {
 document.getElementById('eqSource').addEventListener('change', function(event) {
   let _target = null
   if (_target = event.target.closest('select.selectEqReplace')) {
-    if(_target.closest('select.selectEqReplace').value == ''){
+    if(_target.closest('select.selectEqReplace').value === ''){
      	return; 
     }
     jeeP.selectReplacerEqlogic(_target.closest('select.selectEqReplace'))

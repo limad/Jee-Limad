@@ -49,11 +49,11 @@ if (!jeeFrontEnd.editor) {
                 callback: {
                   click: function(event) {
                     const SubType = document.querySelector('.selectWidgetSubType[data-type="' + document.getElementById('sel_widgetType')?.value + '"]')?.value
-                    if (!SubType || SubType.value == '') {
+                    if (!SubType || SubType.value === '') {
                       jeedomUtils.showAlert({message: '{{Le sous-type ne peut être vide}}', level: 'danger'})
                       return
                     }
-                    if (document.getElementById('in_widgetName').value == '') {
+                    if (document.getElementById('in_widgetName').value === '') {
                       jeedomUtils.showAlert({message: '{{Le nom ne peut être vide}}', level: 'danger'})
                       return
                     }

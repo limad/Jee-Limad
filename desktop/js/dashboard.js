@@ -109,7 +109,7 @@ if (!jeeFrontEnd.dashboard) {
 
       document.querySelectorAll('.div_displayEquipement').forEach(function(element) {
         const visibles = [...element.querySelectorAll('div.eqLogic-widget, div.scenario-widget')].filter(el => el.isVisible())
-        if (visibles.length == 0) {
+        if (visibles.length === 0) {
           element.closest('.div_object').unseen()
         } else {
           element.closest('.div_object').seen()
@@ -183,7 +183,7 @@ if (!jeeFrontEnd.dashboard) {
         })
 
         //set draggables:
-        if (jeeFrontEnd.dashboard.draggables.length == 0) {
+        if (jeeFrontEnd.dashboard.draggables.length === 0) {
           //No draggies set yet:
           document.querySelectorAll('div.div_displayEquipement').forEach(_divObject => {
             const pckry = Packery.data(_divObject)
@@ -290,7 +290,7 @@ if (!jeeFrontEnd.dashboard) {
                   domUtils.hideLoading()
                   new Packery(dom_divDisplayEq, {isLayoutInstant: true, transitionDuration: 0})
 
-                  if (Array.from(dom_divDisplayEq.querySelectorAll('div.eqLogic-widget, div.scenario-widget')).filter(item => item.isVisible()).length == 0) {
+                  if (Array.from(dom_divDisplayEq.querySelectorAll('div.eqLogic-widget, div.scenario-widget')).filter(item => item.isVisible()).length === 0) {
                     dom_divDisplayEq.closest('.div_object').remove()
                     return
                   }
@@ -328,11 +328,11 @@ if (!jeeFrontEnd.dashboard) {
           } catch (err) {
             console.warn(err)
           }
-          if (typeof jeeP == 'undefined') {
+          if (typeof jeeP === 'undefined') {
             return
           }
           if (self.url_summary != false) {
-            if (Array.from(dom_divDisplayEq.querySelectorAll('div.eqLogic-widget, div.scenario-widget')).filter(item => item.isVisible()).length == 0) {
+            if (Array.from(dom_divDisplayEq.querySelectorAll('div.eqLogic-widget, div.scenario-widget')).filter(item => item.isVisible()).length === 0) {
               dom_divDisplayEq.closest('.div_object').remove()
               domUtils.hideLoading()
               return
@@ -383,7 +383,7 @@ if (!jeeFrontEnd.dashboard) {
 
 jeeFrontEnd.dashboard.init()
 
-if (typeof jeephp2js.rootObjectId != 'undefined') {
+if (typeof jeephp2js.rootObjectId !== 'undefined') {
   jeedom.object.getImgPath({
     id: jeephp2js.rootObjectId,
     success: function(_path) {
@@ -401,7 +401,7 @@ document.getElementById('in_searchDashboard')?.addEventListener('keyup', functio
   if (jeedomUI.isEditing) return
   let search = this.value
   document.querySelectorAll('.div_object:not(.hideByObjectSel)').seen()
-  if (search == '') {
+  if (search === '') {
     document.querySelectorAll('div.eqLogic-widget, div.scenario-widget').seen()
     document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
     return
@@ -454,7 +454,7 @@ document.getElementById('in_searchDashboard')?.addEventListener('keyup', functio
   })
   document.querySelectorAll('.div_displayEquipement').forEach(function(element) {
     const visibles = [...element.querySelectorAll('div.eqLogic-widget, div.scenario-widget')].filter(el => el.isVisible())
-    if (visibles.length == 0) element.closest('.div_object').unseen()
+    if (visibles.length === 0) element.closest('.div_object').unseen()
   })
   document.querySelectorAll('div.div_displayEquipement').forEach(_div => { Packery.data(_div).layout() })
 })
@@ -548,7 +548,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   }
 
   if (_target = event.target.closest('#bt_overview')) { //bt_overview arrow:
-    if (_target.getAttribute('data-state') == '0') {
+    if (_target.getAttribute('data-state') === '0') {
       _target.setAttribute('data-state', '1')
     } else {
       _target.setAttribute('data-state', '0')
@@ -655,7 +655,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseleave', func
 
   if (event.target.matches('#dashOverviewPrev')) { //Overview preview container
     document.querySelectorAll('#dashOverviewPrevSummaries > .objectSummaryContainer').unseen()
-    if (document.getElementById('bt_overview').getAttribute('data-state') == '0') {
+    if (document.getElementById('bt_overview').getAttribute('data-state') === '0') {
       document.getElementById('dashOverviewPrev').unseen()
     }
     return
@@ -665,7 +665,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseleave', func
 document.getElementById('div_pageContainer').addEventListener('mouseup', function(event) {
   let _target = null
   if (_target = event.target.closest('.objectPreview')) {
-    if (event.which == 2) {
+    if (event.which === 2) {
       event.preventDefault()
       const id = _target.getAttribute('data-object_id')
       document.querySelector('.objectPreview[data-object_id="' + id + '"] .name').triggerEvent('click', {detail: {ctrlKey: true}})
@@ -679,7 +679,7 @@ document.getElementById('div_pageContainer').addEventListener('mouseup', functio
     event.preventDefault()
     event.stopPropagation()
 
-    if (event.which == 2) {
+    if (event.which === 2) {
       if (document.querySelectorAll('.catFilterKey:checked').length == 1 && checkbox.checked) {
         document.querySelectorAll('#categoryfilter input.catFilterKey').forEach(checkbox => { checkbox.checked = true })
       } else {
@@ -699,7 +699,7 @@ document.getElementById('div_pageContainer').addEventListener('mousedown', funct
     event.preventDefault()
     const checkbox = event.target.closest('li').querySelector('.catFilterKey')
     if (checkbox == null) return
-    if (event.which == 2) {
+    if (event.which === 2) {
       if (document.querySelectorAll('.catFilterKey:checked').length == 1 && checkbox.checked) {
         document.querySelectorAll('#categoryfilter input.catFilterKey').forEach(checkbox => { checkbox.checked = true })
       } else {

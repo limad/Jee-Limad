@@ -354,7 +354,7 @@ document.getElementById('div_pageContainer').addEventListener('click', function(
   if (_target = event.target.closest('a.bt_removeFilter')) {
     _target.closest('div.form-group').remove()
     document.getElementById('testResult').empty().unseen()
-    if (document.querySelectorAll('#filter > div.filter').length == 0) {
+    if (document.querySelectorAll('#filter > div.filter').length === 0) {
       document.getElementById('bt_testFilter').addClass('disabled')
     }
     return
@@ -441,7 +441,7 @@ document.getElementById('div_pageContainer').addEventListener('change', function
 
     //set possible values for key
     let newOption
-    if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
+    if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] !== 'undefined') {
       selectJValues.disabled = true
       jeephp2js.typePossibilities[jeeP._filterType_][key].forEach(function(item, index) {
         newOption = document.createElement('option')
@@ -500,7 +500,7 @@ document.getElementById('div_pageContainer').addEventListener('change', function
     inputValues.empty()
     const key = _target.value
     let newOption
-    if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] != 'undefined') {
+    if (typeof jeephp2js.typePossibilities[jeeP._filterType_][key][0] !== 'undefined') {
       inputJValue.disabled = true
     } else {
       inputJValue.removeAttribute('disabled')
@@ -531,7 +531,7 @@ document.getElementById('div_pageContainer').addEventListener('change', function
     inputJValues.empty()
 
     const jValues = jeephp2js.typePossibilities[jeeP._filterType_][key][value]
-    if (!jValues || typeof jValues == 'string') return false
+    if (!jValues || typeof jValues === 'string') return false
     let newOption
     jValues.forEach((jValue, index) => {
       newOption = document.createElement('option')

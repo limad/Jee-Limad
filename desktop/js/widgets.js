@@ -52,7 +52,7 @@ if (!jeeFrontEnd.widgets) {
         success: function(data) {
           const replaceContainer = document.getElementById('div_templateReplace')
           replaceContainer.empty()
-          if (typeof data.replace != 'undefined' && data.replace.length > 0) {
+          if (typeof data.replace !== 'undefined' && data.replace.length > 0) {
             document.querySelectorAll('.type_replace').seen()
             const fragment = document.createDocumentFragment()
             for (const key of data.replace) {
@@ -107,7 +107,7 @@ if (!jeeFrontEnd.widgets) {
             document.querySelectorAll('.type_replace').unseen()
           }
 
-          if (typeof _data != 'undefined') {
+          if (typeof _data !== 'undefined') {
             document.querySelectorAll('.widgets').setJeeValues({
               replace: _data.replace
             }, '.widgetsAttr')
@@ -398,7 +398,7 @@ try {
       })
     },
     success: function(_widgets) {
-      if (_widgets.length == 0) return
+      if (_widgets.length === 0) return
 
       const widgetsList = { info: [], action: [] }
       for (const wg of _widgets) {
@@ -424,7 +424,7 @@ try {
         className: 'widget-context-menu',
         callback: function(key, options, event) {
           if (!jeedomUtils.checkPageModified()) {
-            if (event.ctrlKey || event.metaKey || event.which == 2) {
+            if (event.ctrlKey || event.metaKey || event.which === 2) {
               window.open('index.php?v=d&p=widgets&id=' + options.commands[key].id).focus()
             } else {
               jeeP.printWidget(options.commands[key].id)
@@ -443,7 +443,7 @@ try {
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+  if ((event.ctrlKey || event.metaKey) && event.which === 83) { //s
     event.preventDefault()
     jeeP.saveWidget()
   }
@@ -452,7 +452,7 @@ document.registerEvent('keydown', function(event) {
 //searching
 document.getElementById('in_searchWidgets')?.addEventListener('keyup', function() {
   let search = this.value
-  if (search == '') {
+  if (search === '') {
     document.querySelectorAll('#accordionWidgets .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
     document.querySelectorAll('.widgetsDisplayCard').seen()
     return
@@ -568,7 +568,7 @@ document.getElementById('div_widgetsList').addEventListener('click', function(ev
 document.getElementById('div_widgetsList').addEventListener('mouseup', function(event) {
   let _target = null
   if (_target = event.target.closest('.widgetsDisplayCard')) {
-    if (event.which == 2) {
+    if (event.which === 2) {
       event.preventDefault()
       const id = _target.getAttribute('data-widgets_id')
       document.querySelector('.widgetsDisplayCard[data-widgets_id="' + id + '"] .name').triggerEvent('click', { detail: { ctrlKey: true } })

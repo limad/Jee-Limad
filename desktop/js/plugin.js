@@ -88,7 +88,7 @@ if (!jeeFrontEnd.plugin) {
           }
 
           self.dom_container.querySelector('#span_plugin_license').innerHTML = data.license
-          if (data.installation.trim() == '' || data.installation.trim() == 'Aucune') {
+          if (data.installation.trim() === '' || data.installation.trim() == 'Aucune') {
             self.dom_container.querySelector('#span_plugin_installation').closest('.panel').unseen()
           } else {
             self.dom_container.querySelector('#span_plugin_installation').innerHTML = data.installation
@@ -341,7 +341,7 @@ if (!jeeFrontEnd.plugin) {
           if (data.checkVersion != -1) {
             if (data.configurationPath != '' && data.activate == '1') {
               dom_divPluginConfiguration.load('index.php?v=d&plugin=' + data.id + '&configure=1', function() {
-                if (dom_divPluginConfiguration.innerHTML.trim() == '') {
+                if (dom_divPluginConfiguration.innerHTML.trim() === '') {
                   dom_divPluginConfiguration.closest('.panel').unseen()
                   return
                 } else {
@@ -445,10 +445,10 @@ if (!jeeFrontEnd.plugin) {
           })
           jeeFrontEnd.modifyWithoutSave = false
           const postSave = document.getElementById('span_plugin_id').innerHTML + '_postSaveConfiguration'
-          if (typeof window[postSave] == 'function') {
+          if (typeof window[postSave] === 'function') {
             window[postSave]()
           }
-          if (typeof _param.success == 'function') {
+          if (typeof _param.success === 'function') {
             _param.success(0)
           }
           let relaunchDeamon = document.querySelector('#div_plugin_configuration .saveParam[data-l1key="relaunchDeamon"]')
@@ -466,7 +466,7 @@ if (!jeeFrontEnd.plugin) {
           _aux = false
         }
       }
-      if (_event.target.closest('.pluginDisplayCard')?.hasClass('inactive') || _event.target.closest('#div_state')?.querySelector('a.togglePlugin')?.getAttribute('data-state') == '1') {
+      if (_event.target.closest('.pluginDisplayCard')?.hasClass('inactive') || _event.target.closest('#div_state')?.querySelector('a.togglePlugin')?.getAttribute('data-state') === '1') {
         jeeDialog.alert('{{Vous devez activer ce plugin pour y accéder.}}')
         return
       }
@@ -493,7 +493,7 @@ jeeFrontEnd.plugin.init()
 //searching:
 document.getElementById('in_searchPlugin')?.addEventListener('keyup', function(event) {
   let search = event.target.value
-  if (search == '') {
+  if (search === '') {
     document.querySelectorAll('.pluginDisplayCard').seen()
     return
   }
@@ -516,7 +516,7 @@ document.getElementById('bt_resetPluginSearch')?.addEventListener('click', funct
 //Register events on top of page container:
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+  if ((event.ctrlKey || event.metaKey) && event.which === 83) { //s
     event.preventDefault()
     jeeFrontEnd.plugin.savePluginConfig()
   }
@@ -594,7 +594,7 @@ document.getElementById('div_resumePluginList')?.addEventListener('mouseup', fun
   let _target = null
   if (_target = event.target.closest('div.pluginDisplayCard')) {
     event.stopPropagation()
-    if (event.which == 2) {
+    if (event.which === 2) {
       event.preventDefault()
       const pluginId = _target.getAttribute('data-plugin_id')
       document.querySelector('.pluginDisplayCard[data-plugin_id="' + pluginId + '"]').triggerEvent('click', { detail: { ctrlKey: true } })
@@ -603,7 +603,7 @@ document.getElementById('div_resumePluginList')?.addEventListener('mouseup', fun
   }
 
   if (_target = event.target.closest('.bt_openPluginPage')) {
-    if (event.which == 2) {
+    if (event.which === 2) {
       event.stopPropagation()
       event.preventDefault()
       jeeFrontEnd.plugin.openPluginPage(event, true)
@@ -792,7 +792,7 @@ document.getElementById('div_confPlugin')?.addEventListener('click', function(ev
 document.getElementById('div_confPlugin')?.addEventListener('mouseup', function(event) {
   let _target = null
   if (_target = event.target.closest('.bt_openPluginPage')) {
-    if (event.which == 2) {
+    if (event.which === 2) {
       event.stopPropagation()
       event.preventDefault()
       jeeFrontEnd.plugin.openPluginPage(event, true)

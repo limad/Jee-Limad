@@ -61,7 +61,7 @@ if (!jeeFrontEnd.scenario) {
       }
 
       //Global scenario state:
-      if (jeephp2js.globalActiveState == '0') {
+      if (jeephp2js.globalActiveState === '0') {
         document.getElementById('bt_runScenario').addClass('disabled')
         document.getElementById('generaltab').querySelector('input[data-l1key="isActive"]').addClass('warning')
         document.getElementById('scenarioThumbnailDisplay').querySelector('div.scenarioListContainer').addClass('warning')
@@ -87,7 +87,7 @@ if (!jeeFrontEnd.scenario) {
               handleAjaxError(request, status, error)
             },
             success: function(data) {
-              if (data.state != 'ok') {
+              if (data.state !== 'ok') {
                 jeedomUtils.showAlert({
                   message: data.result,
                   level: 'danger'
@@ -118,7 +118,7 @@ if (!jeeFrontEnd.scenario) {
     removeObjectProp: function(obj, propToDelete) {
       for (const property in obj) {
         if (obj.hasOwnProperty(property)) {
-          if (typeof obj[property] == 'object') {
+          if (typeof obj[property] === 'object') {
             this.removeObjectProp(obj[property], propToDelete)
           } else {
             if (property === propToDelete) {
@@ -152,20 +152,20 @@ if (!jeeFrontEnd.scenario) {
           }, 100)
         },
         onMove: function(event, originalEvent) { //Prevent actions on root
-          if (event.dragged.hasClass('expressionACTION') && event.to.getAttribute('id') == 'root') {
+          if (event.dragged.hasClass('expressionACTION') && event.to.getAttribute('id') === 'root') {
             return false
           }
         },
         onEnd: function(event) {
           document.querySelectorAll('.subElementCODE .expressions .expression').removeClass('disabled')
 
-          if (event.from.getAttribute('id') == 'root') {
-            if (event.to.getAttribute('id') != 'root') {
+          if (event.from.getAttribute('id') === 'root') {
+            if (event.to.getAttribute('id') !== 'root') {
               event.item.insertAdjacentHTML('afterbegin', '<input class="expressionAttr" data-l1key="type" style="display : none;" value="element"/>')
             }
           }
-          if (event.to.getAttribute('id') == 'root') {
-            if (event.from.getAttribute('id') != 'root') {
+          if (event.to.getAttribute('id') === 'root') {
+            if (event.from.getAttribute('id') !== 'root') {
               event.item.querySelector(':scope > input[data-l1key="type"]')?.remove()
             }
           }
@@ -211,7 +211,7 @@ if (!jeeFrontEnd.scenario) {
     updateElseToggle: function() {
       document.querySelectorAll('.subElementELSE').forEach(function(elElse) {
         if (!elElse.closest('.element').querySelector(':scope > .subElementTHEN')?.querySelector('.bt_showElse i')?.hasClass('fa-sort-down')) {
-          if (elElse.querySelector(':scope > .expressions')?.querySelectorAll(':scope > .expression').length == 0) {
+          if (elElse.querySelector(':scope > .expressions')?.querySelectorAll(':scope > .expression').length === 0) {
             elElse.closest('.element').querySelector(':scope > .subElementTHEN').querySelector('.bt_showElse').click()
           }
         }
@@ -219,7 +219,7 @@ if (!jeeFrontEnd.scenario) {
     },
     updateElementCollapse: function() {
       document.querySelectorAll('a.bt_collapse').forEach(_bt => {
-        if (_bt.getAttribute('value') == '0') {
+        if (_bt.getAttribute('value') === '0') {
           _bt.closest('.element').removeClass('elementCollapse')
         } else {
           _bt.closest('.element').addClass('elementCollapse')
@@ -260,7 +260,7 @@ if (!jeeFrontEnd.scenario) {
         let action, scenario_id, enable
         document.querySelectorAll('.actionCheckCmd').forEach(function(_cmd) {
           action = _cmd.querySelector('input[data-type="actionCheckCmd"]').jeeValue()
-          if (action != "scenario") return true
+          if (action !== "scenario") return true
           scenario_id = _cmd.querySelector('select[data-l2key="scenario_id"]').jeeValue()
           if (scenario_id != scId) return true
           enable = _cmd.querySelector('input[data-l2key="enable"]').jeeValue()
@@ -275,7 +275,7 @@ if (!jeeFrontEnd.scenario) {
 
         document.querySelectorAll('.actionPreExecCmd').forEach(function(_cmd) {
           action = _cmd.querySelector('input[data-type="actionPreExecCmd"]').jeeValue()
-          if (action != "scenario") return true
+          if (action !== "scenario") return true
           scenario_id = _cmd.querySelector('select[data-l2key="scenario_id"]').jeeValue()
           if (scenario_id != scId) return true
           enable = _cmd.querySelector('input[data-l2key="enable"]').jeeValue()
@@ -290,7 +290,7 @@ if (!jeeFrontEnd.scenario) {
 
         document.querySelectorAll('.actionPostExecCmd').forEach(function(_cmd) {
           action = _cmd.querySelector('input[data-type="actionPostExecCmd"]').jeeValue()
-          if (action != "scenario") return true
+          if (action !== "scenario") return true
           scenario_id = _cmd.querySelector('select[data-l2key="scenario_id"]').jeeValue()
           if (scenario_id != scId) return true
           enable = _cmd.querySelector('input[data-l2key="enable"]').jeeValue()
@@ -308,11 +308,11 @@ if (!jeeFrontEnd.scenario) {
       let htmlActions = ''
       let prefix = ''
       for (const i in jeeP.dataDefinedAction) {
-        if (jeeP.dataDefinedAction[i]['type'] == 'actionCheckCmd') prefix = 'Value -> '
-        if (jeeP.dataDefinedAction[i]['type'] == 'jeedomPreExecCmd') prefix = 'PreExec -> '
-        if (jeeP.dataDefinedAction[i]['type'] == 'jeedomPostExecCmd') prefix = 'PostExec -> '
+        if (jeeP.dataDefinedAction[i]['type'] === 'actionCheckCmd') prefix = 'Value -> '
+        if (jeeP.dataDefinedAction[i]['type'] === 'jeedomPreExecCmd') prefix = 'PreExec -> '
+        if (jeeP.dataDefinedAction[i]['type'] === 'jeedomPostExecCmd') prefix = 'PostExec -> '
 
-        if (jeeP.dataDefinedAction[i]['enable'] == '1') {
+        if (jeeP.dataDefinedAction[i]['enable'] === '1') {
           htmlActions += '<span class="label label-info cursor action_link" data-cmd_id="' + jeeP.dataDefinedAction[i]['cmdId'] + '">' + prefix + jeeP.dataDefinedAction[i]['name'] + '</span><br/>'
         } else {
           htmlActions += '<span class="label label-info cursor cross action_link" data-cmd_id="' + jeeP.dataDefinedAction[i]['cmdId'] + '">' + prefix + jeeP.dataDefinedAction[i]['name'] + '</span><br/>'
@@ -371,7 +371,7 @@ if (!jeeFrontEnd.scenario) {
           document.querySelector('.scenarioAttr[data-l1key="object_id"] option').selected = true
           document.querySelector('.scenarioAttr[data-l1key="object_id"]').value = ''
           jeeP.dom_divScenario.setJeeValues(data, '.scenarioAttr')
-          data.lastLaunch = (data.lastLaunch == 'false') ? '{{Jamais}}' : data.lastLaunch
+          data.lastLaunch = (data.lastLaunch === 'false') ? '{{Jamais}}' : data.lastLaunch
           document.querySelector('span[data-l1key="lastLaunch"]').textContent = data.lastLaunch
           document.getElementById('div_scenarioElement').empty()
           document.querySelectorAll('.provokeMode').empty()
@@ -426,14 +426,14 @@ if (!jeeFrontEnd.scenario) {
           let html_getUse = ''
           if (data.scenario_link.scenario) {
             for (const i in data.scenario_link.scenario) {
-              if (data.scenario_link.scenario[i].link == 'getUsedBy') {
+              if (data.scenario_link.scenario[i].link === 'getUsedBy') {
                 if (data.scenario_link.scenario[i].isActive == 1) {
                   html_getUsedBy += '<span class="label label-success cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
                 } else {
                   html_getUsedBy += '<span class="label label-danger cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
                 }
               }
-              else if (data.scenario_link.scenario[i].link == 'getUse') {
+              else if (data.scenario_link.scenario[i].link === 'getUse') {
                 if (data.scenario_link.scenario[i].isActive == 1) {
                   html_getUse += '<span class="label label-success cursor scenario_link" data-scenario_id="' + i + '">' + data.scenario_link.scenario[i].name + '</span><br/>'
                 } else {
@@ -446,7 +446,7 @@ if (!jeeFrontEnd.scenario) {
           document.querySelector('#generaltab div.scenario_link_getUse').insertAdjacentHTML('beforeend', html_getUse)
 
           //Empty scenario ?
-          if (data.elements.length == 0) {
+          if (data.elements.length === 0) {
             document.getElementById('div_scenarioElement').insertAdjacentHTML('beforeend', '<center class="span_noScenarioElement"><span>{{Pour constituer votre scénario, veuillez ajouter des blocs}}.</span></center>')
           }
 
@@ -471,7 +471,7 @@ if (!jeeFrontEnd.scenario) {
           if (data.name) title = data.name + ' - ' + JEEDOM_PRODUCT_NAME
           const hash = window.location.hash
           jeedomUtils.addOrUpdateUrl('id', data.id, title)
-          if (hash == '') {
+          if (hash === '') {
             document.querySelector('.nav-tabs a[data-target="#generaltab"]').click()
           } else {
             window.location.hash = hash
@@ -498,8 +498,8 @@ if (!jeeFrontEnd.scenario) {
       jeedomUtils.hideAlert()
       //Get scenarios settings:
       const scenario = this.dom_divScenario.getJeeValues('.scenarioAttr')[0]
-      if (typeof scenario.trigger == 'undefined') scenario.trigger = ''
-      if (typeof scenario.schedule == 'undefined') scenario.schedule = ''
+      if (typeof scenario.trigger === 'undefined') scenario.trigger = ''
+      if (typeof scenario.schedule === 'undefined') scenario.schedule = ''
 
       //Get scenario elements:
       const elements = []
@@ -520,11 +520,11 @@ if (!jeeFrontEnd.scenario) {
           jeeFrontEnd.modifyWithoutSave = false
           jeeP.resetUndo()
           let url = 'index.php?v=d&p=scenario&id=' + data.id + '&saveSuccessFull=1'
-          if (window.location.hash != '') {
+          if (window.location.hash !== '') {
             url += window.location.hash
           }
           jeedomUtils.loadPage(url)
-          if (typeof _callback == 'function') {
+          if (typeof _callback === 'function') {
             _callback()
           }
         }
@@ -564,14 +564,14 @@ if (!jeeFrontEnd.scenario) {
       document.querySelector('.scheduleMode').insertAdjacentHTML('beforeend', div)
     },
     addExpression: function(_expression) {
-      if (!isset(_expression) || !isset(_expression.type) || _expression.type == '') return ''
+      if (!isset(_expression) || !isset(_expression.type) || _expression.type === '') return ''
       let sortable = 'sortable'
-      if (_expression.type == 'condition' || _expression.type == 'code') {
+      if (_expression.type === 'condition' || _expression.type === 'code') {
         sortable = 'noSortable'
       }
 
       let retour = '<div class="expression ' + sortable + ' col-xs-12" >'
-      if (_expression.type == 'action') {
+      if (_expression.type === 'action') {
         retour = '<div class="expression expressionACTION ' + sortable + ' col-xs-12" >'
       }
       retour += '<input class="expressionAttr" data-l1key="id" style="display : none;" value="' + init(_expression.id) + '"/>'
@@ -601,7 +601,7 @@ if (!jeeFrontEnd.scenario) {
             retour += _expression.element.html
           } else {
             const element = jeeP.addElement(_expression.element, true)
-            if (element.trim() == '') {
+            if (element.trim() === '') {
               return ''
             }
             retour += element
@@ -622,7 +622,7 @@ if (!jeeFrontEnd.scenario) {
             retour += '<input type="checkbox" class="expressionAttr" data-l1key="options" data-l2key="background" checked  title="{{Cocher pour que la commande s\'exécute en parallèle des autres actions}}"/>'
           }
           let expression_txt = init(_expression.expression)
-          if (typeof expression_txt != 'string') {
+          if (typeof expression_txt !== 'string') {
             expression_txt = JSON.stringify(expression_txt)
           }
           retour += '</div>'
@@ -658,10 +658,10 @@ if (!jeeFrontEnd.scenario) {
       return retour
     },
     addSubElement: function(_subElement) {
-      if (!isset(_subElement.type) || _subElement.type == '') return ''
+      if (!isset(_subElement.type) || _subElement.type === '') return ''
       if (!isset(_subElement.options)) _subElement.options = {}
       let noSortable = ''
-      if (_subElement.type == 'if' || _subElement.type == 'for' || _subElement.type == 'while' || _subElement.type == 'code') {
+      if (_subElement.type === 'if' || _subElement.type === 'for' || _subElement.type === 'while' || _subElement.type === 'code') {
         noSortable = 'noSortable'
       }
 
@@ -930,7 +930,7 @@ if (!jeeFrontEnd.scenario) {
           expression = {
             type: 'code'
           }
-          if (isset(_subElement.expressions) && isset(_subElement.expressions[0]) && typeof _subElement.expressions[0].expression == "string") {
+          if (isset(_subElement.expressions) && isset(_subElement.expressions[0]) && typeof _subElement.expressions[0].expression === "string") {
             expression = _subElement.expressions[0]
             retour += '<div class="blocPreview">' + expression.expression.substring(0, 200).HTMLFormat() + '</div>'
           } else {
@@ -993,7 +993,7 @@ if (!jeeFrontEnd.scenario) {
           retour += '<legend class="legendHidden">{{ACTION}}</legend>'
           if (isset(_subElement.expressions) && isset(_subElement.expressions[0])) {
             expression = _subElement.expressions[0]
-            if (expression.type == 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0]) && isset(expression.element.subElements[0].expressions) && isset(expression.element.subElements[0].expressions[0])) {
+            if (expression.type === 'element' && isset(expression.element.subElements) && isset(expression.element.subElements[0]) && isset(expression.element.subElements[0].expressions) && isset(expression.element.subElements[0].expressions[0])) {
               retour += '<div class="blocPreview">' + expression.element.subElements[0].expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>'
             } else {
               try { retour += '<div class="blocPreview">' + _subElement.expressions[0].expression.substring(0, 200).HTMLFormat() + '</div>' } catch (e) { }
@@ -1027,7 +1027,7 @@ if (!jeeFrontEnd.scenario) {
     },
     addElement: function(_element) {
       if (!isset(_element)) return
-      if (!isset(_element.type) || _element.type == '') return ''
+      if (!isset(_element.type) || _element.type === '') return ''
 
       let elementClass = ''
       switch (_element.type) {
@@ -1173,7 +1173,7 @@ if (!jeeFrontEnd.scenario) {
     },
     getElement: function(dom_element) {
       let element = dom_element.getJeeValues('.elementAttr', 1)
-      if (element.length == 0) return
+      if (element.length === 0) return
       element = element[0]
       element.subElements = []
 
@@ -1196,10 +1196,10 @@ if (!jeeFrontEnd.scenario) {
           if (expression_dom != null) {
             expression_dom.querySelectorAll(':scope > .expression').forEach(function(_exp) {
               expression = _exp.getJeeValues('.expressionAttr', 3)[0]
-              if (expression.type == 'element') {
+              if (expression.type === 'element') {
                 expression.element = jeeP.getElement(_exp.findAtDepth('.element', 2))
               }
-              if (subElement.type == 'code') {
+              if (subElement.type === 'code') {
                 id = _exp.querySelector('.expressionAttr[data-l1key="expression"]').getAttribute('id')
                 if (id != undefined && isset(jeeFrontEnd.scenario.editors[id])) {
                   expression.expression = jeeFrontEnd.scenario.editors[id].getValue()
@@ -1236,7 +1236,7 @@ if (!jeeFrontEnd.scenario) {
       retour += '<ul class="dropdown-menu">'
       retour += '<li><a class="bt_addAction">{{Action}}</a></li>'
       retour += '<li><a class="fromSubElement" data-type="if">{{Bloc Si/Alors/Sinon}}</a></li>'
-      if (_type != 'action' && _type != 'if' && _type != 'in' && _type != 'for' && _type != 'at') {
+      if (_type !== 'action' && _type !== 'if' && _type !== 'in' && _type !== 'for' && _type !== 'at') {
         retour += '<li><a class="fromSubElement" data-type="action">{{Bloc Action}}</a></li>'
       }
       retour += '<li><a class="fromSubElement" data-type="for">{{Bloc Boucle}}</a></li>'
@@ -1272,7 +1272,7 @@ if (!jeeFrontEnd.scenario) {
       message += '<div class="form-group">'
       message += '<label class="col-xs-5 control-label" >' + cmdHumanName + ' {{est}}</label>'
 
-      if (subType == 'numeric') {
+      if (subType === 'numeric') {
         message += '<div class="col-xs-3">'
         message += '  <select class="conditionAttr form-control" data-l1key="operator">'
         message += '    <option value="===">{{égal}}</option>'
@@ -1290,7 +1290,7 @@ if (!jeeFrontEnd.scenario) {
         message += '</div>'
       }
 
-      if (subType == 'string') {
+      if (subType === 'string') {
         message += '<div class="col-xs-2">'
         message += '  <select class="conditionAttr form-control" data-l1key="operator">'
         message += '    <option value="==">{{égal}}</option>'
@@ -1305,7 +1305,7 @@ if (!jeeFrontEnd.scenario) {
         message += '</div>'
       }
 
-      if (subType == 'binary') {
+      if (subType === 'binary') {
         message += '<div class="col-xs-3">'
         message += '<input class="conditionAttr" data-l1key="operator" value="==" style="display : none;" />'
         message += '  <select class="conditionAttr form-control" data-l1key="operande">'
@@ -1498,7 +1498,7 @@ jeeFrontEnd.scenario.init()
 document.registerEvent('keydown', function(event) {
   if (jeedomUtils.getOpenedModal()) return
 
-  if ((event.ctrlKey || event.metaKey) && event.which == 83) { //s
+  if ((event.ctrlKey || event.metaKey) && event.which === 83) { //s
     event.preventDefault()
     if (document.getElementById('bt_saveScenario').isVisible()) {
       jeeP.saveScenario()
@@ -1506,7 +1506,7 @@ document.registerEvent('keydown', function(event) {
     }
   }
 
-  if ((event.ctrlKey || event.metaKey) && event.which == 76) { //l
+  if ((event.ctrlKey || event.metaKey) && event.which === 76) { //l
     event.preventDefault()
     jeeDialog.dialog({
       id: 'jee_modal',
@@ -1516,14 +1516,14 @@ document.registerEvent('keydown', function(event) {
     return
   }
 
-  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 90) { //z
+  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which === 90) { //z
     event.preventDefault()
     jeeP.undo()
     jeeP.PREV_FOCUS = null
     return
   }
 
-  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which == 89) { //y
+  if ((event.ctrlKey || event.metaKey) && event.shiftKey && event.which === 89) { //y
     event.preventDefault()
     jeeP.redo()
     jeeP.PREV_FOCUS = null
@@ -1566,7 +1566,7 @@ document.getElementById('bt_addScenario').addEventListener('click', function(eve
 document.getElementById('bt_changeAllScenarioState').addEventListener('click', function(event) {
   const _target = event.target.closest('#bt_changeAllScenarioState')
   let msg
-  if (_target.getAttribute('data-state') == '0') {
+  if (_target.getAttribute('data-state') === '0') {
     msg = '{{Êtes-vous sûr de vouloir désactiver les scénarios ?}}'
   } else {
     msg = '{{Êtes-vous sûr de vouloir activer les scénarios ?}}'
@@ -1708,7 +1708,7 @@ document.getElementById('in_searchInsideScenario').addEventListener('keyup', fun
   document.querySelectorAll('#div_scenarioElement div.CodeMirror.CodeMirror-wrap').forEach(_code => {
     _code.CodeMirror.setCursor(0)
   })
-  if (search == '' || search.length < 3) {
+  if (search === '' || search.length < 3) {
     document.querySelectorAll('i.fa-eye-slash').forEach(_bt => {
       _bt.closest('.element')?.addClass('elementCollapse')
     })
@@ -1757,7 +1757,7 @@ document.getElementById('in_searchInsideScenario').addEventListener('keyup', fun
 //_________________Root page events:
 document.getElementById('in_searchScenario').addEventListener('keyup', function() {
   let search = this.value
-  if (search == '') {
+  if (search === '') {
     document.querySelectorAll('#accordionScenario .accordion-toggle:not(.collapsed)').forEach(_panel => { _panel.click() })
     document.querySelectorAll('.scenarioDisplayCard').seen()
     return
@@ -1838,7 +1838,7 @@ document.getElementById('scenarioThumbnailDisplay').addEventListener('click', fu
 document.getElementById('scenarioThumbnailDisplay').addEventListener('mouseup', function(event) {
   let _target = null
   if (_target = event.target.closest('.scenarioDisplayCard')) {
-    if (event.which == 2) {
+    if (event.which === 2) {
       event.preventDefault()
       const id = _target.getAttribute('data-scenario_id')
       document.querySelector('.scenarioDisplayCard[data-scenario_id="' + id + '"]').triggerEvent('click', { detail: { ctrlKey: true } })
@@ -1940,7 +1940,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
               message: '{{Lancement du scénario réussi}}',
               level: 'success'
             })
-            if (logmode != 'none') {
+            if (logmode !== 'none') {
               jeeDialog.dialog({
                 id: 'jee_modal',
                 title: "{{Log d'exécution du scénario}}",
@@ -2029,7 +2029,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
       elementDiv: null
     }
     //is scenario empty:
-    if (document.getElementById('root').querySelectorAll(':scope > .expression').length == 0) {
+    if (document.getElementById('root').querySelectorAll(':scope > .expression').length === 0) {
       jeeP.addElementSave.elementDiv = document.getElementById('div_scenarioElement')
       jeeP.addElementSave.elementDiv.querySelector('.span_noScenarioElement')?.remove()
     } else {
@@ -2037,7 +2037,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
       if (jeeP.PREV_FOCUS != null && jeeP.PREV_FOCUS.closest('div.element') != null) {
         jeeP.addElementSave.insertAfter = true
         jeeP.addElementSave.elementDiv = jeeP.PREV_FOCUS.closest('div.element')
-        if (jeeP.addElementSave.elementDiv.parentNode.getAttribute('id') != 'div_scenarioElement') {
+        if (jeeP.addElementSave.elementDiv.parentNode.getAttribute('id') !== 'div_scenarioElement') {
           jeeP.addElementSave.elementDiv = jeeP.addElementSave.elementDiv.closest('.expression')
           jeeP.addElementSave.expression = true
         }
@@ -2054,7 +2054,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
   if (_target = event.target.closest('#bt_resetInsideScenarioSearch')) {
     if (_target.hasClass('disabled')) return
     const searchField = document.getElementById('in_searchInsideScenario')
-    if (_target.getAttribute('data-state') == '0') {
+    if (_target.getAttribute('data-state') === '0') {
       //show search:
       searchField.seen()
       _target.querySelectorAll('i').removeClass('fa-search').addClass('fa-times')
@@ -2071,7 +2071,7 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
       document.querySelectorAll('textarea[data-l1key="expression"]').unseen()
       searchField.focus()
     } else {
-      if (searchField.value == '') {
+      if (searchField.value === '') {
         document.querySelectorAll('i.fa-eye-slash').forEach(_bt => {
           _bt.closest('.element').addClass('elementCollapse')
         })
@@ -2205,7 +2205,7 @@ document.getElementById('generaltab').addEventListener('click', function(event) 
 
 document.getElementById('generaltab').addEventListener('mouseup', function(event) {
   if (event.target.matches('.scenario_link')) {
-    if (event.which == 2) {
+    if (event.which === 2) {
       event.preventDefault()
       const id = event.target.getAttribute('data-scenario_id')
       document.querySelector('.scenario_link[data-scenario_id="' + id + '"]').triggerEvent('click', { detail: { ctrlKey: true } })
@@ -2433,7 +2433,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
   if (_target = event.target.closest('.bt_selectCmdExpression')) {
     const expression = _target.closest('.expression')
     let type = 'info'
-    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
+    if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() === 'action') {
       type = 'action'
     }
 
@@ -2442,7 +2442,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         type: type
       }
     }, function(result) {
-      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
+      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() === 'action') {
         jeeP.setUndoStack()
         expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
         jeedom.cmd.displayActionOption(expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(), '', function(html) {
@@ -2452,7 +2452,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
         })
       }
 
-      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
+      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() === 'condition') {
         const condType = _target.closest('.subElement')
         if (!condType.hasClass('subElementIF') && !condType.hasClass('subElementFOR') && !condType.hasClass('subElementWHILE')) {
           expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
@@ -2485,8 +2485,8 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
                   jeeFrontEnd.modifyWithoutSave = true
                   let condition = result.human
                   condition += ' ' + document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue()
-                  if (result.cmd.subType == 'string') {
-                    if (document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue() == 'matches') {
+                  if (result.cmd.subType === 'string') {
+                    if (document.querySelector('.conditionAttr[data-l1key="operator"]').jeeValue() === 'matches') {
                       condition += ' "/' + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + '/"'
                     } else {
                       condition += " '" + document.querySelector('.conditionAttr[data-l1key="operande"]').jeeValue() + "'"
@@ -2529,10 +2529,10 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
   if (_target = event.target.closest('.bt_selectScenarioExpression')) {
     const expression = _target.closest('.expression')
     jeedom.scenario.getSelectModal({}, function(result) {
-      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
+      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() === 'action') {
         expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
       }
-      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
+      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() === 'condition') {
         expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
       }
     })
@@ -2550,10 +2550,10 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
   if (_target = event.target.closest('.bt_selectEqLogicExpression')) {
     const expression = _target.closest('.expression')
     jeedom.eqLogic.getSelectModal({}, function(result) {
-      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'action') {
+      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() === 'action') {
         expression.querySelector('.expressionAttr[data-l1key="expression"]').jeeValue(result.human)
       }
-      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() == 'condition') {
+      if (expression.querySelector('.expressionAttr[data-l1key="type"]').jeeValue() === 'condition') {
         expression.querySelector('.expressionAttr[data-l1key="expression"]').insertAtCursor(result.human)
       }
     })
@@ -2561,7 +2561,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
   }
 
   if (_target = event.target.closest('.subElementAttr[data-l2key="allowRepeatCondition"]')) {
-    if (_target.getAttribute('value') == '0') {
+    if (_target.getAttribute('value') === '0') {
       _target.setAttribute('value', '1')
       _target.html('<span><i class="fas fa-ban text-danger"></i></span>')
     } else {
@@ -2630,7 +2630,7 @@ document.getElementById('scenariotab').addEventListener('click', function(event)
     pastedElement.innerHTML = jeeP.addElement(jeeP.clipboard)
 
     //Are we pasting inside an expresion:
-    if (clickedBloc.parentNode.getAttribute('id') == 'div_scenarioElement') {
+    if (clickedBloc.parentNode.getAttribute('id') === 'div_scenarioElement') {
       pastedElement = clickedBloc.parentNode.insertBefore(pastedElement, clickedBloc.nextSibling)
     } else {
       let divHtml = '<input class="expressionAttr" data-l1key="type" style="display: none;" value="element">'
@@ -2757,7 +2757,7 @@ try {
       })
     },
     success: function(scenarioGroupedList) {
-      if (scenarioGroupedList.length == 0) return
+      if (scenarioGroupedList.length === 0) return
 
       const contextmenuitems = {}
       let uniqId = 0
@@ -2787,9 +2787,9 @@ try {
           className: 'scenarioTab-context-menu',
           callback: function(key, options, event) {
             if (!jeedomUtils.checkPageModified()) {
-              if (event.ctrlKey || event.metaKey || event.which == 2) {
+              if (event.ctrlKey || event.metaKey || event.which === 2) {
                 let url = 'index.php?v=d&p=scenario&id=' + options.commands[key].id
-                if (window.location.hash != '') {
+                if (window.location.hash !== '') {
                   url += window.location.hash
                 }
                 window.open(url).focus()
@@ -2883,7 +2883,7 @@ try {
       return {
         callback: function(key, options) {
           if (options.commands[key].jType == 'group') {
-            if (key == 'group_none') key = null
+            if (key === 'group_none') key = null
             const scenario = {
               id: scId,
               group: key
@@ -2904,7 +2904,7 @@ try {
           if (options.commands[key].jType == 'parent') {
             let humanName = options.commands[key].jHumanName
             const objectId = options.commands[key].jId
-            if (key == '0') {
+            if (key === '0') {
               humanName = '<span class="label labelObjectHuman">None</span>'
             }
             const scenario = {
@@ -2926,7 +2926,7 @@ try {
             return true
           }
 
-          if (key == 'disable') {
+          if (key === 'disable') {
             const scenario = {
               id: scId,
               isActive: "0"
@@ -2943,7 +2943,7 @@ try {
             return true
           }
 
-          if (key == 'enable') {
+          if (key === 'enable') {
             const scenario = {
               id: scId,
               isActive: "1"

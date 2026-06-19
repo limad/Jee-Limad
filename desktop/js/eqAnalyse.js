@@ -44,7 +44,7 @@ if (!jeeFrontEnd.eqAnalyse) {
     },
     getRemoveCmd: function(_id) {
       for (const i in jeephp2js.removeHistory) {
-        if (jeephp2js.removeHistory[i].type == 'cmd' && jeephp2js.removeHistory[i].id == _id) return jeephp2js.removeHistory[i]
+        if (jeephp2js.removeHistory[i].type === 'cmd' && jeephp2js.removeHistory[i].id == _id) return jeephp2js.removeHistory[i]
       }
       return false
     },
@@ -100,11 +100,11 @@ jeeFrontEnd.eqAnalyse.init()
 
 //searching
 document.getElementById('in_search')?.addEventListener('keyup', function(event) {
-  if (jeeP.eqlogicsEls.length == 0) {
+  if (jeeP.eqlogicsEls.length === 0) {
     return
   }
   let search = event.target.closest('#in_search').value
-  if (search == '') {
+  if (search === '') {
     jeeP.eqlogicsEls.seen()
     return
   }
