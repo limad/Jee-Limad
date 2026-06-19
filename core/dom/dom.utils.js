@@ -91,7 +91,7 @@ String.prototype.stripAccents = function() {
   let in_chrs = 'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
     out_chrs = 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY',
     transl = {}
-  let chars_rgx = eval('/[' + in_chrs + ']/g')
+  let chars_rgx = new RegExp('[' + in_chrs + ']', 'g')
   for (let i = 0; i < in_chrs.length; i++) {
     transl[in_chrs.charAt(i)] = out_chrs.charAt(i)
   }
@@ -832,7 +832,7 @@ function json_decode(a) {
     return "\\u" + ("0000" + a.charCodeAt(0).toString(16)).slice(-4)
   }))
   if (/^[\],:{}\s]*$/.test(a.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, "@").replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, "]").replace(/(?:^|:|,)(?:\s*\[)+/g, "")))
-    return a = eval("(" + a + ")")
+    return a = JSON.parse(a)
   window.php_js = window.php_js || {}
   window.php_js.last_error_json = 4
   return null

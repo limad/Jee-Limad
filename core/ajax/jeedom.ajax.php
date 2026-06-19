@@ -562,8 +562,9 @@ try {
 		if (strpos($pathfile, $rootPath) === false) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		touch($pathfile . init('name'));
-		if (!file_exists($pathfile . init('name'))) {
+		$filename = basename(init('name'));
+		touch($pathfile . $filename);
+		if (!file_exists($pathfile . $filename)) {
 			throw new Exception(__('Impossible de créer le fichier, vérifiez les droits', __FILE__));
 		}
 		ajax::success();
@@ -579,7 +580,7 @@ try {
 		if (strpos($pathfile, $rootPath) === false) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		mkdir($pathfile . '/' . init('name'));
+		mkdir($pathfile . '/' . basename(init('name')));
 		ajax::success();
 	}
 
@@ -593,7 +594,11 @@ try {
 		if (strpos($pathfile, $rootPath) === false) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		ajax::success(rename($pathfile, init('dst')));
+		$dst = calculPath(init('dst'));
+		if ($dst === false || strpos(realpath(dirname($dst)) . DIRECTORY_SEPARATOR, $rootPath . DIRECTORY_SEPARATOR) !== 0) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		ajax::success(rename($pathfile, $dst));
 	}
 
 	if (init('action') == 'deleteFolder') {
