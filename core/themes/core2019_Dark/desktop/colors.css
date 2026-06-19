@@ -32,7 +32,7 @@ colors Dark
   --navtab-active-fg: var(--link-color);
 
   /* Menu dropdown — core2019 garde le rendu desktop.main (modifiable ici) */
-  --dropdown-bg: rgb(var(--defaultBkg-color));
+  --dropdown-bg: var(--defaultBkg-color);
   --dropdown-item-hover-bg: var(--form-bg-color);
   --dropdown-item-hover-fg: var(--link-color);
 

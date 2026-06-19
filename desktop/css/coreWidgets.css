@@ -112,7 +112,7 @@ div.cmd-widget .value {
 
 .timeCmd.label {
   color: var(--txt-color);
-  background: rgb(var(--bg-color));
+  background: var(--bg-color);
   position: relative;
   padding: 2px 5px !important;
   font-size: 11px !important;

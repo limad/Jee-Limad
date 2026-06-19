@@ -76,7 +76,7 @@ sendVarToJS('jeephp2js.hardware', $hardware);
 		min-height: 820px;
 		margin: 15px auto 0 auto;
 		padding: 0 20px 15px 20px;
-		background-color: rgba(var(--eq-bg-color), var(--opacity));
+		background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity));
 		border-radius: var(--border-radius);
 	}
 

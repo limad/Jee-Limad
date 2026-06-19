@@ -120,7 +120,7 @@ div.jeeToastContainer > div.jeeToast.toast-danger {
   padding: 3px;
   transform: translate(0,0);
   z-index: 1500;
-  background-color: rgb(var(--panel-bg-color));
+  background-color: var(--panel-bg-color);
   box-shadow: rgba(0, 0, 0, 0.15) 0 0 6px 2px;
 }
 div.jeeDialog.jeeDialogAlert,
@@ -358,7 +358,7 @@ div.jeeDialog.jeeDialogMain > div.jeeDialogFooter {
   width: calc(100% - 10px);
   padding: 6px;
   bottom: 0;
-  background-color: rgb(var(--panel-bg-color));
+  background-color: var(--panel-bg-color);
 }
 
 div.jeeDialog {

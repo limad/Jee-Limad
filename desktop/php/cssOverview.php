@@ -169,7 +169,7 @@ if (!isConnect('admin')) {
   padding: 10px;
   border: 1px solid var(--el-defaultColor);
   border-radius: var(--border-radius);
-  background: rgba(var(--bg-color), .45);
+  background: rgb(from var(--bg-color) r g b / .45);
 }
 #cssOverviewPage .cssov-sidebar-section {
   margin-top: 12px;

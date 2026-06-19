@@ -2812,7 +2812,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   :not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
     background-color: var(--panel-heading-bg, var(--defaultBkg-color));
-    border-bottom: 1px solid var(--panel-heading-border, rgb(var(--bg-color), 1));
+    border-bottom: 1px solid var(--panel-heading-border, var(--bg-color));
   }
   .panel-group .panel-heading {
     padding:0;
