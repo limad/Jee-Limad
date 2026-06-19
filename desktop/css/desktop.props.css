@@ -1,6 +1,6 @@
 /*
   CSS @property registrations for Jeedom Core Desktop.
-  Must be outside @layer — loaded separately before desktop.main.min.css.
+  Must be outside @layer — loaded separately before desktop.main.css.
 
   Registering these properties as typed allows the browser to interpolate
   them correctly in transitions (e.g. a <percentage> in color-mix() can

@@ -177,7 +177,12 @@ class log extends AbstractLogger {
 			}
 		}
 
-		$sudo = system::getCmdSudo();
+		// Log files are normally owned by www-data, so no sudo is needed. Using
+		// sudo here would fail anyway: tail/cat are not in the sudoers whitelist
+		// (and must not be — that would let www-data read any file as root). Only
+		// fall back to sudo for the rare root-owned log; that path degrades to the
+		// whitelisted `truncate` below if tail/cat are unavailable.
+		$sudo = is_writable($rawPath) ? '' : system::getCmdSudo();
 		$shellPath = escapeshellarg($rawPath);
 		$tmpFile = escapeshellarg(jeedom::getTmpFolder() . '/' . uniqid('log_chunk_'));
 
@@ -192,7 +197,10 @@ class log extends AbstractLogger {
 				com_shell::execute("{$sudo} truncate -s 0 {$shellPath}");
 			}
 		} finally {
-			com_shell::execute("{$sudo} rm -f {$tmpFile}");
+			// The temp file is always created by the www-data shell redirect, so
+			// it is never root-owned: rm needs no sudo (and `sudo rm -f` is not
+			// whitelisted anyway, only `rm` / `rm -rf`).
+			com_shell::execute("rm -f {$tmpFile}");
 		}
 	}
 

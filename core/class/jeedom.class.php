@@ -824,7 +824,7 @@ class jeedom {
 		log::clear('consistency');
 		$cmd = __DIR__ . '/../../install/consistency.php';
 		$cmd .= ' >> ' . log::getPathToLog('consistency') . ' 2>&1 &';
-		system::php($cmd, true);
+		system::php($cmd);
 	}
 
 	/********************************************BACKUP*****************************************************************/
@@ -867,7 +867,7 @@ class jeedom {
 			log::clear('restore');
 			$cmd = __DIR__ . '/../../install/restore.php "backup=' . $_backup . '" "parts=' . $_parts . '" "force=' . ($_force ? '1' : '0') . '"';
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
-			system::php($cmd, true);
+			system::php($cmd);
 		} else {
 			global $BACKUP_FILE;
 			$BACKUP_FILE = $_backup;
@@ -1674,7 +1674,7 @@ class jeedom {
 		log::clear('cleaningdb');
 		$cmd = __DIR__ . '/../../install/cleaning.php';
 		$cmd .= ' >> ' . log::getPathToLog('cleaningdb') . ' 2>&1 &';
-		system::php($cmd, true);
+		system::php($cmd);
 	}
 
 	public static function cleanFileSytemRight() {
