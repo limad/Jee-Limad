@@ -17,16 +17,20 @@
 */
 require_once dirname(__FILE__) . '/core.inc.php';
 $rootPath = realpath(dirname(__FILE__) . '/../../');
-$file = realpath($rootPath . '/' . init('file'));
-if ($file === false || strpos($file, $rootPath . DIRECTORY_SEPARATOR) !== 0) {
+$requestedFile = ltrim(str_replace('\\', '/', (string) init('file')), '/');
+$requestedPath = $rootPath . DIRECTORY_SEPARATOR . $requestedFile;
+$realFile = realpath($requestedPath);
+if ($rootPath === false || $realFile === false || strpos($realFile, $rootPath . DIRECTORY_SEPARATOR) !== 0 || !is_file($realFile)) {
 	die();
 }
+$file = $realFile;
 $pathinfo = pathinfo($file);
-if (!isset($pathinfo['extension']) || ($pathinfo['extension'] != 'js' && $pathinfo['extension'] != 'css')) {
+$extension = strtolower($pathinfo['extension'] ?? '');
+if ($extension != 'js' && $extension != 'css') {
 	die();
 }
 if (file_exists($file)) {
-	switch ($pathinfo['extension']) {
+	switch ($extension) {
 		case 'js':
 		$contentType = 'application/javascript';
 		$md5 = init('md5');
@@ -50,13 +54,13 @@ if (file_exists($file)) {
 		header('HTTP/1.1 304 Not Modified');
 		exit;
 	}
-	if ($pathinfo['extension'] == 'js') {
+	if ($extension == 'js') {
 		if (strpos($file, '3rdparty') !== false) {
 			echo file_get_contents($file);
 		} else {
 			echo translate::exec(file_get_contents($file), init('file'), true);
 		}
-	} elseif ($pathinfo['extension'] == 'css') {
+	} elseif ($extension == 'css') {
 		echo file_get_contents($file);
 	}
 	exit;

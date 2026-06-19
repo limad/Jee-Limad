@@ -52,10 +52,10 @@ if($freespace <= 1){
 	echo "NOK\n";
 	echo "Trying cleaning\n";
 	if(file_exists(__DIR__.'/../../tmp')){
-		shell_exec('rm -rf '.__DIR__.'/../../tmp/*');
+		shell_exec('rm -rf ' . escapeshellarg(__DIR__ . '/../../tmp') . '/*');
 	}
 	if(file_exists(__DIR__.'/../../log')){
-		shell_exec('rm -rf '.__DIR__.'/../../log/*');
+		shell_exec('rm -rf ' . escapeshellarg(__DIR__ . '/../../log') . '/*');
 	}
 	$freespace = round(disk_free_space(__DIR__ . '/../../') / disk_total_space(__DIR__ . '/../../') * 100);
 	echo "Recheck Free space ('.$freespace.'%) => ";

@@ -18,7 +18,7 @@
 
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 
-function include_file($_folder, $_fn, $_type, $_plugin = '') {
+function include_file($_folder, $_fn, $_type, $_plugin = '', $_options = array()) {
 	if (strpos($_folder, '..') !== false || strpos($_fn, '..') !== false || strpos($_fn, '\\') !== false) {
 		return;
 	}
@@ -95,13 +95,24 @@ function include_file($_folder, $_fn, $_type, $_plugin = '') {
 	}
 	if ($type == 'js') {
 		$md5 = md5_file($path);
+		$scriptAttrs = '';
+		if (is_array($_options) && !empty($_options['defer'])) {
+			$scriptAttrs .= ' defer';
+		}
+		if (is_array($_options) && !empty($_options['async'])) {
+			$scriptAttrs .= ' async';
+		}
 		if (strpos($_folder, '3rdparty') !== false || strpos($_fn, '.min.js') !== false) {
-			echo '<script type="text/javascript" src="' . $_folder . '/' . $_fn . '?md5=' . $md5 . '"></script>';
+			echo '<script type="text/javascript" src="' . $_folder . '/' . $_fn . '?md5=' . $md5 . '"' . $scriptAttrs . '></script>';
 		} else {
-			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . $md5 . '&lang=' . translate::getLanguage() . '"></script>';
+			echo '<script type="text/javascript" src="core/php/getResource.php?file=' . $_folder . '/' . $_fn . '&md5=' . $md5 . '&lang=' . translate::getLanguage() . '"' . $scriptAttrs . '></script>';
 		}
 		return;
 	}
+}
+
+function jeedom_esc_json($_value) {
+	return json_encode($_value, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
 }
 
 function getTemplate($_folder, $_version, $_filename, $_plugin = '') {
@@ -156,11 +167,19 @@ function sendVarToJS($_varName, $_value = '') {
 	}
 	$jsVar = '<script>';
 	foreach ($_varName as $name => $value) {
-		$value = (is_array($value)) ? 'JSON.parse("' . addslashes(json_encode($value, JSON_UNESCAPED_UNICODE)) . '")'	: '"' . $value . '"';
+		$value = jeedom_esc_json($value);
 		if (strpos($name, '.') === false) {
-			$jsVar .= 'var ' . $name . ' = ' . $value . "\n";
+			$jsVar .= 'var ' . $name . ' = ' . $value . ";\n";
 		} else {
-			$jsVar .= $name . ' = ' . $value . "\n";
+			$parts = explode('.', $name);
+			$root = array_shift($parts);
+			$current = $root;
+			$jsVar .= 'if (typeof ' . $root . ' === "undefined") { var ' . $root . ' = {}; }' . "\n";
+			while (count($parts) > 1) {
+				$current .= '.' . array_shift($parts);
+				$jsVar .= 'if (typeof ' . $current . ' !== "object" || ' . $current . ' === null) { ' . $current . ' = {}; }' . "\n";
+			}
+			$jsVar .= $name . ' = ' . $value . ";\n";
 		}
 	}
 	$jsVar .= '</script>';
@@ -201,12 +220,13 @@ function getmicrotime() {
 }
 
 function redirect($_url, $_forceType = null) {
+	$_url = str_replace(array("\r", "\n"), '', (string) $_url);
 	if ($_forceType == 'JS' || headers_sent() || isset($_GET['ajax'])) {
 		echo '<script type="text/javascript">';
-		echo "window.location.href='$_url';";
+		echo 'window.location.href=' . jeedom_esc_json($_url) . ';';
 		echo '</script>';
 	} else {
-		header("Location: $_url");
+		header('Location: ' . $_url);
         exit;
 	}
 	return;
@@ -1803,6 +1823,11 @@ function getWhiteListFolders($_plugin = 'all') {
 
 		$rootPath = realpath(plugin::getPluginPath($pluginId));
 		if ($rootPath === false) continue;
+
+		$coreImgPath = realpath($rootPath . '/core/img');
+		if ($coreImgPath !== false && !in_array($coreImgPath, $result)) {
+			$result[] = $coreImgPath;
+		}
 
 		foreach ($publicFolders as $folder) {
 			if (strpos($folder, '..') !== false) continue;

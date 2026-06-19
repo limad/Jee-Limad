@@ -36,7 +36,16 @@ try {
 
 	unautorizedInDemo();
 	$pathfile = calculPath(init('pathfile'));
-	$pathfile = (strpos($pathfile, '*') !== false) ? realpath(str_replace('*', '', $pathfile)) . '/*' : realpath($pathfile);
+	if (strpos($pathfile, '*') !== false) {
+		$basePath = realpath(str_replace('*', '', $pathfile));
+		if ($basePath === false) {
+			log::add('api', 'debug', 'downloadFile - fichier introuvable');
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		$pathfile = rtrim($basePath, DIRECTORY_SEPARATOR) . '/*';
+	} else {
+		$pathfile = realpath($pathfile);
+	}
 
 	if ($pathfile === false) {
 		log::add('api', 'debug', 'downloadFile - fichier introuvable');
@@ -62,8 +71,10 @@ try {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	$rootPath = realpath(__DIR__ . '/../../');
-	if (strpos($pathfile, $rootPath) === false) {
-		$pathfile = $rootPath . '/' . str_replace('..', '', $pathfile);
+	$pathForCheck = (strpos($pathfile, '*') !== false) ? realpath(dirname($pathfile)) : realpath($pathfile);
+	if ($rootPath === false || $pathForCheck === false || ($pathForCheck !== $rootPath && strpos($pathForCheck, $rootPath . DIRECTORY_SEPARATOR) !== 0)) {
+		log::add('api', 'debug', 'downloadFile - fichier hors racine web');
+		throw new Exception(__('401 - Accès non autorisé', __FILE__));
 	}
 	if (!$isAdmin) {
 		$adminFiles = array('log', 'backup', '.sql', 'scenario', '.tar', '.gz');
@@ -81,25 +92,42 @@ try {
 		if (!$isAdmin) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		system('cd ' . dirname($pathfile) . ';tar cfz ' . jeedom::getTmpFolder('downloads') . '/archive.tar.gz * > /dev/null 2>&1');
-		$pathfile = jeedom::getTmpFolder('downloads') . '/archive.tar.gz';
+		$downloadFolder = jeedom::getTmpFolder('downloads');
+		if (!is_dir($downloadFolder)) {
+			mkdir($downloadFolder, 0775, true);
+		}
+		$archivePath = $downloadFolder . '/archive.tar.gz';
+		system('cd ' . escapeshellarg(dirname($pathfile)) . ';tar cfz ' . escapeshellarg($archivePath) . ' * > /dev/null 2>&1');
+		$pathfile = $archivePath;
 	} else {
 		if (!$isAdmin) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
-		$pathParts = explode('/', $pathfile);
-		$pattern = array_pop($pathParts);
-		system('cd ' . dirname($pathfile) . ';tar cfz ' . jeedom::getTmpFolder('downloads') . '/archive.tar.gz ' . $pattern . '> /dev/null 2>&1');
-		$pathfile = jeedom::getTmpFolder('downloads') . '/archive.tar.gz';
+		$files = glob($pathfile);
+		if ($files === false || count($files) == 0) {
+			throw new Exception(__('Fichier non trouvé :', __FILE__) . ' ' . $pathfile);
+		}
+		$escapedFiles = array();
+		foreach ($files as $file) {
+			$escapedFiles[] = escapeshellarg(basename($file));
+		}
+		$downloadFolder = jeedom::getTmpFolder('downloads');
+		if (!is_dir($downloadFolder)) {
+			mkdir($downloadFolder, 0775, true);
+		}
+		$archivePath = $downloadFolder . '/archive.tar.gz';
+		system('cd ' . escapeshellarg(dirname($pathfile)) . ';tar cfz ' . escapeshellarg($archivePath) . ' ' . implode(' ', $escapedFiles) . '> /dev/null 2>&1');
+		$pathfile = $archivePath;
 	}
 	ob_clean();
 	$path_parts = pathinfo($pathfile);
+	$downloadName = str_replace(array("\r", "\n"), '', (string) $path_parts['basename']);
 	if (isset($path_parts['extension']) && $path_parts['extension'] == 'pdf') {
 		header('Content-Type: application/pdf');
-		header('Content-Disposition: inline; filename=' . $path_parts['basename']);
+		header('Content-Disposition: inline; filename="' . addcslashes($downloadName, '"\\') . '"');
 	} else {
 		header('Content-Type: application/octet-stream');
-		header('Content-Disposition: attachment; filename=' . $path_parts['basename']);
+		header('Content-Disposition: attachment; filename="' . addcslashes($downloadName, '"\\') . '"');
 	}
 	readfile($pathfile);
 	if (file_exists(jeedom::getTmpFolder('downloads') . '/archive.tar.gz')) {
