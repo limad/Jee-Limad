@@ -19,7 +19,7 @@
 /* DOM utils namespace
 */
 var domUtils = function() {
-  if (typeof arguments[0] == 'function') {
+  if (typeof arguments[0] === 'function') {
     if (domUtils._DOMloading <= 0) {
       arguments[0].apply(this)
       return
@@ -138,7 +138,7 @@ Element.prototype.getJeeValues = function(_attr, _depth) {
     } catch (e) { }
 
     l1key = thatElement.getAttribute('data-l1key')
-    if (l1key !== null && l1key != '') {
+    if (l1key !== null && l1key !== '') {
       l2key = thatElement.getAttribute('data-l2key')
       if (l2key !== null) {
         if (!isset(value[l1key])) {
@@ -195,12 +195,12 @@ Element.prototype.setJeeValues = function(_object, _attr) {
   let selector
   for (let i in _object) {
     selector = _attr + '[data-l1key="' + i.replaceAll('"', '') + '"]'
-    if ((!is_array(_object[i]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') == 'multiple')) && !is_object(_object[i])) {
+    if ((!is_array(_object[i]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') === 'multiple')) && !is_object(_object[i])) {
       this.querySelectorAll(selector).jeeValue(_object[i])
     } else {
       for (let j in _object[i]) {
         selector = _attr + '[data-l1key="' + i.replaceAll('"', '') + '"][data-l2key="' + j.replaceAll('"', '') + '"]'
-        if ((is_array(_object[i][j]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') == 'multiple')) || is_object(_object[i][j])) {
+        if ((is_array(_object[i][j]) || (this.querySelector(selector) !== null && this.querySelector(selector).getAttribute('multiple') === 'multiple')) || is_object(_object[i][j])) {
           for (let k in _object[i][j]) {
             this.querySelectorAll(selector+'[data-l3key="' + k.replaceAll('"', '') + '"]').jeeValue(_object[i][j][k])
           }
@@ -227,18 +227,18 @@ Element.prototype.jeeValue = function(_value) {
       }
     } else {
       if (this.tagName === 'INPUT') {
-        if (this.getAttribute('type') == 'checkbox') {
+        if (this.getAttribute('type') === 'checkbox') {
           if (init(_value) === '') {
             return
           }
-          this.checked = (init(_value) == '1') ? true : false
-        } else if (this.getAttribute('type') == 'radio') {
-          this.checked = (init(_value) == '1') ? true : false
+          this.checked = (init(_value) === '1') ? true : false
+        } else if (this.getAttribute('type') === 'radio') {
+          this.checked = (init(_value) === '1') ? true : false
         } else {
           this.value = init(_value)
         }
       } else if (this.tagName === 'SELECT') {
-        if (init(_value) == '') {
+        if (init(_value) === '') {
           this.value = ''
         } else {
           this.value = init(_value)
@@ -262,7 +262,7 @@ Element.prototype.jeeValue = function(_value) {
   } else { //GET
     let value = ''
     if (this.matches('input, select, textarea')) {
-      if (this.getAttribute('type') == 'checkbox' || this.getAttribute('type') == 'radio') {
+      if (this.getAttribute('type') === 'checkbox' || this.getAttribute('type') === 'radio') {
         value = (this.checked) ? '1' : '0'
       } else {
         value = this.value
@@ -270,7 +270,7 @@ Element.prototype.jeeValue = function(_value) {
     }
     if (this.matches('span')) {
       value = this.innerHTML || this.textContent
-      if (value == '') value = null
+      if (value === '') value = null
     }
     if (this.matches('div, p')) {
       value = this.innerHTML || null
@@ -278,7 +278,7 @@ Element.prototype.jeeValue = function(_value) {
     if (this.matches('a') && this.getAttribute('value') != undefined) {
       value = this.getAttribute('value')
     }
-    if (value == '') {
+    if (value === '') {
       value = this.value
     }
     return value
@@ -338,7 +338,7 @@ domUtils.loadScript = function(_scripts, _idx, _callback) {
     script.setAttribute(attr.nodeName, attr.nodeValue)
   })
   script.setAttribute('injext', '1')
-  if (_scripts[_idx].src != '') {
+  if (_scripts[_idx].src !== '') {
     //stock in head ?
     if (_scripts[_idx].src.includes('desktop/common/js') || _scripts[_idx].src.includes('/3rdparty/')) {
       if (domUtils.headInjexted.includes(_scripts[_idx].src)) {
@@ -398,7 +398,7 @@ domUtils.parseHTML = function(_htmlString) {
   newEl.content.querySelectorAll('script').forEach(function(element) {
     let script = document.createElement('script')
     script.setAttribute('injext', '1')
-    element.src != '' ? script.src = element.src : script.text = element.text
+    element.src !== '' ? script.src = element.src : script.text = element.text
     element.replaceWith(script)
   })
   domUtils.DOMloading -= 1
@@ -621,7 +621,7 @@ domUtils.ajax = function(_params) {
       credentials: 'same-origin',
 	    signal: domUtils.controller.signal,
       //Safari AbortSignal.timeout not a function
-      //signal: (_params.url == 'core/ajax/event.ajax.php' && _params.data.action == 'changes') ? null : AbortSignal.timeout(10000) //changes polling!
+      //signal: (_params.url == 'core/ajax/event.ajax.php' && _params.data.action === 'changes') ? null : AbortSignal.timeout(10000) //changes polling!
     })
       .then(response => {
         if (!response.ok) {

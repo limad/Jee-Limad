@@ -26,7 +26,7 @@ domUtils.showLoading = function(_timeout) {
     clearTimeout(domUtils.loadingTimeout)
     domUtils.loadingTimeout = null
   }
-  if (_timeout && typeof _timeout == 'number') {
+  if (_timeout && typeof _timeout === 'number') {
     domUtils.loadingTimeout = setTimeout(() => {
       if (!document.getElementById('div_jeedomLoading')?.isHidden()) {
         domUtils.hideLoading()
@@ -107,14 +107,14 @@ NodeList.prototype.empty = function() {
 
 //CSS Class manipulation
 Element.prototype.addClass = function(_className /*, _className... */) {
-  if (_className == '') return this
+  if (_className === '') return this
   let args = Array.prototype.slice.call(arguments)
   if (args[0].includes(' ')) args = args[0].split(' ')
   this.classList.add(...args)
   return this
 }
 NodeList.prototype.addClass = function(_className /*, _className... */) {
-  if (_className == '') return this
+  if (_className === '') return this
   let args = Array.prototype.slice.call(arguments)
   for (let idx = 0; idx < this.length; idx++) {
     this[idx].addClass(...args)
@@ -123,7 +123,7 @@ NodeList.prototype.addClass = function(_className /*, _className... */) {
 }
 
 Element.prototype.removeClass = function(_className /*, _className... */) {
-  if (_className == '') {
+  if (_className === '') {
     this.classList = ''
     return this
   }
@@ -134,7 +134,7 @@ Element.prototype.removeClass = function(_className /*, _className... */) {
   return this
 }
 NodeList.prototype.removeClass = function(_className /*, _className... */) {
-  if (_className == '') return this
+  if (_className === '') return this
   let args = Array.prototype.slice.call(arguments)
   for (let idx = 0; idx < this.length; idx++) {
     this[idx].removeClass(...args)
@@ -293,7 +293,7 @@ domUtils.createWidgetSlider = function(_options) {
 /*Components
 */
 document.addEventListener('DOMContentLoaded', function() {
-  if (document.head.querySelectorAll('script[src*="bootstrap.min.js"]').length == 0) {
+  if (document.head.querySelectorAll('script[src*="bootstrap.min.js"]').length === 0) {
     document.addEventListener('click', function(event) {
       //Close all dropdowns
       document.querySelectorAll('div.dropdown.open').removeClass('open')
@@ -318,7 +318,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //Close all if has parent declared:
         const parentRef = _target.getAttribute('data-parent')
-        if (parentRef && parentRef != '') {
+        if (parentRef && parentRef !== '') {
           _target.closest(parentRef)?.querySelectorAll('div.panel-collapse').removeClass('in')
         }
 
@@ -361,7 +361,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         })
 
-        if (_target.getAttribute('data-target') == '' && event.target.getAttribute('href') == '') return
+        if (_target.getAttribute('data-target') === '' && event.target.getAttribute('href') === '') return
         if (_target.closest('.ui-dialog-content') != null) return
         if (_target.closest('.jeeDialog') != null) return
 
@@ -487,7 +487,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
   }
 
   _options.setUIContent = function(_paires) {
-    if (!Array.isArray(_options.data.content) || _options.data.content.length == 0) {
+    if (!Array.isArray(_options.data.content) || _options.data.content.length === 0) {
       _options.data.container.unseen()
       return
     }
@@ -545,7 +545,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
   }
 
   this.unRegisterEvent('keydown', 'jeeComplete').registerEvent('keydown', function jeeComplete(event) {
-    if (event.key == 'ArrowDown' || event.key == 'ArrowUp') {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault()
     }
   })
@@ -568,19 +568,19 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
 
     if (event.ctrlKey || event.altKey || event.metaKey) return
 
-    if (event.key == ' ') {
+    if (event.key === ' ') {
       _options.request.term = ''
       return
     }
-    if (_options.request.term == '') {
+    if (_options.request.term === '') {
       _options.request.start = event.target.selectionStart
       _options.request.end = event.target.selectionEnd
-    } else if (!event.key.includes('Arrow') && event.key != 'Backspace' && event.key != 'Delete') {
+    } else if (!event.key.includes('Arrow') && event.key !== 'Backspace' && event.key !== 'Delete') {
       _options.request.end = event.target.selectionEnd
     }
 
     //Arrow up/down select guest:
-    if (event.key == 'ArrowDown') {
+    if (event.key === 'ArrowDown') {
       if (_options.data.container.querySelector('li.jeeCompleteItem.active') == null) {
         _options.data.container.querySelector('li.jeeCompleteItem')?.addClass('active')
       } else {
@@ -592,7 +592,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       return
     }
 
-    if (event.key == 'ArrowUp') {
+    if (event.key === 'ArrowUp') {
       if (_options.data.container.querySelector('li.jeeCompleteItem.active') == null) {
         _options.data.container.querySelectorAll('li.jeeCompleteItem').last()?.addClass('active')
       } else {
@@ -604,7 +604,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       return
     }
 
-    if (event.key == 'Enter') {
+    if (event.key === 'Enter') {
       _options.data.container.querySelector('li.jeeCompleteItem.active')?.firstChild.triggerEvent('mousedown')
       _options.data.container.unseen()
       setTimeout(() => {
@@ -613,7 +613,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       return
     }
 
-    if (event.key == 'Backspace') {
+    if (event.key === 'Backspace') {
       _options.data.container.unseen()
       _options.request.term = _options.request.term.slice(0, -1)
       _options.request.end--
@@ -621,7 +621,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       document.getElementById(_options.id)._jeeComplete.request = _options.request
       _options._source(_options.request)
       return
-    } else if (event.key == 'Delete') {
+    } else if (event.key === 'Delete') {
       _options.data.container.unseen()
       if (event.target.selectionStart >= _options.request.start && event.target.selectionEnd <= _options.request.end) {
         _options.request.end--
@@ -630,10 +630,10 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
         document.getElementById(_options.id)._jeeComplete.request = _options.request
         _options._source(_options.request)
       }
-    } else if (event.key == 'ArrowLeft') {
+    } else if (event.key === 'ArrowLeft') {
       _options.data.container.unseen()
       return
-    } else if (event.key == 'ArrowRight') {
+    } else if (event.key === 'ArrowRight') {
       _options.data.container.unseen()
       return
     } else if (_options.ignoreKeyCodes.includes(event.keyCode)) {
@@ -643,7 +643,7 @@ HTMLInputElement.prototype.jeeComplete = function(_options) {
       _options.request.end++
     }
 
-    if (event.key.length == 1 && _options.request.term.length >= _options.minLength) {
+    if (event.key.length === 1 && _options.request.term.length >= _options.minLength) {
       document.getElementById(_options.id)._jeeComplete.request = _options.request
       _options._source(_options.request)
     }
@@ -686,7 +686,7 @@ jeeDialog.alert() / confirm() / prompt() Handle mini modals
 jeeDialog.modal() handle mini modal with predefined content
 jeeDialog.dialog() handle complete moveable/resiable dialogs
 */
-var jeeDialog = (function() {
+const jeeDialog = (function() {
   'use strict'
   let exports = {
     _description: 'Jeedom dialog function handling modals and alert messages. /core/dom/dom.ui.js'
@@ -763,7 +763,7 @@ var jeeDialog = (function() {
         }
       } catch (error) { }
     } else {
-      if (toastContainer.parentNode != document.body) {
+      if (toastContainer.parentNode !== document.body) {
         document.body.appendChild(toastContainer)
       }
     }
@@ -778,7 +778,7 @@ var jeeDialog = (function() {
       toast._jeeDialog.setHideTimeout = function(_delay) {
         toast._jeeDialog.hideTimeoutId = setTimeout(function() {
           toast.remove()
-          if (toastContainer.childNodes.length == 0) {
+          if (toastContainer.childNodes.length === 0) {
             exports.clearToasts()
           }
         }, _delay)
@@ -878,7 +878,7 @@ var jeeDialog = (function() {
         })
         dialogTitle.querySelector('button.btToggleMaximize').addEventListener('click', function(event) {
           let dialog = event.target.closest('div.jeeDialog')
-          if (dialog.getAttribute('data-maximize') == '0') { //Not maximized
+          if (dialog.getAttribute('data-maximize') === '0') { //Not maximized
             dialog.setAttribute('data-maximize', '1')
           } else { //Restore
             dialog.setAttribute('data-maximize', '0')
@@ -911,7 +911,7 @@ var jeeDialog = (function() {
     if (_params.setContent) {
       const dialogContent = document.createElement('div')
       dialogContent.addClass('jeeDialogContent')
-      if (_params.message != undefined && _params.message != '') {
+      if (_params.message != undefined && _params.message !== '') {
         dialogContent.innerHTML = '<div>' + _params.message + '</div>'
       }
       template.appendChild(dialogContent)
@@ -967,7 +967,7 @@ var jeeDialog = (function() {
     button.innerHTML = _button[1].label
     button.classList = 'btn btn-' + _button[1].className
     if (isset(_button[1].callback)) {
-      for (var [key, value] of Object.entries(_button[1].callback)) {
+      for (const [key, value] of Object.entries(_button[1].callback)) {
         button.addEventListener(key, function(event) {
           value.apply(this, [event, this.getAttribute('data-type')])
         })
@@ -1061,7 +1061,7 @@ var jeeDialog = (function() {
   eeDialog.get(element).destroy()
   */
   exports.get = function(_el, _option = '') {
-    if (!isset(_option) || _option == '') _option = 'options'
+    if (!isset(_option) || _option === '') _option = 'options'
     if (typeof _el === 'string') {
       _el = document.querySelector(_el)
     }
@@ -1069,15 +1069,15 @@ var jeeDialog = (function() {
     let dialog = _el.closest('div.jeeDialog')
     if (dialog == null) return null
 
-    if (_option == 'options') {
+    if (_option === 'options') {
       return (isset(dialog._jeeDialog) ? dialog._jeeDialog : null)
-    } else if (_option == 'dialog') {
+    } else if (_option === 'dialog') {
       return dialog
-    } else if (_option == 'title') {
+    } else if (_option === 'title') {
       return dialog.querySelector('div.jeeDialogTitle')
-    } else if (_option == 'content') {
+    } else if (_option === 'content') {
       return dialog.querySelector('div.jeeDialogContent')
-    } else if (_option == 'footer') {
+    } else if (_option === 'footer') {
       return dialog.querySelector('div.jeeDialogFooter')
     }
     return null
@@ -1310,7 +1310,7 @@ var jeeDialog = (function() {
                 let data = event.target.closest('div.jeeDialog').querySelector('div.jeeDialogContent').getJeeValues('.promptAttr')[0]
                 const key = event.target.closest('button').getAttribute('data-type')
                 if (Object.keys(data).length == 1) data = data.result
-                if (data == '') data = null
+                if (data === '') data = null
                 _callback.apply(this, [data, key])
               }
               dialog._jeeDialog.close(dialog)
@@ -1536,7 +1536,7 @@ var jeeDialog = (function() {
         id: 'jee_modal',
         show: true,
         retainPosition: false,
-        fullScreen: document.body.getAttribute('data-device') == 'phone' ? true : false,
+        fullScreen: document.body.getAttribute('data-device') === 'phone' ? true : false,
         contentUrl: '',
         zIndex: 1019,
         width: '90vw',
@@ -1589,7 +1589,7 @@ var jeeDialog = (function() {
           setBackDrop(_options, true)
           this.dialog._jeeDialog.options.onShown()
           this.dialog.seen()
-          if (!_options.retainPosition || this.dialog.style.width == '') {
+          if (!_options.retainPosition || this.dialog.style.width === '') {
             if (!_options.fullScreen) {
               this.dialog.setAttribute('data-maximize', '0')
             } else {
@@ -1647,7 +1647,7 @@ var jeeDialog = (function() {
         function dragStart(event) {
           if (event.target.matches('button')) return
           event.preventDefault()
-          if (dialogContainer.getAttribute('data-maximize') == '1') return
+          if (dialogContainer.getAttribute('data-maximize') === '1') return
           bodyRect = document.body.getBoundingClientRect()
           let bRect = dialogContainer.getBoundingClientRect()
           initialLeft = event.clientX || event.targetTouches[0].pageX
@@ -1719,7 +1719,7 @@ var jeeDialog = (function() {
         function resizeStart(event) {
           if (event.target.matches('button')) return
           event.preventDefault()
-          if (dialogContainer.getAttribute('data-maximize') == '1') return
+          if (dialogContainer.getAttribute('data-maximize') === '1') return
           resizer = event.target.getAttribute('data-resize')
           let bRect = dialogContainer.getBoundingClientRect()
           initialLeft = bRect.left
@@ -1736,8 +1736,8 @@ var jeeDialog = (function() {
           }
         }
         function resizing(event) {
-          let clientX = (typeof event.clientX == 'number') ? event.clientX : event.targetTouches[0].pageX
-          let clientY = (typeof event.clientY == 'number') ? event.clientY : event.targetTouches[0].pageY
+          let clientX = (typeof event.clientX === 'number') ? event.clientX : event.targetTouches[0].pageX
+          let clientY = (typeof event.clientY === 'number') ? event.clientY : event.targetTouches[0].pageY
           if (resizer.includes('top')) {
             dialogContainer.style.top = clientY + 'px'
             let height = initialHeight + (initialTop - clientY)
@@ -1774,7 +1774,7 @@ var jeeDialog = (function() {
       if (spanTitle) spanTitle.innerHTML = _options.title
     }
 
-    if (_options.contentUrl != '') {
+    if (_options.contentUrl !== '') {
       dialogContainer.querySelector('div.jeeDialogContent').load(_options.contentUrl, function() {
         if (_options.callback) _options.callback()
         jeedomUtils.initTooltips()
@@ -1797,7 +1797,7 @@ var jeeDialog = (function() {
 /* new jeeCtxMenu({})
 Core lib for context menus
 */
-var jeeCtxMenu = function(_options) {
+const jeeCtxMenu = function(_options) {
   const ctxInstance = { //Always initialize with new jeeCtxMenu({}) or this won't be unique per menu!
     realTrigger: null
   }
@@ -1869,7 +1869,7 @@ var jeeCtxMenu = function(_options) {
 
     //Is item a sperator:
     let isSep = new RegExp("^[-]+$").test(_item) // item: '-----'
-    if (!isSep && isset(_item.type) && _item.type == 'cm_separator') isSep = true
+    if (!isSep && isset(_item.type) && _item.type === 'cm_separator') isSep = true
 
     if (!isSep) {
       //Reference for dynamic scanning at show()
@@ -1933,7 +1933,7 @@ var jeeCtxMenu = function(_options) {
       itemDiv.addClass('ctxSeparator')
       _itemContainer.appendChild(itemDiv)
     } else {
-      if (isset(_item.type) && (_item.type == 'checkbox' || _item.type == 'radio')) {
+      if (isset(_item.type) && (_item.type === 'checkbox' || _item.type === 'radio')) {
         itemDiv.addClass('ctxInput')
         const label = document.createElement('label')
         const span = document.createElement('span')
@@ -2005,7 +2005,7 @@ var jeeCtxMenu = function(_options) {
 
   const ctxMenuContainer = document.createElement('div')
   ctxMenuContainer.addClass('jeeCtxMenu')
-  if (_options.className != '') ctxMenuContainer.addClass(_options.className)
+  if (_options.className !== '') ctxMenuContainer.addClass(_options.className)
   ctxMenuContainer.style.display = 'none'
   ctxMenuContainer.style.zIndex = _options.zIndex
   document.querySelector(_options.appendTo)?.appendChild(ctxMenuContainer)
@@ -2138,7 +2138,7 @@ var jeeCtxMenu = function(_options) {
 /* new jeeFileUploader({})
 Core lib for input upload file
 */
-var jeeFileUploader = function(_options) {
+const jeeFileUploader = function(_options) {
   const defaultOptions = {
     fileInput: false,
     replaceFileInput: false,
@@ -2157,7 +2157,7 @@ var jeeFileUploader = function(_options) {
   }
 
   //Merge defaults and submitted options:
-  if (!isset(_options.singleFileUploads) && _options.fileInput.getAttribute('multiple') == 'multiple') {
+  if (!isset(_options.singleFileUploads) && _options.fileInput.getAttribute('multiple') === 'multiple') {
     _options.singleFileUploads = false
   }
   _options = domUtils.extend(defaultOptions, _options)
@@ -2265,9 +2265,9 @@ var jeeFileUploader = function(_options) {
 /* new jeeResize(selector, {})
 Core lib for resizeable elements
 */
-var jeeResize = function(_selector, _options) {
+const jeeResize = function(_selector, _options) {
   const elements = document.querySelectorAll(_selector)
-  if (elements.length == 0) {
+  if (elements.length === 0) {
     console.warn('jeeResize: no elements found. selector:', _selector)
     return null
   }
