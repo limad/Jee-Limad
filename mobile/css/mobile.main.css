@@ -101,7 +101,7 @@
   }
 
   .nd2-card{
-    background-color: rgba(var(--bg-color), var(--opacity))  !important;
+    background-color: rgb(from var(--bg-color) r g b / var(--opacity))  !important;
   }
 
   #backgroundforJeedom {
@@ -263,14 +263,14 @@
   .ui-overlay-a,
   .ui-page-theme-a,
   .ui-page-theme-a .ui-panel-wrapper {
-    background-color: rgb(var(--bg-color)) !important;
+    background-color: var(--bg-color) !important;
     color: var(--txt-color) !important;
     box-shadow: none !important;
   }
 
   .ui-page-theme-a .ui-body-inherit {
     color: var(--link-color) !important;
-    background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+    background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
     backdrop-filter: blur(5px)
   }
   label {
@@ -321,7 +321,7 @@
     font-weight: 300;
     padding: 3px 0;
     margin: 3px;
-    background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+    background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
   }
 
   .cmd.refresh {
@@ -435,7 +435,7 @@
   .timeCmd {
     display: block;
     color: var(--txt-color);
-    background-color: rgb(var(--bg-color)) !important;
+    background-color: var(--bg-color) !important;
     padding-left: 5px !important;
     padding-right: 5px !important;
     font-size: 12.5px;
@@ -702,7 +702,7 @@
 
   .ui-page-theme-a .ui-btn.ui-btn-raised {
     color: var(--link-color) !important;
-    background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+    background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
     box-shadow: none;
     line-height: 15px !important;
     min-height: 17px;
@@ -836,7 +836,7 @@
   }
   select option {
     color: var(--txt-color);
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   }
 
@@ -899,7 +899,7 @@
   }
   #div_displayBattery .eqLogic-widget .widget-name > .object {
     color: var(--txt-color) !important;
-    background-color: rgb(var(--bg-color)) !important;
+    background-color: var(--bg-color) !important;
     font-size: 12.5px !important;
     position: relative;
     opacity: .8;
@@ -1018,7 +1018,7 @@
 
   /*panel */
   body[data-plugin] #page legend {
-    background-color: rgba(var(--bg-color), var(--opacity)) !important;
+    background-color: rgb(from var(--bg-color) r g b / var(--opacity)) !important;
     margin: 5px 0 !important;
   }
 
@@ -1083,7 +1083,7 @@
   #pre_scenariolog,
   #pre_note {
     color: var(--txt-color) !important;
-    background: rgb(var(--bg-color)) ;
+    background: var(--bg-color) ;
   }
   #pre_globallog,
   #pre_scenariolog {
@@ -1168,7 +1168,7 @@
     margin-left: 30px ;
     padding: 6px;
     border-radius: var(--border-radius);
-    background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+    background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
   }
   #timelineContainer ul li > span.vertLine {
     position: absolute;
@@ -1205,7 +1205,7 @@
     border-radius: 50%;
     border: 3px solid var(--al-info-color);
     position: absolute;
-    background: rgb(var(--eq-bg-color)) !important;
+    background: var(--eq-bg-color) !important;
     left: 115px;
     top: 5px;
     z-index: 5;
@@ -1234,7 +1234,7 @@
     padding-left: 50px;
     padding-right: 5px;
     border-radius: var(--border-radius) !important;
-    background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+    background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
   }
   #timelineContainer div.date {
     position: absolute;
@@ -1261,7 +1261,7 @@
     padding: 5px;
     height: 40px !important;
     z-index: 10;
-    background: rgba(var(--panel-bg-color), var(--opacity));
+    background: rgb(from var(--panel-bg-color) r g b / var(--opacity));
   }
 
 /* timeline special mobile */
@@ -1335,11 +1335,11 @@
     stroke-width: 0.6 !important;
   }
   .highcharts-tooltip .highcharts-tooltip-box path {
-    fill: rgb(var(--bg-color)) !important;
+    fill: var(--bg-color) !important;
   }
   .highcharts-tooltip .highcharts-tooltip-box text,
   .highcharts-tooltip .highcharts-tooltip-box text tspan {
-    fill: rgb(var(--contrast-color)) !important;
+    fill: var(--contrast-color) !important;
     font-weight: 400 !important;
   }
   .highcharts-tooltip .highcharts-shadow {
@@ -1353,7 +1353,7 @@
     fill: var(--txt-color) !important;
   }
   .highcharts-background {
-    fill: rgba(var(--panel-bg-color), var(--opacity)) !important;
+    fill: rgb(from var(--panel-bg-color) r g b / var(--opacity)) !important;
     fill-opacity: var(--opacity);
   }
   .gauge .highcharts-background {
@@ -1367,7 +1367,7 @@
   }
   .chartContainer .highcharts-plot-band,
   #div_graph .highcharts-plot-band {
-    fill: rgb(var(--bg-color)) !important;
+    fill: var(--bg-color) !important;
   }
   .highcharts-grid-line {
     stroke: var(--defaultBkg-color);
@@ -1439,9 +1439,9 @@
     stroke-width: 1.2;
   }
   .highcharts-selection-marker {
-    fill: rgb(var(--eq-bg-color));
+    fill: var(--eq-bg-color);
     fill-opacity: 0.5;
-    stroke: rgb(var(--contrast-color));
+    stroke: var(--contrast-color);
     stroke-width: 1px !important;
   }
 
@@ -1662,7 +1662,7 @@
     background-color: var(--bg-modal-color) !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
-    color: rgb(var(--contrast-color)) !important;
+    color: var(--contrast-color) !important;
     margin: 10px !important;
     display: inline-block;
   }
@@ -1688,7 +1688,7 @@
     display: flex;
     align-items: center;
     gap: 0.35rem;
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
     height: 20px;
     padding: 5px;
   }
@@ -1737,7 +1737,7 @@
     color: var(--contrast-color) !important;
   }
   .objectPreview .resume .objectSummaryParent {
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
     padding: 6px 8px;
     margin: 0 -4px !important;
     display: inline-block;
@@ -1745,7 +1745,7 @@
 
   .objectPreview .objectSummaryParent[data-summary="security"],
   .objectPreview .objectSummaryParent[data-summary="motion"] {
-    background-color: rgb(var(--bg-color));
+    background-color: var(--bg-color);
     padding: 5px;
     width: 32px;
     height: 20px;
@@ -1784,7 +1784,7 @@
 
 /* ___________________________________________________________VIEW */
   .div_viewZoneTable{
-    background-color: rgba(var(--eq-bg-color), var(--opacity)) !important;
+    background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
     margin-bottom: 5px;
     border-radius: var(--border-radius) !important;
   }
