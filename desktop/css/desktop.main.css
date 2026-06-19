@@ -952,6 +952,17 @@ div.eqLogicZone {
     color: var(--link-color);
   }
 
+  .scenario.scenario-widget .widget-name              { background-color: rgb(from var(--cat-scenario-color) r g b / var(--opacity)) !important; }
+  [data-category=security]>.widget-name               { background-color: rgb(from var(--cat-security-color) r g b / var(--opacity)); }
+  [data-category=heating]>.widget-name                { background-color: rgb(from var(--cat-heating-color) r g b / var(--opacity)); }
+  [data-category=automatism]>.widget-name             { background-color: rgb(from var(--cat-automatism-color) r g b / var(--opacity)); }
+  [data-category=light]>.widget-name                  { background-color: rgb(from var(--cat-light-color) r g b / var(--opacity)); }
+  [data-category=opening]>.widget-name                { background-color: rgb(from var(--cat-opening-color) r g b / var(--opacity)); }
+  [data-category=multimedia]>.widget-name             { background-color: rgb(from var(--cat-multimedia-color) r g b / var(--opacity)); }
+  [data-category=energy]>.widget-name                 { background-color: rgb(from var(--cat-energy-color) r g b / var(--opacity)); }
+  [data-category='']>.widget-name                     { background-color: rgb(from var(--cat-other-color) r g b / var(--opacity)); }
+  :not(.batteryListContainer) > .eqLogic-widget:not([data-category]) > .widget-name { background-color: rgb(from var(--cat-other-color) r g b / var(--opacity)); }
+
   div.div_displayEquipement {
     margin-left: 1px;
   }
