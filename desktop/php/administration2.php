@@ -46,7 +46,7 @@ body {
 .search-bar-group .form-control { border-radius: 6px 0 0 6px; }
 
 /* Sidebar Tabs */
-.sidebar-layout .nav-tabs.sidebar-nav > li > a {
+.sidebar-layout .nav-tabs.sidebar-nav-vertical > li > a {
     border-radius: 6px !important;
     margin-bottom: 4px;
     transition: background-color 0.2s ease, color 0.2s ease;
@@ -55,15 +55,15 @@ body {
     font-size: 14px;
     font-weight: 500;
 }
-.sidebar-layout .nav-tabs.sidebar-nav > li:not(.active) > a:hover {
+.sidebar-layout .nav-tabs.sidebar-nav-vertical > li:not(.active) > a:hover {
     background-color: rgba(128, 128, 128, 0.1) !important;
     color: var(--al-primary-color) !important;
     border: none !important;
     border-left: none !important;
 }
-.sidebar-layout .nav-tabs.sidebar-nav > li.active > a,
-.sidebar-layout .nav-tabs.sidebar-nav > li.active > a:hover,
-.sidebar-layout .nav-tabs.sidebar-nav > li.active > a:focus {
+.sidebar-layout .nav-tabs.sidebar-nav-vertical > li.active > a,
+.sidebar-layout .nav-tabs.sidebar-nav-vertical > li.active > a:hover,
+.sidebar-layout .nav-tabs.sidebar-nav-vertical > li.active > a:focus {
     background-color: var(--al-primary-color) !important;
     color: #ffffff !important;
     border: none !important;
@@ -225,7 +225,7 @@ body {
 		</div>
 
 		<div class="sidebar-layout">
-		<ul class="nav nav-tabs nav-primary sidebar-nav" role="tablist" id="tablist">
+		<ul class="nav nav-tabs nav-primary sidebar-nav-vertical" role="tablist" id="tablist">
 			<li role="presentation" class="active"><a data-target="#generaltab" aria-controls="home" role="tab" data-toggle="tab"><i class="fas fa-wrench" title="{{Général}}"></i><span> {{Général}}</span></a></li>
 			<li role="presentation"><a data-target="#interfacetab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-laptop" title="{{Interface}}"></i><span> {{Interface}}</span></a></li>
 			<li role="presentation"><a id="bt_networkTab" data-target="#networktab" aria-controls="profile" role="tab" data-toggle="tab"><i class="fas fa-rss" title="{{Réseaux}}"></i><span> {{Réseaux}}</span></a></li>
