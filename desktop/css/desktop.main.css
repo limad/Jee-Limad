@@ -3557,7 +3557,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .well blockquote {
-    border-color: #ddd;
+    border-color: var(--panel-default-border, #ddd);
   }
 
   .well-lg {
@@ -4537,7 +4537,7 @@ div.eqLogic-widget.editingMode .panelLink {
     border-top: 0;
   }
   .highcharts-data-table th {
-    border: 1px solid #ddd;
+    border: 1px solid var(--panel-default-border, #ddd);
     padding: 5px;
     vertical-align: bottom;
     line-height: 1.42857143;
@@ -4550,7 +4550,7 @@ div.eqLogic-widget.editingMode .panelLink {
     border-color: inherit;
   }
   .highcharts-data-table td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--panel-default-border, #ddd);
     padding: 5px;
     line-height: 1.42857143;
     vertical-align: top;
