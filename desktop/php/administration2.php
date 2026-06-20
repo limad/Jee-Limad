@@ -2537,7 +2537,11 @@ body {
 								<button type="button" class="btn btn-warning" id="bt_restartApache" style="width:50%;"><i class="fas fa-redo"></i> {{Redémarrer}}</button>
 							</div>
 						</div>
+					</div>
+				</form>
 
+				<form class="form-horizontal">
+					<div class="config-card">
 						<h3 class="config-card-title"><i class="fas fa-tools"></i> {{Outils Système}}</h3>
 						<div class="alert alert-danger">
 							{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo $productName; ?>. <br>
@@ -2592,7 +2596,7 @@ body {
 								</div>
 							</div>
 						</div>
-					<br>
+					</div>
 				</form>
 			</div>
 		</div>
