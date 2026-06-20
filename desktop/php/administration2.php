@@ -140,56 +140,7 @@ body {
 }
 
 /* Toggles (Magic Checkboxes) */
-.modern-form-group input[type="checkbox"] {
-    appearance: none !important;
-    -webkit-appearance: none !important;
-    width: 36px !important;
-    height: 20px !important;
-    background-color: #555555 !important;
-    border-radius: 20px !important;
-    position: relative !important;
-    cursor: pointer !important;
-    outline: none !important;
-    transition: background-color 0.2s ease !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    vertical-align: middle !important;
-    flex-shrink: 0 !important;
-    border: none !important;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.4) !important;
-    display: inline-block !important;
-}
-.modern-form-group input[type="checkbox"]::before {
-    display: none !important;
-    content: none !important;
-}
-.modern-form-group input[type="checkbox"]::after {
-    content: '' !important;
-    position: absolute !important;
-    top: 2px !important;
-    left: 2px !important;
-    width: 16px !important;
-    height: 16px !important;
-    background-color: #ffffff !important;
-    border-radius: 50% !important;
-    transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
-}
-.modern-form-group input[type="checkbox"]:checked {
-    background-color: var(--al-primary-color, #2563eb) !important;
-}
-.modern-form-group input[type="checkbox"]:checked::after {
-    transform: translateX(16px) !important;
-}
-.modern-form-group .checkbox-inline {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-left: 0;
-    margin-right: 15px;
-    font-weight: 500;
-}
+
 
 @media (max-width: 992px) {
     .modern-form-group {
