@@ -1486,7 +1486,7 @@ body {
 							</div>
 						</div>
 						<div class="modern-form-group">
-							<label>{{Ne pas exécuter la commande si l’équipement est déjà dans le bon état (alpha)}}</label>
+							<label>{{Ne pas exécuter la commande si l'équipement est déjà dans le bon état (alpha)}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="checkbox" class="configKey form-control" data-l1key="cmd::allowCheckState">
 							</div>
@@ -1526,7 +1526,7 @@ body {
 					<div class="config-card">
 						<div class="modern-form-group">
 							<label>{{Profondeur pour les scénarios}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens de scénario}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d'éléments affichés dans les graphiques de liens de scénario}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::scenario::drill">
@@ -1534,7 +1534,7 @@ body {
 						</div>
 						<div class="modern-form-group">
 							<label>{{Profondeur pour les objets}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens d'objet}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d'éléments affichés dans les graphiques de liens d'objet}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::jeeObject::drill">
@@ -1542,7 +1542,7 @@ body {
 						</div>
 						<div class="modern-form-group">
 							<label>{{Profondeur pour les équipements}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens d'équipement}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d'éléments affichés dans les graphiques de liens d'équipement}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::eqLogic::drill">
@@ -1550,7 +1550,7 @@ body {
 						</div>
 						<div class="modern-form-group">
 							<label>{{Profondeur pour les commandes}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens de commande}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d'éléments affichés dans les graphiques de liens de commande}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::cmd::drill">
@@ -1558,7 +1558,7 @@ body {
 						</div>
 						<div class="modern-form-group">
 							<label>{{Profondeur pour les variables}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d’éléments affichés dans les graphiques de liens de variable}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Nombre maximum de niveaux d'éléments affichés dans les graphiques de liens de variable}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::dataStore::drill">
@@ -1566,7 +1566,7 @@ body {
 						</div>
 						<div class="modern-form-group">
 							<label>{{Paramètre de prerender}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Permet d’agir sur la disposition du graphique (défaut 3)}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'agir sur la disposition du graphique (défaut 3)}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::prerender">
@@ -1574,7 +1574,7 @@ body {
 						</div>
 						<div class="modern-form-group">
 							<label>{{Paramètre de render}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Permet d’agir sur la disposition du graphique selon les relations entre éléments (défaut 3000)}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'agir sur la disposition du graphique selon les relations entre éléments (défaut 3000)}}"></i></sup>
 							</label>
 							<div class="col-lg-2 col-md-2 col-sm-4 col-xs-6">
 								<input class="configKey form-control" data-l1key="graphlink::render">
@@ -1625,7 +1625,7 @@ body {
 						</div>
 						<div class="modern-form-group">
 							<label>{{Ne pas répondre si l'interaction n'est pas comprise}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Par défaut Jeedom répond “je n’ai pas compris” si aucune interaction ne correspond.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Par défaut Jeedom répond “je n'ai pas compris” si aucune interaction ne correspond.}}"></i></sup>
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-6">
 								<input type="checkbox" class="configKey" data-l1key="interact::noResponseIfEmpty">
@@ -2540,40 +2540,40 @@ body {
 
 						<h3 class="config-card-title"><i class="fas fa-tools"></i> {{Outils Système}}</h3>
 						<div class="alert alert-danger">
-							{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l’accès à votre système et à}} <?php echo $productName; ?>. <br>
-							{{L’équipe}} <?php echo $productName; ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
+							{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo $productName; ?>. <br>
+							{{L'équipe}} <?php echo $productName; ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
 						</div>
 						<div class="modern-form-group">
 							<label><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
 							<div style="display:flex;align-items:center;gap:8px;">
-								<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage(‘index.php?v=d&p=editor’)"><i class="fas fa-indent"></i> {{Ouvrir}}</button>
+								<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage('index.php?v=d&p=editor')"><i class="fas fa-indent"></i> {{Ouvrir}}</button>
 								<span class="small italic">(Shift click)</span>
 							</div>
 						</div>
 						<div class="modern-form-group">
 							<label><i class="fas fa-terminal"></i> {{Administration Système}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration système.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Interface d'administration système.}}"></i></sup>
 							</label>
 							<div style="display:flex;align-items:center;gap:8px;">
-								<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage(‘index.php?v=d&p=system’)"><i class="fas fa-terminal"></i> {{Ouvrir}}</button>
+								<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage('index.php?v=d&p=system')"><i class="fas fa-terminal"></i> {{Ouvrir}}</button>
 								<span class="small italic">(Ctrl click)</span>
 							</div>
 						</div>
 						<div class="modern-form-group">
 							<label><i class="fas fa-fill-drip"></i> {{Editeur en masse}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Edition multiple de paramètres d’équipements, commandes...}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Edition multiple de paramètres d'équipements, commandes...}}"></i></sup>
 							</label>
 							<div style="display:flex;align-items:center;gap:8px;">
-								<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage(‘index.php?v=d&p=massedit’)"><i class="fas fa-fill-drip"></i> {{Ouvrir}}</button>
+								<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage('index.php?v=d&p=massedit')"><i class="fas fa-fill-drip"></i> {{Ouvrir}}</button>
 								<span class="small italic">(Ctrl Alt click)</span>
 							</div>
 						</div>
 						<div class="modern-form-group">
 							<label><i class="fas fa-database"></i> {{Administration Base de données}}
-								<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration de la base de données.}}"></i></sup>
+								<sup><i class="fas fa-question-circle" tooltip="{{Interface d'administration de la base de données.}}"></i></sup>
 							</label>
 							<div style="display:flex;align-items:center;gap:8px;">
-								<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage(‘index.php?v=d&p=database’)"><i class="fas fa-database"></i> {{Ouvrir}}</button>
+								<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage('index.php?v=d&p=database')"><i class="fas fa-database"></i> {{Ouvrir}}</button>
 								<span class="small italic">(Alt click)</span>
 							</div>
 						</div>
@@ -2582,10 +2582,10 @@ body {
 							<div>
 								<?php
 								global $CONFIG;
-								echo $CONFIG[‘db’][‘username’];
+								echo $CONFIG['db']['username'];
 								?>
 								<div class="input-group">
-									<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG[‘db’][‘password’]; ?>">
+									<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG['db']['password']; ?>">
 									<span class="input-group-btn">
 										<button type="button" class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></button>
 									</span>
