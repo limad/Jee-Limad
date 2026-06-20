@@ -2580,7 +2580,10 @@ body {
 						<div class="modern-form-group">
 							<label><i class="fas fa-database"></i> {{Utilisateur}} / {{Mot de passe}}</label>
 							<div>
-								<?php global $CONFIG; echo $CONFIG[‘db’][‘username’]; ?>
+								<?php
+								global $CONFIG;
+								echo $CONFIG[‘db’][‘username’];
+								?>
 								<div class="input-group">
 									<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG[‘db’][‘password’]; ?>">
 									<span class="input-group-btn">
