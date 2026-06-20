@@ -13,11 +13,6 @@ Desktop
     --jeedom-shadow-md: 0 2px 8px rgba(0,0,0,0.16);
     --jeedom-transition: 0.15s ease;
     --jeedom-spacing-unit: 0.5rem;
-    --el-height: 28px;   /* hauteur standard des éléments de formulaire / boutons */
-    --sp-sm: 8px;        /* petit espacement (gap, etc.) */
-    --fs-base: 14px;     /* taille de police de base */
-    --border-muted: rgba(128, 128, 128, 0.5);    /* bordure neutre (indépendante du thème) */
-    --surface-muted: rgba(128, 128, 128, 0.14);  /* fond neutre subtil */
     /* Defaults: overridden by JS (utils.js) based on user config */
     --objectBackgroundBlur: 0px;
     --bkg-opacity-light: 1;
@@ -803,7 +798,7 @@ Desktop
   }
 
   [data-page=display] #div_pageContainer #displaytab ul > li input {
-    border: 1px solid var(--border-muted);
+    border: 1px solid rgba(100, 100, 100, 0.5);
     font-size: 12px;
   }
   [data-page=types] #div_pageContainer #genericsContainer ul > li > ul > li {
@@ -956,17 +951,6 @@ div.eqLogicZone {
   body[data-coloredcats="0"] .counterReorderJeedom {
     color: var(--link-color);
   }
-
-  .scenario.scenario-widget .widget-name              { background-color: rgb(from var(--cat-scenario-color) r g b / var(--opacity)) !important; }
-  [data-category=security]>.widget-name               { background-color: rgb(from var(--cat-security-color) r g b / var(--opacity)); }
-  [data-category=heating]>.widget-name                { background-color: rgb(from var(--cat-heating-color) r g b / var(--opacity)); }
-  [data-category=automatism]>.widget-name             { background-color: rgb(from var(--cat-automatism-color) r g b / var(--opacity)); }
-  [data-category=light]>.widget-name                  { background-color: rgb(from var(--cat-light-color) r g b / var(--opacity)); }
-  [data-category=opening]>.widget-name                { background-color: rgb(from var(--cat-opening-color) r g b / var(--opacity)); }
-  [data-category=multimedia]>.widget-name             { background-color: rgb(from var(--cat-multimedia-color) r g b / var(--opacity)); }
-  [data-category=energy]>.widget-name                 { background-color: rgb(from var(--cat-energy-color) r g b / var(--opacity)); }
-  [data-category='']>.widget-name                     { background-color: rgb(from var(--cat-other-color) r g b / var(--opacity)); }
-  :not(.batteryListContainer) > .eqLogic-widget:not([data-category]) > .widget-name { background-color: rgb(from var(--cat-other-color) r g b / var(--opacity)); }
 
   div.div_displayEquipement {
     margin-left: 1px;
@@ -1250,7 +1234,7 @@ div.eqLogicZone {
     top: 15px;
     right: 245px;
    /* width: 100%;*/
-    max-height: var(--el-height);
+    max-height: 28px;
     text-align: right;
     overflow-wrap: break-word;
     line-height: 28px;
@@ -1362,7 +1346,7 @@ div.eqLogicZone {
   }
   .objectPreview > .topPreview {
     background-color: var(--bg-color);
-    height: var(--el-height);
+    height: 28px;
   }
   .objectPreview > .topPreview > .name {
     font-size: 16px;
@@ -1425,7 +1409,7 @@ div.eqLogicZone {
     background-color: var(--bg-color);
     padding: 5px;
     width: 45px;
-    height: var(--el-height);
+    height: 28px;
     min-width: 0 !important;
     font-weight: 700;
     text-align: left;
@@ -1846,7 +1830,7 @@ div.eqLogicZone {
     position: relative;
     top: 3px !important;
     display: block;
-    height: var(--el-height) !important;
+    height: 28px !important;
     overflow: hidden;
     padding: 0 5px;
     max-width: 130px;
@@ -2307,7 +2291,7 @@ div.eqLogic-widget.editingMode .panelLink {
     position: absolute;
     top: 0;
     right: 0;
-    height: var(--el-height);
+    height: 28px;
     font-size: 10px;
     padding: 0 5px;
     background: rgb(from var(--defaultBkg-color) r g b / var(--opacity));
@@ -2375,7 +2359,7 @@ div.eqLogic-widget.editingMode .panelLink {
   /* plugins */
   div.pluginDisplayCard .name {
     padding-top: 4px;
-    height: var(--el-height);
+    height: 28px;
     font-weight: 500;
   }
   div.pluginListContainer div.pluginDisplayCard.cursor.displayAsTable > center > img {
@@ -2560,7 +2544,7 @@ div.eqLogic-widget.editingMode .panelLink {
     line-height: 1;
   }
   .btn-sm {
-    height: var(--el-height);
+    height: 28px;
     padding: 6px 8px;
     line-height: 16px;
   }
@@ -2574,7 +2558,7 @@ div.eqLogic-widget.editingMode .panelLink {
     align-items: center;
     gap: 8px;
     min-width: 0;
-    min-height: var(--el-height);
+    min-height: 28px;
     padding: 2px 4px;
   }
 
@@ -2600,7 +2584,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .jeeListRow-actions > .btn,
   .jeeListRow > .btn.jeeListRow-actions {
     min-width: 28px;
-    height: var(--el-height) !important;
+    height: 28px !important;
     padding: 0 7px !important;
   }
 
@@ -2664,7 +2648,7 @@ div.eqLogic-widget.editingMode .panelLink {
     padding: 6px;
     border-radius: var(--border-radius);
     background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity));
-    min-height: var(--el-height);
+    min-height: 28px;
   }
   #timelineContainer ul li > span.vertLine {
     position: absolute;
@@ -2817,7 +2801,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   :not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
     background-color: var(--panel-heading-bg, var(--defaultBkg-color));
-    border-bottom: 1px solid var(--panel-heading-border, var(--bg-color));
+    border-bottom: 1px solid var(--panel-heading-border, rgb(var(--bg-color), 1));
   }
   .panel-group .panel-heading {
     padding:0;
@@ -2911,6 +2895,21 @@ div.eqLogic-widget.editingMode .panelLink {
   body[data-type="plugin"] #table_cmd td input.cmdAttr {
     display: inline-block
   }
+  body[data-type="plugin"] #commandtab th:nth-child(3),
+  body[data-type="plugin"] #commandtab td:nth-child(3) {
+    width: 160px;
+    min-width: 160px;
+    white-space: nowrap;
+    padding-left: 12px;
+    padding-right: 12px;
+    vertical-align: middle;
+    overflow: visible;
+  }
+  body[data-type="plugin"] #commandtab td:nth-child(3) .cmdAttr[data-l1key="subType"] {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
   #md_modal #div_confPlugin .panel-body {
     min-height: 140px;
   }
@@ -3001,7 +3000,7 @@ div.eqLogic-widget.editingMode .panelLink {
     height: 100%;
     opacity: 0;
     outline: none;
-    background: var(--bg-color, #fff);
+    background: white;
     cursor: pointer;
     display: block;
   }
@@ -3069,11 +3068,11 @@ div.eqLogic-widget.editingMode .panelLink {
   :not(textarea).input-sm {
     font-size: 12px;
     line-height: 16px;
-    height: var(--el-height) !important;
+    height: 28px !important;
   }
   .input-group-sm > .input-group-addon,
   .input-group-sm > .input-group-btn .btn {
-    height: var(--el-height) !important;
+    height: 28px !important;
   }
   .element .input-group-addon.hasBtn {
     background-color: var(--sc-formTxt-color);
@@ -3082,14 +3081,14 @@ div.eqLogic-widget.editingMode .panelLink {
     padding: 0 !important;
   }
   .element .expressionOptions textarea {
-    min-height: var(--el-height);
+    min-height: 28px;
   }
   .element .input-group-addon.hasBtn > .btn {
     width: 32px !important;
     padding-left: 14px;
   }
   .input-group-sm .btn {
-    height: var(--el-height) !important;
+    height: 28px !important;
     padding: 5px 10px;
   }
   .input-group-sm > .input-group-addon {
@@ -3126,7 +3125,7 @@ div.eqLogic-widget.editingMode .panelLink {
     outline: none;
   }
   textarea {
-    min-height: var(--el-height);
+    min-height: 28px;
     resize: vertical !important;
   }
   .input-group {
@@ -3403,6 +3402,76 @@ div.eqLogic-widget.editingMode .panelLink {
   body[data-page="administration"] #div_pageContainer .tab-content .tab-content {
     height: unset !important;
   }
+  body[data-page="administration"] .sidebar-layout {
+    display: block;
+  }
+  body[data-page="administration"] .nav-tabs.sidebar-nav {
+    width: 100%;
+    border-bottom: 1px solid rgba(var(--panel-bg-color), 0.6);
+    border-right: none;
+    padding: 4px 6px 0;
+    height: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: static;
+    margin-bottom: 0 !important;
+    background-color: var(--navbar-bg);
+  }
+  body[data-page="administration"] .sidebar-tab-content {
+    display: block;
+    width: 100%;
+    padding: 12px 0 0 0;
+  }
+  body[data-page="administration"] .sidebar-tab-content .form-horizontal {
+    float: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin-bottom: 16px;
+    border: 1px solid var(--panel-default-border, #ddd);
+    border-radius: var(--border-radius, 4px);
+    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    background-color: rgb(var(--panel-bg-color, 255,255,255));
+  }
+  body[data-page="administration"] .sidebar-tab-content .form-horizontal fieldset {
+    border: none !important;
+    padding: 0;
+    margin: 0;
+  }
+  body[data-page="administration"] .sidebar-tab-content .form-horizontal fieldset > legend {
+    display: block;
+    width: 98%;
+    padding: 12px 16px;
+    margin: 0;
+    font-size: var(--fs-base);
+    font-weight: 600;
+    border: none;
+    border-bottom: 1px solid var(--panel-default-border, #ddd);
+    border-radius: var(--border-radius, 4px) var(--border-radius, 4px) 0 0;
+    background-color: rgba(128, 128, 128, 0.14);
+    color: var(--panel-default-title, var(--link-color, inherit));
+  }
+  body[data-page="administration"] .sidebar-tab-content .form-group {
+    display: flex !important;
+    align-items: center;
+    margin: 0 !important;
+    padding: 10px 16px !important;
+  }
+  body[data-page="administration"] .sidebar-tab-content .form-group > .control-label {
+    flex: 0 0 38%;
+    max-width: 38%;
+    width: auto !important;
+    float: none !important;
+    text-align: left !important;
+    padding: 0 16px 0 0 !important;
+    font-weight: 500;
+  }
+  body[data-page="administration"] .sidebar-tab-content .form-group > [class*="col-"]:not(.control-label) {
+    flex: 1 1 0;
+    max-width: none !important;
+    width: auto !important;
+    float: none !important;
+    padding: 0 !important;
+  }
 
   ul.nav.nav-tabs li,
   .nav-tabs > li > a {
@@ -3559,7 +3628,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .well blockquote {
-    border-color: var(--panel-default-border, #ddd);
+    border-color: #ddd;
   }
 
   .well-lg {
@@ -3792,7 +3861,7 @@ div.eqLogic-widget.editingMode .panelLink {
     background-color: var(--sc-form-color);
     border: 0;
     font-size: 12px;
-    height: var(--el-height);
+    height:28px;
   }
   .element .expressionAttr:not([data-l2key=graphColor]) {
     font-weight: bold;
@@ -3800,7 +3869,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .element .expressionAttr[data-l2key="icon"] i::before {
     background: var(--sc-form-color);
     padding: 2.5px;
-    height: var(--el-height);
+    height: 28px;
     color: var(--sc-formTxt-color);
   }
   #div_editScenario .element .expressionAttr.insideSearch {
@@ -4076,8 +4145,8 @@ div.eqLogic-widget.editingMode .panelLink {
 
   /* Collapsed */
   .elementCollapse {
-    min-height: var(--el-height);
-    max-height: var(--el-height);
+    min-height: 28px;
+    max-height: 28px;
   }
   .elementCollapse .subElement:not(:first-of-type),
   .elementCollapse .expressions,
@@ -4539,7 +4608,7 @@ div.eqLogic-widget.editingMode .panelLink {
     border-top: 0;
   }
   .highcharts-data-table th {
-    border: 1px solid var(--panel-default-border, #ddd);
+    border: 1px solid #ddd;
     padding: 5px;
     vertical-align: bottom;
     line-height: 1.42857143;
@@ -4552,7 +4621,7 @@ div.eqLogic-widget.editingMode .panelLink {
     border-color: inherit;
   }
   .highcharts-data-table td {
-    border: 1px solid var(--panel-default-border, #ddd);
+    border: 1px solid #ddd;
     padding: 5px;
     line-height: 1.42857143;
     vertical-align: top;
@@ -4910,7 +4979,7 @@ div.eqLogic-widget.editingMode .panelLink {
   #pre_scenariolog mark,
   #pre_eventlog mark {
     color: #000;
-    background-color: var(--lb-yellow-color, #ff0);
+    background-color: #ff0;
     display: inline-flex;
     padding: 0;
   }
@@ -5330,7 +5399,7 @@ div.eqLogic-widget.editingMode .panelLink {
 
     .nav-tabs>li>a {
       border: none;
-      color: var(--link-color, #666);
+      color: #666;
       white-space: nowrap;
     }
     .tab-pane {
@@ -5374,137 +5443,19 @@ div.eqLogic-widget.editingMode .panelLink {
 
   }
 
-  /* Sidebar nav layout (admin) — menu vertical : .sidebar-layout / .sidebar-nav-vertical / .sidebar-tab-content */
-  .sidebar-layout {
-    display: flex;
-    align-items: flex-start;
-  }
-  .nav-tabs.sidebar-nav-vertical {
-    display: flex;
-    flex-direction: column;
-    width: 260px;
-    flex-shrink: 0;
-    border-bottom: none !important;
-    border-right: 1px solid rgb(from var(--panel-bg-color) r g b / 0.6);
-    padding: 4px 6px;
-    height: calc(100vh - 145px);
-    overflow-y: auto;
-    overflow-x: hidden;
-    position: sticky;
-    top: 0;
-    margin-bottom: 0 !important;
-    background-color: var(--navbar-bg);
-  }
-  .nav-tabs.sidebar-nav-vertical > li {
-    float: none !important;
-    width: 97%;
-  }
-  .nav-tabs.sidebar-nav-vertical > li > a {
-    border: none !important;
-    border-left: 3px solid transparent !important;
-    border-bottom: none !important;
-    border-radius: 0 !important;
-    padding: 9px 12px !important;
-    margin: 0 !important;
-    display: flex !important;
-    align-items: center;
-    gap: var(--sp-sm, 8px);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    z-index: auto !important;
-  }
-  .nav-tabs.sidebar-nav-vertical > li > a > span {
-    display: inline !important;
-  }
-  .nav-tabs.sidebar-nav-vertical > li > a:hover {
-    border-left-color: rgb(from var(--panel-bg-color) r g b / 0.6) !important;
-    background-color: rgb(from var(--panel-bg-color) r g b / 0.4) !important;
-    border-bottom: none !important;
-    z-index: auto !important;
-  }
-  .nav-tabs.sidebar-nav-vertical > li.active > a,
-  .nav-tabs.sidebar-nav-vertical > li.active > a:hover,
-  .nav-tabs.sidebar-nav-vertical > li.active > a:focus {
-    border-bottom: none !important;
-    background-color: color-mix(in srgb, var(--btnEq-default-color) 10%, var(--btn-default-color)) !important;
-    color: var(--navtab-active-fg, var(--link-color)) !important;
-    border-radius: var(--border-radius) !important;
-    height: var(--el-height, auto);
-  }
-  .sidebar-tab-content {
-    flex: 1;
-    min-width: 0;
-    padding: 0 12px;
-  }
-  .sidebar-tab-content .form-horizontal {
-    float: none !important;
-    width: 100% !important;
-    padding: 0 !important;
-    margin-bottom: 16px;
-    border: 1px solid var(--panel-default-border, #ddd);
-    border-radius: var(--border-radius, 4px);
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
-    background-color: var(--panel-bg-color);
-  }
-  .sidebar-tab-content .form-horizontal fieldset {
-    border: none !important;
-    padding: 0;
-    margin: 0;
-  }
-  .sidebar-tab-content .form-horizontal fieldset > legend {
-    display: block;
-    width: 98%;
-    padding: 12px 16px;
-    margin: 0;
-    font-size: var(--fs-base, 14px);
-    font-weight: 600;
-    border: none;
-    border-bottom: 1px solid var(--panel-default-border, #ddd);
-    border-radius: var(--border-radius, 4px) var(--border-radius, 4px) 0 0;
-    background-color: var(--surface-muted);
-    color: var(--panel-default-title, var(--link-color, inherit));
-  }
-  .sidebar-tab-content .form-group {
-    display: flex !important;
-    align-items: center;
-    margin: 0 !important;
-    padding: 10px 16px !important;
-  }
-  .sidebar-tab-content .form-group > .control-label {
-    flex: 0 0 38%;
-    max-width: 38%;
-    width: auto !important;
-    float: none !important;
-    text-align: left !important;
-    padding: 0 16px 0 0 !important;
-    font-weight: 500;
-  }
-  .sidebar-tab-content .form-group > [class*="col-"]:not(.control-label) {
-    flex: 1 1 0;
-    max-width: none !important;
-    width: auto !important;
-    float: none !important;
-    padding: 0 !important;
-  }
-  @media (max-width: 768px) {
-    .sidebar-layout {
-      flex-direction: column;
-    }
-  .nav-tabs.sidebar-nav-vertical {
-      width: 100% !important;
-      height: auto !important;
-      flex-direction: row !important;
-      flex-wrap: wrap !important;
-      border-right: none !important;
-      border-bottom: 1px solid rgb(from var(--panel-bg-color) r g b / 0.6) !important;
-      position: static !important;
-      overflow: visible !important;
-    }
-  .nav-tabs.sidebar-nav-vertical > li {
-      width: auto !important;
-    }
-    .sidebar-tab-content {
-      padding: 0 !important;
-    }
-  }
+.config-card-title {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 10px 0 10px 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: none;
+  background-color: var(--btn-default-color);
+  margin-left: -20px;
+  margin-right: -20px;
+  border-radius: var(--border-radius,4px) var(--border-radius,4px) 0 0;
+  color: var(--panel-default-title, var(--link-color, inherit));
+}
