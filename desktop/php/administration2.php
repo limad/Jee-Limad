@@ -321,6 +321,11 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 
+					</div>
+				</form>
+
+				<form class="form-horizontal">
+					<div class="config-card">
 						<div class="config-card-title">{{Informations diverses}}</div>
 						<div class="modern-form-group">
 							<label>{{Altitude}}
@@ -432,6 +437,11 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 
+					</div>
+				</form>
+
+				<form class="form-horizontal">
+					<div class="config-card">
 						<div class="config-card-title">{{Affichage}}</div>
 						<div class="modern-form-group">
 							<label>{{Nombre de colonnes}}
@@ -482,6 +492,11 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 
+					</div>
+				</form>
+
+				<form class="form-horizontal">
+					<div class="config-card">
 						<div class="config-card-title">{{Personnalisation}}</div>
 						<div class="modern-form-group">
 							<label>{{Basique}}</label>
@@ -589,6 +604,11 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 
+					</div>
+				</form>
+
+				<form class="form-horizontal">
+					<div class="config-card">
 						<div class="config-card-title">{{Images de fond}}</div>
 						<div class="modern-form-group">
 							<label>{{Afficher}}
@@ -719,6 +739,11 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 
+					</div>
+				</form>
+
+				<form class="form-horizontal">
+					<div class="config-card">
 						<div class="config-card-title">{{Accès externe}}</div>
 						<div class="modern-form-group">
 							<label>{{Gestion automatique}}
@@ -786,6 +811,11 @@ $productName = config::byKey('product_name');
 						}
 						?>
 
+					</div>
+				</form>
+
+				<form class="form-horizontal">
+					<div class="config-card">
 						<div class="config-card-title">{{Accès Docker}}</div>
 						<div class="modern-form-group">
 							<label>{{Masque IP locales}}
@@ -872,6 +902,11 @@ $productName = config::byKey('product_name');
 								<button type="button" type="text" class="btn btn-sm btn-danger" id="bt_removeTimelineEvent"><i class="fas fa-trash"></i> {{Supprimer}}</button>
 							</div>
 						</div>
+					</div>
+				</form>
+
+				<form class="form-horizontal">
+					<div class="config-card">
 						<div class="config-card-title">{{Messages}}</div>
 						<div class="modern-form-group">
 							<label>{{Ajouter un message à chaque erreur dans les logs}}</label>
@@ -1062,9 +1097,9 @@ $productName = config::byKey('product_name');
 
 			<div role="tabpanel" class="tab-pane" id="eqlogictab">
 				<br>
-				<div class="config-card-title">{{Equipements}}</div>
 				<form class="form-horizontal">
 					<div class="config-card">
+						<div class="config-card-title">{{Equipements}}</div>
 						<div class="modern-form-group">
 							<label>{{Échecs avant désactivation}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Nombre d'échecs avant désactivation de l'équipement (0: pas de désactivation).}}"></i></sup>
@@ -1096,9 +1131,9 @@ $productName = config::byKey('product_name');
 					</div>
 				</form>
 
-				<div class="config-card-title">{{Historique des commandes}}</div>
 				<form class="form-horizontal">
 					<div class="config-card">
+						<div class="config-card-title">{{Historique des commandes}}</div>
 						<div class="modern-form-group">
 							<label>{{Afficher les statistiques sur les widgets}}</label>
 							<div class="col-lg-1 col-md-2 col-sm-5 col-xs-6">
@@ -1201,9 +1236,9 @@ $productName = config::byKey('product_name');
 					</div>
 				</form>
 
-				<div class="config-card-title">{{Widgets par défaut}}</div>
 				<form class="form-horizontal">
 					<div class="config-card">
+						<div class="config-card-title">{{Widgets par défaut}}</div>
 						<?php
 						$widgets_list = cmd::availableWidget('dashboard');
 						foreach ($JEEDOM_INTERNAL_CONFIG['cmd']['type'] as $type => $subtypes) { //info or action
@@ -1227,9 +1262,9 @@ $productName = config::byKey('product_name');
 					</div>
 				</form>
 
-				<div class="config-card-title">{{Push}}</div>
 				<form class="form-horizontal">
 					<div class="config-card">
+						<div class="config-card-title">{{Push}}</div>
 						<div class="modern-form-group">
 							<label>{{URL de push globale}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Mettez ici l'URL à appeler lors d'une mise à jour de la valeur des commandes.<br>Vous pouvez utiliser les tags suivants :<br>#value# (valeur de la commande), #cmd_id# (id de la commande) et #cmd_name# (nom de la commande)}}"></i></sup>
@@ -1241,9 +1276,9 @@ $productName = config::byKey('product_name');
 					</div>
 				</form>
 
-				<div class="config-card-title">{{InfluxDB}}</div>
 				<form class="form-horizontal">
 					<div class="config-card">
+						<div class="config-card-title">{{InfluxDB}}</div>
 						<div class="modern-form-group">
 							<label>{{URL du serveur InfluxDB}}</label>
 							<div class="col-lg-3 col-md-3 col-sm-5 col-xs-6">
@@ -1281,9 +1316,9 @@ $productName = config::byKey('product_name');
 				</form>
 
 
-				<div class="config-card-title">{{Spécial}}</div>
 				<form class="form-horizontal">
 					<div class="config-card">
+						<div class="config-card-title">{{Spécial}}</div>
 						<div class="modern-form-group">
 							<label>{{Guillemets automatiques}}
 								<sup><i class="fas fa-question-circle warning" tooltip="{{Gérer automatiquement les guillemets des chaines de caractères dans les expressions (activé par défaut)}}."></i></sup>
@@ -1446,6 +1481,11 @@ $productName = config::byKey('product_name');
 						</div>
 
 
+					</div>
+				</form>
+
+				<form class="form-horizontal">
+					<div class="config-card">
 						<div class="config-card-title">{{Interaction automatique, contextuelle & avertissement}}</div>
 						<div class="modern-form-group">
 							<label>{{Activer les interactions automatiques}}</label>
@@ -1533,6 +1573,11 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 
+					</div>
+				</form>
+
+				<form class="form-horizontal">
+					<div class="config-card">
 						<div class="config-card-title">{{Couleurs}}<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert"></i></div>
 
 						<table class="table table-condensed" id="table_convertColor">
@@ -1619,6 +1664,11 @@ $productName = config::byKey('product_name');
 								</div>
 							</div>
 
+						</div>
+					</form>
+
+					<form class="form-horizontal">
+						<div class="config-card">
 							<div class="config-card-title">{{Connexion}}</div>
 							<div class="modern-form-group">
 								<label>{{Durée de vie des sessions}}
@@ -1665,6 +1715,11 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 
+						</div>
+					</form>
+
+					<form class="form-horizontal">
+						<div class="config-card">
 						<div class="config-card-title">{{LDAP}}</div>
 						<?php if (function_exists('ldap_connect')) { ?>
 							<div class="modern-form-group">
@@ -1782,6 +1837,11 @@ $productName = config::byKey('product_name');
 							echo '<div class="alert alert-info">{{Librairie LDAP non trouvée. Merci de l\'installer avant de pouvoir utiliser la connexion LDAP}}</div>';
 						} ?>
 
+						</div>
+					</form>
+
+					<form class="form-horizontal">
+						<div class="config-card">
 						<div class="config-card-title">{{Single Sign On}}</div>
 						<div class="modern-form-group">
 							<label>{{Activer l'authentification SSO}}</label>
@@ -1798,6 +1858,11 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 
+						</div>
+					</form>
+
+					<form class="form-horizontal">
+						<div class="config-card">
 						<div class="config-card-title">{{Dépendance et démon}}</div>
 						<div class="modern-form-group">
 							<label>{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle}}
