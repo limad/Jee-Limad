@@ -183,6 +183,7 @@ if (!jeeFrontEnd.editor) {
 
 jeeFrontEnd.editor.init()
 
+{
 CodeMirror.modeURL = "3rdparty/codemirror/mode/%N/%N.js"
 
 let options = {
@@ -367,3 +368,4 @@ window.registerEvent("resize", function(event) {
   document.getElementById('elfinder').style.width = window.innerWidth + 'px'
   document.getElementById('elfinder').style.height = (window.innerHeight - document.getElementById('jeedomMenuBar').offsetHeight) + 'px'
 })
+}

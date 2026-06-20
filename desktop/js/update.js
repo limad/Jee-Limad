@@ -147,11 +147,13 @@ if (!jeeFrontEnd.update) {
           jeedomUtils.initDataTables('#coreplugin', false, true)
           jeeFrontEnd.update.updtDataTable = document.querySelector('#table_update')._dataTable
 
-          jeeFrontEnd.update.updtDataTable.on('columns.sort', function(column, direction) {
-            let tbody = document.querySelector('#table_update tbody')
-            tbody.prepend(tbody.querySelector('tr[data-type="core"]'))
-          })
-          jeeFrontEnd.update.updtDataTable.columns().sort(0, 'desc')
+          if (jeeFrontEnd.update.updtDataTable) {
+            jeeFrontEnd.update.updtDataTable.on('columns.sort', function(column, direction) {
+              let tbody = document.querySelector('#table_update tbody')
+              tbody.prepend(tbody.querySelector('tr[data-type="core"]'))
+            })
+            jeeFrontEnd.update.updtDataTable.columns().sort(0, 'desc')
+          }
 
           if (jeeP.hasUpdate) {
             document.querySelector('li a[data-target="#coreplugin"] i').style.color = 'var(--al-warning-color)'
