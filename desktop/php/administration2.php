@@ -71,25 +71,7 @@ body {
 }
 
 /* Cards / Sections */
-.config-card {
-    background: transparent;
-    padding: 0 20px 24px 20px;
-    margin-bottom: 24px;
-    border: 1px solid rgba(128, 128, 128, 0.15); /* subtle container border */
-    border-radius: 12px;
-}
-.config-card-title {
-    margin-top: 0;
-    margin-bottom: 16px;
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: var(--txt-color);
-    padding: 20px 0 10px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: none;
-}
+
 
 /* Form Groups (Grid Lines) */
 .modern-form-group {

@@ -5494,19 +5494,22 @@ div.eqLogic-widget.editingMode .panelLink {
   font-weight: 500;
 }
 
+.config-card {
+  background: transparent;
+  padding: 0 20px 24px 20px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(128, 128, 128, 0.15);
+  border-radius: 12px;
+}
 .config-card-title {
   margin-top: 0;
   margin-bottom: 16px;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  padding: 10px 0 10px 10px;
+  color: var(--txt-color);
+  padding: 20px 0 10px 0;
   display: flex;
   align-items: center;
   gap: 10px;
   border-bottom: none;
-  background-color: var(--btn-default-color);
-  margin-left: -20px;
-  margin-right: -20px;
-  border-radius: var(--border-radius,4px) var(--border-radius,4px) 0 0;
-  color: var(--panel-default-title, var(--link-color, inherit));
 }
