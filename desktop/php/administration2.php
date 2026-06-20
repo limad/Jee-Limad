@@ -2539,71 +2539,56 @@ body {
 						</div>
 
 						<h3 class="config-card-title"><i class="fas fa-tools"></i> {{Outils Système}}</h3>
+						<div class="alert alert-danger">
+							{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l’accès à votre système et à}} <?php echo $productName; ?>. <br>
+							{{L’équipe}} <?php echo $productName; ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
+						</div>
 						<div class="modern-form-group">
-							<div class="row">
-								<div class="alert alert-danger">
-									{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo $productName; ?>. <br>
-									{{L'équipe}} <?php echo $productName; ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
-								</div>
-								<div class="modern-form-group">
-									<label><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
-									<div class="col-md-5 col-xs-6">
-										<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage('index.php?v=d&p=editor')" style="width:50%;"><i class="fas fa-indent"></i> {{Ouvrir}}</button>
-										<span class="small italic"> (Shift click)</span>
-									</div>
-								</div>
-
-								<div class="modern-form-group">
-									<label><i class="fas fa-terminal"></i> {{Administration Système}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration système.}}"></i></sup>
-									</label>
-									<div class="col-md-5 col-xs-6">
-										<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage('index.php?v=d&p=system')" style="width:50%;"><i class="fas fa-terminal"></i> {{Ouvrir}}</button>
-										<span class="small italic"> (Ctrl click)</span>
-									</div>
-								</div>
-
-								<div class="modern-form-group">
-									<label><i class="fas fa-fill-drip"></i> {{Editeur en masse}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Edition multiple de paramètres d'équipements, commandes...}}"></i></sup>
-									</label>
-									<div class="col-md-5 col-xs-6">
-										<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage('index.php?v=d&p=massedit')" style="width:50%;"><i class="fas fa-fill-drip"></i> {{Ouvrir}}</button>
-										<span class="small italic"> (Ctrl Alt click)</span>
-									</div>
-								</div>
-
-								<div class="modern-form-group">
-									<label><i class="fas fa-database"></i> {{Administration Base de données}}
-										<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration de la base de données.}}"></i></sup>
-									</label>
-									<div class="col-md-5 col-xs-6">
-										<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage('index.php?v=d&p=database')" style="width:50%;"><i class="fas fa-database"></i> {{Ouvrir}}</button>
-										<span class="small italic"> (Alt click)</span>
-									</div>
-								</div>
-
-								<div class="modern-form-group">
-									<label>
-										<i class="fas fa-database"></i> {{Utilisateur}} / {{Mot de passe}}
-									</label>
-									<div class="col-md-5 col-xs-6">
-										<?php
-										global $CONFIG;
-										echo $CONFIG['db']['username'];
-										?>
-										<div class="input-group">
-											<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG['db']['password']; ?>">
-											<span class="input-group-btn">
-												<button type="button" class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></button>
-											</span>
-										</div>
-										</span>
-									</div>
-								</div>
-
+							<label><i class="fas fa-indent"></i> {{Editeur de fichiers}}</label>
+							<div style="display:flex;align-items:center;gap:8px;">
+								<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage(‘index.php?v=d&p=editor’)"><i class="fas fa-indent"></i> {{Ouvrir}}</button>
+								<span class="small italic">(Shift click)</span>
 							</div>
-					</div>
+						</div>
+						<div class="modern-form-group">
+							<label><i class="fas fa-terminal"></i> {{Administration Système}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration système.}}"></i></sup>
+							</label>
+							<div style="display:flex;align-items:center;gap:8px;">
+								<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage(‘index.php?v=d&p=system’)"><i class="fas fa-terminal"></i> {{Ouvrir}}</button>
+								<span class="small italic">(Ctrl click)</span>
+							</div>
+						</div>
+						<div class="modern-form-group">
+							<label><i class="fas fa-fill-drip"></i> {{Editeur en masse}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Edition multiple de paramètres d’équipements, commandes...}}"></i></sup>
+							</label>
+							<div style="display:flex;align-items:center;gap:8px;">
+								<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage(‘index.php?v=d&p=massedit’)"><i class="fas fa-fill-drip"></i> {{Ouvrir}}</button>
+								<span class="small italic">(Ctrl Alt click)</span>
+							</div>
+						</div>
+						<div class="modern-form-group">
+							<label><i class="fas fa-database"></i> {{Administration Base de données}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Interface d’administration de la base de données.}}"></i></sup>
+							</label>
+							<div style="display:flex;align-items:center;gap:8px;">
+								<button type="button" class="btn btn-danger" onclick="jeedomUtils.loadPage(‘index.php?v=d&p=database’)"><i class="fas fa-database"></i> {{Ouvrir}}</button>
+								<span class="small italic">(Alt click)</span>
+							</div>
+						</div>
+						<div class="modern-form-group">
+							<label><i class="fas fa-database"></i> {{Utilisateur}} / {{Mot de passe}}</label>
+							<div>
+								<?php global $CONFIG; echo $CONFIG[‘db’][‘username’]; ?>
+								<div class="input-group">
+									<input class="inputPassword roundedLeft form-control" readonly value="<?php echo $CONFIG[‘db’][‘password’]; ?>">
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default form-control bt_showPass roundedRight"><i class="fas fa-eye"></i></button>
+									</span>
+								</div>
+							</div>
+						</div>
 					<br>
 				</form>
 			</div>
