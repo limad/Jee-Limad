@@ -1224,8 +1224,10 @@ body {
 									<th>{{Clé}}</th>
 									<th>{{Nom}}</th>
 									<th>{{Calcul}}</th>
-									<th style="min-width: 100px">{{Icône}}</th>
-									<th style="min-width: 100px">{{Icône si nul}}</th>
+									<th style="min-width: 150px">
+										{{Icônes (Normal / Si nul)}}
+										<a class="cmdAction btn btn-sm btn-default tippied" data-l1key="chooseIcon" data-title="Choisir une icône" style="margin-left: 5px;"><i class="fas fa-icons"></i></a>
+									</th>
 									<th style="min-width:60px">{{Unité}}</th>
 									<th style="min-width:90px">{{Masquer le nombre}}
 										<sup><i class="fas fa-question-circle" tooltip="{{Ne jamais afficher le numéro à coté de l'icône.}}"></i></sup>
@@ -2524,6 +2526,15 @@ body {
 							</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
 								<button type="button" class="btn btn-warning" id="bt_cleanDatabase" style="width:50%;"><i class="fas fa-database"></i> {{Nettoyer}}</button>
+							</div>
+						</div>
+
+						<div class="modern-form-group">
+							<label><i class="fas fa-redo"></i> {{Redémarrer Apache}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Redémarre le serveur web Apache2.}}"></i></sup>
+							</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
+								<button type="button" class="btn btn-warning" id="bt_restartApache" style="width:50%;"><i class="fas fa-redo"></i> {{Redémarrer}}</button>
 							</div>
 						</div>
 
