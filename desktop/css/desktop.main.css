@@ -5519,6 +5519,18 @@ div.eqLogic-widget.editingMode .panelLink {
 }
 
 @layer base {
+  #searchResult, .tab-content {
+    background-color: rgba(0, 0, 0, 0);
+    padding-bottom: 12px !important;
+    min-height: 120px;
+    height: unset !important;
+    max-height: calc(100% - 50px);
+    overflow: auto;
+    overflow-x: hidden;
+  }
+}
+
+@layer base {
   select, input[type="text"], input[type="password"] {
     border: var(--input-border, 0);
     background-color: var(--input-bg, var(--form-bg-color));
