@@ -14,132 +14,6 @@ user::isBan();
 $productName = config::byKey('product_name');
 ?>
 
-<style>
-/* Anthropic Style */
-body {
-    --bg-modal-color: transparent; 
-}
-
-@layer base {
-  .sidebar-tab-content .form-horizontal {
-    float: none !important;
-    width: 100% !important;
-    padding: 0 !important;
-    margin-bottom: 16px;
-    border-radius: var(--border-radius,4px);
-    background-color: rgb(44, 44, 44);
-    border: none !important;
-    box-shadow: none !important;
-  }
-}
-
-/* Main Search Bar */
-.search-bar-group {
-    margin-left: auto;
-    margin-right: 0;
-    margin-bottom: 24px;
-    max-width: 600px;
-    width: 100%;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    border-radius: 6px;
-}
-.search-bar-group .form-control { border-radius: 6px 0 0 6px; }
-
-/* Sidebar Tabs */
-.sidebar-layout .nav-tabs.sidebar-nav-vertical > li > a {
-    border-radius: 6px !important;
-    margin-bottom: 4px;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    border: none !important;
-    padding: 10px 15px;
-    font-size: 14px;
-    font-weight: 500;
-}
-.sidebar-layout .nav-tabs.sidebar-nav-vertical > li:not(.active) > a:hover {
-    background-color: rgba(128, 128, 128, 0.1) !important;
-    color: var(--al-primary-color) !important;
-    border: none !important;
-    border-left: none !important;
-}
-.sidebar-layout .nav-tabs.sidebar-nav-vertical > li.active > a,
-.sidebar-layout .nav-tabs.sidebar-nav-vertical > li.active > a:hover,
-.sidebar-layout .nav-tabs.sidebar-nav-vertical > li.active > a:focus {
-    background-color: var(--al-primary-color) !important;
-    color: #ffffff !important;
-    border: none !important;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-/* Cards / Sections */
-
-
-/* Form Groups (Grid Lines) */
-.modern-form-group {
-  display: grid;
-  grid-template-columns: minmax(200px, 350px) 1fr;
-  gap: 24px;
-  margin-bottom: 0;
-  padding: 14px 0;
-  align-items: center;
-  border-top: 1px solid rgba(128, 128, 128, 0.1);
-}
-.modern-form-group:first-of-type {
-    border-top: none;
-}
-.modern-form-group > label {
-    font-weight: 500;
-    margin: 0;
-    color: var(--txt-color);
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    text-align: right;
-    gap: 8px;
-    font-size: 14px;
-}
-.modern-form-group > label sup {
-    color: var(--al-info-color);
-    cursor: help;
-    font-size: 13px;
-}
-.modern-form-group .form-controls {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-.modern-form-group .form-controls > .input-group {
-    width: 100%;
-    max-width: 500px;
-}
-.modern-form-group input.form-control,
-.modern-form-group select.form-control {
-  max-width: 500px;
-  border-radius: 6px;
-  background-color: rgba(0, 0, 0, 0.3) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: var(--txt-color) !important;
-}
-
-/* Toggles (Magic Checkboxes) */
-
-
-@media (max-width: 992px) {
-    .modern-form-group {
-        grid-template-columns: 1fr;
-        gap: 8px;
-        align-items: start;
-        padding: 12px 0;
-    }
-    .modern-form-group > label {
-        justify-content: flex-start;
-        gap: 8px;
-    }
-}
-</style>
-
-
-
 <div class="row row-overflow">
 	<div class="col-xs-12" id="config">
 		<div class="input-group search-bar-group">
@@ -180,7 +54,7 @@ body {
 				<br>
 				<form class="form-horizontal">
 					<div class="config-card">
-						<h3 class="config-card-title">{{Général}}</h3>
+						<div class="config-card-title">{{Général}}</div>
 						<div class="modern-form-group">
 							<label>{{Nom de votre}} <?php echo $productName; ?>
 								<sup><i class="fas fa-question-circle" tooltip="{{Utilisé notamment par le market}}"></i></sup>
@@ -411,7 +285,7 @@ body {
 
 				<form class="form-horizontal">
 					<div class="config-card">
-						<h3 class="config-card-title">{{Coordonnées}}</h3>
+						<div class="config-card-title">{{Coordonnées}}</div>
 						<div class="modern-form-group">
 							<label>{{GPS}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Coordonnées GPS du bâtiment. De nombreux sites internet permettent de connaitre les coordonnées GPS d'une adresse}}"></i></sup>
@@ -447,7 +321,7 @@ body {
 							</div>
 						</div>
 
-						<h3 class="config-card-title">{{Informations diverses}}</h3>
+						<div class="config-card-title">{{Informations diverses}}</div>
 						<div class="modern-form-group">
 							<label>{{Altitude}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Altitude du bâtiment en mètres}}"></i></sup>
@@ -480,7 +354,7 @@ body {
 				<br>
 				<form class="form-horizontal">
 					<div class="config-card">
-						<h3 class="config-card-title">{{Thème}}</h3>
+						<div class="config-card-title">{{Thème}}</div>
 						<div class="modern-form-group">
 							<label>{{Desktop}}</label>
 							<div class="form-controls">
@@ -558,7 +432,7 @@ body {
 							</div>
 						</div>
 
-						<h3 class="config-card-title">{{Affichage}}</h3>
+						<div class="config-card-title">{{Affichage}}</div>
 						<div class="modern-form-group">
 							<label>{{Nombre de colonnes}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Nombre de colonnes selon la taille de l'écran (1 colonne = 1 objet)}}"></i></sup>
@@ -608,7 +482,7 @@ body {
 							</div>
 						</div>
 
-						<h3 class="config-card-title">{{Personnalisation}}</h3>
+						<div class="config-card-title">{{Personnalisation}}</div>
 						<div class="modern-form-group">
 							<label>{{Basique}}</label>
 							<div class="form-controls">
@@ -654,7 +528,7 @@ body {
 				</form>
 				<form class="form-horizontal">
 					<div class="config-card">
-						<h3 class="config-card-title">{{Tuiles}}</h3>
+						<div class="config-card-title">{{Tuiles}}</div>
 						<div class="modern-form-group">
 							<label>{{Pas}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Contraint la hauteur et la largeur des tuiles tous les x pixels}}"></i></sup>
@@ -715,7 +589,7 @@ body {
 							</div>
 						</div>
 
-						<h3 class="config-card-title">{{Images de fond}}</h3>
+						<div class="config-card-title">{{Images de fond}}</div>
 						<div class="modern-form-group">
 							<label>{{Afficher}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Cocher la case pour afficher les images de fond}}"></i></sup>
@@ -794,7 +668,7 @@ body {
 				<br>
 				<form class="form-horizontal col-xs-12">
 					<div class="config-card">
-						<h3 class="config-card-title">{{Accès interne}}</h3>
+						<div class="config-card-title">{{Accès interne}}</div>
 						<div class="modern-form-group">
 							<label>{{Gestion automatique}}</label>
 							<div class="form-controls">
@@ -845,7 +719,7 @@ body {
 							</div>
 						</div>
 
-						<h3 class="config-card-title">{{Accès externe}}</h3>
+						<div class="config-card-title">{{Accès externe}}</div>
 						<div class="modern-form-group">
 							<label>{{Gestion automatique}}
 							</label>
@@ -912,7 +786,7 @@ body {
 						}
 						?>
 
-						<h3 class="config-card-title">{{Accès Docker}}</h3>
+						<div class="config-card-title">{{Accès Docker}}</div>
 						<div class="modern-form-group">
 							<label>{{Masque IP locales}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Uniquement pour les installations sous Docker (format: 192.168.1.*)}}"></i></sup>
@@ -928,7 +802,7 @@ body {
 
 				<form class="form-horizontal">
 					<div class="config-card">
-						<h3 class="config-card-title">{{Proxy Market}}</h3>
+						<div class="config-card-title">{{Proxy Market}}</div>
 						<div class="modern-form-group">
 							<label>{{Activer le proxy}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Utiliser un proxy pour accéder au Market}}"></i></sup>
@@ -975,7 +849,7 @@ body {
 				<br>
 				<form class="form-horizontal">
 					<div class="config-card">
-						<h3 class="config-card-title">{{Timeline}}</h3>
+						<div class="config-card-title">{{Timeline}}</div>
 						<div class="modern-form-group">
 							<label>{{Nombre maximum d'évènements sur chaque Timeline}}</label>
 							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
@@ -998,7 +872,7 @@ body {
 								<button type="button" type="text" class="btn btn-sm btn-danger" id="bt_removeTimelineEvent"><i class="fas fa-trash"></i> {{Supprimer}}</button>
 							</div>
 						</div>
-						<h3 class="config-card-title">{{Messages}}</h3>
+						<div class="config-card-title">{{Messages}}</div>
 						<div class="modern-form-group">
 							<label>{{Ajouter un message à chaque erreur dans les logs}}</label>
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -1188,7 +1062,7 @@ body {
 
 			<div role="tabpanel" class="tab-pane" id="eqlogictab">
 				<br>
-				<h3 class="config-card-title">{{Equipements}}</h3>
+				<div class="config-card-title">{{Equipements}}</div>
 				<form class="form-horizontal">
 					<div class="config-card">
 						<div class="modern-form-group">
@@ -1222,7 +1096,7 @@ body {
 					</div>
 				</form>
 
-				<h3 class="config-card-title">{{Historique des commandes}}</h3>
+				<div class="config-card-title">{{Historique des commandes}}</div>
 				<form class="form-horizontal">
 					<div class="config-card">
 						<div class="modern-form-group">
@@ -1327,7 +1201,7 @@ body {
 					</div>
 				</form>
 
-				<h3 class="config-card-title">{{Widgets par défaut}}</h3>
+				<div class="config-card-title">{{Widgets par défaut}}</div>
 				<form class="form-horizontal">
 					<div class="config-card">
 						<?php
@@ -1353,7 +1227,7 @@ body {
 					</div>
 				</form>
 
-				<h3 class="config-card-title">{{Push}}</h3>
+				<div class="config-card-title">{{Push}}</div>
 				<form class="form-horizontal">
 					<div class="config-card">
 						<div class="modern-form-group">
@@ -1367,7 +1241,7 @@ body {
 					</div>
 				</form>
 
-				<h3 class="config-card-title">{{InfluxDB}}</h3>
+				<div class="config-card-title">{{InfluxDB}}</div>
 				<form class="form-horizontal">
 					<div class="config-card">
 						<div class="modern-form-group">
@@ -1407,7 +1281,7 @@ body {
 				</form>
 
 
-				<h3 class="config-card-title">{{Spécial}}</h3>
+				<div class="config-card-title">{{Spécial}}</div>
 				<form class="form-horizontal">
 					<div class="config-card">
 						<div class="modern-form-group">
@@ -1521,7 +1395,7 @@ body {
 				<br>
 				<form class="form-horizontal">
 					<div class="config-card">
-						<h3 class="config-card-title">{{Général}}</h3>
+						<div class="config-card-title">{{Général}}</div>
 						<div class="modern-form-group">
 							<label>{{Sensibilité}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Plus la sensibilité est basse (de 1 à 99), plus la correspondance doit être exacte.}}"></i></sup>
@@ -1550,7 +1424,7 @@ body {
 									<span class="input-group-addon" style="width:90px">{{2 mots}}</span>
 									<input type="text" class="configKey form-control" data-l1key="interact::weigh2">
 									<span class="input-group-addon" style="width:90px">{{3 mots}}</span>
-									<input type="text" class="configKey form-control" data-l1key="interact::weigh3">
+									<input type="text" class="configKey form-control" data-l1key="interact::weigdiv">
 									<span class="input-group-addon" style="width:90px">{{4 mots}}</span>
 									<input type="text" class="configKey form-control roundedRight" data-l1key="interact::weigh4">
 								</div>
@@ -1572,7 +1446,7 @@ body {
 						</div>
 
 
-						<h3 class="config-card-title">{{Interaction automatique, contextuelle & avertissement}}</h3>
+						<div class="config-card-title">{{Interaction automatique, contextuelle & avertissement}}</div>
 						<div class="modern-form-group">
 							<label>{{Activer les interactions automatiques}}</label>
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-6">
@@ -1659,7 +1533,7 @@ body {
 							</div>
 						</div>
 
-						<h3 class="config-card-title">{{Couleurs}}<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert"></i></h3>
+						<div class="config-card-title">{{Couleurs}}<i class="fas fa-plus-circle pull-right cursor" id="bt_addColorConvert"></i></div>
 
 						<table class="table table-condensed" id="table_convertColor">
 							<thead>
@@ -1684,7 +1558,7 @@ body {
 					<br>
 					<form class="form-horizontal">
 						<div class="config-card">
-							<h3 class="config-card-title"><i class="fas fa-user-shield"></i> {{Comptes & double authentification}}</h3>
+							<div class="config-card-title"><i class="fas fa-user-shield"></i> {{Comptes & double authentification}}</div>
 							<?php
 							$users2fa = user::all();
 							$adminsSans2fa = 0;
@@ -1745,7 +1619,7 @@ body {
 								</div>
 							</div>
 
-							<h3 class="config-card-title">{{Connexion}}</h3>
+							<div class="config-card-title">{{Connexion}}</div>
 							<div class="modern-form-group">
 								<label>{{Durée de vie des sessions}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Durée de vie de votre connexion, en heure<br>(si vous n'avez pas coché la case enregistrer cet ordinateur)}}"></i></sup>
@@ -1791,7 +1665,7 @@ body {
 							</div>
 						</div>
 
-						<h3 class="config-card-title">{{LDAP}}</h3>
+						<div class="config-card-title">{{LDAP}}</div>
 						<?php if (function_exists('ldap_connect')) { ?>
 							<div class="modern-form-group">
 								<label>{{Activer l'authentification LDAP}}</label>
@@ -1908,7 +1782,7 @@ body {
 							echo '<div class="alert alert-info">{{Librairie LDAP non trouvée. Merci de l\'installer avant de pouvoir utiliser la connexion LDAP}}</div>';
 						} ?>
 
-						<h3 class="config-card-title">{{Single Sign On}}</h3>
+						<div class="config-card-title">{{Single Sign On}}</div>
 						<div class="modern-form-group">
 							<label>{{Activer l'authentification SSO}}</label>
 							<div class="col-md-3 col-sm-4 col-xs-12">
@@ -1924,7 +1798,7 @@ body {
 							</div>
 						</div>
 
-						<h3 class="config-card-title">{{Dépendance et démon}}</h3>
+						<div class="config-card-title">{{Dépendance et démon}}</div>
 						<div class="modern-form-group">
 							<label>{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Autoriser l'installation des dépendances d'un même plugin à moins de 45s d'intervalle}}"></i></sup>
@@ -1945,7 +1819,7 @@ body {
 				</form>
 				<form class="form-horizontal">
 					<div class="config-card">
-						<h3 class="config-card-title">{{IPs bannies}} <button type="button" class="btn btn-danger btn-xs pull-right" id="bt_removeBanIp"><i class="fas fa-trash"></i> {{Supprimer}}</button></h3>
+						<div class="config-card-title">{{IPs bannies}} <button type="button" class="btn btn-danger btn-xs pull-right" id="bt_removeBanIp"><i class="fas fa-trash"></i> {{Supprimer}}</button></div>
 						<table class="table table-condensed">
 							<thead>
 								<tr>
@@ -1988,7 +1862,7 @@ body {
 					<div class="col-sm-12">
 						<form class="form-horizontal">
 							<div class="config-card">
-								<h3 class="config-card-title">{{Mise à jour de}} <?php echo $productName; ?></h3>
+								<div class="config-card-title">{{Mise à jour de}} <?php echo $productName; ?></div>
 								<div class="modern-form-group">
 									<label>{{Source de mise à jour du core}}</label>
 									<div class="col-lg-3 col-md-4 col-xs-5">
@@ -2092,7 +1966,7 @@ body {
 					<div class="col-sm-12">
 						<form class="form-horizontal">
 							<div class="config-card">
-								<h3 class="config-card-title">{{Configuration des dépôts}}</h3>
+								<div class="config-card-title">{{Configuration des dépôts}}</div>
 								<ul class="nav nav-tabs" role="tablist">
 									<?php
 									foreach ($repos as $key => $value) {
@@ -2420,7 +2294,7 @@ body {
 				<br>
 				<form class="form-horizontal">
 					<div class="config-card">
-						<h3 class="config-card-title"><i class="fas fa-hospital-symbol"></i> {{Vérifications Système}}</h3>
+						<div class="config-card-title"><i class="fas fa-hospital-symbol"></i> {{Vérifications Système}}</div>
 						<div class="modern-form-group">
 							<label><i class="fas fa-recycle"></i> {{Vérification générale}}
 								<sup><i class="fas fa-question-circle" tooltip="{{Permet d'exécuter le test de consistence}}"></i></sup>
@@ -2475,7 +2349,7 @@ body {
 
 				<form class="form-horizontal">
 					<div class="config-card">
-						<h3 class="config-card-title"><i class="fas fa-tools"></i> {{Outils Système}}</h3>
+						<div class="config-card-title"><i class="fas fa-tools"></i> {{Outils Système}}</div>
 						<div class="alert alert-danger">
 							{{ATTENTION : ces opérations sont risquées, vous pouvez perdre l'accès à votre système et à}} <?php echo $productName; ?>. <br>
 							{{L'équipe}} <?php echo $productName; ?> {{se réserve le droit de refuser toute demande de support en cas de mauvaise manipulation.}}
