@@ -2335,6 +2335,15 @@ $productName = config::byKey('product_name');
 							</div>
 						</div>
 
+						<div class="form-group">
+							<label class="col-lg-4 col-md-4 col-sm-5 col-xs-8 control-label"><i class="fas fa-redo"></i> {{Redémarrer Apache}}
+								<sup><i class="fas fa-question-circle" tooltip="{{Redémarre le serveur web Apache2.}}"></i></sup>
+							</label>
+							<div class="col-lg-3 col-md-4 col-sm-5 col-xs-4">
+								<button type="button" class="btn btn-warning" id="bt_restartApache" style="width:50%;"><i class="fas fa-redo"></i> {{Redémarrer}}</button>
+							</div>
+						</div>
+
 						<legend><i class="fas fa-tools"></i> {{Outils Système}}</legend>
 						<div class="form-group">
 							<div class="row">

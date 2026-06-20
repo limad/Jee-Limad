@@ -1047,6 +1047,24 @@ jeedom.consistency = function(_params) {
   domUtils.ajax(paramsAJAX)
 }
 
+jeedom.restartApache = function(_params) {
+  const paramsRequired = []
+  const paramsSpecifics = {}
+  try {
+    jeedom.private.checkParamsRequired(_params || {}, paramsRequired)
+  } catch (e) {
+    (_params.error || paramsSpecifics.error || jeedom.private.default_params.error)(e)
+    return
+  }
+  const params = domUtils.extend({}, jeedom.private.default_params, paramsSpecifics, _params || {})
+  const paramsAJAX = jeedom.private.getParamsAJAX(params)
+  paramsAJAX.url = 'core/ajax/jeedom.ajax.php'
+  paramsAJAX.data = {
+    action: 'restartApache'
+  }
+  domUtils.ajax(paramsAJAX)
+}
+
 jeedom.cleanDatabase = function(_params) {
   const paramsRequired = []
   const paramsSpecifics = {}

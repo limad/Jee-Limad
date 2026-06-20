@@ -440,6 +440,15 @@ try {
 		ajax::success(jeedom::cleanDatabase());
 	}
 
+	if (init('action') == 'restartApache') {
+		if (!isConnect('admin')) {
+			throw new Exception(__('401 - Accès non autorisé', __FILE__));
+		}
+		unautorizedInDemo();
+		com_shell::execute(system::getCmdSudo() . 'systemctl restart apache2 2>&1 &');
+		ajax::success();
+	}
+
 	if (init('action') == 'cleanFileSystemRight') {
 		unautorizedInDemo();
 		ajax::success(jeedom::cleanFileSystemRight());

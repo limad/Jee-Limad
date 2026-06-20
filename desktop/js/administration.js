@@ -107,11 +107,10 @@ if (!jeeFrontEnd.administration) {
       tr += '<option value="text">{{Texte}}</option>'
       tr += '</select></td>'
 
-      tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon"><i class="fas fa-flag"></i><span class="hidden-1280"> {{Icône}}</span></a>'
-      tr += '<span class="objectSummaryAttr summIconContainer" data-l1key="icon"></span></td>'
-
-      tr += '<td><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIconNul"><i class="fas fa-flag"></i><span class="hidden-1280"> {{Icône}}</span></a>'
-      tr += '<span class="objectSummaryAttr summIconContainer" data-l1key="iconnul"></span></td>'
+      tr += '<td><div style="display:flex; gap: 5px; align-items: center;"><a class="objectSummaryAction btn btn-sm" data-l1key="chooseIcon" title="{{Icône normale}}"><i class="fas fa-flag"></i></a>'
+      tr += '<span class="objectSummaryAttr summIconContainer" data-l1key="icon"></span>'
+      tr += '<a class="objectSummaryAction btn btn-sm" data-l1key="chooseIconNul" title="{{Icône si nul}}"><i class="fas fa-flag"></i></a>'
+      tr += '<span class="objectSummaryAttr summIconContainer" data-l1key="iconnul"></span></div></td>'
 
       tr += '<td><input class="objectSummaryAttr form-control input-sm" data-l1key="unit" /></td>'
 
@@ -1528,6 +1527,24 @@ document.getElementById('ostab').addEventListener('click', function(event) {
       success: function(data) {
         jeedomUtils.showAlert({
           message: '{{Nettoyage lancé avec succès. Pour suivre l\'avancement merci de regarder le log cleaningdb}}',
+          level: 'success'
+        })
+      }
+    })
+    return
+  }
+
+  if (_target = event.target.closest('#bt_restartApache')) {
+    jeedom.restartApache({
+      error: function(error) {
+        jeedomUtils.showAlert({
+          message: error.message,
+          level: 'danger'
+        })
+      },
+      success: function(data) {
+        jeedomUtils.showAlert({
+          message: '{{Apache redémarré avec succès.}}',
           level: 'success'
         })
       }
