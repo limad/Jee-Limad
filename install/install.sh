@@ -63,8 +63,8 @@ step_2_mainpackage() {
   echo "${YELLOW}Starting step 2 - packages${NORMAL}"
   apt-get -y install software-properties-common
   apt-get update
-  apt_install ntp ca-certificates unzip curl sudo cron
-  apt-get -o Dpkg::Options::="--force-confdef" -y install locate tar telnet wget logrotate dos2unix ntpdate htop iotop vim iftop smbclient
+  apt_install chrony ca-certificates unzip curl sudo cron
+  apt-get -o Dpkg::Options::="--force-confdef" -y install plocate tar telnet wget logrotate dos2unix htop iotop vim iftop smbclient
   apt-get -y install usermod
   apt-get -y install visudo
   apt-get -y install git
@@ -84,7 +84,7 @@ step_2_mainpackage() {
   apt-get -y install ffmpeg
   apt-get -y install usbutils
   apt-get -y install gettext
-  apt-get -y install libcurl3-gnutls
+  apt-get -y install libcurl4t64
   apt-get -y install chromium
   apt-get -y install librsync-dev
   apt-get -y install ssl-cert
@@ -128,7 +128,6 @@ step_5_php() {
   apt_install php libapache2-mod-php php-json php-mysql
   apt install -y php-curl
   apt install -y php-gd
-  apt install -y php-imap
   apt install -y php-xml
   apt install -y php-opcache
   apt install -y php-soap

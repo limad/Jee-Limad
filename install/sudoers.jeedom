@@ -28,10 +28,8 @@ www-data ALL=(ALL) NOPASSWD: /usr/bin/stat
 
 # --- Services / système ---
 www-data ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart apache2
-www-data ALL=(ALL) NOPASSWD: /usr/sbin/service ntp start
-www-data ALL=(ALL) NOPASSWD: /usr/sbin/service ntp stop
 www-data ALL=(ALL) NOPASSWD: /usr/sbin/service networking restart
-www-data ALL=(ALL) NOPASSWD: /usr/sbin/ntpdate *
+www-data ALL=(ALL) NOPASSWD: /usr/bin/chronyc *
 www-data ALL=(ALL) NOPASSWD: /usr/sbin/shutdown -fh now
 www-data ALL=(ALL) NOPASSWD: /usr/sbin/shutdown -fr now
 

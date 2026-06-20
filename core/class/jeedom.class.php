@@ -1667,7 +1667,7 @@ class jeedom {
 		if (config::byKey('disable_ntp', 'core', 0) == 1) {
 			return;
 		}
-		shell_exec(system::getCmdSudo() . 'service ntp stop;' . system::getCmdSudo() . 'ntpdate -s ' . config::byKey('ntp::optionalServer', 'core', '0.debian.pool.ntp.org') . ';' . system::getCmdSudo() . 'service ntp start');
+		shell_exec(system::getCmdSudo() . 'chronyc -a makestep');
 	}
 
 	public static function cleanDatabase() {
