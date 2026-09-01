@@ -79,7 +79,7 @@ try {
 			$_SESSION['user']->save();
 			@session_write_close();
 		}
-		log::add('connection', 'info',network::getClientIp().' - '. __('Connexion réussie pour : ', __FILE__).$_SESSION['user']->getLogin());
+		log::add('connection', 'info', network::getClientIp() . ' - ' . __('Connexion réussie pour : ', __FILE__) . $_SESSION['user']->getLogin());
 		ajax::success();
 	}
 
@@ -198,13 +198,13 @@ try {
 			utils::a2o($user, $user_json);
 			$user->save();
 			if (isset($user_json['enable']) && $user_json['enable'] == 0) {
-        			$sessions = listSession();
-                		foreach ($sessions as $sessionId => $sessionData) {
+				$sessions = listSession();
+				foreach ($sessions as $sessionId => $sessionData) {
 					if (isset($sessionData['user_id']) && $sessionData['user_id'] == $user->getId()) {
-                        			deleteSession($sessionId);
-                    			}
-                		}
-    			}
+						deleteSession($sessionId);
+					}
+				}
+			}
 		}
 		@session_start();
 		$_SESSION['user']->refresh();
@@ -374,13 +374,14 @@ try {
 
 	if (init('action') == 'removeBanIp') {
 		unautorizedInDemo();
-        user::removeBanIp();
+		user::removeBanIp();
 		ajax::success();
 	}
 
 	if (init('action') == 'supportAccess') {
 		unautorizedInDemo();
-		ajax::success(user::supportAccess(init('enable')));
+		user::supportAccess(init('enable'));
+		ajax::success();
 	}
 
 	throw new Exception(__('Aucune méthode correspondante à :', __FILE__) . ' ' . init('action'));
