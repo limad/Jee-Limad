@@ -113,11 +113,17 @@ class dataStore {
 	}
 
 	public function postSave() {
+		if ($this->getType() != 'scenario' || $this->getLink_id() != -1) {
+			return;
+		}
 		scenario::check('variable(' . $this->getKey().')');
 		$value_cmd =	cmd::byValue('variable(' . $this->getKey(), null, true);
 		if (is_array($value_cmd)) {
 			foreach ($value_cmd as $cmd) {
 				if ($cmd->getType() != 'info') {
+					continue;
+				}
+				if (!preg_match('/#variable\(' . preg_quote($this->getKey(), '/') . '\s*(?:\)|,)/', $cmd->getValue())) {
 					continue;
 				}
 				$cmd->event($cmd->execute());
