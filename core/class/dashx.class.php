@@ -52,6 +52,9 @@ class dashx {
         if (!is_object($cmd)) {
             throw new Exception(__('Commande introuvable', __FILE__));
         }
+        if (!$cmd->hasRight()) {
+            throw new Exception(__('Vous n etes pas autorise a acceder a cette commande', __FILE__));
+        }
 
         $eqLogic = method_exists($cmd, 'getEqLogic') ? $cmd->getEqLogic() : eqLogic::byId($cmd->getEqLogic_id());
         $available = is_object($eqLogic) && (int) $eqLogic->getIsEnable() === 1;
@@ -83,6 +86,9 @@ class dashx {
         $cmd = cmd::byId($id);
         if (!is_object($cmd)) {
             throw new Exception(__('Commande introuvable', __FILE__));
+        }
+        if (!$cmd->hasRight()) {
+            throw new Exception(__('Vous n etes pas autorise a acceder a cette commande', __FILE__));
         }
 
         $hours = max(1, min(168, $hours));
@@ -125,12 +131,12 @@ class dashx {
                 continue;
             }
             $cmd = cmd::byId($id);
-            if (!is_object($cmd)) {
+            if (!is_object($cmd) || !$cmd->hasRight()) {
                 $result[] = [
                     'id' => $id,
                     'value' => null,
                     'available' => false,
-                    'reason' => 'cmd_missing',
+                    'reason' => 'cmd_unavailable',
                 ];
                 continue;
             }
@@ -166,11 +172,18 @@ class dashx {
         if ($cmd->getType() !== 'action') {
             throw new Exception(__('La commande n est pas une action', __FILE__));
         }
+        if (!$cmd->hasRight()) {
+            throw new Exception(__('Vous n etes pas autorise a executer cette commande', __FILE__));
+        }
         $cmd->execCmd($options);
     }
 
     public static function canExecuteActionCmd(int $id, ?array $layout = null): bool {
         if ($id <= 0) {
+            return false;
+        }
+        $cmd = cmd::byId($id);
+        if (!is_object($cmd) || !$cmd->hasRight()) {
             return false;
         }
 
@@ -288,11 +301,14 @@ class dashx {
         if (!is_object($eqLogic)) {
             throw new Exception(__('Equipement introuvable', __FILE__));
         }
+        if (!$eqLogic->hasRight('r')) {
+            throw new Exception(__('Vous n etes pas autorise a acceder a cet equipement', __FILE__));
+        }
 
         $available = (int) $eqLogic->getIsEnable() === 1;
         $commands = [];
         foreach ($eqLogic->getCmd() as $cmd) {
-            if ((int) $cmd->getIsVisible() !== 1) {
+            if ((int) $cmd->getIsVisible() !== 1 || !$cmd->hasRight()) {
                 continue;
             }
             $commands[] = [
@@ -469,7 +485,12 @@ class dashx {
     }
 
     private static function valueCmdId(cmd $cmd): int {
-        return max(0, (int) $cmd->getValue());
+        $valueCmdId = max(0, (int) $cmd->getValue());
+        if ($valueCmdId <= 0) {
+            return 0;
+        }
+        $valueCmd = cmd::byId($valueCmdId);
+        return is_object($valueCmd) && $valueCmd->hasRight() ? $valueCmdId : 0;
     }
 
     private static function valueCmdValue(cmd $cmd) {
@@ -478,7 +499,7 @@ class dashx {
             return null;
         }
         $valueCmd = cmd::byId($valueCmdId);
-        return is_object($valueCmd) ? $valueCmd->getCache('value') : null;
+        return is_object($valueCmd) && $valueCmd->hasRight() ? $valueCmd->getCache('value') : null;
     }
 
     private static function normalizeCondition($raw): ?array {
