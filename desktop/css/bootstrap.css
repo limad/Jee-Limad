@@ -1793,8 +1793,8 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 }
 
 .navbar-collapse {
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 0;
+  padding-left: 0;
   overflow-x: visible;
   -webkit-overflow-scrolling: touch;
 }
@@ -1809,7 +1809,7 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 
 .container-fluid>.navbar-collapse,.container-fluid>.navbar-header,.container>.navbar-collapse,.container>.navbar-header {
   margin-right: -15px;
-  margin-left: -15px;
+  margin-left: 10px;
 }
 
 .navbar-static-top {
@@ -3312,12 +3312,12 @@ button.close {
 
 @media (min-width:768px) {
 	.container-fluid>.navbar-collapse,.container-fluid>.navbar-header,.container>.navbar-collapse,.container>.navbar-header {
-		margin-right: 0;
-		margin-left: 0;
+		margin-right: -15px;
+		margin-left: 10px;
 	}
 
 	.navbar>.container .navbar-brand,.navbar>.container-fluid .navbar-brand {
-		margin-left: -15px;
+		margin-left: 0;
 	}
 
 	.navbar-toggle {
@@ -3325,12 +3325,16 @@ button.close {
 	}
 
 	.navbar-nav {
-		float: left;
+		float: none;
 		margin: 0;
+		display: flex;
+		align-items: center;
 	}
 
 	.navbar-nav>li {
-		float: left;
+		float: none;
+		display: flex;
+		align-items: center;
 	}
 
 	.navbar-nav>li>a {
@@ -3433,8 +3437,9 @@ button.close {
 	}
 
 	.navbar-right {
-		float: right!important;
-		margin-right: -15px;
+		float: none!important;
+		margin-left: auto;
+		margin-right: 0;
 	}
 
 	.navbar-right~.navbar-right {
@@ -3442,7 +3447,8 @@ button.close {
 	}
 
 	.navbar-header {
-		float: left;
+		float: none;
+		flex-shrink: 0;
 	}
 
 	.navbar-collapse {
@@ -3450,8 +3456,9 @@ button.close {
 	}
 
 	.navbar-collapse.collapse {
-		display: block!important;
-		height: auto!important;
+		display: flex!important;
+		flex: 1 1 auto;
+		height: 48px!important;
 		padding-bottom: 0;
 		overflow: visible!important;
 	}

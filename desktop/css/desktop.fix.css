@@ -1,0 +1,182 @@
+/* ===== Jeedom navbar redesign ===== */
+
+.navbar .container-fluid {
+  flex-wrap: nowrap;
+  height: 48px;
+}
+
+#jeedomMenuBar .container-fluid > .navbar-header,
+#jeedomMenuBar .container-fluid > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: 10px;
+  height: 48px;
+}
+
+#jeedomMenuBar .navbar-header {
+  min-width: fit-content;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+#jeedomMenuBar .navbar-collapse {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Fond et bordure navbar */
+#jeedomMenuBar .navbar {
+  background: #262828;
+  border: none;
+  border-bottom: 1px solid #1a1c1c;
+  box-shadow: 0 2px 6px rgba(0,0,0,.35);
+  min-height: 48px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* Logo box */
+#jeedomMenuBar a.navbar-brand {
+  margin-left: 0;
+  overflow: visible;
+  height: 48px;
+  padding: 7px 18px 7px 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+#jeedomMenuBar a.navbar-brand > img {
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  object-fit: contain;
+}
+
+/* Nav lists */
+#jeedomMenuBar .nav.navbar-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 0;
+  float: none;
+  height: 48px;
+}
+
+#jeedomMenuBar .nav.navbar-nav > li {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+
+/* Nav links */
+#jeedomMenuBar .nav.navbar-nav > li > a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+  padding: 0 14px;
+  color: #c7cbcf;
+  white-space: nowrap;
+  transition: background .15s, color .15s;
+  background: transparent;
+  line-height: 1;
+}
+
+#jeedomMenuBar .nav.navbar-nav > li > a:hover,
+#jeedomMenuBar .nav.navbar-nav > li.open > a {
+  background: #32363a;
+  color: #fff;
+}
+
+#jeedomMenuBar .nav.navbar-nav > li > a .caret {
+  border-top-color: #888d92;
+  margin-left: 2px;
+}
+
+/* Right nav */
+#jeedomMenuBar .navbar-nav.navbar-right {
+  float: none;
+  margin-left: auto;
+  margin-right: 0;
+  gap: 12px;
+}
+
+#jeedomMenuBar .navbar-nav.navbar-right > li > a {
+  padding: 0 6px;
+}
+
+/* Horloge */
+#jeedomMenuBar .navTime {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.15;
+}
+
+#jeedomMenuBar .navTime > a {
+  padding: 0;
+  height: auto;
+}
+
+#jeedomMenuBar #horloge {
+  font-size: 15px;
+  color: #d6d9db;
+  font-variant-numeric: tabular-nums;
+}
+
+#jeedomMenuBar #configName .cmdName {
+  font-size: 12px;
+  color: #888d92;
+}
+
+/* Help icon */
+#jeedomMenuBar #bt_getHelpPage i {
+  font-size: 19px;
+  color: #aeb3b7;
+}
+
+@media screen and (min-width: 768px) {
+  #jeedomMenuBar .navbar-fixed-top { position: fixed; top: 0; right: 0; left: 0; z-index: 1030; }
+  #jeedomMenuBar .navbar-toggle { display: none; }
+}
+
+@media screen and (max-width: 767px) {
+  #jeedomMenuBar .navbar-toggle { display: block; }
+  #jeedomMenuBar .navbar-collapse.collapse:not(.in) { display: none; }
+  #jeedomMenuBar .navbar-collapse.in { display: block; height: auto; overflow-y: auto; }
+}
+
+/* ===== Radio / Checkbox custom checked state ===== */
+/* Chrome auto-sets appearance:none when background is set on an input.
+   The theme layer sets background on :not(checked) (all), but provides no :checked visual. */
+
+input[type=radio]:checked {
+  background: var(--al-primary-color, #326fa0);
+  background-image: radial-gradient(circle, white 35%, transparent 40%);
+  border-color: var(--al-primary-color, #326fa0);
+}
+
+input[type=checkbox] {
+  position: relative;
+}
+input[type=checkbox]:checked {
+  background: var(--al-primary-color, #326fa0);
+  border-color: var(--al-primary-color, #326fa0);
+}
+input[type=checkbox]:checked::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: '\f00c';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 10px;
+  color: white;
+  line-height: 15px;
+  text-align: center;
+  pointer-events: none;
+}
