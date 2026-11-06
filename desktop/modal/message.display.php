@@ -83,7 +83,6 @@ if ($selectPlugin != '') {
   jeedomUtils.initDataTables('#md_messageDisplay', false, false,[{ select: 1, sort: "desc" }])
 
   let table = document.querySelector('#md_messageDisplay #table_message')
-  let msgDataTable = table._dataTable
 
   /*Events delegations
   */
@@ -102,7 +101,7 @@ if ($selectPlugin != '') {
         success: function() {
           document.querySelector("#table_message tbody").empty()
           document.getElementById("table_message").triggerEvent('update')
-          msgDataTable.refresh()
+          table._dataTable?.refresh()
           jeedom.refreshMessageNumber()
         }
       })
@@ -134,7 +133,7 @@ if ($selectPlugin != '') {
         success: function() {
           _target.closest('tr').remove()
           document.getElementById("table_message").triggerEvent('update')
-          msgDataTable.refresh()
+          table._dataTable?.refresh()
           jeedom.refreshMessageNumber()
         }
       })

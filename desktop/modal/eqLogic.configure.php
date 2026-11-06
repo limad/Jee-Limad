@@ -56,23 +56,21 @@ sendVarToJS([
     <div class="tab-content" id="div_displayEqLogicConfigure">
       <div role="tabpanel" class="tab-pane active" id="eqLogic_information">
         <form class="form-horizontal">
-          
-		  <div class="row">
-        	<div class="col-sm-6">
-        	  <legend><i class="fas fa-clipboard-list"></i> {{Général}}</legend>
+          <div class="row">
+            <div class="col-sm-6">
+              <legend><i class="fas fa-clipboard-list"></i> {{Général}}</legend>
               <div class="form-group">
                 <label class="col-sm-4 control-label">{{Nom}}</label>
                 <div class="col-sm-8">
                   <input type="text" class="eqLogicAttr form-control input-sm" data-l1key="name">
                 </div>
-            </div>
-             <div class="form-group">
+              </div>
+              <div class="form-group">
                 <label class="col-sm-4 control-label">{{ID unique}}</label>
                 <div class="col-sm-8">
                   <span class="eqLogicAttr label label-sm label-primary" data-l1key="id"></span>
                 </div>
               </div>
-
               <div class="form-group">
                 <label class="col-sm-4 control-label">{{Options}}</label>
                 <div class="col-sm-8">
@@ -87,42 +85,38 @@ sendVarToJS([
                   }
                   ?>
                 </div>
-             </div>
-             <div class="form-group">
+              </div>
+              <div class="form-group">
                 <label class="col-sm-4 control-label">{{ID logique}}</label>
                 <div class="col-sm-8">
                   <span class="eqLogicAttr label label-sm label-primary" data-l1key="logicalId"></span>
                 </div>
               </div>
-
-
               <div class="form-group">
                 <label class="col-sm-4 control-label">{{Création - Sauvegarde}}</label>
                 <div class="col-sm-8">
                   <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="createtime"></span> -
                   <span class="eqLogicAttr label label-sm label-info" data-l1key="configuration" data-l2key="updatetime"></span>
                 </div>
-             </div>
-             <div class="form-group">
+              </div>
+              <div class="form-group">
                 <label class="col-sm-4 control-label">{{Tentative échouée}}</label>
                 <div class="col-sm-8">
                   <span class="label label-sm label-primary"><?php echo $eqLogic->getStatus('numberTryWithoutSuccess', 0) ?></span>
                 </div>
               </div>
-
               <div class="form-group">
                 <label class="col-sm-4 control-label">{{Dernière communication}}</label>
                 <div class="col-sm-8">
                   <span class="label label-sm label-info"><?php echo $eqLogic->getStatus('lastCommunication') ?></span>
                 </div>
-            </div>
-             <div class="form-group">
+              </div>
+              <div class="form-group">
                 <label class="col-sm-4 control-label">{{Tag(s)}}</label>
                 <div class="col-sm-8">
                   <input class="eqLogicAttr form-control input-sm" data-l1key="tags">
                 </div>
               </div>
-
               <div class="form-group">
                 <label class="col-sm-4 control-label">{{Commentaire}}</label>
                 <div class="col-sm-8">
@@ -131,21 +125,20 @@ sendVarToJS([
               </div>
             </div>
             <div class="col-sm-6">
-                    <legend>{{Image}}</legend>
-                    <div class="form-group">
-                    	<div class="col-sm-7 col-sm-offset-3">
-                    		<span class="btn btn-default btn-file">
-                    			<i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImageEqLogic" type="file" name="file" accept="image/*">
-                    		</span>
-                    		<a class="btn btn-danger" id="bt_removeEqLogicImage"><i class="fas fa-trash"></i> {{Enlever l'image}}</a>
-                   		</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-7 col-sm-offset-3 eqLogicImg">
-							<img class="img-responsive" src="<?php echo $eqLogic->getImage(); ?>" width="240px" style="min-height : 50px" />
-                        </div>
-					</div>
-                    
+              <legend>{{Image}}</legend>
+              <div class="form-group">
+                <div class="col-sm-7 col-sm-offset-3">
+                  <span class="btn btn-default btn-file">
+                    <i class="fas fa-cloud-upload-alt"></i> {{Envoyer}}<input id="bt_uploadImageEqLogic" type="file" name="file" accept="image/*">
+                  </span>
+                  <a class="btn btn-danger" id="bt_removeEqLogicImage"><i class="fas fa-trash"></i> {{Enlever l'image}}</a>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-7 col-sm-offset-3 eqLogicImg">
+                  <img class="img-responsive" src="<?php echo $eqLogic->getImage(); ?>" width="240px" style="min-height : 50px" />
+                </div>
+              </div>
             </div>	        
           </div>
           <legend><i class="fas fa-list-alt"></i> {{Commandes}}</legend>
@@ -411,7 +404,7 @@ sendVarToJS([
             </div>
           </form>
 
-          <div class="widget_layout table" style="display: none;">
+          <div id="divCmdLayoutConfiguration" class="widget_layout table" style="display: none;">
             <legend><i class="fas fa-th-large"></i> {{Mise en forme détaillée}}</legend>
             <div class="table-responsive">
               <table class="table table-condensed" id="tableCmdLayoutConfiguration">
@@ -431,8 +424,27 @@ sendVarToJS([
                   }
                   $getDisplayDasboardNbLine = $eqLogic->getDisplay('layout::dashboard::table::nbLine', 1);
                   $getDisplayDasboardNbColumn = $eqLogic->getDisplay('layout::dashboard::table::nbColumn', 1);
+
+                  $tr = '<tr>';
+                  $tr .= '<td data-line="0" data-column="0">&nbsp;</td>';
+                  for ($j = 1; $j <= $getDisplayDasboardNbColumn; $j++) {
+                    $tr .= '<td data-line="0" data-column="' . $j . '" style="text-align: center;">';
+                    $tr .= '<a class="bt_removeCol"  style="margin-left: 5px;margin-right: 5px;" tooltip="{{Supprimer la colonne}}"><i class="fas fa-minus-circle"></i></a>';
+                    //$tr .= '<span class="counterReorderC">' . $j . '</span>';
+                    $tr .= $j;
+                    $tr .= '<a class="bt_addCol" style="margin-left: 5px;margin-right: 5px;" tooltip="{{Inserer une colonne avant}}"><i class="fas fa-plus-circle"></i></a>';
+                    $tr .= '</td>';
+                  }
+                  $tr .= '</tr>';
+                  echo $tr;
+
                   for ($i = 1; $i <= $getDisplayDasboardNbLine; $i++) {
                     $tr = '<tr>';
+                    $tr .= '<td data-line="' . $i . '" data-column="0" style="text-align: center; width: 70px;">';
+                    $tr .= '<a class="bt_removeRow"  style="margin-left: 5px;margin-right: 5px;" tooltip="{{Supprimer la ligne}}"><i class="fas fa-minus-circle"></i></a>';
+                    $tr .= '<span class="counterReorder">' . $i . '</span>';
+                    $tr .= '<a class="bt_addRow" style="margin-left: 5px;margin-right: 5px;" tooltip="{{Inserer une ligne avant}}"><i class="fas fa-plus-circle"></i></a>';
+                    $tr .= '</td>';
                     for ($j = 1; $j <= $getDisplayDasboardNbColumn; $j++) {
                       $tr .= '<td data-line="' . $i . '" data-column="' . $j . '">';
                       $string_cmd = '<div class="cmdLayoutContainer text-center" style="min-height:30px;">';
@@ -444,7 +456,6 @@ sendVarToJS([
                       $tr .= $string_cmd . '</div>';
                       $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="text::td::' . $i . '::' . $j . '" placeholder="{{Texte de la cellule}}">';
                       $tr .= '<input class="eqLogicAttr form-control input-sm" data-l1key="display" data-l2key="layout::dashboard::table::parameters" data-l3key="style::td::' . $i . '::' . $j . '" placeholder="{{Style CSS ou attribut(s) HTML}}">';
-
                       $tr .= '</td>';
                     }
                     $tr .= '</tr>';
@@ -659,6 +670,7 @@ sendVarToJS([
         }
       },
       setTableLayoutSortable: function() {
+        // sortable cmds
         let containers = document.querySelectorAll('#md_eqLogicConfigure #tableCmdLayoutConfiguration tbody td .cmdLayoutContainer')
         containers.forEach(_container => {
           new Sortable(_container, {
@@ -670,6 +682,34 @@ sendVarToJS([
             preventOnFilter: false,
           })
         })
+        // sortable rows
+        new Sortable(document.querySelector('#tableCmdLayoutConfiguration tbody'), {
+          delay: 50,
+          delayOnTouchOnly: true,
+          draggable: 'tr:not(:first-child)', //exclude the first row (row for colonne manage)
+          filter: 'input, a',
+          preventOnFilter: false,
+          direction: 'vertical',
+          chosenClass: 'dragSelected',
+          onUpdate: function(evt) {
+            let tableLayout = document.getElementById('tableCmdLayoutConfiguration')
+            let row = 1
+            tableLayout.querySelectorAll('tr:not(:first-child)').forEach(_cLay => { //exclude the first row (row for colonne manage)
+              let col = 1
+              _cLay.querySelectorAll('td').forEach(_td => {
+                _td.setAttribute('data-line', row)
+                if (is_object(_td.querySelector('.counterReorder'))) {
+                  _td.querySelector('span').innerHTML = row
+                } else {
+                  _td.querySelectorAll('input')[0]?.setAttribute('data-l3key', 'text::td::' + row + '::' + col)
+                  _td.querySelectorAll('input')[1]?.setAttribute('data-l3key', 'style::td::' + row + '::' + col)
+                  col++
+                }
+              })
+              row++
+            })
+          }        
+        })
       },
       getNewLayoutTd: function(row, col) {
         var newTd = '<td data-line="' + row + '" data-column="' + col + '">'
@@ -679,13 +719,13 @@ sendVarToJS([
         newTd += '</td>'
         return newTd
       },
-      applyTableLayout: function() {
+      applyTableLayout: function(_action = '', _row = '', _col = '') {
         var nbColumn = document.querySelector('#md_eqLogicConfigure input[data-l2key="layout::dashboard::table::nbColumn"]').value
         var nbRow = document.querySelector('#md_eqLogicConfigure input[data-l2key="layout::dashboard::table::nbLine"]').value
 
         var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
-        var tableRowCount = tableLayout.querySelectorAll('tr').length
-        var tableColumnCount = tableLayout.querySelector('tr').querySelectorAll('td').length
+        var tableRowCount = tableLayout.querySelectorAll('tr').length - 1
+        var tableColumnCount = tableLayout.querySelector('tr').querySelectorAll('td:not(:first-child)').length
 
         if (nbColumn != tableColumnCount || nbRow != tableRowCount) {
           //build new table:
@@ -694,8 +734,27 @@ sendVarToJS([
           newTableLayout.setAttribute('id', 'tableCmdLayoutConfiguration')
           newTableLayout.appendChild(document.createElement('tbody'))
 
+          var newTr = document.createElement('tr')
+          let newFirstCol = '<td data-line="0" data-column="0">&nbsp;</td>'
+          for (j = 1; j <= nbColumn; j++) {
+            newFirstCol += '<td data-line="0" data-column="' + j + '" style="text-align: center;">'
+            newFirstCol += '<a class="bt_removeCol" style="margin-left: 5px;margin-right: 5px;" title="{{Supprimer la colonne}}"><i class="fas fa-minus-circle"></i></a>'
+            newFirstCol += j
+            newFirstCol += '<a class="bt_addCol" style="margin-left: 5px;margin-right: 5px;" title="{{Inserer une colonne avant}}"><i class="fas fa-plus-circle"></i></a>'
+            newFirstCol += '</td>'           
+          }
+          newTr.insertAdjacentHTML('beforeend', newFirstCol)
+          newTableLayout.tBodies[0].appendChild(newTr)
+          
           for (i = 1; i <= nbRow; i++) {
             var newTr = document.createElement('tr')
+            let newFirstCol = '<td data-line="' + i + '" data-column="0" style="text-align: center; width: 75px;">'
+            newFirstCol += '<a class="bt_removeRow" style="margin-left: 5px;margin-right: 5px;" title="{{Supprimer la ligne}}"><i class="fas fa-minus-circle"></i></a>'
+            newFirstCol += '<span class="counterReorder">' + i + '</span>'
+            newFirstCol += '<a class="bt_addRow" style="margin-left: 5px;margin-right: 5px;" title="{{Inserer une ligne avant}}"><i class="fas fa-plus-circle"></i></a>'
+            newFirstCol += '</td>'
+            newTr.insertAdjacentHTML('beforeend', newFirstCol)
+                        
             for (j = 1; j <= nbColumn; j++) {
               newTd = jeeFrontEnd.md_eqLogicConfigure.getNewLayoutTd(i, j)
               newTr.insertAdjacentHTML('beforeend', newTd)
@@ -704,14 +763,31 @@ sendVarToJS([
           }
 
           //distribute back cmds into new table
-          var firstTdLayout = newTableLayout.querySelector('tr').querySelector('td > .cmdLayoutContainer')
+          var firstTdLayout = newTableLayout.querySelector('tr td > .cmdLayoutContainer')
           var row, col, newTd, text, style
           tableLayout.querySelectorAll('.cmdLayout').forEach(_cLay => {
-            row = _cLay.closest('td').getAttribute('data-line')
-            col = _cLay.closest('td').getAttribute('data-column')
-            newTd = newTableLayout.querySelector('td[data-line="' + row + '"][data-column="' + col + '"]')
-            if (newTd) {
-              newTd.querySelector('.cmdLayoutContainer').appendChild(_cLay)
+            row = parseInt(_cLay.closest('td').getAttribute('data-line'))
+            col = parseInt(_cLay.closest('td').getAttribute('data-column'))
+
+            // manage adding or removing row or column
+            if (_action == 'add') {
+            	if (row >= _row && _row != 0) {
+                  row++
+                }
+                if (col >= _col && _col != 0) {
+                  col++
+                }
+            } else if (_action == 'remove') {
+            	if (row >= _row && _row != 0) {         
+                  row--
+                }
+                if (col >= _col && _col != 0) {
+                  col--
+                }
+            }
+
+            if (is_object(newTd = newTableLayout.querySelector('td[data-line="' + Math.max(row, 1) + '"][data-column="' + Math.max(col, 1) + '"] .cmdLayoutContainer'))) {
+              newTd.appendChild(_cLay) //newTd.querySelector('.cmdLayoutContainer').appendChild(_cLay)
             } else {
               firstTdLayout.appendChild(_cLay)
             }
@@ -719,22 +795,41 @@ sendVarToJS([
 
           //get back tds texts and styles
           tableLayout.querySelectorAll('td').forEach(_td => {
-            row = _td.getAttribute('data-line')
-            col = _td.getAttribute('data-column')
-            text = _td.querySelector('input[data-l3key="text::td::' + row + '::' + col + '"]').value
-            style = _td.querySelector('input[data-l3key="style::td::' + row + '::' + col + '"]').value
+            row = parseInt(_td.getAttribute('data-line'))
+            col = parseInt(_td.getAttribute('data-column'))
+
+            if (col != 0 && row != 0) {
+              text = _td.querySelector('input[data-l3key="text::td::' + row + '::' + col + '"]').value
+              style = _td.querySelector('input[data-l3key="style::td::' + row + '::' + col + '"]').value
+            }
+
+            // manage adding or removing row or column
+            if (_action == 'add') {
+            	if (row >= _row && _row != 0) {
+                  row++
+                }
+                if (col >= _col && _col != 0) {
+                   col++
+                }
+            } else if (_action == 'remove') {
+            	if (row > _row && _row != 0) {         
+                  row--
+                }
+                if (col > _col && _col != 0) {
+                  col--
+                }
+            }
+
             newTd = newTableLayout.querySelector('td[data-line="' + row + '"][data-column="' + col + '"]')
-            if (newTd) {
+            if (newTd && row != 0 && col != 0) {
               newTableLayout.querySelector('input[data-l3key="text::td::' + row + '::' + col + '"]').value = text
               newTableLayout.querySelector('input[data-l3key="style::td::' + row + '::' + col + '"]').value = style
             }
           })
 
           //replace by new table:
+          jeedomUtils.initTooltips(newTableLayout)
           tableLayout.replaceWith(newTableLayout)
-          document.querySelectorAll('#tableCmdLayoutConfiguration td').forEach(td => {
-            td.style.width = 100 / nbColumn + '%'
-          })
           jeeFrontEnd.md_eqLogicConfigure.setTableLayoutSortable()
         }
       },
@@ -970,6 +1065,61 @@ sendVarToJS([
     })
 
     //eqLogic layout tab
+
+    // manage number of lines or columns when inserting or removing
+    function handleDynamicLineColumn(_action) {
+      if (_action !== 'add' && _action !== 'remove') {
+        throw new Error(`Invalid action value : only "add" or "remove" allowed, "${_action}" given`);
+      }
+
+      row = event.target.closest('td').getAttribute('data-line')
+      col = event.target.closest('td').getAttribute('data-column')
+      var tableLayout = document.getElementById('tableCmdLayoutConfiguration')
+
+      if (col == 0) {          
+        var tableRowCount = tableLayout.querySelectorAll('tr').length - 1
+        if (_action === 'remove' && tableRowCount === 1) {
+          return
+        }
+        if (_action === 'add') {
+          tableRowCount++
+        }
+        if (_action === 'remove') {
+          tableRowCount--
+        }
+        document.querySelector('input[data-l2key="layout::dashboard::table::nbLine"]').value = tableRowCount
+      }
+
+      if (row == 0) {
+        var tableColumnCount = tableLayout.querySelector('tr').querySelectorAll('td:not(:first-child)').length
+        if (_action === 'remove' && tableColumnCount === 1) {
+          return
+        }          
+        if (_action === 'add') {
+          tableColumnCount++
+        }
+        if (_action === 'remove') {
+          tableColumnCount--
+        }
+        document.querySelector('input[data-l2key="layout::dashboard::table::nbColumn"]').value = tableColumnCount
+      }
+
+      jeeFrontEnd.md_eqLogicConfigure.applyTableLayout(_action, row, col)
+    }
+
+    // listener to add/remove row or column
+    document.getElementById('divCmdLayoutConfiguration')?.addEventListener('click', function(event) {
+        if (event.target.closest('.bt_addRow') || event.target.closest('.bt_addCol')) {
+            handleDynamicLineColumn('add');
+            return;
+        }
+
+        if (event.target.closest('.bt_removeRow') || event.target.closest('.bt_removeCol')) {
+            handleDynamicLineColumn('remove');
+            return;
+        }
+    })
+
     document.getElementById('eqLogic_layout')?.addEventListener('click', function(event) {
       var _target = null
       if (_target = event.target.closest('#bt_eqLogicLayoutApply')) {

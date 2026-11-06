@@ -231,9 +231,9 @@ Element.prototype.jeeValue = function(_value) {
           if (init(_value) === '') {
             return
           }
-          this.checked = (init(_value) === '1') ? true : false
+          this.checked = (String(init(_value)) === '1') ? true : false
         } else if (this.getAttribute('type') === 'radio') {
-          this.checked = (init(_value) === '1') ? true : false
+          this.checked = (String(init(_value)) === '1') ? true : false
         } else {
           this.value = init(_value)
         }

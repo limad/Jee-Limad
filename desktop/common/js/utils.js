@@ -1418,20 +1418,14 @@ jeedomUtils.componentToHex = function(c) {
 
 jeedomUtils.rgbToHex = function(r, g, b) {
   if (typeof r === 'string' && !g) {
-    r = r.trim()
-    if (r.startsWith('rgb')) {
-      r = r.replace('rgb', '')
+    var match = r.trim().match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/)
+    if (match) {
+      r = parseInt(match[1])
+      g = parseInt(match[2])
+      b = parseInt(match[3])
+    } else {
+      return '#000000'
     }
-    if (r.startsWith('(')) {
-      r = r.replace('(', '')
-    }
-    if (r.endsWith(')')) {
-      r = r.replace(')', '')
-    }
-    var strAr = r.split(',')
-    r = parseInt(strAr[0].trim())
-    g = parseInt(strAr[1].trim())
-    b = parseInt(strAr[2].trim())
   }
   return "#" + jeedomUtils.componentToHex(r) + jeedomUtils.componentToHex(g) + jeedomUtils.componentToHex(b)
 }

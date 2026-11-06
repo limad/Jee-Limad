@@ -406,6 +406,11 @@ if (!jeeFrontEnd.plugin) {
                 })
               },
               success: function(data) {
+                for (const key in data) {
+                  if (typeof data[key] === 'string' && data[key].startsWith('{')) {
+                    try { data[key] = JSON.parse(data[key]) } catch(e) {}
+                  }
+                }
                 self.dom_container.querySelector('#div_plugin_log').setJeeValues(data, '.configKey')
                 jeeFrontEnd.modifyWithoutSave = false
               }

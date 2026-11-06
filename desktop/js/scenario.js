@@ -2045,8 +2045,8 @@ document.getElementById('div_editScenario').querySelector('div.floatingbar').add
         jeeP.addElementSave.elementDiv = document.getElementById('div_scenarioElement')
       }
     }
-    input.value = ''
-    input.triggerEvent('input')
+    document.getElementById('in_addElementTypeFilter').value = ''
+    document.getElementById('in_addElementTypeFilter').triggerEvent('input')
     jeeDialog.modal(document.getElementById('md_addElement'))._jeeDialog.show() //=> #bt_addElementSave
     return
   }
