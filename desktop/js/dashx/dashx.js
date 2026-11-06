@@ -284,17 +284,61 @@ async function fetchJson(action, params = {}, options = {}) {
   const response = await fetch(endpoint("dashx.ajax.php", { action, ...params }), options);
   const data = await response.json().catch(() => null);
   if (!response.ok) {
-    throw new Error(data?.error ?? `HTTP ${response.status}`);
+    const error = new Error(data?.error ?? `HTTP ${response.status}`);
+    error.code = data?.code;
+    error.command = data?.command;
+    throw error;
   }
   return data;
 }
 
-async function execCmd(cmdId, options = {}) {
-  return fetchJson("execCmd", { id: String(cmdId) }, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(options),
-  });
+function askAccessCode() {
+  if (typeof jeeDialog !== "undefined" && typeof jeeDialog.prompt === "function") {
+    return new Promise((resolve) => {
+      jeeDialog.prompt({
+        title: "Code d'accès",
+        message: '<input class="promptAttr" data-l1key="result" type="password" autocomplete="off">',
+        inputType: false,
+      }, resolve);
+    });
+  }
+  return Promise.resolve(window.prompt("Veuillez indiquer le code d'accès ?", ""));
+}
+
+function askActionConfirm(command) {
+  const message = `Confirmer l'exécution de « ${command || "cette commande"} » ?`;
+  if (typeof jeeDialog !== "undefined" && typeof jeeDialog.confirm === "function") {
+    const escapedMessage = message.replace(/[&<>"']/g, (character) => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;",
+    })[character]);
+    return new Promise((resolve) => jeeDialog.confirm(escapedMessage, (result) => resolve(Boolean(result))));
+  }
+  return Promise.resolve(window.confirm(message));
+}
+
+async function execCmd(cmdId, options = {}, handled = {}) {
+  try {
+    return await fetchJson("execCmd", { id: String(cmdId) }, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(options),
+    });
+  } catch (error) {
+    if (error?.code === "code_required" && !handled.code) {
+      const codeAccess = await askAccessCode();
+      if (codeAccess === null) {
+        return null;
+      }
+      return execCmd(cmdId, { ...options, codeAccess }, { ...handled, code: true });
+    }
+    if (error?.code === "confirm_required" && !handled.confirm) {
+      if (!await askActionConfirm(error.command)) {
+        return null;
+      }
+      return execCmd(cmdId, { ...options, confirmAction: 1 }, { ...handled, confirm: true });
+    }
+    throw error;
+  }
 }
 
 async function getCmd(cmdId) {

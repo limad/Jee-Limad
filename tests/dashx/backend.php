@@ -80,12 +80,38 @@ $cmds = dashx::getCmdsPayload([999999999]);
 eq('getCmdsPayload id inconnu -> 1 entrée', 1, count($cmds));
 eq('getCmdsPayload id inconnu -> available=false', false, $cmds[0]['available'] ?? null);
 
-/* 6. AJAX : refus sans session (sécurité). Les flux AUTHENTIFIÉS (200, rendu page,
+/* 6. Protection des actions : code et confirmation refusés avant exécution. */
+$protectedCmd = new cmd();
+$protectedCmd->setType('action');
+$protectedCmd->setConfiguration('actionCodeAccess', '1234');
+try {
+    dashx::checkActionCmdAccess($protectedCmd);
+    ko('actionCodeAccess absent refusé', -32005, 0);
+} catch (Exception $e) {
+    eq('actionCodeAccess absent refusé', -32005, $e->getCode());
+}
+try {
+    dashx::checkActionCmdAccess($protectedCmd, 'mauvais');
+    ko('actionCodeAccess faux refusé', -32005, 0);
+} catch (Exception $e) {
+    eq('actionCodeAccess faux refusé', -32005, $e->getCode());
+}
+$confirmCmd = new cmd();
+$confirmCmd->setType('action');
+$confirmCmd->setConfiguration('actionConfirm', 1);
+try {
+    dashx::checkActionCmdAccess($confirmCmd);
+    ko('actionConfirm absent refusé', -32006, 0);
+} catch (Exception $e) {
+    eq('actionConfirm absent refusé', -32006, $e->getCode());
+}
+
+/* 7. AJAX : refus sans session (sécurité). Les flux AUTHENTIFIÉS (200, rendu page,
  * SSE) sont couverts par le smoke Playwright (smoke.mjs) où la session est gérée. */
 $r = http_get('/core/ajax/dashx.ajax.php?action=getLayout');
 eq('AJAX sans session refusé (401)', 401, $r['code']);
 
-/* 7. Route de page : pas d'erreur 500 (sans session = login/redirect, doit rester < 500) */
+/* 8. Route de page : pas d'erreur 500 (sans session = login/redirect, doit rester < 500) */
 $r = http_get('/index.php?v=d&p=dashx&m=core');
 truthy('route page dashx ne 500 pas', $r['code'] < 500);
 

@@ -164,7 +164,7 @@ class dashx {
         return $result;
     }
 
-    public static function execActionCmd(int $id, array $options = []): void {
+    public static function execActionCmd(int $id, array $options = [], string $codeAccess = '', bool $confirmAction = false): void {
         $cmd = cmd::byId($id);
         if (!is_object($cmd)) {
             throw new Exception(__('Commande introuvable', __FILE__));
@@ -175,7 +175,17 @@ class dashx {
         if (!$cmd->hasRight()) {
             throw new Exception(__('Vous n etes pas autorise a executer cette commande', __FILE__));
         }
+        self::checkActionCmdAccess($cmd, $codeAccess, $confirmAction);
         $cmd->execCmd($options);
+    }
+
+    public static function checkActionCmdAccess(cmd $cmd, string $codeAccess = '', bool $confirmAction = false): void {
+        if (!$cmd->checkAccessCode($codeAccess)) {
+            throw new Exception(__('Cette action nécessite un code d’accès', __FILE__), -32005);
+        }
+        if ($cmd->getType() === 'action' && $cmd->getConfiguration('actionConfirm') == 1 && !$confirmAction) {
+            throw new Exception(__('Cette action nécessite une confirmation', __FILE__), -32006);
+        }
     }
 
     public static function canExecuteActionCmd(int $id, ?array $layout = null): bool {

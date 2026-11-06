@@ -90,7 +90,27 @@ try {
             if ($rlData['count'] > 30) {
                 dashx_api_json(['error' => 'Too many requests'], 429);
             }
-            dashx::execActionCmd($cmdId, $options);
+            try {
+                dashx::execActionCmd(
+                    $cmdId,
+                    $options,
+                    (string) ($body['codeAccess'] ?? ''),
+                    (string) ($body['confirmAction'] ?? '') === '1'
+                );
+            } catch (Exception $e) {
+                if ($e->getCode() === -32005) {
+                    dashx_api_json(['error' => $e->getMessage(), 'code' => 'code_required'], 403);
+                }
+                if ($e->getCode() === -32006) {
+                    $cmd = cmd::byId($cmdId);
+                    dashx_api_json([
+                        'error' => $e->getMessage(),
+                        'code' => 'confirm_required',
+                        'command' => is_object($cmd) ? $cmd->getName() : '',
+                    ], 403);
+                }
+                throw $e;
+            }
             dashx_api_json(['status' => 'ok']);
 
         case 'getLayout':
