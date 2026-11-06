@@ -40,6 +40,7 @@ class event {
 		);
 		$sql = 'INSERT INTO `event` SET `datetime`=:datetime, `name`=:name,`option`=:option';
 		DB::Prepare($sql,$value, DB::FETCH_TYPE_ROW);
+		@file_put_contents(jeedom::getTmpFolder() . '/event.signal', getmicrotime());
 		if($_clean){
 			self::cleanEvent();
 		}
@@ -100,6 +101,8 @@ class event {
 	}
 
 	public static function changes($_datetime, $_longPolling = null, $_filter = null) {
+		$signalFile = jeedom::getTmpFolder() . '/event.signal';
+		$lastSignal = @file_get_contents($signalFile);
 		$return = self::filterEvent(self::changesSince($_datetime), $_filter);
 		if ($_longPolling === null || count($return) > 0) {
 			return array('datetime' => getmicrotime(), 'result'=> utils::o2a($return));
@@ -108,16 +111,19 @@ class event {
 		if($waitTime == 0){
 			$waitTime = 1;
 		}
-		$i = 0;
-		$max_cycle = $_longPolling / $waitTime;
-		while (count($return) == 0 && $i < $max_cycle) {
-			if ($waitTime < 1) {
-				usleep(1000000 * $waitTime);
-			} else {
-				sleep(round($waitTime));
+		$start = microtime(true);
+		$lastDbCheck = $start;
+		while (count($return) == 0 && (microtime(true) - $start) < $_longPolling) {
+			usleep(100000);
+			$curSignal = @file_get_contents($signalFile);
+			$signalChanged = ($curSignal !== false && $curSignal !== $lastSignal);
+			if ($signalChanged) {
+				$lastSignal = $curSignal;
 			}
-			$return = self::filterEvent(self::changesSince($_datetime), $_filter);
-			$i++;
+			if ($signalChanged || (microtime(true) - $lastDbCheck) >= $waitTime) {
+				$lastDbCheck = microtime(true);
+				$return = self::filterEvent(self::changesSince($_datetime), $_filter);
+			}
 		}
 		return array('datetime' => getmicrotime(), 'result'=> utils::o2a($return));
 	}

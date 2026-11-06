@@ -294,6 +294,7 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 		. '@import url("/desktop/css/bootstrap.css?md5=' . md5_file($_bsPath) . '") layer(bootstrap);'
 		. '@import url("/desktop/css/desktop.main.css?md5=' . md5_file($_dmPath) . '") layer(base);'
 		. '</style>';
+	echo '<link rel="stylesheet" href="/desktop/css/desktop.fix.css?v=20260624b">'; // Bootstrap-free navbar fix
 	setTheme();
 	sendVarToJS([
 		'jeeFrontEnd.language' => $configs['language'],
@@ -372,6 +373,8 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 									<?php if (hasRight('menu::overview')) { ?>
 										<li><a href="index.php?v=d&p=overview"><i class="fab fa-hubspot"></i> {{Synthèse}}</a></li>
 									<?php } ?>
+
+									<li><a href="index.php?v=d&p=dashx&m=core"><i class="fas fa-table-cells-large"></i> {{Dashx}}</a></li>
 
 									<?php if (hasRight('menu::dashboard')) { ?>
 										<li>

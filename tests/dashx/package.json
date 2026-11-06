@@ -1,0 +1,12 @@
+{
+  "name": "dashx-tests",
+  "private": true,
+  "type": "module",
+  "description": "Tests du dashboard core dashx (smoke runtime Playwright + backend PHP).",
+  "scripts": {
+    "smoke": "node smoke.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.48.2"
+  }
+}
