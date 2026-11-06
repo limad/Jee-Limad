@@ -90,8 +90,6 @@ jeedom.user.get({
   },
   success: function(data) {
     document.getElementById('div_userProfils').setJeeValues(data, '.userAttr')
-    let pass = document.getElementById('in_passwordCheck')
-    if (pass) pass.value = data.password
     jeeFrontEnd.modifyWithoutSave = false
   }
 })
@@ -100,10 +98,10 @@ jeedom.user.get({
 //Manage events outside parents delegations:
 if (jeephp2js.profils_user_id === -1) {
   document.getElementById('bt_genUserKeyAPI')?.addEventListener('click', function(event) {
-    const profil = document.getElementById('div_userProfils').getJeeValues('.userAttr')[0]
-    profil.hash = ''
     jeedom.user.saveProfils({
-      profils: profil,
+      profils: {
+        hash: ''
+      },
       error: function(error) {
         jeedomUtils.showAlert({
           message: error.message,
@@ -172,6 +170,8 @@ document.getElementById('bt_saveProfils')?.addEventListener('click', function(ev
           message: "{{Sauvegarde effectuée}}",
           level: 'success'
         })
+        document.querySelector('.userAttr[data-l1key="password"]').value = ''
+        document.getElementById('in_passwordCheck').value = ''
         jeedom.user.get({
           error: function(error) {
             jeedomUtils.showAlert({

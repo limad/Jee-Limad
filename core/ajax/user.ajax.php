@@ -159,7 +159,7 @@ try {
 		unautorizedInDemo();
 		$users = jeedom::fromHumanReadable(json_decode(init('users'), true));
 		$user = null;
-		foreach ($users as &$user_json) {
+		foreach ($users as $user_json) {
 			if (isset($user_json['id'])) {
 				$user = user::byId($user_json['id']);
 			}
@@ -167,7 +167,33 @@ try {
 				if (config::byKey('ldap::enable') == '1') {
 					throw new Exception(__('Vous devez désactiver l\'authentification LDAP pour pouvoir ajouter un utilisateur', __FILE__));
 				}
+
+				user::raiseForInvalidLogin($user_json['login'] ?? '');
+
 				$user = new user();
+
+				$keyWhitelist = ['login', 'password']; // Only allow login and password to be set when creating a new user
+				$user_json = array_intersect_key($user_json, array_flip($keyWhitelist));
+				$user_json['profils'] = 'user'; // Default profile for new users is 'user'
+				$user_json['options']['api::mode'] = 'disable';
+			} else {
+				if ($user->getLogin() == 'internal_report' || $user->getLogin() == 'jeedom_support') {
+					continue; // Do not allow to modify these users
+				}
+
+				user::raiseForInvalidLogin($user_json['login'] ?? '');
+				$keyWhitelist = ['login', 'password', 'hash', 'profils', 'enable', 'options', 'rights'];
+				$user_json = array_intersect_key($user_json, array_flip($keyWhitelist));
+				$user_json = user::cleanPasswordAndHashInput($user_json);
+
+				if ($user->getId() == $_SESSION['user']->getId()) {
+					if (isset($user_json['enable']) && $user_json['enable'] == 0) {
+						throw new RunTimeException(__('Vous ne pouvez pas désactiver le compte avec lequel vous êtes connecté', __FILE__));
+					}
+					if (isset($user_json['profils']) && $user_json['profils'] != 'admin') {
+						throw new RunTimeException(__('Vous ne pouvez pas changer le profil du compte avec lequel vous êtes connecté', __FILE__));
+					}
+				}
 			}
 			utils::a2o($user, $user_json);
 			$user->save();
@@ -228,6 +254,9 @@ try {
 		if (isset($user_json['id']) && $user_json['id'] != $_SESSION['user']->getId()) {
 			throw new Exception(__('401 - Accès non autorisé', __FILE__));
 		}
+		$keyWhitelist = ['password', 'hash', 'options'];
+		$user_json = array_intersect_key($user_json, array_flip($keyWhitelist));
+		$user_json = user::cleanPasswordAndHashInput($user_json);
 		@session_start();
 		$_SESSION['user']->refresh();
 		$login = $_SESSION['user']->getLogin();

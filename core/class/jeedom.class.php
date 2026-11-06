@@ -569,6 +569,7 @@ class jeedom {
 			}
 			config::save('api', config::genKey(), $_plugin);
 			config::save('api::' . $_plugin . '::mode', $_mode, 'core');
+			config::save('api::' . $_plugin . '::restricted', 1, 'core');
 		}
 		if (config::byKey('api::' . $_plugin . '::mode', 'core', 'enable') == 'disable' && $_mode != 'disable') {
 			config::save('api::' . $_plugin . '::mode', $_mode, 'core');
@@ -611,7 +612,8 @@ class jeedom {
 		if (trim($_apikey) == '' || strlen($_apikey) < 16) {
 			return false;
 		}
-		$user = user::byHash($_apikey);
+		// an user apikey can only be used if an explicit apikey (apipro, apitts, apimarket or a plugin api key) was NOT provided
+		$user = $_plugin === 'core' ? user::byHash($_apikey) : null;
 		if (is_object($user)) {
 			if ($user->getEnable() == 0 || !self::apiModeResult($user->getOptions('api::mode', 'enable'))) {
 				return false;
@@ -631,7 +633,7 @@ class jeedom {
 		if (trim($apikey) != '' && $apikey === $_apikey) {
 			/** @var bool $_RESTRICTED */
 			global $_RESTRICTED;
-			$_RESTRICTED = config::byKey('api::' . $_plugin . '::restricted', 'core', false);
+			$_RESTRICTED = $_plugin != 'core' && config::byKey('api::' . $_plugin . '::restricted', 'core', true);
 			return true;
 		}
 		return false;
@@ -840,11 +842,29 @@ class jeedom {
 		}
 	}
 
-	public static function listBackup() {
+	private static function getBackupDir() {
 		if (substr(config::byKey('backup::path'), 0, 1) != '/') {
 			$backup_dir = __DIR__ . '/../../' . config::byKey('backup::path');
 		} else {
 			$backup_dir = config::byKey('backup::path');
+		}
+		return realpath($backup_dir);
+	}
+
+	private static function isValidBackup(string $_backup): bool {
+		$backupDir = self::getBackupDir();
+		$backupPath = realpath($_backup);
+
+		if ($backupDir == false || $backupPath === false || dirname($backupPath) !== $backupDir) {
+			return false;
+		}
+		return is_file($_backup) && !is_link($_backup) && substr(basename($_backup), -7) === '.tar.gz';
+	}
+
+	public static function listBackup(): array {
+		$backup_dir = self::getBackupDir();
+		if ($backup_dir == false) {
+			return [];
 		}
 		$backups = ls($backup_dir, '*.tar.gz', false, array('files', 'quiet', 'datetime_asc'));
 		$return = array();
@@ -855,17 +875,23 @@ class jeedom {
 	}
 
 	public static function removeBackup(string $_backup) {
-		if (file_exists($_backup)) {
-			unlink($_backup);
-		} else {
-			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . $_backup);
+		if (self::isValidBackup($_backup) === false) {
+			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . basename($_backup));
 		}
+		unlink($_backup);
 	}
 
 	public static function restore(string $_backup = '', bool $_background = false, string $_parts = 'all', bool $_force = false) {
+		if ($_backup !== '' && self::isValidBackup($_backup) === false) {
+			throw new Exception(__('Impossible de trouver le fichier :', __FILE__) . ' ' . basename($_backup));
+		}
 		if ($_background) {
 			log::clear('restore');
-			$cmd = __DIR__ . '/../../install/restore.php "backup=' . $_backup . '" "parts=' . $_parts . '" "force=' . ($_force ? '1' : '0') . '"';
+			$cmd = __DIR__ . '/../../install/restore.php';
+			if ($_backup !== '') {
+				$cmd .= ' ' . escapeshellarg('backup=' . $_backup);
+			}
+			$cmd .= ' ' . escapeshellarg('parts=' . $_parts) . ' ' . escapeshellarg('force=' . ($_force ? '1' : '0'));
 			$cmd .= ' >> ' . log::getPathToLog('restore') . ' 2>&1 &';
 			system::php($cmd);
 		} else {

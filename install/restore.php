@@ -160,11 +160,11 @@ try {
 		foreach ($excludes as $folder) {
 			$exclude .= ' --exclude="' . $folder . '"';
 		}
-		system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ' . $exclude);
+		system('cd ' . $jeedom_dir . '; tar xfz ' . escapeshellarg($backup) . ' ' . $exclude);
 		echo "OK\n";
 	} elseif ($restore_db) {
 		echo "Extracting database dump and cache only...";
-		system('cd ' . $jeedom_dir . '; tar xfz "' . $backup . '" ./DB_backup.sql ./cache.tar.gz');
+		system('cd ' . $jeedom_dir . '; tar xfz ' . escapeshellarg($backup) . ' ./DB_backup.sql ./cache.tar.gz');
 		echo "OK\n";
 	}
 
