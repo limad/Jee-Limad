@@ -911,7 +911,7 @@ class jeedom {
 		log::clear('update');
 		$params = '';
 		foreach ($_options as $key => $value) {
-			$params .= '"' . $key . '"="' . $value . '" ';
+			$params .= escapeshellarg($key . '=' . $value) . ' ';
 		}
 		$cmd = __DIR__ . '/../../install/update.php ' . $params;
 		$cmd .= ' >> ' . log::getPathToLog('update') . ' 2>&1 &';
