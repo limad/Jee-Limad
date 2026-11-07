@@ -975,6 +975,25 @@ class jeedom {
 		return $version;
 	}
 
+	/**
+	 * Nom du fork (core/config/fork), vide pour un core officiel. Il reste hors de
+	 * core/config/version, que les plugins comparent avec version_compare().
+	 */
+	public static function forkName(): string {
+		static $fork = null;
+		if ($fork === null) {
+			$path = __DIR__ . '/../config/fork';
+			$fork = file_exists($path) ? trim(file_get_contents($path)) : '';
+		}
+		return $fork;
+	}
+
+	/** Version a afficher : « 4.5.3.1 · Jee-Limad » pour le fork, la version seule sinon. */
+	public static function displayVersion(): string {
+		$fork = self::forkName();
+		return self::version() . ($fork !== '' ? ' · ' . $fork : '');
+	}
+
 	/**********************START AND DATE MANAGEMENT*************************************************************/
 
 	public static function stop() {

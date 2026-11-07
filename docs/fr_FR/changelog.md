@@ -1,8 +1,8 @@
 # Changelog Jeedom V4.5
 
-# 4.5.4 (Jee-Limad, branche alpha)
+# 4.5.3.1 (Jee-Limad, branche alpha)
 
-Version dérivée de Jeedom 4.5.3 (fork Jee-Limad). Les correctifs repris de Jeedom sont liés à leur pull request d'origine.
+Version dérivée de Jeedom 4.5.3 (fork Jee-Limad). Numérotation : version officielle de base + numéro de fork (`4.5.3.1`, `4.5.3.2`…), le nom du fork est dans `core/config/fork`. Les correctifs repris de Jeedom sont liés à leur pull request d'origine.
 
 ## Sécurité
 

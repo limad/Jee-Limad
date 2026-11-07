@@ -103,7 +103,7 @@ $productName = config::byKey('product_name');
 								<sup><i class="fas fa-question-circle" tooltip="{{Version de}} <?php echo $productName; ?>"></i></sup>
 							</label>
 							<div class="form-controls">
-								<span class="label label-info"><?php echo jeedom::version(); ?></span>
+								<span class="label label-info"><?php echo secureXSS(jeedom::displayVersion()); ?></span>
 							</div>
 						</div>
 						<div class="modern-form-group">

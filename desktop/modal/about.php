@@ -35,7 +35,7 @@ $licenceText = file_get_contents('/var/www/html/desktop/modal/about.txt');
       <?php } ?>
       <a class="badge cursor" href="https://market.jeedom.com/" target="_blank">Market</a>
       <br><br>
-      {{Version}} : <span class="badge" style="cursor:default!important"><?php echo jeedom::version(); ?></span>
+      {{Version}} : <span class="badge" style="cursor:default!important"><?php echo secureXSS(jeedom::displayVersion()); ?></span>
       <br>
       {{Source}} : <span class="badge" style="cursor:default!important"><?php echo config::byKey('core::repo::provider'); ?></span>
       <br>

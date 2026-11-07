@@ -588,9 +588,9 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 										<li class="nocursor"><a class="disabled"><i class="fas fa-user"></i> <?php echo $_SESSION['user']->getLogin(); ?></a></li>
 										<?php
 										if ($mbState == 0) { ?>
-											<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>
+											<li><a id="bt_jeedomAbout"><i class="fas fa-info-circle"></i> {{Version}} <?php echo secureXSS(jeedom::displayVersion()); ?></a></li>
 										<?php } else { ?>
-											<li><a><i class="fas fa-info-circle"></i> {{Version}} <?php echo jeedom::version(); ?></a></li>
+											<li><a><i class="fas fa-info-circle"></i> {{Version}} <?php echo secureXSS(jeedom::displayVersion()); ?></a></li>
 										<?php } ?>
 									</ul>
 								</li>
@@ -666,7 +666,7 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 							<li><a href="index.php?v=d&p=backup&rescue=1"><i class="far fa-save"></i> {{Sauvegarde}}</a></li>
 							<li><a href="index.php?v=d&p=cron&rescue=1"><i class="fas fa-tasks"></i> {{Moteur de tâches}}</a></li>
 							<li><a href="index.php?v=d&p=log&rescue=1"><i class="far fa-file"></i> {{Log}}</a></li>
-							<li><a class="disabled">Jeedom v<?php echo jeedom::version(); ?></a></li>
+							<li><a class="disabled">Jeedom v<?php echo secureXSS(jeedom::displayVersion()); ?></a></li>
 						</ul>
 					</nav>
 				</div>
