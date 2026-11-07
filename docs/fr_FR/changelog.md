@@ -1,5 +1,55 @@
 # Changelog Jeedom V4.5
 
+# 4.5.4 (Jee-Limad, branche alpha)
+
+Version dérivée de Jeedom 4.5.3 (fork Jee-Limad). Les correctifs repris de Jeedom sont liés à leur pull request d'origine.
+
+## Sécurité
+
+- Les sessions sont revérifiées à chaque requête : un compte désactivé, passé en « accès local uniquement » ou rétrogradé perd l'accès sans attendre la fin de sa session ([Détails](https://github.com/jeedom/core/pull/3520))
+- L'accès par `localhost` en IPv6 (`::1`) est reconnu comme local, comme `127.0.0.1` : la double authentification n'est plus demandée à tort ([Détails](https://github.com/jeedom/core/issues/3547))
+- L'adresse IP du client n'est lue dans `X-Forwarded-For` / `X-Real-IP` que si la requête vient d'un proxy de confiance déclaré (`security::trustedProxies`) ([Détails](https://github.com/jeedom/core/issues/3531))
+- Les commandes système (gestion des paquets, processus) protègent leurs arguments contre l'injection shell ([Détails](https://github.com/jeedom/core/pull/3574))
+- Le mot de passe Samba n'apparaît plus dans la ligne de commande : il passe par un fichier temporaire protégé, supprimé après usage ([Détails](https://github.com/jeedom/core/pull/3475))
+- Le HTML des infobulles est nettoyé, et les liens `javascript:`, `vbscript:` et `data:` y sont retirés ([Détails](https://github.com/jeedom/core/pull/3440))
+- Lot de correctifs de fuites de secrets et de contrôles d'accès (configuration, API, utilisateurs) ([#3482](https://github.com/jeedom/core/pull/3482), [#3500](https://github.com/jeedom/core/pull/3500), [#3507](https://github.com/jeedom/core/pull/3507), [#3576](https://github.com/jeedom/core/pull/3576), [#3580](https://github.com/jeedom/core/pull/3580))
+- La modale widget en mobile applique les mêmes contrôles d'accès que sur ordinateur ([Détails](https://github.com/jeedom/core/pull/3538))
+- Correctifs d'audit : traversée de chemin (modèles de scénarios), injection shell, XSS et CRLF dans les utilitaires PHP, `unsafe-eval` retiré de la CSP, `.git`/`.ssh` exclus du `chmod` de remise en ordre des droits
+- Modèle fail2ban optionnel et guide `docs/SECURITY-HARDENING.md`
+
+## Dashboard alternatif dashx
+
+- Nouveau dashboard `dashx` avec mise à jour en temps réel (SSE)
+- Les droits de l'utilisateur s'appliquent aux commandes et aux équipements affichés
+- Un code d'accès et une confirmation sont exigés avant d'exécuter une action
+
+## Corrections reprises de Jeedom
+
+- Scénarios : délais différés fractionnaires, cibles d'annulation manquantes, liens d'objet invalides des scénarios désactivés ([#3617](https://github.com/jeedom/core/pull/3617), [#3637](https://github.com/jeedom/core/pull/3637))
+- Événements et listeners : lecture des options, abonnements vidés, conservation des événements lors des conversions JSON ([#3615](https://github.com/jeedom/core/pull/3615), [#3624](https://github.com/jeedom/core/pull/3624))
+- Commandes et variables : références de commandes conservées dans les options JSON, notifications de variables entre portées ([#3620](https://github.com/jeedom/core/pull/3620), [#3619](https://github.com/jeedom/core/pull/3619))
+- Résumés d'objets à jour après l'enregistrement d'un objet ([#3618](https://github.com/jeedom/core/pull/3618))
+- Plugins et mises à jour : état des équipements après désactivations répétées, protections de relance actives par défaut, mises à jour bloquées exclues du compteur, version des dépendances alternatives conservée ([#3625](https://github.com/jeedom/core/pull/3625), [#3626](https://github.com/jeedom/core/pull/3626), [#3627](https://github.com/jeedom/core/pull/3627), [#3622](https://github.com/jeedom/core/pull/3622))
+- Base de données : succès des écritures et suppressions renvoyé, opérateurs de filtre reconnus seulement en préfixe, valeurs par défaut du schéma préservées, différences de clés primaires détectées et réparées ([#3633](https://github.com/jeedom/core/pull/3633), [#3634](https://github.com/jeedom/core/pull/3634), [#3635](https://github.com/jeedom/core/pull/3635), [#3636](https://github.com/jeedom/core/pull/3636))
+- Utilitaires : sélection JSON vide, marqueur de chiffrement reconnu seulement en préfixe, valeurs nulles préservées à l'import d'objets ([#3629](https://github.com/jeedom/core/pull/3629), [#3630](https://github.com/jeedom/core/pull/3630), [#3628](https://github.com/jeedom/core/pull/3628))
+- Timeline : sélection littérale des dossiers, dédoublonnage avant la rétention ([#3631](https://github.com/jeedom/core/pull/3631), [#3632](https://github.com/jeedom/core/pull/3632))
+- Messages : décodage des apostrophes ([#3621](https://github.com/jeedom/core/pull/3621))
+
+## Interface et thèmes
+
+- Nouveaux thèmes coreX_Blue, coreX_Zinc et tailwind ; couleurs des thèmes en design tokens (oklch), sans conflit entre thèmes
+- Boutons : liens `a.btn` remplacés par de vrais boutons, styles sémantiques homogènes
+- Mobile : connexion tactile, tableaux responsives, logs lisibles
+- Corrections : cases à cocher, lecture des couleurs `rgb()`, rafraîchissement des tables, fenêtre de configuration
+- Bouton de redémarrage d'Apache dans l'onglet Système de l'administration
+- CSS servi depuis les sources (fichiers minifiés supprimés)
+
+## Performances et système
+
+- moment.js (360 Ko) remplacé par day.js (22 Ko) ; requête N+1 du dashboard corrigée
+- Debian 13 : synchronisation de l'heure par chrony
+- Scripts PHP en arrière-plan : erreurs `sudo` corrigées (cohérence, restauration, nettoyage de la base, découpage des logs)
+
 # 4.5.3
 
 - Diverses corrections de bugs et optimisations
