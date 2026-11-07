@@ -1040,7 +1040,11 @@ jeedomUtils.sanitizeHTML = function(_html) {
   doc.querySelectorAll('script, style, iframe, object, embed, link, meta, form, base').forEach(el => el.remove())
   doc.body.querySelectorAll('*').forEach(el => {
     for (const attr of [...el.attributes]) {
-      if (attr.name.toLowerCase().startsWith('on')) {
+      const name = attr.name.toLowerCase()
+      const value = attr.value.replace(/[\u0000-\u001F\s]+/g, '').toLowerCase()
+      const isUrlAttr = ['href', 'src', 'xlink:href', 'action', 'formaction'].includes(name)
+      const isImgData = el.tagName === 'IMG' && name === 'src' && value.startsWith('data:image/') && !value.startsWith('data:image/svg')
+      if (name.startsWith('on') || (isUrlAttr && /^(javascript|vbscript|data):/.test(value) && !isImgData)) {
         el.removeAttribute(attr.name)
       }
     }
