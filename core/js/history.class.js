@@ -172,7 +172,7 @@ jeedom.history.graphUpdate = function(_params) {
       if (typeof cmd?.calcul === 'function') {
         value = cmd.calcul(value)
       }
-      if (jeedom.history.chart[chart].type == 'pie') {
+      if (jeedom.history.chart[chart].type === 'pie') {
         const point = jeedom.history.chart[chart].chart.series[0]?.points.find(p => p.id == cmd_id)
         if (point) {
           point.update(value)
