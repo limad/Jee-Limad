@@ -144,7 +144,6 @@ class repo_market {
 				$update->setType($repo->getType());
 				$update->setLocalVersion($repo->getDatetime($plugin['version']));
 				$update->setConfiguration('version', $plugin['version']);
-				$update->setConfiguration('user', null);
 				$update->save();
 				$update->doUpdate();
 				$nbInstall++;
