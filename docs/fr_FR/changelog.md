@@ -1,5 +1,17 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.4 (Jee-Limad, branche alpha)
+
+## Sécurité
+
+- Les options d'une mise à jour du core (API `jeedom::update`, centre de mises à jour) sont échappées avant d'être passées à `install/update.php`
+
+## Centre de mises à jour (repris de Jeedom)
+
+- Le message « De nouvelles mises à jour sont disponibles » suit l'état réel : mis à jour après chaque vérification ou mise à jour, retiré quand il n'y a plus rien à faire ([Détails](https://github.com/jeedom/core/pull/3410))
+- Une source de mise à jour introuvable ou inactive donne une erreur claire au lieu d'un échec silencieux ([Détails](https://github.com/jeedom/core/pull/3526))
+- Changer la source d'un plugin efface les réglages de l'ancienne source (dépôt, jeton GitHub…) ([Détails](https://github.com/jeedom/core/pull/3575))
+
 # 4.5.3.3 (Jee-Limad, branche alpha)
 
 ## Sécurité
