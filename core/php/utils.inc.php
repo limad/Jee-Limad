@@ -1272,11 +1272,16 @@ function isConnect($_right = '') {
 	if (!is_object($user)) {
 		return false;
 	}
-	if (!$_SESSION['user']->is_Connected()) {
+	// Etat relu en base a chaque appel : un compte desactive ou passe en
+	// « acces local uniquement » perd l'acces sans attendre la fin de sa session.
+	if (!$user->isValidAndEnabled()) {
+		return false;
+	}
+	if ($user->getOptions('localOnly', 0) == 1 && network::getUserLocation() != 'internal') {
 		return false;
 	}
 	if ($_right != '') {
-		return ($_SESSION['user']->getProfils() == $_right);
+		return ($user->getProfils() == $_right);
 	}
 	return true;
 }

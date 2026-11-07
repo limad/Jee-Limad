@@ -22,7 +22,7 @@ require_once __DIR__ . '/../../core/php/core.inc.php';
 class network {
 
 	public static function getUserLocation() {
-		$client_ip = self::getClientIp();
+		$client_ip = self::normalizeLocalityIp(self::getClientIp());
 		$jeedom_ip = self::getNetworkAccess('internal', 'ip', '', false);
 		if (!filter_var($jeedom_ip, FILTER_VALIDATE_IP)) {
 			return 'external';
@@ -41,6 +41,25 @@ class network {
 		}
 		$match = $jeedom_ips[0] . '.' . $jeedom_ips[1] . '.' . $jeedom_ips[2] . '.*';
 		return netMatch($match, $client_ip) ? 'internal' : 'external';
+	}
+
+	/**
+	 * Ramene les formes IPv6 d'une adresse IPv4 a l'IPv4, pour comparer avec network::localip
+	 * (jeedom/core#3547) : le loopback ::1 compte comme 127.0.0.1, ::ffff:a.b.c.d comme a.b.c.d.
+	 * ::1 n'est donc interne que si 127.0.0.1 l'est dans la configuration.
+	 */
+	public static function normalizeLocalityIp($_ip) {
+		$ip = trim((string) $_ip);
+		if ($ip === '::1') {
+			return '127.0.0.1';
+		}
+		if (stripos($ip, '::ffff:') === 0) {
+			$v4 = substr($ip, 7);
+			if (filter_var($v4, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+				return $v4;
+			}
+		}
+		return $ip;
 	}
 
 	public static function getClientIp() {
