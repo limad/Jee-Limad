@@ -1,5 +1,13 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.2 (Jee-Limad, branche alpha)
+
+## Sécurité
+
+- Les mots de passe sont hachés avec l'algorithme natif de PHP (`password_hash`, bcrypt) au lieu de SHA-512 sans sel. Les comptes existants sont migrés automatiquement à leur prochaine connexion, sans changer de mot de passe ; la migration est notée dans le log `audit` ([Détails](https://github.com/jeedom/core/pull/3476))
+- La connexion n'accepte plus le hash SHA-512 du mot de passe à la place du mot de passe lui-même ([Détails](https://github.com/jeedom/core/pull/3476))
+- La régénération du jeton d'accès d'un utilisateur ne provoque plus de double sauvegarde ([Détails](https://github.com/jeedom/core/pull/3470))
+
 # 4.5.3.1 (Jee-Limad, branche alpha)
 
 Version dérivée de Jeedom 4.5.3 (fork Jee-Limad). Numérotation : version officielle de base + numéro de fork (`4.5.3.1`, `4.5.3.2`…), le nom du fork est dans `core/config/fork`. Les correctifs repris de Jeedom sont liés à leur pull request d'origine.
