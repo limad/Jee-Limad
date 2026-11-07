@@ -1,5 +1,16 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.3 (Jee-Limad, branche alpha)
+
+## Sécurité
+
+- Scénarios : un utilisateur non administrateur ne peut plus lister, lire, modifier ni importer des scénarios ou des modèles via l'AJAX ; il garde l'affichage des widgets, leur ordre et le lancement autorisé. L'ordre et la taille envoyés sont assainis ([Détails](https://github.com/jeedom/core/pull/3584))
+
+## Corrections reprises de Jeedom
+
+- Scénarios : un déclencheur entouré d'espaces ou de retours à la ligne est reconnu ([Détails](https://github.com/jeedom/core/pull/3494))
+- Scénarios : timeout vide toléré après lecture en base (PHP 8), `save()` renvoie le résultat réel ([Détails](https://github.com/jeedom/core/pull/3393))
+
 # 4.5.3.2 (Jee-Limad, branche alpha)
 
 ## Sécurité
