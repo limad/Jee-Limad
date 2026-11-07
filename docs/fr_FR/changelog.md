@@ -1,5 +1,15 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.5 (Jee-Limad, branche alpha)
+
+## Historique et graphiques (repris de Jeedom)
+
+- Les valeurs lues dans les archives d'historique sont rattachées à la table `historyArch` : les modifier ou les supprimer agit sur la bonne table ([Détails](https://github.com/jeedom/core/pull/3377), PR encore ouverte chez Jeedom)
+- Une période (« 1 semaine »…) avec une date de fin se compte à partir de cette date de fin, et non plus d'aujourd'hui ([Détails](https://github.com/jeedom/core/pull/3458))
+- Calculs d'historique : clé numérique correcte pour les valeurs décimales ([Détails](https://github.com/jeedom/core/pull/3399))
+- Graphiques en direct : transformations appliquées et camemberts mis à jour ([Détails](https://github.com/jeedom/core/pull/3434)), échelle Y recalculée et garde-fous ([Détails](https://github.com/jeedom/core/pull/3437)), plus de mise à jour pendant un zoom ([Détails](https://github.com/jeedom/core/pull/3451)), zone en pointillé retirée à l'arrivée d'une nouvelle valeur ([Détails](https://github.com/jeedom/core/pull/3456))
+- La valeur d'une commande n'est plus modifiée par son affichage ; balises HTML retirées dans le tableau des commandes ([Détails](https://github.com/jeedom/core/pull/3452))
+
 # 4.5.3.4 (Jee-Limad, branche alpha)
 
 ## Sécurité
