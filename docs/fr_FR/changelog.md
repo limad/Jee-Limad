@@ -1,5 +1,24 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.6 (Jee-Limad, branche alpha)
+
+## Mises à jour du core
+
+- Les scripts de migration (`install/update/X.php`) suivent la numérotation à 4 chiffres du fork : chaque script est lancé une seule fois, quand le core atteint sa version (`4.5.4.php` à partir de 4.5.4.1), et non plus en avance
+
+## Debian 13 et installation (repris de Jeedom, adapté à Debian 11 à 13)
+
+- Santé : le contrôle « Version OS » accepte Debian 11 à 13 (`os::max` manquait et le faisait échouer) ; le compteur de processus tués par manque de mémoire lit le cgroup dans un conteneur ([Détails](https://github.com/jeedom/core/pull/3483), [#3595](https://github.com/jeedom/core/pull/3595))
+- Paquets : liste mise à jour (plus de `software-properties-common`, absent de Debian 13, ni de paquets Python 2), espeak-ng ou espeak, libcurl4t64 ou libcurl4 ([Détails](https://github.com/jeedom/core/pull/3483))
+- Le serveur NTP saisi dans la configuration est utilisé par la resynchronisation de l'heure ([Détails](https://github.com/jeedom/core/pull/3483))
+- Installation : plus de redémarrage nécessaire (tmpfs `/tmp/jeedom` monté tout de suite, Apache relancé pour les nouveaux groupes), attente du verrou apt/dpkg, droits de `/etc/cron.d`, composer sans `HOME` ([#3544](https://github.com/jeedom/core/pull/3544), [#3535](https://github.com/jeedom/core/pull/3535), [#3537](https://github.com/jeedom/core/pull/3537), [#3612](https://github.com/jeedom/core/pull/3612))
+- Gestion des paquets : utilisation d'apt revue, diagnostic d'installation plus clair ([Détails](https://github.com/jeedom/core/pull/3558)) ; Node détecté même installé hors apt ([Détails](https://github.com/jeedom/core/pull/3605))
+- Sauvegarde : la sauvegarde du jour n'est plus supprimée pour respecter la taille maximale ([Détails](https://github.com/jeedom/core/pull/3542))
+- Les logs ne plantent plus quand la base de données est indisponible au démarrage ([Détails](https://github.com/jeedom/core/pull/3536))
+- Migration Debian 13 préparée pour 4.6.3 (`install/update/4.6.3.php`) ([Détails](https://github.com/jeedom/core/pull/3597))
+
+La liste sudo restreinte du fork et les arguments shell échappés sont conservés.
+
 # 4.5.3.5 (Jee-Limad, branche alpha)
 
 ## Historique et graphiques (repris de Jeedom)
