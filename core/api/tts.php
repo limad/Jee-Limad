@@ -92,7 +92,8 @@ try {
 		if (!com_shell::commandExists('avconv')) {
 			$avconv = 'ffmpeg';
 		}
-		$cmd = 'espeak -v' . escapeshellarg($voice) . ' ' . escapeshellarg($text) . ' --stdout | ' . $avconv . ' -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . escapeshellarg($filename) . ' > /dev/null 2>&1';
+		$espeak = com_shell::commandExists('espeak-ng') ? 'espeak-ng' : 'espeak';
+		$cmd = $espeak . ' -v' . escapeshellarg($voice) . ' ' . escapeshellarg($text) . ' --stdout | ' . $avconv . ' -i - -ar 44100 -ac 2 -ab 192k -f mp3 ' . escapeshellarg($filename) . ' > /dev/null 2>&1';
 		log::add('tts', 'debug', $cmd);
 		shell_exec($cmd);
 	} else if ($engine == 'pico') {

@@ -38,8 +38,8 @@ $output = array();
 
 /********************************Date****************************************/
 echo 'Check Date => ';
-echo date('Y-m-d')."\n";
-if(date('Y') < 2019 || date('Y') > 2040){
+echo date('Y-m-d') . "\n";
+if (date('Y') < 2019 || date('Y') > 2040) {
 	echo 'Invalid date found, try correct it';
 	exec('sudo chronyc -a makestep');
 }
@@ -47,8 +47,8 @@ if(date('Y') < 2019 || date('Y') > 2040){
 /********************************Free space****************************************/
 
 $freespace = round(disk_free_space(__DIR__ . '/../../') / disk_total_space(__DIR__ . '/../../') * 100);
-echo 'Check Free space ('.$freespace.'%) => ';
-if($freespace <= 1){
+echo 'Check Free space (' . $freespace . '%) => ';
+if ($freespace <= 1) {
 	echo "NOK\n";
 	echo "Trying cleaning\n";
 	if(file_exists(__DIR__.'/../../tmp')){
@@ -59,12 +59,12 @@ if($freespace <= 1){
 	}
 	$freespace = round(disk_free_space(__DIR__ . '/../../') / disk_total_space(__DIR__ . '/../../') * 100);
 	echo "Recheck Free space ('.$freespace.'%) => ";
-	if($freespace <= 1){
+	if ($freespace <= 1) {
 		echo "NOK. Please do somethink manually...\n";
-	}else{
+	} else {
 		echo "OK\n";
 	}
-}else{
+} else {
 	echo "OK\n";
 }
 

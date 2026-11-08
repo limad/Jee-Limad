@@ -44,8 +44,8 @@ service_action(){
   fi
 }
 
-version() { 
-  echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }'; 
+version() {
+  echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }';
 }
 
 step_1_upgrade() {
@@ -61,35 +61,31 @@ step_1_upgrade() {
 step_2_mainpackage() {
   echo "---------------------------------------------------------------------"
   echo "${YELLOW}Starting step 2 - packages${NORMAL}"
-  apt-get -y install software-properties-common
   apt-get update
   apt_install chrony ca-certificates unzip curl sudo cron
   apt-get -o Dpkg::Options::="--force-confdef" -y install plocate tar telnet wget logrotate dos2unix htop iotop vim iftop smbclient
-  apt-get -y install usermod
-  apt-get -y install visudo
-  apt-get -y install git
+  apt-get -y install git python3 python3-pip
   apt-get -y install libexpat1 ssl-cert
   apt-get -y install apt-transport-https
+  apt-get -y install gnupg
   apt-get -y install xvfb cutycapt xauth
   apt-get -y install at
   apt-get -y install mariadb-client
   if ! command -v mysqlcheck &>/dev/null && command -v mariadb-check &>/dev/null; then
     ln -sf /usr/bin/mariadb-check /usr/bin/mysqlcheck
   fi
-  apt-get -y install libav-tools
-  apt-get -y install espeak
-  apt-get -y install mbrola
+  apt-get -y install espeak-ng || apt-get -y install espeak
   apt-get -y install net-tools
   apt-get -y install nmap
   apt-get -y install ffmpeg
   apt-get -y install usbutils
   apt-get -y install gettext
-  apt-get -y install libcurl4t64
+  apt-get -y install libcurl4t64 || apt-get -y install libcurl4
   apt-get -y install chromium
   apt-get -y install librsync-dev
   apt-get -y install ssl-cert
+  apt-get -y install iputils-ping
   apt-get -y remove brltty
-  apt-get -y iputils-ping
   echo "${GREEN}step 2 - packages done${NORMAL}"
 }
 
@@ -211,14 +207,9 @@ step_7_jeedom_customization_mariadb() {
     echo "thread_cache_size = 16" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "tmp_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "max_heap_table_size = 48M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_type =1" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_limit = 2M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "query_cache_min_res_unit=3K" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_flush_method = O_DIRECT" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_flush_log_at_trx_commit = 2" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "innodb_log_file_size = 32M" >> /etc/mysql/conf.d/jeedom_my.cnf
-    echo "innodb_large_prefix = on" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "connect_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "wait_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
     echo "interactive_timeout = 600" >> /etc/mysql/conf.d/jeedom_my.cnf
@@ -344,7 +335,7 @@ step_10_jeedom_installation() {
       exit 1
     fi
   fi
-  
+
   echo "${GREEN}Step 10 - Jeedom install done${NORMAL}"
 }
 
