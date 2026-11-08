@@ -303,25 +303,32 @@ try {
 			$curentVersion = init('update::reapply');
 		} else {
 			echo "Upgrading from: {$curentVersion} to " . jeedom::version(true) . "\n";
-			while (version_compare(jeedom::version(), $curentVersion, '>')) {
-				$nextVersion = incrementVersion($curentVersion);
-				$updateScript = __DIR__ . '/update/' . $nextVersion . '.php';
-				if (file_exists($updateScript)) {
-					try {
-						echo "Update system into : " . $nextVersion . "...";
-						echo exec(system::getCmdSudo() . ' php ' . $updateScript);
-						echo "OK\n";
-					} catch (Exception $e) {
-						if (init('force') != 1) {
-							throw $e;
-						} else {
-							echo '***ERROR***' . $e->getMessage();
-						}
+			// Jee-Limad : versions à 4 chiffres (4.5.3.2…). On lance chaque script install/update/X.php
+			// tel que version enregistrée < X <= version du core, dans l'ordre (4.5.4.php à partir de 4.5.4.1).
+			$targetVersion = jeedom::version();
+			$updateScripts = array();
+			foreach (glob(__DIR__ . '/update/*.php') as $file) {
+				$scriptVersion = basename($file, '.php');
+				if (preg_match('/^\d+(\.\d+)+$/', $scriptVersion) && version_compare($scriptVersion, $curentVersion, '>') && version_compare($scriptVersion, $targetVersion, '<=')) {
+					$updateScripts[$scriptVersion] = $file;
+				}
+			}
+			uksort($updateScripts, 'version_compare');
+			foreach ($updateScripts as $scriptVersion => $updateScript) {
+				try {
+					echo "Update system into : " . $scriptVersion . "...";
+					echo exec(system::getCmdSudo() . ' php ' . escapeshellarg($updateScript));
+					echo "OK\n";
+				} catch (Exception $e) {
+					if (init('force') != 1) {
+						throw $e;
+					} else {
+						echo '***ERROR***' . $e->getMessage();
 					}
 				}
-				$curentVersion = $nextVersion;
-				config::save('version', $curentVersion);
+				config::save('version', $scriptVersion);
 			}
+			config::save('version', $targetVersion);
 		}
 		try {
 			echo "Check jeedom consistency...\n";
