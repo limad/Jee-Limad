@@ -194,7 +194,7 @@ function deleteSessionCookie() {
 }
 
 function registerCookieOptions(int $_expires): array {
-	return ['expires' => $_expires, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')];
+	return ['expires' => $_expires, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => ((isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') || (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off'))];
 }
 
 function updateRegisterDeviceActivity() {
