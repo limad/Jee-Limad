@@ -1,5 +1,22 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.9 (Jee-Limad, branche alpha)
+
+## Sécurité et comptes (repris de Jeedom)
+
+- Mot de passe perdu : depuis la page de connexion, un lien de réinitialisation valable 5 minutes et à usage unique est envoyé par la commande de notification configurée dans le profil de l'utilisateur ; une demande par IP toutes les 5 minutes, réponse identique que le compte existe ou non ([Détails](https://github.com/jeedom/core/pull/3519))
+- Appareils enregistrés (connexion sans double authentification) : durée de vie réglable de 7 à 90 jours (30 par défaut), prolongée à chaque utilisation, nettoyage automatique des appareils expirés ([Détails](https://github.com/jeedom/core/pull/3511))
+- Nouveau journal `audit` : connexions, déconnexions, échecs, changements de mot de passe ou de clé API, création et suppression d'utilisateurs ([Détails](https://github.com/jeedom/core/pull/3493)) ; dans le fork, il écrit au niveau info par défaut
+- Les cookies de connexion portent le drapeau `secure` aussi en HTTPS direct
+
+## Historique (repris de Jeedom)
+
+- Mode de rétention par commande numérique : dernière valeur du jour ou du mois, ou première et dernière ([Détails](https://github.com/jeedom/core/pull/3401))
+
+## Retrait
+
+- #3605 (détection de Node hors apt, ajoutée en 4.5.3.6) est retirée : la PR est encore ouverte et contestée chez Jeedom, et inutile ici
+
 # 4.5.3.8 (Jee-Limad, branche alpha)
 
 ## Interface (repris de Jeedom)
