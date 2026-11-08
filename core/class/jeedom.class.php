@@ -365,7 +365,14 @@ class jeedom {
 			'comment' => '',
 		);
 
-		$value = shell_exec('sudo dmesg | grep oom-killer | grep -v deprecated | wc -l');
+		// Dans un conteneur, memory.events compte les OOM du conteneur seul (dmesg y est souvent illisible
+		// ou rapporte tout l'hôte) ; sinon, on lit le journal du noyau.
+		$memoryEvents = '/sys/fs/cgroup/memory.events';
+		if (is_readable($memoryEvents) && preg_match('/^oom_kill\s+(\d+)/m', (string) file_get_contents($memoryEvents), $oomMatch)) {
+			$value = (int) $oomMatch[1];
+		} else {
+			$value = (int) trim((string) shell_exec('sudo dmesg 2>/dev/null | grep oom-killer | grep -v deprecated | wc -l'));
+		}
 		$return[] = array(
 			'name' => __('Mémoire suffisante', __FILE__),
 			'state' => ($value == 0),
