@@ -48,7 +48,7 @@ vendor/bin/phpstan analyse --no-progress --memory-limit=2G
 ## 4. CI GitHub Actions (`.github/workflows/ci.yml` & `eslint.yml`)
 Déclenchée sur `push` et `pull_request` vers la branche `alpha` (ainsi que `workflow_dispatch`) :
 - `php-lint` : vérification syntaxique `php -l` en PHP 7.4 et 8.4 (hors `3rdparty/`, `vendor/`, `plugins/`).
-- `composer` : `composer validate --no-check-publish` et `composer audit --locked --no-dev` (non bloquant).
+- `composer` : `composer validate --no-check-publish` et `composer audit --locked --no-dev` (bloquant).
 - `phpstan` : analyse statique PHPStan en PHP 8.4.
 - `phpunit` : suite unitaire sur MariaDB 11 (`jeedom_test`) exécutée sous `www-data`.
 - `smoke` : serveur `php -S` + parcours de connexion Playwright headless et vérification des `403` sur les chemins sensibles.

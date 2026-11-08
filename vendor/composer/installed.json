@@ -1470,25 +1470,26 @@
         },
         {
             "name": "symfony/expression-language",
-            "version": "v5.4.45",
-            "version_normalized": "5.4.45.0",
+            "version": "v5.4.54",
+            "version_normalized": "5.4.54.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/expression-language.git",
-                "reference": "a784b66edc4c151eb05076d04707906ee2c209a9"
+                "reference": "f371786ec76ca4bed6a7ec03802ba2525f6714db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/expression-language/zipball/a784b66edc4c151eb05076d04707906ee2c209a9",
-                "reference": "a784b66edc4c151eb05076d04707906ee2c209a9",
+                "url": "https://api.github.com/repos/symfony/expression-language/zipball/f371786ec76ca4bed6a7ec03802ba2525f6714db",
+                "reference": "f371786ec76ca4bed6a7ec03802ba2525f6714db",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2.5",
                 "symfony/cache": "^4.4|^5.0|^6.0",
+                "symfony/polyfill-php80": "^1.16",
                 "symfony/service-contracts": "^1.1|^2|^3"
             },
-            "time": "2024-10-04T14:55:40+00:00",
+            "time": "2026-10-09T11:21:43+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -1516,7 +1517,7 @@
             "description": "Provides an engine that can compile and evaluate expressions",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/expression-language/tree/v5.4.45"
+                "source": "https://github.com/symfony/expression-language/tree/v5.4.54"
             },
             "funding": [
                 {
@@ -1525,6 +1526,10 @@
                 },
                 {
                     "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
                     "type": "github"
                 },
                 {

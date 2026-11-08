@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.20 (Jee-Limad, branche alpha)
+
+## Sécurité
+
+- `symfony/expression-language` passe de 5.4.45 à 5.4.54 (CVE-2026-109449 : une expression très imbriquée pouvait faire planter le processus PHP). Cette bibliothèque évalue les expressions des scénarios. La CI bloque désormais toute dépendance de production signalée par `composer audit`
+
 # 4.5.3.19 (Jee-Limad, branche alpha)
 
 ## Corrections

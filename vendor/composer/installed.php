@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '__root__',
-        'pretty_version' => 'dev-alpha',
-        'version' => 'dev-alpha',
-        'reference' => '2dfed1429cd4485cd82b9ce75ee67b7e6e5d2c47',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => null,
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => 'dev-alpha',
-            'version' => 'dev-alpha',
-            'reference' => '2dfed1429cd4485cd82b9ce75ee67b7e6e5d2c47',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => null,
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -287,9 +287,9 @@
             'dev_requirement' => false,
         ),
         'symfony/expression-language' => array(
-            'pretty_version' => 'v5.4.45',
-            'version' => '5.4.45.0',
-            'reference' => 'a784b66edc4c151eb05076d04707906ee2c209a9',
+            'pretty_version' => 'v5.4.54',
+            'version' => '5.4.54.0',
+            'reference' => 'f371786ec76ca4bed6a7ec03802ba2525f6714db',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/expression-language',
             'aliases' => array(),
