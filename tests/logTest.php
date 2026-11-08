@@ -21,20 +21,20 @@ use PHPUnit\Framework\TestCase;
 class logTest extends TestCase {
 	public function getEngins() {
 		return array(
-			array('StreamHandler', 'Monolog\Handler\StreamHandler'),
-			array('foo', 'Monolog\Handler\StreamHandler'),
+			array('StreamHandler', 'Psr\Log\LoggerInterface'),
+			array('foo', 'Psr\Log\LoggerInterface'),
 		);
 	}
 	
 	public function getLogs() {
 		return array(
-			array('StreamHandler', 'foo', false, true),
+			array('StreamHandler', 'foo', false, null),
 		);
 	}
 	
 	public function getReturnListe() {
 		return array(
-			array('StreamHandler', array('http.error')),
+			array('StreamHandler', array('StreamHandler')),
 		);
 	}
 	
@@ -50,14 +50,14 @@ class logTest extends TestCase {
 	
 	public function getErrorReporting() {
 		return array(
-			array(Monolog\Logger::DEBUG, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
-			array(Monolog\Logger::INFO, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
-			array(Monolog\Logger::NOTICE, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
-			array(Monolog\Logger::WARNING, E_ERROR | E_WARNING | E_PARSE),
-			array(Monolog\Logger::ERROR, E_ERROR | E_PARSE),
-			array(Monolog\Logger::CRITICAL, E_ERROR | E_PARSE),
-			array(Monolog\Logger::ALERT, E_ERROR | E_PARSE),
-			array(Monolog\Logger::EMERGENCY, E_ERROR | E_PARSE),
+			array(100, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
+			array(200, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
+			array(250, E_ERROR | E_WARNING | E_PARSE | E_NOTICE),
+			array(300, E_ERROR | E_WARNING | E_PARSE),
+			array(400, E_ERROR | E_PARSE),
+			array(500, E_ERROR | E_PARSE),
+			array(550, E_ERROR | E_PARSE),
+			array(600, E_ERROR | E_PARSE),
 		);
 	}
 	
@@ -69,9 +69,8 @@ class logTest extends TestCase {
 	public function testLoggerHandler($name, $instance) {
 		config::save('log::engine', $name);
 		$logger = log::getLogger($name);
-		$this->assertInstanceOf('Monolog\\Logger', $logger);
-		$handler = $logger->popHandler();
-		$this->assertInstanceOf($instance, $handler);
+		$this->assertInstanceOf('log', $logger);
+		$this->assertInstanceOf($instance, $logger);
 	}
 	
 	/**
@@ -109,8 +108,10 @@ class logTest extends TestCase {
 	*/
 	public function testListe($engin, $return) {
 		config::save('log::engine', $engin);
-		log::add($engin, 'debug', 'toto');
+		log::removeAll();
+		log::add($engin, 'error', 'toto');
 		$this->assertSame($return, log::liste());
+		log::remove($engin);
 	}
 	
 	/**

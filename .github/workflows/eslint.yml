@@ -2,9 +2,9 @@ name: ESLint
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ alpha ]
   pull_request:
-    branches: [ develop ]
+    branches: [ alpha ]
 
 jobs:
   eslint:
@@ -27,7 +27,7 @@ jobs:
 
   update-baseline:
     needs: eslint
-    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/alpha'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -69,7 +69,7 @@ jobs:
 
             Cette PR a été générée automatiquement par le workflow CI.
           branch: update-eslint-baseline
-          base: develop
+          base: alpha
           delete-branch: true
           add-paths: |
             eslint-baseline.json

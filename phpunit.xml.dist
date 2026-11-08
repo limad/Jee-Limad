@@ -6,6 +6,7 @@
         <testsuite name="core">
             <directory suffix="Test.php">./tests</directory>
             <exclude>./tests/dashx</exclude>
+            <exclude>./tests/smoke</exclude>
         </testsuite>
     </testsuites>
     <groups>

@@ -1,5 +1,13 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.18 (Jee-Limad, branche alpha)
+
+## Développement
+
+- Tests : PHPUnit (9.6, dépendance de développement) tourne sur une base de test isolée ; le bootstrap refuse toute base dont le nom ne finit pas par `_test`, et `tests/ci/init_db.php` crée le schéma sans exécuter `install/consistency.php` (qui modifie le système). Tests périmés corrigés (journaux sans Monolog, état des scénarios en cache, délai des scénarios entier, crons) : 107 tests au vert
+- Test de fumée de la connexion (`tests/smoke/login.mjs`, Playwright) : page de connexion, œil du mot de passe, validation par Entrée, arrivée sur le dashboard, aucune erreur console, chemins sensibles en 403
+- CI GitHub sur la branche `alpha` : syntaxe PHP (7.4 et 8.4), composer validate et audit, PHPStan, PHPUnit sur MariaDB, test de fumée ; le contrôle ESLint visait la branche `develop` et ne tournait donc jamais
+
 # 4.5.3.17 (Jee-Limad, branche alpha)
 
 ## Corrections

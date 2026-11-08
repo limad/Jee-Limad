@@ -1,0 +1,206 @@
+name: CI
+
+on:
+  push:
+    branches: [ alpha ]
+  pull_request:
+    branches: [ alpha ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  php-lint:
+    name: PHP Lint (${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [ '7.4', '8.4' ]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP ${{ matrix.php }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mysql, pdo_mysql, curl, gd, xml, zip, mbstring, intl
+          ini-values: opcache.enable=0, opcache.enable_cli=0
+          coverage: none
+
+      - name: Syntaxe PHP
+        run: git ls-files '*.php' | grep -Ev '^(3rdparty|vendor|plugins)/' | xargs -r -n1 -P4 php -l
+
+  composer:
+    name: Composer Validate & Audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mysql, pdo_mysql, curl, gd, xml, zip, mbstring, intl
+          ini-values: opcache.enable=0, opcache.enable_cli=0
+          tools: composer:v2
+          coverage: none
+
+      - name: Composer validate
+        run: composer validate --no-check-publish
+
+      - name: Composer audit (non bloquant)
+        continue-on-error: true
+        run: composer audit --locked --no-dev
+
+  phpstan:
+    name: PHPStan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mysql, pdo_mysql, curl, gd, xml, zip, mbstring, intl
+          ini-values: opcache.enable=0, opcache.enable_cli=0
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dev dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyse --no-progress --memory-limit=2G
+
+  phpunit:
+    name: PHPUnit
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:11
+        env:
+          MARIADB_ROOT_PASSWORD: root
+          MARIADB_DATABASE: jeedom_test
+          MARIADB_USER: jeedom_test
+          MARIADB_PASSWORD: jeedom_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mysql, pdo_mysql, curl, gd, xml, zip, mbstring, intl
+          ini-values: opcache.enable=0, opcache.enable_cli=0
+          tools: composer:v2
+          coverage: none
+
+      - name: Install dev dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Préparation www-data et configuration de test
+        run: |
+          id -u www-data >/dev/null 2>&1 || sudo useradd -r -U -M -s /usr/sbin/nologin www-data
+          echo 'www-data ALL=(ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/www-data >/dev/null
+          sudo chmod 0440 /etc/sudoers.d/www-data
+          sed -e 's/#HOST#/127.0.0.1/g' \
+              -e 's/#PORT#/3306/g' \
+              -e 's/#DBNAME#/jeedom_test/g' \
+              -e 's/#USERNAME#/jeedom_test/g' \
+              -e 's/#PASSWORD#/jeedom_test/g' \
+              core/config/common.config.sample.php > core/config/common.config.php
+          # www-data doit pouvoir traverser /home/runner/work/... pour lire le dépôt
+          p="$GITHUB_WORKSPACE"; while [ "$p" != / ]; do sudo chmod o+x "$p"; p=$(dirname "$p"); done
+          sudo mkdir -p /tmp/jeedom-test log/scenarioLog data
+          sudo chown -R www-data:www-data /tmp/jeedom-test log data core/config
+
+      - name: Initialisation de la base de test
+        run: sudo -u www-data -E php tests/ci/init_db.php
+
+      - name: Exécution de PHPUnit
+        run: sudo -u www-data -E vendor/bin/phpunit
+
+  smoke:
+    name: Smoke Login (Playwright)
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:11
+        env:
+          MARIADB_ROOT_PASSWORD: root
+          MARIADB_DATABASE: jeedom_test
+          MARIADB_USER: jeedom_test
+          MARIADB_PASSWORD: jeedom_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: mysql, pdo_mysql, curl, gd, xml, zip, mbstring, intl
+          ini-values: opcache.enable=0, opcache.enable_cli=0
+          coverage: none
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Configuration de la base de test
+        run: |
+          id -u www-data >/dev/null 2>&1 || sudo useradd -r -U -M -s /usr/sbin/nologin www-data
+          echo 'www-data ALL=(ALL) NOPASSWD:ALL' | sudo tee /etc/sudoers.d/www-data >/dev/null
+          sudo chmod 0440 /etc/sudoers.d/www-data
+          sed -e 's/#HOST#/127.0.0.1/g' \
+              -e 's/#PORT#/3306/g' \
+              -e 's/#DBNAME#/jeedom_test/g' \
+              -e 's/#USERNAME#/jeedom_test/g' \
+              -e 's/#PASSWORD#/jeedom_test/g' \
+              core/config/common.config.sample.php > core/config/common.config.php
+          # www-data doit pouvoir traverser /home/runner/work/... pour lire le dépôt
+          p="$GITHUB_WORKSPACE"; while [ "$p" != / ]; do sudo chmod o+x "$p"; p=$(dirname "$p"); done
+          sudo mkdir -p /tmp/jeedom-test log/scenarioLog data
+          sudo chown -R www-data:www-data /tmp/jeedom-test log data core/config
+
+      - name: Installation de Playwright (tests/smoke)
+        working-directory: tests/smoke
+        run: |
+          npm ci || npm install
+          npx playwright install --with-deps chromium
+
+      - name: Démarrage serveur de test et exécution du smoke test
+        run: |
+          SMOKE_PWD="ci_$(openssl rand -hex 12)"
+          sudo -u www-data -E php tests/ci/init_db.php ci_admin "$SMOKE_PWD"
+          sudo -u www-data -E env PHP_CLI_SERVER_WORKERS=6 php -d opcache.enable_cli=0 -d opcache.preload= -S 127.0.0.1:8096 tests/ci/router.php >/tmp/jeedom-php-server.log 2>&1 &
+          SERVER_PID=$!
+          trap "sudo kill $SERVER_PID 2>/dev/null || true" EXIT
+          for i in $(seq 1 30); do
+            if curl -s -o /dev/null http://127.0.0.1:8096/index.php?v=d; then
+              break
+            fi
+            sleep 0.5
+          done
+          JEEDOM_BASE_URL=http://127.0.0.1:8096 JEEDOM_LOGIN=ci_admin JEEDOM_PASSWORD="$SMOKE_PWD" node tests/smoke/login.mjs

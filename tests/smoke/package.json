@@ -1,0 +1,12 @@
+{
+  "name": "jeedom-smoke-tests",
+  "private": true,
+  "type": "module",
+  "description": "Test de fumée Playwright du parcours de connexion Jeedom.",
+  "scripts": {
+    "smoke": "node login.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.48.2"
+  }
+}
