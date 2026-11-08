@@ -73,6 +73,10 @@ class log extends AbstractLogger {
 
 	public static function getLogLevel($_log) {
 		$specific_level = self::getConfig('log::level::' . $_log);
+		if ($_log == 'audit' && !is_array($specific_level)) {
+			// Jee-Limad : le journal d'audit écrit au niveau info tant qu'aucun niveau n'est réglé pour lui
+			return 200;
+		}
 		if (!is_array($specific_level) && strpos($_log, '_') !== false) {
 			preg_match('/(.*?)\_[a-zA-Z]*?$/m', $_log, $matches);
 			if (isset($matches[1])) {
@@ -267,6 +271,7 @@ class log extends AbstractLogger {
 		static $coreLogNames = [
 			'api',
 			'apipro',
+			'audit',
 			'backup',
 			'cmd',
 			'connection',
