@@ -543,7 +543,7 @@ class jeedom {
 		if ($_plugin == 'core') {
 			if (config::byKey('api') == '') {
 				config::save('api', config::genKey());
-				config::save('api::api::mode', $_mode, 'core');
+				config::save('api::core::mode', $_mode, 'core');
 			}
 			return config::byKey('api');
 		}
