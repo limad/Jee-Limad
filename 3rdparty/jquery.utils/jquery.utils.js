@@ -390,7 +390,7 @@ function isset() {
     var in_chrs = 'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
       out_chrs = 'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY',
       transl = {}
-    eval('var chars_rgx = /[' + in_chrs + ']/g')
+    var chars_rgx = new RegExp('[' + in_chrs + ']', 'g')
     for (var i = 0; i < in_chrs.length; i++) {
       transl[in_chrs.charAt(i)] = out_chrs.charAt(i)
     }
