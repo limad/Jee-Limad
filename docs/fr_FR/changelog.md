@@ -1,5 +1,18 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.8 (Jee-Limad, branche alpha)
+
+## Interface (repris de Jeedom)
+
+- Redimensionnement des widgets (dashboard, vues, designs) : la fin du redimensionnement déclenche enfin le recalage et l'enregistrement de la position ([#3439](https://github.com/jeedom/core/pull/3439)) ; dans un design zoomé, un widget redimensionné ne déborde plus et le zoom invalide retombe à 1 ([#3441](https://github.com/jeedom/core/pull/3441))
+- Designs : widgets d'une zone placés au bon endroit, plus de doublons ([Détails](https://github.com/jeedom/core/pull/3572))
+- Tableaux : le tri d'une colonne mélangeant nombres et texte ne casse plus l'ordre ([Détails](https://github.com/jeedom/core/pull/3413))
+- Fenêtres et menus : position de la fenêtre principale ([#3359](https://github.com/jeedom/core/pull/3359)), menus contextuels réaffichés correctement ([#3369](https://github.com/jeedom/core/pull/3369)), effacement des notifications limité à la fenêtre concernée ([#3414](https://github.com/jeedom/core/pull/3414))
+- Les événements Jeedom sont aussi diffusés en événements JavaScript natifs pour les plugins ([Détails](https://github.com/jeedom/core/pull/3416))
+- Recherche dans le sélecteur d'icônes ([Détails](https://github.com/jeedom/core/pull/3477))
+- Correctifs JavaScript divers (dashboard, objets, widgets, édition en masse, utilisateurs, scénarios) ([#3318](https://github.com/jeedom/core/pull/3318), [#3326](https://github.com/jeedom/core/pull/3326), [#3333](https://github.com/jeedom/core/pull/3333))
+- Interactions, API et designs 3D : plus d'erreur PHP lors du remplacement des tags ([#3407](https://github.com/jeedom/core/pull/3407), [#3408](https://github.com/jeedom/core/pull/3408))
+
 # 4.5.3.7 (Jee-Limad, branche alpha)
 
 ## Corrections reprises de Jeedom
