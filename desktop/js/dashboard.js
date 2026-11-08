@@ -344,7 +344,11 @@ if (!jeeFrontEnd.dashboard) {
 
           //synch category filter:
           if (self.url_category != 'all') {
+<<<<<<< ours
             const cat = self.url_category.charAt(0).toUpperCase() + self.url_category.slice(1)
+=======
+            let cat = self.url_category.charAt(0).toUpperCase() + self.url_category.slice(1)
+>>>>>>> theirs
             document.querySelector('#dashTopBar button.dropdown-toggle').addClass('warning')
             document.querySelectorAll('#categoryfilter .catFilterKey').forEach(function(element) {
               element.checked = false
