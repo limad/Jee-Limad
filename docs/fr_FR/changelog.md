@@ -1,5 +1,14 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.10 (Jee-Limad, branche alpha)
+
+## Graphiques (repris de Jeedom)
+
+- Bibliothèque Highstock/Highcharts passée de 10.3.2 à 12.6.0, réduite aux fichiers utilisés (768 fichiers / 13 Mo → 85 fichiers / 3 Mo) ; jsPDF de l'export PDF passe de 2.5.0 à 4.2.1 ([Détails](https://github.com/jeedom/core/pull/3457))
+- Export des graphiques en local (sans service externe) et export CSV activés
+- Plus de graduation pour une date sans donnée en bout d'axe ; la barre de défilement suit de nouveau son réglage ; noms complets des jours et des mois dans les axes et les infobulles
+- La politique de sécurité (CSP) du fork est conservée ; seule l'origine `blob:` est ajoutée aux images pour l'export
+
 # 4.5.3.9 (Jee-Limad, branche alpha)
 
 ## Sécurité et comptes (repris de Jeedom)
