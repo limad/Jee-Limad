@@ -1813,7 +1813,8 @@ const jeeCtxMenu = function(_options) {
       height: null,
       display: null
     })
-
+    _ctxMenu.seen()
+    
     //Is there use positionning:
     if (ctxInstance.options.position) {
       ctxInstance.options.position.apply(ctxInstance, [ctxInstance, _event.clientX, _event.clientY])
