@@ -1,5 +1,15 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.16 (Jee-Limad, branche alpha)
+
+## Sécurité
+
+- Échappement HTML des valeurs encore affichées brutes : noms et couleurs des objets, équipements et commandes dans l'historique, paquets de la vérification des dépendances, nom et icône du produit (page principale), options du profil dans les vues et la double authentification ; le nom du produit passe en JSON dans le script de la page. Constat repris de l'audit de sécurité du projet Jeedom X (S-02) ; les noms étaient déjà nettoyés à l'enregistrement, ce correctif ferme les autres chemins
+
+## Corrections
+
+- Historique : le groupe « Aucun » (équipements sans objet) avait un attribut HTML non fermé
+
 # 4.5.3.15 (Jee-Limad, branche alpha)
 
 ## Sécurité

@@ -108,12 +108,12 @@ $date = array(
 					$object = $eqLogic->getObject();
 					if (is_object($object)) {
 						if ($object->getConfiguration('useCustomColor') == 1) {
-							$_echo .= '<span class="label cursor displayObject" data-object_id="o' . $eqLogic->getObject_id() . '" style="background-color:' . $object->getDisplay('tagColor') . ';color:' . $object->getDisplay('tagTextColor', 'white') . '">' . $object->getName() . ' <i class="fas fa-arrow-circle-right"></i></span>';
+							$_echo .= '<span class="label cursor displayObject" data-object_id="o' . $eqLogic->getObject_id() . '" style="background-color:' . secureXSS($object->getDisplay('tagColor')) . ';color:' . secureXSS($object->getDisplay('tagTextColor', 'white')) . '">' . secureXSS($object->getName()) . ' <i class="fas fa-arrow-circle-right"></i></span>';
 						} else {
-							$_echo .= '<span class="label cursor displayObject labelObjectHuman" data-object_id="o' . $eqLogic->getObject_id() . '">' . $object->getName() . ' <i class="fas fa-arrow-circle-right"></i></span>';
+							$_echo .= '<span class="label cursor displayObject labelObjectHuman" data-object_id="o' . $eqLogic->getObject_id() . '">' . secureXSS($object->getName()) . ' <i class="fas fa-arrow-circle-right"></i></span>';
 						}
 					} else {
-						$_echo .= '<span class="label label-default cursor displayObject" data-object_id="o' . $eqLogic->getObject_id() . '>' . __('Aucun', __FILE__) . ' <i class="fas fa-arrow-circle-right"></i></span>';
+						$_echo .= '<span class="label label-default cursor displayObject" data-object_id="o' . $eqLogic->getObject_id() . '">' . __('Aucun', __FILE__) . ' <i class="fas fa-arrow-circle-right"></i></span>';
 					}
 					$_echo .= '<br/>';
 					$_echo .= '<div class="cmdList" data-object_id="o' . $eqLogic->getObject_id() . '" style="display:none;margin-left : 20px;">';
@@ -124,7 +124,7 @@ $date = array(
 				if ($cmd->getSubType() == 'string') {
 					$_echo .= '<i class="fas fa-share export" title="{{Exporter cet historique.}}"></i> ';
 				}
-				$_echo .= $cmd->getEqLogic()->getName() . ' - ' . $cmd->getName() . '</a></li>';
+				$_echo .= secureXSS($cmd->getEqLogic()->getName() . ' - ' . $cmd->getName()) . '</a></li>';
 				echo $_echo;
 				$object_id = $eqLogic->getObject_id();
 			}

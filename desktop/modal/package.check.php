@@ -87,16 +87,16 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt-get ')) > 0) {
         $_echo = '';
         $_echo .= '<tr>';
         $_echo .= '<td>';
-        $_echo .= $info['name'];
+        $_echo .= secureXSS($info['name']);
         $_echo .= '</td>';
         $_echo .= '<td>';
-        $_echo .= $info['type'];
+        $_echo .= secureXSS($info['type']);
         $_echo .= '</td>';
 
         if ($info['status'] == 1) {
           $_echo .= '<td class="alert-success">OK</td>';
         } elseif ($info['status'] == 2) {
-          $_echo .= '<td class="alert-success">OK (' . $info['alternative_found'] . ')</td>';
+          $_echo .= '<td class="alert-success">OK (' . secureXSS($info['alternative_found']) . ')</td>';
         } elseif ($info['status'] == 3) {
           $_echo .= '<td class="alert-success">{{Incompatible avec l\'OS}}</td>';
         } else {
@@ -117,7 +117,7 @@ if (count(system::ps('dpkg ')) > 0 || count(system::ps('apt-get ')) > 0) {
 
         $_echo .= '<td>';
         foreach ($info['needBy'] as $value) {
-          $_echo .= '<span class="label label-primary" style="display:inline-block;">' . $value . '</span> ';
+          $_echo .= '<span class="label label-primary" style="display:inline-block;">' . secureXSS($value) . '</span> ';
         }
         $_echo .= '</td>';
 

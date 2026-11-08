@@ -176,8 +176,8 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 <head>
 	<meta charset="utf-8">
 	<meta name="google" content="notranslate" />
-	<title><?php echo $title; ?></title>
-	<link rel="shortcut icon" href="<?php echo $configs['product_icon'] ?>">
+	<title><?php echo secureXSS($title); ?></title>
+	<link rel="shortcut icon" href="<?php echo secureXSS($configs['product_icon']) ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -204,7 +204,7 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 		jeeFrontEnd.clientServerDiffDatetime = (<?php echo microtime(TRUE); ?> * 1000) - jeeFrontEnd.clientDatetime.getTime();
 		jeeFrontEnd.serverTZoffsetMin = <?php echo getTZoffsetMin() ?>;
 		jeeFrontEnd.serverDatetime = <?php echo getmicrotime(); ?>;
-		JEEDOM_PRODUCT_NAME = '<?php echo $configs['product_name'] ?>';
+		JEEDOM_PRODUCT_NAME = <?php echo json_encode((string) $configs['product_name'], JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE) ?>;
 		JEEDOM_AJAX_TOKEN = '';
 	</script>
 	<?php
@@ -678,7 +678,7 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 				<?php
 				try {
 					if (!jeedom::isStarted()) {
-						echo '<div class="alert alert-danger">' . config::byKey('product_name') . ' {{est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.}}</div>';
+						echo '<div class="alert alert-danger">' . secureXSS(config::byKey('product_name')) . ' {{est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.}}</div>';
 					}
 					if (isset($plugin) && is_object($plugin)) {
 						include_file('desktop', $page, 'php', $plugin->getId());
