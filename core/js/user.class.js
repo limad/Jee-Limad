@@ -116,13 +116,8 @@ jeedom.user.isConnect = function (_params) {
   if (Math.round(+new Date() / 1000) > (jeedom.user.connectCheck + 300)) {
     const paramsRequired = [];
     const paramsSpecifics = {
-<<<<<<< ours
       pre_success: function(data) {
         if (data.state !== 'ok') {
-=======
-      pre_success: function (data) {
-        if (data.state != 'ok') {
->>>>>>> theirs
           return {
             state: 'ok',
             result: false

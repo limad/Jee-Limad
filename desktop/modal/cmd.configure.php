@@ -507,31 +507,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
-<<<<<<< ours
-              <div class="form-group">
-                <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
-                <div class="col-sm-6">
-                  <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
-                    <option value="avg">{{Moyenne}}</option>
-                    <option value="min">{{Minimum}}</option>
-                    <option value="max">{{Maximum}}</option>
-                    <option value="none">{{Aucun}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-md-3 col-sm-3 control-label">{{Limiter à une valeur toute les}}
-                <sup><i class="fas fa-question-circle" title="{{Limiter le nombre de valeurs historisées par la commande en temps réel (avant le lissage de la nuit). Attention un mode de lissage doit absolument être défini.}}"></i></sup>
-                </label>
-                <div class="col-sm-6">
-                  <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="history::smooth">
-                    <option value="">{{Default}}</option>
-                    <option value="-1">{{Aucun}}</option>
-                    <option value="60">{{1 min}}</option>
-                    <option value="300">{{5 min}}</option>
-                    <option value="600">{{10 min}}</option>
-                  </select>
-=======
                 <div class="form-group">
                   <label class="col-md-3 col-sm-3 control-label">{{Mode de rétention}}
                     <sup><i class="fas fa-question-circle" title="{{Limite l'historique à la dernière valeur, ou aux première et dernière valeurs, du jour ou du mois}}"></i></sup>
@@ -572,9 +547,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                       <option value="600">{{10 min}}</option>
                     </select>
                   </div>
->>>>>>> theirs
                 </div>
-              </div>
               <?php }
               ?>
               <div class="form-group">
@@ -1521,7 +1494,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         }
         return
       }
-<<<<<<< ours
 
       if (_target = event.target.closest('.cmdAttr[data-l2key="influx::enable"]')) {
         if (_target.jeeValue() == 1) {
@@ -1531,8 +1503,6 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         }
         return
       }
-=======
->>>>>>> theirs
     })
 
 
@@ -1541,17 +1511,12 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       let _target = null
 
       if (_target = event.target.closest('#bt_searchInfoCmdCalculValue')) {
-<<<<<<< ours
-        jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
-          document.querySelectorAll('.cmdAttr[data-l1key=configuration][data-l2key=calculValueOffset]')[0].insertAtCursor(result.human)
-=======
         jeedom.cmd.getSelectModal({
           cmd: {
             type: 'info'
           }
         }, function(result) {
           document.querySelector('.cmdAttr[data-l1key=configuration][data-l2key=calculValueOffset]').insertAtCursor(result.human)
->>>>>>> theirs
         })
       }
 

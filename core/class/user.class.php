@@ -505,15 +505,12 @@ class user {
 		}
 	}
 
-<<<<<<< ours
-=======
 	public function preUpdate(): void {
 		if (is_object($user = self::byLogin($this->getLogin())) && $user->getId() != $this->getId()) {
 			throw new Exception(__("Ce nom d'utilisateur existe déjà", __FILE__));
 		}
 	}
 
->>>>>>> theirs
 	public function preSave(): void {
 		if ($this->getLogin() == '') {
 			throw new Exception(__("Le nom d'utilisateur ne peut pas être vide", __FILE__));

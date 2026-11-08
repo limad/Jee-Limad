@@ -1,13 +1,10 @@
 <?php
-<<<<<<< ours
 $productConnectionImage = config::byKey('product_connection_image');
 if ($productConnectionImage != '' && strpos($productConnectionImage, '://') === false) {
 	$productConnectionImagePath = __DIR__ . '/../../' . parse_url($productConnectionImage, PHP_URL_PATH);
 	if (file_exists($productConnectionImagePath)) $productConnectionImage .= (strpos($productConnectionImage, '?') === false ? '?v=' : '&v=') . filemtime($productConnectionImagePath);
 }
-=======
 $mbState = config::byKey('mbState');
->>>>>>> theirs
 ?>
 <div id="wrap">
 	<div class="bodyLogin">

@@ -2497,51 +2497,42 @@ class cmd {
 
 	public function addHistoryValue($_value, $_datetime = '') {
 		if ($this->getIsHistorized() == 1 && ($_value === null || ($_value !== '' && $this->getType() == 'info' && $_value <= $this->getConfiguration('maxValue', $_value) && $_value >= $this->getConfiguration('minValue', $_value)))) {
+			$retentionMode = $this->getConfiguration('historyRetentionMode', 'none');
+			if ($retentionMode !== 'none') {
+				$ts = ($_datetime !== '') ? strtotime($_datetime) : time();
+				$dayEnd = date('Y-m-d 23:59:59', $ts);
+
+				switch ($retentionMode) {
+					case 'current_day':
+						history::removes($this->getId(), date('Y-m-d 00:00:00', $ts), $dayEnd);
+						break;
+
+					case 'current_day_keep_first':
+						$histories = $this->getHistory(date('Y-m-d 00:00:00', $ts), $dayEnd);
+						if (count($histories) > 1) {
+							history::removes($this->getId(), date('Y-m-d H:i:s', strtotime($histories[0]->getDatetime()) + 1), $dayEnd);
+						}
+						break;
+
+					case 'current_month':
+						history::removes($this->getId(), date('Y-m-01 00:00:00', $ts), $dayEnd);
+						break;
+
+					case 'current_month_keep_first':
+						$histories = $this->getHistory(date('Y-m-01 00:00:00', $ts), $dayEnd);
+						if (count($histories) > 1) {
+							history::removes($this->getId(), date('Y-m-d H:i:s', strtotime($histories[0]->getDatetime()) + 1), $dayEnd);
+						}
+						break;
+				}
+			}
+
 			$history = new history();
 			$history->setCmd_id($this->getId());
 			$history->setValue($_value);
 			$history->setDatetime($_datetime);
 			return $history->save($this);
 		}
-<<<<<<< ours
-=======
-
-		$retentionMode = $this->getConfiguration('historyRetentionMode', 'none');
-		if ($retentionMode !== 'none') {
-			$ts = ($_datetime !== '') ? strtotime($_datetime) : time();
-			$dayEnd = date('Y-m-d 23:59:59', $ts);
-
-			switch ($retentionMode) {
-				case 'current_day':
-					history::removes($this->getId(), date('Y-m-d 00:00:00', $ts), $dayEnd);
-					break;
-
-				case 'current_day_keep_first':
-					$histories = $this->getHistory(date('Y-m-d 00:00:00', $ts), $dayEnd);
-					if (count($histories) > 1) {
-						history::removes($this->getId(), date('Y-m-d H:i:s', strtotime($histories[0]->getDatetime()) + 1), $dayEnd);
-					}
-					break;
-
-				case 'current_month':
-					history::removes($this->getId(), date('Y-m-01 00:00:00', $ts), $dayEnd);
-					break;
-
-				case 'current_month_keep_first':
-					$histories = $this->getHistory(date('Y-m-01 00:00:00', $ts), $dayEnd);
-					if (count($histories) > 1) {
-						history::removes($this->getId(), date('Y-m-d H:i:s', strtotime($histories[0]->getDatetime()) + 1), $dayEnd);
-					}
-					break;
-			}
-		}
-
-		$history = new history();
-		$history->setCmd_id($this->getId());
-		$history->setValue($_value);
-		$history->setDatetime($_datetime);
-		$history->save($this);
->>>>>>> theirs
 	}
 
 	public function getStatistique($_startTime, $_endTime) {

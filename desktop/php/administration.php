@@ -2427,7 +2427,6 @@ $productName = config::byKey('product_name');
 	</div>
 	</div>
 
-<<<<<<< ours
 	<script>
 	document.getElementById('bt_securityTabConfigure2fa')?.addEventListener('click', function() {
 		jeeDialog.dialog({
@@ -2440,6 +2439,3 @@ $productName = config::byKey('product_name');
 	</script>
 
 	<?php include_file("desktop", "administration", "js"); ?>
-=======
-<?php include_file("desktop", "administration", "js"); ?>
->>>>>>> theirs

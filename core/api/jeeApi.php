@@ -1368,12 +1368,9 @@ try {
 	}
 
 	if ($jsonrpc->getMethod() == 'user::save') {
-<<<<<<< ours
-=======
 		if (is_object($_USER_GLOBAL) && !in_array($_USER_GLOBAL->getProfils(), array('admin'))) {
 			throw new Exception(__('Vous n\'avez pas les droits de faire cette action', __FILE__), -32701);
 		}
->>>>>>> theirs
 		user::raiseForInvalidLogin($params['login'] ?? '');
 
 		$user = user::byId($params['id']);

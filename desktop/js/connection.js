@@ -344,15 +344,9 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
   }
 
   if (_target = event.target.closest('a.bt_showPassConnection')) {
-<<<<<<< ours
-    event.stopPropagation();
-    const _el = event.target.matches('a.bt_showPassConnection') ? event.target : event.target.parentNode;
-    const input = _el.closest('.input-group').querySelector('input');
-=======
     event.stopPropagation()
-    var _el = event.target.matches('a.bt_showPassConnection') ? event.target : event.target.parentNode
-    var input = _el.closest('.input-group').querySelector('input')
->>>>>>> theirs
+    const _el = event.target.matches('a.bt_showPassConnection') ? event.target : event.target.parentNode
+    const input = _el.closest('.input-group').querySelector('input')
 
     if (input.getAttribute('type') === 'password') {
       input.setAttribute('type', 'text')
@@ -360,11 +354,7 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
       input.setAttribute('type', 'password')
     }
 
-<<<<<<< ours
-    const icon = _el.querySelector('.fas');
-=======
-    var icon = _el.querySelector('.fas')
->>>>>>> theirs
+    const icon = _el.querySelector('.fas')
     if (icon.classList.contains('fa-eye-slash')) {
       icon.classList.remove('fa-eye-slash')
       icon.classList.add('fa-eye')
@@ -377,27 +367,10 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
 })
 
 document.getElementById('wrap').addEventListener('keypress', function(event) {
-<<<<<<< ours
-  if (event.which != 13) return
+  if (event.key !== 'Enter') return
   let _target = null
   if (_target = event.target.closest('#in_change_passwordToo')) {
     jeeFrontEnd.connection.changeValidate(event)
-    return
-  }
-
-  if (_target = event.target.closest('#in_twoFactorCode')) {
-    jeeFrontEnd.connection.loginValidate(event)
-    return
-  }
-
-  if (_target = event.target.closest('input')) {
-    jeeFrontEnd.connection.loginValidate(event)
-=======
-  if (event.key != 'Enter') return
-  var _target = null
-  if (_target = event.target.closest('#in_change_passwordToo')) {
-    jeeFrontEnd.connection.changeValidate(event)
->>>>>>> theirs
     return
   }
 })
