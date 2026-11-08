@@ -21,6 +21,7 @@ jeedom.display = {}
 jeedom.connect = 0
 jeedom.theme = {}
 jeedom.changes_timeout = null
+jeedom.vanillaEvents = ['scenario::update', 'ui::update', 'jeedom::gotoplan', 'jeedom::alert', 'jeedom::alertPopup', 'jeedom::coloredIcons', 'message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify', 'checkThemechange', 'changeTheme']
 
 jeedom.loadCSS = function(_href) {
   const existing = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).find(function(_link) {
@@ -100,14 +101,10 @@ jeedom.changes = function() {
           continue
         }
         if (isset(data.result[i].option)) {
-          if (['scenario::update', 'ui::update', 'jeedom::gotoplan', 'jeedom::alert', 'jeedom::alertPopup', 'jeedom::coloredIcons', 'message::refreshMessageNumber', 'update::refreshUpdateNumber', 'notify', 'checkThemechange', 'changeTheme'].includes(data.result[i].name)) {
+          if (jeedom.vanillaEvents.includes(data.result[i].name) || typeof jQuery !== 'function') {
             document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
           } else {
-            if (typeof jQuery === 'function') {
-              $('body').trigger(data.result[i].name, data.result[i].option)
-            } else {
-              document.body.dispatchEvent(new CustomEvent(data.result[i].name, { detail: data.result[i].option }))
-            }
+            $('body').trigger(data.result[i].name, data.result[i].option)
           }
         } else {
           document.body.dispatchEvent(new CustomEvent(data.result[i].name))
