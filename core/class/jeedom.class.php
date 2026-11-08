@@ -1007,6 +1007,19 @@ class jeedom {
 		return self::version() . ($fork !== '' ? ' · ' . $fork : '');
 	}
 
+	/**
+	 * Lien vers la documentation. Jee-Limad : format du fork (base/langue/section/page), utilisé par
+	 * la page de connexion depuis #3519 (upstream a513b7c14 utilise un autre format de site).
+	 */
+	public static function getDocUrl(string $_section, string $_page = '', ?string $_version = null): string {
+		$url = config::byKey('doc::base_url', 'core') . '/' . config::byKey('language', 'core', 'fr_FR') . '/' . $_section . '/';
+		if ($_section == 'core') {
+			$version = ($_version != '') ? $_version : self::version();
+			$url .= implode('.', array_slice(explode('.', $version), 0, 2)) . '/';
+		}
+		return $url . $_page;
+	}
+
 	/**********************START AND DATE MANAGEMENT*************************************************************/
 
 	public static function stop() {
