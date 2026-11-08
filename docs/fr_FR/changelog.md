@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.13 (Jee-Limad, branche alpha)
+
+## Sécurité
+
+- Liste sudo de www-data (`install/sudoers.jeedom`) : les scripts de plugins ne sont plus autorisés que dans `plugins/*/resources/`, comme sur la box en service (avant : tout le dossier `plugins/`). Les scripts de dépendances et d'aide des plugins restent dans `resources/`, selon la convention Jeedom
+
 # 4.5.3.12 (Jee-Limad, branche alpha)
 
 ## Designs 3D (repris de Jeedom)
