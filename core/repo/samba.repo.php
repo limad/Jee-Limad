@@ -132,7 +132,9 @@ class repo_samba {
 
 	private static function makeSambaCommand(string $_cmd, string $_type = 'backup'): string {
 		$authfile = self::createAuthFile($_type);
-		return '(' . system::getCmdSudo() . 'smbclient  -t 120 ' . config::byKey('samba::' . $_type . '::share') . ' -A ' . $authfile . ' -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"; ec=$?; ' . system::getCmdSudo() . 'rm -f ' . $authfile . '; exit $ec)';
+		// smbclient et le fichier d'identifiants (créé par www-data, 0600) n'ont pas besoin de root ;
+		// avec sudo, le « rm -f » final était refusé et le mot de passe restait dans le dossier temporaire.
+		return '(smbclient -t 120 ' . config::byKey('samba::' . $_type . '::share') . ' -A ' . $authfile . ' -I ' . config::byKey('samba::' . $_type . '::ip') . ' -c "' . $_cmd . '"; ec=$?; rm -f ' . escapeshellarg($authfile) . '; exit $ec)';
 	}
 
 	/**

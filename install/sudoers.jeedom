@@ -28,6 +28,8 @@ www-data ALL=(ALL) NOPASSWD: /usr/bin/stat
 
 # --- Services / système ---
 www-data ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart apache2
+# Nettoyage des sessions PHP expirées (script Debian, sans argument)
+www-data ALL=(ALL) NOPASSWD: /usr/lib/php/sessionclean
 www-data ALL=(ALL) NOPASSWD: /usr/bin/chronyc *
 www-data ALL=(ALL) NOPASSWD: /usr/sbin/service networking restart
 www-data ALL=(ALL) NOPASSWD: /usr/sbin/shutdown -fh now
@@ -63,6 +65,10 @@ www-data ALL=(ALL) NOPASSWD: /usr/bin/pip
 www-data ALL=(ALL) NOPASSWD: /usr/bin/pip3
 www-data ALL=(ALL) NOPASSWD: /usr/bin/python3
 www-data ALL=(ALL) NOPASSWD: /usr/bin/npm
+# npm est lancé avec NODE_OPTIONS=--dns-result-order=ipv4first : on garde cette seule variable
+Defaults!/usr/bin/npm env_keep += "NODE_OPTIONS"
+www-data ALL=(ALL) NOPASSWD: /usr/bin/yarn
+www-data ALL=(ALL) NOPASSWD: /usr/local/bin/yarn
 www-data ALL=(ALL) NOPASSWD: /usr/local/bin/composer
 
 # --- Process / réseau ---
@@ -71,6 +77,7 @@ www-data ALL=(ALL) NOPASSWD: /bin/kill
 www-data ALL=(ALL) NOPASSWD: /usr/bin/killall
 www-data ALL=(ALL) NOPASSWD: /usr/bin/fuser
 www-data ALL=(ALL) NOPASSWD: /usr/sbin/ip
+www-data ALL=(ALL) NOPASSWD: /usr/bin/ip
 www-data ALL=(ALL) NOPASSWD: /usr/bin/ping
 
 # --- Scripts Jeedom contrôlés (plugins / resources — escaladables) ---

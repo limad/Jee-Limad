@@ -1597,7 +1597,10 @@ function listSession() {
 	}
 	foreach ($sessions as $session) {
 		try {
-			$data = com_shell::execute(system::getCmdSudo() . ' cat ' . session_save_path() . '/' . $session);
+			// Les fichiers de session appartiennent à www-data : lecture directe, sans sudo
+			// (autoriser « sudo cat » permettrait de lire n'importe quel fichier en root).
+			$file = session_save_path() . '/' . basename($session);
+			$data = (is_file($file) && is_readable($file)) ? (string) @file_get_contents($file) : '';
 			if ($data == '') {
 				continue;
 			}
@@ -1610,7 +1613,7 @@ function listSession() {
 				continue;
 			}
 			$session_id = str_replace('sess_', '', $session);
-			$timestamp = com_shell::execute(system::getCmdSudo() . ' stat -c "%Y" ' . session_save_path() . '/' . $session);
+			$timestamp = @filemtime($file);
 			$return[$session_id] = array(
 				'datetime' => date('Y-m-d H:i:s', (int) $timestamp),
 			);

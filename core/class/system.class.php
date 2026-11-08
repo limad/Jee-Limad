@@ -876,13 +876,13 @@ class system {
 				return self::getCmdSudo() . self::getCmdPython3($_plugin) . ' -m pip install --force-reinstall --upgrade ' . escapeshellarg($_package);
 			case 'npm':
 				if (strpos($_package, '/') === false) {
-					return self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install --force -g ' . escapeshellarg($_package);
+					return 'NODE_OPTIONS=--dns-result-order=ipv4first ' . self::getCmdSudo() . 'npm install --force -g ' . escapeshellarg($_package);
 				}
 				$packageDir = __DIR__ . "/../../{$_package}";
 				if (!file_exists($packageDir . '/package.json')) {
 					return '';
 				}
-				return 'cd ' . escapeshellarg($packageDir) . ' && rm -rf node_modules;' . self::getCmdSudo() . ' NODE_OPTIONS=--dns-result-order=ipv4first npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
+				return 'cd ' . escapeshellarg($packageDir) . ' && rm -rf node_modules;' . 'NODE_OPTIONS=--dns-result-order=ipv4first ' . self::getCmdSudo() . 'npm install;' . self::getCmdSudo() . ' chown -R www-data:www-data *';
 			case 'yarn':
 				if (strpos($_package, '/') === false) {
 					return self::getCmdSudo() . ' yarn global add ' . escapeshellarg($_package);

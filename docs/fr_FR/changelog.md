@@ -1,5 +1,16 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.17 (Jee-Limad, branche alpha)
+
+## Corrections
+
+- Utilisateurs : la liste « Sessions actives » se remplit de nouveau. Les fichiers de session sont lus directement (ils appartiennent au serveur web), au lieu d'un `sudo cat` refusé par la liste sudo
+- Connexion : le nettoyage des sessions expirées (au-delà de 500 sessions) est autorisé dans la liste sudo (`/usr/lib/php/sessionclean`)
+- Dépendances npm : l'installation ne bute plus sur le refus de sudo de passer `NODE_OPTIONS` ; la variable est placée avant sudo et seule elle est conservée pour npm (`env_keep`)
+- Dépendances yarn : `yarn` ajouté à la liste sudo
+- Sauvegarde Samba : `smbclient` tourne sans sudo. Il n'en a pas besoin, et le fichier temporaire d'identifiants n'était pas supprimé (le `sudo rm -f` était refusé) : le mot de passe restait dans le dossier temporaire
+- Liste sudo : `ip` autorisé aussi sous `/usr/bin/ip` (emplacement réel sur Debian 13)
+
 # 4.5.3.16 (Jee-Limad, branche alpha)
 
 ## Sécurité
