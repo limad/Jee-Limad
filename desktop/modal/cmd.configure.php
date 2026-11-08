@@ -507,6 +507,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                 </div>
               </div>
               <?php if ($JEEDOM_INTERNAL_CONFIG['cmd']['type']['info']['subtype'][$cmd->getSubType()]['isHistorized']['canBeSmooth']) { ?>
+<<<<<<< ours
               <div class="form-group">
                 <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}</label>
                 <div class="col-sm-6">
@@ -530,13 +531,55 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
                     <option value="300">{{5 min}}</option>
                     <option value="600">{{10 min}}</option>
                   </select>
+=======
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Mode de rétention}}
+                    <sup><i class="fas fa-question-circle" title="{{Limite l'historique à la dernière valeur, ou aux première et dernière valeurs, du jour ou du mois}}"></i></sup>
+                  </label>
+                  <div class="col-sm-6">
+                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyRetentionMode">
+                      <option value="none">{{Normal}}</option>
+                      <option value="current_day">{{Dernière valeur du jour}}</option>
+                      <option value="current_day_keep_first">{{Première et dernière valeur du jour}}</option>
+                      <option value="current_month">{{Dernière valeur du mois}}</option>
+                      <option value="current_month_keep_first">{{Première et dernière valeur du mois}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Mode de lissage}}
+                    <sup><i class="fas fa-question-circle" title="{{Mode de lissage des historiques (défaut : moyenne). Attention : aucun lissage conserve toutes les données en historique au risque de remplir la base}}"></i></sup>
+                  </label>
+                  <div class="col-sm-6">
+                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historizeMode">
+                      <option value="avg">{{Moyenne}}</option>
+                      <option value="min">{{Minimum}}</option>
+                      <option value="max">{{Maximum}}</option>
+                      <option value="none">{{Aucun}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-3 col-sm-3 control-label">{{Limiter à une valeur toute les}}
+                    <sup><i class="fas fa-question-circle" title="{{Regroupe les valeurs reçues dans une même fenêtre de temps en une seule. Nécessite un mode de lissage pour fonctionner}}"></i></sup>
+                  </label>
+                  <div class="col-sm-6">
+                    <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="history::smooth">
+                      <option value="">{{Default}}</option>
+                      <option value="-1">{{Aucun}}</option>
+                      <option value="60">{{1 min}}</option>
+                      <option value="300">{{5 min}}</option>
+                      <option value="600">{{10 min}}</option>
+                    </select>
+                  </div>
+>>>>>>> theirs
                 </div>
               </div>
               <?php }
               ?>
               <div class="form-group">
                 <label class="col-md-3 col-sm-3 control-label">{{Purger historique}}
-                  <sup><i class="fas fa-question-circle" title="{{si plus vieux que}}"></i></sup>
+                  <sup><i class="fas fa-question-circle" title="{{Purge les historiques si plus anciens que}}"></i></sup>
                 </label>
                 <div class="col-sm-6">
                   <select class="form-control cmdAttr" data-l1key="configuration" data-l2key="historyPurge">
@@ -1023,7 +1066,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
             version: 'dashboard',
             widgetName: _widgetName,
             error: function(error) {
-              document.getElementById('optionalParamHelp').empty().textContent = '{{Pas de description des paramètres optionnels sur ce Widget.}}'
+              document.getElementById('optionalParamHelp').empty().textContent = '{{Pas de description des paramètres optionnels sur ce widget}}'
             },
             success: function(data) {
               document.getElementById('optionalParamHelp').empty().innerHTML = data.html
@@ -1249,7 +1292,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_configuration')?.addEventListener('click', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('#bt_cmdConfigureCopyHistory')) {
         jeedom.cmd.getSelectModal({
           cmd: {
@@ -1290,7 +1333,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
      */
     //cmd information tab
     document.getElementById('cmd_information')?.addEventListener('click', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('#bt_cmdConfigureChooseIcon')) {
         let displayIconParent = _target.closest('.displayIconParent')
         let icon = displayIconParent.querySelector('[data-l2key="icon"] > i')
@@ -1461,7 +1504,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_information')?.addEventListener('dblclick', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('.cmdAttr[data-l1key="display"][data-l2key="icon"]')) {
         _target.innerHTML = ''
         return
@@ -1469,15 +1512,16 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_information')?.addEventListener('change', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('.cmdAttr[data-l2key="timeline::enable"]')) {
         if (_target.jeeValue() == 1) {
-          document.querySelectorAll('.cmdAttr[data-l2key="timeline::folder"]').seen()
+          document.querySelector('.cmdAttr[data-l2key="timeline::folder"]').seen()
         } else {
-          document.querySelectorAll('.cmdAttr[data-l2key="timeline::folder"]').unseen()
+          document.querySelector('.cmdAttr[data-l2key="timeline::folder"]').unseen()
         }
         return
       }
+<<<<<<< ours
 
       if (_target = event.target.closest('.cmdAttr[data-l2key="influx::enable"]')) {
         if (_target.jeeValue() == 1) {
@@ -1487,16 +1531,27 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
         }
         return
       }
+=======
+>>>>>>> theirs
     })
 
 
     //cmd configuration tab
     document.getElementById('cmd_configuration')?.addEventListener('click', function(event) {
-      var _target = null
+      let _target = null
 
       if (_target = event.target.closest('#bt_searchInfoCmdCalculValue')) {
+<<<<<<< ours
         jeedom.cmd.getSelectModal({cmd: {type: 'info'}}, function(result) {
           document.querySelectorAll('.cmdAttr[data-l1key=configuration][data-l2key=calculValueOffset]')[0].insertAtCursor(result.human)
+=======
+        jeedom.cmd.getSelectModal({
+          cmd: {
+            type: 'info'
+          }
+        }, function(result) {
+          document.querySelector('.cmdAttr[data-l1key=configuration][data-l2key=calculValueOffset]').insertAtCursor(result.human)
+>>>>>>> theirs
         })
       }
 
@@ -1551,8 +1606,30 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
       }
     })
 
+    document.getElementById('cmd_configuration')?.addEventListener('change', function(event) {
+      let _target = null
+      if (_target = event.target.closest('.cmdAttr[data-l2key="historyRetentionMode"]')) {
+        const historizeMode = document.querySelector('.cmdAttr[data-l2key="historizeMode"]')
+        const historizeSmooth = document.querySelector('.cmdAttr[data-l2key="history::smooth"]')
+        if (_target.jeeValue() == 'none') {
+          const previousMode = jeephp2js.md_cmdConfigure_cmdInfo.configuration.historizeMode
+          historizeMode.jeeValue(previousMode && previousMode !== 'none' ? previousMode : 'avg')
+          historizeMode.closest('.form-group').seen()
+          const previousSmooth = jeephp2js.md_cmdConfigure_cmdInfo.configuration['history::smooth']
+          historizeSmooth.jeeValue(previousSmooth && previousSmooth !== '-1' ? previousSmooth : '')
+          historizeSmooth.closest('.form-group').seen()
+        } else {
+          historizeMode.closest('.form-group').unseen()
+          historizeMode.jeeValue('none')
+          historizeSmooth.closest('.form-group').unseen()
+          historizeSmooth.jeeValue('-1')
+        }
+        return
+      }
+    })
+
     document.getElementById('cmd_configuration')?.addEventListener('focusout', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('.cmdAction.expressionAttr[data-l1key="cmd"]')) {
         var type = _target.getAttribute('data-type')
         var expression = _target.closest('.' + type).getJeeValues('.expressionAttr')
@@ -1569,7 +1646,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
 
     //cmd display tab
     document.getElementById('cmd_display')?.addEventListener('click', function(event) {
-      var _target = null
+      let _target = null
 
       if (_target = event.target.closest('#bt_addWidgetParametersCmd')) {
         var tr = '<tr>'
@@ -1599,7 +1676,7 @@ $configEqDisplayType = jeedom::getConfiguration('eqLogic:displayType');
     })
 
     document.getElementById('cmd_display')?.addEventListener('change', function(event) {
-      var _target = null
+      let _target = null
       if (_target = event.target.closest('select[data-l1key="template"][data-l2key="dashboard"]')) {
         jeeFrontEnd.md_displayCmdConfigure.displayWidgetHelp(_target.value)
         return
