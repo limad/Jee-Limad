@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.21 (Jee-Limad, branche alpha)
+
+## Corrections
+
+- Démarrage : quand Apache démarre avant MariaDB (redémarrage de la box), les requêtes AJAX reçues dans ces quelques secondes finissaient en erreur fatale `Class "ajax" not found`. Le chargement du core lit la langue en base avant d'avoir enregistré son autoloader ; l'erreur de connexion remontait alors à la page, qui ne pouvait plus charger la classe `ajax` pour répondre. L'autoloader est désormais enregistré en premier : la page renvoie une erreur JSON normale et le navigateur réessaie. Le même ordre existe chez Jeedom
+
 # 4.5.3.20 (Jee-Limad, branche alpha)
 
 ## Sécurité

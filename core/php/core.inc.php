@@ -24,6 +24,11 @@ require_once __DIR__ . '/../class/jeedom.class.php';
 require_once __DIR__ . '/../class/plugin.class.php';
 require_once __DIR__ . '/../class/translate.class.php';
 require_once __DIR__ . '/utils.inc.php';
+/* Autoloader enregistré avant tout accès à la base : include_file() traduit les fichiers inclus et lit alors la
+ * langue en base. Si la base n'est pas encore prête (démarrage), l'exception remonte au catch de la page AJAX, qui
+ * doit pouvoir charger la classe ajax pour répondre au lieu d'une erreur fatale « Class "ajax" not found ».
+ * jeedomAutoload est déclarée plus bas, au niveau du fichier : elle existe déjà ici. */
+spl_autoload_register('jeedomAutoload', true, true);
 include_file('core', 'jeedom', 'config');
 include_file('core', 'compatibility', 'config');
 include_file('core', 'utils', 'class');
@@ -76,4 +81,3 @@ function jeedomAutoload(string $_classname): void {
 	}
 }
 
-spl_autoload_register('jeedomAutoload', true, true);
