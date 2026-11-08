@@ -1593,11 +1593,7 @@ const jeeDialog = (function() {
           setBackDrop(_options, true)
           this.dialog._jeeDialog.options.onShown()
           this.dialog.seen()
-<<<<<<< ours
           if (!_options.retainPosition || this.dialog.style.width === '') {
-=======
-          if (!_options.retainPosition || this.dialog.style.width == '') {
->>>>>>> theirs
             if (!_options.fullScreen) {
               this.dialog.setAttribute('data-maximize', '0')
             } else {

@@ -192,11 +192,7 @@ if (!jeeFrontEnd.plan) {
           } else {
             const img = document.querySelector('.div_displayObject img')
             if (img != null) {
-<<<<<<< ours
               const style = {
-=======
-              var style = {
->>>>>>> theirs
                 height: img.getAttribute('data-sixe_y') + 'px',
                 width: img.getAttribute('data-sixe_x') + 'px'
               }

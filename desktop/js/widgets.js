@@ -398,53 +398,21 @@ try {
       })
     },
     success: function(_widgets) {
-<<<<<<< ours
       if (_widgets.length === 0) return
 
       const widgetsList = { info: [], action: [] }
       for (const wg of _widgets) {
         if (wg.type === 'info') widgetsList.info.push([wg.name, wg.id])
         if (wg.type === 'action') widgetsList.action.push([wg.name, wg.id])
-=======
-      if (_widgets.length == 0) return
-
-      const widgetsList = []
-      widgetsList['info'] = []
-      widgetsList['action'] = []
-      let groupWidgets, items, wg, wgName, wgId
-      for (let i = 0; i < _widgets.length; i++) {
-        wg = _widgets[i]
-        if (wg.type == 'info') widgetsList['info'].push([wg.name, wg.id])
-        if (wg.type == 'action') widgetsList['action'].push([wg.name, wg.id])
->>>>>>> theirs
       }
 
       //set context menu!
       const contextmenuitems = {}
       let uniqId = 0
-<<<<<<< ours
       for (const group of ['info', 'action']) {
         const items = {}
         for (const [wgName, wgId] of widgetsList[group]) {
           items[uniqId++] = { name: wgName, id: wgId }
-=======
-      for (const group in widgetsList) {
-        groupWidgets = widgetsList[group]
-        items = {}
-        for (const index in groupWidgets) {
-          wg = groupWidgets[index]
-          wgName = wg[0]
-          wgId = wg[1]
-          items[uniqId] = {
-            'name': wgName,
-            'id': wgId
-          }
-          uniqId++
-        }
-        contextmenuitems[group] = {
-          'name': group,
-          'items': items
->>>>>>> theirs
         }
         contextmenuitems[group] = { name: group, items }
       }

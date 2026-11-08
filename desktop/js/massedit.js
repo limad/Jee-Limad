@@ -121,19 +121,11 @@ if (!jeeFrontEnd.massedit) {
     getEdits: function() {
       const edits = []
       document.querySelectorAll('#edit > .edit').forEach(function(edit) {
-<<<<<<< ours
         const key = edit.querySelector('select.selectEditKey').value
         const value = edit.querySelector('.selectEditValue').value
         let jValue = false
         if (!edit.querySelector('.inputEditJValue').disabled) {
           jValue = edit.querySelector('.inputEditJValue').value
-=======
-        var key = edit.querySelector('select.selectEditKey').value
-        var value = edit.querySelector('.selectEditValue').value
-        var jValue = false
-        if (!edit.querySelector('.inputEditJValue').disabled) {
-          var jValue = edit.querySelector('.inputEditJValue').value
->>>>>>> theirs
         }
         edits.push({
           'key': key,
