@@ -83,7 +83,7 @@ if (!jeeFrontEnd.view) {
               const pckry = new Packery(_zone, {
                 isLayoutInstant: true,
                 transitionDuration: 0,
-            })
+              })
               pckry.getItemElements().forEach(function(itemElem, idx) {
                 itemElem.setAttribute('data-vieworder', idx + 1)
               })
@@ -223,7 +223,8 @@ if (!jeeFrontEnd.view) {
             Packery.data(element.closest('.eqLogicZone')).layout()
           },
           stop: function(event, element) {
-            jeedomUtils.positionEqLogic(element.getAttribute('data-eqlogic_id'), false)
+            if (element.hasAttribute('data-eqlogic_id')) jeedomUtils.positionEqLogic(element.getAttribute('data-eqlogic_id'), false, false)
+            if (element.hasAttribute('data-scenario_id')) jeedomUtils.positionEqLogic(element.getAttribute('data-scenario_id'), false, true)
             Packery.data(element.closest('.eqLogicZone')).layout()
           }
         })
