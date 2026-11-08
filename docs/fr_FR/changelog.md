@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.12 (Jee-Limad, branche alpha)
+
+## Designs 3D (repris de Jeedom)
+
+- Un équipement placé sur un design 3D ne provoque plus d'erreur fatale à la recherche de ses utilisations (« Utilisé par », confirmation avant suppression) : appel à une méthode inexistante corrigé ([Détails](https://github.com/jeedom/core/pull/3653), encore ouverte chez Jeedom ; bug établi dans le code du fork)
+
 # 4.5.3.11 (Jee-Limad, branche alpha)
 
 ## Sécurité
