@@ -813,8 +813,12 @@ const jeeDialog = (function() {
     })
     return toast
   }
-  exports.clearToasts = function() {
-    document.querySelectorAll('.jeeToastContainer')?.remove()
+  exports.clearToasts = function(_scope) {
+    document.querySelectorAll('.jeeToastContainer').forEach(function(_container) {
+      if (!_scope || _scope.contains(_container)) {
+        _container.remove()
+      }
+    })
     return true
   }
 
@@ -1614,7 +1618,7 @@ const jeeDialog = (function() {
         close: function() {
           this.dialog._jeeDialog.options.beforeClose()
           this.dialog.querySelector('div.jeeDialogContent').empty()
-          jeeDialog.clearToasts()
+          jeeDialog.clearToasts(this.dialog)
           this.dialog.unseen()
           this.dialog._jeeDialog.options.onClose()
           this.dialog.removeClass('active')
