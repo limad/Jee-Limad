@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.11 (Jee-Limad, branche alpha)
+
+## Sécurité
+
+- `'unsafe-eval'` est réellement retiré de la politique de sécurité (CSP) : le retrait précédent ne touchait que `script-src-attr` et `script-src-elem`, où il est sans effet, et laissait `eval` autorisé par `script-src`. Le seul usage d'`eval` du core (suppression des accents dans les recherches des fenêtres d'insertion) est réécrit sans `eval`
+
 # 4.5.3.10 (Jee-Limad, branche alpha)
 
 ## Graphiques (repris de Jeedom)
