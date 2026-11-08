@@ -1,5 +1,15 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.7 (Jee-Limad, branche alpha)
+
+## Corrections reprises de Jeedom
+
+- Batterie des équipements : niveau borné entre 0 et 100, valeur non numérique ignorée, alertes recalculées quand on change les seuils et au plus une notification par jour et par niveau ([Détails](https://github.com/jeedom/core/pull/3543))
+- La clé API du core générée à la première utilisation enregistre son mode sous la bonne clé (`api::core::mode`) ([Détails](https://github.com/jeedom/core/pull/3623))
+- Ports série : les chemins `/dev/serial/by-id` sans nœud `ttyUSB`/`ttyACM` (périphérique passé à un conteneur) sont proposés ([Détails](https://github.com/jeedom/core/pull/3609))
+- Chargement des classes : une classe `plugin_xxx` est cherchée dans son propre fichier `xxx.class.php` du plugin ([Détails](https://github.com/jeedom/core/pull/3444))
+- Import d'équipement : option pour enregistrer sans relancer les traitements de sauvegarde ([Détails](https://github.com/jeedom/core/pull/3471))
+
 # 4.5.3.6 (Jee-Limad, branche alpha)
 
 ## Mises à jour du core
