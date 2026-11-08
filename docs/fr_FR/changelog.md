@@ -1,5 +1,12 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.19 (Jee-Limad, branche alpha)
+
+## Corrections
+
+- Dépôt : la règle `log/` du `.gitignore` excluait aussi `vendor/psr/log`. Un clone frais de Jee-Limad n'avait donc pas cette bibliothèque et le core s'arrêtait au chargement (`Class "Psr\Log\AbstractLogger" not found`). Les règles `data/`, `backup/`, `log/`, `tmp/` et `plugins/` ne visent plus que la racine, et `vendor/psr/log` est suivi
+- CI : PHPUnit a le droit d'écrire dans le dépôt (tests du shell) ; le contrôle ESLint n'ouvre plus de PR automatique de baseline (jeton en lecture seule) ; actions passées en v5
+
 # 4.5.3.18 (Jee-Limad, branche alpha)
 
 ## Développement

@@ -23,7 +23,7 @@ jobs:
       matrix:
         php: [ '7.4', '8.4' ]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup PHP ${{ matrix.php }}
         uses: shivammathur/setup-php@v2
@@ -40,7 +40,7 @@ jobs:
     name: Composer Validate & Audit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup PHP 8.4
         uses: shivammathur/setup-php@v2
@@ -62,7 +62,7 @@ jobs:
     name: PHPStan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup PHP 8.4
         uses: shivammathur/setup-php@v2
@@ -98,7 +98,7 @@ jobs:
           --health-timeout=5s
           --health-retries=10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup PHP 8.4
         uses: shivammathur/setup-php@v2
@@ -132,7 +132,14 @@ jobs:
         run: sudo -u www-data -E php tests/ci/init_db.php
 
       - name: Exécution de PHPUnit
-        run: sudo -u www-data -E vendor/bin/phpunit
+        run: |
+          # shellTest crée des fichiers dans le répertoire courant : www-data doit pouvoir écrire dans le dépôt
+          sudo chown -R www-data:www-data "$GITHUB_WORKSPACE"
+          sudo -u www-data -E vendor/bin/phpunit
+
+      - name: Rendre le dépôt à l'utilisateur du runner
+        if: always()
+        run: sudo chown -R "$(id -u):$(id -g)" "$GITHUB_WORKSPACE"
 
   smoke:
     name: Smoke Login (Playwright)
@@ -153,7 +160,7 @@ jobs:
           --health-timeout=5s
           --health-retries=10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Setup PHP 8.4
         uses: shivammathur/setup-php@v2
@@ -164,7 +171,7 @@ jobs:
           coverage: none
 
       - name: Setup Node.js 22
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: '22'
 

@@ -3,22 +3,22 @@ core/config/common.config.php
 data/jeedom_encryption.key
 
 # === DONNÉES UTILISATEUR (instance-spécifique) ===
-data/
-backup/
-log/
+/data/
+/backup/
+/log/
 
 # === DB DUMPS ===
 *.sql
 DB_backup.sql
 
 # === RUNTIME / TEMPORAIRE ===
-tmp/
+/tmp/
 cache.tar.gz
 *.tar.gz
 *.tar
 
 # === PLUGINS (instance-spécifique) ===
-plugins/
+/plugins/
 
 # === BUILD DEPS (npm install les recrée) ===
 node_modules/

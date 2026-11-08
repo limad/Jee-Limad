@@ -52,4 +52,5 @@ Déclenchée sur `push` et `pull_request` vers la branche `alpha` (ainsi que `wo
 - `phpstan` : analyse statique PHPStan en PHP 8.4.
 - `phpunit` : suite unitaire sur MariaDB 11 (`jeedom_test`) exécutée sous `www-data`.
 - `smoke` : serveur `php -S` + parcours de connexion Playwright headless et vérification des `403` sur les chemins sensibles.
-- `eslint.yml` : vérification et mise à jour du baseline ESLint sur `alpha`.
+- `eslint.yml` : contrôle ESLint par rapport à `eslint-baseline.json`. Après avoir corrigé des erreurs, régénérer la
+  baseline en local (`npm run lint:baseline`) et la commiter : la CI n'ouvre plus de PR automatique.
