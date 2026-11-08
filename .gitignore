@@ -59,3 +59,4 @@ desktop/php/cssOverview copy*.php
 /vendor/theseer/
 /.composer-home/
 /.phpunit.result.cache
+/.phpstan.cache/
