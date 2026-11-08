@@ -253,8 +253,8 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 	//include_file('3rdparty', 'highstock/modules/solid-gauge', 'js');
 	include_file('3rdparty', 'highstock/modules/exporting', 'js');
 	include_file('3rdparty', 'highstock/modules/accessibility', 'js');
-	//include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
-	//include_file('3rdparty', 'highstock/modules/export-data', 'js');
+	include_file('3rdparty', 'highstock/modules/offline-exporting', 'js');
+	include_file('3rdparty', 'highstock/modules/export-data', 'js');
 
 	include_file('3rdparty', 'nouislider/nouislider', 'js');
 	// noUiSlider stays global: dashboard widgets and shared UI helpers can instantiate sliders during initial render.
