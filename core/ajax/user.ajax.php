@@ -94,11 +94,64 @@ try {
 		ajax::success($_SESSION['user']->getHash());
 	}
 
+	if (init('action') == 'askPassword') {
+		$responseTime = microtime(true) + rand(2, 5);
+		$username = trim(strip_tags(init('username')));
+		$current_ip = network::getClientIp();
+		$resetPasswordThrottleKey = "security::resetPassword::{$current_ip}";
+		if ($current_ip != '' && cache::byKey($resetPasswordThrottleKey)->getValue('') != '') {
+			log::audit(__('Demande de réinitialisation du mot de passe ignorée : trop de demandes', __FILE__), [
+				'login' => $username,
+				'ip' => $current_ip,
+			]);
+			throw new Exception(__('Trop de demandes, veuillez patienter quelques minutes avant de réessayer', __FILE__));
+		}
+		if ($current_ip != '') {
+			cache::set($resetPasswordThrottleKey, 1, 300);
+		}
+		try {
+			$user = user::byLogin($username);
+			if (!is_object($user)) {
+				throw new Exception(__('Utilisateur inconnu', __FILE__));
+			}
+			$user->sendResetPasswordLink();
+		} catch (Exception $e) {
+			log::audit(
+				__('Demande de réinitialisation du mot de passe', __FILE__),
+				[
+					'login' => $username,
+					'ip' => $current_ip,
+					'exception' => $e->getMessage()
+				],
+				'warning'
+			);
+		}
+		if (microtime(true) < $responseTime) {
+			time_sleep_until($responseTime);
+		}
+		ajax::success();
+	}
+
+	if (init('action') == 'resetPasswordFromToken') {
+		try {
+			$result = user::resetPasswordFromToken(init('token'), init('newPassword'));
+			ajax::success($result);
+		} catch (Exception $e) {
+			log::audit(
+				__('Erreur lors de la réinitialisation du mot de passe', __FILE__),
+				[
+					'ip' => network::getClientIp(),
+					'exception' => $e->getMessage()
+				],
+				'warning'
+			);
+			ajax::success(false);
+		}
+	}
+
 	if (!isConnect()) {
 		throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 	}
-
-	ajax::init();
 
 	if (init('action') == 'validateTwoFactorCode') {
 		unautorizedInDemo();

@@ -649,7 +649,7 @@ class log extends AbstractLogger {
 		}
 	}
 
-	public static function audit(string $message, array $context = array()): void {
+	public static function audit(string $message, array $context = array(), string $level = 'info'): void {
 		$parts = [];
 		foreach ($context as $key => $value) {
 			if (is_scalar($value)) {
@@ -659,6 +659,6 @@ class log extends AbstractLogger {
 			}
 		}
 		$suffix = $parts ? ' [' . implode(' | ', $parts) . ']' : '';
-		self::add('audit', 'info', $message . $suffix);
+		self::add('audit', $level, $message . $suffix);
 	}
 }

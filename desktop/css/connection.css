@@ -94,6 +94,7 @@ body {
   margin: 0;
 }
 
+<<<<<<< ours
 /* ____________________Wrapper / panels */
 .veen > .wrapper {
   position: relative;
@@ -110,6 +111,18 @@ body {
 .veen .wrapper > .form-group {
   padding: 0 28px 24px;
   background: transparent;
+=======
+.veen .wrapper .submit {
+	padding-top: 10px !important;
+}
+
+.veen .wrapper #login,
+.veen .wrapper #lostpassword,
+.veen .wrapper #resetpassword {
+	padding-top: 20%;
+	visibility: visible;
+	text-align: left;
+>>>>>>> theirs
 }
 
 .veen .wrapper #login,
@@ -231,6 +244,7 @@ body {
   flex: 0 0 42px;
 }
 
+<<<<<<< ours
 .veen .wrapper .input-group .btn {
   width: 42px;
   min-width: 42px !important;
@@ -242,6 +256,15 @@ body {
   border-color: #d7dde3;
   background: #f3f5f7;
   color: #56616d;
+=======
+#in_login_password,
+#in_login_username,
+#in_lostpassword_username,
+#in_reset_password,
+#in_reset_passwordToo,
+#cb_storeConnection {
+	background: rgb(240, 240, 240) !important;
+>>>>>>> theirs
 }
 
 .veen .wrapper .input-group .btn i {
@@ -312,6 +335,7 @@ select:-webkit-autofill {
   box-shadow: none;
 }
 
+<<<<<<< ours
 .veen button:focus {
   outline: none;
 }
@@ -349,10 +373,20 @@ select:-webkit-autofill {
 
 .btn_help:hover {
   border-color: #93cc01;
+=======
+@media (max-width: 1000px) {
+
+	.veen .wrapper #login,
+	.veen .wrapper #lostpassword,
+	.veen .wrapper #resetpassword {
+		padding-top: 10px;
+	}
+>>>>>>> theirs
 }
 
 /* ____________________Responsive */
 @media (max-width: 767px) {
+<<<<<<< ours
   body {
     overflow: auto;
   }
@@ -430,3 +464,59 @@ select:-webkit-autofill {
     max-width: 390px;
   }
 }
+=======
+	.veen {
+		padding: 5px;
+		margin: 0;
+		width: 100%;
+		display: block;
+	}
+
+	.veen>.wrapper {
+		position: relative;
+		height: auto;
+		top: 0;
+		left: 0;
+		width: 100%;
+	}
+
+	.veen>div {
+		display: inline-block;
+	}
+
+	.splits {
+		width: 50%;
+		background: #fff !important;
+		float: left;
+	}
+
+	.splits button {
+		width: 100%;
+		border-radius: 0;
+		background: #505050;
+		border: 0;
+		opacity: .7;
+	}
+
+	.splits button.active {
+		opacity: 1;
+	}
+
+	.splits button.active {
+		opacity: 1;
+		background: #ff4931;
+	}
+
+	.splits.rgstr-btn button.active {
+		background: #e0b722;
+	}
+
+	.splits p {
+		display: none;
+	}
+
+	.veen>.wrapper.move {
+		left: 0%;
+	}
+}
+>>>>>>> theirs

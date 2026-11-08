@@ -1,9 +1,13 @@
 <?php
+<<<<<<< ours
 $productConnectionImage = config::byKey('product_connection_image');
 if ($productConnectionImage != '' && strpos($productConnectionImage, '://') === false) {
 	$productConnectionImagePath = __DIR__ . '/../../' . parse_url($productConnectionImage, PHP_URL_PATH);
 	if (file_exists($productConnectionImagePath)) $productConnectionImage .= (strpos($productConnectionImage, '?') === false ? '?v=' : '&v=') . filemtime($productConnectionImagePath);
 }
+=======
+$mbState = config::byKey('mbState');
+>>>>>>> theirs
 ?>
 <div id="wrap">
 	<div class="bodyLogin">
@@ -16,7 +20,7 @@ if ($productConnectionImage != '' && strpos($productConnectionImage, '://') === 
 				<img class="img-responsive" src="<?php echo $productConnectionImage ?>" alt="<?php echo config::byKey('product_name') ?: 'Jeedom'; ?>">
 			</div>
 			<div class="wrapper">
-				<div id="login" tabindex="503" class="form-group">
+				<div class="form-group" id="login">
 					<form onsubmit="return false;">
 						<h3>{{Connexion}}
 							<?php
@@ -38,7 +42,7 @@ if ($productConnectionImage != '' && strpos($productConnectionImage, '://') === 
 								</span>
 							</div>
 						</div>
-						<div class="passwd" id="div_twoFactorCode" style="display:none;">
+						<div class="passwd hidden" id="div_twoFactorCode">
 							<label>{{Code à 2 facteurs}}</label>
 							<input type="text" id="in_twoFactorCode" autocomplete="off">
 						</div>
@@ -48,18 +52,51 @@ if ($productConnectionImage != '' && strpos($productConnectionImage, '://') === 
 						<div class="submit center">
 							<button class="dark btn-lg" id="bt_login_validate"><i class="fas fa-sign-in-alt"></i> {{Connexion}}</button>
 						</div>
-						<?php
-						$mbState = config::byKey('mbState');
-						if ($mbState == 0) {
-							if (config::byKey('doc::base_url', 'core') != '') { ?>
-								<div class="resetPassword center">
-									<a href="<?php echo config::byKey('doc::base_url', 'core'); ?>/fr_FR/howto/reset.password" target="_blank">{{J'ai perdu mon mot de passe}}</a>
-								</div>
-						<?php }
-						} ?>
+						<div class="submit center">
+							<a class="btn" id="bt_go_to_lostpassword">{{J'ai perdu mon mot de passe}}</a>
+						</div>
 					</form>
 				</div>
-				<div id="market" tabindex="502" class="form-group" style="display:none;">
+				<div class="form-group hidden" id="lostpassword">
+					<form onsubmit="return false;">
+						<h3>{{Mot de passe perdu}}</h3>
+						<div class="mail">
+							<label>{{Nom d'utilisateur}}</label>
+							<input type="text" id="in_lostpassword_username">
+						</div>
+						<div class="submit center">
+							<button class="dark btn-lg" id="bt_ask_password"><i class="fas fa-unlock-alt"></i> {{Recevoir un lien de réinitialisation}}</button>
+						</div>
+						<div class="submit center">
+							<a class="btn bt_go_to_login"><i class="fas fa-arrow-left"></i> {{Retour à la page de connexion}}</a>
+						</div>
+						<?php if ($mbState == 0 && config::byKey('doc::base_url', 'core') != '') { ?>
+							<div class="resetPassword center">
+								{{Autre méthode :}} <a href="<?= jeedom::getDocUrl('howto', 'reset.password') ?>" target="_blank">{{réinitialiser le mot de passe en SSH}}</a>
+							</div>
+						<?php } ?>
+					</form>
+				</div>
+				<div class="form-group hidden" id="resetpassword">
+					<form onsubmit="return false;">
+						<h3>{{Réinitialiser le mot de passe}}</h3>
+						<div class="passwd">
+							<label>{{Nouveau mot de passe}}</label>
+							<input type="password" autocomplete="new-password" id="in_reset_password">
+						</div>
+						<div class="passwd">
+							<label>{{Confirmer le mot de passe}}</label>
+							<input type="password" autocomplete="new-password" id="in_reset_passwordToo">
+						</div>
+						<div class="submit center">
+							<button class="dark btn-lg" id="bt_reset_password"><i class="fas fa-check"></i> {{Changer le mot de passe}}</button>
+						</div>
+						<div class="submit center">
+							<a class="btn bt_go_to_login"><i class="fas fa-arrow-left"></i> {{Retour à la page de connexion}}</a>
+						</div>
+					</form>
+				</div>
+				<div class="form-group hidden" id="market">
 					<h3>Je n'ai pas de compte Market</h3>
 					<button class="dark btn-lg" id="bt_compte_market"><i class="fas fa-sign-in-alt"></i> {{En créer un !}}</button>
 					<hr align=center size=2 width="70%">
@@ -85,7 +122,7 @@ if ($productConnectionImage != '' && strpos($productConnectionImage, '://') === 
 					<?php } ?>
 					<br />
 				</div>
-				<div id="register" tabindex="500" class="form-group">
+				<div class="form-group" id="register">
 					<h3>{{CHANGER VOTRE MOT DE PASSE}}</h3>
 					<div class="passwd">
 						<input type="password" autocomplete="new-password" id="in_change_password">
@@ -103,7 +140,7 @@ if ($productConnectionImage != '' && strpos($productConnectionImage, '://') === 
 		</div>
 	</div>
 	<?php if ($mbState == 0) { ?>
-		<button class="btn_help animated bounceInUp" onclick="window.open('https://doc.jeedom.com/fr_FR/premiers-pas/#tocAnchor-4')">
+		<button class="btn_help animated bounceInUp" onclick="window.open('<?= jeedom::getDocUrl('premiers-pas') ?>')">
 			?
 		</button>
 	<?php } ?>
