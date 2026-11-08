@@ -1,5 +1,12 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.14 (Jee-Limad, branche alpha)
+
+## Connexion
+
+- Le bouton œil de la page de connexion affiche de nouveau le mot de passe (le script n'écoutait que des liens, la page affiche un bouton)
+- La touche Entrée valide de nouveau la connexion (champs identifiant, mot de passe et code à 2 facteurs), ainsi que les formulaires « mot de passe perdu » et « nouveau mot de passe » ; elle avait disparu avec la reprise de la procédure de mot de passe perdu (4.5.3.9)
+
 # 4.5.3.13 (Jee-Limad, branche alpha)
 
 ## Sécurité

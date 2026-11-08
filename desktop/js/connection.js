@@ -343,9 +343,9 @@ document.getElementById('wrap')?.addEventListener('click', function(event) {
     return
   }
 
-  if (_target = event.target.closest('a.bt_showPassConnection')) {
+  if (_target = event.target.closest('.bt_showPassConnection')) {
     event.stopPropagation()
-    const _el = event.target.matches('a.bt_showPassConnection') ? event.target : event.target.parentNode
+    const _el = _target
     const input = _el.closest('.input-group').querySelector('input')
 
     if (input.getAttribute('type') === 'password') {
@@ -371,6 +371,24 @@ document.getElementById('wrap').addEventListener('keypress', function(event) {
   let _target = null
   if (_target = event.target.closest('#in_change_passwordToo')) {
     jeeFrontEnd.connection.changeValidate(event)
+    return
+  }
+
+  if (_target = event.target.closest('#in_reset_password, #in_reset_passwordToo')) {
+    event.preventDefault()
+    jeeFrontEnd.connection.resetPasswordValidate(event)
+    return
+  }
+
+  if (_target = event.target.closest('#in_lostpassword_username')) {
+    event.preventDefault()
+    jeeFrontEnd.connection.askPassword(event)
+    return
+  }
+
+  if (_target = event.target.closest('#in_login_username, #in_login_password, #in_twoFactorCode')) {
+    event.preventDefault()
+    jeeFrontEnd.connection.loginValidate(event)
     return
   }
 })
