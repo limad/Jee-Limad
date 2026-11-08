@@ -82,6 +82,8 @@ DirectoryIndex index.php
     RedirectMatch 403 (?i)^.*\/desktop\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.css|\.css.map|\.js|\.js.map|\.woff|\.woff2|\.ttf|\.svg|\.txt|\.json|\.webmanifest).)*$
     RedirectMatch 403 (?i)^.*\/docs\/.*$
     RedirectMatch 403 (?i)^/\.github(/|$)
+    # Dossiers cachés (.git, .claude, .codex…) : jamais servis, où qu'ils soient (sauf .well-known)
+    RedirectMatch 403 ^.*/\.(?!well-known/)[^/]+/
     RedirectMatch 403 (?i)^.*\/log\/.*$
     RedirectMatch 403 (?i)^.*\/mobile\/.*\/((?!\.png|\.jpg|\.jpeg|\.gif|\.webp|\.css|\.css.map|\.woff|\.woff2|\.ttf|\.svg|\.html|\.php).)*$
     RedirectMatch 403 (?i)^.*\/support\/.*$

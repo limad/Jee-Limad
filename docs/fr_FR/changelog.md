@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.15 (Jee-Limad, branche alpha)
+
+## Sécurité
+
+- Les dossiers cachés (`.git`, `.claude`, `.codex`…) ne sont plus jamais servis par Apache, où qu'ils soient dans l'arborescence (plugins compris) ; seul `.well-known` reste accessible. Jusqu'ici, un fichier PHP placé dans un tel dossier, par exemple une copie de travail du core laissée par un outil de développement dans un plugin, pouvait être exécuté depuis le navigateur
+
 # 4.5.3.14 (Jee-Limad, branche alpha)
 
 ## Connexion
