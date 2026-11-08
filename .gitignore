@@ -46,3 +46,16 @@ Thumbs.db
 *~
 .env
 desktop/php/cssOverview copy*.php
+
+# Dépendances de développement (composer install sans --no-dev) : jamais commitées
+/vendor/bin/
+/vendor/doctrine/
+/vendor/myclabs/
+/vendor/nikic/
+/vendor/phar-io/
+/vendor/phpstan/
+/vendor/phpunit/
+/vendor/sebastian/
+/vendor/theseer/
+/.composer-home/
+/.phpunit.result.cache

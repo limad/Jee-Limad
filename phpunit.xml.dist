@@ -1,5 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Les tests écrivent dans la base : tests/bootstrap.php refuse toute base dont le nom ne finit pas par _test.
+     Mise en place : tests/README.md. -->
 <phpunit bootstrap="./tests/bootstrap.php" colors="true">
-    <testsuite>
-        <directory suffix="Test.php">./tests</directory>
-    </testsuite>
+    <testsuites>
+        <testsuite name="core">
+            <directory suffix="Test.php">./tests</directory>
+            <exclude>./tests/dashx</exclude>
+        </testsuite>
+    </testsuites>
+    <groups>
+        <exclude>
+            <group>network</group>
+        </exclude>
+    </groups>
 </phpunit>

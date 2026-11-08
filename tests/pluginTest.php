@@ -18,6 +18,12 @@
 
 use PHPUnit\Framework\TestCase;
 
+/**
+ * Télécharge le plugin virtual depuis le Market : réseau et compte Market requis.
+ * Exclu par défaut (phpunit.xml.dist) ; lancer avec --group network.
+ *
+ * @group network
+ */
 class pluginTest extends TestCase {
 	public function getSources() {
 		return array(

@@ -157,7 +157,7 @@ abstract class AjaxIntegrationTestCase extends TestCase {
 			1 => ['pipe', 'w'],
 			2 => ['pipe', 'w'],
 		];
-		$process = proc_open('php ' . escapeshellarg($runner), $descriptors, $pipes);
+		$process = proc_open(escapeshellarg(PHP_BINARY) . " -d opcache.enable_cli=0 -d opcache.preload= " . escapeshellarg($runner), $descriptors, $pipes);
 		if (!is_resource($process)) {
 			$this->fail('Failed to spawn ajax_runner.php subprocess');
 		}
