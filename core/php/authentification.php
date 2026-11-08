@@ -53,11 +53,15 @@ if (user::isBan()) {
 }
 
 if (!isConnect() && isset($_COOKIE['registerDevice']) && !loginByHash($_COOKIE['registerDevice'])) {
+<<<<<<< ours
 	if (version_compare(PHP_VERSION, '7.3') >= 0) {
 		setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
 	} else {
 		setcookie('registerDevice', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 	}
+=======
+	deleteRegisterDeviceCookie();
+>>>>>>> theirs
 }
 
 if (!isConnect() && $configs['sso:allowRemoteUser'] == 1) {
@@ -81,6 +85,8 @@ if (init('logout') == 1) {
 	echo "window.location.href='index.php';";
 	echo '</script>';
 }
+
+updateRegisterDeviceActivity();
 
 /* * **************************Definition des function************************** */
 
@@ -152,8 +158,11 @@ function loginByHash(string $_key): bool {
 		return false;
 	}
 	$rdk = sha512($key[1]);
-	$registerDevice = $user->getOptions('registerDevice', array());
-	if (!is_array($registerDevice) || !isset($registerDevice[$rdk])) {
+	$registeredDevices = $user->getOptions('registerDevice', array());
+	if (!is_array($registeredDevices)) {
+		$registeredDevices = array();
+	}
+	if (!user::isValidRegisteredDevice($registeredDevices, $rdk)) {
 		user::failedLogin([
 			'login' => $user->getLogin(),
 			'reason' => __('Périphérique non enregistré ou clé invalide', __FILE__),
@@ -161,13 +170,14 @@ function loginByHash(string $_key): bool {
 		sleep(5);
 		return false;
 	}
-	$registerDevice[$rdk] = array(
+	$registeredDevices[$rdk] = array(
 		'datetime' => date('Y-m-d H:i:s'),
 		'ip' => getClientIp(),
 		'session_id' => session_id(),
 	);
-	$user->setOptions('registerDevice', $registerDevice);
+	$user->setOptions('registerDevice', $registeredDevices);
 	$user->save();
+	setRegisterDeviceCookie($_key);
 	@session_start();
 	$_SESSION['user'] = $user;
 	@session_write_close();
@@ -179,12 +189,61 @@ function loginByHash(string $_key): bool {
 	return true;
 }
 
+function setRegisterDeviceCookie(string $_value) {
+	setcookie('registerDevice', $_value, registerCookieOptions(time() + user::registerDeviceLifetime()));
+}
+
+function deleteRegisterDeviceCookie() {
+	setcookie('registerDevice', '', registerCookieOptions(time() - 3600));
+}
+
+function deleteSessionCookie() {
+	setcookie('__Host-PHPSESSID', '', registerCookieOptions(time() - 3600));
+}
+
+function registerCookieOptions(int $_expires): array {
+	return ['expires' => $_expires, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')];
+}
+
+function updateRegisterDeviceActivity() {
+	if (!isset($_COOKIE['registerDevice']) || !isset($_SESSION['user']) || !is_object($_SESSION['user'])) {
+		return;
+	}
+	$key = explode('-', $_COOKIE['registerDevice'], 2);
+	if (count($key) != 2 || sha512($_SESSION['user']->getHash()) != $key[0]) {
+		return;
+	}
+	$registerDeviceKey = sha512($key[1]);
+	$registeredDevices = $_SESSION['user']->getOptions('registerDevice', array());
+	if (!is_array($registeredDevices)) {
+		return;
+	}
+
+	if (!user::isValidRegisteredDevice($registeredDevices, $registerDeviceKey)) {
+		return;
+	}
+
+	$now = time();
+	$lastActivity = strtotime($registeredDevices[$registerDeviceKey]['datetime']);
+	if ($lastActivity === false || $lastActivity < $now - 24 * 3600) {
+		$registeredDevices[$registerDeviceKey] = array(
+			'datetime' => date('Y-m-d H:i:s', $now),
+			'ip' => getClientIp(),
+			'session_id' => session_id(),
+		);
+		setRegisterDeviceCookie($_COOKIE['registerDevice']);
+		$_SESSION['user']->setOptions('registerDevice', $registeredDevices);
+		$_SESSION['user']->save();
+	}
+}
+
 function logout() {
 	log::audit('User logout', [
 		'login' => $_SESSION['user']->getLogin(),
 		'ip' => getClientIp(),
 	]);
 	@session_start();
+<<<<<<< ours
 	if (version_compare(PHP_VERSION, '7.3') >= 0) {
 		setcookie('registerDevice', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
 		setcookie('__Host-PHPSESSID', '', ['expires' => time() + 365 * 24 * 3600, 'samesite' => 'Strict', 'httponly' => true, 'path' => '/', 'secure' => (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')]);
@@ -192,6 +251,10 @@ function logout() {
 		setcookie('registerDevice', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 		setcookie('__Host-PHPSESSID', '', time() + 365 * 24 * 3600, "/; samesite=Strict", '', (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'), true);
 	}
+=======
+	deleteRegisterDeviceCookie();
+	deleteSessionCookie();
+>>>>>>> theirs
 	session_unset();
 	session_destroy();
 	return;
