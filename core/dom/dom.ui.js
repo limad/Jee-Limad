@@ -977,7 +977,11 @@ const jeeDialog = (function() {
         })
       }
     }
-    _footer.appendChild(button)
+    if (_button[0] === 'cancel') {
+      _footer.prepend(button)
+    } else {
+      _footer.appendChild(button)
+    }
     return button
   }
 
@@ -1313,7 +1317,7 @@ const jeeDialog = (function() {
               if (typeof _callback === 'function') {
                 let data = event.target.closest('div.jeeDialog').querySelector('div.jeeDialogContent').getJeeValues('.promptAttr')[0]
                 const key = event.target.closest('button').getAttribute('data-type')
-                if (Object.keys(data).length == 1) data = data.result
+                if (Object.keys(data).length == 1) data = Object.values(data)[0]
                 if (data === '') data = null
                 _callback.apply(this, [data, key])
               }
@@ -1377,9 +1381,9 @@ const jeeDialog = (function() {
           if (_options.pattern) {
             content.setAttribute('pattern', _options.pattern)
           } else {
-            if (options.inputType === 'date') {
+            if (_options.inputType === 'date') {
               content.setAttribute('pattern', '[0-9]{4}-[0-9]{2}-[0-9]{2}')
-            } else if (options.inputType === 'time') {
+            } else if (_options.inputType === 'time') {
               content.setAttribute('pattern', '[0-9]{2}:[0-9]{2}:[0-9]{2}')
             }
           }
@@ -1814,7 +1818,7 @@ const jeeCtxMenu = function(_options) {
       display: null
     })
     _ctxMenu.seen()
-    
+
     //Is there use positionning:
     if (ctxInstance.options.position) {
       ctxInstance.options.position.apply(ctxInstance, [ctxInstance, _event.clientX, _event.clientY])

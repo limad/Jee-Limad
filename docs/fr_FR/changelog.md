@@ -1,5 +1,14 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.27 (Jee-Limad, branche alpha)
+
+## Corrections
+
+- Fenêtres de dialogue : le bouton « Annuler » est toujours placé avant le bouton de validation (jeedom/core#3423) ; `jeeDialog.prompt` renvoie la bonne valeur quel que soit le nom du champ, et les champs date et heure reçoivent leur format (jeedom/core#3487)
+- Cases à cocher : « Sélectionner tout », « Désélectionner tout » et « Inverser » du menu contextuel déclenchent de vrais événements de clic et de changement (jeedom/core#3427)
+- Équipements : confirmation de suppression et redirection après suppression centralisées (jeedom/core#3415)
+- Fenêtres de sélection : titres harmonisés (« Sélectionner une commande », « Sélectionner un scénario »…) (jeedom/core#3424)
+
 # 4.5.3.26 (Jee-Limad, branche alpha)
 
 ## Corrections
