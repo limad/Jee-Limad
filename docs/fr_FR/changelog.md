@@ -1,5 +1,14 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.30 (Jee-Limad, branche alpha)
+
+## Corrections
+
+- Documentation : les liens s'ouvrent dans la langue de l'utilisateur et suivent le format actuel du site (`doc.jeedom.com/<section>/<version>/<langue>/`). Les liens produits par Jee-Limad depuis la 4.5.3.10 suivaient l'ancien format et renvoyaient une erreur 404 (jeedom/core#3560)
+- Choix de la langue : chaque langue est affichée dans sa propre langue (jeedom/core#3561)
+- Sélecteur d'icônes : toutes les icônes de Font Awesome 5.15.4 sont proposées (jeedom/core#3545)
+- Résumé domotique et Recovery : corrections d'affichage, nom de produit fourni par l'image (jeedom/core#3379, jeedom/core#3398)
+
 # 4.5.3.29 (Jee-Limad, branche alpha)
 
 ## Page Santé
