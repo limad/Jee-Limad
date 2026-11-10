@@ -1,5 +1,12 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.35 (Jee-Limad, branche alpha)
+
+## Identité visuelle
+
+- Logo et favicon de Jee-Limad en rouge, pour distinguer le fork du core officiel
+- Copies de travail retirées du site (anciennes pages `index2.php`/`index3.php` et leurs vues, ancien favicon, patch déjà appliqué) : archivées hors du dossier web
+
 # 4.5.3.34 (Jee-Limad, branche alpha)
 
 ## Corrections
