@@ -1,5 +1,13 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.29 (Jee-Limad, branche alpha)
+
+## Page Santé
+
+- Diagnostics revus et rendus cohérents : contrôle « Apache private tmp » corrigé, version de Node.js comparée à celle attendue par l'installateur, version du noyau, libellés et clés harmonisés (jeedom/core#3491)
+- Conteneurs non privilégiés : quand le journal du noyau est illisible, « Mémoire suffisante » et « Erreurs disque » affichent « N/A » au lieu d'écrire des erreurs dans les journaux ; dans un conteneur, les arrêts pour manque de mémoire restent comptés via `memory.events` (jeedom/core#3569)
+- Taille de la base : calculée sur la base réellement utilisée, et non plus sur une base nommée « jeedom » en dur
+
 # 4.5.3.28 (Jee-Limad, branche alpha)
 
 ## Centre de mises à jour
