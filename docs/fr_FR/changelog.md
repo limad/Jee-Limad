@@ -1,5 +1,15 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.24 (Jee-Limad, branche alpha)
+
+## Corrections
+
+- Journaux : plus d'erreur PHP 8 (`TypeError`) au découpage des journaux quand la taille maximale n'est pas renseignée (jeedom/core#3383)
+- Dépendances : plus d'erreur PHP 8 dans la vérification des paquets pip2, et l'installation de plusieurs paquets d'un même type n'est plus relancée à chaque paquet (jeedom/core#3370)
+- Recovery : message d'erreur de validation d'image corrigé (jeedom/core#3371)
+- DNS Jeedom : l'adresse externe n'affiche plus « http: » seul après l'activation du DNS sur une installation neuve (jeedom/core#3573)
+- Sauvegarde cloud : délai d'envoi allongé (jeedom/core#3546)
+
 # 4.5.3.23 (Jee-Limad, branche alpha)
 
 ## Sécurité et authentification

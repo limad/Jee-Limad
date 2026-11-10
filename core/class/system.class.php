@@ -123,9 +123,9 @@ class system {
 			}
 		}
 		$execCmd = shell_exec($cmd);
-      		if(!$execCmd){
+		if (!$execCmd) {
 			return $return;
-          	}
+		}
 		$results = explode("\n", trim($execCmd));
 		if (!is_array($results) || count($results) == 0) {
 			return $return;
@@ -260,7 +260,7 @@ class system {
 				}
 				break;
 			case 'pip2':
-				if (self::os_incompatible('pip2', '', '')) {
+				if (self::os_incompatible('pip2', '', [])) {
 					return array();
 				}
 				$datas = json_decode(shell_exec(system::getCmdSudo() . ' pip list --outdated --format=json 2>/dev/null'), true);
@@ -308,7 +308,7 @@ class system {
 				}
 				break;
 			case 'pip2':
-				if (self::os_incompatible('pip2', '', '')) {
+				if (self::os_incompatible('pip2', '', [])) {
 					return;
 				}
 				if ($_package == null) {
@@ -435,7 +435,7 @@ class system {
 				break;
 			case 'yarn':
 				$datas = json_decode(shell_exec('cat `' . self::getCmdSudo() . ' yarn global dir`/package.json 2>/dev/null'), true);
-				if(is_array($datas['dependencies']) && count($datas['dependencies']) > 0){
+				if (is_array($datas['dependencies']) && count($datas['dependencies']) > 0) {
 					foreach ($datas['dependencies'] as $key => $value) {
 						self::$_installPackage[$type_key][mb_strtolower($key)] = array(
 							'version' => json_decode(shell_exec('yarn info ' . escapeshellarg($key) . ' version --json 2>/dev/null'), true)['data']
@@ -444,8 +444,8 @@ class system {
 				}
 				break;
 			case 'composer':
-				$datas = json_decode(shell_exec('export COMPOSER_ALLOW_SUPERUSER=1;'.self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
-				if(is_array($datas['installed']) && count($datas['installed']) > 0){
+				$datas = json_decode(shell_exec('export COMPOSER_ALLOW_SUPERUSER=1;' . self::getCmdSudo() . ' composer show -f json 2>/dev/null'), true);
+				if (is_array($datas['installed']) && count($datas['installed']) > 0) {
 					foreach ($datas['installed'] as $value) {
 						self::$_installPackage[$type_key][mb_strtolower($value['name'])] = array('version' => $value['version']);
 					}
@@ -453,7 +453,7 @@ class system {
 				break;
 			case 'plugin':
 				$updates = update::byType('plugin');
-				if(is_array($updates) && count($updates) > 0){
+				if (is_array($updates) && count($updates) > 0) {
 					foreach ($updates as $update) {
 						self::$_installPackage[$type_key][mb_strtolower($update->getLogicalId())] = array('version' => $update->getLocalVersion());
 					}
@@ -656,12 +656,13 @@ class system {
 			}
 		}
 		$has_something_todo = false;
+		$first_type = [];
 		foreach ($return as $package => $info) {
 			if ((($info['status'] != 0 && !$info['reinstall']) || $info['status'] == 3) && !$_force) {
 				continue;
 			}
 			$has_something_todo = true;
-			if (!isset($first_type[$info['type']]) || $first_type[$info['type']] == true) {
+			if (!isset($first_type[$info['type']])) {
 				$first_type[$info['type']] = false;
 				switch ($info['type']) {
 					case 'apt':
