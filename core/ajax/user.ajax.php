@@ -36,22 +36,12 @@ try {
 		}
 
 		if (!isConnect()) {
-			if (config::byKey('sso:allowRemoteUser') == 1) {
-				$header = $configs['sso:remoteUserHeader'];
-				$header_value = $_SERVER[$header];
-				$user = user::byLogin($header_value);
-				if (is_object($user) && $user->getEnable() == 1) {
-					@session_start();
-					$_SESSION['user'] = $user;
-					@session_write_close();
-					log::add('connection', 'info', __('Connexion de l\'utilisateur par REMOTE_USER :', __FILE__) . ' ' . $_SESSION['user']->getLogin());
-				}
-			}
 			$user = user::connect(init('username'), init('password'));
 			if (is_object($user) && network::getUserLocation() != 'internal' && $user->getOptions('twoFactorAuthentification', 0) == 1 && $user->getOptions('twoFactorAuthentificationSecret') != '' && init('twoFactorCode') == '') {
 				throw new Exception(__('Double authentification requise', __FILE__), -32012);
 			}
 			if (!login(init('username'), init('password'), init('twoFactorCode'))) {
+				// Marqueur FAILED_LOGIN conservé : le filtre fail2ban du fork (install/fail2ban/jeedom-filter.conf) en dépend
 					log::add('connection', 'info',network::getClientIp().' - FAILED_LOGIN - '. __('Mot de passe ou nom d\'utilisateur incorrect', __FILE__));
 				throw new Exception(__('Mot de passe ou nom d\'utilisateur incorrect', __FILE__));
 			}
@@ -75,7 +65,6 @@ try {
 			$_SESSION['user']->save();
 			@session_write_close();
 		}
-		log::add('connection', 'info', network::getClientIp() . ' - ' . __('Connexion réussie pour : ', __FILE__) . $_SESSION['user']->getLogin());
 		ajax::success();
 	}
 
@@ -354,15 +343,17 @@ try {
 			}
 			ajax::success();
 		}
-		if (init('user_id') != '') {
+		$targetUserId = init('user_id');
+		$targetUser = null;
+		if ($targetUserId != '') {
 			if (!isConnect('admin')) {
 				throw new Exception(__('401 - Accès non autorisé', __FILE__), -1234);
 			}
-			$user = user::byId(init('user_id'));
-			if (!is_object($user)) {
-				throw new Exception(__('Utilisateur non trouvé :', __FILE__) . ' ' . init('user_id'));
+			$targetUser = user::byId($targetUserId);
+			if (!is_object($targetUser)) {
+				throw new Exception(__('Utilisateur non trouvé :', __FILE__) . ' ' . $targetUserId);
 			}
-			$registerDevice = $user->getOptions('registerDevice', array());
+			$registerDevice = $targetUser->getOptions('registerDevice', array());
 		} else {
 			$registerDevice = $_SESSION['user']->getOptions('registerDevice', array());
 		}
@@ -372,9 +363,9 @@ try {
 		} elseif (isset($registerDevice[init('key')])) {
 			unset($registerDevice[init('key')]);
 		}
-		if (init('user_id') != '') {
-			$user->setOptions('registerDevice', $registerDevice);
-			$user->save();
+		if (is_object($targetUser)) {
+			$targetUser->setOptions('registerDevice', $registerDevice);
+			$targetUser->save();
 		} else {
 			@session_start();
 			$_SESSION['user']->refresh();

@@ -1331,22 +1331,26 @@ jeedomUtils.initSpinners = function() {
   }
 
   jeedom.loadCSS('3rdparty/isPin/ispin.css').then(function() {
-    document.querySelectorAll('input[type="number"].ispin').forEach(_spin => {
-      var options = {
-      wrapperClass: 'ispin-wrapper',
-      buttonsClass: 'ispin-button',
-      step: _spin.getAttribute('step') != undefined ? parseFloat(_spin.getAttribute('step')) : 1,
-      min: _spin.getAttribute('min') != undefined ? parseFloat(_spin.getAttribute('min')) : 1,
-      disabled: false,
-      repeatInterval: 200,
-      wrapOverflow: true,
-      parse: Number
-    }
-    if (_spin.getAttribute('max') != undefined) options.max = parseFloat(_spin.getAttribute('max'))
-    new ISpin(_spin, options)
-    if (_spin.hasClass('roundedLeft')) {
-      _spin.closest('.ispin-wrapper').addClass('roundedLeft')
-    }
+    document.querySelectorAll('input[type="number"].ispin:not(.ispinned)').forEach(_spin => {
+      const options = {
+        wrapperClass: 'ispin-wrapper',
+        buttonsClass: 'ispin-button',
+        step: _spin.getAttribute('step') != undefined ? parseFloat(_spin.getAttribute('step')) : 1,
+        min: _spin.getAttribute('min') != undefined ? parseFloat(_spin.getAttribute('min')) : 1,
+        max: _spin.getAttribute('max') != undefined ? parseFloat(_spin.getAttribute('max')) : undefined,
+        disabled: false,
+        repeatInterval: 200,
+        wrapOverflow: true,
+        parse: Number,
+        onChange: function() {
+          _spin.triggerEvent('change')
+        }
+      }
+      new ISpin(_spin, options)
+      _spin.addClass('ispinned')
+      if (_spin.hasClass('roundedLeft')) {
+        _spin.closest('.ispin-wrapper').addClass('roundedLeft')
+      }
       if (_spin.hasClass('roundedRight')) {
         _spin.closest('.ispin-wrapper').addClass('roundedRight')
       }

@@ -27,6 +27,7 @@ if (config::byKey('api') == '') {
 	config::save('api', config::genKey());
 }
 config::save('log::level', 400);
+config::save('jeedom::firstUse', 0); // pas de fenêtre de bienvenue pendant les tests navigateur
 config::save('version', jeedom::version());
 
 if (isset($argv[2])) {

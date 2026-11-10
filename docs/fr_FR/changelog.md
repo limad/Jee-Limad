@@ -1,5 +1,14 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.23 (Jee-Limad, branche alpha)
+
+## Sécurité et authentification
+
+- Utilisateurs : l'ajout d'un utilisateur et le changement de mot de passe passent par une même fenêtre, avec un champ masqué, l'œil et un générateur de mot de passe aléatoire ; le mot de passe ne s'affiche plus en clair pendant la saisie (jeedom/core#3488)
+- Double authentification : le QR code s'affiche en SVG, sans dépendre de `php-imagick` (jeedom/core#3533)
+- Journal d'audit : l'événement `user_connect` n'est plus émis avant la validation de la double authentification, et la gestion des appareils de confiance d'un autre utilisateur n'écrase plus la session de l'administrateur (jeedom/core#3504). Le marqueur `FAILED_LOGIN` du journal de connexion, utilisé par le filtre fail2ban de Jee-Limad, est conservé
+- Administration › Sécurité : champs numériques validés et présentés en compteurs (jeedom/core#3517) ; les compteurs déclenchent un événement de changement et ne s'initialisent plus deux fois (jeedom/core#3436)
+
 # 4.5.3.22 (Jee-Limad, branche alpha)
 
 ## Sécurité

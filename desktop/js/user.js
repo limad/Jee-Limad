@@ -198,6 +198,73 @@ if (!jeeFrontEnd.user) {
         }
       })
     },
+    addOrModifyUser: function(_user) {
+      jeedomUtils.hideAlert()
+
+      const newUser = !isset(_user) || !isset(_user.id)
+      const title = (newUser) ? '{{Ajouter un utilisateur}}' : "{{Modifier le mot de passe de l'utilisateur}} " + _user.login
+      let message = (newUser) ? '<div class="form-group"><input type="text" class="userAttr form-control" autocomplete="off" data-l1key="login" placeholder="{{Identifiant}}"></div>' : ''
+      message += '<div class="input-group">'
+      message += '<input type="text" class="inputPassword userAttr form-control roundedLeft" autocomplete="off" data-l1key="password">'
+      message += '<span class="input-group-btn">'
+      message += '<a class="btn btn-primary bt_generatePass" title="{{Générer un mot de passe aléatoire}}"><i class="fas fa-random"></i></a>'
+      message += '</span>'
+      message += '<span class="input-group-btn" >'
+      message += '<a class="btn bt_showPass roundedRight"><i class="fas fa-eye"></i></a>'
+      message += '</span>'
+      message += '</div>'
+
+      const confirmDialog = jeeDialog.confirm({
+        title: title,
+        message: message,
+        callback: function(result) {
+          if (result) {
+            if (newUser) {
+              _user = {
+                login: confirmDialog.querySelector('.userAttr[data-l1key="login"]').jeeValue(),
+                password: confirmDialog.querySelector('.userAttr[data-l1key="password"]').jeeValue()
+              }
+            } else {
+              _user.password = confirmDialog.querySelector('.userAttr[data-l1key="password"]').jeeValue()
+            }
+
+            jeedom.user.save({
+              users: [_user],
+              error: function(error) {
+                jeedomUtils.showAlert({
+                  message: error.message,
+                  level: 'danger'
+                })
+              },
+              success: function() {
+                jeeP.printUsers()
+                jeedomUtils.showAlert({
+                  message: '{{Sauvegarde effectuée}}',
+                  level: 'success'
+                })
+                jeeFrontEnd.modifyWithoutSave = false
+              }
+            })
+          }
+        }
+      })
+      jeedomUtils.initTooltips(confirmDialog)
+
+      confirmDialog.querySelector('.bt_generatePass').addEventListener('click', function() {
+        confirmDialog.querySelector('.userAttr[data-l1key="password"]').value = jeeP.generateRandomPassword()
+      })
+      if (newUser) {
+        confirmDialog.querySelector('.userAttr[data-l1key="password"]').value = jeeP.generateRandomPassword()
+      }
+    },
+    generateRandomPassword: function() {
+      const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*'
+      let pass = ''
+      for (let i = 0; i < 16; i++) {
+        pass += chars[Math.floor(Math.random() * chars.length)]
+      }
+      return pass
+    }
   }
 }
 
@@ -237,44 +304,9 @@ function handleSupportAccess(enable) {
 //div_administration
 document.getElementById('div_administration').addEventListener('click', function(event) {
   let _target = null
-  if (event.target.matches('.userAttr')) {
-    jeeFrontEnd.modifyWithoutSave = true
-  }
 
   if (_target = event.target.closest('#bt_addUser')) {
-    jeedomUtils.hideAlert()
-    let content = '<input class="promptAttr" data-l1key="newUserLogin" autocomplete="off" type="text" placeholder="{{Identifiant}}">'
-    content += '<input class="promptAttr" data-l1key="newUserMdp" autocomplete="off" type="text" placeholder="{{Mot de passe}}">'
-    jeeDialog.prompt({
-      title: "{{Ajouter un utilisateur}}",
-      message: content,
-      inputType: false,
-      callback: function(result) {
-        if (result) {
-          const user = [{
-            login: result.newUserLogin,
-            password: result.newUserMdp
-          }]
-          jeedom.user.save({
-            users: user,
-            error: function(error) {
-              jeedomUtils.showAlert({
-                message: error.message,
-                level: 'danger'
-              })
-            },
-            success: function() {
-              jeeP.printUsers()
-              jeedomUtils.showAlert({
-                message: '{{Sauvegarde effectuée}}',
-                level: 'success'
-              })
-              jeeFrontEnd.modifyWithoutSave = false
-            }
-          })
-        }
-      }
-    })
+    jeeP.addOrModifyUser()
     return
   }
 
@@ -346,28 +378,7 @@ document.getElementById('div_administration').addEventListener('click', function
       id: _target.closest('tr').querySelector('.userAttr[data-l1key="id"]').innerHTML,
       login: _target.closest('tr').querySelector('input[data-l1key="login"]').value
     }
-    jeeDialog.prompt("{{Quel est le nouveau mot de passe ?}}", function(result) {
-      if (result !== null) {
-        user.password = result
-        jeedom.user.save({
-          users: [user],
-          error: function(error) {
-            jeedomUtils.showAlert({
-              message: error.message,
-              level: 'danger'
-            })
-          },
-          success: function() {
-            jeeP.printUsers()
-            jeedomUtils.showAlert({
-              message: '{{Sauvegarde effectuée}}',
-              level: 'success'
-            })
-            jeeFrontEnd.modifyWithoutSave = false
-          }
-        })
-      }
-    })
+    jeeP.addOrModifyUser(user)
     return
   }
 
@@ -492,6 +503,10 @@ document.getElementById('div_administration').addEventListener('click', function
 
 document.getElementById('div_administration').addEventListener('change', function(event) {
   let _target = null
+  if (event.target.matches('.userAttr')) {
+    jeeFrontEnd.modifyWithoutSave = true
+  }
+
   if (_target = event.target.closest('select[data-l1key="profils"]')) {
     if (_target.value != 'restrict') {
       _target.closest('tr').querySelector('a.bt_manage_restrict_rights')?.addClass('disabled')
