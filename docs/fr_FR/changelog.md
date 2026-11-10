@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.42 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Barre de menu en thème clair : les entrées du menu, l'horloge et l'icône d'aide utilisaient des gris clairs codés en dur pour un fond sombre (`desktop/css/desktop.fix.css`), alors que le fond suit le thème : texte gris clair sur blanc, contraste 1,56 en core2019_Light, survol presque invisible en coreX_Light (1,17). Ces couleurs suivent maintenant le thème (`--link-color`, `--txt-color`, `--form-bg-color`) : contraste de 6 à 10 sur les 7 thèmes. Retrait d'une règle `#jeedomMenuBar .navbar` qui ne s'appliquait à aucun élément
+
 # 4.5.3.41 (Jee-Limad, branche alpha)
 
 ## Correction

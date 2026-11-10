@@ -11,17 +11,6 @@
   padding-right: 0;
 }
 
-/* Fond et bordure navbar */
-#jeedomMenuBar .navbar {
-  background: #262828;
-  border: none;
-  border-bottom: 1px solid #1a1c1c;
-  box-shadow: 0 2px 6px rgba(0,0,0,.35);
-  min-height: 48px;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-  font-size: 14px;
-}
-
 /* Logo box */
 #jeedomMenuBar a.navbar-brand {
   margin-left: 0;
@@ -43,12 +32,12 @@
 
 #jeedomMenuBar .nav.navbar-nav > li > a:hover,
 #jeedomMenuBar .nav.navbar-nav > li.open > a {
-  background: #32363a;
-  color: #fff;
+  background: var(--form-bg-color);
+  color: var(--link-color);
 }
 
 #jeedomMenuBar .nav.navbar-nav > li > a .caret {
-  border-top-color: #888d92;
+  border-top-color: var(--txt-color);
   margin-left: 2px;
 }
 
@@ -67,19 +56,19 @@
 
 #jeedomMenuBar #horloge {
   font-size: 15px;
-  color: #d6d9db;
+  color: var(--link-color);
   font-variant-numeric: tabular-nums;
 }
 
 #jeedomMenuBar #configName .cmdName {
   font-size: 12px;
-  color: #888d92;
+  color: var(--txt-color);
 }
 
 /* Help icon */
 #jeedomMenuBar #bt_getHelpPage i {
   font-size: 19px;
-  color: #aeb3b7;
+  color: var(--txt-color);
 }
 
 /* Mise en ligne de la barre : bureau seulement (en dessous de 768 px, le menu s'ouvre en liste sous l'en-tête) */
@@ -118,7 +107,7 @@
     gap: 8px;
     height: 100%;
     padding: 0 14px;
-    color: #c7cbcf;
+    color: var(--link-color);
     white-space: nowrap;
     transition: background .15s, color .15s;
     background: transparent;
@@ -153,7 +142,7 @@
   #jeedomMenuBar .nav.navbar-nav { display: block; height: auto; margin: 0; }
   #jeedomMenuBar .nav.navbar-nav > li { display: block; height: auto; margin-left: 0; }
   #jeedomMenuBar .nav.navbar-nav.navbar-right { display: none; } /* horloge, résumé, aide : barre bureau seulement, comme Jeedom 4.6 */
-  #jeedomMenuBar .nav.navbar-nav > li > a { display: block; height: auto; padding: 12px 15px; line-height: 20px; color: #c7cbcf; }
+  #jeedomMenuBar .nav.navbar-nav > li > a { display: block; height: auto; padding: 12px 15px; line-height: 20px; color: var(--link-color); }
 }
 
 /* ===== Radio / Checkbox custom checked state ===== */
