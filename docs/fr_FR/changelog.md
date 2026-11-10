@@ -1,5 +1,14 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.28 (Jee-Limad, branche alpha)
+
+## Centre de mises à jour
+
+- Le bouton « Changelog » du core est de nouveau fonctionnel, y compris dans l'avertissement avant mise à jour, et pointe vers la version proposée (jeedom/core#3368)
+- Boutons et icônes harmonisés, cadenas « Ne pas mettre à jour » sur chaque plugin, statut affiché en majuscules par le style (jeedom/core#3426, jeedom/core#3405) ; traductions de la page réparées (jeedom/core#3431)
+- Les plugins par défaut ne sont plus cochés pour la mise à jour automatique (jeedom/core#3406)
+- Installation d'un plugin : invites unifiées entre les sources (Market, GitHub, fichier, URL, Samba) et fenêtre d'ajout refaite (jeedom/core#3428)
+
 # 4.5.3.27 (Jee-Limad, branche alpha)
 
 ## Corrections
