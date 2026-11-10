@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.40 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Filtre fail2ban `install/fail2ban/jeedom-filter.conf` : il ne reconnaissait aucune ligne `FAILED_LOGIN`, car fail2ban retire la date avant d'appliquer l'expression, qui l'attendait encore. Vérifié avec `fail2ban-regex` (0 puis 1 ligne reconnue)
+
 # 4.5.3.39 (Jee-Limad, branche alpha)
 
 ## Correction
