@@ -1,5 +1,13 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.26 (Jee-Limad, branche alpha)
+
+## Corrections
+
+- Widgets : les traductions des widgets de commandes et de scénarios suivent de nouveau le fichier de chaque modèle (cassées depuis le passage au nouvel outil de traduction) ; l'ancienne clé globale `core/template/widgets.html` est retirée (jeedom/core#3363, jeedom/core#3367)
+- Commandes : l'unité brute est transmise avec les événements des commandes action liées (jeedom/core#3362)
+- Configuration d'une commande : libellés « Nom », « Valeur », « Action » et « Supprimer » traduisibles (jeedom/core#3384)
+
 # 4.5.3.25 (Jee-Limad, branche alpha)
 
 ## Corrections

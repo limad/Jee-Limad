@@ -1469,6 +1469,7 @@ class cmd {
 	}
 
 	public function getWidgetHelp($_version = 'dashboard', $_widgetName = '') {
+		$_version = jeedom::versionAlias($_version);
 		$widget = $this->getWidgetTemplateCode($_version, false, $_widgetName);
 		$widgetCode = $widget['template'];
 		$isCorewidget = $widget['isCoreWidget'];
@@ -1481,7 +1482,7 @@ class cmd {
 			} else {
 				$widgetHelp = strip_tags($widgetHelp, '<div>');
 				if ($isCorewidget) {
-					return translate::exec($widgetHelp, 'core/template/widgets.html');
+					return translate::exec($widgetHelp, 'core/template/' . $_version . '/' . $widget['widgetName'] . '.html');
 				} else {
 					return translate::exec($widgetHelp, $widget['widgetName']);
 				}
@@ -1641,7 +1642,7 @@ class cmd {
 		if ($_clean) {
 			$template = $this->cleanWidgetCode($template);
 		}
-		return array('template' => $template, 'isCoreWidget' => true);
+		return array('template' => $template, 'isCoreWidget' => true, 'widgetName' => $template_name);
 	}
 
 	public static function autoValueArray($_value, $_decimal = 99, $_unit = '', $_space = False) {
@@ -1885,7 +1886,7 @@ class cmd {
 			return translate::exec($template, 'core/template/scenario/' . $widget['widgetName'] . '.html');
 		}
 		if ($isCorewidget) {
-			return translate::exec($template, 'core/template/widgets.html');
+			return translate::exec($template, 'core/template/' . $_version . '/' . $widget['widgetName'] . '.html');
 		}
 		if (isset($widget['widgetName'])) {
 			return translate::exec($template, $widget['widgetName']);
@@ -1960,7 +1961,7 @@ class cmd {
 			if (is_array($value_cmd) && count($value_cmd) > 0) {
 				foreach ($value_cmd as $cmd) {
 					if ($cmd->getType() == 'action') {
-						$events[] = array('cmd_id' => $cmd->getId(), 'value' => (strlen($value) < 3096) ? $value : substr($value, 0, 3096), 'display_value' => (strlen($display_value) < 3096) ? $display_value :  substr($display_value, 0, 3096), 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'unit' => $unit);
+						$events[] = array('cmd_id' => $cmd->getId(), 'value' => (strlen($value) < 3096) ? $value : substr($value, 0, 3096), 'display_value' => (strlen($display_value) < 3096) ? $display_value :  substr($display_value, 0, 3096), 'valueDate' => $this->getValueDate(), 'collectDate' => $this->getCollectDate(), 'unit' => $unit, 'raw_unit' => $raw_unit);
 					} else {
 						if ($_loop > 1) {
 							$cmd->event($cmd->execute(), null, $_loop);

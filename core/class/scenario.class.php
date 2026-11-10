@@ -1024,7 +1024,7 @@ class scenario {
 			$replace['#isVerticalAlign#'] = 'verticalAlign';
 		}
 		$html = template_replace($replace, self::$_templateArray[$version]);
-		$html =  translate::exec($html, 'core/template/widgets.html');
+		$html = translate::exec($html, 'core/template/' . $version . '/scenario.html');
 		return $html;
 	}
 	/**
