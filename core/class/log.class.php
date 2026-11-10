@@ -73,8 +73,10 @@ class log extends AbstractLogger {
 
 	public static function getLogLevel($_log) {
 		$specific_level = self::getConfig('log::level::' . $_log);
-		if ($_log == 'audit' && !is_array($specific_level)) {
-			// Jee-Limad : le journal d'audit écrit au niveau info tant qu'aucun niveau n'est réglé pour lui
+		if ($_log == 'audit' && (!is_array($specific_level) || !in_array(1, array_map('intval', $specific_level), true))) {
+			// Jee-Limad : le journal d'audit écrit au niveau info tant qu'aucun niveau n'est choisi pour lui.
+			// Enregistrer Configuration > Logs sans cocher de niveau stocke un tableau tout à 0 : sans ce cas,
+			// l'audit retombait au niveau global (error) et n'écrivait plus les connexions.
 			return 200;
 		}
 		if (!is_array($specific_level) && strpos($_log, '_') !== false) {

@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.38 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Journal d'audit : enregistrer la page Configuration > Logs sans choisir de niveau pour « audit » stockait un réglage vide, et le journal retombait au niveau global (error) : les connexions (« User login ») n'y étaient plus écrites. Un réglage sans niveau coché revient maintenant au niveau info, comme lorsqu'aucun réglage n'existe
+
 # 4.5.3.37 (Jee-Limad, branche alpha)
 
 ## Correction
