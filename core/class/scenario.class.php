@@ -1891,7 +1891,8 @@ class scenario {
 	}
 
 	public function getObject_id($_default = null) {
-		if ($this->object_id == '' || !is_numeric($this->object_id)) {
+		// 0 n'est pas un identifiant d'objet (ils commencent à 1) : en PHP 8, (0 == '') est faux
+		if ($this->object_id == '' || !is_numeric($this->object_id) || $this->object_id <= 0) {
 			return $_default;
 		}
 		return $this->object_id;
@@ -1913,11 +1914,12 @@ class scenario {
 	 * @return $this
 	 */
 	public function setObject_id($object_id = null) {
+		$object_id = (is_numeric($object_id) && $object_id > 0) ? $object_id : null;
 		if ($object_id != $this->getObject_id()) {
 			$this->_changeState = true;
 			$this->_changed = true;
 		}
-		$this->object_id = (!is_numeric($object_id)) ? null : $object_id;
+		$this->object_id = $object_id;
 		return $this;
 	}
 	/**

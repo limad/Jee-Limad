@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.34 (Jee-Limad, branche alpha)
+
+## Corrections
+
+- Scénarios : un objet parent à 0 est traité comme « aucun objet ». En PHP 8, `0 == ''` est faux : `setObject_id(0)` gardait 0 et `getObject_id()` le renvoyait au lieu de null (constaté par les tests du core)
+
 # 4.5.3.33 (Jee-Limad, branche alpha)
 
 ## Système
