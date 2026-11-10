@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.32 (Jee-Limad, branche alpha)
+
+## Corrections
+
+- Page de connexion : l'onglet du navigateur affiche « Connexion » tant que l'utilisateur n'est pas connecté, au lieu du nom de la page demandée (repris de jeedom/core#3579 ; la refonte complète de la page de connexion de cette PR n'est pas reprise, Jee-Limad garde la sienne)
+
 # 4.5.3.31 (Jee-Limad, branche alpha)
 
 ## Dépendances
