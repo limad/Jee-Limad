@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.39 (Jee-Limad, branche alpha)
+
+## Correction
+
+- `resources/install_nodejs.sh` : la priorité APT de nodesource (`/etc/apt/preferences.d/nodesource`) était ajoutée à la suite du fichier et retirée seulement en fin de script ; chaque exécution interrompue avant la fin ajoutait un bloc de plus. Le fichier est maintenant écrasé, et retiré à toute sortie du script, même en erreur
+
 # 4.5.3.38 (Jee-Limad, branche alpha)
 
 ## Correction

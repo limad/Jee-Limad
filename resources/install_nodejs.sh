@@ -35,7 +35,10 @@ if [ -f /media/boot/multiboot/meson64_odroidc2.dtb.linux ]; then
 fi
 
 #prioritize nodesource nodejs : just in case
-sudo bash -c "cat >> /etc/apt/preferences.d/nodesource" << EOL
+# Jee-Limad : écrasé (et non complété) puis retiré à toute sortie du script, même en erreur ;
+# sinon chaque exécution interrompue avant le nettoyage final laissait un bloc de plus.
+trap 'sudo rm -f /etc/apt/preferences.d/nodesource' EXIT
+sudo bash -c "cat > /etc/apt/preferences.d/nodesource" << EOL
 Package: nodejs
 Pin: origin deb.nodesource.com
 Pin-Priority: 600
