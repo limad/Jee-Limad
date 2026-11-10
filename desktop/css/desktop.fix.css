@@ -1,17 +1,5 @@
 /* ===== Jeedom navbar redesign ===== */
 
-.navbar .container-fluid {
-  flex-wrap: nowrap;
-  height: 48px;
-}
-
-#jeedomMenuBar .container-fluid > .navbar-header,
-#jeedomMenuBar .container-fluid > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: 10px;
-  height: 48px;
-}
-
 #jeedomMenuBar .navbar-header {
   min-width: fit-content;
   overflow: visible;
@@ -53,37 +41,6 @@
   object-fit: contain;
 }
 
-/* Nav lists */
-#jeedomMenuBar .nav.navbar-nav {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-  margin: 0;
-  float: none;
-  height: 48px;
-}
-
-#jeedomMenuBar .nav.navbar-nav > li {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  position: relative;
-}
-
-/* Nav links */
-#jeedomMenuBar .nav.navbar-nav > li > a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  height: 100%;
-  padding: 0 14px;
-  color: #c7cbcf;
-  white-space: nowrap;
-  transition: background .15s, color .15s;
-  background: transparent;
-  line-height: 1;
-}
-
 #jeedomMenuBar .nav.navbar-nav > li > a:hover,
 #jeedomMenuBar .nav.navbar-nav > li.open > a {
   background: #32363a;
@@ -93,18 +50,6 @@
 #jeedomMenuBar .nav.navbar-nav > li > a .caret {
   border-top-color: #888d92;
   margin-left: 2px;
-}
-
-/* Right nav */
-#jeedomMenuBar .navbar-nav.navbar-right {
-  float: none;
-  margin-left: auto;
-  margin-right: 0;
-  gap: 12px;
-}
-
-#jeedomMenuBar .navbar-nav.navbar-right > li > a {
-  padding: 0 6px;
 }
 
 /* Horloge */
@@ -137,6 +82,61 @@
   color: #aeb3b7;
 }
 
+/* Mise en ligne de la barre : bureau seulement (en dessous de 768 px, le menu s'ouvre en liste sous l'en-tête) */
+@media screen and (min-width: 768px) {
+  .navbar .container-fluid {
+    flex-wrap: nowrap;
+    height: 48px;
+  }
+
+  #jeedomMenuBar .container-fluid > .navbar-header,
+  #jeedomMenuBar .container-fluid > .navbar-collapse {
+    margin-right: -15px;
+    margin-left: 10px;
+    height: 48px;
+  }
+
+  #jeedomMenuBar .nav.navbar-nav {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin: 0;
+    float: none;
+    height: 48px;
+  }
+
+  #jeedomMenuBar .nav.navbar-nav > li {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    position: relative;
+  }
+
+  #jeedomMenuBar .nav.navbar-nav > li > a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    height: 100%;
+    padding: 0 14px;
+    color: #c7cbcf;
+    white-space: nowrap;
+    transition: background .15s, color .15s;
+    background: transparent;
+    line-height: 1;
+  }
+
+  #jeedomMenuBar .navbar-nav.navbar-right {
+    float: none;
+    margin-left: auto;
+    margin-right: 0;
+    gap: 12px;
+  }
+
+  #jeedomMenuBar .navbar-nav.navbar-right > li > a {
+    padding: 0 6px;
+  }
+}
+
 @media screen and (min-width: 768px) {
   #jeedomMenuBar .navbar-fixed-top { position: fixed; top: 0; right: 0; left: 0; z-index: 1030; }
   #jeedomMenuBar .navbar-toggle { display: none; }
@@ -146,6 +146,14 @@
   #jeedomMenuBar .navbar-toggle { display: block; }
   #jeedomMenuBar .navbar-collapse.collapse:not(.in) { display: none; }
   #jeedomMenuBar .navbar-collapse.in { display: block; height: auto; overflow-y: auto; }
+  /* en-tête pleine largeur, burger à droite (comme Jeedom 4.6) */
+  #jeedomMenuBar .navbar-header { float: none; display: flex; align-items: center; justify-content: space-between; width: 100%; min-width: 0; margin: 0; height: 48px; }
+  #jeedomMenuBar .navbar-toggle { margin: 0 6px 0 auto; }
+  #jeedomMenuBar .container-fluid > .navbar-collapse { margin: 0 -15px; max-height: calc(100vh - 48px); }
+  #jeedomMenuBar .nav.navbar-nav { display: block; height: auto; margin: 0; }
+  #jeedomMenuBar .nav.navbar-nav > li { display: block; height: auto; margin-left: 0; }
+  #jeedomMenuBar .nav.navbar-nav.navbar-right { display: none; } /* horloge, résumé, aide : barre bureau seulement, comme Jeedom 4.6 */
+  #jeedomMenuBar .nav.navbar-nav > li > a { display: block; height: auto; padding: 12px 15px; line-height: 20px; color: #c7cbcf; }
 }
 
 /* ===== Radio / Checkbox custom checked state ===== */

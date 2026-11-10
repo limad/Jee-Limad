@@ -326,9 +326,17 @@ document.addEventListener('DOMContentLoaded', function() {
         return
       }
 
-      //Collapse
-      if (_target = event.target.closest('a[data-toggle="collapse"]')) {
-        _target.parentNode.querySelector('.collapse')?.toggleClass('in')
+      //Collapse : cible data-target (bouton du menu mobile, comme Bootstrap), sinon le .collapse voisin
+      if (_target = event.target.closest('a[data-toggle="collapse"], button[data-toggle="collapse"][data-target]')) {
+        const ref = _target.getAttribute('data-target')
+        if (ref) {
+          let targets = []
+          try { targets = document.querySelectorAll(ref) } catch (e) { return }
+          targets.forEach(_el => _el.toggleClass('in'))
+          _target.setAttribute('aria-expanded', targets[0]?.hasClass('in') ? 'true' : 'false')
+        } else {
+          _target.parentNode.querySelector('.collapse')?.toggleClass('in')
+        }
         return
       }
 

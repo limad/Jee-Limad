@@ -1,5 +1,14 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.41 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Menu en mobile (moins de 768 px) : le bouton du menu (burger) n'ouvrait rien quand jQuery et Bootstrap ne sont pas chargés (options « Sans jQuery » / « Sans Bootstrap ») : le gestionnaire sans Bootstrap de `core/dom/dom.ui.js` ne traitait que les liens `a[data-toggle="collapse"]`, pas le bouton à `data-target`. Il ouvre et referme maintenant la cible désignée
+- Menu en mobile : une fois ouvert, le menu s'affichait en ligne dans la barre de 48 px et recouvrait le bouton (impossible de le refermer). La mise en ligne de `desktop/css/desktop.fix.css` (flex, 48 px, sans retour à la ligne) ne s'applique plus qu'à partir de 768 px ; en dessous, liste verticale sous l'en-tête, bouton à droite, horloge et résumé masqués, comme Jeedom 4.6
+- Pages en mobile : la règle « RESP-03 » de `desktop/css/desktop.main.css` supprimait les marges de la grille et réduisait les colonnes à 8 px, d'où 18 px de largeur utile en moins qu'en Jeedom 4.6 et des barres d'outils coupées à droite. Retirée
+- Configuration > Général en mobile : la clé d'installation sortait de l'écran (colonne flex sans `min-width: 0`, élargie par la clé insécable). Elle passe maintenant à la ligne
+
 # 4.5.3.40 (Jee-Limad, branche alpha)
 
 ## Correction
