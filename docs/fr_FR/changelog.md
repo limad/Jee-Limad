@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.37 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Page de connexion : entre 438 et 767 px de large (téléphone en paysage, fenêtre réduite), le panneau « Changer votre mot de passe » débordait à droite de la carte à côté du formulaire de connexion. Le panneau inactif est désormais masqué
+
 # 4.5.3.36 (Jee-Limad, branche alpha)
 
 ## Sécurité

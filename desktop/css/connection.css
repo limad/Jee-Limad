@@ -142,6 +142,13 @@ body {
   left: 0;
 }
 
+/* Panneau inactif masqué : en dessous de 768 px, max-width: 390px rend le décalage de 105 %
+   plus court que la carte, et le panneau « Changer votre mot de passe » débordait à droite */
+.veen .wrapper:not(.move) #register,
+.veen .wrapper.move #login {
+  visibility: hidden;
+}
+
 /* ____________________Typography */
 .veen .wrapper h3 {
   margin: 0 0 16px;
