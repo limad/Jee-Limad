@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.33 (Jee-Limad, branche alpha)
+
+## Système
+
+- Node.js 24 devient la version installée et la version minimale (jeedom/core#3512) ; sur armv6, Node.js 22 reste installé au mieux, et Debian 11 (bullseye) n'est plus prise en charge par l'installateur après le 31 août 2026. La box Jee-Limad passe de Node.js 22 à 24
+
 # 4.5.3.32 (Jee-Limad, branche alpha)
 
 ## Corrections
