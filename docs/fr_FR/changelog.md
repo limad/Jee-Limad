@@ -1,5 +1,13 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.25 (Jee-Limad, branche alpha)
+
+## Corrections
+
+- Plugins : la recherche d'un plugin inexistant ne pollue plus la configuration (jeedom/core#3421) ; `plugin::isInstalled()` est plus rapide et remplace `byId()` pour les tests d'existence (jeedom/core#3446)
+- OpenVPN et Virtual : l'installation automatique ne bute plus sur une box où ces plugins n'ont jamais été activés (jeedom/core#3454, jeedom/core#3567)
+- API et core : quand un plugin est introuvable, les appels `plugin::dependancyInfo`, `plugin::deamonInfo`, `plugin::deamonStart`… répondent proprement au lieu d'échouer ; `plugin::byId()` lève une exception que plus aucun appelant n'ignorait (jeedom/core#3455)
+
 # 4.5.3.24 (Jee-Limad, branche alpha)
 
 ## Corrections

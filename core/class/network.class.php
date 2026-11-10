@@ -338,21 +338,7 @@ class network {
 		if (config::byKey('dns::token') == '') {
 			return;
 		}
-		try {
-			$plugin = plugin::byId('openvpn');
-			if (!is_object($plugin)) {
-				$update = update::byLogicalId('openvpn');
-				if (!is_object($update)) {
-					$update = new update();
-				}
-				$update->setLogicalId('openvpn');
-				$update->setSource('market');
-				$update->setConfiguration('version', 'stable');
-				$update->save();
-				$update->doUpdate();
-				$plugin = plugin::byId('openvpn');
-			}
-		} catch (Exception $e) {
+		if (!plugin::isInstalled('openvpn')) {
 			$update = update::byLogicalId('openvpn');
 			if (!is_object($update)) {
 				$update = new update();
@@ -362,7 +348,11 @@ class network {
 			$update->setConfiguration('version', 'stable');
 			$update->save();
 			$update->doUpdate();
+		}
+		try {
 			$plugin = plugin::byId('openvpn');
+		} catch (Exception $e) {
+			$plugin = null;
 		}
 		if (!is_object($plugin)) {
 			throw new Exception(__('Le plugin OpenVPN doit être installé', __FILE__));
@@ -372,7 +362,7 @@ class network {
 		if (!$plugin->isActive()) {
 			$plugin->setIsEnable(1);
 		}
-		if (!class_exists('openvpn') || !$plugin->isActive()) {
+		if (!$plugin->isActive() || !class_exists('openvpn')) {
 			throw new Exception(__('Le plugin OpenVPN doit être actif', __FILE__));
 		}
 		$openvpn = eqLogic::byLogicalId('dnsjeedom', 'openvpn');

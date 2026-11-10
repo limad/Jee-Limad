@@ -1236,8 +1236,10 @@ try {
 	}
 
 	if ($jsonrpc->getMethod() == 'plugin::dependancyInfo') {
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		// droits contrôlés par la table centrale du fork ($apiMethodProfiles)
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess(array('state' => 'nok', 'log' => 'nok'));
 		}
 		$jsonrpc->makeSuccess($plugin->dependancy_info());
@@ -1245,8 +1247,9 @@ try {
 
 	if ($jsonrpc->getMethod() == 'plugin::dependancyInstall') {
 		unautorizedInDemo();
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess();
 		}
 		$plugin->dependancy_install();
@@ -1254,8 +1257,10 @@ try {
 	}
 
 	if ($jsonrpc->getMethod() == 'plugin::deamonInfo') {
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		// droits contrôlés par la table centrale du fork ($apiMethodProfiles)
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess(array('launchable_message' => '', 'launchable' => 'nok', 'state' => 'nok', 'log' => 'nok', 'auto' => 0));
 		}
 		$jsonrpc->makeSuccess($plugin->deamon_info());
@@ -1272,8 +1277,10 @@ try {
 	}
 
 	if ($jsonrpc->getMethod() == 'plugin::deamonStart') {
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		// droits contrôlés par la table centrale du fork ($apiMethodProfiles)
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess();
 		}
 		if (!isset($params['debug'])) {
@@ -1288,8 +1295,9 @@ try {
 
 	if ($jsonrpc->getMethod() == 'plugin::deamonStop') {
 		unautorizedInDemo();
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess();
 		}
 		$plugin->deamon_stop();
@@ -1298,8 +1306,9 @@ try {
 
 	if ($jsonrpc->getMethod() == 'plugin::deamonChangeAutoMode') {
 		unautorizedInDemo();
-		$plugin = plugin::byId($params['plugin_id']);
-		if (!is_object($plugin)) {
+		try {
+			$plugin = plugin::byId($params['plugin_id']);
+		} catch (Exception $e) {
 			$jsonrpc->makeSuccess();
 		}
 		$plugin->deamon_changeAutoMode($params['mode']);
