@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.36 (Jee-Limad, branche alpha)
+
+## Sécurité
+
+- `core/php/sleep.php` (pause utilisée par la génération des rapports) : accessible sans connexion, il permettait à n'importe qui de bloquer un processus Apache jusqu'à 600 s par requête, et donc de saturer le serveur. Il n'accepte plus que la box elle-même, et au plus 60 s
+
 # 4.5.3.35 (Jee-Limad, branche alpha)
 
 ## Identité visuelle
