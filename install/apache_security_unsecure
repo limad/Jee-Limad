@@ -1,6 +1,16 @@
 <Directory /var/www/html>
 Options -Indexes -ExecCGI -FollowSymLinks
 AllowOverride All
+# Appliqué avant que PHP lise la requête, sans surcharge possible par .htaccess (jeedom/core#3594).
+# memory_limit -1 de l'upstream non repris : la limite de 512M du .htaccess reste en vigueur.
+<IfModule mod_php.c>
+php_admin_flag session.upload_progress.enabled Off
+php_admin_value max_input_nesting_level 32
+</IfModule>
+<IfModule mod_php7.c>
+php_admin_flag session.upload_progress.enabled Off
+php_admin_value max_input_nesting_level 32
+</IfModule>
 </Directory>
 
 <IfModule mod_headers.c>

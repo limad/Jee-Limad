@@ -9,6 +9,10 @@ ServerSignature Off
 </IfModule>
 Options -Indexes -ExecCGI +FollowSymLinks
 
+# Plafond de 1 Gio sur le corps des requêtes, appliqué par Apache (y compris en chunked).
+# Défense en profondeur seulement : ne corrige pas les vulnérabilités mémoire de PHP (jeedom/core#3594).
+LimitRequestBody 1073741824
+
 
 <IfModule mod_headers.c>
     # CORS restreint : uniquement sur l'API Jeedom, origine locale autorisee.
@@ -25,6 +29,8 @@ Options -Indexes -ExecCGI +FollowSymLinks
 </FilesMatch>
 
 <IfModule mod_php.c>
+php_flag session.upload_progress.enabled off
+php_value max_input_nesting_level 32
 php_value post_max_size 1G
 php_value upload_max_filesize 1G
 php_value max_execution_time 600
@@ -38,6 +44,8 @@ php_flag session.use_strict_mode on
 </IfModule>
 
 <IfModule mod_php7.c>
+php_flag session.upload_progress.enabled off
+php_value max_input_nesting_level 32
 php_value post_max_size 1G
 php_value upload_max_filesize 1G
 php_value max_execution_time 600

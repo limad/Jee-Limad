@@ -1,5 +1,12 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.22 (Jee-Limad, branche alpha)
+
+## Sécurité
+
+- Widget « bouton image » (modale `widget.modal`) : la version mobile lisait n'importe quel fichier passé en paramètre. Desktop et mobile n'acceptent plus qu'une image réelle (type vérifié, 10 Mo au plus) située dans Jeedom ou son dossier temporaire, ou une adresse http(s) ; la version desktop, limitée jusqu'ici au dossier `data/`, affiche de nouveau les images d'URL et de plugins (jeedom/core#3583)
+- Apache et PHP : corps de requête plafonné à 1 Gio par Apache, `session.upload_progress` désactivé, imbrication des paramètres limitée à 32 niveaux, appliqués avant que PHP ne lise la requête (jeedom/core#3594). Le `memory_limit -1` de cette PR n'est pas repris : la limite de 512 Mo reste en vigueur
+
 # 4.5.3.21 (Jee-Limad, branche alpha)
 
 ## Corrections
