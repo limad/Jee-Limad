@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.31 (Jee-Limad, branche alpha)
+
+## Dépendances
+
+- `composer.json` : contraintes de version écrites au format standard (`^5.4 || ^6 || ^7`, `^2 || ^3`, PHP `^7.4 || ^8.0`) ; aucune bibliothèque ne change (jeedom/core#3591)
+
 # 4.5.3.30 (Jee-Limad, branche alpha)
 
 ## Corrections
