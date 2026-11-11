@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.47 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Compatibilité des plugins avec les couches CSS du core : `desktop.main.css` est chargé dans une couche (`@layer base`), et un `!important` en couche l'emporte sur tout `!important` de plugin, même plus précis, contrairement à Jeedom standard. Retrait de 6 `!important` sans effet sur le core (étiquettes des tuiles en mode tableau, nom des tuiles, images des tuiles, largeur mini des boutons et hauteur des champs `input-sm` dans les widgets) : le logo secondaire et le nom des tuiles SmartHome d'Alexa Premium, ainsi que les champs et boutons du pack de widgets iso, reprennent les tailles prévues par leur plugin. Mesure sur 138 pages de plugins : déclarations de plugins battues à cause des couches 21 → 11, aucune nouvelle ; styles calculés des pages du core identiques (11 pages, 360 et 1366 px)
+
 # 4.5.3.46 (Jee-Limad, branche alpha)
 
 ## Correction

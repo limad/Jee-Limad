@@ -1135,7 +1135,7 @@ div.eqLogicZone {
   .eqLogic-widget input[type="text"],
   .scenario-widget .btn,
   .scenario-widget .btn-default {
-    min-width: 32px !important;
+    min-width: 32px;
     max-height: 30px;
   }
   #dashTopBar button, #dashTopBar > div > a,
@@ -1906,7 +1906,7 @@ div.eqLogicZone {
   }
   div.eqLogicThumbnailContainer div.cursor > center > img,
   div.eqLogicThumbnailContainer div.cursor img {
-    width: 75px !important;
+    width: 75px;
     height: auto !important;
     padding-top: 15px;
   }
@@ -1938,7 +1938,7 @@ div.eqLogicZone {
     position: relative;
     top: 3px !important;
     display: block;
-    height: 28px !important;
+    height: 28px;
     overflow: hidden;
     padding: 0 5px;
     max-width: 130px;
@@ -2442,8 +2442,8 @@ div.eqLogic-widget.editingMode .panelLink {
   div[class*="DisplayCard"].displayAsTable .name > .label:not(.displayTableRight),
   div[class*="DisplayCard"].displayAsTable .name > .label.labelObjectHuman{
     line-height: 14px;
-    margin: 0 20px !important;
-    min-width: 20% !important;
+    margin: 0 20px;
+    min-width: 20%;
     max-width: calc(100% - 340px);
     text-align: center;
     padding: 4px 12px;
@@ -3184,7 +3184,7 @@ div.eqLogic-widget.editingMode .panelLink {
   :not(textarea).input-sm {
     font-size: 12px;
     line-height: 16px;
-    height: 28px !important;
+    height: 28px;
   }
   .input-group-sm > .input-group-addon,
   .input-group-sm > .input-group-btn .btn {
