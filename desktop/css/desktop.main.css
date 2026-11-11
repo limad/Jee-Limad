@@ -5240,31 +5240,36 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   @media screen and (min-width: 768px) {
-    .navbar .container-fluid,
-    .navbar-collapse.collapse,
-    .nav.navbar-nav,
-    .navbar-nav.navbar-right {
+    /* hauteur des barres : comme Jeedom 4.6 ; mise en ligne flex : barre du core seulement (les .navbar des plugins restent Bootstrap) */
+    .nav.navbar-nav {
+      height: 50px;
+    }
+    .navbar-collapse.collapse {
+      height: 50px !important;
+    }
+    #jeedomMenuBar .container-fluid,
+    #jeedomMenuBar .navbar-collapse.collapse,
+    #jeedomMenuBar .nav.navbar-nav,
+    #jeedomMenuBar .navbar-nav.navbar-right {
       display: flex;
       align-items: center;
     }
-    .navbar .container-fluid {
+    #jeedomMenuBar .container-fluid {
       flex-wrap: nowrap;
     }
-    .navbar-header,
-    .nav.navbar-nav > li,
-    .navbar-nav.navbar-right {
+    #jeedomMenuBar .navbar-header,
+    #jeedomMenuBar .nav.navbar-nav > li,
+    #jeedomMenuBar .navbar-nav.navbar-right {
       float: none;
     }
-    .navbar-collapse.collapse {
+    #jeedomMenuBar .navbar-collapse.collapse {
       display: flex !important;
       flex: 1 1 auto;
-      height: 50px !important;
     }
-    .nav.navbar-nav {
-      height: 50px;
+    #jeedomMenuBar .nav.navbar-nav {
       flex-wrap: nowrap;
     }
-    .navbar-nav.navbar-right {
+    #jeedomMenuBar .navbar-nav.navbar-right {
       float: none !important;
       margin-left: auto;
     }

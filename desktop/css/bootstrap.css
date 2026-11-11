@@ -1793,8 +1793,8 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 }
 
 .navbar-collapse {
-  padding-right: 0;
-  padding-left: 0;
+  padding-right: 15px;
+  padding-left: 15px;
   overflow-x: visible;
   -webkit-overflow-scrolling: touch;
 }
@@ -1809,7 +1809,7 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 
 .container-fluid>.navbar-collapse,.container-fluid>.navbar-header,.container>.navbar-collapse,.container>.navbar-header {
   margin-right: -15px;
-  margin-left: 10px;
+  margin-left: -15px;
 }
 
 .navbar-static-top {
@@ -3312,12 +3312,12 @@ button.close {
 
 @media (min-width:768px) {
 	.container-fluid>.navbar-collapse,.container-fluid>.navbar-header,.container>.navbar-collapse,.container>.navbar-header {
-		margin-right: -15px;
-		margin-left: 10px;
+		margin-right: 0;
+		margin-left: 0;
 	}
 
 	.navbar>.container .navbar-brand,.navbar>.container-fluid .navbar-brand {
-		margin-left: 0;
+		margin-left: -15px;
 	}
 
 	.navbar-toggle {
@@ -3325,16 +3325,12 @@ button.close {
 	}
 
 	.navbar-nav {
-		float: none;
+		float: left;
 		margin: 0;
-		display: flex;
-		align-items: center;
 	}
 
 	.navbar-nav>li {
-		float: none;
-		display: flex;
-		align-items: center;
+		float: left;
 	}
 
 	.navbar-nav>li>a {
@@ -3437,9 +3433,8 @@ button.close {
 	}
 
 	.navbar-right {
-		float: none!important;
-		margin-left: auto;
-		margin-right: 0;
+		float: right!important;
+		margin-right: -15px;
 	}
 
 	.navbar-right~.navbar-right {
@@ -3447,8 +3442,7 @@ button.close {
 	}
 
 	.navbar-header {
-		float: none;
-		flex-shrink: 0;
+		float: left;
 	}
 
 	.navbar-collapse {
@@ -3456,9 +3450,8 @@ button.close {
 	}
 
 	.navbar-collapse.collapse {
-		display: flex!important;
-		flex: 1 1 auto;
-		height: 48px!important;
+		display: block!important;
+		height: auto!important;
 		padding-bottom: 0;
 		overflow: visible!important;
 	}
@@ -4574,4 +4567,63 @@ button.close {
 	}
 */
 /* === END UNUSED === */
+}
+
+/* ===== Jee-Limad : barre de menu du core (#jeedomMenuBar) =====
+   Le reste de ce fichier est Bootstrap 3 d'origine pour la barre de navigation : les barres .navbar des plugins
+   gardent le comportement attendu. Ces règles reprennent, pour la seule barre du core, les valeurs qui avaient été
+   mises directement dans les règles Bootstrap (commit 39c9d5105). Elles doivent rester DANS ce fichier : il est
+   chargé dans la couche « bootstrap », et un !important de cette couche l'emporte sur ceux de desktop.main et
+   desktop.fix ; seule une règle plus précise de la même couche peut remplacer display:block!important ci-dessus. */
+#jeedomMenuBar .navbar-collapse {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+#jeedomMenuBar .container-fluid>.navbar-collapse,#jeedomMenuBar .container-fluid>.navbar-header {
+  margin-right: -15px;
+  margin-left: 10px;
+}
+
+@media (min-width:768px) {
+	#jeedomMenuBar .container-fluid>.navbar-collapse,#jeedomMenuBar .container-fluid>.navbar-header {
+		margin-right: -15px;
+		margin-left: 10px;
+	}
+
+	#jeedomMenuBar.navbar>.container-fluid .navbar-brand {
+		margin-left: 0;
+	}
+
+	#jeedomMenuBar .navbar-nav {
+		float: none;
+		margin: 0;
+		display: flex;
+		align-items: center;
+	}
+
+	#jeedomMenuBar .navbar-nav>li {
+		float: none;
+		display: flex;
+		align-items: center;
+	}
+
+	#jeedomMenuBar .navbar-right {
+		float: none!important;
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	#jeedomMenuBar .navbar-header {
+		float: none;
+		flex-shrink: 0;
+	}
+
+	#jeedomMenuBar .navbar-collapse.collapse {
+		display: flex!important;
+		flex: 1 1 auto;
+		height: 48px!important;
+		padding-bottom: 0;
+		overflow: visible!important;
+	}
 }

@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.45 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Compatibilité des plugins : la refonte de la barre de menu (4.5.3.x, 06/11) avait modifié les règles Bootstrap de toutes les barres `.navbar` (`desktop/css/bootstrap.css` : flex, sans flottement, sans marges, hauteur 48 px) et `desktop/css/desktop.main.css` forçait aussi `display: flex` et `float: none` sur toutes les `.navbar` à partir de 768 px. Une barre `.navbar` de plugin n'avait donc plus le comportement Bootstrap 3. `bootstrap.css` revient aux règles d'origine pour la navbar ; les valeurs propres à la barre du core sont reprises dans des règles ciblées `#jeedomMenuBar` (en fin de `bootstrap.css`, pour garder la priorité de leurs `!important`, et dans `desktop.main.css`). La barre du core est inchangée (géométrie identique aux 6 largeurs, menu ouvert et au survol)
+
 # 4.5.3.44 (Jee-Limad, branche alpha)
 
 ## Correction
