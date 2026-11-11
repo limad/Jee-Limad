@@ -124,3 +124,19 @@ colors Light
   --btn-info-fg: color-mix(in srgb, var(--al-info-color) 55%, hsl(0 0% 0%));
   --btn-warning-fg: color-mix(in srgb, var(--al-warning-color) 50%, hsl(0 0% 0%));
 }
+
+/* Texte sur surfaces colorées : contraste >= 4,5 (lot 47, 4.5.3.46). Valeurs calculées sur le fond réel de chaque surface. */
+:root {
+  --on-info-fg: rgb(20 20 20); /* 2.68 -> 6.83 sur rgb(100,161,230) */
+  --btn-info-fg: rgb(20 20 20); /* 2.72 -> 6.83 sur rgb(100,161,230) */
+  --on-success-fg: rgb(20 20 20); /* 2.89 -> 6.32 sur rgb(80,170,80) */
+  --btn-success-fg: rgb(20 20 20); /* 2.91 -> 6.32 sur rgb(80,170,80) */
+  --on-warning-fg: rgb(20 20 20); /* 2.13 -> 8.57 sur rgb(240,160,40) */
+  --btn-warning-fg: rgb(20 20 20); /* 3.3 -> 8.57 sur rgb(240,160,40) */
+  --panel-success-fg: rgb(20 20 20); /* 2.89 -> 6.32 sur rgb(80,170,80) */
+  --panel-info-fg: rgb(20 20 20); /* 2.68 -> 6.83 sur rgb(100,161,230) */
+  --panel-warning-fg: rgb(20 20 20); /* 4.06 -> 8.57 sur rgb(240,160,40) */
+  --input-group-addon-fg: #fff; /* 1.25 -> 5.92 sur rgb(100,100,100) */
+  --txt-color: hsl(0 0% 37%); /* texte secondaire : 4,19 -> 5 et plus sur les fonds gris clairs */
+  --input-group-addon-fg: #fff; /* fond gris moyen rgb(100,100,100) */
+}

@@ -672,6 +672,7 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 			<div style="display: none;width : 100%" id="div_alert"></div>
 			<div id="div_pageContainer">
 				<?php
+				$obLevel = ob_get_level(); // en cas d'erreur, ne vider que les tampons ouverts par la page, pas le reste de l'index
 				try {
 					if (!jeedom::isStarted()) {
 						echo '<div class="alert alert-danger">' . secureXSS(config::byKey('product_name')) . ' {{est en cours de démarrage, veuillez attendre 5min et rafraîchir la page.}}</div>';
@@ -685,13 +686,13 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 					if ($_GET['m'] == 'mobile' && $_GET['p'] == 'panelMenuCustom') {
 						echo "Aucun menu custom";
 					} else {
-						ob_end_clean();
+						while (ob_get_level() > $obLevel) ob_end_clean();
 						echo '<div class="alert alert-danger div_alert">';
 						echo displayException($e);
 						echo '</div>';
 					}
 				} catch (Error $e) {
-					ob_end_clean();
+					while (ob_get_level() > $obLevel) ob_end_clean();
 					echo '<div class="alert alert-danger div_alert">';
 					echo displayException($e);
 					echo '</div>';

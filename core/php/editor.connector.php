@@ -63,6 +63,8 @@ foreach ($rootPaths as $rootPath) {
     'accessControl' => 'access',             // disable and hide dot starting files (OPTIONAL)
     'tmpPath'       => dirname(__FILE__) . '/../../data/editorTemp',
     'utf8fix'       => true,
+    'tmbPath'       => '',     // pas de dossier .tmb : il serait servi sans authentification (refusé par .htaccess)
+    'tmbURL'        => 'self', // miniatures d'images servies par ce connecteur, réservé aux admins
     'alias'         => $rootPath
   );
   array_push($opts['roots'], $root);

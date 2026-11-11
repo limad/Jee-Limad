@@ -516,7 +516,23 @@ jeedomUtils.logoSource = function(_key) {
   return src
 }
 
+//Couleurs du thème (colors.css, injectées dans <style id="jeedom_theme_colors"> par le serveur) : à recharger quand le thème change sans rechargement de page
+jeedomUtils.loadThemeColors = function(_theme) {
+  const tag = document.getElementById('jeedom_theme_colors')
+  if (!tag || !_theme) return
+  const loaded = tag.getAttribute('data-theme') || (jeedom.theme.currentTheme || '')
+  if (loaded == _theme) return
+  tag.setAttribute('data-theme', _theme)
+  fetch(jeedomUtils.themeStylesheet(_theme, 'colors'))
+    .then(response => response.ok ? response.text() : Promise.reject(response.status))
+    .then(css => {
+      if (tag.getAttribute('data-theme') == _theme) tag.textContent = '@layer theme{' + css + '}'
+    })
+    .catch(() => {})
+}
+
 jeedomUtils.triggerThemechange = function() {
+  jeedomUtils.loadThemeColors(document.body.getAttribute('data-theme'))
   //set jeedom logo:
   if (document.body.hasAttribute('data-theme')) {
     var currentTheme = document.body.getAttribute('data-theme')

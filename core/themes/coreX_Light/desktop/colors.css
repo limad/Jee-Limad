@@ -127,3 +127,9 @@ Neutral light background with Bootstrap 5.3 semantic accents
 
   --jeedom-shadow-lg: 0 10px 30px oklch(0.204 0.0 89.9 / 0.12), 0 0 0 1px color-mix(in srgb, var(--logo-primary-color) 15%, transparent);
 }
+
+/* Texte sur surfaces colorées : contraste >= 4,5 (lot 47, 4.5.3.46). Valeurs calculées sur le fond réel de chaque surface. */
+:root {
+  --btn-info-fg: rgb(20 20 20); /* 2.97 -> 9.4 sur rgb(11,202,240) */
+  --btn-warning-fg: rgb(20 20 20); /* 3.6 -> 11.3 sur rgb(255,193,8) */
+}

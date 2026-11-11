@@ -124,3 +124,11 @@ Theme tailwind @Jeedom - Tailwind zinc-950 / glass
   --btn-info-fg: rgb(103, 232, 249);
   --btn-info-border: rgb(8, 145, 178);
 }
+
+/* Texte sur surfaces colorées : contraste >= 4,5 (lot 47, 4.5.3.46). Valeurs calculées sur le fond réel de chaque surface. */
+:root {
+  --on-danger-fg: rgb(20 20 20); /* 3.76 -> 4.9 sur rgb(239,68,68) */
+  --on-primary-fg: rgb(20 20 20); /* 3.68 -> 5.01 sur rgb(59,130,246) */
+  --panel-primary-fg: rgb(20 20 20); /* 3.68 -> 5.01 sur rgb(59,130,246) */
+  --panel-danger-fg: rgb(20 20 20); /* 3.76 -> 4.9 sur rgb(239,68,68) */
+}

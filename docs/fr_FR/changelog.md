@@ -1,5 +1,14 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.46 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Contraste des 7 thèmes : texte blanc sur étiquettes, boutons et en-têtes de panneaux de couleur claire (info, succès, avertissement, primaire), titres de panneaux qui ignoraient la couleur prévue par le thème, texte secondaire trop pâle en core2019_Light, champs « Latitude/Longitude » quasi invisibles en core2019_Light. Nouveaux jetons `--on-success-fg`, `--on-danger-fg`, `--on-primary-fg`, `--btn-primary-fg` dans `desktop/css/desktop.main.css` ; chaque `core/themes/*/desktop/colors.css` fixe la couleur de texte calculée sur le fond réel de chaque surface (contraste de 4,5 au moins). Textes sous le seuil sur 8 pages à 1366 px : core2019_Dark 62 → 3, core2019_Light 222 → 8, coreX_Blue 107 → 3, coreX_Dark 51 → 11, coreX_Light 46 → 5, coreX_Zinc 69 → 6, tailwind 55 → 6 (restes : couleurs d'objets choisies par l'utilisateur)
+- Changement de thème sans rechargement (bouton « Thème alternatif », bascule jour/nuit) : seule la feuille du thème changeait, les couleurs (`colors.css`, injectées dans la page) restaient celles de l'ancien thème. `jeedomUtils.triggerThemechange()` recharge maintenant les couleurs du thème actif (`desktop/common/js/utils.js`)
+- Page introuvable (plugin absent ou désactivé) : l'erreur vidait toute la page (en-tête et styles compris) et affichait le chemin complet du fichier sur le serveur. Seuls les tampons ouverts par la page sont vidés (`desktop/php/index.php`), et le message donne un chemin relatif (`core/php/utils.inc.php`)
+- Éditeur de fichiers : les miniatures étaient demandées dans `/.tmb/`, refusé par `.htaccess` (403). Elles passent par le connecteur de l'éditeur, réservé aux administrateurs, et le dossier `.tmb` n'est plus alimenté (`core/php/editor.connector.php`)
+
 # 4.5.3.45 (Jee-Limad, branche alpha)
 
 ## Correction

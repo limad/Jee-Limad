@@ -73,7 +73,7 @@ function include_file($_folder, $_fn, $_type, $_plugin = '', $_options = array()
 	}
 	$path = __DIR__ . '/../../' . $_folder . '/' . $_fn;
 	if (!file_exists($path) && $type == 'php') {
-		throw new Exception(__('Fichier introuvable :', __FILE__) . ' ' . secureXSS($path), 35486);
+		throw new Exception(__('Fichier introuvable :', __FILE__) . ' ' . secureXSS($_folder . '/' . $_fn), 35486);
 	}
 	if ($type == 'php') {
 		if ($_type != 'class') {

@@ -144,3 +144,12 @@ Tailwind zinc-950 base, blue-500 accent, semantic Tailwind dark-mode palette
   --btn-info-fg: var(--al-info-color);
   --btn-info-border: var(--al-info-color);
 }
+
+/* Texte sur surfaces colorées : contraste >= 4,5 (lot 47, 4.5.3.46). Valeurs calculées sur le fond réel de chaque surface. */
+:root {
+  --on-success-fg: rgb(20 20 20); /* 1.64 -> 10.57 sur rgb(73,222,128) */
+  --on-danger-fg: rgb(20 20 20); /* 2.52 -> 6.66 sur rgb(248,113,113) */
+  --on-primary-fg: rgb(20 20 20); /* 3.64 -> 5.06 sur rgb(59,131,246) */
+  --btn-primary-fg: rgb(20 20 20); /* 3.64 -> 5.06 sur rgb(59,131,246) */
+  --panel-primary-fg: rgb(20 20 20); /* 3.64 -> 5.06 sur rgb(59,131,246) */
+}

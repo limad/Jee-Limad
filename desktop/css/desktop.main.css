@@ -2603,13 +2603,13 @@ div.eqLogic-widget.editingMode .panelLink {
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .btn.btn-primary {
-    color: #fff;
+    color: var(--btn-primary-fg, #fff);
     background-color: var(--al-primary-color);
     border: 1px solid color-mix(in srgb, var(--al-primary-color) 70%, #000);
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
   .label-primary {
-    color: #fff;
+    color: var(--on-primary-fg, #fff);
     background-color: var(--al-primary-color);
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
@@ -2960,6 +2960,14 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .panel-default .panel-title {
     color: var(--panel-default-title, var(--link-color));
+  }
+  /* panneaux colorés : le titre suit la couleur de texte de l'en-tête (--panel-*-fg, choisie par le thème pour le contraste) */
+  .panel-primary .panel-title,
+  .panel-success .panel-title,
+  .panel-info .panel-title,
+  .panel-warning .panel-title,
+  .panel-danger .panel-title {
+    color: inherit;
   }
   .list-group li {
     background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity));
@@ -4837,7 +4845,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .form-group select.success:not(.expressionAttr),
   .alert-success,
   .label-success {
-    color: var(--linkHoverLight-color);
+    color: var(--on-success-fg, var(--linkHoverLight-color));
     background-color: var(--al-success-color);
     border: none;
   }
@@ -4851,7 +4859,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .form-group select.danger:not(.expressionAttr),
   .alert-danger,
   .label-danger {
-    color: var(--sc-lightTxt-color);
+    color: var(--on-danger-fg, var(--sc-lightTxt-color));
     background-color: var(--al-danger-color);
     border: none;
   }
@@ -5516,7 +5524,7 @@ div.eqLogic-widget.editingMode .panelLink {
 
     .nav-tabs>li>a {
       border: none;
-      color: #666;
+      color: var(--tab-inactive-color, var(--txt-color));
       white-space: nowrap;
     }
     .tab-pane {

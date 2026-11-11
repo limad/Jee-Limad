@@ -124,3 +124,14 @@ colors Dark
   --widget-btn-hover-color: var(--linkHoverLight-color);
   --jeedom-shadow-lg: 0 8px 22px 2px hsl(0 0% 0% / 0.4);
 }
+
+/* Texte sur surfaces colorées : contraste >= 4,5 (lot 47, 4.5.3.46). Valeurs calculées sur le fond réel de chaque surface. */
+:root {
+  --on-info-fg: #fff; /* 3.65 -> 4.56 sur rgb(80,120,170) */
+  --on-success-fg: #fff; /* 3.83 -> 4.78 sur rgb(50,130,61) */
+  --on-warning-fg: rgb(20 20 20); /* 2.68 -> 5.51 sur rgb(195,125,40) */
+  --panel-primary-fg: #fff; /* 4.3 -> 5.36 sur rgb(50,111,160) */
+  --panel-success-fg: #fff; /* 3.83 -> 4.78 sur rgb(50,130,61) */
+  --panel-info-fg: #fff; /* 3.65 -> 4.56 sur rgb(80,120,170) */
+  --panel-warning-fg: rgb(20 20 20); /* 2.68 -> 5.51 sur rgb(195,125,40) */
+}
