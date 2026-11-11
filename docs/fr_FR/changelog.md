@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.43 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Barres d'outils et tableaux sous 992 px (`desktop/css/desktop.main.css`) : les boutons qui ne tenaient pas sur une ligne sortaient de l'écran et étaient coupés (Mises à jour, Logs, Crons, Scénario, Utilisateurs, Timeline, fiches équipement des plugins, page Configuration). Les barres passent maintenant à la ligne ; les tableaux larges (crons, listeners, démons, file d'attente, utilisateurs, sessions, appareils, mises à jour entre 768 et 991 px), l'onglet Commandes des fiches en mobile et la configuration des plugins défilent horizontalement. Au-dessus de 991 px, rien ne change. Mesure sur la box (22 pages, 360/414/768/1366 px) : 274 contrôles coupés avant, 2 après (tableau de la configuration d'alexaapiv2, largeur fixée par le plugin)
+
 # 4.5.3.42 (Jee-Limad, branche alpha)
 
 ## Correction
