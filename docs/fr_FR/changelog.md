@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.44 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Modales en mobile (moins de 768 px) : les fenêtres de configuration (équipement, commande…) gardaient une petite taille (324 × 507 px à 360 px de large), leurs boutons sortaient de la fenêtre et rien n'indiquait les onglets cachés. Elles s'ouvrent maintenant en plein écran (`desktop/css/dom.ui.css`), leurs barres de boutons et les libellés trop longs passent à la ligne, et les barres d'onglets défilantes affichent une barre de défilement fine (`desktop/css/desktop.main.css`). À partir de 768 px, rien ne change
+
 # 4.5.3.43 (Jee-Limad, branche alpha)
 
 ## Correction

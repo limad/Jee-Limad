@@ -594,3 +594,43 @@ div.tj_container li span.tj_description.tj_leaf {
   }
 
 }
+/* Lot 45 (4.5.3.44) : modales principales en plein écran sous 768 px.
+   Le JS pose largeur, hauteur et position en style inline (setPosition, déplacement, redimensionnement) :
+   !important est nécessaire. Les modales réduites (#jeeMinimizeTray) gardent leurs propres règles. */
+@media screen and (max-width: 767px) {
+  div.jeeDialog.jeeDialogMain {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+  }
+  div.jeeDialog.jeeDialogMain > div.jeeDialogTitle {
+    cursor: default;
+  }
+  /* barres de boutons des modales : retour à la ligne au lieu de sortir de la modale */
+  div.jeeDialog.jeeDialogMain .jeeDialogContent .input-group.pull-right:not(table .input-group) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    row-gap: 4px;
+    max-width: 100%;
+  }
+  div.jeeDialog.jeeDialogMain .jeeDialogContent .input-group.pull-right:not(table .input-group) > .input-group-btn {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    row-gap: 4px;
+    width: auto;
+    max-width: 100%;
+    white-space: normal;
+  }
+  /* bouton au libellé plus large que l'écran : le texte passe à la ligne */
+  div.jeeDialog.jeeDialogMain .jeeDialogContent .btn {
+    max-width: 100%;
+    white-space: normal;
+  }
+}

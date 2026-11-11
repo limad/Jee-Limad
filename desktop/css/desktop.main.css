@@ -5493,6 +5493,7 @@ div.eqLogic-widget.editingMode .panelLink {
       overflow-x: auto;
       border-bottom: 2px solid var(--navtab-border, #ddd);
       -ms-overflow-style: none;
+      scrollbar-width: thin; /* barre fine visible : sinon rien n'indique les onglets cachés à droite */
     }
 
     .nav-tabs > li.active {
