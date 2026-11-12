@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.51 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Points de rupture : le core reste sur l'échelle de Bootstrap 3 (767/768, 992, 1200 px), celle des grilles `col-sm/md/lg` utilisées par les plugins ; elle est documentée en tête de `desktop.main.css`. Deux seuils propres au fork se chevauchaient avec le palier supérieur au pixel près et sont corrigés : `.modern-form-group` (administration) passe de `max-width: 992px` à `991px`, et le padding réduit du thème tailwind de `max-width: 768px` à `767px`. Seul l'affichage à exactement 992 px et 768 px change. Les seuils hérités de Jeedom 4.6.2 et l'échelle propre de dashx sont conservés.
+
 # 4.5.3.50 (Jee-Limad, branche alpha)
 
 ## Amélioration

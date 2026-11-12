@@ -5,6 +5,12 @@ Desktop
 
 
 /* ______Commons */
+  /* Points de rupture (lot 53) : ceux de Bootstrap 3, pour rester alignés sur les grilles col-sm/md/lg des plugins.
+       mobile  : max-width 767px     tablette : min-width 768px
+       bureau  : min-width 992px     large    : min-width 1200px
+       grands écrans (repris de Jeedom 4.6.2) : 1280px, 1600px, 1920px
+     Seuils max-width 768/992/1200px hérités de Jeedom 4.6.2 conservés tels quels (compatibilité) ;
+     dashx.css garde sa propre échelle (400/600/900/1100px). Les variables CSS ne sont pas utilisables dans @media. */
   :root {
     --jeedom-radius: 0.5rem;
     --jeedom-radius-sm: 0.25rem;
@@ -4991,7 +4997,7 @@ body[data-page="administration2"] .sidebar-tab-content .form-horizontal {
   color: var(--txt-color) !important;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
   .modern-form-group {
     grid-template-columns: 1fr;
     gap: 8px;

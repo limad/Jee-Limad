@@ -157,7 +157,7 @@ div.CodeMirror .CodeMirror-scrollbar-filler { background: transparent; }
 .noUi-target { background: var(--btn-default-color); border: 1px solid var(--btn-default-border); }
 .noUi-connect { background: var(--al-primary-color); }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   #div_pageContainer { padding: 10px; }
   .panel-body, .modal-body { padding: 14px; }
 }
