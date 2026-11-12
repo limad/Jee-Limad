@@ -13,6 +13,27 @@ Desktop
     --jeedom-shadow-md: 0 2px 8px rgba(0,0,0,0.16);
     --jeedom-transition: 0.15s ease;
     --jeedom-spacing-unit: 0.5rem;
+    /* Lot 52 : jetons de couleur et d'ombre (valeurs identiques aux anciennes couleurs en dur ; un thème peut les redéfinir) */
+    --jeedom-c-on-accent: #fff;
+    --jeedom-c-border: #ddd;
+    --jeedom-c-border-input: rgba(100, 100, 100, 0.5);
+    --jeedom-c-selection: #d9d9d9;
+    --jeedom-c-mark-fg: #000;
+    --jeedom-c-mark-bg: #ff0;
+    --jeedom-c-line-soft: rgba(128, 128, 128, 0.1);
+    --jeedom-c-line: rgba(128, 128, 128, 0.15);
+    --jeedom-c-hover: rgba(128, 128, 128, 0.1);
+    --jeedom-c-stripe: rgba(128, 128, 128, 0.14);
+    --jeedom-c-switch-off: #555555;
+    --jeedom-c-switch-knob: #ffffff;
+    --jeedom-c-panel-dark: rgb(44, 44, 44);
+    --jeedom-c-field-dark: rgba(0, 0, 0, 0.3);
+    --jeedom-c-field-dark-border: rgba(255, 255, 255, 0.1);
+    --jeedom-shadow-xs: 0 1px 1px rgba(0,0,0,.05);
+    --jeedom-shadow-inset: inset 0 1px 3px rgba(0,0,0,0.4);
+    --jeedom-shadow-knob: 0 1px 3px rgba(0,0,0,0.2);
+    --jeedom-shadow-bar: 0 2px 6px rgba(0,0,0,0.08);
+    --jeedom-shadow-tab: 0 2px 4px rgba(0,0,0,0.1);
     /* Defaults: overridden by JS (utils.js) based on user config */
     --objectBackgroundBlur: 0px;
     --bkg-opacity-light: 1;
@@ -835,7 +856,7 @@ Desktop
   }
 
   [data-page=display] #div_pageContainer #displaytab ul > li input {
-    border: 1px solid rgba(100, 100, 100, 0.5);
+    border: 1px solid var(--jeedom-c-border-input);
   }
   [data-page=types] #div_pageContainer #genericsContainer ul > li > ul > li {
     position: relative;
@@ -2748,7 +2769,7 @@ div.eqLogic-widget.editingMode .panelLink {
     height: 100%;
     opacity: 0;
     outline: none;
-    background: white;
+    background: var(--jeedom-c-on-accent);
     cursor: pointer;
     display: block;
   }
@@ -2992,7 +3013,7 @@ div.eqLogic-widget.editingMode .panelLink {
     width: 100%;
     height: 100%;
     font-size: 10px;
-    color: white;
+    color: var(--jeedom-c-on-accent);
     line-height: 15px;
     text-align: center;
     pointer-events: none;
@@ -3003,7 +3024,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   input[type=radio]:checked {
     background: var(--al-primary-color);
-    background-image: radial-gradient(circle, white 35%, transparent 40%);
+    background-image: radial-gradient(circle, var(--jeedom-c-on-accent) 35%, transparent 40%);
   }
 
   /* select multiple */
@@ -3124,7 +3145,7 @@ div.eqLogic-widget.editingMode .panelLink {
     margin-bottom: 16px;
     border: 1px solid var(--panel-default-border, #ddd);
     border-radius: var(--border-radius, 4px);
-    box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: var(--jeedom-shadow-xs);
     background-color: rgb(var(--panel-bg-color, 255,255,255));
   }
   body[data-page="administration"] .sidebar-tab-content .form-horizontal fieldset {
@@ -3142,7 +3163,7 @@ div.eqLogic-widget.editingMode .panelLink {
     border: none;
     border-bottom: 1px solid var(--panel-default-border, #ddd);
     border-radius: var(--border-radius, 4px) var(--border-radius, 4px) 0 0;
-    background-color: rgba(128, 128, 128, 0.14);
+    background-color: var(--jeedom-c-stripe);
     color: var(--panel-default-title, var(--link-color, inherit));
   }
   body[data-page="administration"] .sidebar-tab-content .form-group {
@@ -3287,7 +3308,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .well blockquote {
-    border-color: #ddd;
+    border-color: var(--jeedom-c-border);
   }
 
   .well-lg {
@@ -3310,8 +3331,8 @@ div.eqLogic-widget.editingMode .panelLink {
     font-size: 13px;
     height: auto;
   }
-  .CodeMirror-selected { background: #d9d9d9; }
-  .CodeMirror-focused .CodeMirror-selected { background: #d9d9d9; }
+  .CodeMirror-selected { background: var(--jeedom-c-selection); }
+  .CodeMirror-focused .CodeMirror-selected { background: var(--jeedom-c-selection); }
 
   .CodeMirror-foldmarker {
     text-shadow: none !important;
@@ -4073,7 +4094,7 @@ div.eqLogic-widget.editingMode .panelLink {
     border-top: 0;
   }
   .highcharts-data-table th {
-    border: 1px solid #ddd;
+    border: 1px solid var(--jeedom-c-border);
     padding: 5px;
     vertical-align: bottom;
     line-height: 1.42857143;
@@ -4086,7 +4107,7 @@ div.eqLogic-widget.editingMode .panelLink {
     border-color: inherit;
   }
   .highcharts-data-table td {
-    border: 1px solid #ddd;
+    border: 1px solid var(--jeedom-c-border);
     padding: 5px;
     line-height: 1.42857143;
     vertical-align: top;
@@ -4372,8 +4393,8 @@ div.eqLogic-widget.editingMode .panelLink {
   #pre_globallog mark,
   #pre_scenariolog mark,
   #pre_eventlog mark {
-    color: #000;
-    background-color: #ff0;
+    color: var(--jeedom-c-mark-fg);
+    background-color: var(--jeedom-c-mark-bg);
     display: inline-flex;
     padding: 0;
   }
@@ -4780,7 +4801,7 @@ div.eqLogic-widget.editingMode .panelLink {
   -webkit-appearance: none !important;
   width: 36px !important;
   height: 20px !important;
-  background-color: #555555 !important;
+  background-color: var(--jeedom-c-switch-off) !important;
   border-radius: 20px !important;
   position: relative !important;
   cursor: pointer !important;
@@ -4792,7 +4813,7 @@ div.eqLogic-widget.editingMode .panelLink {
   vertical-align: middle !important;
   flex-shrink: 0 !important;
   border: none !important;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.4) !important;
+  box-shadow: var(--jeedom-shadow-inset) !important;
   display: inline-block !important;
 }
 .modern-form-group input[type="checkbox"]::before {
@@ -4806,10 +4827,10 @@ div.eqLogic-widget.editingMode .panelLink {
   left: 2px !important;
   width: 16px !important;
   height: 16px !important;
-  background-color: #ffffff !important;
+  background-color: var(--jeedom-c-switch-knob) !important;
   border-radius: 50% !important;
   transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1) !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2) !important;
+  box-shadow: var(--jeedom-shadow-knob) !important;
 }
 .modern-form-group input[type="checkbox"]:checked {
   background-color: var(--al-primary-color, #2563eb) !important;
@@ -4830,7 +4851,7 @@ div.eqLogic-widget.editingMode .panelLink {
   background: transparent;
   padding: 0 20px 24px 20px;
   margin-bottom: 24px;
-  border: 1px solid rgba(128, 128, 128, 0.15);
+  border: 1px solid var(--jeedom-c-line);
   border-radius: 12px;
 }
 .config-card-title {
@@ -4881,7 +4902,7 @@ body[data-page="administration2"] .sidebar-tab-content .form-horizontal {
   padding: 0 !important;
   margin-bottom: 16px;
   border-radius: var(--border-radius,4px);
-  background-color: rgb(44, 44, 44);
+  background-color: var(--jeedom-c-panel-dark);
   border: none !important;
   box-shadow: none !important;
 }
@@ -4892,7 +4913,7 @@ body[data-page="administration2"] .sidebar-tab-content .form-horizontal {
   margin-bottom: 24px;
   max-width: 600px;
   width: 100%;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  box-shadow: var(--jeedom-shadow-bar);
   border-radius: 6px;
 }
 .search-bar-group .form-control {
@@ -4909,7 +4930,7 @@ body[data-page="administration2"] .sidebar-tab-content .form-horizontal {
   font-weight: 500;
 }
 .sidebar-layout .nav-tabs.sidebar-nav-vertical > li:not(.active) > a:hover {
-  background-color: rgba(128, 128, 128, 0.1) !important;
+  background-color: var(--jeedom-c-hover) !important;
   color: var(--al-primary-color) !important;
   border: none !important;
   border-left: none !important;
@@ -4918,9 +4939,9 @@ body[data-page="administration2"] .sidebar-tab-content .form-horizontal {
 .sidebar-layout .nav-tabs.sidebar-nav-vertical > li.active > a:hover,
 .sidebar-layout .nav-tabs.sidebar-nav-vertical > li.active > a:focus {
   background-color: var(--al-primary-color) !important;
-  color: #ffffff !important;
+  color: var(--jeedom-c-on-accent) !important;
   border: none !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: var(--jeedom-shadow-tab);
 }
 
 .modern-form-group {
@@ -4930,7 +4951,7 @@ body[data-page="administration2"] .sidebar-tab-content .form-horizontal {
   margin-bottom: 0;
   padding: 14px 0;
   align-items: center;
-  border-top: 1px solid rgba(128, 128, 128, 0.1);
+  border-top: 1px solid var(--jeedom-c-line-soft);
 }
 .modern-form-group:first-of-type {
   border-top: none;
@@ -4965,8 +4986,8 @@ body[data-page="administration2"] .sidebar-tab-content .form-horizontal {
 .modern-form-group select.form-control {
   max-width: 500px;
   border-radius: 6px;
-  background-color: rgba(0, 0, 0, 0.3) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background-color: var(--jeedom-c-field-dark) !important;
+  border: 1px solid var(--jeedom-c-field-dark-border) !important;
   color: var(--txt-color) !important;
 }
 

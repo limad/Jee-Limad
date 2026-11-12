@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.50 (Jee-Limad, branche alpha)
+
+## Amélioration
+
+- Jetons de design : les 27 couleurs et ombres fixes de `desktop.main.css` (et les 2 de `desktop.fix.css`) passent par 21 variables `--jeedom-c-*` et `--jeedom-shadow-*` déclarées sur `:root`, avec les mêmes valeurs qu'avant. Un thème peut désormais les redéfinir sans toucher aux règles. Aucun changement d'affichage : styles calculés de 37 pages identiques avant et après sur les 7 thèmes (360 et 1366 px, mode tableau en plus pour core2019_Dark).
+
 # 4.5.3.49 (Jee-Limad, branche alpha)
 
 ## Correction
