@@ -294,6 +294,8 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 		. '@import url("/desktop/css/bootstrap.css?md5=' . md5_file($_bsPath) . '") layer(bootstrap);'
 		. '@import url("/desktop/css/desktop.main.css?md5=' . md5_file($_dmPath) . '") layer(base);'
 		. '</style>';
+	// Hors couche : !important des tuiles comparés aux !important des plugins comme sur un Jeedom standard
+	echo '<link rel="stylesheet" href="/desktop/css/desktop.compat.css?md5=' . md5_file(__DIR__ . '/../css/desktop.compat.css') . '">';
 	echo '<link rel="stylesheet" href="/desktop/css/desktop.fix.css?v=20260624b">'; // Bootstrap-free navbar fix
 	setTheme();
 	sendVarToJS([

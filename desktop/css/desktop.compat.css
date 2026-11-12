@@ -1,0 +1,222 @@
+/* desktop.compat.css — chargée HORS COUCHE, juste après bootstrap.css et desktop.main.css (couches bootstrap, base).
+ * Ces !important du core règlent les tuiles des listes (mode vignettes / tableau), les étiquettes d'objet et les zones de texte.
+ * Dans une couche, un !important du core bat toujours un !important de plugin (hors couche) ; ici, comme sur un Jeedom
+ * standard, le sélecteur le plus précis gagne, et le plugin à égalité (chargé après).
+ * Générée à partir de desktop.main.css (lot 50) : ne pas y remettre ces déclarations. */
+.name > .labelObjectHuman {
+  padding-left: 0 !important;
+}
+div[class*="DisplayCard"].inactive {
+  opacity: 0.45 !important;
+}
+div[class*="ListContainer"] > div.cursor {
+  width: 130px !important;
+  font-size: 14px !important;
+}
+div[class*="ListContainer"] > div.cursor:not(.objectDisplayCard) i,
+  .eqLogicThumbnailContainer > div.cursor > i {
+  font-size: 38px !important;
+}
+.objectDisplayCard i {
+  font-size: 38px !important;
+}
+div[class*="ListContainer"] span.objectSummaryParent i {
+  font-size: 12px !important;
+}
+.eqLogicDisplayCard,
+  .eqLogicThumbnailContainer div,
+  .interactDisplayCard,
+  div[class*="ListContainer"]:not(.batteryListContainer):not(.alertListContainer) div,
+  .scenarioDisplayCard,
+  .widgetDisplayCard,
+  .pluginDisplayCard {
+  border: none !important;
+  background: transparent !important;
+  padding-top: 0 !important;
+}
+div.eqLogicDisplayCard span.name > span.label {
+  cursor: pointer !important;
+}
+.scenarioDisplayCard .label {
+  cursor: pointer !important;
+}
+div[class*="ListContainer"]:not(.batteryListContainer):not(.alertListContainer) div.cursor,
+  .eqLogicDisplayCard div.cursor,
+  .eqLogicThumbnailContainer div.cursor {
+  margin-bottom: 5px !important;
+  padding: 5px !important;
+}
+div[class*="DisplayCard"] {
+  height: 130px !important;
+}
+div.eqLogicThumbnailContainer .eqLogicDisplayCard {
+  height: 168px !important;
+}
+div.scenarioDisplayCard.cursor {
+  margin-left: 0 !important;
+  min-height: 123px !important;
+}
+div.pluginDisplayCard,
+  div.objectDisplayCard {
+  min-height: 130px !important;
+}
+div.objectDisplayCard > i {
+  height: 42px !important;
+}
+div.objectDisplayCard .name {
+  border-radius: var(--border-radius) !important;
+}
+div.pluginListContainer div.cursor > center > img,
+  div.pluginListContainer div.cursor > .center > img,
+  div.interactListContainer div.cursor > img {
+  width: 75px !important;
+}
+div.eqLogicThumbnailContainer div.cursor {
+  font-size: 14px !important;
+}
+div.eqLogicThumbnailContainer div.cursor > center > img,
+  div.eqLogicThumbnailContainer div.cursor img {
+  width: 75px !important;
+  height: auto !important;
+}
+div.eqLogicThumbnailContainer div.eqLogicDisplayCard.cursor {
+  min-width: 130px !important;
+  max-width: none !important;
+  height: 168px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+div.eqLogicThumbnailContainer div.eqLogicDisplayCard img {
+  height: 100px !important;
+  width: unset !important;
+}
+div.scenarioDisplayCard > span.name strong,
+  div.eqLogicDisplayCard > span.name strong {
+  top: 3px !important;
+  height: 28px !important;
+}
+div.scenarioDisplayCard > span > i {
+  font-size: 3em !important;
+}
+div[class*="ListContainer"].containerAsTable > div.cursor,
+  div.eqLogicThumbnailContainer.containerAsTable > div.cursor {
+  width: auto !important;
+  height: 24px !important;
+}
+div[class*="ListContainer"].containerAsTable > div.cursor i,
+  div.eqLogicThumbnailContainer.containerAsTable > div.cursor i {
+  font-size: 18px !important;
+}
+div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable {
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+  transform: unset !important;
+  margin: 0 0 2px !important;
+  padding: 0 !important;
+}
+div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable:last-child {
+  margin-bottom: 5px !important;
+}
+div[class*="DisplayCard"].displayAsTable:hover .name {
+  background-color: var(--bg-color) !important;
+  color: unset !important;
+}
+body[data-type="plugin"] div[class*="DisplayCard"].displayAsTable:hover {
+  background-color: var(--bg-color) !important;
+  color: unset !important;
+}
+div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > span[class*="objectSummary"] {
+  font-size: 10px !important;
+}
+div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > span > i,
+  div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > .icon,
+  div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > i {
+  font-size: 18px !important;
+  width: 50px !important;
+  min-width: 50px !important;
+}
+div[class*="DisplayCard"].displayAsTable .name > .label,
+  div[class*="DisplayCard"].displayAsTable .name > strong {
+  font-size: 14px !important;
+  top: unset !important;
+}
+div[class*="DisplayCard"].displayAsTable .name > .label:not(.displayTableRight),
+  div[class*="DisplayCard"].displayAsTable .name > .label.labelObjectHuman {
+  line-height: 14px !important;
+  margin: 0 20px !important;
+  min-width: 20% !important;
+  text-align: center !important;
+}
+div[class*="DisplayCard"].displayAsTable .name > strong {
+  line-height: 22px !important;
+}
+div.pluginListContainer div.pluginDisplayCard.cursor.displayAsTable > center > img {
+  max-width: 18px !important;
+}
+div.cursor[class*="DisplayCard"].displayAsTable .displayTableRight i {
+  font-size: 11px !important;
+  height: 20px !important;
+}
+div.cursor[class*="DisplayCard"].displayAsTable .displayTableRight i::before {
+  vertical-align: top !important;
+  line-height: 9px !important;
+}
+div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable {
+  position: relative !important;
+  top: 2px !important;
+  left: 0 !important;
+  min-width: 100% !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+  transform: unset !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > img {
+  min-height: 24px !important;
+  height: 24px !important;
+  width: auto !important;
+}
+div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > .name .label:not(.displayTableRight) {
+  line-height: 14px !important;
+  margin: 0 20px !important;
+  min-width: 20% !important;
+  text-align: center !important;
+  cursor: pointer !important;
+}
+div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable:first-child {
+  margin-top: 8px !important;
+}
+div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable:last-child {
+  margin-bottom: 13px !important;
+}
+.eqLogicThumbnailDisplay .eqLogicThumbnailContainer:not(:first-of-type) {
+  background-color: rgb(from var(--defaultBkg-color) r g b / var(--opacity)) !important;
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+}
+textarea {
+  resize: vertical !important;
+}
+.element:not(.disableElement),
+  .element:not(.disableSubElement),
+  .eqLogicDisplayCard:not(.disableCard) {
+  opacity: 1 !important;
+}
+@media screen and (max-width: 767px) {
+  div[class*="DisplayCard"].displayAsTable:not(.widgetsDisplayCard) .name .label {
+    max-width: 200px !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .objectListContainer div.cursor > center > i,
+      .interactListContainer div.cursor > center > i,
+      .scenarioListContainer div.cursor > center  > i,
+      .pluginListContainer div.cursor > center > i,
+      .eqLogicThumbnailContainer div.cursor > center > i,
+      .eqLogicThumbnailContainer div.cursor > i {
+    font-size: 2.5em !important;
+  }
+}

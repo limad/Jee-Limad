@@ -836,7 +836,6 @@ Desktop
     background-color: var(--objectBkgd-color);
   }
   .name > .labelObjectHuman {
-    padding-left: 0 !important;
     display: inline-block;
   }
 
@@ -1767,7 +1766,6 @@ div.eqLogicZone {
   }
 
   div[class*="DisplayCard"].inactive {
-    opacity: 0.45;
     filter: grayscale(20%);
   }
 
@@ -1776,13 +1774,10 @@ div.eqLogicZone {
   }
 
   div[class*="ListContainer"] > div.cursor {
-    width : 130px !important;
-    font-size: 14px;
     position: relative;
   }
   div[class*="ListContainer"] > div.cursor:not(.objectDisplayCard) i,
   .eqLogicThumbnailContainer > div.cursor > i {
-    font-size: 38px;
     font-weight: 900;
   }
   div.objectListContainer .objectDisplayCard:not(.displayAsTable) .objectSummaryContainer {
@@ -1790,15 +1785,8 @@ div.eqLogicZone {
     top: -15px;
     line-height: 22px;
   }
-
-  .objectDisplayCard i {
-    font-size: 38px;
-  }
   div[class*="ListContainer"] i[class*=jeedom-batt] {
     font-weight: normal;
-  }
-  div[class*="ListContainer"] span.objectSummaryParent i {
-    font-size: 12px;
   }
 
   .eqLogicDisplayCard,
@@ -1808,17 +1796,7 @@ div.eqLogicZone {
   .scenarioDisplayCard,
   .widgetDisplayCard,
   .pluginDisplayCard {
-    border: none;
-    background: transparent;
-    padding-top: 0!important;
     text-align: center;
-  }
-  div.eqLogicDisplayCard span.name > span.label {
-    cursor: pointer;
-  }
-
-  .scenarioDisplayCard .label {
-    cursor: pointer;
   }
 
   div[class*="ListContainer"],
@@ -1838,13 +1816,6 @@ div.eqLogicZone {
   div[class*="ListContainer"] > div.alert {
     flex: auto;
   }
-
-  div[class*="ListContainer"]:not(.batteryListContainer):not(.alertListContainer) div.cursor,
-  .eqLogicDisplayCard div.cursor,
-  .eqLogicThumbnailContainer div.cursor {
-    margin-bottom: 5px !important;
-    padding: 5px !important;
-  }
   div[class*="ListContainer"] div.cursor > center > i,
   .eqLogicThumbnailContainer div.cursor > center > i,
   div[class*="ListContainer"] div.cursor > .center > i,
@@ -1854,19 +1825,13 @@ div.eqLogicZone {
   }
 
   div[class*="DisplayCard"] {
-    height: 130px !important;
     overflow: hidden;
   }
   div:not(.panel-body) > div.eqLogicThumbnailContainer {
     padding-right: 15px !important;
   }
-  div.eqLogicThumbnailContainer .eqLogicDisplayCard {
-    height: 168px !important;
-  }
   div.scenarioDisplayCard.cursor {
-    margin-left: 0 !important;
     text-align: center;
-    min-height: 123px !important;
   }
   div[class*="DisplayCard"] .name {
     top: 5px !important;
@@ -1881,49 +1846,34 @@ div.eqLogicZone {
   div.pluginDisplayCard,
   div.objectDisplayCard {
     height: 130px;
-    min-height: 130px !important;
   }
   div.objectDisplayCard > i {
     display: inline-block;
-    height: 42px !important;
   }
   div.objectDisplayCard .name {
     display: inline-block;
     padding: 4px 12px;
-    border-radius: var(--border-radius);
   }
   div.pluginListContainer div.cursor > center > img,
   div.pluginListContainer div.cursor > .center > img,
   div.interactListContainer div.cursor > img {
-    width: 75px !important;
     padding-top: 5px;
   }
   div.eqLogicThumbnailContainer div.cursor {
     width: 130px;
-    font-size: 14px;
     position: relative;
 
   }
   div.eqLogicThumbnailContainer div.cursor > center > img,
   div.eqLogicThumbnailContainer div.cursor img {
-    width: 75px;
-    height: auto !important;
     padding-top: 15px;
   }
   div.eqLogicThumbnailContainer div.eqLogicDisplayCard.cursor {
-    min-width: 130px !important;
-    max-width: none !important;
     width: auto;
-
-    height: 168px !important;
-    padding: 0 !important;
-    margin: 0 !important;
     overflow: hidden;
   }
 
   div.eqLogicThumbnailContainer div.eqLogicDisplayCard img {
-    height: 100px !important;
-    width: unset !important;
     padding-top: 15px;
   }
 
@@ -1936,9 +1886,7 @@ div.eqLogicZone {
   div.scenarioDisplayCard > span.name strong,
   div.eqLogicDisplayCard > span.name strong {
     position: relative;
-    top: 3px !important;
     display: block;
-    height: 28px;
     overflow: hidden;
     padding: 0 5px;
     max-width: 130px;
@@ -2030,9 +1978,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   div.eqLogic.eqLogic-widget:not(.displayObjectName) .object_name{
     display: none;
-  }
-  div.scenarioDisplayCard > span > i {
-    font-size: 3em;
   }
   div.scenarioDisplayCard .icon.noicon,
   div.interactDisplayCard .icon.noicon {
@@ -2338,13 +2283,10 @@ div.eqLogic-widget.editingMode .panelLink {
   div[class*="ListContainer"].containerAsTable > div.cursor,
   div.eqLogicThumbnailContainer.containerAsTable > div.cursor {
     display: flex;
-    width: auto !important;
-    height: 24px !important;
     flex: 0 0 auto;
   }
   div[class*="ListContainer"].containerAsTable > div.cursor i,
   div.eqLogicThumbnailContainer.containerAsTable > div.cursor i {
-    font-size: 18px;
     margin-left: 18px;
   }
   div[class*="ListContainer"].containerAsTable > div.cursor > span,
@@ -2366,27 +2308,8 @@ div.eqLogic-widget.editingMode .panelLink {
     display: none !important;
   }
   div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable {
-    position: relative !important;
-    top: 0 !important;
-    left: 0 !important;
     min-width: 100%;
     text-align: left;
-    min-height: 24px !important;
-    max-height: 24px !important;
-    transform: unset;
-    margin: 0 0 2px !important;
-    padding: 0 !important;
-  }
-  div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable:last-child {
-    margin-bottom: 5px !important;
-  }
-  div[class*="DisplayCard"].displayAsTable:hover .name {
-    background-color: var(--bg-color);
-    color: unset;
-  }
-  body[data-type="plugin"] div[class*="DisplayCard"].displayAsTable:hover {
-    background-color: var(--bg-color);
-    color: unset;
   }
   body[data-page="object"] div[class*="DisplayCard"].displayAsTable:hover .name,
   body[data-page="interact"] div[class*="DisplayCard"].displayAsTable:hover .name {
@@ -2400,16 +2323,12 @@ div.eqLogic-widget.editingMode .panelLink {
     top: 0;
     right: 0;
     height: 28px;
-    font-size: 10px;
     padding: 0 5px;
     background: rgb(from var(--defaultBkg-color) r g b / var(--opacity));
   }
   div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > span > i,
   div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > .icon,
   div[class*="ListContainer"] > div[class*="DisplayCard"].cursor.displayAsTable > i {
-    font-size: 18px;
-    width: 50px !important;
-    min-width: 50px !important;
     padding-left: 10px;
   }
   div[class*="DisplayCard"].displayAsTable .name {
@@ -2430,9 +2349,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   div[class*="DisplayCard"].displayAsTable .name > .label,
   div[class*="DisplayCard"].displayAsTable .name > strong {
-    font-size: 14px;
     font-weight: 400;
-    top: unset !important;
   }
   div[class*="DisplayCard"].displayAsTable .name > strong,
   div[class*="DisplayCard"].displayAsTable .name + .name,
@@ -2441,16 +2358,11 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   div[class*="DisplayCard"].displayAsTable .name > .label:not(.displayTableRight),
   div[class*="DisplayCard"].displayAsTable .name > .label.labelObjectHuman{
-    line-height: 14px;
-    margin: 0 20px;
-    min-width: 20%;
     max-width: calc(100% - 340px);
-    text-align: center;
     padding: 4px 12px;
     overflow: hidden;
   }
   div[class*="DisplayCard"].displayAsTable .name > strong {
-    line-height: 22px;
     max-width: calc(100% - 340px);
   }
 
@@ -2471,7 +2383,6 @@ div.eqLogic-widget.editingMode .panelLink {
     font-weight: 500;
   }
   div.pluginListContainer div.pluginDisplayCard.cursor.displayAsTable > center > img {
-    max-width: 18px !important;
     padding-top: 0;
     position: absolute;
     left: 15px;
@@ -2514,54 +2425,23 @@ div.eqLogic-widget.editingMode .panelLink {
   div.cursor[class*="DisplayCard"].displayAsTable .btn {
     height: 20px !important;
   }
-  div.cursor[class*="DisplayCard"].displayAsTable .displayTableRight i {
-    font-size: 11px;
-    height: 20px !important;
-  }
-  div.cursor[class*="DisplayCard"].displayAsTable .displayTableRight i::before {
-    vertical-align: top;
-    line-height: 9px;
-  }
 
   /* plugins page standard support */
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable {
-    position: relative !important;
-    top: 2px !important;
-    left: 0 !important;
-    min-width: 100% !important;
     text-align: left;
-    min-height: 24px !important;
-    max-height: 24px !important;
-    transform: unset;
-    margin: 0 !important;
-    padding: 0 !important;
   }
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > img {
-    min-height: 24px !important;
-    height: 24px !important;
-    width: auto !important;
     padding-top: 1px;
     position: absolute;
     left: 15px;
   }
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > .name .label:not(.displayTableRight)  {
-    line-height: 14px;
-    margin: 0 20px !important;
-    min-width: 20% !important;
-    text-align: center;
-    cursor: pointer;
     vertical-align: middle;
     display: inline-flex;
   }
   div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable > .name .label i {
     margin-right: 5px;
     margin-top: -1.5px;
-  }
-  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable:first-child {
-    margin-top: 8px !important;
-  }
-  div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable:last-child {
-    margin-bottom: 13px !important;
   }
 
 /* ____________________BUTTONS */
@@ -2873,8 +2753,6 @@ div.eqLogic-widget.editingMode .panelLink {
 
 /* ____________________PANELS */
   .eqLogicThumbnailDisplay .eqLogicThumbnailContainer:not(:first-of-type) {
-    background-color: rgb(from var(--defaultBkg-color) r g b / var(--opacity));
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
     z-index: 0;
     transition: box-shadow 0.4s cubic-bezier(.25,.8,.25,1);
     margin-top: 5px;
@@ -3242,7 +3120,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   textarea {
     min-height: 28px;
-    resize: vertical !important;
   }
   .input-group {
     margin-bottom: 1.2px;
@@ -4247,7 +4124,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .element:not(.disableElement),
   .element:not(.disableSubElement),
   .eqLogicDisplayCard:not(.disableCard) {
-    opacity: 1;
     transition-property: opacity;
     transition-duration: 0.6s;
   }
@@ -5334,7 +5210,6 @@ div.eqLogic-widget.editingMode .panelLink {
     }
     div[class*="DisplayCard"].displayAsTable:not(.widgetsDisplayCard) .name .label {
       width: calc(100vw - 340px);
-      max-width: 200px !important;
     }
 
     div.objectPreview {
@@ -5421,15 +5296,6 @@ div.eqLogic-widget.editingMode .panelLink {
     #summaryGlobalMain {
       right: 115px;
       max-width: calc(100vw - 490px);
-    }
-
-    .objectListContainer div.cursor > center > i,
-    .interactListContainer div.cursor > center > i,
-    .scenarioListContainer div.cursor > center  > i,
-    .pluginListContainer div.cursor > center > i,
-    .eqLogicThumbnailContainer div.cursor > center > i,
-    .eqLogicThumbnailContainer div.cursor > i {
-      font-size: 2.5em;
     }
 
     #div_editScenario .tab-content {

@@ -10,7 +10,7 @@ module.exports = {
     './core/php/**/*.php', './core/class/**/*.php', './core/ajax/**/*.php', './core/js/**/*.js',
     './core/template/**/*.html', './plugins/**/*.php', './plugins/**/*.js', './plugins/**/*.html'
   ],
-  css: ['./desktop/css/desktop.main.css', './desktop/css/dom.ui.css', './desktop/css/coreWidgets.css'],
+  css: ['./desktop/css/desktop.main.css', './desktop/css/desktop.compat.css', './desktop/css/dom.ui.css', './desktop/css/coreWidgets.css'],
   output: './desktop/css/purged-strict/',
   safelist: {
     standard: [

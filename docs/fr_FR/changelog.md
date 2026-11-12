@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.48 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Compatibilité des plugins avec les couches CSS du core, tuiles des listes : nouvelle feuille `desktop/css/desktop.compat.css`, chargée **hors couche** juste après `bootstrap.css` et `desktop.main.css`. Elle reçoit les `!important` du core qui règlent les tuiles des listes (modes vignettes et tableau), leurs images et icônes, les étiquettes d'objet et les zones de texte : 53 déclarations sorties de `desktop.main.css`, avec toutes leurs concurrentes de la même couche. Elle reprend aussi 39 `!important` de Jeedom standard sur ces règles, retirés dans le fork, qui battent les styles en ligne des plugins (icônes `font-size: 5em` d'Alexa Premium en mode tableau). Hors couche, un `!important` de plugin plus précis l'emporte de nouveau, comme sur Jeedom standard. Les barres d'actions et les tuiles en mode tableau d'Alexa Premium et d'AI Assistant retrouvent la mise en page de Jeedom standard ; les zones de texte du pack de widgets iso ne sont plus redimensionnables, comme le prévoit le pack. Mesure sur 138 pages de plugins, comparées à Jeedom 4.6.2 : déclarations de plugins battues 11 → 1. Styles calculés des pages du core identiques (26 pages, modes vignettes et tableau, 360 et 1366 px)
+
 # 4.5.3.47 (Jee-Limad, branche alpha)
 
 ## Correction
