@@ -1,10 +1,241 @@
 /* desktop.compat.css — chargée HORS COUCHE, juste après bootstrap.css et desktop.main.css (couches bootstrap, base).
- * Ces !important du core règlent les tuiles des listes (mode vignettes / tableau), les étiquettes d'objet et les zones de texte.
+ * Lot 50 : !important des tuiles des listes (vignettes / tableau), étiquettes d'objet, zones de texte.
+ * Lot 51 : !important de Jeedom 4.6.2 retirés dans le fork, rétablis quand ils ne changent pas l'aspect du core (7 thèmes).
  * Dans une couche, un !important du core bat toujours un !important de plugin (hors couche) ; ici, comme sur un Jeedom
  * standard, le sélecteur le plus précis gagne, et le plugin à égalité (chargé après).
- * Générée à partir de desktop.main.css (lot 50) : ne pas y remettre ces déclarations. */
+ * Générée à partir de desktop.main.css (lots 50 et 51) : ne pas y remettre ces déclarations.
+ * Écartés (changent l'aspect du core) : ai_agents/EXCHANGES/ui-audit-188-2026-11-10/lot51/tri.exclus.json. */
+::-webkit-scrollbar-track-piece {
+  background-color: transparent !important;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color, var(--linkHover-color)) !important;
+}
+a:hover {
+  color: var(--linkHover-color) !important;
+}
+#backgroundforJeedom {
+  background-color: transparent !important;
+}
+#backgroundforJeedom > div {
+  background-size: cover !important;
+  background-position: right bottom !important;
+}
+#backgroundforJeedom.custom > div {
+  background-position: center !important;
+}
+#in_searchDashboard.editing {
+  background-color: var(--al-info-color) !important;
+  color: var(--linkHoverLight-color) !important;
+}
+#bt_overview[data-state="1"] {
+  background: var(--al-warning-color) !important;
+}
+.ui-widget-overlay.ui-front {
+  background: var(--el-defaultColor) !important;
+}
+#jeedomMenuBar li.navTime {
+  text-align: center !important;
+}
+#jeedomMenuBar li.navTime > a {
+  text-align: center !important;
+}
+.dropdown-menu > li > a:focus,
+  .dropdown-menu > li > a:hover {
+  color: var(--dropdown-item-hover-fg, var(--link-color)) !important;
+}
+header .navbar-toggle {
+  background: transparent !important;
+}
+#jeedomMenuBar .navbar-collapse {
+  scrollbar-color: var(--form-bg-color) transparent !important;
+}
+#jeedomMenuBar ul.navbar-nav > li ul {
+  scrollbar-color: var(--form-bg-color) transparent !important;
+}
+#jeedomMenuBar ul.navbar-nav .divider,
+  .dropdown-menu .divider {
+  background-color: var(--el-defaultColor) !important;
+}
+@media screen and (min-width: 768px) {
+  #jeedomMenuBar ul.navbar-nav:not(.disabled) li li:hover,
+      #jeedomMenuBar ul.navbar-nav:not(.disabled) li li:hover > a {
+    color: var(--link-color) !important;
+  }
+}
+@media screen and (max-width: 767px) {
+  #jeedomMenuBar ul.navbar-nav > li {
+    border-bottom: 3px solid var(--bg-color) !important;
+  }
+}
+.widget-name,
+  .cmd-widget,
+  legend,
+  span,
+  .label:not(.cursor) {
+  cursor: default !important;
+}
+a,
+  a i,
+  a > span,
+  .badge,
+  sup,
+  a.btn,
+  .btn,
+  .btn > *,
+  .ui-icon-closethick,
+  .cursor,
+  .cursor *,
+  .label.state {
+  cursor: pointer !important;
+}
+.nocursor {
+  cursor: default !important;
+}
+.btn:hover {
+  color: var(--linkHoverLight-color) !important;
+}
+.btn:not(.cmdName).active {
+  color: var(--al-info-color) !important;
+  background-color: var(--sc-formTxt-color) !important;
+}
+span.cursor > i:hover,
+  i.cursor:hover,
+  i.cursor:active,
+  i.cursor:focus {
+  color: var(--linkHover-color) !important;
+}
+legend {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+}
+:not([data-page=display])legend {
+  color: var(--link-color) !important;
+}
+.labelObjectHuman {
+  color: var(--objectTxt-color) !important;
+}
 .name > .labelObjectHuman {
   padding-left: 0 !important;
+}
+[data-page=display] legend a,
+  [data-page=display] legend i {
+  color: inherit !important;
+}
+[data-page=display] #div_pageContainer #displaytab ul > li input {
+  font-size: 12px !important;
+}
+.dragSelected {
+  border: 2px dashed var(--logo-primary-color) !important;
+}
+#searchResult a[role=searchTabLink] {
+  font-size: 14px !important;
+}
+.div_object legend {
+  text-align: center !important;
+  background-color: transparent !important;
+}
+body[data-page="panel"] #div_pageContainer legend {
+  background-color: rgb(from var(--bg-color) r g b / var(--opacity)) !important;
+}
+body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
+  body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {
+  background: transparent !important;
+}
+.eqLogic.eqLogic-widget .tableCmd .tableCmdcss center,
+  .eqLogic.eqLogic-widget .tableCmd .tableCmdcss div.cmd,
+  .eqLogic.eqLogic-widget .tableCmd .tableCmdcss div[class*="content"],
+  .eqLogic.eqLogic-widget .tableCmd .tableCmdcss span.cmdName,
+  .eqLogic.eqLogic-widget .tableCmd .tableCmdcss strong.state {
+  font-size: unset !important;
+  color: unset !important;
+}
+.pull-left {
+  float: left !important;
+  text-align: left !important;
+}
+.label-sm {
+  font-size: 12px !important;
+}
+.iconCmd {
+  color: var(--link-color) !important;
+}
+#div_displayLogList .nav > li.li_log.active a {
+  border-right-color: var(--logo-primary-color) !important;
+}
+.packery-drop-placeholder {
+  outline: 3px dashed hsla(0, 0%, 0%, 0.5) !important;
+}
+.editingMode {
+  box-shadow: 0 0 2px var(--logo-primary-color) !important;
+}
+.eqLogic-widget.editingMode.eqLogic_layout_table .tableCmd td {
+  border: 2px dotted var(--logo-primary-color) !important;
+}
+.objectSummaryglobal > .objectSummaryParent,
+  .objectSummaryContainer > .objectSummaryParent,
+  #dashOverviewPrevSummaries .objectSummaryContainer > .objectSummaryParent {
+  color: var(--txt-color) !important;
+}
+#md_summaryAction #div_summaryAction div.eqLogic-widget {
+  background: transparent !important;
+}
+span.objectSummaryAction > i:hover {
+  color: var(--al-warning-color) !important;
+}
+#objectOverviewContainer .objectPreview,
+  #dashOverviewPrev .objectPreview {
+  background-position: center !important;
+}
+#objectOverviewContainer {
+  text-align: center !important;
+}
+.objectPreview {
+  background-color: var(--bg-modal-color) !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  color: var(--contrast-color) !important;
+}
+.objectPreview .objectSummaryParent,
+  .objectPreview .objectSummaryParent i {
+  font-size: 16px !important;
+}
+.objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] {
+  font-size: 20px !important;
+}
+.objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] {
+  font-size: 20px !important;
+}
+.objectPreview .success,
+  .objectPreview .success > i {
+  color: var(--bt-success-color) !important;
+}
+.objectPreview .danger,
+  .objectPreview .danger > i {
+  color: var(--al-danger-color) !important;
+}
+.objectPreview .resume .objectSummaryParent:first-child {
+  border-radius: var(--border-radius) 0 0 0 !important;
+}
+#md_overviewSummary {
+  box-shadow: none !important;
+  background: rgb(from var(--defaultBkg-color) r g b / 0.8) !important;
+  border: 1px solid rgb(from var(--contrast-color) r g b / 0.15) !important;
+}
+#md_overviewSummary div.jeeDialogTitle {
+  background: rgb(from var(--defaultBkg-color) r g b / 0.95) !important;
+}
+#md_overviewSummary div.jeeDialogTitle > span.title {
+  color: var(--link-color) !important;
+}
+[data-page="dashboard"] #dashOverviewPrev {
+  border-radius: var(--border-radius) !important;
+}
+[data-page="dashboard"] #dashOverviewPrev.dashboard .li_object span {
+  cursor: pointer !important;
+}
+#mod_selectIcon .iconSelected,
+  #mod_selectIcon .iconSelected > span.cursor > i {
+  color: var(--eqTitle-color) !important;
 }
 div[class*="DisplayCard"].inactive {
   opacity: 0.45 !important;
@@ -95,8 +326,59 @@ div.scenarioDisplayCard > span.name strong,
   top: 3px !important;
   height: 28px !important;
 }
+div.eqLogic-widget .cmd.refresh i {
+  color: var(--eqTitle-color) !important;
+  font-size: 12px !important;
+}
+div.eqLogic-widget .cmd.refresh i:hover {
+  color: var(--linkHoverLight-color) !important;
+}
+div.eqLogic-widget .panelLink i {
+  color: var(--eqTitle-color) !important;
+  font-size: 12px !important;
+}
+div.eqLogic.eqLogic-widget .widget-name span.warning i {
+  font-size: 14px !important;
+}
 div.scenarioDisplayCard > span > i {
   font-size: 3em !important;
+}
+#actionCmd tr td {
+  vertical-align: top !important;
+}
+#actionCmd tr td div span > i,
+  #actionCmd tr td div span {
+  color: var(--linkHoverLight-color) !important;
+}
+#battery .eqLogic-widget .widget-name span {
+  border-radius: var(--border-radius) !important;
+}
+body[data-coloredcats="1"] #battery .eqLogic-widget.critical .widget-name {
+  background-color: var(--al-danger-color) !important;
+}
+body[data-coloredcats="1"] #battery .eqLogic-widget.warning .widget-name {
+  background-color: var(--al-warning-color) !important;
+}
+body[data-coloredcats="1"] #battery .eqLogic-widget.good .widget-name {
+  background-color: var(--al-success-color) !important;
+}
+#battery .eqLogic-widget .jeedom-batterie i {
+  font-size: 75px !important;
+}
+#battery .eqLogic-widget .batteryTime i {
+  font-size: 16px !important;
+}
+pre {
+  background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity)) !important;
+}
+.div_rowZones {
+  border-radius: var(--border-radius) !important;
+}
+#marketMainContainer div[data-market_type="plugin"] {
+  background-color: var(--form-bg-color) !important;
+}
+#marketMainContainer div[data-market_type="plugin"]:hover {
+  background-color: var(--el-defaultColor) !important;
 }
 div[class*="ListContainer"].containerAsTable > div.cursor,
   div.eqLogicThumbnailContainer.containerAsTable > div.cursor {
@@ -193,17 +475,640 @@ div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable:first-ch
 div.eqLogicThumbnailContainer .eqLogicDisplayCard.cursor.displayAsTable:last-child {
   margin-bottom: 13px !important;
 }
+label.eqLogicAttr.label {
+  line-height: 17.15px !important;
+  font-size: 14px !important;
+}
+.btn-default:not(.btn) {
+  background-color: var(--btn-default-color) !important;
+}
+.btn.btn-warning {
+  background-color: var(--btn-warning-bg, var(--al-warning-color)) !important;
+}
+.btn.btn-success {
+  background-color: var(--btn-success-bg, var(--al-success-color)) !important;
+}
+button:focus {
+  outline: 0 !important;
+}
+#timelineContainer .html .tml-cmd > span >span i {
+  color: var(--linkHoverLight-color) !important;
+}
+#timelineContainer ul li {
+  background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
+}
+#timelineContainer div.time {
+  border-radius: var(--border-radius) !important;
+  background: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
+}
+body[data-page="history"] .label.displayObject i:hover {
+  color: inherit !important;
+}
+body[data-page="history"] .history.disabled {
+  color: var(--placeholder-color) !important;
+}
+#div_historyOptions {
+  background: rgb(from var(--panel-bg-color) r g b / var(--opacity)) !important;
+}
+#ul_expressionHistory li a {
+  color: var(--sc-lightTxt-color) !important;
+}
+#in_testExpression {
+  font-size: 14px !important;
+}
 .eqLogicThumbnailDisplay .eqLogicThumbnailContainer:not(:first-of-type) {
   background-color: rgb(from var(--defaultBkg-color) r g b / var(--opacity)) !important;
   border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
 }
+.navbar-nav.navbar-right > li a {
+  background-color: transparent !important;
+}
+.navbar-nav.navbar-right > li a:hover {
+  background-color: transparent !important;
+}
+:not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
+  background-color: var(--panel-heading-bg, var(--defaultBkg-color)) !important;
+}
+.panel {
+  background-color: rgb(from var(--defaultBkg-color) r g b / var(--opacity)) !important;
+}
+.list-group li {
+  background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity)) !important;
+}
+.panel-body {
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+}
+::-moz-color-swatch {
+  border-radius: var(--border-radius) !important;
+}
+::-webkit-color-swatch {
+  border-radius: var(--border-radius) !important;
+}
+.cursorText {
+  cursor: text !important;
+}
+.form-group {
+  vertical-align: middle !important;
+}
+.form-group .label {
+  font-weight: 500 !important;
+}
+.col-xs-height {
+  float: none !important;
+}
+.input-group-addon {
+  background: var(--input-group-addon-bg, var(--sc-formTxt-color)) !important;
+}
+input.knob {
+  color: var(--txt-color) !important;
+}
+textarea.input-sm {
+  font-size: 12px !important;
+}
+:not(textarea).input-sm {
+  font-size: 12px !important;
+  line-height: 16px !important;
+  height: 28px !important;
+}
+.element .input-group-addon.hasBtn {
+  background-color: var(--sc-formTxt-color) !important;
+}
+.btn-group-toggle > label.active {
+  background-color: var(--al-primary-color) !important;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none !important;
+}
 textarea {
   resize: vertical !important;
+}
+select,
+  input[type=color] {
+  cursor: pointer !important;
+}
+div[data-subtype=select] {
+  color: var(--link-color) !important;
+}
+div[data-subtype=select] select {
+  color: var(--link-color) !important;
+  font-weight: bold !important;
+  background-color: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+}
+select:not([multiple]) option {
+  color: var(--txt-color) !important;
+  background-color: var(--defaultBkg-color) !important;
+}
+select option:disabled {
+  color: var(--placeholder-color) !important;
+}
+select optgroup {
+  color: var(--txt-color) !important;
+  background-color: var(--bg-modal-color) !important;
+}
+body[data-theme] select[multiple] {
+  background-image: unset !important;
+}
+.has-success .checkbox-inline {
+  color: var(--link-color) !important;
+}
+input[type=checkbox],
+  input[type=radio] {
+  font-size: 14px !important;
+  border-radius: 0 !important;
+}
+input[type=radio] {
+  border-radius: 1em !important;
+}
+input[type=checkbox]::-ms-check {
+  background-color: var(--form-bg-color) !important;
+}
+.custom-select {
+  font-size: 14px !important;
+}
+.checkbox-inline.disabled,
+  .checkbox.disabled label,
+  .radio-inline.disabled,
+  .radio.disabled label,
+  fieldset[disabled] .checkbox label,
+  fieldset[disabled] .checkbox-inline,
+  fieldset[disabled] .radio label,
+  fieldset[disabled] .radio-inline,
+  fieldset[disabled] input[type=checkbox],
+  fieldset[disabled] input[type=radio],
+  select.disabled,
+  input.disabled,
+  input[disabled],
+  select[disabled],
+  .disabled .btn:not(.enabled),
+  .disabled input:not(.enabled),
+  .disabled input[type=checkbox]:not(.enabled),
+  .disabled button:not(.enabled),
+  .disabled span:not(.enabled),
+  .disabled button:not(.enabled) i,
+  .disabled a:not(.enabled) > i,
+  select:disabled,
+  input:disabled {
+  cursor: not-allowed !important;
+}
+a.disabled,
+  a.disabled > i {
+  cursor: default !important;
+}
+div.tab-pane:focus-visible {
+  outline: none !important;
+}
+.tab-content .tab-content,
+  .tab-content pre {
+  background-color: rgba(0,0,0,0) !important;
+}
+.tab-content ul.nav.nav-tabs li a {
+  border-top: 1px solid var(--el-defaultColor) !important;
+}
+body[data-page="administration"] .sidebar-tab-content .form-group > .control-label {
+  float: none !important;
+  text-align: left !important;
+}
+.table > tbody > tr > th {
+  border: none !important;
+}
+table.table,
+  table.table .table {
+  background-color: transparent !important;
+}
+.table-condensed tbody tr:hover td {
+  background-color: rgb(from var(--contrast-color) r g b / 0.1) !important;
+}
+.table-striped>tbody>tr:nth-of-type(2n+1),
+  .table > thead > tr {
+  background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity)) !important;
+}
+#logsForms .form-group:nth-child(odd) {
+  background-color: var(--bg-color) !important;
+}
+:not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(even) {
+  background-color: var(--bg-color) !important;
+}
+:not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(odd) {
+  background-color: var(--bg-modal-color) !important;
+}
+.table-bordered,
+  .table-bordered>tbody>tr>td,
+  .table-bordered>tbody>tr>th,
+  .table-bordered>tfoot>tr>td,
+  .table-bordered>tfoot>tr>th,
+  .table-bordered>thead>tr>td,
+  .table-bordered>thead>tr>th {
+  border: none !important;
+}
+table.table-condensed tbody tr,
+  table.table-condensed tbody td {
+  line-height: 14px !important;
+}
+:not(.eqLogic-widget) + table.tableCmd td {
+  vertical-align: top !important;
+}
+div.CodeMirror {
+  background: var(--codemirror-bg, var(--objectTxt-color)) !important;
+}
+div.CodeMirror pre {
+  background-color: transparent !important;
+}
+.CodeMirror-dialog-top {
+  border-bottom: 2px solid var(--txt-color) !important;
+}
+.CodeMirror-foldmarker {
+  color: var(--txt-color) !important;
+  cursor: pointer !important;
+}
+.CodeMirror-foldgutter-open,
+  .CodeMirror-foldgutter-folded {
+  transform: scale(2.5) translate(1px, -1px) !important;
+}
+.subElement .elementIF.elementCollapse:hover {
+  border-left-color: var(--sc-form-color) !important;
+}
+.subElement .element:not(.elementIF):hover {
+  border-left-color: var(--sc-form-color) !important;
+}
+.subElementACTION > .expressions > .expressionACTION {
+  border-radius: 0 !important;
+}
+.subElement .elementIF:hover:not(.elementCollapse) > .subElementIF,
+  .subElement .elementIF:not(.elementCollapse) .subElementTHEN:hover,
+  .subElement .elementIF:not(.elementCollapse) .subElementELSE:hover {
+  border-left-color: var(--sc-form-color) !important;
+}
+.element legend {
+  background-color: transparent !important;
+}
+.element .btn,
+  .element .btn:focus,
+  .element .btn:active,
+  .element .dropdown-menu {
+  color: var(--linkHoverLight-color) !important;
+  background-color: var(--sc-formTxt-color) !important;
+}
+.element button.dropdown-toggle {
+  color: var(--linkHoverLight-color) !important;
+  background-color: var(--sc-formTxt-color) !important;
+}
+.element button.dropdown-toggle:hover {
+  color: var(--sc-lightTxt-color) !important;
+}
+.element button.dropdown-toggle:focus,
+  .element button.dropdown-toggle a:focus {
+  color: var(--linkHoverLight-color) !important;
+  background-color: var(--sc-formTxt-color) !important;
+}
+.subElementFields button.dropdown-toggle .caret {
+  border-top-color: var(--linkHoverLight-color) !important;
+}
+.subElementFields ul.dropdown-menu {
+  border-bottom: none !important;
+}
+.element .dropdown-submenu.open > a,
+  .element .dropdown-menu > li > a:focus,
+  .element .dropdown-menu > li > a:hover {
+  background-color: var(--btn-default-color) !important;
+}
+.element .dropdown-menu li a {
+  color: var(--linkHoverLight-color) !important;
+  font-size: 12px !important;
+}
+.element .form-control.expressionAttr:not([data-l2key=graphColor]),
+  .element input.expressionAttr:not([data-l2key=graphColor]):not([type=checkbox]),
+  .element select.expressionAttr:not([data-l2key=graphColor]),
+  .element textarea.expressionAttr:not([data-l2key=graphColor]) {
+  border: 0 !important;
+  font-size: 12px !important;
+}
+#div_editScenario .element .expressionAttr.insideSearch {
+  background-color: var(--al-warning-color) !important;
+  color: var(--linkHoverLight-color) !important;
+}
+.subElementCOMMENT textarea {
+  font-weight: normal !important;
+}
+.element .cursor {
+  color: var(--linkHoverLight-color) !important;
+}
+.element .bt_sortable,
+  .element .bt_hideElement,
+  .element .bt_removeElement,
+  .element .bt_copyElement,
+  .element .bt_pasteElement,
+  .element .bt_collapse {
+  color: var(--linkHoverLight-color) !important;
+}
+.element .bt_sortable:hover,
+  .element .bt_hideElement:hover,
+  .element .bt_removeElement:hover,
+  .element .bt_copyElement:hover,
+  .element .bt_pasteElement:hover,
+  .element .bt_collapse:hover {
+  color: var(--linkHoverLight-color) !important;
+}
+.element .bt_repeat i {
+  font-size: 12px !important;
+}
+.element .bt_repeat i.text-danger {
+  font-size: 14px !important;
+}
+.element .subElementFields .dropdown {
+  font-size: 0 !important;
+}
+.subElementCOMMENT .expression textarea {
+  border-radius: 0 !important;
 }
 .element:not(.disableElement),
   .element:not(.disableSubElement),
   .eqLogicDisplayCard:not(.disableCard) {
   opacity: 1 !important;
+}
+.element .disableElement,
+  .element .disableSubElement {
+  opacity: var(--element-disable-opacity, 0.6) !important;
+}
+.disableElement input[type=checkbox][data-l2key=enable],
+  .element .disableSubElement input[type=checkbox][data-l2key=enable] {
+  background-color: var(--bg-color) !important;
+}
+.elementCollapse .bt_collapse {
+  color: var(--scBlocSep) !important;
+}
+.elementIF.elementCollapse .expressionAttr,
+  .elementIN.elementCollapse .expressionAttr,
+  .elementAT.elementCollapse .expressionAttr,
+  .elementFOR.elementCollapse .expressionAttr,
+  .elementWHILE.elementCollapse .expressionAttr {
+  border-radius: var(--border-radius) var(--border-radius) var(--border-radius) var(--border-radius) !important;
+}
+.element.elementCollapse .blocPreview {
+  font-size: 12px !important;
+}
+#div_jeedomLoading .loadingBack {
+  background: var(--el-defaultColor) !important;
+  opacity: 0.6 !important;
+}
+.bs-sidebar {
+  background: rgb(from var(--bg-color) r g b / var(--opacity)) !important;
+  border-radius: var(--border-radius) !important;
+}
+.bs-sidebar .label,
+  .bs-sidebar .label > i {
+  cursor: pointer !important;
+}
+.bs-sidebar .label > i {
+  color: inherit !important;
+}
+.bs-sidebar li.active {
+  border-right: 3px solid var(--logo-primary-color) !important;
+}
+#dashOverviewPrev .li_object.active {
+  border-left: 3px solid var(--logo-primary-color) !important;
+}
+.bs-sidebar .nav li a:not(.btn):hover,
+  .bs-sidebar .nav li a:not(.btn):focus,
+  .bs-sidebar .nav li a:not(.btn):active {
+  background-color: var(--btnEq-default-color) !important;
+}
+.bs-sidebar .nav > .active a {
+  border-right-color: var(--logo-primary-color) !important;
+}
+.li_object a span:not(:first-child) {
+  float: left !important;
+}
+#ul_noteList .li_noteDisplay {
+  background-color: var(--form-bg-color) !important;
+}
+#ul_noteList .li_noteDisplay a:active,
+  #ul_noteList .li_noteDisplay a:focus,
+  #ul_noteList .li_noteDisplay a:hover {
+  background-color: var(--defaultBkg-color) !important;
+}
+.highcharts-legend-item:not(.highcharts-legend-item-hidden) text {
+  fill: var(--link-color) !important;
+  font-weight: normal !important;
+}
+.highcharts-legend-item.highcharts-legend-item-hidden text {
+  fill: var(--txt-color) !important;
+  font-weight: normal !important;
+}
+div.chartContainer .highcharts-axis-line,
+  div.chartContainer .highcharts-navigator-xaxis .highcharts-grid-line {
+  stroke: var(--placeholder-color) !important;
+}
+div.chartContainer .highcharts-navigator-handle {
+  fill: var(--placeholder-color) !important;
+}
+.highcharts-xaxis-labels:not(.highcharts-navigator-xaxis) tspan {
+  transform: translate(0,10px) !important;
+  fill: var(--contrast-color) !important;
+}
+.highcharts-background {
+  fill: rgb(from var(--panel-bg-color) r g b / var(--opacity)) !important;
+}
+.eqLogic-widget .highcharts-background {
+  fill: transparent !important;
+}
+.highcharts-range-selector-buttons > text {
+  fill: var(--link-color) !important;
+}
+.highcharts-container {
+  color: var(--txt-color) !important;
+}
+.graph-widget:not(.transparent) {
+  background-color: var(--panel-bg-color) !important;
+}
+div.chartContainer .highcharts-plot-band {
+  fill: rgb(from var(--bg-color) r g b / 0.5) !important;
+}
+.highcharts-button-box {
+  fill: var(--el-defaultColor) !important;
+}
+.highcharts-button > text,
+  .highcharts-button-disabled > text,
+  .highcharts-button-box > text {
+  fill: var(--link-color) !important;
+}
+.highcharts-axis-labels.highcharts-xaxis-labels > text {
+  fill: var(--link-color) !important;
+}
+.highcharts-yaxis-grid .highcharts-grid-line {
+  stroke-width: 0.1 !important;
+  stroke: var(--link-color) !important;
+}
+.highcharts-axis-title > tspan {
+  fill: var(--txt-color) !important;
+}
+div.chartContainer .highcharts-button-disabled {
+  opacity: 0.3 !important;
+}
+div.chartContainer .highcharts-button.highcharts-button-pressed > rect,
+  div.chartContainer .highcharts-button.highcharts-button-pressed span {
+  fill: var(--objectBkgd-color) !important;
+  color: var(--objectTxt-color) !important;
+}
+div.chartContainer .highcharts-button.highcharts-button-hover span,
+  div.chartContainer .highcharts-button.highcharts-button-normal span {
+  color: var(--link-color) !important;
+}
+div.chartContainer .highcharts-button.highcharts-button-pressed > text {
+  fill: var(--objectTxt-color) !important;
+}
+div.chartContainer g.highcharts-range-selector-group g.highcharts-button.warning > text {
+  fill: var(--al-warning-color) !important;
+}
+.highcharts-selection-marker {
+  stroke-width: 1px !important;
+}
+.highcharts-tooltip .highcharts-tooltip-box,
+  .highcharts-tooltip .highcharts-label-box {
+  stroke-width: 0.6 !important;
+}
+.highcharts-tooltip .highcharts-tooltip-box path {
+  fill: var(--bg-color) !important;
+}
+.highcharts-tooltip .highcharts-tooltip-box text,
+  .highcharts-tooltip .highcharts-tooltip-box text tspan {
+  fill: var(--contrast-color) !important;
+  font-weight: 400 !important;
+}
+.highcharts-label.highcharts-point path {
+  fill: var(--btnEq-default-color) !important;
+}
+.div_backgroundPlan .text-widget {
+  background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity)) !important;
+  color: var(--txt-color) !important;
+}
+.btn_closeAlert {
+  color: var(--linkHoverLight-color) !important;
+  font-size: 16px !important;
+}
+.label-danger .state {
+  color: var(--sc-lightTxt-color) !important;
+}
+.info,
+  .info i,
+  [data-coloredicons="1"] .icon_blue {
+  color: var(--al-info-color) !important;
+}
+.success,
+  .success i,
+  [data-coloredicons="1"] .icon_green {
+  color: var(--bt-success-color) !important;
+}
+.danger,
+  .danger i,
+  [data-coloredicons="1"] .icon_red {
+  color: var(--al-danger-color) !important;
+}
+.yellow,
+  [data-coloredicons="1"] .icon_yellow {
+  color: var(--lb-yellow-color) !important;
+}
+[data-coloredicons="1"] .scenario-widget:not(.disabled) .iconCmd {
+  color: var(--bt-success-color) !important;
+}
+[data-coloredicons="1"] .scenario-widget.inactive .iconCmd {
+  color: var(--al-danger-color) !important;
+}
+.cmd.label i {
+  color: var(--linkHoverLight-color) !important;
+}
+p.state {
+  color: var(--txt-color) !important;
+}
+.eqLogic.eqLogic-widget .cmd.label .cmdName,
+  .eqLogic.eqLogic-widget .cmd.label .state,
+  .eqLogic.eqLogic-widget .cmd.label div[class*="content"] {
+  color: var(--sc-lightTxt-color) !important;
+}
+.cmd.label .cmdName {
+  color: var(--linkHoverLight-color) !important;
+}
+.cmd.label {
+  text-align: center !important;
+}
+li.alert-info.eqLogic {
+  background-color: var(--defaultBkg-color) !important;
+}
+div.flatpickr-calendar select,
+  div.flatpickr-calendar div.flatpickr-month input {
+  background-image: none !important;
+}
+body[data-theme*="Dark"] div.flatpickr-calendar select {
+  background-image: none !important;
+}
+.tippy-box {
+  border: none !important;
+}
+td.alert {
+  border-radius: 0 !important;
+}
+.bottomCorner {
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+}
+#div_pageContainer ul.nav.nav-tabs li:first-of-type,
+  #div_pageContainer ul.nav.nav-tabs > li:first-of-type > a {
+  border-radius: var(--border-radius) 0 0 0 !important;
+}
+#div_pageContainer ul.nav.nav-tabs li:last-of-type,
+  #div_pageContainer ul.nav.nav-tabs > li:last-of-type > a {
+  border-radius: 0 var(--border-radius) 0 0 !important;
+}
+#pre_scenariolog .success {
+  color: var(--al-success-color) !important;
+}
+#pre_scenariolog .info {
+  color: var(--al-primary-color) !important;
+}
+.input-group ::-moz-color-swatch {
+  border-radius: 0 !important;
+}
+.input-group ::-webkit-color-swatch {
+  border-radius: 0 !important;
+}
+.input-group .roundedLeft {
+  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
+}
+.roundedLeft::-moz-color-swatch {
+  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
+}
+.roundedRight::-moz-color-swatch {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+}
+.roundedLeft::-webkit-color-swatch {
+  border-radius: var(--border-radius) 0 0 var(--border-radius) !important;
+}
+.roundedRight::-webkit-color-swatch {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0 !important;
+}
+.input-group .rounded,
+  .rounded {
+  border-radius: var(--border-radius) !important;
+}
+#jeedomMenuBar .navbar-nav li ul {
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+}
+#jeedomMenuBar .navbar-nav li ul li ul {
+  border-radius: 0 var(--border-radius) var(--border-radius) var(--border-radius) !important;
+}
+.tab-content {
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+}
+[data-page=display] div.object > div {
+  border-radius: var(--border-radius) !important;
+}
+ul.dropdown-menu {
+  border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
+}
+@media screen and (max-width: 1280px) {
+  .panel {
+    font-size: 14px !important;
+  }
 }
 @media screen and (max-width: 767px) {
   div[class*="DisplayCard"].displayAsTable:not(.widgetsDisplayCard) .name .label {

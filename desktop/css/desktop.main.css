@@ -32,12 +32,6 @@ Desktop
     width: var(--scrollbar-size, 10px);
     height: var(--scrollbar-size, 10px);
   }
-  ::-webkit-scrollbar-track-piece {
-    background-color: transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--scrollbar-thumb-color, var(--linkHover-color));
-  }
 
   html {
     height: 100%;
@@ -94,9 +88,6 @@ Desktop
   span.cursor > i,
   i.cursor {
     color: var(--link-color);
-  }
-  a:hover {
-    color: var(--linkHover-color);
   }
   header a.navbar-brand {
     padding: 7px;
@@ -161,7 +152,6 @@ Desktop
     height: calc(100% - 50px);
     z-index: -1;
     position: fixed;
-    background-color: transparent;
   }
   #backgroundforJeedom > div {
     position: absolute;
@@ -169,8 +159,6 @@ Desktop
     height: calc(100vh + var(--objectBackgroundBlur) * 2);
     left: calc(0px - var(--objectBackgroundBlur));
     opacity: var(--bkg-opacity-light);
-    background-size: cover;
-    background-position: right bottom;
     background-repeat: no-repeat;
   }
   #backgroundforJeedom > #top {
@@ -178,9 +166,6 @@ Desktop
   }
   #backgroundforJeedom > #bottom {
     z-index: 1
-  }
-  #backgroundforJeedom.custom > div {
-    background-position: center;
   }
   [data-page="dashboard"] #backgroundforJeedom {
     filter: blur(var(--objectBackgroundBlur));
@@ -202,15 +187,8 @@ Desktop
     width: calc(100% - 17px) !important;
     left: 6px;
   }
-  #in_searchDashboard.editing {
-    background-color: var(--al-info-color);
-    color: var(--linkHoverLight-color);
-  }
   #bt_overview {
     width: 35px;
-  }
-  #bt_overview[data-state="1"] {
-    background: var(--al-warning-color);
   }
 
   #div_alert {
@@ -265,7 +243,6 @@ Desktop
   }
   .ui-widget-overlay.ui-front {
     z-index: 90 !important;
-    background: var(--el-defaultColor);
     opacity: 0.6;
     backdrop-filter: blur(2px);
   }
@@ -277,13 +254,11 @@ Desktop
   #jeedomMenuBar li.navTime {
     padding: 5px 0 0 !important;
     margin: 0 !important;
-    text-align: center;
     width: 90px;
   }
   #jeedomMenuBar li.navTime > a  {
     padding: 0 !important;
     margin: 0 !important;
-    text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -323,14 +298,12 @@ Desktop
   }
   .dropdown-menu > li > a:focus,
   .dropdown-menu > li > a:hover {
-    color: var(--dropdown-item-hover-fg, var(--link-color));
     background-color: var(--dropdown-item-hover-bg, var(--form-bg-color));
   }
 
   /* hamburger */
   header .navbar-toggle {
     border: none;
-    background: transparent;
   }
   .navbar-toggle .icon-bar {
     height: 3px;
@@ -445,7 +418,6 @@ Desktop
 /* ______Main Menu */
   #jeedomMenuBar .navbar-collapse {
     max-height: 80vh;
-    scrollbar-color: var(--form-bg-color) transparent;
     scrollbar-width: thin;
   }
   #jeedomMenuBar ul.navbar-nav > li ul {
@@ -457,7 +429,6 @@ Desktop
     min-width: 180px;
     padding-top: 5px;
     padding-bottom: 5px;
-    scrollbar-color: var(--form-bg-color) transparent;
     scrollbar-width: thin;
   }
   #jeedomMenuBar ul.navbar-nav li ul {
@@ -498,7 +469,6 @@ Desktop
   }
   #jeedomMenuBar ul.navbar-nav .divider,
   .dropdown-menu .divider {
-    background-color: var(--el-defaultColor);
     height: 1.1px;
     margin: 1em 0;
     padding: 0 !important;
@@ -569,7 +539,6 @@ Desktop
     }
     #jeedomMenuBar ul.navbar-nav:not(.disabled) li li:hover,
     #jeedomMenuBar ul.navbar-nav:not(.disabled) li li:hover > a {
-      color: var(--link-color);
       background-color: var(--form-bg-color);
     }
     #jeedomMenuBar ul.navbar-nav:not(.disabled) > li:hover > ul {
@@ -616,9 +585,6 @@ Desktop
     #jeedomMenuBar ul.navbar-nav li input[type="checkbox"]:checked + ul {
       display: block !important;
     }
-    #jeedomMenuBar ul.navbar-nav > li {
-      border-bottom: 3px solid var(--bg-color);
-    }
     #jeedomMenuBar ul.navbar-nav > li > ul {
       padding-left: 6%;
     }
@@ -654,7 +620,6 @@ Desktop
   legend,
   span,
   .label:not(.cursor) {
-    cursor: default;
     overflow-wrap: break-word;
   }
 
@@ -674,21 +639,6 @@ Desktop
   #div_graphLinkRenderer .nodeNoActive {
     filter: grayscale(100%);
     opacity: 0.75;
-  }
-
-  a,
-  a i,
-  a > span,
-  .badge,
-  sup,
-  a.btn,
-  .btn,
-  .btn > *,
-  .ui-icon-closethick,
-  .cursor,
-  .cursor *,
-  .label.state {
-    cursor: pointer;
   }
   /* Migration <a class=btn> -> <button>: neutralise les styles UA du button */
   button.btn {
@@ -745,10 +695,6 @@ Desktop
   .leftPanel {
     transition: width 0.2s ease, transform 0.2s ease;
   }
-
-  .nocursor {
-    cursor: default;
-  }
   a > img:hover {
     opacity: 0.75;
   }
@@ -760,19 +706,13 @@ Desktop
     border: 1px solid var(--btn-default-border, color-mix(in srgb, var(--btn-default-color) 70%, #000));
   }
   .btn:hover {
-    color: var(--linkHoverLight-color);
     background-color: color-mix(in srgb, var(--btn-default-color) 85%, #000);
-  }
-  .btn:not(.cmdName).active {
-    color: var(--al-info-color);
-    background-color: var(--sc-formTxt-color);
   }
 
   span.cursor > i:hover,
   i.cursor:hover,
   i.cursor:active,
   i.cursor:focus {
-    color: var(--linkHover-color);
     outline: none;
   }
 
@@ -811,7 +751,6 @@ Desktop
   }
 
   legend {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-size: 18px;
     background: transparent;
     border-bottom: none;
@@ -827,12 +766,7 @@ Desktop
     margin-top: 4px;
   }
 
-  :not([data-page=display])legend {
-    color: var(--link-color);
-  }
-
   .labelObjectHuman {
-    color: var(--objectTxt-color);
     background-color: var(--objectBkgd-color);
   }
   .name > .labelObjectHuman {
@@ -845,10 +779,6 @@ Desktop
     left: 50%;
     height: 13px;
     overflow: hidden;
-  }
-  [data-page=display] legend a,
-  [data-page=display] legend i {
-    color: inherit;
   }
   [data-page=display] .object legend {
     border-left: none;
@@ -906,7 +836,6 @@ Desktop
 
   [data-page=display] #div_pageContainer #displaytab ul > li input {
     border: 1px solid rgba(100, 100, 100, 0.5);
-    font-size: 12px;
   }
   [data-page=types] #div_pageContainer #genericsContainer ul > li > ul > li {
     position: relative;
@@ -931,16 +860,12 @@ Desktop
     padding-left: 0;
     min-height: 30px !important;
   }
-  .dragSelected {
-    border: 2px dashed var(--logo-primary-color);
-  }
   li.eqLogic .bt_sortable {
     padding: 5px 0 0;
   }
 
   #searchResult a[role=searchTabLink] {
     display: table;
-    font-size: 14px;
     font-weight: bold;
     margin-top: 15px !important;
     border-bottom: 3px solid var(--logo-primary-color);
@@ -955,9 +880,7 @@ Desktop
 
   /* object title on dashboard */
   .div_object legend {
-    text-align: center;
     color: var(--txt-color);
-    background-color: transparent;
     margin-top: 12px;
   }
   .div_object legend .objectDashLegend {
@@ -990,7 +913,6 @@ Desktop
 
 /* Legend panel */
 body[data-page="panel"] #div_pageContainer legend {
-  background-color: rgb(from var(--bg-color) r g b / var(--opacity));
   margin: 5px 0 !important;
 }
 
@@ -1046,10 +968,6 @@ div.eqLogicZone {
   user-select: none;
 }
 /* ____________________DASHBOARD */
-  body[data-coloredcats="0"] div.eqLogic-widget .widget-name,
-  body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name {
-    background: transparent;
-  }
   body[data-coloredcats="0"] div.eqLogic-widget .widget-name > a,
   body[data-coloredcats="0"] div.scenario.scenario-widget .widget-name  > a,
   body[data-coloredcats="0"] div.eqLogic-widget span.cmd.refresh > i,
@@ -1165,14 +1083,6 @@ div.eqLogicZone {
   .tableCmd {
     font-size: 12px;
   }
-  .eqLogic.eqLogic-widget .tableCmd .tableCmdcss center,
-  .eqLogic.eqLogic-widget .tableCmd .tableCmdcss div.cmd,
-  .eqLogic.eqLogic-widget .tableCmd .tableCmdcss div[class*="content"],
-  .eqLogic.eqLogic-widget .tableCmd .tableCmdcss span.cmdName,
-  .eqLogic.eqLogic-widget .tableCmd .tableCmdcss strong.state {
-    font-size: unset;
-    color: unset;
-  }
 
   .eqLogic.eqLogic-widget .tableCmd td{
     min-width: 20px;
@@ -1189,9 +1099,7 @@ div.eqLogicZone {
     margin-right: 5px;
   }
   .pull-left {
-    float: left;
     margin-right: 3px;
-    text-align: left;
   }
   .btn.action {
     margin-top: 2px;
@@ -1208,7 +1116,6 @@ div.eqLogicZone {
     padding: 0 4px;
   }
   .label-sm {
-    font-size: 12px;
     padding: 2px 8px;
   }
   .input-group .label-sm {
@@ -1228,7 +1135,6 @@ div.eqLogicZone {
     top: 0 !important;
     font-size: 24px;
     font-weight: bold;
-    color: var(--link-color);
   }
   .iconCmd > i {
     font-size: 30px;
@@ -1280,7 +1186,6 @@ div.eqLogicZone {
   #div_displayLogList .nav > li.li_log.active a {
     width: 100% !important;
     border: 2px solid transparent;
-    border-right-color: var(--logo-primary-color);
   }
 
   .list-group {
@@ -1296,7 +1201,6 @@ div.eqLogicZone {
 
   /* eqlogic dragging */
   .packery-drop-placeholder {
-    outline: 3px dashed hsla(0, 0%, 0%, 0.5);
     outline-offset: -6px !important;
     transition: -webkit-transform 0.2s !important;
     transition: transform 0.2s !important;
@@ -1306,12 +1210,6 @@ div.eqLogicZone {
     top: 2px;
     left: 10px;
     color: var(--eqTitle-color);
-  }
-  .editingMode {
-    box-shadow: 0 0 2px var(--logo-primary-color);
-  }
-  .eqLogic-widget.editingMode.eqLogic_layout_table .tableCmd td {
-    border: 2px dotted var(--logo-primary-color);
   }
   .ui-resizable-handle.ui-resizable-e { width: 4px; right: 0;}
   .ui-resizable-handle.ui-resizable-s { height: 4px; bottom: 0;}
@@ -1353,7 +1251,6 @@ div.eqLogicZone {
   .objectSummaryContainer > .objectSummaryParent,
   #dashOverviewPrevSummaries .objectSummaryContainer > .objectSummaryParent {
     display: inline-flex;
-    color: var(--txt-color);
     margin: 0 2px;
   }
   objectSummaryContainer > .objectSummaryParent {
@@ -1404,24 +1301,15 @@ div.eqLogicZone {
     left: 2px;
     height: unset !important;
     padding: 0;
-    background: transparent;
     box-shadow: none;
     overflow: visible;
   }
   #md_summaryAction #div_summaryAction div.cmd-widget {
     padding: 5px;
   }
-  span.objectSummaryAction > i:hover {
-    color: var(--al-warning-color);
-  }
 
 /* ____________________OVERVIEW */
-  #objectOverviewContainer .objectPreview,
-  #dashOverviewPrev .objectPreview {
-    background-position: center;
-  }
   #objectOverviewContainer {
-    text-align: center;
     margin:15px;
   }
   #objectOverviewContainer > div {
@@ -1429,10 +1317,6 @@ div.eqLogicZone {
   }
   .objectPreview {
     height: 230px;
-    background-color: var(--bg-modal-color);
-    background-size: cover;
-    background-repeat: no-repeat;
-    color: var(--contrast-color);
     margin: 5px;
     line-height: 24px;
   }
@@ -1494,11 +1378,6 @@ div.eqLogicZone {
     flex-wrap: wrap-reverse;
     justify-content: flex-end;
   }
-
-  .objectPreview .objectSummaryParent,
-  .objectPreview .objectSummaryParent i {
-    font-size: 16px;
-  }
   .objectPreview .topPreview .objectSummaryParent {
     position: absolute;
     font-weight: 300;
@@ -1528,50 +1407,27 @@ div.eqLogicZone {
   .objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] {
     top: 10px;
     right: 8px;
-    font-size: 20px;
   }
   .objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] {
     top: 10px;
     right: 60px;
-    font-size: 20px;
   }
   .objectPreview .topPreview .objectSummaryParent[data-summary^="temp"] i,
   .objectPreview .topPreview .objectSummaryParent[data-summary="humidity"] i {
     display: none;
   }
-
-  .objectPreview .success,
-  .objectPreview .success > i {
-    color: var(--bt-success-color);
-  }
-  .objectPreview .danger,
-  .objectPreview .danger > i {
-    color: var(--al-danger-color);
-  }
-
-  .objectPreview .resume .objectSummaryParent:first-child {
-    border-radius: var(--border-radius) 0 0 0;
-  }
   .objectPreview .topPreview .objectSummaryParent.last,
   .objectPreview .resume .objectSummaryParent:last-child {
     border-bottom-right-radius: var(--border-radius) !important;
-  }
-
-  #md_overviewSummary {
-    box-shadow: none;
-    background: rgb(from var(--defaultBkg-color) r g b / 0.8);
-    border: 1px solid rgb(from var(--contrast-color) r g b / 0.15);
   }
   #md_overviewSummary div.jeeDialogTitle {
     line-height: 16px;
     height: 22px;
     padding: 2px;
-    background: rgb(from var(--defaultBkg-color) r g b / 0.95);
   }
   #md_overviewSummary div.jeeDialogTitle > span.title {
     font-size: 14px;
     font-weight: 300;
-    color: var(--link-color);
     padding-left: 7px;
   }
   [data-theme*="Light"] #md_overviewSummary div.jeeDialogTitle button {
@@ -1597,7 +1453,6 @@ div.eqLogicZone {
     padding: 5px;
     width: calc(100% + 2px);
     overflow: hidden;
-    border-radius: var(--border-radius);
     background: rgb(from var(--bg-color) r g b / var(--opacity));
   }
   [data-page="dashboard"] #dashOverviewPrev .objectPreview {
@@ -1615,9 +1470,6 @@ div.eqLogicZone {
 
   [data-page="dashboard"] #dashOverviewPrev.dashboard .li_object {
     padding: 1px;
-  }
-  [data-page="dashboard"] #dashOverviewPrev.dashboard .li_object span {
-    cursor: pointer;
   }
   [data-page="dashboard"] #dashOverviewPrev .objectSummaryglobal {
     padding-left: 25px;
@@ -1703,7 +1555,6 @@ div.eqLogicZone {
   #mod_selectIcon .iconSelected,
   #mod_selectIcon .iconSelected > span.cursor > i {
     background-color: var(--placeholder-color);
-    color: var(--eqTitle-color);
   }
 
   #mod_selectIcon #tabimg .imgContainer img {
@@ -1918,13 +1769,6 @@ div.eqLogicZone {
   div.eqLogic-widget .cmd.refresh {
     margin-top: 5px !important;
   }
-  div.eqLogic-widget .cmd.refresh i {
-    color: var(--eqTitle-color);
-    font-size: 12px;
-  }
-  div.eqLogic-widget .cmd.refresh i:hover {
-    color: var(--linkHoverLight-color);
-  }
 
   div.eqLogic-widget .cmd.refresh.spinning i {
     animation: spin-animation 1s infinite linear;
@@ -1937,11 +1781,6 @@ div.eqLogicZone {
   div.eqLogic-widget.editingMode .cmd.refresh {
     display: none;
   }
-
-div.eqLogic-widget .panelLink i {
-  color: var(--eqTitle-color);
-  font-size: 12px;
-}
 
 div.eqLogic-widget.editingMode .panelLink {
   display: none;
@@ -1970,7 +1809,6 @@ div.eqLogic-widget.editingMode .panelLink {
   div.eqLogic.eqLogic-widget .widget-name span.warning i {
     margin-right: 5px;
     color: var(--linkHoverLight-color);
-    font-size: 14px;
   }
   div.eqLogic.eqLogic-widget .widget-name .object_name {
     vertical-align: super;
@@ -1993,18 +1831,11 @@ div.eqLogic-widget.editingMode .panelLink {
   #table_Action thead th[data-column="4"] {
     width: 40px;
   }
-  #actionCmd tr td {
-    vertical-align: top;
-  }
   #actionCmd tr td div {
     min-height: 25px;
     display: list-item;
     position: relative;
     top: 5px;
-  }
-  #actionCmd tr td div span > i,
-  #actionCmd tr td div span {
-    color: var(--linkHoverLight-color);
   }
   #battery,
   #alertEqlogic {
@@ -2021,16 +1852,6 @@ div.eqLogic-widget.editingMode .panelLink {
     opacity: .8;
     padding: 0 4px;
     top: -2px !important;
-    border-radius: var(--border-radius);
-  }
-  body[data-coloredcats="1"] #battery .eqLogic-widget.critical .widget-name {
-    background-color: var(--al-danger-color);
-  }
-  body[data-coloredcats="1"] #battery .eqLogic-widget.warning .widget-name {
-    background-color: var(--al-warning-color);
-  }
-  body[data-coloredcats="1"] #battery .eqLogic-widget.good .widget-name {
-    background-color: var(--al-success-color);
   }
   #battery .eqLogic-widget .jeedom-batterie {
     color: var(--link-color);
@@ -2039,7 +1860,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   #battery .eqLogic-widget .jeedom-batterie i {
     vertical-align: middle;
-    font-size: 75px;
   }
   #battery .eqLogic-widget .jeedom-batterie span {
     position: relative;
@@ -2069,15 +1889,11 @@ div.eqLogic-widget.editingMode .panelLink {
     padding-left: 5px;
     font-size: 12px;
   }
-  #battery .eqLogic-widget .batteryTime i {
-    font-size: 16px;
-  }
   #battery .widget-name {
     height: 45px;
   }
   pre {
     color: var(--link-color);
-    background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity));
     border: none;
     font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
     font-size: 14px;
@@ -2086,7 +1902,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .div_rowZones {
-    border-radius: var(--border-radius);
     margin-bottom: 10px !important;
   }
 
@@ -2111,13 +1926,6 @@ div.eqLogic-widget.editingMode .panelLink {
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
-  }
-
-  #marketMainContainer div[data-market_type="plugin"] {
-    background-color: var(--form-bg-color);
-  }
-  #marketMainContainer div[data-market_type="plugin"]:hover {
-    background-color: var(--el-defaultColor);
   }
   #marketMainContainer div.marketDisplayCard {
     position: relative;
@@ -2446,22 +2254,16 @@ div.eqLogic-widget.editingMode .panelLink {
 
 /* ____________________BUTTONS */
   label.eqLogicAttr.label {
-    line-height: 17.15px;
     height: 32px;
     padding-top: 8px !important;
     padding-left: 0 !important;
     margin-left: 5px;
     margin-right: 5px;
-    font-size: 14px;
     width: 180px;
   }
 
   .eqLogic-widget .btn:not(.btn-circle){
     font-weight: bold;
-  }
-
-  .btn-default:not(.btn) {
-    background-color: var(--btn-default-color);
   }
 
   .btn.btn-info {
@@ -2472,7 +2274,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .btn.btn-warning {
     color: var(--btn-warning-fg, #212529);
-    background-color: var(--btn-warning-bg, var(--al-warning-color));
     border: 1px solid var(--btn-warning-border, color-mix(in srgb, var(--al-warning-color) 70%, #000));
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
@@ -2495,7 +2296,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .btn.btn-success {
     color: var(--btn-success-fg, #fff);
-    background-color: var(--btn-success-bg, var(--al-success-color));
     border: 1px solid var(--btn-success-border, color-mix(in srgb, var(--al-success-color) 70%, #000));
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
@@ -2504,10 +2304,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .btn.btn-success:hover  { background-color: color-mix(in srgb, var(--btn-success-bg, var(--al-success-color)) 85%, #000); }
   .btn.btn-warning:hover  { background-color: color-mix(in srgb, var(--btn-warning-bg, var(--al-warning-color)) 85%, #000); }
   .btn.btn-danger:hover   { background-color: color-mix(in srgb, var(--btn-danger-bg, var(--al-danger-color)) 85%, #000); }
-
-  button:focus {
-    outline:0;
-  }
   .form-control.btn {
     padding: 6px 8px;
   }
@@ -2603,9 +2399,6 @@ div.eqLogic-widget.editingMode .panelLink {
     margin: 0 7px;
     background: rgb(from var(--panel-bg-color) r g b / var(--opacity));
   }
-  #timelineContainer .html .tml-cmd > span >span i {
-    color: var(--linkHoverLight-color);
-  }
   #timelineContainer ul .pull-right:not(.tml-folder) {
     position: relative;
     top: 4px;
@@ -2635,7 +2428,6 @@ div.eqLogic-widget.editingMode .panelLink {
     margin-left: 30px ;
     padding: 6px;
     border-radius: var(--border-radius);
-    background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity));
     min-height: 28px;
   }
   #timelineContainer ul li > span.vertLine {
@@ -2701,8 +2493,6 @@ div.eqLogic-widget.editingMode .panelLink {
     top: 4px;
     padding-left: 50px;
     padding-right: 5px;
-    border-radius: var(--border-radius);
-    background: rgb(from var(--eq-bg-color) r g b / var(--opacity));
   }
   #timelineContainer div.date {
     position: absolute;
@@ -2732,21 +2522,6 @@ div.eqLogic-widget.editingMode .panelLink {
   body[data-page="history"] .label.displayObject:hover {
     opacity: 0.65;
   }
-  body[data-page="history"] .label.displayObject i:hover {
-    color: inherit;
-  }
-  body[data-page="history"] .history.disabled {
-    color: var(--placeholder-color);
-  }
-  #div_historyOptions {
-    background: rgb(from var(--panel-bg-color) r g b / var(--opacity));
-  }
-  #ul_expressionHistory li a {
-    color: var(--sc-lightTxt-color);
-  }
-  #in_testExpression {
-    font-size: 14px;
-  }
   #table_removeHistory tr > td > i {
     margin-right: 10px;
   }
@@ -2758,13 +2533,6 @@ div.eqLogic-widget.editingMode .panelLink {
     margin-top: 5px;
     margin-bottom: 30px;
     padding-top: 0.1px;
-  }
-
-  .navbar-nav.navbar-right > li a {
-    background-color: transparent;
-  }
-  .navbar-nav.navbar-right > li a:hover {
-    background-color: transparent;
   }
 
   div.panel {
@@ -2786,7 +2554,6 @@ div.eqLogic-widget.editingMode .panelLink {
     top: 95px;
   }
   :not(.panel-info):not(.panel-success):not(.panel-primary):not(.panel-warning):not(.panel-danger) > .panel-heading {
-    background-color: var(--panel-heading-bg, var(--defaultBkg-color));
     border-bottom: 1px solid var(--panel-heading-border, rgb(var(--bg-color), 1));
   }
   .panel-group .panel-heading {
@@ -2827,7 +2594,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .panel {
     color: var(--txt-color);
     border-color: var(--el-defaultColor);
-    background-color: rgb(from var(--defaultBkg-color) r g b / var(--opacity));
     border-radius: var(--border-radius);
   }
   .panel-default {
@@ -2847,12 +2613,8 @@ div.eqLogic-widget.editingMode .panelLink {
   .panel-danger .panel-title {
     color: inherit;
   }
-  .list-group li {
-    background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity));
-  }
   .panel-body {
     padding: 12px;
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
     min-height: 50px;
     margin-right: 15px;
   }
@@ -2912,18 +2674,12 @@ div.eqLogic-widget.editingMode .panelLink {
   ::-moz-color-swatch {
     border: none;
     border-color: transparent;
-    border-radius: var(--border-radius);
   }
   ::-webkit-color-swatch {
     border: none;
-    border-radius: var(--border-radius);
   }
   ::-webkit-color-swatch-wrapper {
     padding: 0;
-  }
-
-  .cursorText {
-    cursor: text;
   }
 
   input.inputPassword  {
@@ -2944,14 +2700,12 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .form-group {
     margin-bottom: 2px;
-    vertical-align: middle;
     line-height: 26px;
   }
 
   .form-group .label {
     padding: 3px 6px !important;
     min-width: 40px !important;
-    font-weight: 500;
     white-space: unset;
   }
   .control-label {
@@ -3032,13 +2786,11 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .col-xs-height {
     display: table-cell;
-    float: none;
   }
 
   /* commands */
   .input-group-addon {
     color: var(--input-group-addon-fg, var(--sc-lightTxt-color));
-    background: var(--input-group-addon-bg, var(--sc-formTxt-color));
     border: none;
     padding: 0 12px !important;
   }
@@ -3052,24 +2804,11 @@ div.eqLogic-widget.editingMode .panelLink {
     margin : 0;
     vertical-align: middle;
   }
-
-  input.knob {
-    color: var(--txt-color);
-  }
-  textarea.input-sm {
-    font-size: 12px;
-  }
-  :not(textarea).input-sm {
-    font-size: 12px;
-    line-height: 16px;
-    height: 28px;
-  }
   .input-group-sm > .input-group-addon,
   .input-group-sm > .input-group-btn .btn {
     height: 28px !important;
   }
   .element .input-group-addon.hasBtn {
-    background-color: var(--sc-formTxt-color);
     left: -3px;
     position: relative;
     padding: 0 !important;
@@ -3087,10 +2826,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .input-group-sm > .input-group-addon {
     padding: 0;
-  }
-
-  .btn-group-toggle > label.active {
-    background-color: var(--al-primary-color);
   }
   .btn-group-toggle > label:not(.active) {
     font-style: italic;
@@ -3116,7 +2851,6 @@ div.eqLogic-widget.editingMode .panelLink {
   input:focus, textarea:focus, select:focus {
     border-color: var(--input-focus-border, var(--al-primary-color)) !important;
     box-shadow: var(--input-focus-shadow, none) !important;
-    outline: none;
   }
   textarea {
     min-height: 28px;
@@ -3134,12 +2868,7 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   /* custom universal select */
-  select,
-  input[type=color] {
-    cursor: pointer;
-  }
   div[data-subtype=select] {
-    color: var(--link-color);
     position: relative;
     overflow: hidden !important;
   }
@@ -3155,15 +2884,10 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   div[data-subtype=select] select {
-    color: var(--link-color);
-    font-weight: bold;
-    background-color: transparent;
     text-overflow: '';
-    border: none;
     padding: 0 !important;
     padding-left: 10px !important;
     appearance: none;
-    cursor: pointer;
   }
   div[data-subtype=select]::before,
   div[data-subtype=select]::after {
@@ -3190,17 +2914,8 @@ div.eqLogic-widget.editingMode .panelLink {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-weight: 500;
   }
-  select:not([multiple]) option {
-    color: var(--txt-color);
-    background-color: var(--defaultBkg-color);
-  }
   select option:disabled {
-    color: var(--placeholder-color);
     font-style: italic;
-  }
-  select optgroup {
-    color: var(--txt-color);
-    background-color: var(--bg-modal-color);
   }
   select {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(115, 115, 115)'><polygon points='0,0 100,0 50,50'/></svg>");
@@ -3214,18 +2929,12 @@ div.eqLogic-widget.editingMode .panelLink {
   body[data-theme*="Dark"] select:not(.expressionAttr) {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='rgb(172, 172, 172)'><polygon points='0,0 100,0 50,50'/></svg>");
   }
-  body[data-theme] select[multiple] {
-    background-image: unset;
-  }
 
   select::-ms-expand {
     display: none;
   }
 
   /* custom checkbox ! */
-  .has-success .checkbox-inline {
-    color: var(--link-color);
-  }
   input,
   textarea,
   div[data-subtype=select] select {
@@ -3257,12 +2966,10 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   input[type=checkbox],
   input[type=radio] {
-    font-size: 14px;
     display: inline-block;
     padding: 0;
     width: 15px !important;
     height: 15px;
-    border-radius: 0;
     border: none;
     background: var(--checkbox-bg, var(--form-bg-color));
     accent-color: var(--al-primary-color);
@@ -3270,7 +2977,6 @@ div.eqLogic-widget.editingMode .panelLink {
     font-weight: normal;
   }
   input[type=radio] {
-    border-radius: 1em !important;
     margin-top: 4px !important;
   }
   input[type=checkbox]:checked {
@@ -3292,7 +2998,6 @@ div.eqLogic-widget.editingMode .panelLink {
     pointer-events: none;
   }
   input[type=checkbox]::-ms-check {
-    background-color: var(--form-bg-color);
     border: none;
     color: var(--linkHover-color);
   }
@@ -3303,7 +3008,6 @@ div.eqLogic-widget.editingMode .panelLink {
 
   /* select multiple */
   .custom-select {
-    font-size: 14px;
     padding: 0 !important;
   }
 
@@ -3330,13 +3034,11 @@ div.eqLogic-widget.editingMode .panelLink {
   .disabled a:not(.enabled) > i,
   select:disabled,
   input:disabled {
-    cursor: not-allowed;
     opacity: 0.7;
   }
 
   a.disabled,
   a.disabled > i {
-    cursor: default;
     opacity: 0.75;
   }
 
@@ -3368,16 +3070,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   #scenariotab {
     min-height: 80vh;
-  }
-  div.tab-pane:focus-visible {
-    outline: none;
-  }
-  .tab-content .tab-content,
-  .tab-content pre {
-    background-color: rgba(0,0,0,0);
-  }
-  .tab-content ul.nav.nav-tabs li a {
-    border-top: 1px solid var(--el-defaultColor);
   }
 
   .floatingbar {
@@ -3463,8 +3155,6 @@ div.eqLogic-widget.editingMode .panelLink {
     flex: 0 0 38%;
     max-width: 38%;
     width: auto !important;
-    float: none !important;
-    text-align: left !important;
     padding: 0 16px 0 0 !important;
     font-weight: 500;
   }
@@ -3534,16 +3224,11 @@ div.eqLogic-widget.editingMode .panelLink {
     width: 100% !important;
   }
 
-  .table > tbody > tr > th {
-    border: none;
-  }
-
 
 
   table.table,
   table.table .table {
     font-size: 14px;
-    background-color: transparent;
     border-collapse: collapse;
     border-spacing: 0;
   }
@@ -3560,33 +3245,8 @@ div.eqLogic-widget.editingMode .panelLink {
   }
 
   .table-condensed tbody tr:hover td {
-    background-color: rgb(from var(--contrast-color) r g b / 0.1);
     transition-duration: 250ms;
     transition-property: background-color;
-  }
-  .table-striped>tbody>tr:nth-of-type(2n+1),
-  .table > thead > tr {
-    background-color: rgb(from var(--panel-bg-color) r g b / var(--opacity));
-  }
-
-  #logsForms .form-group:nth-child(odd){
-    background-color: var(--bg-color);
-  }
-  :not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(even){
-    background-color: var(--bg-color);
-  }
-  :not(.ui-dialog-content) table:not(.tableCmd) > tbody tr:nth-child(odd){
-    background-color: var(--bg-modal-color);
-  }
-
-  .table-bordered,
-  .table-bordered>tbody>tr>td,
-  .table-bordered>tbody>tr>th,
-  .table-bordered>tfoot>tr>td,
-  .table-bordered>tfoot>tr>th,
-  .table-bordered>thead>tr>td,
-  .table-bordered>thead>tr>th {
-    border: none;
   }
 
   .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
@@ -3597,7 +3257,6 @@ div.eqLogic-widget.editingMode .panelLink {
   table.table-condensed tbody tr,
   table.table-condensed tbody td {
     height: 21px !important;
-    line-height: 14px;
     padding-top: 1px;
     padding-bottom: 2px;
   }
@@ -3619,10 +3278,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   #table_ObjectSummary tbody td {
     height: 25px !important;
-  }
-
-  :not(.eqLogic-widget) + table.tableCmd td {
-    vertical-align: top;
   }
 
   .well {
@@ -3654,28 +3309,16 @@ div.eqLogic-widget.editingMode .panelLink {
     font-family: ui-monospace, 'Cascadia Code', 'Cascadia Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
     font-size: 13px;
     height: auto;
-    background: var(--codemirror-bg, var(--objectTxt-color));
   }
   .CodeMirror-selected { background: #d9d9d9; }
   .CodeMirror-focused .CodeMirror-selected { background: #d9d9d9; }
 
-  div.CodeMirror pre {
-    background-color: transparent;
-  }
-
-  .CodeMirror-dialog-top {
-    border-bottom: 2px solid var(--txt-color);
-  }
-
   .CodeMirror-foldmarker {
     text-shadow: none !important;
-    color: var(--txt-color);
-    cursor: pointer;
   }
   .CodeMirror-foldgutter-open,
   .CodeMirror-foldgutter-folded {
     cursor: pointer;
-    transform: scale(2.5) translate(1px, -1px);
   }
 
   /* hihgly special */
@@ -3722,9 +3365,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .subElement .element.elementCollapse {
     border-left: 4px solid var(--scBlocSep);
   }
-  .subElement .elementIF.elementCollapse:hover {
-    border-left-color: var(--sc-form-color);
-  }
 
   .subElement .element:not(.elementIF) {
     width : calc(100% - 5px);
@@ -3737,7 +3377,6 @@ div.eqLogic-widget.editingMode .panelLink {
     transition: border-left 0.4s cubic-bezier(.25,.8,.25,1);
   }
   .subElement .element:not(.elementIF):hover {
-    border-left-color: var(--sc-form-color);
     transition: border-left-color 1s cubic-bezier(.25,.8,.25,1);
   }
 
@@ -3755,7 +3394,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .subElementACTION > .expressions > .expressionACTION {
     border-left: 3px solid var(--scBlocSep);
-    border-radius: 0;
   }
   .subElement > .elementIF {
     border-left: 3px solid transparent;
@@ -3764,7 +3402,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .subElement .elementIF:not(.elementCollapse) .subElementTHEN:hover,
   .subElement .elementIF:not(.elementCollapse) .subElementELSE:hover{
     border-left: 4px solid var(--scBlocSep);
-    border-left-color: var(--sc-form-color);
     transition: border-left-color 1s cubic-bezier(.25,.8,.25,1);
   }
 
@@ -3793,7 +3430,6 @@ div.eqLogic-widget.editingMode .panelLink {
     padding-left: 4px;
   }
   .element legend {
-    background-color: transparent;
     color: var(--sc-lightTxt-color);
     text-align: center;
     margin: 0 !important;
@@ -3802,50 +3438,20 @@ div.eqLogic-widget.editingMode .panelLink {
     border-left: none;
   }
 
-  .element .btn,
-  .element .btn:focus,
-  .element .btn:active,
-  .element .dropdown-menu {
-    color: var(--linkHoverLight-color);
-    background-color: var(--sc-formTxt-color);
-  }
-
   /* scenarios dropdowns */
   .element button.dropdown-toggle {
     font-size:12px;
-    color:  var(--linkHoverLight-color);
-    background-color: var(--sc-formTxt-color);
     height: 22px;
     padding-left: 5px;
     padding-top: 2px;
     margin-left: 5px;
   }
-  .element button.dropdown-toggle:hover {
-    color: var(--sc-lightTxt-color);
-  }
-  .element button.dropdown-toggle:focus,
-  .element button.dropdown-toggle a:focus {
-    color:  var(--linkHoverLight-color);
-    background-color: var(--sc-formTxt-color);
-  }
   .subElementFields button.dropdown-toggle .caret {
     position: relative;
     right: -3px !important;
     top: -1px !important;
-    border-top-color: var(--linkHoverLight-color);
-  }
-  .subElementFields ul.dropdown-menu {
-    border-bottom: none;
-  }
-
-  .element .dropdown-submenu.open > a,
-  .element .dropdown-menu > li > a:focus,
-  .element .dropdown-menu > li > a:hover {
-    background-color: var(--btn-default-color);
   }
   .element .dropdown-menu li a {
-    color: var(--linkHoverLight-color);
-    font-size : 12px;
     line-height: 15px;
   }
   /* translation trick */
@@ -3863,8 +3469,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .element textarea.expressionAttr:not([data-l2key=graphColor]) {
     color: var(--sc-formTxt-color);
     background-color: var(--sc-form-color);
-    border: 0;
-    font-size: 12px;
     height:28px;
   }
   .element .expressionAttr:not([data-l2key=graphColor]) {
@@ -3877,12 +3481,9 @@ div.eqLogic-widget.editingMode .panelLink {
     color: var(--sc-formTxt-color);
   }
   #div_editScenario .element .expressionAttr.insideSearch {
-    background-color: var(--al-warning-color);
-    color: var(--linkHoverLight-color);
     font-weight: normal;
   }
   .subElementCOMMENT textarea {
-    font-weight: normal;
     min-height: 62px;
     overflow: auto !important;
   }
@@ -3894,9 +3495,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .element .expressionOptions input {
     font-weight: normal;
-  }
-  .element .cursor {
-    color: var(--linkHoverLight-color);
   }
   .expressions:empty {
     height: 20px;
@@ -3955,7 +3553,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .element .bt_copyElement,
   .element .bt_pasteElement,
   .element .bt_collapse {
-    color: var(--linkHoverLight-color);
     margin: 5px 3px 0 0;
   }
   .element .bt_sortable:hover,
@@ -3964,7 +3561,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .element .bt_copyElement:hover,
   .element .bt_pasteElement:hover,
   .element .bt_collapse:hover {
-    color: var(--linkHoverLight-color);
     opacity: 0.7;
   }
   .element .bt_sortable {
@@ -3996,12 +3592,8 @@ div.eqLogic-widget.editingMode .panelLink {
     margin: 0;
     padding: 0;
   }
-  .element .bt_repeat i {
-    font-size: 12px;
-  }
   .element .bt_repeat i.text-danger {
     color: var(--al-warning-color);
-    font-size: 14px;
   }
   .element .bt_removeElement {
     position: absolute;
@@ -4020,7 +3612,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .element .subElementFields .dropdown {
     width: 90px !important;
-    font-size: 0;
   }
 
   .element .bt_showElse {
@@ -4069,9 +3660,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .subElement .expressions {
     padding-left: 125px !important;
-  }
-  .subElementCOMMENT .expression textarea {
-    border-radius: 0;
   }
 
   .element .subElementTHEN,
@@ -4129,7 +3717,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .element .disableElement,
   .element .disableSubElement {
-    opacity: var(--element-disable-opacity, 0.6);
     transition-property: opacity;
     transition-duration: 0.6s;
   }
@@ -4139,11 +3726,6 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .eqLogicDisplayCard.disableCard:hover {
     opacity: 0.8;
-  }
-
-  .disableElement input[type=checkbox][data-l2key=enable],
-  .element .disableSubElement input[type=checkbox][data-l2key=enable] {
-    background-color: var(--bg-color);
   }
 
   /* Collapsed */
@@ -4164,9 +3746,6 @@ div.eqLogic-widget.editingMode .panelLink {
     display: inline !important;
     padding-left: 0 !important;
   }
-  .elementCollapse .bt_collapse {
-    color: var(--scBlocSep);
-  }
 
   .elementIF.elementCollapse .expressions,
   .elementIN.elementCollapse .expressions,
@@ -4182,7 +3761,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .elementWHILE.elementCollapse .expressionAttr {
     opacity: 0.75;
     height: 24px !important;
-    border-radius: var(--border-radius) var(--border-radius) var(--border-radius) var(--border-radius);
   }
   .elementIF.elementCollapse .input-group-btn,
   .elementIN.elementCollapse .input-group-btn,
@@ -4203,7 +3781,6 @@ div.eqLogic-widget.editingMode .panelLink {
     top: 2px;
     left: 189px;
     padding: 5px;
-    font-size: 12px;
     width : calc(100% - 340px);
     height: 24px;
     overflow: hidden;
@@ -4225,8 +3802,6 @@ div.eqLogic-widget.editingMode .panelLink {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--el-defaultColor);
-    opacity: 0.6;
   }
 
   @supports (backdrop-filter: blur(2px)) {
@@ -4284,32 +3859,18 @@ div.eqLogic-widget.editingMode .panelLink {
     position: static;
   }
   .bs-sidebar {
-    background: rgb(from var(--bg-color) r g b / var(--opacity));
-    border-radius: var(--border-radius);
     overflow: hidden auto;
   }
   .bs-sidebar .label,
   .bs-sidebar .label > i {
     font-size: 14px;
     display: inline-block;
-    cursor: pointer;
-  }
-  .bs-sidebar .label > i {
-    color: inherit;
   }
   .bs-sidenav {
     padding: 5px;
   }
   .bs-sidenav > br {
     display: inline;
-  }
-
-
-  .bs-sidebar li.active {
-    border-right: 3px solid var(--logo-primary-color);
-  }
-  #dashOverviewPrev .li_object.active {
-    border-left: 3px solid var(--logo-primary-color);
   }
   .bs-sidebar .nav > li > a:not(.btn) {
     width: 100% !important;
@@ -4318,23 +3879,13 @@ div.eqLogic-widget.editingMode .panelLink {
   .bs-sidebar .nav > li > i {
     padding-right: 5px;
   }
-  .bs-sidebar .nav li a:not(.btn):hover,
-  .bs-sidebar .nav li a:not(.btn):focus,
-  .bs-sidebar .nav li a:not(.btn):active {
-    background-color: var(--btnEq-default-color);
-  }
   .bs-sidenav .cmdList li > a {
     display: inline-block;
     width: 100%;
   }
   .bs-sidebar .nav > .active a {
     width: 100% !important;
-    border-right-color: var(--logo-primary-color);
     border-right-width: thick !important;
-  }
-
-  .li_object a span:not(:first-child) {
-    float: left;
   }
   .li_object a,
   .li_object a span {
@@ -4352,14 +3903,6 @@ div.eqLogic-widget.editingMode .panelLink {
   #ul_noteList {
     padding: 0 !important;
   }
-  #ul_noteList .li_noteDisplay {
-    background-color: var(--form-bg-color);
-  }
-  #ul_noteList .li_noteDisplay a:active,
-  #ul_noteList .li_noteDisplay a:focus,
-  #ul_noteList .li_noteDisplay a:hover{
-    background-color: var(--defaultBkg-color);
-  }
 
 /* ____________________HIGHCHARTS */
   #div_graph {
@@ -4368,13 +3911,7 @@ div.eqLogic-widget.editingMode .panelLink {
   .highcharts-legend-item tspan {
     cursor: pointer;
   }
-  .highcharts-legend-item:not(.highcharts-legend-item-hidden) text{
-    fill: var(--link-color);
-    font-weight: normal;
-  }
   .highcharts-legend-item.highcharts-legend-item-hidden text {
-    fill: var(--txt-color);
-    font-weight: normal;
     font-style: italic;
   }
 
@@ -4386,14 +3923,6 @@ div.eqLogic-widget.editingMode .panelLink {
   div.chartContainer .highcharts-scrollbar-button,
   div.chartContainer .highcharts-scrollbar-arrow {
     display: none;
-  }
-  div.chartContainer .highcharts-axis-line,
-  div.chartContainer .highcharts-navigator-xaxis .highcharts-grid-line {
-    stroke: var(--placeholder-color);
-  }
-
-  div.chartContainer .highcharts-navigator-handle {
-    fill: var(--placeholder-color);
   }
   div.chartContainer .highcharts-scrollbar-track {
     stroke: transparent;
@@ -4412,50 +3941,13 @@ div.eqLogic-widget.editingMode .panelLink {
   .highcharts-xaxis-labels:not(.highcharts-navigator-xaxis) tspan {
     font-weight: bold;
     font-size: 12px;
-    transform: translate(0,10px);
-    fill: var(--contrast-color);
   }
 
   .highcharts-background {
-    fill: rgb(from var(--panel-bg-color) r g b / var(--opacity));
     fill-opacity: var(--opacity);
   }
-  .eqLogic-widget .highcharts-background {
-    fill: transparent;
-  }
-  .highcharts-range-selector-buttons > text {
-    fill: var(--link-color);
-  }
-  .highcharts-container {
-    color: var(--txt-color);
-  }
-  .graph-widget:not(.transparent) {
-    background-color: var(--panel-bg-color);
-  }
-  div.chartContainer .highcharts-plot-band {
-    fill: rgb(from var(--bg-color) r g b / 0.5);
-  }
-  .highcharts-button-box {
-    fill: var(--el-defaultColor);
-  }
-  .highcharts-button > text,
-  .highcharts-button-disabled > text,
-  .highcharts-button-box > text {
-    fill: var(--link-color);
-  }
-  .highcharts-axis-labels.highcharts-xaxis-labels > text {
-    fill: var(--link-color);
-  }
-  .highcharts-yaxis-grid .highcharts-grid-line {
-    stroke-width: 0.1;
-    stroke: var(--link-color);
-  }
   .highcharts-axis-title > tspan {
-    fill: var(--txt-color);
     font-weight: 700;
-  }
-  div.chartContainer .highcharts-button-disabled {
-    opacity: 0.3;
   }
   div.chartContainer .highcharts-button-box {
     x:0;
@@ -4471,22 +3963,12 @@ div.eqLogic-widget.editingMode .panelLink {
   div.chartContainer .highcharts-button.highcharts-button-pressed > rect,
   div.chartContainer .highcharts-button.highcharts-button-pressed span {
     stroke: transparent;
-    fill: var(--objectBkgd-color);
-    color: var(--objectTxt-color);
-  }
-  div.chartContainer .highcharts-button.highcharts-button-hover span,
-  div.chartContainer .highcharts-button.highcharts-button-normal span{
-    color: var(--link-color);
   }
   div.chartContainer div.highcharts-button span {
     pointer-events: none;
   }
   div.chartContainer .highcharts-button.highcharts-button-pressed > text {
     stroke: transparent;
-    fill: var(--objectTxt-color);
-  }
-  div.chartContainer g.highcharts-range-selector-group g.highcharts-button.warning > text{
-    fill: var(--al-warning-color);
   }
   path.highcharts-graph {
     stroke-width: 1.2;
@@ -4495,24 +3977,8 @@ div.eqLogic-widget.editingMode .panelLink {
     fill: var(--eq-bg-color);
     fill-opacity: 0.5;
     stroke: var(--contrast-color);
-    stroke-width: 1px;
-  }
-
-
-  .highcharts-tooltip .highcharts-tooltip-box,
-  .highcharts-tooltip .highcharts-label-box {
-    stroke-width: 0.6;
-  }
-  .highcharts-tooltip .highcharts-tooltip-box path {
-    fill: var(--bg-color);
-  }
-  .highcharts-tooltip .highcharts-tooltip-box text,
-  .highcharts-tooltip .highcharts-tooltip-box text tspan {
-    fill: var(--contrast-color);
-    font-weight: 400;
   }
   .highcharts-label.highcharts-point path {
-    fill: var(--btnEq-default-color);
     stroke: none;
   }
   .highcharts-label.highcharts-point text {
@@ -4558,11 +4024,6 @@ div.eqLogic-widget.editingMode .panelLink {
     z-index : 998;
     background-size: 15px 15px;
     background-image: repeating-linear-gradient(90deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px), repeating-linear-gradient(0deg, var(--al-info-color), var(--al-info-color) 1px, transparent 1px, transparent 20px);
-  }
-
-  .div_backgroundPlan .text-widget {
-    background-color: rgb(from var(--eq-bg-color) r g b / var(--opacity));
-    color: var(--txt-color);
   }
 
   body.fullscreen {
@@ -4700,10 +4161,6 @@ div.eqLogic-widget.editingMode .panelLink {
     font-weight: normal;
     background-color: var(--lb-info-color);
   }
-  .btn_closeAlert {
-    color: var(--linkHoverLight-color);
-    font-size: 16px;
-  }
   :not(#div_alert).alert {
     padding: 7px !important;
   }
@@ -4740,10 +4197,6 @@ div.eqLogic-widget.editingMode .panelLink {
     border: none;
   }
 
-  .label-danger .state {
-    color: var(--sc-lightTxt-color);
-  }
-
   .logoPrimary {
     color: var(--logo-primary-color);
   }
@@ -4755,44 +4208,15 @@ div.eqLogic-widget.editingMode .panelLink {
   .eqLogicThumbnailContainer div.logoSecondary > span {
     color: var(--txt-color);
   }
-  .info,
-  .info i,
-  [data-coloredicons="1"] .icon_blue {
-    color: var(--al-info-color);
-  }
-  .success,
-  .success i,
-  [data-coloredicons="1"] .icon_green {
-    color: var(--bt-success-color);
-  }
   .warning,
   .warning i,
   [data-coloredicons="1"] .icon_orange {
     color: var(--al-warning-color);
   }
-  .danger,
-  .danger i,
-  [data-coloredicons="1"] .icon_red {
-    color: var(--al-danger-color);
-  }
   sup.danger {
     position: absolute;
     top: 0;
     right: 0;
-  }
-  .yellow,
-  [data-coloredicons="1"] .icon_yellow {
-    color: var(--lb-yellow-color);
-  }
-  [data-coloredicons="1"] .scenario-widget:not(.disabled) .iconCmd {
-    color: var(--bt-success-color);
-  }
-  [data-coloredicons="1"] .scenario-widget.inactive .iconCmd {
-    color: var(--al-danger-color);
-  }
-
-  .cmd.label i{
-    color : var(--linkHoverLight-color);
   }
 
   .cmd:not(.label) .state,
@@ -4801,13 +4225,9 @@ div.eqLogic-widget.editingMode .panelLink {
     font-size: 12px;
     line-height: 12px;
   }
-  p.state {
-    color: var(--txt-color);
-  }
   .eqLogic.eqLogic-widget .cmd.label .cmdName,
   .eqLogic.eqLogic-widget .cmd.label .state,
   .eqLogic.eqLogic-widget .cmd.label div[class*="content"] {
-    color: var(--sc-lightTxt-color);
     font-weight: 400;
   }
   .eqLogic.eqLogic-widget .cmd.label div[class*="content"] {
@@ -4815,14 +4235,6 @@ div.eqLogic-widget.editingMode .panelLink {
     margin: auto;
     height: 14px;
     padding: 1px;
-  }
-
-  .cmd.label .cmdName {
-    color : var(--linkHoverLight-color);
-  }
-
-  .cmd.label{
-    text-align: center;
   }
 
   hr.hrPrimary {
@@ -4841,7 +4253,6 @@ div.eqLogic-widget.editingMode .panelLink {
   /* summary */
   li.alert-info.eqLogic {
     color: var(--txt-color);
-    background-color: var(--defaultBkg-color);
   }
   .row .objectSummaryParent{ font-size : 14px !important; }
 
@@ -4856,10 +4267,6 @@ div.eqLogic-widget.editingMode .panelLink {
   div.flatpickr-calendar div.flatpickr-month input {
     background: transparent;
     background-color: transparent;
-    background-image: none;
-  }
-  body[data-theme*="Dark"] div.flatpickr-calendar select {
-    background-image: none;
   }
 
   /* ______tippy-tooltip */
@@ -4868,7 +4275,6 @@ div.eqLogic-widget.editingMode .panelLink {
     color: var(--linkHoverLight-color);
     font-size: 14px;
     max-width: 40vw !important;
-    border: none;
   }
   .tippy-box[data-placement^='top'] > .tippy-arrow::before {
     border-top-color: var(--al-info-color);
@@ -4917,10 +4323,6 @@ div.eqLogic-widget.editingMode .panelLink {
     border-radius: var(--border-radius);
   }
 
-  td.alert {
-    border-radius: 0;
-  }
-
   .topCorner,
   .widget-name,
   .eqLogic-widget .widget-name,
@@ -4928,18 +4330,6 @@ div.eqLogic-widget.editingMode .panelLink {
   .panel,
   .panel-heading {
     border-radius: var(--border-radius) var(--border-radius) 0 0;
-  }
-  .bottomCorner {
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-  }
-
-  #div_pageContainer ul.nav.nav-tabs li:first-of-type,
-  #div_pageContainer ul.nav.nav-tabs > li:first-of-type > a {
-    border-radius: var(--border-radius) 0 0 0;
-  }
-  #div_pageContainer ul.nav.nav-tabs li:last-of-type,
-  #div_pageContainer ul.nav.nav-tabs > li:last-of-type > a {
-    border-radius: 0 var(--border-radius) 0 0;
   }
 
   .btn,
@@ -4998,12 +4388,6 @@ div.eqLogic-widget.editingMode .panelLink {
   #pre_scenariolog span {
     height: 8px;
   }
-  #pre_scenariolog .success {
-    color: var(--al-success-color);
-  }
-  #pre_scenariolog .info {
-    color: var(--al-primary-color);
-  }
 
   .noCorner,
   .input-group .btn,
@@ -5013,57 +4397,17 @@ div.eqLogic-widget.editingMode .panelLink {
   .input-group .input-group-addon {
     border-radius: 0;
   }
-  .input-group ::-moz-color-swatch {
-    border-radius: 0;
-  }
-  .input-group ::-webkit-color-swatch {
-    border-radius: 0;
-  }
-  .input-group .roundedLeft {
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
-  }
   .input-group .roundedRight {
     border-radius: 0 var(--border-radius) var(--border-radius) 0;
   }
   :not(.in_search-*) .input-group .roundedRight {
     margin-right: 3px !important;
   }
-  .roundedLeft::-moz-color-swatch {
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
-  }
   .roundedRight::-moz-color-swatch {
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
     margin-right: 3px !important;
-  }
-  .roundedLeft::-webkit-color-swatch {
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
   }
   .roundedRight::-webkit-color-swatch {
-    border-radius: 0 var(--border-radius) var(--border-radius) 0;
     margin-right: 3px !important;
-  }
-  .input-group .rounded,
-  .rounded {
-    border-radius: var(--border-radius);
-  }
-
-  #jeedomMenuBar .navbar-nav li ul {
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-  }
-  #jeedomMenuBar .navbar-nav li ul li ul {
-    border-radius: 0 var(--border-radius) var(--border-radius) var(--border-radius);
-  }
-
-  .tab-content {
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
-  }
-
-  [data-page=display] div.object > div {
-    border-radius: var(--border-radius);
-  }
-
-  ul.dropdown-menu {
-    border-radius: 0 0 var(--border-radius) var(--border-radius);
   }
 
 /* ________________________________________MEDIA QUERIES */
@@ -5109,9 +4453,6 @@ div.eqLogic-widget.editingMode .panelLink {
     .btn,
     .label {
       font-size: 12px;
-    }
-    .panel {
-      font-size: 14px;
     }
     .panel-title,
     legend {

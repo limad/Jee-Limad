@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.49 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Compatibilité des plugins avec le core de Jeedom standard : le fork avait retiré 410 `!important` de Jeedom 4.6.2 dans `desktop.main.css`. Sur un Jeedom standard, ces `!important` battent les styles en ligne et les règles normales des plugins ; sur ce fork, les plugins prenaient la main. Les 362 restants (hors tuiles, traitées en 4.5.3.48) ont été triés un par un : chacun est remis hors couche dans `desktop/css/desktop.compat.css`, et les styles calculés de 37 pages du core sont comparés avant et après, sur les 7 thèmes (360 et 1366 px, mode tableau en plus pour core2019_Dark), en 4 tours jusqu'à ce qu'aucun ne change plus l'aspect du core. **283 sont rétablis**. **79 sont écartés**, car ce sont des choix visibles du fork : couleurs des boutons, étiquettes, alertes, champs, onglets, panneaux et légendes ; tailles de police des tableaux, boutons et titres ; arrondis ; bordures des cases à cocher ; police de tailwind ; opacité du fond des modales. Mesure sur 138 pages de plugins comparées à Jeedom 4.6.2 : 380 styles calculés changent, 376 pour prendre la valeur de Jeedom standard, aucun ne s'en éloigne. Pages du core identiques sur les 7 thèmes
+
 # 4.5.3.48 (Jee-Limad, branche alpha)
 
 ## Correction
