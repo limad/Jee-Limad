@@ -40,6 +40,7 @@ Desktop
     --jeedom-shadow-knob: 0 1px 3px rgba(0,0,0,0.2);
     --jeedom-shadow-bar: 0 2px 6px rgba(0,0,0,0.08);
     --jeedom-shadow-tab: 0 2px 4px rgba(0,0,0,0.1);
+    --jeedom-tap-min: 36px; /* lot 55 : hauteur minimale d'une cible tactile du core sur téléphone */
     /* Defaults: overridden by JS (utils.js) based on user config */
     --objectBackgroundBlur: 0px;
     --bkg-opacity-light: 1;
@@ -936,6 +937,14 @@ Desktop
   }
   .div_object legend .objectDashLegend > a > i{
     padding-right: 10px;
+  }
+  /* Lot 55 (4.5.3.53) : lien du titre d'objet assez haut pour le doigt sur téléphone */
+  @media screen and (max-width: 767px) {
+    .div_object legend .objectDashLegend > a {
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--jeedom-tap-min);
+    }
   }
 
 /* Legend panel */

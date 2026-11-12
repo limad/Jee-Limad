@@ -1,5 +1,14 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.53 (Jee-Limad, branche alpha)
+
+## Amélioration
+
+- Accessibilité :
+  - coreX_Dark : onglet actif, titres de panneau, légendes et survol des menus déroulants passent d'un bleu à 3,8 de contraste sur le fond sombre à `oklch(0.70 0.16 260.2)` (6,4) ;
+  - core2019_Light : légendes et titres de panneau gris passent de 2,95 à 4,8 (`hsl(240 3.6% 42%)`) ;
+  - dashboard sur téléphone (767 px et moins) : le lien du titre de chaque objet fait au moins 36 px de haut (jeton `--jeedom-tap-min`), au lieu de 23 px. Les widgets (pack iso, plugins) ne sont pas modifiés.
+
 # 4.5.3.52 (Jee-Limad, branche alpha)
 
 ## Correction
