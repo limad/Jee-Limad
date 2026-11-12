@@ -296,7 +296,7 @@ $loadBootstrap = $loadJquery && config::byKey('core::bootstrapless', 'core', 0) 
 		. '</style>';
 	// Hors couche : !important des tuiles comparés aux !important des plugins comme sur un Jeedom standard
 	echo '<link rel="stylesheet" href="/desktop/css/desktop.compat.css?md5=' . md5_file(__DIR__ . '/../css/desktop.compat.css') . '">';
-	echo '<link rel="stylesheet" href="/desktop/css/desktop.fix.css?v=20260624b">'; // Bootstrap-free navbar fix
+	echo '<link rel="stylesheet" href="/desktop/css/desktop.fix.css?md5=' . md5_file(__DIR__ . '/../css/desktop.fix.css') . '">'; // Bootstrap-free navbar fix
 	setTheme();
 	sendVarToJS([
 		'jeeFrontEnd.language' => $configs['language'],

@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.52 (Jee-Limad, branche alpha)
+
+## Correction
+
+- `desktop.fix.css` était chargé avec une clé de cache fixe (`?v=20260624b`) alors qu'Apache le garde 7 jours en cache : une modification de ce fichier pouvait rester invisible jusqu'à une semaine. Il utilise désormais l'empreinte du fichier (`md5_file`), comme `bootstrap.css`, `desktop.main.css` et `desktop.compat.css`.
+
 # 4.5.3.51 (Jee-Limad, branche alpha)
 
 ## Correction
