@@ -141,4 +141,6 @@ colors Light
   --input-group-addon-fg: #fff; /* fond gris moyen rgb(100,100,100) */
   /* Lot 55 (4.5.3.53) : légendes et titres de panneau gris : 2,95 -> 4,8 sur le fond des légendes */
   --panel-default-title: hsl(240 3.6% 42%);
+  /* Lot 56 (4.5.3.54) : texte .warning (ex. #emptyModeWarning) : 1,9 -> 6,3 sur rgb(240,241,242) */
+  --al-warning-text: color-mix(in srgb, var(--al-warning-color) 50%, black);
 }

@@ -1,5 +1,13 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.54 (Jee-Limad, branche alpha)
+
+## Amélioration
+
+- Accessibilité :
+  - libellés d'avertissement (`.warning` hors icônes, ex. « Attention : aucun déclencheur paramétré ! » du scénario) : nouveau jeton `--al-warning-text`, repli sur `--al-warning-color` ; core2019_Light et coreX_Light le foncent (orange mêlé à 50 % de noir) : contraste 1,9 → 6,3 et 1,56 → 5,6. Les icônes orange (`i.warning`, `.warning i`) gardent leur couleur ;
+  - coreX_Zinc et tailwind : un bouton à contour posé sur un en-tête de panneau coloré (ex. « Sauvegarder », « Ouvrir » de la page d'un plugin) prend le fond du panneau (y compris via `--btn-success-bg`/`--btn-warning-bg`, lus en `!important` par desktop.compat) ; contraste 1,6–2,1 → 6,3 et plus. Survol et focus inchangés.
+
 # 4.5.3.53 (Jee-Limad, branche alpha)
 
 ## Amélioration

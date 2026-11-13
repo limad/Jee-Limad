@@ -75,4 +75,11 @@ div.CodeMirror span.cm-error { background: oklch(0.711 0.166 22.2); color: oklch
 div.CodeMirror .CodeMirror-activeline-background { background: oklch(0.21 0.006 285.9); }
 div.CodeMirror .CodeMirror-matchingbracket { text-decoration: underline; color: oklch(0.861 0.173 92.0) !important; }
 
+/* Lot 56 (4.5.3.54) : un bouton à contour (fond transparent) posé sur un en-tête de panneau coloré
+   prend le fond du panneau ; sinon son texte se lit sur la couleur de l'en-tête (1,6 à 2,1). */
+.panel:not(.panel-default) > .panel-heading .btn:not(:hover):not(:focus):not(:active) {
+  --btn-success-bg: var(--panel-bg-color); /* jetons lus par desktop.compat (!important) */
+  --btn-warning-bg: var(--panel-bg-color);
+  background-color: var(--panel-bg-color);
+}
 }
