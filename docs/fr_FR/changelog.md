@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.57 (Jee-Limad, branche alpha)
+
+## Amélioration
+
+- Accessibilité : sur l'en-tête d'un panneau coloré (succès, principal, info, avertissement, danger), le halo du focus clavier prend la couleur du texte de l'en-tête au lieu du fond de page. Boutons « Sauvegarder » et « Ouvrir » des pages de plugin : anneau 1 à 3,3 → 4,5 et plus dans les 7 thèmes.
+
 # 4.5.3.56 (Jee-Limad, branche alpha)
 
 ## Amélioration

@@ -120,7 +120,7 @@ Desktop
   :is(a[href], button, .btn, [role="button"], summary):focus-visible {
     outline: 2px solid var(--jeedom-focus-color) !important;
     outline-offset: 2px !important;
-    /* halo de la couleur du fond de page entre l'élément et le contour : reste visible sur un en-tête coloré */
+    /* halo entre l'élément et le contour : couleur du fond de page, ou du texte de l'en-tête d'un panneau coloré (lot 59) */
     box-shadow: 0 0 0 2px var(--jeedom-focus-halo) !important;
   }
   a,
@@ -2683,22 +2683,27 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .panel-success .panel-heading {
     color: var(--panel-success-fg, var(--linkHoverLight-color));
+    --jeedom-focus-halo: var(--panel-success-fg, var(--linkHoverLight-color)); /* lot 59 : halo du focus clavier = texte de l'en-tête */
     background-color: var(--panel-success-bg, var(--al-success-color)) !important;
   }
   .panel-primary .panel-heading {
     color: var(--panel-primary-fg, var(--linkHoverLight-color));
+    --jeedom-focus-halo: var(--panel-primary-fg, var(--linkHoverLight-color)); /* lot 59 : halo du focus clavier = texte de l'en-tête */
     background-color: var(--panel-primary-bg, #337ab7) !important;
   }
   .panel-info .panel-heading {
     color: var(--panel-info-fg, var(--linkHoverLight-color));
+    --jeedom-focus-halo: var(--panel-info-fg, var(--linkHoverLight-color)); /* lot 59 : halo du focus clavier = texte de l'en-tête */
     background-color: var(--panel-info-bg, var(--al-info-color)) !important;
   }
   .panel-warning .panel-heading {
     color: var(--panel-warning-fg, var(--txt-color));
+    --jeedom-focus-halo: var(--panel-warning-fg, var(--txt-color)); /* lot 59 : halo du focus clavier = texte de l'en-tête */
     background-color: var(--panel-warning-bg, var(--al-warning-color)) !important;
   }
   .panel-danger .panel-heading {
     color: var(--panel-danger-fg, var(--sc-lightTxt-color));
+    --jeedom-focus-halo: var(--panel-danger-fg, var(--sc-lightTxt-color)); /* lot 59 : halo du focus clavier = texte de l'en-tête */
     background-color: var(--panel-danger-bg, var(--al-danger-color)) !important;
   }
 
