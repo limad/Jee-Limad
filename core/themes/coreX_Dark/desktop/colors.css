@@ -140,4 +140,6 @@ Neutral dark background with Bootstrap 5.3 semantic accents
   --navtab-active-fg: oklch(0.70 0.16 260.2);
   --panel-default-title: oklch(0.70 0.16 260.2);
   --dropdown-item-hover-fg: oklch(0.70 0.16 260.2);
+  /* Lot 57 (4.5.3.55) : étiquette d'objet sans couleur (.labelObjectHuman) : 4,3 -> 5,2 */
+  --objectBkgd-color: oklch(0.53 0.229 260.2);
 }

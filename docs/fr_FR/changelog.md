@@ -1,5 +1,16 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.55 (Jee-Limad, branche alpha)
+
+## Amélioration
+
+- Accessibilité (contrastes mesurés sur les 33 pages du core) :
+  - page Vues : le lien « ici » du message « aucune vue » prend la couleur du texte de l'alerte, souligné (1,05 à 3,2 avant) ;
+  - page Sauvegardes et partout : `.text-warning` suit la couleur d'avertissement du thème au lieu du brun fixe de Bootstrap (3,1 sur fond sombre avant) ;
+  - page Système : en-têtes de liste « -- Commandes Sudo -- » en texte du thème sur fond teinté (1,9 à 3,5 avant) ;
+  - core2019_Dark : texte d'avertissement un peu plus clair (4,44 → 5,3) ;
+  - coreX_Dark, coreX_Zinc, tailwind : étiquette d'un objet sans couleur (`.labelObjectHuman`) sur un bleu plus foncé : 3,7–4,3 → 5,2.
+
 # 4.5.3.54 (Jee-Limad, branche alpha)
 
 ## Amélioration
