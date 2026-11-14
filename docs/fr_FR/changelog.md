@@ -1,5 +1,12 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.58 (Jee-Limad, branche alpha)
+
+## Amélioration
+
+- Accessibilité, survol : un bouton coloré garde au survol la couleur de texte de son état normal (avant : texte clair imposé, 1,55 à 3,8 sur les boutons jaunes, cyan ou verts). Jeton `--btn-hover-mix` : coreX_Blue et le bouton principal de coreX_Zinc, à texte sombre, éclaircissent leur fond au survol au lieu de l'assombrir. coreX_Zinc et tailwind : un bouton à contour posé sur un en-tête de panneau coloré prend au survol la couleur du texte de l'en-tête (jeton `--jeedom-heading-fg`).
+- Accessibilité, survol des liens et du menu : `--linkHover-color` plus contrasté dans core2019_Light (gris plus foncé), coreX_Dark et tailwind (bleu plus clair), coreX_Light (bleu plus foncé) : 2,6 à 4,35 → 5 et plus.
+
 # 4.5.3.57 (Jee-Limad, branche alpha)
 
 ## Amélioration

@@ -169,4 +169,9 @@ div.CodeMirror .CodeMirror-scrollbar-filler { background: transparent; }
   --btn-warning-bg: var(--panel-bg-color);
   background-color: var(--panel-bg-color);
 }
+
+/* Lot 61 : au survol, ce bouton à contour laisse voir l'en-tête : son texte prend la couleur du texte de l'en-tête. */
+.panel:not(.panel-default) > .panel-heading .btn {
+  --btn-hover-fg: var(--jeedom-heading-fg);
+}
 }

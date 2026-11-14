@@ -24,7 +24,7 @@ Neutral dark background with Bootstrap 5.3 semantic accents
 
   --txt-color: oklch(0.87 0.0 89.9);
   --link-color: oklch(0.715 0.0 89.9);
-  --linkHover-color: oklch(0.577 0.229 260.2);
+  --linkHover-color: oklch(0.70 0.17 260.2); /* lot 61 : 3,3-4,2 -> 5,1 et plus au survol */
   --linkHoverLight-color: oklch(0.981 0.002 247.8);
   --placeholder-color: oklch(0.715 0.0 89.9);
 

@@ -19,7 +19,7 @@ colors Light
 
   --txt-color: hsl(0 0% 45.1%);
   --link-color: hsl(0 0% 35.3%);
-  --linkHover-color: hsl(240 3.6% 56.5%);
+  --linkHover-color: hsl(240 4% 26%); /* lot 61 : 2,6-3,2 -> 9 et plus au survol (gris plus foncé que les liens au repos) */
   --linkHoverLight-color: hsl(0 0% 99.6%);
   --placeholder-color: hsl(0 0% 62.7%);
 

@@ -2357,11 +2357,21 @@ div.eqLogic-widget.editingMode .panelLink {
     border: 1px solid var(--btn-success-border, color-mix(in srgb, var(--al-success-color) 70%, #000));
     border-radius: var(--btn-semantic-radius, var(--border-radius));
   }
-  .btn.btn-primary:hover  { background-color: color-mix(in srgb, var(--al-primary-color) 85%, #000); }
-  .btn.btn-info:hover     { background-color: color-mix(in srgb, var(--btn-info-bg, var(--al-info-color)) 85%, #000); }
-  .btn.btn-success:hover  { background-color: color-mix(in srgb, var(--btn-success-bg, var(--al-success-color)) 85%, #000); }
-  .btn.btn-warning:hover  { background-color: color-mix(in srgb, var(--btn-warning-bg, var(--al-warning-color)) 85%, #000); }
-  .btn.btn-danger:hover   { background-color: color-mix(in srgb, var(--btn-danger-bg, var(--al-danger-color)) 85%, #000); }
+  .btn.btn-primary:hover  { background-color: color-mix(in srgb, var(--al-primary-color) 85%, var(--btn-hover-mix, #000)); }
+  .btn.btn-info:hover     { background-color: color-mix(in srgb, var(--btn-info-bg, var(--al-info-color)) 85%, var(--btn-hover-mix, #000)); }
+  .btn.btn-success:hover  { background-color: color-mix(in srgb, var(--btn-success-bg, var(--al-success-color)) 85%, var(--btn-hover-mix, #000)); }
+  .btn.btn-warning:hover  { background-color: color-mix(in srgb, var(--btn-warning-bg, var(--al-warning-color)) 85%, var(--btn-hover-mix, #000)); }
+  .btn.btn-danger:hover   { background-color: color-mix(in srgb, var(--btn-danger-bg, var(--al-danger-color)) 85%, var(--btn-hover-mix, #000)); }
+  /* Lot 61 : --btn-hover-mix (noir par défaut) : un thème dont les boutons ont un texte sombre le passe au blanc,
+     le fond s'éclaircit au survol au lieu de s'assombrir. */
+  /* Lot 61 : au survol, un bouton coloré garde la couleur de texte de son état normal. !important en couche :
+     l'emporte sur .btn:hover { color: var(--linkHoverLight-color) !important } de desktop.compat (hors couche),
+     qui mettait un texte clair sur un fond clair (1,55 à 3,8). --btn-hover-fg : redéfini par un thème au besoin. */
+  .btn.btn-primary:hover { color: var(--btn-hover-fg, var(--btn-primary-fg, #fff)) !important; }
+  .btn.btn-info:hover    { color: var(--btn-hover-fg, var(--btn-info-fg, #fff)) !important; }
+  .btn.btn-success:hover { color: var(--btn-hover-fg, var(--btn-success-fg, #fff)) !important; }
+  .btn.btn-warning:hover { color: var(--btn-hover-fg, var(--btn-warning-fg, #212529)) !important; }
+  .btn.btn-danger:hover  { color: var(--btn-hover-fg, var(--btn-danger-fg, #fff)) !important; }
   .form-control.btn {
     padding: 6px 8px;
   }
@@ -2683,27 +2693,32 @@ div.eqLogic-widget.editingMode .panelLink {
   }
   .panel-success .panel-heading {
     color: var(--panel-success-fg, var(--linkHoverLight-color));
-    --jeedom-focus-halo: var(--panel-success-fg, var(--linkHoverLight-color)); /* lot 59 : halo du focus clavier = texte de l'en-tête */
+    --jeedom-heading-fg: var(--panel-success-fg, var(--linkHoverLight-color)); /* lot 61 : texte de l'en-tête, en jeton */
+    --jeedom-focus-halo: var(--jeedom-heading-fg); /* lot 59 : halo du focus clavier = texte de l'en-tête */
     background-color: var(--panel-success-bg, var(--al-success-color)) !important;
   }
   .panel-primary .panel-heading {
     color: var(--panel-primary-fg, var(--linkHoverLight-color));
-    --jeedom-focus-halo: var(--panel-primary-fg, var(--linkHoverLight-color)); /* lot 59 : halo du focus clavier = texte de l'en-tête */
+    --jeedom-heading-fg: var(--panel-primary-fg, var(--linkHoverLight-color)); /* lot 61 : texte de l'en-tête, en jeton */
+    --jeedom-focus-halo: var(--jeedom-heading-fg); /* lot 59 : halo du focus clavier = texte de l'en-tête */
     background-color: var(--panel-primary-bg, #337ab7) !important;
   }
   .panel-info .panel-heading {
     color: var(--panel-info-fg, var(--linkHoverLight-color));
-    --jeedom-focus-halo: var(--panel-info-fg, var(--linkHoverLight-color)); /* lot 59 : halo du focus clavier = texte de l'en-tête */
+    --jeedom-heading-fg: var(--panel-info-fg, var(--linkHoverLight-color)); /* lot 61 : texte de l'en-tête, en jeton */
+    --jeedom-focus-halo: var(--jeedom-heading-fg); /* lot 59 : halo du focus clavier = texte de l'en-tête */
     background-color: var(--panel-info-bg, var(--al-info-color)) !important;
   }
   .panel-warning .panel-heading {
     color: var(--panel-warning-fg, var(--txt-color));
-    --jeedom-focus-halo: var(--panel-warning-fg, var(--txt-color)); /* lot 59 : halo du focus clavier = texte de l'en-tête */
+    --jeedom-heading-fg: var(--panel-warning-fg, var(--txt-color)); /* lot 61 : texte de l'en-tête, en jeton */
+    --jeedom-focus-halo: var(--jeedom-heading-fg); /* lot 59 : halo du focus clavier = texte de l'en-tête */
     background-color: var(--panel-warning-bg, var(--al-warning-color)) !important;
   }
   .panel-danger .panel-heading {
     color: var(--panel-danger-fg, var(--sc-lightTxt-color));
-    --jeedom-focus-halo: var(--panel-danger-fg, var(--sc-lightTxt-color)); /* lot 59 : halo du focus clavier = texte de l'en-tête */
+    --jeedom-heading-fg: var(--panel-danger-fg, var(--sc-lightTxt-color)); /* lot 61 : texte de l'en-tête, en jeton */
+    --jeedom-focus-halo: var(--jeedom-heading-fg); /* lot 59 : halo du focus clavier = texte de l'en-tête */
     background-color: var(--panel-danger-bg, var(--al-danger-color)) !important;
   }
 
