@@ -136,4 +136,6 @@ colors Dark
   --panel-warning-fg: rgb(20 20 20); /* 2.68 -> 5.51 sur rgb(195,125,40) */
   /* Lot 57 (4.5.3.55) : texte d'avertissement (.warning, .text-warning) : 4,44 -> 5,3 sur rgb(38,40,40) */
   --al-warning-text: hsl(33 70% 50%);
+  /* Lot 58 : contour du focus clavier : 2,8 -> 6 et plus sur la barre de navigation */
+  --jeedom-focus-color: hsl(207 70% 62%);
 }

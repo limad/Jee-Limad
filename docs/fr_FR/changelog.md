@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.56 (Jee-Limad, branche alpha)
+
+## Amélioration
+
+- Accessibilité : focus clavier visible sur les liens et boutons (contour de 2 px avec halo intérieur, seulement à la navigation au clavier : rien ne change au clic souris). Jetons `--jeedom-focus-color` et `--jeedom-focus-halo` ; core2019_Dark utilise un bleu plus clair. Avant : 118 à 121 éléments sur environ 290 sans aucune indication de focus sur 10 pages ; après : 0. Contraste de l'anneau : 3 et plus, sauf 4 boutons d'en-tête de panneau (2,8).
+
 # 4.5.3.55 (Jee-Limad, branche alpha)
 
 ## Amélioration

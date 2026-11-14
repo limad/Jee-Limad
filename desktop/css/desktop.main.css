@@ -41,6 +41,8 @@ Desktop
     --jeedom-shadow-bar: 0 2px 6px rgba(0,0,0,0.08);
     --jeedom-shadow-tab: 0 2px 4px rgba(0,0,0,0.1);
     --jeedom-tap-min: 36px; /* lot 55 : hauteur minimale d'une cible tactile du core sur téléphone */
+    --jeedom-focus-color: var(--al-primary-color); /* lot 58 : contour du focus clavier (les thèmes peuvent le redéfinir) */
+    --jeedom-focus-halo: var(--defaultBkg-color); /* lot 58 : anneau intérieur du focus clavier */
     /* Defaults: overridden by JS (utils.js) based on user config */
     --objectBackgroundBlur: 0px;
     --bkg-opacity-light: 1;
@@ -111,6 +113,15 @@ Desktop
   a:focus {
     text-decoration: none;
     outline: none;
+  }
+  /* Lot 58 : focus clavier visible (:focus-visible, donc sans effet au clic souris) sur liens et boutons.
+     !important en couche : l'emporte sur button:focus { outline: 0 !important } de desktop.compat (hors couche).
+     Champs de saisie exclus : ils ont déjà leur propre indication de focus. */
+  :is(a[href], button, .btn, [role="button"], summary):focus-visible {
+    outline: 2px solid var(--jeedom-focus-color) !important;
+    outline-offset: 2px !important;
+    /* halo de la couleur du fond de page entre l'élément et le contour : reste visible sur un en-tête coloré */
+    box-shadow: 0 0 0 2px var(--jeedom-focus-halo) !important;
   }
   a,
   span.cursor > i,
