@@ -94,6 +94,38 @@ setInterval(function() {
 }, 1000)
 
 var modifyWithoutSave = false
+/* Lot 63 : ramène un onglet (par défaut l'onglet actif) dans la zone visible d'une barre d'onglets défilante
+(petits écrans), en défilant la barre seule (jamais la page), en tenant compte de son scroll-padding (fondu de bord).
+Barre encore masquée (fiche en cours de chargement) : attend son affichage, une seule fois. */
+jeedomUtils.revealActiveTab = function(_ul, _li) {
+  if (_ul == null) return
+  if (_ul.clientWidth == 0) {
+    if (_ul._jeeRevealObserver || typeof ResizeObserver != 'function') return
+    _ul._jeeRevealObserver = new ResizeObserver(function() {
+      if (_ul.clientWidth == 0) return
+      _ul._jeeRevealObserver.disconnect()
+      delete _ul._jeeRevealObserver
+      jeedomUtils.revealActiveTab(_ul)
+    })
+    _ul._jeeRevealObserver.observe(_ul)
+    return
+  }
+  if (_ul.scrollWidth <= _ul.clientWidth + 1) return
+  var li = _li || _ul.querySelector(':scope > li.active')
+  if (li == null) return
+  var style = getComputedStyle(_ul)
+  var padL = parseFloat(style.scrollPaddingLeft) || 0
+  var padR = parseFloat(style.scrollPaddingRight) || 0
+  var left = _ul.getBoundingClientRect().left + _ul.clientLeft
+  var right = left + _ul.clientWidth
+  var rect = li.getBoundingClientRect()
+  if (rect.left < left + padL) {
+    _ul.scrollLeft -= left + padL - rect.left
+  } else if (rect.right > right - padR) {
+    _ul.scrollLeft += Math.min(rect.right - (right - padR), rect.left - (left + padL))
+  }
+}
+
 jeedomUtils.checkPageModified = function() {
   if (jeeFrontEnd.modifyWithoutSave || window.modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
@@ -247,6 +279,19 @@ document.addEventListener('DOMContentLoaded', function() {
       jeeFrontEnd.PREVIOUS_PAGE = window.location.href.split('&removeSuccessFull')[0] + window.location.hash
       window.history.replaceState({}, document.title, window.location.href.split('&removeSuccessFull')[0] + window.location.hash)
     }
+  })
+
+  //Lot 63 : onglet cliqué (souris, clavier ou rappel du hash au chargement) ou focalisé, ramené dans la zone visible
+  document.addEventListener('click', function(event) {
+    var tab = event.target.closest?.('.nav-tabs > li > a')
+    if (tab == null) return
+    setTimeout(function() {
+      jeedomUtils.revealActiveTab(tab.closest('.nav-tabs'))
+    }, 50)
+  })
+  document.addEventListener('focusin', function(event) {
+    var tab = event.target.closest?.('.nav-tabs > li > a')
+    if (tab != null) jeedomUtils.revealActiveTab(tab.closest('.nav-tabs'), tab.parentElement)
   })
 
   //tab in url:

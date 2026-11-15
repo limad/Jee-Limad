@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.60 (Jee-Limad, branche alpha)
+
+## Amélioration
+
+- Petits écrans (moins de 768 px), fiches à onglets : un fondu au bord de la barre d'onglets indique qu'il reste des onglets cachés de ce côté (il disparaît quand le bord est atteint). L'onglet actif est ramené dans la zone visible au clic, au clavier et au rechargement de la fiche sur cet onglet (avant : à moitié caché sur les fiches Objet et Mises à jour). L'anneau de focus des onglets n'est plus coupé en haut et en bas. Rien ne change au-dessus de 767 px ; le fondu demande un navigateur qui gère les animations liées au défilement (Chrome, Edge, Safari récent), sinon la barre reste comme avant.
+
 # 4.5.3.59 (Jee-Limad, branche alpha)
 
 ## Amélioration

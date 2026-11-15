@@ -4761,6 +4761,17 @@ div.eqLogic-widget.editingMode .panelLink {
     }
   }
 
+/* Lot 63 : fondu des barres d'onglets défilantes (petits écrans), largeur animée selon la position de
+   défilement : nul au bord atteint, plein au bord qui cache encore des onglets. Utilisé sous 767 px seulement. */
+@property --navtabs-fade-l { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@property --navtabs-fade-r { syntax: "<length>"; inherits: false; initial-value: 0px; }
+@keyframes jeedom-navtabs-fade {
+  0% { --navtabs-fade-l: 0px; --navtabs-fade-r: var(--navtabs-fade); }
+  5% { --navtabs-fade-l: var(--navtabs-fade); }
+  95% { --navtabs-fade-r: var(--navtabs-fade); }
+  100% { --navtabs-fade-l: var(--navtabs-fade); --navtabs-fade-r: 0px; }
+}
+
 /* ________________________________________TABLE REFLOW FLEX */
   @media (max-width: 767px) {
     div:not(.ui-dialog) > .floatingbar {
@@ -4837,6 +4848,32 @@ div.eqLogic-widget.editingMode .panelLink {
 
     .nav-tabs::-webkit-scrollbar {
       display: none; /*Safari and Chrome*/
+    }
+    /* Lot 63 : sur mobile la barre de défilement est masquée ou en surimpression : un fondu au bord indique
+       les onglets cachés (seulement s'il y en a de ce côté, cf. @keyframes jeedom-navtabs-fade). scroll-padding
+       garde l'onglet ramené par le clavier ou par revealActiveTab (utils.js) hors du fondu. L'anneau de focus
+       est dessiné à l'intérieur de l'onglet : overflow-x le couperait en haut et en bas. */
+    .nav-tabs {
+      --navtabs-fade: 24px;
+      scroll-padding-inline: var(--navtabs-fade);
+    }
+    @supports (animation-timeline: scroll()) {
+      .nav-tabs {
+        mask-image: linear-gradient(to right, transparent, #000 var(--navtabs-fade-l), #000 calc(100% - var(--navtabs-fade-r)), transparent);
+        animation: jeedom-navtabs-fade linear both;
+        animation-timeline: scroll(self inline);
+      }
+    }
+    ul.nav-tabs > li > a:focus-visible {
+      outline-offset: -4px !important;
+      box-shadow: inset 0 0 0 2px var(--jeedom-focus-halo) !important;
+    }
+    /* barre elle-même focalisée (zone défilante sans onglet focalisable) : anneau du thème à l'intérieur, sans fondu */
+    ul.nav-tabs:focus-visible {
+      mask-image: none;
+      outline: 2px solid var(--jeedom-focus-color);
+      outline-offset: -2px;
+      box-shadow: inset 0 0 0 4px var(--jeedom-focus-halo);
     }
 
     div.ui-dialog {
