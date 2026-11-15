@@ -1537,6 +1537,22 @@ jeedomUtils.setJeedomMenu = function() {
     }
   })
 
+  //Keyboard: links without href (submenu triggers, modal openers) become focusable; Enter/Space = click,
+  //or toggles the submenu in burger mode (< 768px) where the label carries the toggle:
+  document.querySelectorAll('#jeedomMenuBar .navbar-nav a:not([href])').forEach(_a => {
+    if (!_a.hasAttribute('tabindex')) _a.setAttribute('tabindex', '0')
+    if (!_a.hasAttribute('role')) _a.setAttribute('role', 'button')
+  })
+  document.getElementById('jeedomMenuBar')?.addEventListener('keydown', function(event) {
+    if (event.key !== 'Enter' && event.key !== ' ') return
+    var _a = event.target.closest('.navbar-nav a:not([href])')
+    if (!_a || event.target !== _a) return
+    event.preventDefault()
+    var label = _a.querySelector(':scope > label.drop-icon')
+    if (label && window.innerWidth < 768) label.click()
+    else _a.click()
+  })
+
   if (typeof user_isAdmin !== 'undefined' && user_isAdmin == 1) {
     document.getElementById('configName')?.addEventListener('click', event => {
       //center mouse click event to new tab:
@@ -1580,6 +1596,8 @@ jeedomUtils.setJeedomMenu = function() {
 }
 
 jeedomUtils.closeJeedomMenu = function() {
+  //a menu opened from the keyboard stays open while its link has the focus:
+  if (document.activeElement?.closest('#jeedomMenuBar .navbar-nav')) document.activeElement.blur()
   document.querySelectorAll('#jeedomMenuBar .navbar-nav')?.addClass('disabled')
   setTimeout(function() {
     document.querySelectorAll('#jeedomMenuBar .navbar-nav')?.removeClass('disabled')

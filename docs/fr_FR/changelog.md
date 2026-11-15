@@ -1,5 +1,12 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.59 (Jee-Limad, branche alpha)
+
+## Amélioration
+
+- Accessibilité, clavier : les menus de la barre (Accueil, Analyse, Outils, Plugins et ses catégories, Réglages, Dashboard, Vue, Design…) et leurs entrées qui ouvrent une fenêtre (Temps réel, Notes, Variables…) se parcourent au Tab. En bureau, un menu atteint au clavier s'ouvre comme au survol ; en mode burger (moins de 768 px), Entrée ou Espace ouvre et ferme le sous-menu. Avant : aucun menu ni aucune entrée de sous-menu atteignable au clavier ; après : 11 menus sur 11 et 53 entrées sur 53 dans les 7 thèmes. Rien ne change à la souris.
+- Accessibilité, page Logs : la liste des logs, quand elle reçoit le focus clavier, porte l'anneau du thème au lieu de l'anneau natif presque invisible.
+
 # 4.5.3.58 (Jee-Limad, branche alpha)
 
 ## Amélioration

@@ -589,6 +589,13 @@ Desktop
       visibility: visible;
       transition-delay: 0.25s;
     }
+    /* Lot 62 : ouverture au clavier, même rendu que le survol. :focus-visible et non :focus-within,
+       pour qu'un clic souris sur un menu ne le laisse pas ouvert. */
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) > li:has(:focus-visible) > ul,
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) > li > ul > li:has(:focus-visible) > ul {
+      visibility: visible;
+      transition-delay: 0s;
+    }
   }
 
 
@@ -1212,6 +1219,11 @@ div.eqLogicZone {
     padding-right: 0 !important;
     font-size: 13px;
     max-height: calc(100vh - 100px);
+  }
+  /* Lot 62 : la liste défilante reçoit le focus clavier (Chrome) ; anneau du thème à l'intérieur, la zone coupe l'extérieur */
+  #div_displayLogList:focus-visible {
+    outline: 2px solid var(--jeedom-focus-color) !important;
+    outline-offset: -2px !important;
   }
   #div_displayLogList ul > li > a {
     padding: 2px !important;
