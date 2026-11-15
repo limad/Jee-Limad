@@ -5207,10 +5207,21 @@ body[data-page="administration2"] .sidebar-tab-content .form-horizontal {
     overflow-x: auto;
   }
 }
-@media screen and (max-width: 767px) {
+/* Lot 64 : jusqu'à 1023 px (avant : 767). Entre 768 et 1023 px les tableaux de commandes s'écrasaient aussi
+   (nom à 36 px) ou étaient coupés par .tab-content. */
+@media screen and (max-width: 1023px) {
   /* onglet Commandes des fiches équipement (gabarit commun aux plugins) */
   #commandtab {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+  }
+  /* Lot 64 : le tableau de commandes s'écrasait dans la largeur de l'écran (nom de commande réduit à 20-36 px,
+     illisible et impossible à éditer) au lieu de défiler. Largeur minimale des champs : le tableau s'élargit
+     et #commandtab défile. Markup des plugins inchangé ; cases à cocher exclues. */
+  #commandtab table.table > tbody > tr > td :is(input.form-control:not([type="checkbox"]):not([type="radio"]), select.form-control, textarea.form-control) {
+    min-width: 80px;
+  }
+  #commandtab table.table > tbody > tr > td input.form-control.cmdAttr[data-l1key="name"] {
+    min-width: 160px;
   }
 }
