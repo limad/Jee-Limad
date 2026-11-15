@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.61 (Jee-Limad, branche alpha)
+
+## Amélioration
+
+- Fiches équipement, onglet Commandes, écrans de moins de 1024 px : le tableau des commandes ne s'écrase plus dans la largeur de l'écran. Les champs gardent une largeur utilisable (nom de la commande 160 px, autres champs 80 px) et l'onglet défile horizontalement. Avant : nom de la commande réduit à 20-36 px sur certains plugins (illisible et impossible à modifier), et tableau coupé à droite entre 768 et 1023 px. Rien ne change à partir de 1024 px ; les plugins ne sont pas modifiés.
+
 # 4.5.3.60 (Jee-Limad, branche alpha)
 
 ## Amélioration
