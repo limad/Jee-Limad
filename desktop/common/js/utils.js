@@ -126,6 +126,13 @@ jeedomUtils.revealActiveTab = function(_ul, _li) {
   }
 }
 
+/* Lot 65 : rend focalisables au clavier les onglets sans href (hors onglets désactivés). */
+jeedomUtils.initTabsKeyboard = function(_root) {
+  (_root || document).querySelectorAll('ul.nav-tabs > li:not(.disabled) > a:not([href]):not([tabindex])').forEach(function(_a) {
+    _a.setAttribute('tabindex', '0')
+  })
+}
+
 jeedomUtils.checkPageModified = function() {
   if (jeeFrontEnd.modifyWithoutSave || window.modifyWithoutSave) {
     if (!confirm('{{Attention vous quittez une page ayant des données modifiées non sauvegardées. Voulez-vous continuer ?}}')) {
@@ -292,6 +299,34 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('focusin', function(event) {
     var tab = event.target.closest?.('.nav-tabs > li > a')
     if (tab != null) jeedomUtils.revealActiveTab(tab.closest('.nav-tabs'), tab.parentElement)
+  })
+
+  //Lot 65 : onglets sans href (<a data-target>, la plupart des pages du core) : un lien sans href n'est pas
+  //focalisable. tabindex="0" au chargement et pour les onglets ajoutés ensuite (pages chargées sans rechargement,
+  //modales, onglets construits par les plugins) ; Entrée et Espace = clic (Espace aussi sur les onglets à href).
+  jeedomUtils.initTabsKeyboard()
+  if (typeof MutationObserver == 'function') {
+    var tabsKeyboardPending = false
+    new MutationObserver(function(_mutations) {
+      if (tabsKeyboardPending) return
+      for (var m of _mutations) {
+        if (m.addedNodes.length == 0) continue
+        tabsKeyboardPending = true
+        requestAnimationFrame(function() {
+          tabsKeyboardPending = false
+          jeedomUtils.initTabsKeyboard()
+        })
+        return
+      }
+    }).observe(document.body, { childList: true, subtree: true })
+  }
+  document.addEventListener('keydown', function(event) {
+    if ((event.key !== 'Enter' && event.key !== ' ') || event.ctrlKey || event.altKey || event.metaKey) return
+    var tab = event.target
+    if (!tab.matches?.('ul.nav-tabs > li > a')) return
+    if (tab.hasAttribute('href') && (event.key === 'Enter' || !tab.matches('[data-toggle="tab"], [role="tab"]'))) return
+    event.preventDefault()
+    tab.click()
   })
 
   //tab in url:

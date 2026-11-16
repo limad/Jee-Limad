@@ -116,8 +116,9 @@ Desktop
   }
   /* Lot 58 : focus clavier visible (:focus-visible, donc sans effet au clic souris) sur liens et boutons.
      !important en couche : l'emporte sur button:focus { outline: 0 !important } de desktop.compat (hors couche).
-     Champs de saisie exclus : ils ont déjà leur propre indication de focus. */
-  :is(a[href], button, .btn, [role="button"], summary):focus-visible {
+     Champs de saisie exclus : ils ont déjà leur propre indication de focus.
+     Lot 65 : a[tabindex] pour les liens sans href rendus focalisables (onglets du core, utils.js) ; même spécificité. */
+  :is(a[href], a[tabindex], button, .btn, [role="button"], summary):focus-visible {
     outline: 2px solid var(--jeedom-focus-color) !important;
     outline-offset: 2px !important;
     /* halo entre l'élément et le contour : couleur du fond de page, ou du texte de l'en-tête d'un panneau coloré (lot 59) */

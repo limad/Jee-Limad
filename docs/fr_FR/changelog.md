@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.62 (Jee-Limad, branche alpha)
+
+## Amélioration
+
+- Accessibilité : les onglets des pages du core (Configuration, Centre de mise à jour, Moteur de tâches, Résumé domotique, Analyse d'équipements, Profil, Scénario, Objet…) sont atteignables à la touche Tab et s'ouvrent avec Entrée ou Espace, avec l'anneau de focus habituel. Avant : ces onglets n'avaient pas de lien (`href`) et le clavier les sautait. Fonctionne aussi pour les onglets ajoutés après le chargement (navigation sans rechargement, onglets construits par les plugins). Rien ne change à la souris ; les plugins ne sont pas modifiés.
+
 # 4.5.3.61 (Jee-Limad, branche alpha)
 
 ## Amélioration
