@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.63 (Jee-Limad, branche alpha)
+
+## Correction
+
+- Option « Sans jQuery » : les onglets des plugins écrits sans les attributs `role` (onglets Bootstrap simples) fonctionnent de nouveau. Avant : sur certains plugins, cliquer un onglet ne l'ouvrait pas (fiche tailscale_ctrl, fenêtre des rappels d'Alexa Premium) ou affichait le nouvel onglet sous l'ancien, resté visible (onglet Commandes de naEnergie). Sans effet quand jQuery est chargé (option décochée) ; les plugins ne sont pas modifiés.
+
 # 4.5.3.62 (Jee-Limad, branche alpha)
 
 ## Amélioration

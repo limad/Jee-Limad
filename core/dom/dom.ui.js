@@ -341,23 +341,31 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       //Tabs
-      if (_target = event.target.closest('a[role="tab"]')) {
+      //Lot 66 : aussi les onglets Bootstrap sans rôles ARIA (a[data-toggle="tab"], ul.nav-tabs, li et .tab-pane nus),
+      //barre et .tab-content non voisins (barre enveloppée dans un div) et panneaux .fade (classe .in, comme Bootstrap).
+      if (_target = event.target.closest('a[role="tab"], a[data-toggle="tab"]')) {
         event.preventDefault()
-        let tabList = _target.closest('[role="tablist"]')
+        let tabList = _target.closest('[role="tablist"], ul.nav-tabs, ul.nav-pills')
         if (!tabList) return
-        let contentContainer = tabList.nextElementSibling
-        if (!contentContainer || !contentContainer.hasClass('tab-content')) return
         let contentRef = _target.getAttribute('data-target')
         if (!contentRef) contentRef = _target.getAttribute('href')
-        if (!contentRef) return
-        let tab = document.querySelector(contentRef)
+        if (!contentRef || !/^#[^\s#]+$/.test(contentRef)) return
+        let tab = null
+        try { tab = document.querySelector(contentRef) } catch (e) { }
         if (!tab) return
+        let contentContainer = tabList.nextElementSibling
+        if (!contentContainer || !contentContainer.hasClass('tab-content')) contentContainer = tab.parentElement
+        if (!contentContainer || !contentContainer.hasClass('tab-content')) return
         //Update current tab level:
-        tabList.querySelectorAll('li[role="presentation"].active').removeClass('active')
-        _target.closest('li[role="presentation"]')?.addClass('active')
+        tabList.querySelectorAll('li[role="presentation"].active, :scope > li.active').removeClass('active')
+        ;(_target.closest('li[role="presentation"]') || _target.closest('li'))?.addClass('active')
 
-        contentContainer.querySelectorAll('div[role="tabpanel"].active').removeClass('active')
+        contentContainer.querySelectorAll('div[role="tabpanel"].active, :scope > .tab-pane.active').forEach(_pane => {
+          _pane.removeClass('active')
+          if (_pane.hasClass('fade')) _pane.removeClass('in')
+        })
         tab.addClass('active')
+        if (tab.hasClass('fade')) tab.addClass('in')
 
         //Update tabs inside current tab:
         tab.querySelectorAll('[role="tablist"]').forEach(_list => {
