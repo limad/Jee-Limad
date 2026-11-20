@@ -1628,10 +1628,59 @@ jeedomUtils.setJeedomMenu = function() {
     var _a = event.target.closest('.navbar-nav a:not([href])')
     if (!_a || event.target !== _a) return
     event.preventDefault()
+    _a.parentElement.removeClass('jeeMenuClosed')
     var label = _a.querySelector(':scope > label.drop-icon')
     if (label && window.innerWidth < 768) label.click()
     else _a.click()
   })
+
+  //Escape closes the open submenu holding the focus (focus back to its trigger), then the burger menu (< 768px).
+  //aria-expanded on submenu triggers follows the keyboard state: checkbox in burger mode, focus otherwise
+  //(a submenu only opened by mouse hover stays aria-expanded="false").
+  var menuBar = document.getElementById('jeedomMenuBar')
+  if (menuBar) {
+    var menuIsOpen = function(_li) {
+      if (window.innerWidth < 768) return _li.querySelector(':scope > input').checked
+      var focused = document.activeElement
+      return !_li.hasClass('jeeMenuClosed') && _li.contains(focused) && focused.matches(':focus-visible')
+    }
+    var syncMenuExpanded = function() {
+      menuBar.querySelectorAll('.navbar-nav li > input[type="checkbox"] + ul').forEach(_ul => {
+        var _a = _ul.parentElement.querySelector(':scope > a')
+        if (_a && _ul.querySelector('a')) _a.setAttribute('aria-expanded', menuIsOpen(_ul.parentElement) ? 'true' : 'false')
+      })
+    }
+    menuBar.addEventListener('keydown', function(event) {
+      if (event.key !== 'Escape' || !event.target.closest('.navbar-nav')) return
+      var _li = event.target.closest('.navbar-nav li')
+      while (_li && !(_li.querySelector(':scope > input[type="checkbox"] + ul') && menuIsOpen(_li))) _li = _li.parentElement.closest('.navbar-nav li')
+      if (_li) {
+        if (window.innerWidth < 768) _li.querySelector(':scope > input').checked = false
+        else _li.addClass('jeeMenuClosed')
+        _li.querySelector(':scope > a')?.focus()
+      } else if (window.innerWidth < 768 && menuBar.querySelector('.navbar-collapse.in')) {
+        var toggle = menuBar.querySelector('.navbar-toggle')
+        toggle?.click()
+        toggle?.focus()
+      } else return
+      event.preventDefault()
+      syncMenuExpanded()
+    })
+    //a closed submenu opens again on a new hover, on Enter/Space, or once the focus has left it:
+    menuBar.addEventListener('focusout', function(event) {
+      menuBar.querySelectorAll('li.jeeMenuClosed').forEach(_li => {
+        if (!_li.contains(event.relatedTarget)) _li.removeClass('jeeMenuClosed')
+      })
+    })
+    menuBar.addEventListener('mouseover', function(event) {
+      var _li = event.target.closest('li.jeeMenuClosed')
+      if (_li && !_li.contains(event.relatedTarget)) _li.removeClass('jeeMenuClosed')
+    })
+    ;['focusin', 'focusout', 'change', 'click'].forEach(_type => {
+      menuBar.addEventListener(_type, () => requestAnimationFrame(syncMenuExpanded))
+    })
+    syncMenuExpanded()
+  }
 
   if (typeof user_isAdmin !== 'undefined' && user_isAdmin == 1) {
     document.getElementById('configName')?.addEventListener('click', event => {

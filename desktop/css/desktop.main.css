@@ -597,6 +597,14 @@ Desktop
       visibility: visible;
       transition-delay: 0s;
     }
+    /* Lot 67 : Échap referme le sous-menu, même sous la souris ou avec le focus dedans (classe posée par utils.js,
+       retirée au survol suivant, à Entrée/Espace ou quand le focus quitte le menu). Spécificité égale aux règles
+       d'ouverture ci-dessus : l'ordre décide. */
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) > li.jeeMenuClosed > ul,
+    #jeedomMenuBar ul.navbar-nav:not(.disabled) > li > ul > li.jeeMenuClosed > ul {
+      visibility: hidden;
+      transition-delay: 0s;
+    }
   }
 
 

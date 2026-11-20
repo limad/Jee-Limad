@@ -1,5 +1,11 @@
 # Changelog Jeedom V4.5
 
+# 4.5.3.64 (Jee-Limad, branche alpha)
+
+## Amélioration
+
+- Barre de menus au clavier : la touche Échap referme le sous-menu ouvert et rend le focus à son menu (Accueil, Analyse, Outils, Plugins et ses catégories, Réglages…) ; un nouvel appui referme le menu parent. Sur petit écran, Échap sur un menu déjà fermé referme le menu mobile et remet le focus sur son bouton. Les lecteurs d'écran annoncent si un sous-menu est ouvert ou fermé (`aria-expanded`). Le sous-menu refermé se rouvre au survol suivant, avec Entrée/Espace ou quand le focus le quitte. Le fonctionnement à la souris ne change pas.
+
 # 4.5.3.63 (Jee-Limad, branche alpha)
 
 ## Correction
